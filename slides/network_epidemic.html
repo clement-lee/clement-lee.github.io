@@ -403,7 +403,7 @@ Illustration of SIR model
 <div class="centered">
 <p>\(\sum_{i=3}^{m}x_{i}+1=\sum\sum_{j&lt;i}G_{ij}=\frac{1}{2}\sum\sum_{i\neq j}G_{ij}\)</p>
 
-<p>\(\sum\text{(new edges)} + 1 = \text{total no. of edges} = \frac{1}{2}\sum\text{(individual degrees)}\)</p></div>
+<p>\(\sum\text{(new edges)} + 1 = \text{total no. of edges} |G| = \frac{1}{2}\sum\text{(individual degrees)}\)</p></div>
 
 Toy example: \(m=8,\mu=3\)
 
@@ -424,7 +424,7 @@ Toy example: \(m=8,\mu=3\)
 
 <p>Likelihood: \[
 L_1(\boldsymbol{G};\mu)=\prod_{i=3}^{m}\frac{e^{-\mu}\mu^{x_i}}{x_i!(1-e^{-\mu})}\\
-\quad\quad\quad~~~=\frac{e^{-(m-2)\mu}\mu^{\sum\sum_{j&lt;i}G_{ij}-1}}{(1-e^{-\mu})^{m-2}\prod_{i=3}^{m}(x_i!)}
+\quad\quad\quad~~~=\frac{e^{-(m-2)\mu}\mu^{|G|-1}}{(1-e^{-\mu})^{m-2}\prod_{i=3}^{m}(x_i!)}
 \]</p>
 
 <p>Total number of edges <em>sufficient</em> for \(\mu\)</p>
@@ -483,7 +483,7 @@ L_2(\boldsymbol{G}):=\prod_{i=3}^{m}L_{2i}=
 <p>Likelihood independent of transmission tree \(\boldsymbol{P}\)</p>
 
 <div class="centered">
-<p>\(\pi(\boldsymbol{I}|\boldsymbol{G},\beta)=\beta^{m-1}\exp\left(-\beta\sum\sum_{(i,j):G_{ij}=1}\left[(I_j-I_i)\vee0\right]\right)\\ \qquad\quad~=\beta^{m-1}\exp\left(-\beta\sum_{i=1}^{m}\sum_{j=i+1}^{m}G_{ij}(I_j-I_i)\right)\)</p></div>
+<p>\(\pi(\boldsymbol{I}|\boldsymbol{G},\beta)=\beta^{m-1}\exp\left(-\beta\sum\sum_{(i,j):G_{ij}=1}\left[(I_j-I_i)\vee0\right]\right)\\ \qquad\quad~=\beta^{m-1}\exp\left(-\beta\sum_{i=1}^{m-1}\sum_{j=i+1}^{m}G_{ij}(I_j-I_i)\right)\)</p></div>
 
 </article></slide><slide class=''><hgroup><h2>Recipe</h2></hgroup><article  id="recipe-6">
 
@@ -585,9 +585,9 @@ L_2(\boldsymbol{G}):=\prod_{i=3}^{m}L_{2i}=
 
 <p><strong>Posteriors</strong></p>
 
-<p>\(\beta|\ldots\sim \text{Gamma}\left(a_\beta+m-1,\text{rate}=b_\beta+\sum_{i=1}^{m}\sum_{j=i+1}^{m}G_{ij}(I_j-I_i)\right)\)</p>
+<p>\(\beta|\ldots\sim \text{Gamma}\left(a_\beta+m-1,\text{rate}=b_\beta+\sum_{i=1}^{m-1}\sum_{j=i+1}^{m}G_{ij}(I_j-I_i)\right)\)</p>
 
-<p>\(\pi(\mu|\ldots)\propto e^{-(b_{\mu}+m-2)\mu}\mu^{a_{\mu}+\sum\sum_{j&lt;i}G_{ij}-2}(1-e^{-\mu})^{2-m}\boldsymbol{1}\{\mu&gt;0\}\)</p>
+<p>\(\pi(\mu|\ldots)\propto e^{-(b_{\mu}+m-2)\mu}\mu^{a_{\mu}+|G|-2}(1-e^{-\mu})^{2-m}\boldsymbol{1}\{\mu&gt;0\}\)</p>
 
 <p>\(\pi(\boldsymbol{\sigma}|\ldots)\propto L_1\left(f(\boldsymbol{G},\boldsymbol{\sigma});\mu\right)L_2(\left(f(\boldsymbol{G},\boldsymbol{\sigma})\right)\)</p>
 
