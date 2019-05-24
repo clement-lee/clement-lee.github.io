@@ -1,0 +1,32 @@
+---
+title: "Always work in progress"
+output:
+    html_document:
+        theme: united
+---
+
+## Talks given
+### On network epidemic
+2017-03-24: [Internal seminar](slides/network_epidemic.html)  
+2017-04-21: [Open Lab talk](slides/labtalk.html)
+
+### On NHPP modelling of retweets
+2018-01-26: [Internal seminar](slides/tweets_statsresgroup.html)
+
+### On citation networks
+2018-08-24: [Open Lab talk](slides/labtalk_citation_network.html)  
+2018-08-30: [Compstat conference](slides/compstat.html)  
+2018-10-19: [Internal seminar](slides/statsresgroup_network_review.html)  
+2019-05-24: [DSI seminar](slides/dsi_seminar.html)
+
+### On data visualisations
+2018-12-22: [CSC8111](slides/csc8111.html)
+
+## Some pages
+[Google scholar](https://scholar.google.co.uk/citations?user=V_i3YwkAAAAJ&hl=en)  
+[Research Gate](https://www.researchgate.net/profile/Clement_Lee7)  
+[ORCID](https://orcid.org/0000-0003-1785-8671)  
+[Scopus](https://www.scopus.com/authid/detail.uri?authorId=57195286419)  
+[LinkedIn](https://www.linkedin.com/in/clement-lee-153a9bb8/)  
+[Page at Lancaster](https://www.lancaster.ac.uk/maths/people/clement-lee)  
+[Github](https://github.com/clement-lee)  
