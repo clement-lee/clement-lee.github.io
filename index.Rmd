@@ -17,7 +17,8 @@ output:
 2018-08-24: [Open Lab talk](slides/labtalk_citation_network.html)  
 2018-08-30: [Compstat conference](slides/compstat.html)  
 2018-10-19: [Internal seminar](slides/statsresgroup_network_review.html)  
-2019-05-24: [DSI seminar](slides/dsi_seminar.html)
+2019-05-24: [DSI seminar](slides/dsi_seminar.html)  
+2019-06-13: [CSML seminar](slides/csml_seminar.html)
 
 ### On data visualisations
 2018-12-22: [CSC8111](slides/csc8111.html)
