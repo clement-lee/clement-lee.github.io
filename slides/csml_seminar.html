@@ -76,7 +76,7 @@ Clement Lee
 <li><span class="math inline">\(\boldsymbol{Z}_p=(\underbrace{0~\cdots~0}_{(i-1)}~1~\underbrace{0~\cdots~0}_{(K-i)})^T\)</span></li>
 <li>Instead of <span class="math inline">\(\boldsymbol{Z}_p=i\)</span></li>
 </ul></li>
-<li>All memberships: <span class="math inline">\(\boldsymbol{Z}=(\boldsymbol{Z}_1~\boldsymbol{Z}_2\cdots~\boldsymbol{Z}_n)^T\)</span>
+<li>All memberships: <span class="math inline">\(\boldsymbol{Z}:=(\boldsymbol{Z}_1~\boldsymbol{Z}_2\cdots~\boldsymbol{Z}_n)^T\)</span>
 <ul>
 <li><span class="math inline">\(n\times{}K\)</span> matrix</li>
 <li><span class="math inline">\(\boldsymbol{Z}_{pi}=1\)</span></li>
@@ -231,7 +231,6 @@ Clement Lee
 <ul>
 <li><span class="math inline">\(\boldsymbol{Y}_{pq}|\boldsymbol{Z},\boldsymbol{C}\sim\text{Bernoulli}(\boldsymbol{Z}_p^T\boldsymbol{C}\boldsymbol{Z}_q)\)</span></li>
 <li><span class="math inline">\(\boldsymbol{Z}_p\)</span> is the membership and cannot be integrated out</li>
-<li>Neither can <span class="math inline">\(\boldsymbol{C}_{ij}\)</span></li>
 </ul>
 <h4 id="karrer-and-newman2011-peixoto-2018">Karrer and Newman(2011); Peixoto (2018)</h4>
 <ul>
@@ -258,7 +257,7 @@ Clement Lee
 </div><div id="integrating-out-boldsymbolc" class="slide section level2">
 <h2>Integrating out <span class="math inline">\(\boldsymbol{C}\)</span></h2>
 <ul>
-<li>Likelihood: <span class="math display">\[ f(\boldsymbol{Y}|\boldsymbol{Z},\mu)=\int{}f(\boldsymbol{Y}|\boldsymbol{C},\boldsymbol{Z},\mu)\pi(\boldsymbol{C}|\boldsymbol{Z},\mu)d\boldsymbol{C}\\=\int\left[\prod_{p,q}(\boldsymbol{Z}_p^T\boldsymbol{C}\boldsymbol{Z}_q)^{\boldsymbol{Y}_{pq}}\exp(-\boldsymbol{Z}_p^T\boldsymbol{C}\boldsymbol{Z}_q)(\boldsymbol{Y}_{pq}!)^{-1}\times\prod_{i,j}\frac{\boldsymbol{N}_i\boldsymbol{N}_j}{\mu}\exp\left(-\frac{\boldsymbol{N}_i\boldsymbol{N}_j}{\mu}\right)\right]d\boldsymbol{C}\\=\cdots=\frac{\prod_{i,j}\boldsymbol{E}_{ij}!}{\prod_{p,q}\boldsymbol{Y}_{pq}!\prod_{i}\boldsymbol{N}_i^{\boldsymbol{E}_{i\cdot}+\boldsymbol{E}_{\cdot{}i}}}\times\frac{\mu^m}{(1+\mu)^{m+K^2}}\]</span></li>
+<li>Likelihood: <span class="math display">\[ f(\boldsymbol{Y}|\boldsymbol{Z},\mu)=\int{}f(\boldsymbol{Y}|\boldsymbol{C},\boldsymbol{Z},\mu)\pi(\boldsymbol{C}|\boldsymbol{Z},\mu)d\boldsymbol{C}\\=\int\left[\prod_{p,q}(\boldsymbol{Z}_p^T\boldsymbol{C}\boldsymbol{Z}_q)^{\boldsymbol{Y}_{pq}}\exp(-\boldsymbol{Z}_p^T\boldsymbol{C}\boldsymbol{Z}_q)(\boldsymbol{Y}_{pq}!)^{-1}\times\prod_{i,j}\frac{\boldsymbol{N}_i\boldsymbol{N}_j}{\mu}\exp\left(-\frac{\boldsymbol{N}_i\boldsymbol{N}_j}{\mu}\boldsymbol{C}_{ij}\right)\right]d\boldsymbol{C}\\=\cdots=\frac{\prod_{i,j}\boldsymbol{E}_{ij}!}{\prod_{p,q}\boldsymbol{Y}_{pq}!\prod_{i}\boldsymbol{N}_i^{\boldsymbol{E}_{i\cdot}+\boldsymbol{E}_{\cdot{}i}}}\times\frac{\mu^m}{(1+\mu)^{m+K^2}}\]</span></li>
 <li>Edge matrix: <span class="math inline">\(\boldsymbol{E}:=\{\boldsymbol{E}_{ij}\}_{K\times{}K}\)</span></li>
 <li>Total number of edges: <span class="math inline">\(m\)</span></li>
 <li><span class="math inline">\(\boldsymbol{Z}\)</span> influences the likelihood through <span class="math inline">\(\boldsymbol{N}\)</span> and <span class="math inline">\(\boldsymbol{E}\)</span></li>
