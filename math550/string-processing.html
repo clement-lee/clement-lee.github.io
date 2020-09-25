@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 String processing | Lancaster University MATH550/SCC.461 R Programming</title>
+  <meta name="description" content="4 String processing | Lancaster University MATH550/SCC.461 R Programming" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 String processing | Lancaster University MATH550/SCC.461 R Programming" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 String processing | Lancaster University MATH550/SCC.461 R Programming" />
+  
+  
+  
+
+<meta name="author" content="Lecturer: Dr Clement Lee" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="time-manipulation.html"/>
+<link rel="next" href="web-scraping-interactive-graphics-shiny-apps-package-building-and-more.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li><a href="introduction-to-r.html#introduction-to-r"><strong>0</strong> Introduction to R</a><ul>
+<li class="chapter" data-level="0.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>0.1</b> Background</a></li>
+<li class="chapter" data-level="0.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#saving-your-work"><i class="fa fa-check"></i><b>0.2</b> Saving your work</a></li>
+<li class="chapter" data-level="0.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#getting-started"><i class="fa fa-check"></i><b>0.3</b> Getting started</a></li>
+<li class="chapter" data-level="0.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#getting-help"><i class="fa fa-check"></i><b>0.4</b> Getting Help</a></li>
+<li class="chapter" data-level="0.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#r-scripts"><i class="fa fa-check"></i><b>0.5</b> R scripts</a></li>
+<li class="chapter" data-level="0.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#functions"><i class="fa fa-check"></i><b>0.6</b> Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="data-manipulation-and-plotting-in-r.html"><a href="data-manipulation-and-plotting-in-r.html"><i class="fa fa-check"></i><b>1</b> Data manipulation and plotting in R</a><ul>
+<li class="chapter" data-level="1.1" data-path="data-manipulation-and-plotting-in-r.html"><a href="data-manipulation-and-plotting-in-r.html#introduction"><i class="fa fa-check"></i><b>1.1</b> Introduction</a></li>
+<li class="chapter" data-level="1.2" data-path="data-manipulation-and-plotting-in-r.html"><a href="data-manipulation-and-plotting-in-r.html#working-with-data-in-r"><i class="fa fa-check"></i><b>1.2</b> Working with data in R</a></li>
+<li class="chapter" data-level="1.3" data-path="data-manipulation-and-plotting-in-r.html"><a href="data-manipulation-and-plotting-in-r.html#data-types"><i class="fa fa-check"></i><b>1.3</b> Data Types</a></li>
+<li class="chapter" data-level="1.4" data-path="data-manipulation-and-plotting-in-r.html"><a href="data-manipulation-and-plotting-in-r.html#logical-comparisons-and-boolean-operations"><i class="fa fa-check"></i><b>1.4</b> Logical comparisons and Boolean operations</a></li>
+<li class="chapter" data-level="1.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#basic-plots"><i class="fa fa-check"></i><b>1.5</b> Basic Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="loops-conditional-statements-and-simulation.html"><a href="loops-conditional-statements-and-simulation.html"><i class="fa fa-check"></i><b>2</b> Loops, Conditional Statements, and Simulation</a><ul>
+<li class="chapter" data-level="2.1" data-path="loops-conditional-statements-and-simulation.html"><a href="loops-conditional-statements-and-simulation.html#before-you-start"><i class="fa fa-check"></i><b>2.1</b> Before you start</a></li>
+<li class="chapter" data-level="2.2" data-path="loops-conditional-statements-and-simulation.html"><a href="loops-conditional-statements-and-simulation.html#loops"><i class="fa fa-check"></i><b>2.2</b> Loops</a></li>
+<li class="chapter" data-level="2.3" data-path="loops-conditional-statements-and-simulation.html"><a href="loops-conditional-statements-and-simulation.html#conditional-statements"><i class="fa fa-check"></i><b>2.3</b> Conditional statements</a></li>
+<li class="chapter" data-level="2.4" data-path="loops-conditional-statements-and-simulation.html"><a href="loops-conditional-statements-and-simulation.html#probability-and-simulation"><i class="fa fa-check"></i><b>2.4</b> Probability and Simulation</a></li>
+<li class="chapter" data-level="2.5" data-path="loops-conditional-statements-and-simulation.html"><a href="loops-conditional-statements-and-simulation.html#combining-loops-and-simulation"><i class="fa fa-check"></i><b>2.5</b> Combining Loops and Simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="time-manipulation.html"><a href="time-manipulation.html"><i class="fa fa-check"></i><b>3</b> Time manipulation</a><ul>
+<li class="chapter" data-level="3.1" data-path="time-manipulation.html"><a href="time-manipulation.html#from-last-week"><i class="fa fa-check"></i><b>3.1</b> From last week</a></li>
+<li class="chapter" data-level="3.2" data-path="time-manipulation.html"><a href="time-manipulation.html#dates-and-timestamps-in-r"><i class="fa fa-check"></i><b>3.2</b> Dates and timestamps in R</a></li>
+<li class="chapter" data-level="3.3" data-path="time-manipulation.html"><a href="time-manipulation.html#summarising-data-over-time"><i class="fa fa-check"></i><b>3.3</b> Summarising data over time</a></li>
+<li class="chapter" data-level="3.4" data-path="time-manipulation.html"><a href="time-manipulation.html#a-timestamp-split-over-several-columns"><i class="fa fa-check"></i><b>3.4</b> A timestamp split over several columns</a></li>
+<li class="chapter" data-level="3.5" data-path="time-manipulation.html"><a href="time-manipulation.html#time-zones"><i class="fa fa-check"></i><b>3.5</b> Time zones</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="string-processing.html"><a href="string-processing.html"><i class="fa fa-check"></i><b>4</b> String processing</a><ul>
+<li class="chapter" data-level="4.1" data-path="string-processing.html"><a href="string-processing.html#preamble"><i class="fa fa-check"></i><b>4.1</b> Preamble</a></li>
+<li class="chapter" data-level="4.2" data-path="string-processing.html"><a href="string-processing.html#introducing-regular-expressions"><i class="fa fa-check"></i><b>4.2</b> Introducing regular expressions</a></li>
+<li class="chapter" data-level="4.3" data-path="string-processing.html"><a href="string-processing.html#working-with-strings-and-regular-expressions"><i class="fa fa-check"></i><b>4.3</b> Working with strings and regular expressions</a></li>
+<li class="chapter" data-level="4.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#exercises"><i class="fa fa-check"></i><b>4.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="web-scraping-interactive-graphics-shiny-apps-package-building-and-more.html"><a href="web-scraping-interactive-graphics-shiny-apps-package-building-and-more.html"><i class="fa fa-check"></i><b>5</b> Web scraping, interactive graphics, Shiny Apps, package building, and more</a><ul>
+<li class="chapter" data-level="5.1" data-path="web-scraping-interactive-graphics-shiny-apps-package-building-and-more.html"><a href="web-scraping-interactive-graphics-shiny-apps-package-building-and-more.html#packages"><i class="fa fa-check"></i><b>5.1</b> Packages</a></li>
+<li class="chapter" data-level="5.2" data-path="web-scraping-interactive-graphics-shiny-apps-package-building-and-more.html"><a href="web-scraping-interactive-graphics-shiny-apps-package-building-and-more.html#collecting-data"><i class="fa fa-check"></i><b>5.2</b> Collecting data</a></li>
+<li class="chapter" data-level="5.3" data-path="web-scraping-interactive-graphics-shiny-apps-package-building-and-more.html"><a href="web-scraping-interactive-graphics-shiny-apps-package-building-and-more.html#alternative-graphics"><i class="fa fa-check"></i><b>5.3</b> Alternative graphics</a></li>
+<li class="chapter" data-level="5.4" data-path="web-scraping-interactive-graphics-shiny-apps-package-building-and-more.html"><a href="web-scraping-interactive-graphics-shiny-apps-package-building-and-more.html#shiny-web-applications"><i class="fa fa-check"></i><b>5.4</b> Shiny Web Applications</a></li>
+<li class="chapter" data-level="5.5" data-path="web-scraping-interactive-graphics-shiny-apps-package-building-and-more.html"><a href="web-scraping-interactive-graphics-shiny-apps-package-building-and-more.html#rmarkdown-html-notebooks-and-ipythonjupyter-notebooks"><i class="fa fa-check"></i><b>5.5</b> Rmarkdown HTML notebooks and Ipython/Jupyter notebooks</a></li>
+<li class="chapter" data-level="5.6" data-path="web-scraping-interactive-graphics-shiny-apps-package-building-and-more.html"><a href="web-scraping-interactive-graphics-shiny-apps-package-building-and-more.html#exercise-housing-in-new-york-city"><i class="fa fa-check"></i><b>5.6</b> Exercise: Housing in New York City</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="further-reading.html"><a href="further-reading.html"><i class="fa fa-check"></i>Further reading</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lancaster University MATH550/SCC.461 R Programming</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="string-processing" class="section level1">
+<h1><span class="header-section-number">4</span> String processing</h1>
+<div id="preamble" class="section level2">
+<h2><span class="header-section-number">4.1</span> Preamble</h2>
+<ul>
+<li>Install the <code>stringr</code> package if it is not already available on your machine.</li>
+<li>Load your favourite packages at the start of a new script:</li>
+</ul>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb460-1" title="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb460-2" title="2"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb460-3" title="3"><span class="kw">library</span>(stringr)</a>
+<a class="sourceLine" id="cb460-4" title="4"></a>
+<a class="sourceLine" id="cb460-5" title="5"><span class="co"># Or more simply</span></a>
+<a class="sourceLine" id="cb460-6" title="6"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+</div>
+<div id="introducing-regular-expressions" class="section level2">
+<h2><span class="header-section-number">4.2</span> Introducing regular expressions</h2>
+<p>Regular expressions are special phrases that we construct to help find
+and match patterns in a large body of text or sets of strings.
+They exist in almost all programming languages and are a useful tool when
+interacting with computers in all sorts of ways:</p>
+<ul>
+<li>Finding files on a system with a particular pattern in their filename.</li>
+<li>Parsing a log file which contains thousands of lines, hunting down the reason for a server repeatedly crashing.</li>
+<li>Generating features and statistics from bodies of text e.g. how many times does the word “potato” appear in each of the works of Shakespeare. Another example; pulling out hashtags from tweets.</li>
+<li>Parse a web-page, storing all references to other websites.</li>
+<li>Automating the finding and replacing text.</li>
+</ul>
+<p>You will be starting with an expression as simple as this:</p>
+<pre><code>\d</code></pre>
+<p>which is <em>one</em> way of saying “any character that matches a <em>d</em>igit from 0 to 9”. And moving to something a bit more complicated, such as:</p>
+<pre><code>(\(\d{5}\)|\d{5})[ -.]?\d{5,6}</code></pre>
+<p>which matches a 10 or 11 digit, UK telephone number, with or without parentheses around the area code, and with or without a hyphen, dot (period) or space to separate the numbers.</p>
+<p>This lab will give you an idea of the simpler ways to match patterns in text
+using:</p>
+<ul>
+<li>Literal text</li>
+<li>Digits</li>
+<li>Letters</li>
+<li>Characters of any kind</li>
+</ul>
+<p>We will start by using the website RegExr to help you build and understand
+regular expressions: <a href="http://www.regexr.com/" class="uri">http://www.regexr.com/</a></p>
+<p>Open <code>fake_phone_numbers.txt</code>, a file in the data sets folder on
+moodle. Copy and paste its contents into the “Text” area on RegExr.</p>
+<div id="matching-literal-text" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Matching literal text</h3>
+<p>The most obvious feature of regular expressions is matching strings
+with one or more literal characters, called <em>literal text</em> or
+just <em>literals</em>.
+The way to match literal text is with normal, literal characters.
+This is similar to the way you might try to find a phrase in a word document
+or when submitting a keyword to a search engine. When you search for a string of text,
+character for character, you are searching with literal text.</p>
+<p>If you want to match the Lancaster area code, 01524, for example, which is a
+number sequence (string of digits), just type <code>01524</code> in the “Expression” box at the top of RegExr, and then all the matching area codes will be highlighted in the Text.
+If nothing is highlighted, check what you typed.</p>
+</div>
+<div id="matching-digits" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> Matching digits</h3>
+<p>In the Expression box, replace the literal text, 01524, with:</p>
+<pre><code>\d</code></pre>
+<p>This matches all the Arabic digits in the Text.
+Now in place of <code>\d</code> use a character class that matches
+the same thing. Enter the following range of digits as the Expression:</p>
+<pre><code>[0-9]</code></pre>
+<p>Though the syntax is different, using <code>\d</code> does the same
+thing as <code>[0-9]</code>.
+When we use square-brackets like this we are specifying a <em>character class</em>,
+you will learn more about character classes later.
+The character class <code>[0-9]</code> is a range, meaning that it will match the
+range of digits 0 through 9. You could also match digits 0 through 9 by listing all the digits:</p>
+<pre><code>[0123456789]</code></pre>
+<p>If you want to match only the binary digits 0 and 1, you would use this
+character class:</p>
+<pre><code>[01]</code></pre>
+<p>Try <code>[23]</code> in RegExr and look at the result. With a character class,
+you can pick the exact digits you want to match. The character shorthand
+for “all digits” (<code>\d</code>) is shorter and simpler, but it does not have the power or flexibility of the character class. Use character classes when you need to get very specific about what digits you need to match; otherwise, use <code>\d</code> because it is a simpler, more convenient syntax.</p>
+</div>
+<div id="matching-non-digits" class="section level3">
+<h3><span class="header-section-number">4.2.3</span> Matching non-digits</h3>
+<p>if you want to match characters that are not digits, use the shorthand:</p>
+<pre><code>\D</code></pre>
+<p>Try this in RegExr now. An uppercase <code>D</code>, rather than a lowercase, matches
+non-digit characters. This shorthand is the same as the following
+character class</p>
+<pre><code>[^0-9]</code></pre>
+<p>This is a negated class (a negated class says in essence, “do not match these”
+or “match all but these”), which is the same as:</p>
+<pre><code>[^\d]</code></pre>
+</div>
+<div id="matching-words-and-non-words" class="section level3">
+<h3><span class="header-section-number">4.2.4</span> Matching words and non-words</h3>
+<p>The fake phone numbers data obviously do not contain any word text. Go to
+&lt;www.authorama.com&gt;, which contains books that are in the public domain. Examples include, Alice in Wonderland, Flatland, and Frankenstein. Pick one and copy the first page of text into the Text area on RegExr, replacing the fake phone numbers. Now, in the Expression box,
+swap <code>\D</code> with:</p>
+<pre><code>\w</code></pre>
+<p>This shorthand will match all word characters. The difference between
+<code>\D</code> and <code>\w</code> is that <code>\D</code> matches whitespace, punctuation, quotation
+marks, hyphens, forward slashes, square brackets, and other similar characters,
+while <code>\w</code> does not, it only matches letters and numbers.
+In English, <code>\w</code> matches essentially the same thing as
+the character class:</p>
+<pre><code>[a-zA-Z0-9]</code></pre>
+<p>To match a non-word character:</p>
+<pre><code>\W</code></pre>
+<p>This shorthand matches whitespace, punctuation, and other kinds of characters
+that are not used in words. It is equivalent to the following character class:</p>
+<pre><code>[^a-zA-Z0-9]</code></pre>
+<p>Character classes allow you more control over what you match, but
+a lot of the time you do not need to type out all those characters.
+But sometimes you must explicitly state a character class in order to
+get precisely what you want. Try both:</p>
+<pre><code>[^\w]
+[^\W]</code></pre>
+<p>Can you see the differences in what text they match?
+Table <a href="string-processing.html#tab:shorthand">4.1</a> shows a summary of shorthand character classes.</p>
+<table>
+<caption><span id="tab:shorthand">Table 4.1: </span> Shorthand character classes</caption>
+<thead>
+<tr class="header">
+<th>Shorthand</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>\d</code></td>
+<td>digit</td>
+</tr>
+<tr class="even">
+<td><code>\D</code></td>
+<td>non-digit</td>
+</tr>
+<tr class="odd">
+<td><code>\w</code></td>
+<td>word</td>
+</tr>
+<tr class="even">
+<td><code>\W</code></td>
+<td>non-word</td>
+</tr>
+<tr class="odd">
+<td><code>\b</code></td>
+<td>word boundary</td>
+</tr>
+<tr class="even">
+<td><code>\B</code></td>
+<td>non-word boundary</td>
+</tr>
+<tr class="odd">
+<td><code>\s</code></td>
+<td>space character</td>
+</tr>
+<tr class="even">
+<td><code>\S</code></td>
+<td>non-space character</td>
+</tr>
+<tr class="odd">
+<td><code>\t</code></td>
+<td>tab character</td>
+</tr>
+<tr class="even">
+<td><code>\T</code></td>
+<td>non-tab character</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="matching-a-literal-word" class="section level3">
+<h3><span class="header-section-number">4.2.5</span> Matching a literal word</h3>
+<p>Going back to matching literal text, replace the expression with <code>at</code>,
+all instances of “at” in your text should now be highlighted. This includes instances
+where “at” is the actual word, and instances where “at” has occurred within
+a word, for example, “c<strong>at</strong> s<strong>at</strong> on the m<strong>at</strong>”.
+To match only instances of the actual word “at” change the expression so it
+becomes:</p>
+<pre><code>\bat\b</code></pre>
+<p>Here <code>\b</code> stands for <em>word-boundary</em>, and it matches the start or the end of a word.
+The first <code>\b</code> requires the <code>a</code> to occur at the very start of the word, or after a non-word character. The second <code>\b</code> requires the <code>t</code> to occur at the very end of the word, or before a non-word character.</p>
+</div>
+<div id="matching-whitespace" class="section level3">
+<h3><span class="header-section-number">4.2.6</span> Matching whitespace</h3>
+<p>To match whitespace, try the following in RegExr and see what is highlighted:</p>
+<pre><code>\s</code></pre>
+<p>The following character class matches the same characters:</p>
+<pre><code>[ \t\n\r]</code></pre>
+<p>which are the characters for spaces, tabs (<code>\t</code>),
+new lines (<code>\n</code>), and carriage returns (<code>\r</code>).</p>
+<p>To match a non-whitespace use:</p>
+<pre><code>\S</code></pre>
+<p>which is equivalent to:</p>
+<pre><code>[^ \t\n\r]</code></pre>
+</div>
+<div id="matching-any-character" class="section level3">
+<h3><span class="header-section-number">4.2.7</span> Matching any character</h3>
+<p>To match any character with regular expressions use the dot,
+also known as a period or a full stop. The dot matches all characters but line
+ending characters. In RegExr, replace your current expression with:</p>
+<pre><code>.</code></pre>
+<p>An equivalent character class to dot would be combining any class and its
+negated class:</p>
+<pre><code>[\w\W]</code></pre>
+<p>It can be tempting (and very lazy) to use dot as our character class as we can
+often be more specific about the text phrases we are looking to match.</p>
+</div>
+<div id="using-quantifiers" class="section level3">
+<h3><span class="header-section-number">4.2.8</span> Using quantifiers</h3>
+<table>
+<caption><span id="tab:quant">Table 4.2: </span> Quantifiers used after a character class.</caption>
+<thead>
+<tr class="header">
+<th>Quantifier</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>*</code></td>
+<td>0 or more</td>
+</tr>
+<tr class="even">
+<td><code>+</code></td>
+<td>1 or more</td>
+</tr>
+<tr class="odd">
+<td><code>?</code></td>
+<td>0 or 1</td>
+</tr>
+<tr class="even">
+<td><code>{3}</code></td>
+<td>exactly 3</td>
+</tr>
+<tr class="odd">
+<td><code>{3,}</code></td>
+<td>3 or more</td>
+</tr>
+<tr class="even">
+<td><code>{3,5}</code></td>
+<td>3, 4, or 5</td>
+</tr>
+</tbody>
+</table>
+<p>So far we have been matching individual characters or literal text, hence why
+when we use expressions such as <code>\w</code> all word
+characters are individually highlighted. To highlight all words as a whole:</p>
+<pre><code>\w+</code></pre>
+<p>or</p>
+<pre><code>[a-zA-Z0-9]+</code></pre>
+<p>The plus symbol here is used to state how many times we match the character
+class. <code>+</code> specifically means “1 or more” characters from
+the preceding character class.</p>
+<p>Other quantifiers are shown in Table <a href="string-processing.html#tab:quant">4.2</a>. For example to
+highlight all three-letter words use the expression:</p>
+<pre><code>\w{3}</code></pre>
+<p>How would you modify this to match four-letter words? Six- to seven-letter
+words? Also look at the differences in results between the two expressions:</p>
+<pre><code>\w{3}</code></pre>
+<p>and</p>
+<pre><code>.{3}</code></pre>
+</div>
+<div id="matching-alternate-patterns" class="section level3">
+<h3><span class="header-section-number">4.2.9</span> Matching alternate patterns</h3>
+<p>We can write regular expressions that state that there is a choice of
+patterns to match.
+For example, say you wanted to find how many occurrences of the word,
+“the”, there are in the text you have selected for analysis.
+The problem is, the word can occur as <em>THE</em>, <em>The</em>, and
+<em>the</em>. You can use alternation to deal with this by writing
+the following expression:</p>
+<pre><code>\b(the|The|THE)\b</code></pre>
+<p>and you will see all occurrences of <em>the</em> in the text highlighted.</p>
+<p>Being able to specify alternate patterns like this allows us to create
+sub-patterns in our expressions. Consider what words the following expression
+will match and why:</p>
+<pre><code>[tT]{1}h(eir|ere)</code></pre>
+</div>
+<div id="going-deeper" class="section level3">
+<h3><span class="header-section-number">4.2.10</span> Going deeper</h3>
+<p>If you are interested in learning more about regular expressions, seek out
+at least one of the following books:</p>
+<ul>
+<li>Introducing Regular Expressions (2012) by M. Fitzgerald (O’Reilly Media).</li>
+<li>Mastering Regular Expressions, Third Edition (2006) by J. Friedl (O’Reilly Media).</li>
+<li>Regular Expressions Cookbook, Second Edition (2012) by J. Goyvaerts and S. Levithan (O’Reilly Media).</li>
+</ul>
+<p>These cover a lot more than these notes. Each can serve as a good reference
+book.</p>
+</div>
+</div>
+<div id="working-with-strings-and-regular-expressions" class="section level2">
+<h2><span class="header-section-number">4.3</span> Working with strings and regular expressions</h2>
+<p>Base R provides a solid set of string manipulation functions, but because
+they have grown organically over time, they can be inconsistent and difficult
+to learn. Additionally, some string processing tasks that are
+easy to do in languages like Ruby or Python are rather hard to do in R.
+The aim of the <code>stringr</code> package is overcome these problems
+by providing a clean, modern interface to common string operations.
+Some but not all allow the use of regular expressions.</p>
+<div id="basic-string-operations" class="section level3">
+<h3><span class="header-section-number">4.3.1</span> Basic string operations</h3>
+<p>The following functions allow us to manipulate strings on a manual level
+rather than using any pattern matching:</p>
+<ul>
+<li><code>str_c()</code> is equivalent to <code>paste()</code> which you may have already used, it concatenates vectors but it uses the empty string (<code>""</code>) as the default separator rather than a single whitespace (<code>" "</code>) and silently removes zero length arguments.</li>
+</ul>
+<p>Consider each of the following <code>str_c()</code> statements and how each differs from the previous:</p>
+<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb489-1" title="1">dat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb489-2" title="2">  <span class="dt">animal =</span> <span class="kw">c</span>(<span class="st">&quot;human&quot;</span>, <span class="st">&quot;blue whale&quot;</span>, <span class="st">&quot;cat&quot;</span>, <span class="st">&quot;dog&quot;</span>),</a>
+<a class="sourceLine" id="cb489-3" title="3">  <span class="dt">food   =</span> <span class="kw">c</span>(<span class="st">&quot;pizza&quot;</span>, <span class="st">&quot;plankton&quot;</span>, <span class="st">&quot;human&quot;</span>, <span class="st">&quot;anything&quot;</span>),</a>
+<a class="sourceLine" id="cb489-4" title="4">  <span class="dt">when   =</span> <span class="kw">c</span>(<span class="st">&quot;this week&quot;</span>, <span class="st">&quot;now and then&quot;</span>, <span class="st">&quot;now&quot;</span>, <span class="st">&quot;always&quot;</span>)</a>
+<a class="sourceLine" id="cb489-5" title="5">)</a>
+<a class="sourceLine" id="cb489-6" title="6"></a>
+<a class="sourceLine" id="cb489-7" title="7"><span class="kw">str_c</span>(dat<span class="op">$</span>animal, <span class="st">&quot; wants to eat &quot;</span>, dat<span class="op">$</span>food)</a></code></pre></div>
+<pre><code>## [1] &quot;human wants to eat pizza&quot;         &quot;blue whale wants to eat plankton&quot;
+## [3] &quot;cat wants to eat human&quot;           &quot;dog wants to eat anything&quot;</code></pre>
+<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb491-1" title="1"><span class="kw">str_c</span>(dat<span class="op">$</span>animal, dat<span class="op">$</span>food, <span class="dt">sep=</span><span class="st">&quot; wants to eat &quot;</span>)</a></code></pre></div>
+<pre><code>## [1] &quot;human wants to eat pizza&quot;         &quot;blue whale wants to eat plankton&quot;
+## [3] &quot;cat wants to eat human&quot;           &quot;dog wants to eat anything&quot;</code></pre>
+<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb493-1" title="1"><span class="kw">str_c</span>(dat<span class="op">$</span>animal, dat<span class="op">$</span>food, dat<span class="op">$</span>when, <span class="dt">sep=</span><span class="st">&quot; wants to eat &quot;</span>)</a></code></pre></div>
+<pre><code>## [1] &quot;human wants to eat pizza wants to eat this week&quot;           
+## [2] &quot;blue whale wants to eat plankton wants to eat now and then&quot;
+## [3] &quot;cat wants to eat human wants to eat now&quot;                   
+## [4] &quot;dog wants to eat anything wants to eat always&quot;</code></pre>
+<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb495-1" title="1"><span class="kw">str_c</span>(dat<span class="op">$</span>animal, <span class="st">&quot; wants to eat &quot;</span>, dat<span class="op">$</span>food, <span class="st">&quot; &quot;</span>, dat<span class="op">$</span>when)</a></code></pre></div>
+<pre><code>## [1] &quot;human wants to eat pizza this week&quot;           
+## [2] &quot;blue whale wants to eat plankton now and then&quot;
+## [3] &quot;cat wants to eat human now&quot;                   
+## [4] &quot;dog wants to eat anything always&quot;</code></pre>
+<p>How strings are concatenated and collapsed can be modified by additional
+arguments to <code>str_c()</code>, check the help page to see how.
+In general, <code>str_c()</code> behaves in a more useful and consistent
+manner than <code>paste()</code>.</p>
+<ul>
+<li><code>str_length()</code> calculates the length of a string (as the number of characters in the string). If passed a vector it will return a vector of lengths.</li>
+</ul>
+<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb497-1" title="1"><span class="kw">str_length</span>(dat<span class="op">$</span>animal)</a></code></pre></div>
+<pre><code>## [1]  5 10  3  3</code></pre>
+</div>
+<div id="consumer-packaged-breakfast-goods" class="section level3">
+<h3><span class="header-section-number">4.3.2</span> Consumer Packaged Breakfast Goods</h3>
+<p>The following sections look at how we perform various string processing tasks
+within R using regular expressions. To give context to when these types of tasks
+are useful we will be working on a data set which contains nutritional
+information and ingredient lists for 6,600 breakfast products. Download
+<code>cpg_breakfast.csv</code> from moodle and open it in Excel to
+understand the structure, then read it into R (prevent
+auto-conversion of strings to factors).</p>
+<p>A variable description is presented in Table <a href="string-processing.html#tab:bfast-vars">4.3</a>.
+Only convert <code>manufacturer</code> and <code>brand</code> to factors.</p>
+<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb499-1" title="1">bf<span class="op">$</span>manufacturer &lt;-<span class="st"> </span><span class="kw">as.factor</span>(bf<span class="op">$</span>manufacturer)</a>
+<a class="sourceLine" id="cb499-2" title="2">bf<span class="op">$</span>brand &lt;-<span class="st"> </span><span class="kw">as.factor</span>(bf<span class="op">$</span>brand)</a></code></pre></div>
+<p>We will now be mainly working with the ingredient lists.</p>
+<table>
+<caption><span id="tab:bfast-vars">Table 4.3: </span> Description of relevant variables in the breakfast dataset.</caption>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>manufacturer</code></td>
+<td>The manufacturer or parent company of the product</td>
+</tr>
+<tr class="even">
+<td><code>brand</code></td>
+<td>The brand name commonly used by consumers</td>
+</tr>
+<tr class="odd">
+<td><code>product_name</code></td>
+<td>The name of the product. May include variant information such as colour or flavour</td>
+</tr>
+<tr class="even">
+<td><code>ingredients</code></td>
+<td>List of ingredients as they appear on the products packaging (comma separated).</td>
+</tr>
+<tr class="odd">
+<td><code>calories</code></td>
+<td>Total calories per serving.</td>
+</tr>
+<tr class="even">
+<td><code>total_carb</code></td>
+<td>Total amount of carbohydrates (grams).</td>
+</tr>
+<tr class="odd">
+<td><code>total_fat</code></td>
+<td>Total amount of fat (grams).</td>
+</tr>
+<tr class="even">
+<td><code>size</code></td>
+<td>Size information as shown on the packaging.</td>
+</tr>
+<tr class="odd">
+<td><code>avg_price</code></td>
+<td>Average price in dollars.</td>
+</tr>
+<tr class="even">
+<td><code>ean13</code></td>
+<td>The EAN-13 barcode used for identifying products worldwide.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="detect-if-a-match-can-be-found-within-a-string" class="section level3">
+<h3><span class="header-section-number">4.3.3</span> Detect if a match can be found within a string</h3>
+<p>The first brick wall we run in to when using regular expressions in R is that
+instead of simply using one backslash for character classes
+(e.g. <code>\w</code>) we have to use two (e.g. <code>\\w</code>).</p>
+<p>Let us try to determine how many breakfast products in our data contain
+oats. First we create the expression:</p>
+<div class="sourceCode" id="cb500"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb500-1" title="1">expr &lt;-<span class="st"> &quot;</span><span class="ch">\\</span><span class="st">b[oO]ats</span><span class="ch">\\</span><span class="st">b&quot;</span></a></code></pre></div>
+<p>which looks similar to the expressions we were creating earlier; we are looking
+to match either “oats” or “Oats” as whole words only. To then detect if either
+of these appear in the ingredients we do:</p>
+<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb501-1" title="1">bf<span class="op">$</span>has_oats &lt;-<span class="st"> </span><span class="kw">str_detect</span>(bf<span class="op">$</span>ingredients, expr)</a></code></pre></div>
+<p>This has added the variable <code>oats</code> to our data frame, and it will contain a series of <code>TRUE</code>s and <code>FALSE</code> depending on whether or not our expression was matched in the <code>ingredients</code> strings. To summarise:</p>
+<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb502-1" title="1"><span class="kw">table</span>(bf<span class="op">$</span>has_oats)</a></code></pre></div>
+<pre><code>## 
+## FALSE  TRUE 
+##  2708  1644</code></pre>
+<p>In terms of creating features from text-variables <code>str_detect()</code> is
+probably the most useful. Practice by looking for other common breakfast
+ingredients such as: corn and rice. Create a expression that will detect
+any instance of sugar, honey, or syrup.</p>
+</div>
+<div id="extract-the-matched-text" class="section level3">
+<h3><span class="header-section-number">4.3.4</span> Extract the matched text</h3>
+<p>There are many different types of syrup (e.g. agave, maple, corn). Write
+an expression that retrieves “syrup” and the preceding word:</p>
+<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb504-1" title="1">expr &lt;-<span class="st"> &quot;</span><span class="ch">\\</span><span class="st">w+ [sS]yrup&quot;</span></a>
+<a class="sourceLine" id="cb504-2" title="2">bf<span class="op">$</span>syrup_type &lt;-<span class="st"> </span><span class="kw">str_extract</span>(bf<span class="op">$</span>ingredients, expr)</a>
+<a class="sourceLine" id="cb504-3" title="3"><span class="kw">table</span>(bf<span class="op">$</span>syrup_type)</a></code></pre></div>
+<pre><code>## 
+##         Agave Syrup        Barley Syrup          Cane Syrup       Caramel Syrup 
+##                  11                   7                  61                   1 
+##       Chicory Syrup          Corn Syrup          Date Syrup        Ginger Syrup 
+##                   1                 807                   7                   1 
+##       Glucose Syrup        Invert Syrup         Juice Syrup          Malt Syrup 
+##                  27                   2                  36                 103 
+##      Maltitol Syrup         Maple Syrup           Oat Syrup Oligofructose Syrup 
+##                   7                 121                  28                   2 
+##     Pineapple Syrup      Refiners Syrup      Refinery Syrup          Rice Syrup 
+##                  14                   1                   1                 280 
+##          Root Syrup             s Syrup         Sugar Syrup       Tapioca Syrup 
+##                   4                   3                 111                  47 
+##         Wheat Syrup 
+##                   1</code></pre>
+<p>We can see that corn syrup is a fairly common ingredient. How many of these
+matches are actually for “high fructose corn syrup”? In general, we can extend
+our expression to try to capture all proceeding words (remember the ingredients
+are comma separated):</p>
+<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb506-1" title="1">expr &lt;-<span class="st"> &quot;,[ a-zA-Z]*[sS]yrup,&quot;</span></a>
+<a class="sourceLine" id="cb506-2" title="2">bf<span class="op">$</span>syrup_type &lt;-<span class="st"> </span><span class="kw">str_extract</span>(bf<span class="op">$</span>ingredients, expr)</a>
+<a class="sourceLine" id="cb506-3" title="3"><span class="kw">head</span>(<span class="kw">table</span>(bf<span class="op">$</span>syrup_type))</a></code></pre></div>
+<pre><code>## 
+##       , Agave Syrup, , Barley Malt Syrup,      , Barley Syrup, 
+##                    3                   38                    1 
+##  , Brown Rice Syrup, , Brown Sugar Syrup,  , Cane Juice Syrup, 
+##                  163                  108                    1</code></pre>
+<p>But now our <code>syrup_type</code> variable contains commas and whitespace. We
+can tidy this up by writing an expression that keeps all characters between
+the first and the last comma. To do this we use parentheses
+around the part of the expression that we want to keep:</p>
+<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb508-1" title="1">expr &lt;-<span class="st"> &quot;, (.*),&quot;</span></a></code></pre></div>
+<p>Because the text we are now working on (the text in <code>bf$syrup_type</code>) is
+small we can risk being a bit lazy with our expression hence why I use dot-star.
+When we use parentheses like this it is known as grouping, with the first
+set of parentheses being referenced as group one. To only keep the text that
+matches inside the brackets:</p>
+<div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb509-1" title="1">expr2 &lt;-<span class="st"> &quot;</span><span class="ch">\\</span><span class="st">1&quot;</span></a>
+<a class="sourceLine" id="cb509-2" title="2">bf<span class="op">$</span>syrup_type &lt;-<span class="st"> </span><span class="kw">str_replace</span>(bf<span class="op">$</span>syrup_type, expr, expr2)</a>
+<a class="sourceLine" id="cb509-3" title="3"><span class="kw">head</span>(<span class="kw">table</span>(bf<span class="op">$</span>syrup_type))</a></code></pre></div>
+<pre><code>## 
+##       Agave Syrup Barley Malt Syrup      Barley Syrup  Brown Rice Syrup 
+##                 3                38                 1               163 
+## Brown Sugar Syrup  Cane Juice Syrup 
+##               108                 1</code></pre>
+<p>It is possible to have multiple sets of parentheses in our expression, these
+would then be accessed using <code>"\\2"</code>, <code>"\\3"</code>, etc. Also, here our second
+expression is very simple, we are free to make this more complicated by
+including literal text:</p>
+<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb511-1" title="1">expr  &lt;-<span class="st"> &quot;(.*)&quot;</span></a>
+<a class="sourceLine" id="cb511-2" title="2">expr2 &lt;-<span class="st"> &quot;I have found </span><span class="ch">\\</span><span class="st">1!&quot;</span></a>
+<a class="sourceLine" id="cb511-3" title="3">bf<span class="op">$</span>syrup_type &lt;-<span class="st"> </span><span class="kw">str_replace</span>(bf<span class="op">$</span>syrup_type, expr, expr2)</a>
+<a class="sourceLine" id="cb511-4" title="4"><span class="kw">head</span>(<span class="kw">table</span>(bf<span class="op">$</span>syrup_type))</a></code></pre></div>
+<pre><code>## 
+##       I have found Agave Syrup! I have found Barley Malt Syrup! 
+##                               3                              38 
+##      I have found Barley Syrup!  I have found Brown Rice Syrup! 
+##                               1                             163 
+## I have found Brown Sugar Syrup!  I have found Cane Juice Syrup! 
+##                             108                               1</code></pre>
+<p><code>expr2</code> works in a similar way to the concatenating we did earlier with <code>str_c()</code>.
+Try this process of extracting again, but now look for instances of vitamins being
+added to the product. Commonly added vitamins are A, B12, C, D, and E, ensure
+your expression can capture these.</p>
+<p><code>str_extract()</code> will only retrieve the first match from a string. To
+retrieve all vitamins that are added to a product use
+<code>str_extract_all()</code>. Though you will not be able to store the results of
+that are returned from <code>str_extract_all()</code> simply in a variable in
+your data frame. Store the results in an object separate from your data frame
+and inspect it.</p>
+</div>
+<div id="replace-matches" class="section level3">
+<h3><span class="header-section-number">4.3.5</span> Replace matches</h3>
+<p>Say, we know someone who is a vegan, this someone also happens to be
+fairly good with regular expressions, let’s call this person Rose Myris. If Rose Myris
+wanted to replace all instances of meat-based ingredients with the phrase
+“dead animal” then she could do this by using <code>str_replace()</code>.
+Firstly, let’s find some breakfast foods that do actually contain meat:</p>
+<div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb513-1" title="1">expr &lt;-<span class="st"> &quot;(Duck|Beef|Pork|Bacon|Chicken|Poultry|Turkey)&quot;</span></a>
+<a class="sourceLine" id="cb513-2" title="2">bf<span class="op">$</span>has_meat &lt;-<span class="st"> </span><span class="kw">str_detect</span>(bf<span class="op">$</span>ingredients, expr)</a>
+<a class="sourceLine" id="cb513-3" title="3">bf_meat &lt;-<span class="st"> </span><span class="kw">filter</span>(bf, has_meat <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span>)</a></code></pre></div>
+<p>Inspect <code>bf_meat</code> to see the kinds of products we are dealing with,
+in particular look at row 161 (which also includes corn syrup).
+Using <code>str_replace()</code>, we can reuse the same expression in order
+to swap out each type of meat for a different phrase:</p>
+<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb514-1" title="1">bf_meat<span class="op">$</span>ingredients &lt;-<span class="st"> </span><span class="kw">str_replace</span>(bf_meat<span class="op">$</span>ingredients,</a>
+<a class="sourceLine" id="cb514-2" title="2">                                   expr, <span class="st">&quot;dead animal&quot;</span>)</a></code></pre></div>
+<p>Now look at what changes have been made to the ingredients in <code>bf_meat</code>.
+In each string only the first match has been replaced. Obviously, Rose Myris,
+would prefer to have all matches replaced, the is where
+<code>str_replace_all()</code> comes in to action:</p>
+<div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb515-1" title="1">bf_meat<span class="op">$</span>ingredients &lt;-<span class="st"> </span><span class="kw">str_replace_all</span>(bf_meat<span class="op">$</span>ingredients,</a>
+<a class="sourceLine" id="cb515-2" title="2">                                       expr, <span class="st">&quot;dead animal&quot;</span>)</a></code></pre></div>
+<p>At last, Rose Myris’ anger can now reach new heights! To really get her blood
+boiling let’s count how many replaces were made:</p>
+<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb516-1" title="1">dead_hits &lt;-<span class="st"> </span><span class="kw">str_match_all</span>(bf_meat<span class="op">$</span>ingredients, <span class="st">&quot;dead animal&quot;</span>)</a>
+<a class="sourceLine" id="cb516-2" title="2"></a>
+<a class="sourceLine" id="cb516-3" title="3">dead_count &lt;-<span class="st"> </span><span class="kw">c</span>()</a>
+<a class="sourceLine" id="cb516-4" title="4"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(dead_hits)) {</a>
+<a class="sourceLine" id="cb516-5" title="5">    dead_count[i] &lt;-<span class="st"> </span><span class="kw">length</span>(dead_hits[[i]])</a>
+<a class="sourceLine" id="cb516-6" title="6">}</a>
+<a class="sourceLine" id="cb516-7" title="7"><span class="kw">sum</span>(dead_count)</a></code></pre></div>
+<pre><code>## [1] 315</code></pre>
+<p>An alternative way to code this which avoids the loop is:</p>
+<div class="sourceCode" id="cb518"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb518-1" title="1">dead_count &lt;-<span class="st"> </span><span class="kw">lengths</span>(dead_hits)</a>
+<a class="sourceLine" id="cb518-2" title="2"><span class="kw">sum</span>(dead_count)</a></code></pre></div>
+<pre><code>## [1] 315</code></pre>
+<p>We can then look at the worst offender.</p>
+<div class="sourceCode" id="cb520"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb520-1" title="1">bf_meat[<span class="kw">which.max</span>(dead_count), ]</a></code></pre></div>
+<pre><code>##    manufacturer  brand product_name size
+## 12              Turkey Turkey Bacon 6 oz
+##                                                                                                                                                                                                                                                                                   ingredients
+## 12 dead animal, Mechanically Separated dead animal, dead animal, dead animal Flavor, Rendered dead animal Fat, Smokey Flavoring, Cooked dead animal, Cured With Water, Salt, Sugar, Smoke Flavorings, Sodium Phosphate, Sodium Erythorbate, Sodium Nitrite, Flavoring, Water, Autolyzed Yeast
+##    avg_price       ean13 serving_size calories fat_calories total_fat sat_fat
+## 12      2.29 45300303659     3 slices       70           50         5       2
+##    trans_fat cholesterol sodium potassium total_carb dietary_fiber sugars
+## 12         0          20    360         0          1             0      1
+##    protein polyunsat_fat monounsat_fat soluble_fiber insoluble_fiber calcium
+## 12       4             0             0             0               0       2
+##    iron has_oats syrup_type has_meat
+## 12    2    FALSE       &lt;NA&gt;     TRUE</code></pre>
+</div>
+<div id="building-large-expressions" class="section level3">
+<h3><span class="header-section-number">4.3.6</span> Building large expressions</h3>
+<p>If we wanted to find products that contained fruit, we simply have to create
+one long alternating pattern of literal fruit names (e.g. <code>(apple|orange|pear|raisin)</code>, as there is no smart compact expression we can write down that will match only fruit names.</p>
+<p>The file <code>list_of_fruit.txt</code> is a list of fruit, read it into R and format the contents such that it looks like a list of fruit, with the first few rows looking something like this:</p>
+<pre><code>Apple
+Apricot
+Avocado
+Banana</code></pre>
+<p>For example,</p>
+<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb523-1" title="1">fruit &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">file=</span><span class="st">&quot;./data/list_of_fruit.txt&quot;</span>, <span class="dt">header=</span><span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb523-2" title="2">                    <span class="dt">stringsAsFactors=</span><span class="ot">FALSE</span>)</a></code></pre></div>
+<p>We are not interested in keeping this data in a data frame, so we can go ahead
+and overwrite the <code>fruit</code> object with the <code>V1</code> variable:</p>
+<div class="sourceCode" id="cb524"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb524-1" title="1">fruit &lt;-<span class="st"> </span>fruit<span class="op">$</span>V1</a></code></pre></div>
+<p>Now <code>fruit</code> is just a vector of fruit names. Check the length of
+<code>fruit</code> to see how many we actually have. Next, we can start to build
+our expression by first collapsing all the different fruit names together, and
+then adding parenthesis either side:</p>
+<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb525-1" title="1">fruit_expr &lt;-<span class="st"> </span><span class="kw">str_c</span>(fruit, <span class="dt">collapse=</span><span class="st">&quot;|&quot;</span>)</a>
+<a class="sourceLine" id="cb525-2" title="2">fruit_expr &lt;-<span class="st"> </span><span class="kw">str_c</span>(<span class="st">&quot;(&quot;</span>, fruit_expr, <span class="st">&quot;)&quot;</span>)</a>
+<a class="sourceLine" id="cb525-3" title="3"><span class="kw">str_length</span>(fruit_expr)</a></code></pre></div>
+<pre><code>## [1] 769</code></pre>
+<p>Our fruit expression has 769 characters which means it’s very long. Let’s put this into action:</p>
+<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb527-1" title="1">bf<span class="op">$</span>has_fruit &lt;-<span class="st"> </span><span class="kw">str_detect</span>(bf<span class="op">$</span>ingredients, fruit_expr)</a>
+<a class="sourceLine" id="cb527-2" title="2"><span class="kw">table</span>(bf<span class="op">$</span>has_fruit)</a></code></pre></div>
+<pre><code>## 
+## FALSE  TRUE 
+##  2278  2074</code></pre>
+<p>We can use this technique of concatenating a list to build several features,
+such as whether or not a product:</p>
+<ul>
+<li>Contains gluten.</li>
+<li>Is suitable for those who are lactose-intolerant.</li>
+<li>Is suitable for vegetarians or vegans.</li>
+</ul>
+<p>For each of these we would need to create specific lists which we
+would then collapse to form a single, but very long, expression. In some cases,
+it may be easier to try to match ingredients that they can not or will not eat
+rather than match those that they can.</p>
+</div>
+</div>
+<div id="exercises" class="section level2">
+<h2><span class="header-section-number">4.4</span> Exercises</h2>
+<ol style="list-style-type: decimal">
+<li>Create separate boxplots comparing the distribution of total
+carbohydrates in fruit-based and non-fruit-based breakfast food.
+item Repeat but for total fat instead of total carbs.
+item The are a wide variety of products that class as breakfast food:</li>
+</ol>
+<ul>
+<li>Cereal-bars</li>
+<li>Cereal (e.g. corn flakes, porridge, granola, puffed rice)</li>
+<li>Waffles, pancakes</li>
+<li>Delicious baked goods (e.g. croissants, pan au chocolat)</li>
+<li>Meat products (e.g. sausage, bacon)</li>
+<li>Other</li>
+</ul>
+<p>Construct regular expressions which attempt to classify products into these
+groups. You will have to decide which variable in the data set is the most
+appropriate to be working with. You may need to break this task down into
+several smaller sub-tasks.</p>
+<p>Once complete, construct similar boxplots to the first two tasks, comparing
+distributions of total fat and carbs for these groups.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="time-manipulation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="web-scraping-interactive-graphics-shiny-apps-package-building-and-more.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

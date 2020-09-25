@@ -1,0 +1,1532 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1 Data manipulation and plotting in R | Lancaster University MATH550/SCC.461 R Programming</title>
+  <meta name="description" content="1 Data manipulation and plotting in R | Lancaster University MATH550/SCC.461 R Programming" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1 Data manipulation and plotting in R | Lancaster University MATH550/SCC.461 R Programming" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1 Data manipulation and plotting in R | Lancaster University MATH550/SCC.461 R Programming" />
+  
+  
+  
+
+<meta name="author" content="Lecturer: Dr Clement Lee" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introduction-to-r.html"/>
+<link rel="next" href="loops-conditional-statements-and-simulation.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li><a href="introduction-to-r.html#introduction-to-r"><strong>0</strong> Introduction to R</a><ul>
+<li class="chapter" data-level="0.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>0.1</b> Background</a></li>
+<li class="chapter" data-level="0.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#saving-your-work"><i class="fa fa-check"></i><b>0.2</b> Saving your work</a></li>
+<li class="chapter" data-level="0.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#getting-started"><i class="fa fa-check"></i><b>0.3</b> Getting started</a></li>
+<li class="chapter" data-level="0.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#getting-help"><i class="fa fa-check"></i><b>0.4</b> Getting Help</a></li>
+<li class="chapter" data-level="0.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#r-scripts"><i class="fa fa-check"></i><b>0.5</b> R scripts</a></li>
+<li class="chapter" data-level="0.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#functions"><i class="fa fa-check"></i><b>0.6</b> Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="data-manipulation-and-plotting-in-r.html"><a href="data-manipulation-and-plotting-in-r.html"><i class="fa fa-check"></i><b>1</b> Data manipulation and plotting in R</a><ul>
+<li class="chapter" data-level="1.1" data-path="data-manipulation-and-plotting-in-r.html"><a href="data-manipulation-and-plotting-in-r.html#introduction"><i class="fa fa-check"></i><b>1.1</b> Introduction</a></li>
+<li class="chapter" data-level="1.2" data-path="data-manipulation-and-plotting-in-r.html"><a href="data-manipulation-and-plotting-in-r.html#working-with-data-in-r"><i class="fa fa-check"></i><b>1.2</b> Working with data in R</a></li>
+<li class="chapter" data-level="1.3" data-path="data-manipulation-and-plotting-in-r.html"><a href="data-manipulation-and-plotting-in-r.html#data-types"><i class="fa fa-check"></i><b>1.3</b> Data Types</a></li>
+<li class="chapter" data-level="1.4" data-path="data-manipulation-and-plotting-in-r.html"><a href="data-manipulation-and-plotting-in-r.html#logical-comparisons-and-boolean-operations"><i class="fa fa-check"></i><b>1.4</b> Logical comparisons and Boolean operations</a></li>
+<li class="chapter" data-level="1.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#basic-plots"><i class="fa fa-check"></i><b>1.5</b> Basic Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="loops-conditional-statements-and-simulation.html"><a href="loops-conditional-statements-and-simulation.html"><i class="fa fa-check"></i><b>2</b> Loops, Conditional Statements, and Simulation</a><ul>
+<li class="chapter" data-level="2.1" data-path="loops-conditional-statements-and-simulation.html"><a href="loops-conditional-statements-and-simulation.html#before-you-start"><i class="fa fa-check"></i><b>2.1</b> Before you start</a></li>
+<li class="chapter" data-level="2.2" data-path="loops-conditional-statements-and-simulation.html"><a href="loops-conditional-statements-and-simulation.html#loops"><i class="fa fa-check"></i><b>2.2</b> Loops</a></li>
+<li class="chapter" data-level="2.3" data-path="loops-conditional-statements-and-simulation.html"><a href="loops-conditional-statements-and-simulation.html#conditional-statements"><i class="fa fa-check"></i><b>2.3</b> Conditional statements</a></li>
+<li class="chapter" data-level="2.4" data-path="loops-conditional-statements-and-simulation.html"><a href="loops-conditional-statements-and-simulation.html#probability-and-simulation"><i class="fa fa-check"></i><b>2.4</b> Probability and Simulation</a></li>
+<li class="chapter" data-level="2.5" data-path="loops-conditional-statements-and-simulation.html"><a href="loops-conditional-statements-and-simulation.html#combining-loops-and-simulation"><i class="fa fa-check"></i><b>2.5</b> Combining Loops and Simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="time-manipulation.html"><a href="time-manipulation.html"><i class="fa fa-check"></i><b>3</b> Time manipulation</a><ul>
+<li class="chapter" data-level="3.1" data-path="time-manipulation.html"><a href="time-manipulation.html#from-last-week"><i class="fa fa-check"></i><b>3.1</b> From last week</a></li>
+<li class="chapter" data-level="3.2" data-path="time-manipulation.html"><a href="time-manipulation.html#dates-and-timestamps-in-r"><i class="fa fa-check"></i><b>3.2</b> Dates and timestamps in R</a></li>
+<li class="chapter" data-level="3.3" data-path="time-manipulation.html"><a href="time-manipulation.html#summarising-data-over-time"><i class="fa fa-check"></i><b>3.3</b> Summarising data over time</a></li>
+<li class="chapter" data-level="3.4" data-path="time-manipulation.html"><a href="time-manipulation.html#a-timestamp-split-over-several-columns"><i class="fa fa-check"></i><b>3.4</b> A timestamp split over several columns</a></li>
+<li class="chapter" data-level="3.5" data-path="time-manipulation.html"><a href="time-manipulation.html#time-zones"><i class="fa fa-check"></i><b>3.5</b> Time zones</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="string-processing.html"><a href="string-processing.html"><i class="fa fa-check"></i><b>4</b> String processing</a><ul>
+<li class="chapter" data-level="4.1" data-path="string-processing.html"><a href="string-processing.html#preamble"><i class="fa fa-check"></i><b>4.1</b> Preamble</a></li>
+<li class="chapter" data-level="4.2" data-path="string-processing.html"><a href="string-processing.html#introducing-regular-expressions"><i class="fa fa-check"></i><b>4.2</b> Introducing regular expressions</a></li>
+<li class="chapter" data-level="4.3" data-path="string-processing.html"><a href="string-processing.html#working-with-strings-and-regular-expressions"><i class="fa fa-check"></i><b>4.3</b> Working with strings and regular expressions</a></li>
+<li class="chapter" data-level="4.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#exercises"><i class="fa fa-check"></i><b>4.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="web-scraping-interactive-graphics-shiny-apps-package-building-and-more.html"><a href="web-scraping-interactive-graphics-shiny-apps-package-building-and-more.html"><i class="fa fa-check"></i><b>5</b> Web scraping, interactive graphics, Shiny Apps, package building, and more</a><ul>
+<li class="chapter" data-level="5.1" data-path="web-scraping-interactive-graphics-shiny-apps-package-building-and-more.html"><a href="web-scraping-interactive-graphics-shiny-apps-package-building-and-more.html#packages"><i class="fa fa-check"></i><b>5.1</b> Packages</a></li>
+<li class="chapter" data-level="5.2" data-path="web-scraping-interactive-graphics-shiny-apps-package-building-and-more.html"><a href="web-scraping-interactive-graphics-shiny-apps-package-building-and-more.html#collecting-data"><i class="fa fa-check"></i><b>5.2</b> Collecting data</a></li>
+<li class="chapter" data-level="5.3" data-path="web-scraping-interactive-graphics-shiny-apps-package-building-and-more.html"><a href="web-scraping-interactive-graphics-shiny-apps-package-building-and-more.html#alternative-graphics"><i class="fa fa-check"></i><b>5.3</b> Alternative graphics</a></li>
+<li class="chapter" data-level="5.4" data-path="web-scraping-interactive-graphics-shiny-apps-package-building-and-more.html"><a href="web-scraping-interactive-graphics-shiny-apps-package-building-and-more.html#shiny-web-applications"><i class="fa fa-check"></i><b>5.4</b> Shiny Web Applications</a></li>
+<li class="chapter" data-level="5.5" data-path="web-scraping-interactive-graphics-shiny-apps-package-building-and-more.html"><a href="web-scraping-interactive-graphics-shiny-apps-package-building-and-more.html#rmarkdown-html-notebooks-and-ipythonjupyter-notebooks"><i class="fa fa-check"></i><b>5.5</b> Rmarkdown HTML notebooks and Ipython/Jupyter notebooks</a></li>
+<li class="chapter" data-level="5.6" data-path="web-scraping-interactive-graphics-shiny-apps-package-building-and-more.html"><a href="web-scraping-interactive-graphics-shiny-apps-package-building-and-more.html#exercise-housing-in-new-york-city"><i class="fa fa-check"></i><b>5.6</b> Exercise: Housing in New York City</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="further-reading.html"><a href="further-reading.html"><i class="fa fa-check"></i>Further reading</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lancaster University MATH550/SCC.461 R Programming</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-manipulation-and-plotting-in-r" class="section level1">
+<h1><span class="header-section-number">1</span> Data manipulation and plotting in R</h1>
+<div id="introduction" class="section level2">
+<h2><span class="header-section-number">1.1</span> Introduction</h2>
+<ul>
+<li>Revise the Getting Help section, and all the Summary subsections from Lab 1.</li>
+<li>Make sure you downloaded the solution to last weeks coursework and compared it against what you submitted.</li>
+<li>Create a new R script to save the code you write for this lab.</li>
+<li>The purpose of this lab is to allow you to practice importing, manipulating and exporting data. As well as introduce you to the <code>ggplot2</code> package, a plotting system for R, based on the grammar of graphics, which tries to make it easy to produce complex multi-layered graphics.</li>
+</ul>
+</div>
+<div id="working-with-data-in-r" class="section level2">
+<h2><span class="header-section-number">1.2</span> Working with data in R</h2>
+<p>R developers have created functions and packages for almost every laborious
+task that stands between us and good quantitative scientific analysis.
+Data input, manipulation, and output is easy in R. It is just a matter of
+breaking down what needs to be done into small achievable tasks, and
+knowing the right functions.</p>
+<p>A data set that has been loaded into R, and is ready for analysis is normally
+stored by R in something called a <em>data frame</em>. A data frame can be
+thought of as a table of data where the columns are named vectors, with
+each vector containing a particular <em>type</em> of data (numeric, string, date, time). These
+columns are often called variables in statistics. With the rows
+of the data frame corresponding to individuals or a single observation across
+the variables.</p>
+<p>If, in Lab 1, the information you collected and calculated regarding gravity
+at the surfaces of the planets in our Solar System was stored as a
+data frame it would look like:</p>
+<table>
+<caption><span id="tab:radius">Table 1.1: </span> Mass (kg), average radius (m) of each of the planets in our Solar System. Gravity (ms<span class="math inline">\(^{-2}\)</span>) is calculated at the surface of each planet (distance = 0m).</caption>
+<thead>
+<tr class="header">
+<th align="left">planet</th>
+<th align="left">mass</th>
+<th align="left">radius</th>
+<th>distance</th>
+<th>gravity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Mercury</td>
+<td align="left">3.30<span class="math inline">\(\times 10^{23}\)</span></td>
+<td align="left">2.440<span class="math inline">\(\times 10^6\)</span></td>
+<td>0</td>
+<td>3.70</td>
+</tr>
+<tr class="even">
+<td align="left">Venus</td>
+<td align="left">4.87<span class="math inline">\(\times 10^{24}\)</span></td>
+<td align="left">6.052<span class="math inline">\(\times 10^6\)</span></td>
+<td>0</td>
+<td>8.87</td>
+</tr>
+<tr class="odd">
+<td align="left">Earth</td>
+<td align="left">5.97<span class="math inline">\(\times 10^{24}\)</span></td>
+<td align="left">6.371<span class="math inline">\(\times 10^6\)</span></td>
+<td>0</td>
+<td>9.80</td>
+</tr>
+<tr class="even">
+<td align="left">Mars</td>
+<td align="left">6.42<span class="math inline">\(\times 10^{23}\)</span></td>
+<td align="left">3.390<span class="math inline">\(\times 10^6\)</span></td>
+<td>0</td>
+<td>3.71</td>
+</tr>
+<tr class="odd">
+<td align="left">Jupiter</td>
+<td align="left">1.90<span class="math inline">\(\times 10^{27}\)</span></td>
+<td align="left">6.991<span class="math inline">\(\times 10^7\)</span></td>
+<td>0</td>
+<td>24.79</td>
+</tr>
+<tr class="even">
+<td align="left">Saturn</td>
+<td align="left">5.68<span class="math inline">\(\times 10^{26}\)</span></td>
+<td align="left">5.823<span class="math inline">\(\times 10^7\)</span></td>
+<td>0</td>
+<td>10.44</td>
+</tr>
+<tr class="odd">
+<td align="left">Uranus</td>
+<td align="left">8.68<span class="math inline">\(\times 10^{25}\)</span></td>
+<td align="left">2.536<span class="math inline">\(\times 10^7\)</span></td>
+<td>0</td>
+<td>8.69</td>
+</tr>
+<tr class="even">
+<td align="left">Neptune</td>
+<td align="left">1.02<span class="math inline">\(\times 10^{26}\)</span></td>
+<td align="left">2.462<span class="math inline">\(\times 10^7\)</span></td>
+<td>0</td>
+<td>11.15</td>
+</tr>
+</tbody>
+</table>
+<p>To begin building this directly in R, type out the following into a script
+and run it.</p>
+<p>Note that if you have masses and radius already stored in vectors from last weeks
+script then copy and paste these as appropriate. Reusing your existing vectors from Lab 1 to create the <code>planets</code> data frame may look like this:</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" title="1">planet &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb122-2" title="2">	<span class="dt">name =</span> <span class="kw">c</span>(<span class="st">&quot;Mercury&quot;</span>, <span class="st">&quot;Venus&quot;</span>, <span class="st">&quot;Earth&quot;</span>,</a>
+<a class="sourceLine" id="cb122-3" title="3">		<span class="st">&quot;Mars&quot;</span>, <span class="st">&quot;Jupiter&quot;</span>, <span class="st">&quot;Saturn&quot;</span>,</a>
+<a class="sourceLine" id="cb122-4" title="4">		<span class="st">&quot;Uranus&quot;</span>, <span class="st">&quot;Neptune&quot;</span>),</a>
+<a class="sourceLine" id="cb122-5" title="5">	<span class="dt">mass   =</span> <span class="kw">c</span>(<span class="fl">3.30</span><span class="op">*</span><span class="dv">10</span><span class="op">^</span><span class="dv">23</span>, <span class="fl">4.87</span><span class="op">*</span><span class="dv">10</span><span class="op">^</span><span class="dv">24</span>, <span class="fl">5.97</span><span class="op">*</span><span class="dv">10</span><span class="op">^</span><span class="dv">24</span>,</a>
+<a class="sourceLine" id="cb122-6" title="6">		<span class="fl">6.42</span><span class="op">*</span><span class="dv">10</span><span class="op">^</span><span class="dv">23</span>, <span class="fl">1.90</span><span class="op">*</span><span class="dv">10</span><span class="op">^</span><span class="dv">27</span>, <span class="fl">5.68</span><span class="op">*</span><span class="dv">10</span><span class="op">^</span><span class="dv">26</span>,</a>
+<a class="sourceLine" id="cb122-7" title="7">		<span class="fl">8.68</span><span class="op">*</span><span class="dv">10</span><span class="op">^</span><span class="dv">25</span>, <span class="fl">1.02</span><span class="op">*</span><span class="dv">10</span><span class="op">^</span><span class="dv">26</span>),</a>
+<a class="sourceLine" id="cb122-8" title="8">	<span class="dt">radius =</span> <span class="kw">c</span>(<span class="fl">2.440</span><span class="op">*</span><span class="dv">10</span><span class="op">^</span><span class="dv">6</span>, <span class="fl">6.052</span><span class="op">*</span><span class="dv">10</span><span class="op">^</span><span class="dv">6</span>, <span class="fl">6.371</span><span class="op">*</span><span class="dv">10</span><span class="op">^</span><span class="dv">6</span>,</a>
+<a class="sourceLine" id="cb122-9" title="9">		<span class="fl">3.390</span><span class="op">*</span><span class="dv">10</span><span class="op">^</span><span class="dv">6</span>, <span class="fl">6.991</span><span class="op">*</span><span class="dv">10</span><span class="op">^</span><span class="dv">7</span>, <span class="fl">5.823</span><span class="op">*</span><span class="dv">10</span><span class="op">^</span><span class="dv">7</span>,</a>
+<a class="sourceLine" id="cb122-10" title="10">		<span class="fl">2.536</span><span class="op">*</span><span class="dv">10</span><span class="op">^</span><span class="dv">7</span>, <span class="fl">2.462</span><span class="op">*</span><span class="dv">10</span><span class="op">^</span><span class="dv">7</span>)</a>
+<a class="sourceLine" id="cb122-11" title="11">)</a></code></pre></div>
+<p>Check that <code>planet</code> really is a <code>data.frame</code> by typing:</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" title="1"><span class="kw">class</span>(planet)</a></code></pre></div>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<p>In R the class of objects is very important. The same function, for example <code>summary()</code>, will perform differently depending upon the class of the object. In computer programming this is called “function overloading”.</p>
+<p>Type <code>planet</code> into the console, and it will display the contents of
+our newly created data frame. Another way to see the contents, this time in a spreadsheet type view, is to type:</p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" title="1"><span class="kw">View</span>(planet)</a></code></pre></div>
+<p>To access the individual variables we use the dollar syntax:</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" title="1">planet<span class="op">$</span>mass</a></code></pre></div>
+<pre><code>## [1] 3.30e+23 4.87e+24 5.97e+24 6.42e+23 1.90e+27 5.68e+26 8.68e+25 1.02e+26</code></pre>
+<p>But we can also use square brackets to select the individual elements of the
+data frame:</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" title="1"><span class="co"># first row, first column</span></a>
+<a class="sourceLine" id="cb128-2" title="2">planet[<span class="dv">1</span>, <span class="dv">1</span>]</a></code></pre></div>
+<pre><code>## [1] &quot;Mercury&quot;</code></pre>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" title="1"><span class="co"># entire first row</span></a>
+<a class="sourceLine" id="cb130-2" title="2">planet[<span class="dv">1</span>, ]</a></code></pre></div>
+<pre><code>##      name    mass  radius
+## 1 Mercury 3.3e+23 2440000</code></pre>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" title="1"><span class="co"># entire first column</span></a>
+<a class="sourceLine" id="cb132-2" title="2">planet[, <span class="dv">1</span>]</a></code></pre></div>
+<pre><code>## [1] &quot;Mercury&quot; &quot;Venus&quot;   &quot;Earth&quot;   &quot;Mars&quot;    &quot;Jupiter&quot; &quot;Saturn&quot;  &quot;Uranus&quot; 
+## [8] &quot;Neptune&quot;</code></pre>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" title="1"><span class="co"># first 3 rows</span></a>
+<a class="sourceLine" id="cb134-2" title="2">planet[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, ]</a></code></pre></div>
+<pre><code>##      name     mass  radius
+## 1 Mercury 3.30e+23 2440000
+## 2   Venus 4.87e+24 6052000
+## 3   Earth 5.97e+24 6371000</code></pre>
+<p>Absolute referencing like this is a bad idea. If the order of your columns
+change, you may be referring to different columns than you thought you
+where, likewise for rows. By using the dollar syntax, we are using the
+name of the column, rather than its location in the data frame. Plus it
+is easier to understand what is happening when you reread the code, as you
+will see.</p>
+<p>If we wanted to calculate the volume of each planet, assuming planets are
+perfect spheres, we could use the equation for volume:
+<span class="math display">\[
+V = \frac{4}{3} \pi r^3,
+\]</span>
+where <span class="math inline">\(r\)</span> is the planet radius:</p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" title="1"><span class="dv">4</span><span class="op">/</span><span class="dv">3</span> <span class="op">*</span><span class="st"> </span>pi <span class="op">*</span><span class="st"> </span>planet<span class="op">$</span>radius<span class="op">^</span><span class="dv">3</span></a></code></pre></div>
+<pre><code>## [1] 6.084965e+19 9.285074e+20 1.083207e+21 1.631878e+20 1.431220e+24
+## [6] 8.270447e+23 6.831819e+22 6.251047e+22</code></pre>
+<p>Since we created this data frame, we already know the names of the variable
+that are contained within it. But say we load a foreign data set, how do we
+know what the variables are called? Outside R, we hope that this data set
+also has good documentation, such as a PDF or website telling you all
+the details you could ever want know.
+But <em>within</em> R, we can get a list of the attributes of an object by
+using the <code>names()</code> function:</p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" title="1"><span class="kw">names</span>(planet)</a></code></pre></div>
+<pre><code>## [1] &quot;name&quot;   &quot;mass&quot;   &quot;radius&quot;</code></pre>
+<p>As well as using <code>names()</code>, it is also good practice to check the
+<em>size</em> of the data frame.</p>
+<p>We previously used <code>length()</code> to determine how many elements were in a vector.
+Since, a data frame is two-dimensional, we instead use <code>nrow()</code> and
+<code>ncol()</code> to determine the number of rows and columns respectively:</p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" title="1"><span class="kw">nrow</span>(planet)</a></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" title="1"><span class="kw">ncol</span>(planet)</a></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" title="1"><span class="kw">dim</span>(planet)</a></code></pre></div>
+<pre><code>## [1] 8 3</code></pre>
+<p>Using the dollar syntax we can create new variables:</p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" title="1">planet<span class="op">$</span>contains_humans &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb146-2" title="2">planet<span class="op">$</span>radius_km &lt;-<span class="st"> </span>planet<span class="op">$</span>radius <span class="op">/</span><span class="st"> </span><span class="dv">1000</span></a></code></pre></div>
+<p>Though there are more elegant ways of creating new variables, as you will
+see in the next section.</p>
+<div id="basic-manipulation" class="section level3">
+<h3><span class="header-section-number">1.2.1</span> Basic manipulation</h3>
+<p>The easiest way to add <code>distance</code>, and <code>gravity</code> as variables
+to our data frame is to make use of the <code>dplyr</code> package.
+Before we can load this package from the R library, you will
+need to install it:</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>) <span class="co"># if asked, choose a UK location</span></a></code></pre></div>
+<p>You only need to install a package once. But you have to load all
+the packages you want to use at the start of every session. For this reason,
+make sure all <code>library(...)</code> commands sit at the top of your script.
+Add <code>library(dplyr)</code> to yours now and run it.
+Loading the <code>dplyr</code> package gives us access to four functions:</p>
+<ul>
+<li><code>filter()</code> Focus on a subset of the rows of a data frame.</li>
+<li><code>arrange()</code> Reorders the rows in the data frame.</li>
+<li><code>select()</code> Allows you to zoom in on a useful number of columns.</li>
+<li><code>mutate()</code> Easily add new columns that are functions of existing ones.</li>
+</ul>
+<p>The first argument to each of these functions is always the data frame
+we wish to work on, the subsequent arguments are the variables we wish to work
+with. For example, to focus on big planets i.e. those that have radius greater
+than <span class="math inline">\(10^7\)</span>m we use the <code>filter()</code> function:</p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" title="1">big_planets &lt;-<span class="st"> </span><span class="kw">filter</span>(planet, radius <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span><span class="op">^</span><span class="dv">7</span>)</a>
+<a class="sourceLine" id="cb148-2" title="2">big_planets</a></code></pre></div>
+<pre><code>##      name     mass   radius contains_humans radius_km
+## 1 Jupiter 1.90e+27 69910000               0     69910
+## 2  Saturn 5.68e+26 58230000               0     58230
+## 3  Uranus 8.68e+25 25360000               0     25360
+## 4 Neptune 1.02e+26 24620000               0     24620</code></pre>
+<p>To arrange the planets by increasing size, we using the <code>arrange()</code>
+function:</p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" title="1"><span class="kw">arrange</span>(planet, radius) <span class="co"># increasing by default</span></a></code></pre></div>
+<pre><code>##      name     mass   radius contains_humans radius_km
+## 1 Mercury 3.30e+23  2440000               0      2440
+## 2    Mars 6.42e+23  3390000               0      3390
+## 3   Venus 4.87e+24  6052000               0      6052
+## 4   Earth 5.97e+24  6371000               1      6371
+## 5 Neptune 1.02e+26 24620000               0     24620
+## 6  Uranus 8.68e+25 25360000               0     25360
+## 7  Saturn 5.68e+26 58230000               0     58230
+## 8 Jupiter 1.90e+27 69910000               0     69910</code></pre>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" title="1"><span class="kw">arrange</span>(planet, <span class="kw">desc</span>(radius)) <span class="co"># decreasing</span></a></code></pre></div>
+<pre><code>##      name     mass   radius contains_humans radius_km
+## 1 Jupiter 1.90e+27 69910000               0     69910
+## 2  Saturn 5.68e+26 58230000               0     58230
+## 3  Uranus 8.68e+25 25360000               0     25360
+## 4 Neptune 1.02e+26 24620000               0     24620
+## 5   Earth 5.97e+24  6371000               1      6371
+## 6   Venus 4.87e+24  6052000               0      6052
+## 7    Mars 6.42e+23  3390000               0      3390
+## 8 Mercury 3.30e+23  2440000               0      2440</code></pre>
+<p>If we want to store the data in this newly rearranged form then:</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" title="1">planet &lt;-<span class="st"> </span><span class="kw">arrange</span>(planet, <span class="kw">desc</span>(radius))</a></code></pre></div>
+<p>If we wanted to remove the column of planet names, effectively anonymising
+them, we would use the <code>select()</code> function to specify the
+columns we do want to keep.</p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" title="1">annon_planets &lt;-<span class="st"> </span><span class="kw">select</span>(planet, mass, radius)</a></code></pre></div>
+<p>In order to carry on with our gravity calculations, we need to add a
+<code>distance</code> column, use <code>mutate()</code> to do this. Using
+<code>mutate()</code> we can actually add the <code>distance</code> and
+<code>gravity</code> variables in one call:</p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" title="1">calc_gravity &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">distance=</span><span class="dv">0</span>, <span class="dt">mass=</span><span class="fl">5.9736</span> <span class="op">*</span><span class="st"> </span><span class="dv">10</span><span class="op">^</span><span class="dv">24</span>, <span class="dt">radius=</span><span class="fl">6.371</span> <span class="op">*</span><span class="st"> </span><span class="dv">10</span><span class="op">^</span><span class="dv">6</span>) {</a>
+<a class="sourceLine" id="cb156-2" title="2"><span class="co"># constant</span></a>
+<a class="sourceLine" id="cb156-3" title="3">G &lt;-<span class="st"> </span><span class="fl">6.6728</span> <span class="op">*</span><span class="st"> </span><span class="dv">10</span><span class="op">^-</span><span class="dv">11</span></a>
+<a class="sourceLine" id="cb156-4" title="4"><span class="co"># calculation</span></a>
+<a class="sourceLine" id="cb156-5" title="5">r &lt;-<span class="st"> </span>radius <span class="op">+</span><span class="st"> </span>distance</a>
+<a class="sourceLine" id="cb156-6" title="6">a &lt;-<span class="st"> </span>G <span class="op">*</span><span class="st"> </span>mass<span class="op">/</span>r<span class="op">^</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb156-7" title="7"><span class="kw">return</span>(a)</a>
+<a class="sourceLine" id="cb156-8" title="8">}</a>
+<a class="sourceLine" id="cb156-9" title="9"></a>
+<a class="sourceLine" id="cb156-10" title="10">planet &lt;-<span class="st"> </span><span class="kw">mutate</span>(planet,</a>
+<a class="sourceLine" id="cb156-11" title="11">	<span class="dt">distance =</span> <span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb156-12" title="12">	<span class="dt">gravity =</span> <span class="kw">calc_gravity</span>(distance, mass, radius)</a>
+<a class="sourceLine" id="cb156-13" title="13">)</a></code></pre></div>
+<p>When passing variable names to <code>cal_gravity()</code>,
+<code>mutate()</code> will check if these names correspond to variables inside
+the specified data frame. This means we do not have to repeatedly use the
+dollar syntax mentioned earlier to access the needed variables. Which makes
+our code look clean and easy to read (providing you know how mutate works).</p>
+<p>If there were no variables inside the data frame matching these names,
+<code>mutate()</code> would then search the local environment. Finally, stating an error if it could not
+find any object matching the name specified.</p>
+<p>Check what the data contained with <code>planet</code> now looks like.
+Next, arrange the rows by increasing <code>gravity</code>. Where does Earth rank
+among the Solar System? Are there any other planets were we would either (a)
+not be crushed to death, nor (b) float off into space if we fell over?</p>
+</div>
+<div id="matrices" class="section level3">
+<h3><span class="header-section-number">1.2.2</span> Matrices</h3>
+<p>To take a bit of a side-step, I just want to explain a bit about matrices in R because they are similar to data frames but with a few restrictions. Though we will not be making use of matrices in this module, you will in the more-theoretical statistics modules.</p>
+<p>The word <em>matrix</em> is a mathematical term for a two-dimensional array of numbers, with a <em>vector</em> being a one-dimensional array. To create a matrix we can simply bind vectors together as columns:</p>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb157-1" title="1">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb157-2" title="2">y &lt;-<span class="st"> </span><span class="dv">6</span><span class="op">:</span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb157-3" title="3">z &lt;-<span class="st"> </span><span class="dv">11</span><span class="op">:</span><span class="dv">15</span></a>
+<a class="sourceLine" id="cb157-4" title="4">mat &lt;-<span class="st"> </span><span class="kw">cbind</span>(x, y, z)</a>
+<a class="sourceLine" id="cb157-5" title="5">mat</a></code></pre></div>
+<pre><code>##      x  y  z
+## [1,] 1  6 11
+## [2,] 2  7 12
+## [3,] 3  8 13
+## [4,] 4  9 14
+## [5,] 5 10 15</code></pre>
+<p>Or we can create one directly, using the <code>matrix()</code> function:</p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb159-1" title="1">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>, <span class="dt">nrow=</span><span class="dv">5</span>, <span class="dt">byrow=</span>T)</a>
+<a class="sourceLine" id="cb159-2" title="2">mat</a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    2    3
+## [2,]    4    5    6
+## [3,]    7    8    9
+## [4,]   10   11   12
+## [5,]   13   14   15</code></pre>
+<p>You can only access the data within a matrix using the square bracket notation.
+And, all the data in the matrix has to be of the same type.
+As a result of these restrictions you would not use a matrix to store data as information,
+but instead you would use matrices to perform algebraic calculations,
+such as matrix multiplication, or calculating the determinant of a matrix.</p>
+</div>
+<div id="exporting-data" class="section level3">
+<h3><span class="header-section-number">1.2.3</span> Exporting data</h3>
+<p>Much like when we create custom functions, data frames only exist in our local
+environment. Which, again, means that when we quit R they will disappear.
+A good way to export a data frame is to write it as a CSV file to your
+H: drive. CSV stands for Comma Separated Values, and any self-respecting
+data analysis software will be able to read a CSV file.
+To write to a data frame to CSV from R, we make use of the <code>write.csv()</code>
+function specifying the full file path including the file name
+and extension:</p>
+<p>To see why we use the argument <code>row.names=FALSE</code>, set it to <code>TRUE</code>, rerun the command, and see if you can spot the difference in the file.</p>
+<p>Where are these row names coming from? Type <code>row.names(planet)</code> into the console. Row names should just be the equivalent of row indexes i.e. nothing of actual value. Therefore they do not need storing.</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb161-1" title="1">filename &lt;-<span class="st"> &quot;H:/My Awesome R Scripts/planet.csv&quot;</span></a>
+<a class="sourceLine" id="cb161-2" title="2"><span class="kw">write.csv</span>(planet, <span class="dt">file=</span>filename, <span class="dt">row.names=</span><span class="ot">FALSE</span>)</a></code></pre></div>
+<p>This will write a CSV file to the path you have specified. Locate the file,
+right click and choose to open with a text editor, such as Notepad++.
+The way the data is laid out in the file should follow the same
+structure as it appeared in the data frame, but the efficient formatting makes
+it difficult to read with your human eyes.
+One thing is clear though, and that is the first row contains the variable
+names, with the data existing in the remaining rows.
+If you double-click the CSV file, Excel will probably try to open it, you
+should try this. Excel is smart enough that will have automatically recognised
+the format of the CSV file.</p>
+<p>Other general data file formats exist, these involve separating values
+using different methods (tabs or whitespace),
+see Table <a href="data-manipulation-and-plotting-in-r.html#tab:import-export-data">1.2</a>.
+To work out how to use these write functions and discover how they write your
+data to a file, check their respective help pages, and open up the resulting
+file with a text editor, like you did with the CSVs.</p>
+<table>
+<caption><span id="tab:import-export-data">Table 1.2: </span> General formats and functions for importing and exporting data.</caption>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Extension</th>
+<th>Write function</th>
+<th>Read function</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CSV</td>
+<td><code>.csv</code></td>
+<td><code>write.csv()</code></td>
+<td><code>read.csv()</code></td>
+</tr>
+<tr class="even">
+<td>Tab-delimited</td>
+<td><code>.tab</code></td>
+<td><code>write.table()</code></td>
+<td><code>read.table()</code></td>
+</tr>
+<tr class="odd">
+<td>Fixed Width Format</td>
+<td><code>.fwf</code></td>
+<td></td>
+<td><code>read.fwf()</code></td>
+</tr>
+</tbody>
+</table>
+<p>The base R packages do not have a write function for FWF, this is because the other two methods are considered sufficient.</p>
+</div>
+<div id="importing-data" class="section level3">
+<h3><span class="header-section-number">1.2.4</span> Importing data</h3>
+<p>As you can see, while we have <code>write.*()</code> functions we also have
+equal and opposite <code>read.*()</code> functions. Try importing the
+<code>planet.csv</code> file that you produced:</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb162-1" title="1">dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file=</span><span class="st">&quot;planet.csv&quot;</span>)</a></code></pre></div>
+<p>Take a look inside <code>dat</code>, if it looks the same as your <code>planet</code>
+data frame, then good job!</p>
+<p>In general, before you import a data set, try to inspect the file
+using a text editor to confirm the structure. Once you have identified
+the structure, and if it happens to be something standard,
+like a CSV, or tab-delimited file, then go ahead and use those
+respective functions to read it in. But in the event of it being something
+a bit more special, like colon separated values, you can setup
+<code>read.table()</code> to import the data correctly. The <code>read.table()</code>
+function is considered the Swiss Army knife of the <code>read.*()</code>
+family<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>. To see all of the possible arguments
+for <code>read.table()</code> check its help page.</p>
+</div>
+<div id="using-a-working-directory" class="section level3">
+<h3><span class="header-section-number">1.2.5</span> Using a working directory</h3>
+<p>Previously, when importing and exporting data sets, we said we had to specify
+a complete file path such as:</p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb163-1" title="1">filename &lt;-<span class="st"> &quot;H:/My Awesome R Scripts/planet.csv&quot;</span></a>
+<a class="sourceLine" id="cb163-2" title="2"><span class="kw">write.csv</span>(planet, <span class="dt">file=</span>filename, <span class="dt">row.names=</span><span class="ot">FALSE</span>)</a></code></pre></div>
+<p>However, R has something called a working directory. If set,
+anything we save, such as data sets and plots, will be saved to this
+location<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a></p>
+<p>Now, of course, if we specify absolute paths, like the one above then we are effectively overriding this feature.</p>
+<p>To get the path of your current working directory type into the
+:</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb164-1" title="1"><span class="kw">getwd</span>()</a></code></pre></div>
+<p>You can change this, by setting it to a different directory using
+using <code>setwd()</code>, for example:</p>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb165-1" title="1"><span class="kw">setwd</span>(<span class="st">&quot;H:/My Awesome R Scripts&quot;</span>)</a></code></pre></div>
+<p>If I were to run the following command, the <code>filename</code> is now
+considered relative, i.e. it does not tell R exactly where to save the
+data. In this case, R assumes it should use the working directory.</p>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb166-1" title="1">filename &lt;-<span class="st"> &quot;planet.csv&quot;</span></a>
+<a class="sourceLine" id="cb166-2" title="2"><span class="kw">write.csv</span>(planet, <span class="dt">file=</span>filename, <span class="dt">row.names=</span><span class="ot">FALSE</span>)</a></code></pre></div>
+<p>So, by setting the working directory at the start of a script, we make our
+importing-and-exporting lives easier, because we do not have to verbosely state
+where we want to save something every single time. Also, if future you
+ever needs to open a script to see where it is saving everything, then this
+will be obvious from the <code>setwd()</code> near the top of the script.</p>
+<p>A relative file path can include folders:</p>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb167-1" title="1">filename &lt;-<span class="st"> &quot;data/planet.csv&quot;</span></a>
+<a class="sourceLine" id="cb167-2" title="2"><span class="kw">write.csv</span>(planet, <span class="dt">file=</span>filename, <span class="dt">row.names=</span><span class="ot">FALSE</span>)</a></code></pre></div>
+<p>This assumes that there is folder called “data” in my working directory. R will complain if it does not exist.</p>
+<p>One final thing about why it is good to use relative paths and “working
+directories” is that it makes your code more portable. By using relative references, you can bundle your code and data together, allowing someone else to run and modify it on their own system.</p>
+<p>It is worth noting that when writing an Rmarkdown file (.Rmd) RStudio assumes that the working directory is the directory that the .Rmd file is saved in.</p>
+</div>
+<div id="summary" class="section level3">
+<h3><span class="header-section-number">1.2.6</span> Summary</h3>
+<ul>
+<li>Data frames are the standard object for storing data in R.
+Each column in a data frame is considered to be a variable, such
+that the type of data it contains (strings vs numbers) can differ from the
+other columns.
+Accessing data can be done using both the dollar syntax and the square-bracket
+syntax:</li>
+</ul>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" title="1">planet<span class="op">$</span>name</a></code></pre></div>
+<pre><code>## [1] &quot;Jupiter&quot; &quot;Saturn&quot;  &quot;Uranus&quot;  &quot;Neptune&quot; &quot;Earth&quot;   &quot;Venus&quot;   &quot;Mars&quot;   
+## [8] &quot;Mercury&quot;</code></pre>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb170-1" title="1">planet<span class="op">$</span>name[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</a></code></pre></div>
+<pre><code>## [1] &quot;Jupiter&quot; &quot;Saturn&quot;</code></pre>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb172-1" title="1">planet[, <span class="dv">1</span>]</a></code></pre></div>
+<pre><code>## [1] &quot;Jupiter&quot; &quot;Saturn&quot;  &quot;Uranus&quot;  &quot;Neptune&quot; &quot;Earth&quot;   &quot;Venus&quot;   &quot;Mars&quot;   
+## [8] &quot;Mercury&quot;</code></pre>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb174-1" title="1">planet[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dv">1</span>]</a></code></pre></div>
+<pre><code>## [1] &quot;Jupiter&quot; &quot;Saturn&quot;</code></pre>
+<ul>
+<li>To manipulate data on a much larger and general scale, it is more efficient to use the functions provided by the <code>dplyr</code> package, namely:</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>filter()</code></td>
+<td>Focus on a subset of the rows of a data frame</td>
+</tr>
+<tr class="even">
+<td><code>arrange()</code></td>
+<td>Reorders the rows in the data frame</td>
+</tr>
+<tr class="odd">
+<td><code>select()</code></td>
+<td>Allows you to zoom in on a useful number of columns</td>
+</tr>
+<tr class="even">
+<td><code>mutate()</code></td>
+<td>Add new columns that are functions of existing ones</td>
+</tr>
+</tbody>
+</table>
+<p>The first argument to each of these functions is always the data frame
+we wish to work on. With the subsequent arguments involving the names of
+the variables we wish to operate on or with.</p>
+<ul>
+<li><p>To export data use either the <code>write.table()</code> or
+<code>write.csv()</code> functions. Make sure to set the parameter
+<code>row.names=FALSE</code>. Check the help pages for each for more details.</p></li>
+<li><p>Both have these have sister functions; <code>read.table()</code>
+and <code>read.csv()</code>. With <code>read.table()</code> having lots of
+options that can be modified to read in any structured data file.</p></li>
+<li><p>R has a <em>working directory</em>, use <code>getwd()</code> to find out
+what it currently is. And use <code>setwd()</code> to change it.
+Equally, there is a menu in RStudio that allows you to do the same thing.</p></li>
+<li><p>Working directories are good, as they allow you to use relative paths, rather than absolute ones.</p></li>
+</ul>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb176-1" title="1"><span class="co"># relative file names</span></a>
+<a class="sourceLine" id="cb176-2" title="2"><span class="kw">setwd</span>(<span class="st">&quot;H:/Awesome R Scripts/&quot;</span>)</a>
+<a class="sourceLine" id="cb176-3" title="3"><span class="kw">write.table</span>(planet, <span class="dt">file=</span><span class="st">&quot;planet.csv&quot;</span>, <span class="dt">row.names=</span><span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb176-4" title="4"><span class="kw">write.table</span>(letters, <span class="dt">file=</span><span class="st">&quot;letters.csv&quot;</span>, <span class="dt">row.names=</span><span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb176-5" title="5"> </a>
+<a class="sourceLine" id="cb176-6" title="6"><span class="co"># absolute file names</span></a>
+<a class="sourceLine" id="cb176-7" title="7"><span class="kw">write.table</span>(planet, <span class="dt">file=</span><span class="st">&quot;H:/Awesome R Scripts/planet.csv&quot;</span>, <span class="dt">row.names=</span><span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb176-8" title="8"><span class="kw">write.table</span>(letters, <span class="dt">file=</span><span class="st">&quot;H:/Awesome R Scripts/letters.csv&quot;</span>, <span class="dt">row.names=</span><span class="ot">FALSE</span>)</a></code></pre></div>
+<ul>
+<li>It can be a good idea to set your working directory at the top of your script.</li>
+</ul>
+</div>
+<div id="exercises" class="section level3">
+<h3><span class="header-section-number">1.2.7</span> Exercises</h3>
+<p>Now complete the following exercises:</p>
+<ol style="list-style-type: decimal">
+<li>Working on your <code>planet</code> data frame:</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Add the volumes for each planet as new variable using the dollar syntax.</li>
+<li>Using <code>mutate()</code> add variables with the following definitions:</li>
+</ol>
+<pre><code>* `mass_earths` The mass of a planet as a proportion of the mass of Earth.
+* `volume_earths` Express `volume` as a proportion of Earth&#39;s volume.
+* `gravity_earths` Express `gravity` as a proportion of Earth&#39;s gravity.</code></pre>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Create a new data frame which only contains the names of the
+planets, and each of the measurements expressed as a proportion of
+Earth.<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a>
+Inspect this data frame for information on the other planets relative
+to Earth.</li>
+</ol>
+<ol start="2" style="list-style-type: decimal">
+<li>Make sure you are familiar with writing and reading from data files that
+are Tab-delimitted or CSV. For each file format:</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Look-up the help page, see the arguments needed to use the particular <code>write.*()</code> function.</li>
+<li>Store the <code>planet</code> data frame with the appropriate file extension.</li>
+<li>Can you open it in Excel?</li>
+<li>Can you read it back into R?</li>
+</ol>
+</div>
+</div>
+<div id="data-types" class="section level2">
+<h2><span class="header-section-number">1.3</span> Data Types</h2>
+<p>To determine the data type of an object use the <code>class()</code> function.
+Type in the :</p>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" title="1"><span class="kw">class</span>(planet<span class="op">$</span>mass)</a></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" title="1"><span class="kw">class</span>(planet<span class="op">$</span>name)</a></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" title="1"><span class="kw">class</span>(<span class="kw">c</span>(<span class="st">&quot;peanut&quot;</span>, <span class="st">&quot;seed&quot;</span>))</a></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" title="1"><span class="kw">class</span>(<span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<p>Notice how the names of the planets are classed as a <em>factor</em>
+whereas the vector of strings (<code>peanut</code> and <code>seed</code>) is classed as
+a character? We will discuss this soon.</p>
+<p>More generally, <code>class()</code> can be applied to any object:</p>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" title="1"><span class="kw">class</span>(planet)</a></code></pre></div>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb188-1" title="1"><span class="kw">class</span>(plot)</a></code></pre></div>
+<pre><code>## [1] &quot;function&quot;</code></pre>
+<p>When you start getting a lot of errors, <code>class()</code> can be used to
+sanity-check your objects; ``Is planet actually a data frame?’’</p>
+<div id="numeric" class="section level3">
+<h3><span class="header-section-number">1.3.1</span> Numeric</h3>
+<p>Decimal values are stored as <em>numeric</em> data in R. And it is the default
+computational data type. If we assign a decimal value to a variable <code>x</code> as
+follows, <code>x</code> will be of type numeric:</p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb190-1" title="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">10.5</span>, <span class="fl">19.2</span>, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb190-2" title="2"><span class="kw">class</span>(x) </a></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<p>Furthermore, even if we assign a vector of integers to a variable <code>k</code>,
+R will still store it as numeric:</p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" title="1">k &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">33</span>)</a>
+<a class="sourceLine" id="cb192-2" title="2"><span class="kw">class</span>(k)  </a></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+</div>
+<div id="factors" class="section level3">
+<h3><span class="header-section-number">1.3.2</span> Factors</h3>
+<p>It is common in statistical data to have categorical variables, indicating
+some subdivision of the data, such as social class, primary diagnosis,
+tumour stage, gender, species, etc.
+Such variables are stored in data files often as strings indicating their
+actual value, though abbreviations may be used; “m” for male, and “f”
+for female. But, due to the actual number of observations, it may be more
+sensible to store the categorical data using numerical codes; 1 for male,
+2 for female. With their meaningful names then being store in the
+documentation for the data.</p>
+<p>Regardless of how they are originally stored, in R they should be
+converted to <em>factors</em>. A factor is a data structure which stores the
+categorical data as numerical codes, and the <em>labels</em> which make
+the codes meaningful. For example, say we have a <code>pain</code> variable that
+records what level of pain our patients are in using a four-point
+scale:</p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb194-1" title="1">pain &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb194-2" title="2">pain_f &lt;-<span class="st"> </span><span class="kw">factor</span>(pain, <span class="dt">levels=</span><span class="dv">0</span><span class="op">:</span><span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb194-3" title="3">             <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;none&quot;</span>, <span class="st">&quot;mild&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;severe&quot;</span>))</a>
+<a class="sourceLine" id="cb194-4" title="4">pain_f</a></code></pre></div>
+<pre><code>## [1] none   mild   severe medium medium mild   mild   severe
+## Levels: none mild medium severe</code></pre>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb196-1" title="1"><span class="co"># if you need to work with the actual string labels</span></a>
+<a class="sourceLine" id="cb196-2" title="2">pain_c &lt;-<span class="st"> </span><span class="kw">as.character</span>(pain_f)</a>
+<a class="sourceLine" id="cb196-3" title="3">pain_c</a></code></pre></div>
+<pre><code>## [1] &quot;none&quot;   &quot;mild&quot;   &quot;severe&quot; &quot;medium&quot; &quot;medium&quot; &quot;mild&quot;   &quot;mild&quot;   &quot;severe&quot;</code></pre>
+<p>This <em>factor</em> data structure is so routinely used by data scientists
+that R will automatically convert strings to factors when creating a data
+frame which includes using any of the <code>read.*()</code> functions.
+Hence why, even though we originally specified the planet names as
+a vector of strings, it is now being stored as a factor in R.</p>
+<p>After the factor has been created, we can modify its levels, either
+all at once or individually:</p>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb198-1" title="1"><span class="co"># what are the levels?</span></a>
+<a class="sourceLine" id="cb198-2" title="2"><span class="kw">levels</span>(pain_f)</a></code></pre></div>
+<pre><code>## [1] &quot;none&quot;   &quot;mild&quot;   &quot;medium&quot; &quot;severe&quot;</code></pre>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb200-1" title="1"><span class="co"># change all levels</span></a>
+<a class="sourceLine" id="cb200-2" title="2"><span class="kw">levels</span>(pain_f) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;none&quot;</span>, <span class="st">&quot;uncomfortable&quot;</span>, <span class="st">&quot;unpleasant&quot;</span>, <span class="st">&quot;agonising&quot;</span>)</a>
+<a class="sourceLine" id="cb200-3" title="3"><span class="kw">levels</span>(pain_f)</a></code></pre></div>
+<pre><code>## [1] &quot;none&quot;          &quot;uncomfortable&quot; &quot;unpleasant&quot;    &quot;agonising&quot;</code></pre>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb202-1" title="1"><span class="co"># change only the first level</span></a>
+<a class="sourceLine" id="cb202-2" title="2"><span class="kw">levels</span>(pain_f)[<span class="dv">1</span>] &lt;-<span class="st"> &quot;absent&quot;</span></a>
+<a class="sourceLine" id="cb202-3" title="3"><span class="kw">levels</span>(pain_f)</a></code></pre></div>
+<pre><code>## [1] &quot;absent&quot;        &quot;uncomfortable&quot; &quot;unpleasant&quot;    &quot;agonising&quot;</code></pre>
+</div>
+<div id="data-and-time" class="section level3">
+<h3><span class="header-section-number">1.3.3</span> Data and time</h3>
+<p>A date or timestamp typically looks like: <code>2014-10-09 01:45:00</code></p>
+<p>This follows the format of <code>YYYY-MM-DD hh:mm:ss</code>. But there are a number
+of other ways of laying out the same information; Americans like to switch the
+month and day around; the time-part may occur before the date part; we may
+not have seconds; we may use a letter abbreviation for month. The
+lack of consistency of how people write timestamps can make them a headache
+to deal with, especially when we are merging data from two different
+sources.</p>
+<p>By default, R will make no attempt to parse a date or timestamp as such.
+Instead R will silently read them as strings, and thus will be
+turned into a factor. This is not useful, and we will cover how to override
+this behaviour using the <code>lubridate</code> package in Lab <span class="math inline">\(4\)</span>, where we
+deal with parsing differently formatted timestamps, and the tedious issue of
+time zones.</p>
+</div>
+<div id="exercises-1" class="section level3">
+<h3><span class="header-section-number">1.3.4</span> Exercises</h3>
+<ol style="list-style-type: decimal">
+<li>Mercury, Venus, Earth and Mars are called the <em>terrestrial</em> planets,
+as they are primarily composed of rock and metal.
+Jupiter and Saturn, are composed mainly of hydrogen and helium, thus are referred
+to as <em>gas giants</em>. Finally, Uranus and Neptune, are composed largely
+of substances with relatively high melting points, thus are often referred
+to separately as <em>ice giants</em>.</li>
+</ol>
+<p>Create a factor variable, called <code>type</code>, in the <code>planet</code>
+data frame with these categories. Make sure the each planet has the correct label.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Convert the <code>contains_humans</code> variable inside <code>planet</code>
+to a factor with <code>0</code> labelled as <code>"no"</code>, and <code>1</code> as <code>"yes"</code>.</p></li>
+<li><p>See what happens when you convert a factor back to numeric using the
+<code>as.numeric()</code> function, and how it differs from <code>as.character()</code>.</p></li>
+</ol>
+</div>
+</div>
+<div id="logical-comparisons-and-boolean-operations" class="section level2">
+<h2><span class="header-section-number">1.4</span> Logical comparisons and Boolean operations</h2>
+<p>We have seen that setting up scientific information in the form of one or more
+vectors is often convenient for performing additional calculations as well
+as plotting. R is designed around the idea and use of vectors. Data frames
+are essentially a collection of vectors, but with a bit of extra useful
+functionality. Furthermore we have seen that R comes with tools for
+extracting and manipulating the information in vectors and data frames.</p>
+<p>In practice, we often have to extract data that satisfy a certain criteria,
+such as all the data for females, or all those with a particular disease.
+This is when we start to make statements involving logical comparisons.</p>
+<div id="logical-comparisons" class="section level3">
+<h3><span class="header-section-number">1.4.1</span> Logical comparisons</h3>
+<p>We have previously seen, that we can select parts of a vector using
+indexing:</p>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" title="1">planet<span class="op">$</span>name[<span class="dv">2</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<pre><code>## [1] &quot;Saturn&quot;  &quot;Uranus&quot;  &quot;Neptune&quot; &quot;Earth&quot;</code></pre>
+<p>But if we want to specifically look at particular type of planet, then without
+having to calculate the specific numerical index we can use <code>filter</code>:</p>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" title="1"><span class="kw">filter</span>(planet, type <span class="op">==</span><span class="st"> &quot;ice giant&quot;</span>)</a></code></pre></div>
+<pre><code>##      name     mass  radius contains_humans radius_km distance  gravity
+## 1    Mars 6.42e+23 3390000               0      3390        0 3.727724
+## 2 Mercury 3.30e+23 2440000               0      2440        0 3.698643
+##        type
+## 1 ice giant
+## 2 ice giant</code></pre>
+<p>Where <code>==</code> means “equal to”, see Table  for other
+operators. In fact, you can practically read that last line of code as a sentence; “Filter the rows in the <code>planet</code> data frame such that the <code>type</code> is equal to ice giant”.</p>
+<table>
+<caption><span id="tab:logic-op">Table 1.3: </span> A list of the logical comparison operations available in R.</caption>
+<thead>
+<tr class="header">
+<th>Symbol</th>
+<th>Comparison</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>&lt;</code></td>
+<td>Less than</td>
+</tr>
+<tr class="even">
+<td><code>&gt;</code></td>
+<td>Greater than</td>
+</tr>
+<tr class="odd">
+<td><code>&lt;=</code></td>
+<td>Less than or equal to</td>
+</tr>
+<tr class="even">
+<td><code>&gt;=</code></td>
+<td>Greater than or equal to</td>
+</tr>
+<tr class="odd">
+<td><code>==</code></td>
+<td>Equal to</td>
+</tr>
+<tr class="even">
+<td><code>!=</code></td>
+<td>Not equal to</td>
+</tr>
+</tbody>
+</table>
+<p>Note that when you see a logical comparisons, such as <code>type == "ice giant"</code>, R is actually returning a vector of <code>TRUE</code>s and <code>FALSE</code>s:</p>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb208-1" title="1">planet<span class="op">$</span>type <span class="op">==</span><span class="st"> &quot;ice giant&quot;</span></a></code></pre></div>
+<pre><code>## [1] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE</code></pre>
+<p>This is then being used to filter the data frame, returning only the rows that
+correspond to <code>TRUE</code>.</p>
+</div>
+<div id="boolean-operations" class="section level3">
+<h3><span class="header-section-number">1.4.2</span> Boolean operations</h3>
+<p>The real fun begins when you start combining logical comparisons with Boolean operations. If you are adept at searching the Internet i.e. your Google-Fu is strong, then you will likely be familiar with the phrases; “and”, “or”, and “not”. In R, these words are represented by the symbols is shown below.</p>
+<table>
+<caption><span id="tab:boo-op">Table 1.4: </span> A list of the Boolean operators available in R.</caption>
+<thead>
+<tr class="header">
+<th>Symbol</th>
+<th>Phrase</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>&amp;</code></td>
+<td>And (ampersand)</td>
+</tr>
+<tr class="even">
+<td><code>|</code></td>
+<td>Or (vertical bar)</td>
+</tr>
+<tr class="odd">
+<td><code>!</code></td>
+<td>Not or negation (exclamation)</td>
+</tr>
+</tbody>
+</table>
+<p>The operators <code>&amp;</code> and <code>|</code> connect two logical comparisons and
+return <code>TRUE</code> or <code>FALSE</code> depending on the joint truth or falsehood
+of the two logical comparisons. We also use brackets to help visually separate
+out the different conditions.</p>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb210-1" title="1"><span class="kw">filter</span>(planet, (gravity <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>) <span class="op">&amp;</span><span class="st"> </span>(radius  <span class="op">&lt;</span><span class="st"> </span><span class="dv">7</span><span class="op">*</span><span class="dv">10</span><span class="op">^</span><span class="dv">6</span>))</a></code></pre></div>
+<pre><code>##    name     mass  radius contains_humans radius_km distance  gravity      type
+## 1 Earth 5.97e+24 6371000               1      6371        0 9.814479 gas giant
+## 2 Venus 4.87e+24 6052000               0      6052        0 8.872362 gas giant</code></pre>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb212-1" title="1"><span class="kw">filter</span>(planet, (gravity <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>) <span class="op">|</span><span class="st"> </span>(radius  <span class="op">&lt;</span><span class="st"> </span><span class="dv">7</span><span class="op">*</span><span class="dv">10</span><span class="op">^</span><span class="dv">6</span>))</a></code></pre></div>
+<pre><code>##      name     mass   radius contains_humans radius_km distance   gravity
+## 1 Jupiter 1.90e+27 69910000               0     69910        0 25.940784
+## 2  Saturn 5.68e+26 58230000               0     58230        0 11.177968
+## 3  Uranus 8.68e+25 25360000               0     25360        0  9.005946
+## 4 Neptune 1.02e+26 24620000               0     24620        0 11.228770
+## 5   Earth 5.97e+24  6371000               1      6371        0  9.814479
+## 6   Venus 4.87e+24  6052000               0      6052        0  8.872362
+## 7    Mars 6.42e+23  3390000               0      3390        0  3.727724
+## 8 Mercury 3.30e+23  2440000               0      2440        0  3.698643
+##          type
+## 1 terrestrial
+## 2 terrestrial
+## 3 terrestrial
+## 4 terrestrial
+## 5   gas giant
+## 6   gas giant
+## 7   ice giant
+## 8   ice giant</code></pre>
+<p>The <code>&amp;</code> returns <code>TRUE</code> only when <em>both</em> of the comparisons are
+true. While <code>|</code> returns <code>TRUE</code> if <em>at least one</em> of the comparisons is true.</p>
+</div>
+</div>
+<div id="basic-plots" class="section level2">
+<h2><span class="header-section-number">1.5</span> Basic Plots</h2>
+<p>It might seem to you that scientists have an obsession with quantification.
+Your impressions would be correct. To build reliable, reproducible results,
+scientists naturally seek to gather and record counts, measurements, and
+attributes of the phenomenon under observation. Data, the collective name
+for such counts, measurements, and attributes, are the lifeblood of science.
+Studying data with quantitative tools allows scientists to detect
+patterns, make predictions, and assess the reliability of current theory.
+Being able to visualise data is crucial to this endeavour. Even a small
+data set is practically incomprehensible all by itself. Plotting data allows
+us to visualise the relationships we are interested in.</p>
+<p>Visualisation can be used for two things; (a) for the computer to show the
+scientist what is happening in the data, and (b) for you to show other
+people. Graphs that fall into (a) tend to be produced quicker and dirtier
+than the graphs we produce for (b).</p>
+<p>Finally, different types of graphs emphasise different aspects of the data
+and variables under study. Building a <em>good</em> graph therefore takes time and
+is often an iterative process.</p>
+<div id="getting-started" class="section level3">
+<h3><span class="header-section-number">1.5.1</span> Getting started</h3>
+<p>Before we begin, you should start a new R script, call it something like
+<code>lab-2-plots.R</code>. You will also need to download
+the <code>diam.csv.gz</code> file from the moodle page, save it to the same folder as
+your script.</p>
+<p>One more thing is that within RStudio you need to install a package:</p>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb214-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</a></code></pre></div>
+<p>If you are on a computer system where you need to install additional packages in a specific folder you can use the <code>lib="filepath"</code> argument.</p>
+<p>Once it has installed add <code>library(ggplot2)</code> to the top your new script. This loads the package into your current R session.</p>
+<p>You can see all the packages you have loaded in your session using:</p>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb215-1" title="1"><span class="kw">sessionInfo</span>()</a></code></pre></div>
+<p>Note, if you want to remove a package from your session type (do not do this now):</p>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" title="1"><span class="kw">detach</span>(package<span class="op">:</span>ggplot2)</a></code></pre></div>
+<p>Also, if when you load in a package and it has a function with the same name as another package that is already loaded in your R session. You will get a warning that one of the function names masks the function from the other package. In such situations, you ensure to use the function from the specific package by prefixing the function name by <code>packagename::</code>, i.e. <code>base::print()</code> ensures you use <code>print()</code> from the base package.</p>
+<p>The <code>ggplot2</code> package is a plotting system for R, based on something called the grammar of graphics. By default, <code>ggplot2</code> takes care of many of the
+fiddly details that make plotting a hassle when using the plotting functions
+provided by base R (like drawing legends, and picking good colours). It also
+provides a powerful framework which makes creating complex graphics
+easy.<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a> When you see
+analyses performed by various data bloggers they will often be using <code>ggplot2</code> to
+visualise their data.</p>
+<p>To see the many functions this package provides view its top level help-file with</p>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb217-1" title="1"><span class="kw">help</span>(<span class="dt">package=</span>ggplot2)</a></code></pre></div>
+</div>
+<div id="diamonds-data" class="section level3">
+<h3><span class="header-section-number">1.5.2</span> Diamonds data</h3>
+<p>Let us utilise the functionality of <code>ggplot2</code> by exploring a data set
+describing the prices and other attributes of 53,940 diamonds.
+Make sure your working directory is setup correctly, read the data
+into R. Check it has loaded properly by comparing the dimensions to what is shown below:</p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb218-1" title="1"><span class="kw">data</span>(diamonds)</a>
+<a class="sourceLine" id="cb218-2" title="2"><span class="kw">dim</span>(diamonds)</a></code></pre></div>
+<pre><code>## [1] 53940    10</code></pre>
+<p>The ten variables are described in Table
+<a href="data-manipulation-and-plotting-in-r.html#tab:diamonds">1.5</a>.</p>
+<table>
+<caption><span id="tab:diamonds">Table 1.5: </span> Variable description of the <code>diam</code> data set. Ranges of each variable are stated in brackets.</caption>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>price</code></td>
+<td>price in US dollars ($326–$18,823)</td>
+</tr>
+<tr class="even">
+<td><code>carat</code></td>
+<td>weight of the diamond (0.2–5.01)</td>
+</tr>
+<tr class="odd">
+<td><code>cut</code></td>
+<td>quality of the cut (Fair, Good, Very Good, Premium, Ideal)</td>
+</tr>
+<tr class="even">
+<td><code>colour</code></td>
+<td>diamond colour, from J (worst) to D (best)</td>
+</tr>
+<tr class="odd">
+<td><code>clarity</code></td>
+<td>measurement of how clear the diamond is: I1 (worst), SI1, SI2, VS1, VS2, VVS1, VVS2, IF (best)</td>
+</tr>
+<tr class="even">
+<td><code>x</code></td>
+<td>length in mm (0–10.74)</td>
+</tr>
+<tr class="odd">
+<td><code>y</code></td>
+<td>width in mm (0–58.9)</td>
+</tr>
+<tr class="even">
+<td><code>z</code></td>
+<td>depth in mm (0–31.8)</td>
+</tr>
+<tr class="odd">
+<td><code>depth</code></td>
+<td>total depth percentage <span class="math inline">\(= 2\times z/(x + y)\)</span> (43–79)</td>
+</tr>
+<tr class="even">
+<td><code>table</code></td>
+<td>width of top of diamond relative to widest point (43–95)</td>
+</tr>
+</tbody>
+</table>
+<p>How the different measurements relate to a diamond are shown in Figure
+<a href="data-manipulation-and-plotting-in-r.html#fig:diamond">1.1</a>. With <code>table</code> then being calculated as follows:
+<span class="math display">\[\begin{eqnarray*}
+\text{depth} &amp;=&amp; \text{z / diameter}\\
+\text{table} &amp;=&amp; \text{(width / x) * 100}
+\end{eqnarray*}\]</span></p>
+<div class="figure"><span id="fig:diamond"></span>
+<img src="week1/diamond-diagram.png" alt="Measuring a diamond." width="\linewidth" />
+<p class="caption">
+Figure 1.1: Measuring a diamond.
+</p>
+</div>
+<p>To check how the data looks type into the R <strong>Console</strong>:</p>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb220-1" title="1"><span class="kw">head</span>(diamonds)</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 10
+##   carat cut       color clarity depth table price     x     y     z
+##   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 0.23  Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
+## 2 0.21  Premium   E     SI1      59.8    61   326  3.89  3.84  2.31
+## 3 0.23  Good      E     VS1      56.9    65   327  4.05  4.07  2.31
+## 4 0.290 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
+## 5 0.31  Good      J     SI2      63.3    58   335  4.34  4.35  2.75
+## 6 0.24  Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48</code></pre>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb222-1" title="1"><span class="kw">tail</span>(diamonds)</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 10
+##   carat cut       color clarity depth table price     x     y     z
+##   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1  0.72 Premium   D     SI1      62.7    59  2757  5.69  5.73  3.58
+## 2  0.72 Ideal     D     SI1      60.8    57  2757  5.75  5.76  3.5 
+## 3  0.72 Good      D     SI1      63.1    55  2757  5.69  5.75  3.61
+## 4  0.7  Very Good D     SI1      62.8    60  2757  5.66  5.68  3.56
+## 5  0.86 Premium   H     SI2      61      58  2757  6.15  6.12  3.74
+## 6  0.75 Ideal     D     SI2      62.2    55  2757  5.83  5.87  3.64</code></pre>
+<p>Make sure that the levels for each of the factors are in the correct order,
+because, by default, R will simply order the levels alphabetically.</p>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb224-1" title="1"><span class="kw">levels</span>(diamonds<span class="op">$</span>cut)</a></code></pre></div>
+<pre><code>## [1] &quot;Fair&quot;      &quot;Good&quot;      &quot;Very Good&quot; &quot;Premium&quot;   &quot;Ideal&quot;</code></pre>
+<p>To fix this, apply the <code>factor()</code> function, but with the levels in the
+correct order:</p>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb226-1" title="1">cut_levels &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Fair&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;Very Good&quot;</span>, <span class="st">&quot;Premium&quot;</span>, <span class="st">&quot;Ideal&quot;</span>)</a>
+<a class="sourceLine" id="cb226-2" title="2">diamonds<span class="op">$</span>cut &lt;-<span class="st"> </span><span class="kw">factor</span>(diamonds<span class="op">$</span>cut, <span class="dt">levels=</span>cut_levels)</a></code></pre></div>
+<p>Check the other factors, and correct them if necessary.</p>
+</div>
+<div id="histograms" class="section level3">
+<h3><span class="header-section-number">1.5.3</span> Histograms</h3>
+<p>A histogram shows the distribution of a single numeric variable, by
+showing us the frequency with which certain intervals of the data
+occur. Use <code>qplot()</code> to produce a histogram of the carat distribution:</p>
+<p><img src="week1/theme-carat-hist.png" width="\linewidth" /></p>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb227-1" title="1"><span class="kw">qplot</span>(<span class="dt">x=</span>carat, <span class="dt">data=</span>diamonds, <span class="dt">geom=</span><span class="st">&quot;histogram&quot;</span>)</a></code></pre></div>
+<p>Because the data is strictly continuous, it needs to be <em>binned</em>.
+By default <code>ggplot2</code> splits the data up into 30 equally-sized
+intervals (bins). To alter this:</p>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb228-1" title="1"><span class="kw">qplot</span>(<span class="dt">x=</span>carat, <span class="dt">data=</span>diamonds, <span class="dt">geom=</span><span class="st">&quot;histogram&quot;</span>, <span class="dt">binwidth=</span><span class="fl">0.1</span>)</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-104-1.png" width="672" /></p>
+<p>Always experiment with the bin width. Try increasing it slowly up to 1. Pay attention to how features in the data become smoothed out?</p>
+<p>This histogram shows the carat distribution for all of our data. But does this
+general shape hold if we look at different categories of diamond? For example,
+does the carat distribution change depending on the cut. The easiest way to
+do this is to, graphically, reproduce the histogram for each type of cut.
+This process is called <em>faceting</em>. To create a faceted plot
+using the cut variable modify the previous code so it now looks like the
+following and run it:</p>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb229-1" title="1"><span class="kw">qplot</span>(<span class="dt">x=</span>carat, <span class="dt">data=</span>diamonds, <span class="dt">geom=</span><span class="st">&quot;histogram&quot;</span>, <span class="dt">binwidth=</span><span class="fl">0.25</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb229-2" title="2">	<span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>cut, <span class="dt">ncol=</span><span class="dv">5</span>)</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
+<p>So, it looks like the distribution stays fairly similar across each of the cut
+types. But it is hard to really say with any confidence, because the number
+of diamonds with a particular cut varies, considerably. It may be more
+useful to look at boxplots.</p>
+</div>
+<div id="boxplots" class="section level3">
+<h3><span class="header-section-number">1.5.4</span> Boxplots</h3>
+<p>A boxplot (sometimes called a box-and-whisker plot) is an alternative to
+producing a histogram, when we want to look at the distribution of a
+variable but for different categories of another variable. For example,
+the carat distribution (continuous) with each of the different cut types
+(categorical).</p>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb230-1" title="1"><span class="kw">qplot</span>(<span class="dt">x=</span>cut, <span class="dt">y=</span>carat, <span class="dt">data=</span>diamonds, <span class="dt">geom=</span><span class="st">&quot;boxplot&quot;</span>)</a></code></pre></div>
+<p><img src="week1/theme-diamond-boxplot.png" width="\linewidth" />
+Each set of box and whiskers relies on five numbers to summarise the
+carat distribution for each particular cut. The middle three values are
+the 25%, 50% and 75% quantiles. To calculate these we simply
+order the data from lowest to highest, and then lookup the values that
+are 25%, 50% and 75% along the vector. The 50% value is more commonly
+know as the <em>median</em>, while the 25% and 75% are referred to
+as lower and upper quartiles (Q1 and Q3 respectively) because they are a
+quarter into the data range, from either end.</p>
+<p><img src="week1/p_compare_bp_hist.png" width="\linewidth" /></p>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb231-1" title="1"><span class="co"># Median by hand</span></a>
+<a class="sourceLine" id="cb231-2" title="2">x &lt;-<span class="st"> </span><span class="kw">sort</span>(diamonds<span class="op">$</span>carat)</a>
+<a class="sourceLine" id="cb231-3" title="3">x[<span class="dv">1</span><span class="op">/</span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">length</span>(x)]</a></code></pre></div>
+<pre><code>## [1] 0.7</code></pre>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb233-1" title="1"><span class="co"># Using in-built function</span></a>
+<a class="sourceLine" id="cb233-2" title="2"><span class="kw">median</span>(diamonds<span class="op">$</span>carat)</a></code></pre></div>
+<pre><code>## [1] 0.7</code></pre>
+<p>Similarly for the quantiles:</p>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb235-1" title="1"><span class="co"># Quantiles by hand</span></a>
+<a class="sourceLine" id="cb235-2" title="2">x[<span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>) <span class="op">*</span><span class="st"> </span><span class="kw">length</span>(x)]</a></code></pre></div>
+<pre><code>## [1] 0.40 1.04</code></pre>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb237-1" title="1"><span class="co"># Checking with the in-built function</span></a>
+<a class="sourceLine" id="cb237-2" title="2"><span class="kw">quantile</span>(diamonds<span class="op">$</span>carat, <span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>))</a></code></pre></div>
+<pre><code>##  25%  75% 
+## 0.40 1.04</code></pre>
+<p>The two quartiles are then used to draw the main box, with the median being the
+solid line inside the box. How are the whiskers calculated, and what are the
+other points? The other points are considered <em>outliers</em>, this means that
+they are thought to deviate too far from the rest of the data to be considered
+a part of the main distribution.</p>
+<p>How we identify if something is an outlier is related to the length of the
+whiskers. The whiskers stem from the main box up and stop at either the range
+of the data or if they hit the following limits:</p>
+<ul>
+<li>the lower whisker stops at the Q1 - 1.5<span class="math inline">\(\times\)</span>IQR</li>
+<li>the upper whisker stops at the Q3 + 1.5<span class="math inline">\(\times\)</span>IQR</li>
+</ul>
+<p>Where IQR represents the Inter-Quartile Range; IQR = Q3 - Q1, also know as
+the length of the box. Due to the definitions of Q1 and Q3, the box represents
+50% of the data.</p>
+<p>Finally, because boxplots and histograms are effectively trying to summarise
+the same data, therefore patterns in one correspond to patterns in another, as
+shown in the margin.</p>
+</div>
+<div id="scatter-plots" class="section level3">
+<h3><span class="header-section-number">1.5.5</span> Scatter plots</h3>
+<p>A scatter plot can be used when both variables of interest are numeric
+(continuous). A scatter plot contains a point for each observation in the data.
+We can use scatter plots to explore the relationship between the
+price of the diamond and the other attributes. Start with <code>carat</code>:</p>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb239-1" title="1"><span class="kw">qplot</span>(<span class="dt">x=</span>carat, <span class="dt">y=</span>price, <span class="dt">data=</span>diam, <span class="dt">geom=</span><span class="st">&quot;point&quot;</span>)</a></code></pre></div>
+<p><img src="week1/theme-carat-price.png" width="\linewidth" /></p>
+<p>So, we see a general positive relationship between the weight of
+the diamond (carat) and it’s price. It might be reasonable to assume
+that it’s price is also related to it’s cut.</p>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb240-1" title="1"><span class="kw">qplot</span>(<span class="dt">x=</span>carat, <span class="dt">y=</span>price, <span class="dt">colour=</span>clarity, <span class="dt">data=</span>diamonds, <span class="dt">geom=</span><span class="st">&quot;point&quot;</span>)</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-113-1.png" width="672" /></p>
+<p>We can see some separation according to colour. This may be improved by
+faceting the plot by clarity, similar to what we did for the histograms.
+Try doing this now.</p>
+</div>
+<div id="bar-charts" class="section level3">
+<h3><span class="header-section-number">1.5.6</span> Bar charts</h3>
+<p>When wanting to look at the distribution of a categorical variable we use
+a bar chart:</p>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb241-1" title="1"><span class="kw">qplot</span>(<span class="dt">x=</span>clarity, <span class="dt">data=</span>diamonds, <span class="dt">geom=</span><span class="st">&quot;bar&quot;</span>)</a></code></pre></div>
+<p><img src="week1/theme-clarity-bar.png" width="\linewidth" /></p>
+<p>We can fill in the bars with colour according to the <code>cut</code>:</p>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb242-1" title="1"><span class="kw">qplot</span>(<span class="dt">x=</span>clarity, <span class="dt">fill=</span>cut, <span class="dt">data=</span>diamonds, <span class="dt">geom=</span><span class="st">&quot;bar&quot;</span>)</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-116-1.png" width="672" /></p>
+<p>What happens if you set the <code>colour</code> argument to be equal
+to <code>cut</code>, instead of using <code>fill</code>?</p>
+</div>
+<div id="how-to-save-plots" class="section level3">
+<h3><span class="header-section-number">1.5.7</span> How to save plots</h3>
+<p>There is no point in making pretty graphs if you cannot include them in a report or blog post. To save your amazing art work, first you need to store the plot in an object:</p>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb243-1" title="1">p_clarity &lt;-<span class="st"> </span><span class="kw">qplot</span>(<span class="dt">x=</span>clarity, <span class="dt">data=</span>diamonds, <span class="dt">geom=</span><span class="st">&quot;bar&quot;</span>)</a></code></pre></div>
+<p>Because we are now storing the plot inside an object, R no longer automatically
+prints it to the screen. Simply enter the object name in the <strong>console</strong>
+to see it.</p>
+<p>To save the plot to a file, we pass the object to the<code>ggsave()</code> function:</p>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb244-1" title="1"><span class="kw">ggsave</span>(p_clarity, <span class="dt">file=</span><span class="st">&quot;p_carat.png&quot;</span>, <span class="dt">width=</span><span class="dv">6</span>, <span class="dt">height=</span><span class="dv">4</span>)</a></code></pre></div>
+<p>The width and height are automatically assumed to be specified in inches.
+If you prefer to use mm or cm then set the <code>units</code> argument according.
+Check the help page for other arguments.</p>
+<p>When saving plots to include in a report, the maximum you should be setting
+your width to is about 6 inches (15cm), so that it does not extend beyond
+the margins on an A4 page.</p>
+<p><img src="week1/a4.png" width="\linewidth" /></p>
+<p>After saving the clarity bar plot, try importing it into a Word document.
+If it looks too big, do not resize it in Word, instead alter the
+values used by <code>ggsave()</code>. This way, after a bit of tweaking, you will
+have a script that produces the exact graph you want to use.</p>
+</div>
+<div id="going-deeper-with-ggplot" class="section level3">
+<h3><span class="header-section-number">1.5.8</span> Going deeper with ggplot</h3>
+<p>We have been making heavy use of the <code>qplot()</code> function, but we need
+to go deeper. In order to modify other parts of the graph such as axis labels,
+the number of tick marks, and the colouring scheme that is used, we need to
+become pro-ggplotters. To become pro we need to stop using <code>qplot()</code>
+and start using it’s big sister <code>ggplot()</code>.</p>
+<p>First we will recreate some of the graphs we have already seen, so that you
+spot the subtle differences in code. To produce the scatter plot of
+carat vs price:</p>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb245-1" title="1"><span class="co"># simple way</span></a>
+<a class="sourceLine" id="cb245-2" title="2"><span class="kw">qplot</span>(<span class="dt">x=</span>carat, <span class="dt">y=</span>price, <span class="dt">colour=</span>clarity, <span class="dt">data=</span>diam) <span class="op">+</span></a>
+<a class="sourceLine" id="cb245-3" title="3"><span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>clarity)</a>
+<a class="sourceLine" id="cb245-4" title="4"></a>
+<a class="sourceLine" id="cb245-5" title="5"><span class="co"># advanced way</span></a>
+<a class="sourceLine" id="cb245-6" title="6"><span class="kw">ggplot</span>(diam) <span class="op">+</span></a>
+<a class="sourceLine" id="cb245-7" title="7"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x=</span>carat, <span class="dt">y=</span>price, <span class="dt">colour=</span>clarity)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb245-8" title="8"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>clarity)</a></code></pre></div>
+<p>For boxplots of carat vs cut:</p>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb246-1" title="1"><span class="co"># simple way</span></a>
+<a class="sourceLine" id="cb246-2" title="2"><span class="kw">qplot</span>(<span class="dt">x=</span>cut, <span class="dt">y=</span>carat, <span class="dt">data=</span>diam, <span class="dt">geom=</span><span class="st">&quot;boxplot&quot;</span>)</a>
+<a class="sourceLine" id="cb246-3" title="3"></a>
+<a class="sourceLine" id="cb246-4" title="4"><span class="co"># advanced way</span></a>
+<a class="sourceLine" id="cb246-5" title="5"><span class="kw">ggplot</span>(diam) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>cut, <span class="dt">y=</span>carat))</a></code></pre></div>
+<p>By using <code>ggplot()</code> we are now starting to use the <em>layering</em>
+approach to making graphics. The only thing we give <code>ggplot()</code> is
+the data frame. Next we start to add-on our “geom”s, these are the
+different shapes and summaries that can be plotted.</p>
+<p>Here are some of the geoms available in ggplot2, a full list is at
+<a href="http://docs.ggplot2.org" class="uri">http://docs.ggplot2.org</a> :</p>
+<ul>
+<li><code>geom_abline</code></li>
+<li><code>geom_area</code></li>
+<li><code>geom_bar</code></li>
+<li><code>geom_bin2d</code></li>
+<li><code>geom_boxplot</code></li>
+<li><code>geom_contour</code></li>
+<li><code>geom_density</code></li>
+<li><code>geom_density2d</code></li>
+<li><code>geom_dotplot</code></li>
+<li><code>geom_hex</code></li>
+<li><code>geom_histogram</code></li>
+<li><code>geom_hline</code></li>
+<li><code>geom_jitter</code></li>
+<li><code>geom_line</code></li>
+<li><code>geom_point</code></li>
+<li><code>geom_rug</code></li>
+<li><code>geom_smooth</code></li>
+<li><code>geom_text</code></li>
+<li><code>geom_violin</code></li>
+<li><code>geom_vline</code></li>
+</ul>
+<p>In order to use a <code>geom</code> we need to map our variables to the
+different <strong>aes</strong>thetics it uses. Aesthetics of a <code>geom</code> include;
+position on the x-axis and y-axis, colour, size, transparency, and more.
+We map our variables to the aesthetics through the <code>aes()</code> function
+within the particular <code>geom_*()</code>.</p>
+<p>In order to look at cut vs clarity, we previously drew a boxplot. We can
+take this further by overlaying points on top of the boxplots:</p>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb247-1" title="1"><span class="kw">ggplot</span>(diamonds) <span class="op">+</span></a>
+<a class="sourceLine" id="cb247-2" title="2"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>cut, <span class="dt">y=</span>carat)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb247-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x=</span>cut, <span class="dt">y=</span>carat))</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-122-1.png" width="672" /></p>
+<p>This does not look pretty. In fact, there is probably a lot of overplotting
+going on, to improve this try swapping out <code>geom_point</code>
+for <code>geom_jitter</code> and rerunning the plot. What does it look like now?</p>
+<p>Well, now we can not see the boxplots. Try making the points semi-transparent
+by setting their <code>alpha</code> transparency level to be small:</p>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb248-1" title="1"><span class="kw">ggplot</span>(diamonds) <span class="op">+</span></a>
+<a class="sourceLine" id="cb248-2" title="2"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>cut, <span class="dt">y=</span>carat)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb248-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x=</span>cut, <span class="dt">y=</span>carat), <span class="dt">alpha=</span><span class="fl">0.5</span>)</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-123-1.png" width="672" /></p>
+<p>“Alpha” in graphics refers to how transparent
+something is, usually pixels. Alpha values can range between <span class="math inline">\(1\)</span> (solid) to <span class="math inline">\(0\)</span>
+(invisible). By playing with the alpha value you can begin to get an impression
+of how stacked the data is. Try lowering it till you can start to see some
+of the shapes in the data.</p>
+<p>I do not think we are ever going to be able to see the boxplots below the
+points, so go ahead and swap the lines of code for each geom around, and
+rerun the plot.</p>
+<p>Within the boxplots, we can turn off the fill of the boxes by setting
+<code>fill=NA</code>, and turn the colour of the lines used for the boxes
+and whiskers to white:</p>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb249-1" title="1"><span class="kw">ggplot</span>(diamonds) <span class="op">+</span></a>
+<a class="sourceLine" id="cb249-2" title="2"><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="kw">aes</span>(<span class="dt">x=</span>cut, <span class="dt">y=</span>carat), <span class="dt">alpha=</span><span class="fl">0.1</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb249-3" title="3"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>cut, <span class="dt">y=</span>carat), <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>,</a>
+<a class="sourceLine" id="cb249-4" title="4">                 <span class="dt">fill=</span><span class="ot">NA</span>, <span class="dt">outlier.colour=</span><span class="ot">NA</span>)</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-124-1.png" width="672" /></p>
+<p><img src="week1/theme-gg-cut-carat.png" width="\linewidth" /></p>
+<p>Look-up the help page for <code>labs</code>, and use it to rewrite the axis labels
+so that they start with capital letters. Also, look up the help page for
+<code>theme_bw</code>, and see how to add this to your plot.</p>
+<p>To save this to a file, do what you did before; store it to an object and
+use <code>ggsave()</code>:</p>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb250-1" title="1">p_cut_carat &lt;-<span class="st"> </span><span class="kw">ggplot</span>(diam) <span class="op">+</span></a>
+<a class="sourceLine" id="cb250-2" title="2">	<span class="kw">geom_jitter</span>(<span class="kw">aes</span>(<span class="dt">x=</span>cut, <span class="dt">y=</span>carat), <span class="dt">alpha=</span><span class="fl">0.1</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb250-3" title="3">	<span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>cut, <span class="dt">y=</span>carat), <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>,</a>
+<a class="sourceLine" id="cb250-4" title="4">	<span class="dt">fill=</span><span class="ot">NA</span>, <span class="dt">outlier.colour=</span><span class="ot">NA</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb250-5" title="5">	<span class="co"># plus extra code for labels and theme</span></a>
+<a class="sourceLine" id="cb250-6" title="6"></a>
+<a class="sourceLine" id="cb250-7" title="7"><span class="kw">ggsave</span>(p_cut_carat, <span class="dt">file=</span><span class="st">&quot;p_cut_carat.png&quot;</span>, <span class="dt">width=</span><span class="dv">5</span>, <span class="dt">height=</span><span class="dv">3</span>)</a></code></pre></div>
+</div>
+<div id="summary-1" class="section level3">
+<h3><span class="header-section-number">1.5.9</span> Summary</h3>
+<ul>
+<li><p>The base environment in R provides plotting functions such as
+<code>plot()</code>, <code>hist()</code>, and many others. But these
+plotting functions often have inconsistent arguments, nor do they make it
+easy to customise the graphs that are produced, nor do they frequently
+have sensible defaults for things like legends or colours.
+The <code>ggplot2</code> package attempts to alleviate these problems by
+providing a layered system to creating graphics.</p></li>
+<li><p>An example of a scatter plot:</p></li>
+</ul>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" title="1"><span class="kw">ggplot</span>(diam) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x=</span>carat, <span class="dt">y=</span>price), <span class="dt">alpha=</span><span class="fl">0.1</span>)</a></code></pre></div>
+<ul>
+<li>An example of a barchart:</li>
+</ul>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" title="1"><span class="kw">ggplot</span>(diam) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">x=</span>cut))</a></code></pre></div>
+<ul>
+<li>An example of a histogram:</li>
+</ul>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb253-1" title="1"><span class="kw">ggplot</span>(diam) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">x=</span>price), <span class="dt">binwidth=</span><span class="dv">1000</span>)</a></code></pre></div>
+<ul>
+<li>An example of a boxplot:</li>
+</ul>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb254-1" title="1"><span class="kw">ggplot</span>(diam) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>cut, <span class="dt">y=</span>price))</a></code></pre></div>
+<p><img src="week1/theme-eg-scatter.png" width="\linewidth" /><img src="week1/theme-eg-bar.png" width="\linewidth" /><img src="week1/theme-eg-hist.png" width="\linewidth" /><img src="week1/theme-eg-boxplot.png" width="\linewidth" /></p>
+<ul>
+<li><p>Aesthetics of a geom generally include: <code>x</code>; <code>y</code>; <code>size</code>; <code>colour</code>; <code>fill</code>; <code>shape</code>;
+<code>group</code>; <code>alpha</code>. But there are others for specific geoms, check the help pages
+or online documentation for more information.</p></li>
+<li><p>When producing graphics for a printed report (like on actual physical
+A4 paper), then append <code>theme_bw(base_size=10)</code> as an extra function
+to your ggplot command. This will switch the formatting of the plot so it
+is less ink-intensive and also change the font size to be 10pt.</p></li>
+<li><p>Use the <code>ggsave()</code> function to save the plot as a PNG file,
+width and height are specified in inches by default:</p></li>
+</ul>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb255-1" title="1"><span class="kw">ggsave</span>(p_cut, <span class="dt">file=</span><span class="st">&quot;p_cut.png&quot;</span>, <span class="dt">width=</span><span class="dv">3</span>, <span class="dt">height=</span><span class="dv">6</span>)</a></code></pre></div>
+<ul>
+<li>Documentation is at <a href="http://docs.ggplot2.org" class="uri">http://docs.ggplot2.org</a> and there have been many <code>ggplot2</code> questions answered on StackOverflow.</li>
+</ul>
+</div>
+<div id="exercises-2" class="section level3">
+<h3><span class="header-section-number">1.5.10</span> Exercises</h3>
+<ol style="list-style-type: decimal">
+<li>Explore the <code>diam</code> data set some more. In particular, look
+at how the different attributes relate to price. Try to visualise several
+different attributes at once in relation to price, by mapping different
+variables to several of the available aesthetics.</li>
+</ol>
+<p>Hint: check the “Aesthetics” section of the help page for each geom to see what aesthetics can have variables assigned to them.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Once you have identified a plot you like the look of make sure that you
+have a script you can run with <code>source</code> which will save this
+plot to a file.</p></li>
+<li><p>Download the <code>titanic.csv</code> file from the module page on moodle.
+This data set provides information on the fate of passengers on
+the fatal maiden voyage of the ocean liner Titanic. The data set
+contains information on whether or not the passengers survived,
+along with information on economic status (class), sex, and age,
+see Table <a href="data-manipulation-and-plotting-in-r.html#tab:titanic">1.6</a>.</p></li>
+</ol>
+<table>
+<caption><span id="tab:titanic">Table 1.6: </span> Variable description of the Titanic data set.</caption>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Levels</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>class</code></td>
+<td>1st, 2nd, 3rd, Crew</td>
+</tr>
+<tr class="even">
+<td><code>sex</code></td>
+<td>m, f</td>
+</tr>
+<tr class="odd">
+<td><code>age</code></td>
+<td>child, adult</td>
+</tr>
+<tr class="even">
+<td><code>survived</code></td>
+<td>no, yes</td>
+</tr>
+</tbody>
+</table>
+<ol style="list-style-type: lower-alpha">
+<li><p>The plan is to explore this data set using graphs. So, start a new script, and add your packages to the top along with an initial comment.</p></li>
+<li><p>Write your code to read in the data set, and make sure the data is actually read in correctly.</p></li>
+<li><p>Rewrite the levels for <code>sex</code>, so we have <code>male</code> and <code>female' instead of</code>m<code>and</code>f`, respectively.</p></li>
+<li><p>First, draw a bar chart showing the number of those that did anddid not survive. Save this to a file.</p></li>
+<li><p>Now consider, separately, how class, sex and age relate to whether or not someone survived. Make comments in your script about any observations you make.</p></li>
+</ol>
+<p>Tip: You can change the way your bar charts look by altering the <code>position</code> argument within <code>geom_bar()</code>, by default it is set to <code>position="stack"</code>, alternatives include <code>"fill"</code> and <code>"dodge"</code>: <code>geom_bar(..., position="dodge")</code></p>
+<ol start="6" style="list-style-type: lower-alpha">
+<li>How might you change the bar charts so instead of looking at counts you are looking at percentages? (You will need to research this). For example, rather than looking at how many males vs females died, we would like to see what percentage of males survived, vs what percentage of females.</li>
+</ol>
+<p>Once you have this working, reconsider <code>class</code>, <code>sex</code>, and <code>age</code>.</p>
+<ol start="7" style="list-style-type: lower-alpha">
+<li><p>Look at two attributes at once with survived.</p></li>
+<li><p>How would you produce plots that only consider the relationships between <code>class</code>, <code>sex</code>, <code>age</code> for passengers, and ignore crew? Do this.</p></li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="6">
+<li id="fn6"><p>FYI <code>read.csv()</code> is just a wrapper for the heavy-lifter that is
+<code>read.table()</code>, but changes the defaults to suit CSV files.
+R developers think of everything!<a href="data-manipulation-and-plotting-in-r.html#fnref6" class="footnote-back">↩</a></p></li>
+<li id="fn7"><p>If you are not familiar with the term directory, we just mean folder. Technically speaking there is a difference between a directory and a folder.<a href="data-manipulation-and-plotting-in-r.html#fnref7" class="footnote-back">↩</a></p></li>
+<li id="fn8"><p>The only name for this object I could think of was <code>planet_earths</code> which I think is ugly, see if you can do better.<a href="data-manipulation-and-plotting-in-r.html#fnref8" class="footnote-back">↩</a></p></li>
+<li id="fn9"><p>I should say <em>easier than normal</em>.<a href="data-manipulation-and-plotting-in-r.html#fnref9" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introduction-to-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="loops-conditional-statements-and-simulation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
