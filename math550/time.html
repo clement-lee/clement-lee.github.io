@@ -199,11 +199,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Write a few introductory comments at the top stating that this script covers the basics handling dates and times in R, along with how to aggregate and summarise data.</li>
 <li>Add your favourite packages to the start of your script:</li>
 </ul>
-<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb346-1" title="1"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb346-2" title="2"><span class="kw">library</span>(dplyr)</a>
-<a class="sourceLine" id="cb346-3" title="3"></a>
-<a class="sourceLine" id="cb346-4" title="4"><span class="co"># alternatively</span></a>
-<a class="sourceLine" id="cb346-5" title="5"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb339-1" title="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb339-2" title="2"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb339-3" title="3"></a>
+<a class="sourceLine" id="cb339-4" title="4"><span class="co"># alternatively</span></a>
+<a class="sourceLine" id="cb339-5" title="5"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
 </div>
 <div id="dates-and-timestamps-in-r" class="section level2">
 <h2><span class="header-section-number">3.2</span> Dates and timestamps in R</h2>
@@ -264,9 +264,9 @@ Specifically, <code>lubridate</code> helps us to:</p>
 <li>Handle time zones and daylight savings time.</li>
 </ul>
 <p>Before we continue install the <code>lubridate</code> package:</p>
-<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb348-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;lubridate&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb341-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;lubridate&quot;</span>)</a></code></pre></div>
 <p>Now load it.</p>
-<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb349-1" title="1"><span class="kw">library</span>(lubridate)</a></code></pre></div>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb342-1" title="1"><span class="kw">library</span>(lubridate)</a></code></pre></div>
 <pre><code>## 
 ## Attaching package: &#39;lubridate&#39;</code></pre>
 <pre><code>## The following objects are masked from &#39;package:base&#39;:
@@ -279,13 +279,13 @@ These functions parse character strings into date-time objects.
 The letters <code>y</code>, <code>m</code>, and <code>d</code> in the function names correspond to the year, month, and day elements of a timestamp.
 To parse a timestamp, choose the function name that matches the order of elements in the timestamp. For example, in the following date the month element comes first, followed by the day and then the year.
 So we would use the <code>mdy()</code> function:</p>
-<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb352-1" title="1"><span class="kw">mdy</span>(<span class="st">&quot;12/01/2010&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb345-1" title="1"><span class="kw">mdy</span>(<span class="st">&quot;12/01/2010&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;2010-12-01&quot;</code></pre>
 <p>The same function can also be used to parse <code>"Dec 1st, 2010"</code>:</p>
-<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb354-1" title="1"><span class="kw">mdy</span>(<span class="st">&quot;Dec 1st, 2010&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb347-1" title="1"><span class="kw">mdy</span>(<span class="st">&quot;Dec 1st, 2010&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;2010-12-01&quot;</code></pre>
 <p>The <code>ymd()</code> series of functions can also parse vectors of dates:</p>
-<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb356-1" title="1"><span class="kw">dmy</span>(<span class="kw">c</span>(<span class="st">&quot;31.12.2010&quot;</span>, <span class="st">&quot;01.01.2011&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb349-1" title="1"><span class="kw">dmy</span>(<span class="kw">c</span>(<span class="st">&quot;31.12.2010&quot;</span>, <span class="st">&quot;01.01.2011&quot;</span>))</a></code></pre></div>
 <pre><code>## [1] &quot;2010-12-31&quot; &quot;2011-01-01&quot;</code></pre>
 <p>These functions automatically recognise the separators commonly used to
 record dates. These include: <code>-</code>, <code>/</code>, <code>.</code>, and “no separator”. When a
@@ -344,12 +344,12 @@ or when an observation was made. We can easily extract each
 element of a timestamp with the accessor functions listed in Table
 <a href="time.html#tab:accessor">3.2</a>.
 For example, if we save the current system time:<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a></p>
-<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb358-1" title="1">stamp &lt;-<span class="st"> </span><span class="kw">now</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb351-1" title="1">stamp &lt;-<span class="st"> </span><span class="kw">now</span>()</a></code></pre></div>
 <p>We can then extract each of its elements:</p>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb359-1" title="1"><span class="kw">year</span>(stamp)</a></code></pre></div>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb352-1" title="1"><span class="kw">year</span>(stamp)</a></code></pre></div>
 <pre><code>## [1] 2020</code></pre>
-<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb361-1" title="1"><span class="kw">minute</span>(stamp)</a></code></pre></div>
-<pre><code>## [1] 48</code></pre>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb354-1" title="1"><span class="kw">minute</span>(stamp)</a></code></pre></div>
+<pre><code>## [1] 37</code></pre>
 <p>For the month and weekday elements (<code>mday</code> and <code>wday</code>), we can also specify whether we want to extract the numerical value of the element, an abbreviation of the name of the month or weekday, or the full name.
 For example:</p>
 <table>
@@ -403,16 +403,16 @@ For example:</p>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb363-1" title="1"><span class="kw">month</span>(stamp)</a></code></pre></div>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb356-1" title="1"><span class="kw">month</span>(stamp)</a></code></pre></div>
 <pre><code>## [1] 10</code></pre>
-<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb365-1" title="1"><span class="kw">month</span>(stamp, <span class="dt">label=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb358-1" title="1"><span class="kw">month</span>(stamp, <span class="dt">label=</span><span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## [1] Oct
 ## 12 Levels: Jan &lt; Feb &lt; Mar &lt; Apr &lt; May &lt; Jun &lt; Jul &lt; Aug &lt; Sep &lt; ... &lt; Dec</code></pre>
-<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb367-1" title="1"><span class="kw">month</span>(stamp, <span class="dt">label=</span><span class="ot">TRUE</span>, <span class="dt">abbr=</span><span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb360-1" title="1"><span class="kw">month</span>(stamp, <span class="dt">label=</span><span class="ot">TRUE</span>, <span class="dt">abbr=</span><span class="ot">FALSE</span>)</a></code></pre></div>
 <pre><code>## [1] October
 ## 12 Levels: January &lt; February &lt; March &lt; April &lt; May &lt; June &lt; ... &lt; December</code></pre>
-<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb369-1" title="1"><span class="kw">wday</span>(stamp, <span class="dt">label=</span><span class="ot">TRUE</span>, <span class="dt">abbr=</span><span class="ot">FALSE</span>)</a></code></pre></div>
-<pre><code>## [1] Thursday
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb362-1" title="1"><span class="kw">wday</span>(stamp, <span class="dt">label=</span><span class="ot">TRUE</span>, <span class="dt">abbr=</span><span class="ot">FALSE</span>)</a></code></pre></div>
+<pre><code>## [1] Friday
 ## 7 Levels: Sunday &lt; Monday &lt; Tuesday &lt; Wednesday &lt; Thursday &lt; ... &lt; Saturday</code></pre>
 </div>
 <div id="arithmetic-with-timestamps" class="section level3">
@@ -426,18 +426,18 @@ daylight savings time, leap years, and leap seconds. Consider how one of
 these conventions might complicate a simple addition task. If today were
 January 1st, 2010 and we wished to know what day it would be one year from
 now, we could simply add 1 to the years element of our date:</p>
-<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb371-1" title="1"><span class="kw">mdy</span>(<span class="st">&quot;January 1st, 2010&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">years</span>(<span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb364-1" title="1"><span class="kw">mdy</span>(<span class="st">&quot;January 1st, 2010&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">years</span>(<span class="dv">1</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;2011-01-01&quot;</code></pre>
 <p>Alternatively, we could add 365 to the days element of our date because a year
 is equivalent to 365 days:</p>
-<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb373-1" title="1"><span class="kw">mdy</span>(<span class="st">&quot;January 1st, 2010&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">days</span>(<span class="dv">365</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb366-1" title="1"><span class="kw">mdy</span>(<span class="st">&quot;January 1st, 2010&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">days</span>(<span class="dv">365</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;2011-01-01&quot;</code></pre>
 <p>However, problems arise if we try the same for January 1st, 2012. 2012 is a
 leap year, which means it has an extra day. Our two approaches above now give
 us different answers because the length of a year has changed:</p>
-<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb375-1" title="1"><span class="kw">mdy</span>(<span class="st">&quot;January 1st, 2012&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">years</span>(<span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb368-1" title="1"><span class="kw">mdy</span>(<span class="st">&quot;January 1st, 2012&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">years</span>(<span class="dv">1</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;2013-01-01&quot;</code></pre>
-<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb377-1" title="1"><span class="kw">mdy</span>(<span class="st">&quot;January 1st, 2012&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">days</span>(<span class="dv">365</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb370-1" title="1"><span class="kw">mdy</span>(<span class="st">&quot;January 1st, 2012&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">days</span>(<span class="dv">365</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;2012-12-31&quot;</code></pre>
 <p>At different moments in time, the lengths of months, weeks, days, hours,
 and even minutes will also vary. We can consider these to be <em>relative</em>
@@ -452,8 +452,8 @@ them. To do this use the helper functions;
 <code>years()</code>, <code>months()</code>, <code>weeks()</code>, <code>days()</code>,
 <code>hours()</code>, <code>minutes()</code>, and <code>seconds()</code>. Where
 the first and only argument is the amount of that unit of time:</p>
-<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb379-1" title="1">stamp <span class="op">-</span><span class="st"> </span><span class="kw">hours</span>(<span class="dv">48</span>) <span class="op">-</span><span class="st"> </span><span class="kw">minutes</span>(<span class="dv">30</span>)</a></code></pre></div>
-<pre><code>## [1] &quot;2020-09-29 19:18:12 BST&quot;</code></pre>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb372-1" title="1">stamp <span class="op">-</span><span class="st"> </span><span class="kw">hours</span>(<span class="dv">48</span>) <span class="op">-</span><span class="st"> </span><span class="kw">minutes</span>(<span class="dv">30</span>)</a></code></pre></div>
+<pre><code>## [1] &quot;2020-10-07 19:07:02 BST&quot;</code></pre>
 </div>
 <div id="intervals-and-durations" class="section level3">
 <h3><span class="header-section-number">3.2.4</span> Intervals and durations</h3>
@@ -462,18 +462,18 @@ actually calculate the difference between two timestamps. For example, between t
 start and end of an event to calculate the duration, or to count down
 to a particular event. We first define an interval using between our two
 time-points:</p>
-<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb381-1" title="1">halloween &lt;-<span class="st"> </span><span class="kw">ymd</span>(<span class="st">&quot;2014-10-31&quot;</span>)</a>
-<a class="sourceLine" id="cb381-2" title="2">christmas &lt;-<span class="st"> </span><span class="kw">ymd</span>(<span class="st">&quot;2014-12-25&quot;</span>)</a>
-<a class="sourceLine" id="cb381-3" title="3">interval  &lt;-<span class="st"> </span><span class="kw">interval</span>(halloween, christmas)</a>
-<a class="sourceLine" id="cb381-4" title="4">interval</a></code></pre></div>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb374-1" title="1">halloween &lt;-<span class="st"> </span><span class="kw">ymd</span>(<span class="st">&quot;2014-10-31&quot;</span>)</a>
+<a class="sourceLine" id="cb374-2" title="2">christmas &lt;-<span class="st"> </span><span class="kw">ymd</span>(<span class="st">&quot;2014-12-25&quot;</span>)</a>
+<a class="sourceLine" id="cb374-3" title="3">interval  &lt;-<span class="st"> </span><span class="kw">interval</span>(halloween, christmas)</a>
+<a class="sourceLine" id="cb374-4" title="4">interval</a></code></pre></div>
 <pre><code>## [1] 2014-10-31 UTC--2014-12-25 UTC</code></pre>
 <p>After which we can choose to express this interval as a duration in terms of a
 specific time-unit (e.g. weeks, days, or seconds):</p>
-<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb383-1" title="1">interval <span class="op">/</span><span class="st"> </span><span class="kw">dweeks</span>(<span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb376-1" title="1">interval <span class="op">/</span><span class="st"> </span><span class="kw">dweeks</span>(<span class="dv">1</span>)</a></code></pre></div>
 <pre><code>## [1] 7.857143</code></pre>
-<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb385-1" title="1">interval <span class="op">/</span><span class="st"> </span><span class="kw">ddays</span>(<span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb378-1" title="1">interval <span class="op">/</span><span class="st"> </span><span class="kw">ddays</span>(<span class="dv">1</span>)</a></code></pre></div>
 <pre><code>## [1] 55</code></pre>
-<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb387-1" title="1">interval <span class="op">/</span><span class="st"> </span><span class="kw">dseconds</span>(<span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb380-1" title="1">interval <span class="op">/</span><span class="st"> </span><span class="kw">dseconds</span>(<span class="dv">1</span>)</a></code></pre></div>
 <pre><code>## [1] 4752000</code></pre>
 <p>In order to express an interval as a duration we divide by similar
 functions to those used in the arithmetic section but they are
@@ -486,7 +486,7 @@ timestamps simply as the number of seconds since
 <code>00:00:00, Thursday, 1st January 1970 (UTC)</code>. When time is stored like
 this it is referred to as Unix-time or
 time-since-Epoch.</p>
-<div class="figure"><span id="fig:unnamed-chunk-162"></span>
+<div class="figure"><span id="fig:unnamed-chunk-156"></span>
 <img src="week3/celebrate_unix_time.jpg" alt="Unix time passed 1,000,000,000 seconds on 2001-09-09 01:46:40 UTC. It was celebrated in Copenhagen, Denmark at a party (03:46 local time)." width="\linewidth" />
 <p class="caption">
 Figure 3.4: Unix time passed 1,000,000,000 seconds on 2001-09-09 01:46:40 UTC. It was celebrated in Copenhagen, Denmark at a party (03:46 local time).
@@ -494,13 +494,13 @@ Figure 3.4: Unix time passed 1,000,000,000 seconds on 2001-09-09 01:46:40 UTC. I
 </div>
 <p>To convert a date-time object to Unix time, simply change the object type
 to numeric:</p>
-<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb389-1" title="1">event &lt;-<span class="st"> </span><span class="kw">ymd_hms</span>(<span class="st">&quot;2001-09-09 01:46:40&quot;</span>, <span class="dt">tz=</span><span class="st">&quot;UTC&quot;</span>)</a>
-<a class="sourceLine" id="cb389-2" title="2"><span class="kw">as.numeric</span>(event)</a></code></pre></div>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb382-1" title="1">event &lt;-<span class="st"> </span><span class="kw">ymd_hms</span>(<span class="st">&quot;2001-09-09 01:46:40&quot;</span>, <span class="dt">tz=</span><span class="st">&quot;UTC&quot;</span>)</a>
+<a class="sourceLine" id="cb382-2" title="2"><span class="kw">as.numeric</span>(event)</a></code></pre></div>
 <pre><code>## [1] 1e+09</code></pre>
 <p>To convert from Unix-time back to a timestamp, take the Unix-time value
 (which is just a number of seconds) and add it to the origin:</p>
-<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb391-1" title="1">origin &lt;-<span class="st"> </span><span class="kw">ymd_hms</span>(<span class="st">&quot;1970-01-01 00:00:00&quot;</span>, <span class="dt">tz=</span><span class="st">&quot;UTC&quot;</span>)</a>
-<a class="sourceLine" id="cb391-2" title="2">origin <span class="op">+</span><span class="st"> </span><span class="kw">seconds</span>(<span class="dv">10</span><span class="op">^</span><span class="dv">9</span>) <span class="co"># 1 billion seconds</span></a></code></pre></div>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb384-1" title="1">origin &lt;-<span class="st"> </span><span class="kw">ymd_hms</span>(<span class="st">&quot;1970-01-01 00:00:00&quot;</span>, <span class="dt">tz=</span><span class="st">&quot;UTC&quot;</span>)</a>
+<a class="sourceLine" id="cb384-2" title="2">origin <span class="op">+</span><span class="st"> </span><span class="kw">seconds</span>(<span class="dv">10</span><span class="op">^</span><span class="dv">9</span>) <span class="co"># 1 billion seconds</span></a></code></pre></div>
 <pre><code>## [1] &quot;2001-09-09 01:46:40 UTC&quot;</code></pre>
 </div>
 <div id="rounding-time" class="section level3">
@@ -512,22 +512,22 @@ means that timestamps can be rounded. To perform this rounding we use:
 The first argument of each function is a timestamp or vector of timestamps to be
 rounded. The second argument is the unit to round to. For example, we could
 round 11:33, 20th April 2010 to the nearest day:</p>
-<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb393-1" title="1">april20 &lt;-<span class="st"> </span><span class="kw">ymd_hms</span>(<span class="st">&quot;2010-04-20 11:33:29&quot;</span>)</a>
-<a class="sourceLine" id="cb393-2" title="2"><span class="kw">round_date</span>(april20, <span class="st">&quot;day&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb386-1" title="1">april20 &lt;-<span class="st"> </span><span class="kw">ymd_hms</span>(<span class="st">&quot;2010-04-20 11:33:29&quot;</span>)</a>
+<a class="sourceLine" id="cb386-2" title="2"><span class="kw">round_date</span>(april20, <span class="st">&quot;day&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;2010-04-20 UTC&quot;</code></pre>
 <p>Note that rounding a timestamp to a particular day sets the hours, minutes and
 seconds components of the timestamp to <span class="math inline">\(00\)</span>. If the timestamp is in the
 afternoon then it will be rounded up to the next day:</p>
-<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb395-1" title="1">april20 &lt;-<span class="st"> </span><span class="kw">ymd_hms</span>(<span class="st">&quot;2010-04-20 14:15:02&quot;</span>)</a>
-<a class="sourceLine" id="cb395-2" title="2"><span class="kw">round_date</span>(april20, <span class="st">&quot;day&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb388-1" title="1">april20 &lt;-<span class="st"> </span><span class="kw">ymd_hms</span>(<span class="st">&quot;2010-04-20 14:15:02&quot;</span>)</a>
+<a class="sourceLine" id="cb388-2" title="2"><span class="kw">round_date</span>(april20, <span class="st">&quot;day&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;2010-04-21 UTC&quot;</code></pre>
 <p>Similarly, rounding to the nearest month, sets the day to <span class="math inline">\(01\)</span> regardless of
 which month it is rounded to:</p>
-<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb397-1" title="1"><span class="kw">round_date</span>(april20, <span class="st">&quot;month&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb390-1" title="1"><span class="kw">round_date</span>(april20, <span class="st">&quot;month&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;2010-05-01 UTC&quot;</code></pre>
 <p>We can use <code>ceiling_date()</code> to find the last day of a month. Do this
 by ceiling a timestamp to the next month and then subtract one day:</p>
-<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb399-1" title="1"><span class="kw">ceiling_date</span>(april20, <span class="st">&quot;month&quot;</span>) <span class="op">-</span><span class="st"> </span><span class="kw">days</span>(<span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb392-1" title="1"><span class="kw">ceiling_date</span>(april20, <span class="st">&quot;month&quot;</span>) <span class="op">-</span><span class="st"> </span><span class="kw">days</span>(<span class="dv">1</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;2010-04-30 UTC&quot;</code></pre>
 </div>
 <div id="a-real-example-sea-ice-extent" class="section level3">
@@ -560,19 +560,19 @@ square-kilometres.</p></li>
 <ol start="3" style="list-style-type: decimal">
 <li>If you use the <code>class()</code> function on <code>sea_ice$date</code> you’ll see that it’s either of type character or factor (depending upon whether you set the <code>stringsAsFactors</code> to <code>FALSE</code> or not respectively). We need to change this so that R recognises that it’s a data. Run the command below and check the class again</li>
 </ol>
-<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb401-1" title="1">sea_ice<span class="op">$</span>date &lt;-<span class="st"> </span><span class="kw">ymd</span>(sea_ice<span class="op">$</span>date)</a></code></pre></div>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb394-1" title="1">sea_ice<span class="op">$</span>date &lt;-<span class="st"> </span><span class="kw">ymd</span>(sea_ice<span class="op">$</span>date)</a></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
 <li>Plot the extent of the sea ice over time.</li>
 </ol>
-<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb402-1" title="1"><span class="kw">ggplot</span>(sea_ice) <span class="op">+</span></a>
-<a class="sourceLine" id="cb402-2" title="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>date, <span class="dt">y=</span>extent))</a></code></pre></div>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb395-1" title="1"><span class="kw">ggplot</span>(sea_ice) <span class="op">+</span></a>
+<a class="sourceLine" id="cb395-2" title="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>date, <span class="dt">y=</span>extent))</a></code></pre></div>
 <p>What can be seen here is that while there is clear seasonal variation, there also appears to be a downward trend over time.</p>
 <ol start="5" style="list-style-type: decimal">
 <li>To focus on the seasonal variation, we need to create a graphic that shows <code>extent</code> from January to December on the x-axis, with each year then having its own line. To do this we first need to create two extra variables based on <code>date</code>; one which contains the year component, and the other containing the day of the year (1-365):</li>
 </ol>
-<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb403-1" title="1">sea_ice<span class="op">$</span>year &lt;-<span class="st"> </span><span class="kw">year</span>(sea_ice<span class="op">$</span>date)</a>
-<a class="sourceLine" id="cb403-2" title="2">sea_ice<span class="op">$</span>year_day &lt;-<span class="st"> </span><span class="kw">yday</span>(sea_ice<span class="op">$</span>date)</a>
-<a class="sourceLine" id="cb403-3" title="3"><span class="kw">head</span>(sea_ice)</a></code></pre></div>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb396-1" title="1">sea_ice<span class="op">$</span>year &lt;-<span class="st"> </span><span class="kw">year</span>(sea_ice<span class="op">$</span>date)</a>
+<a class="sourceLine" id="cb396-2" title="2">sea_ice<span class="op">$</span>year_day &lt;-<span class="st"> </span><span class="kw">yday</span>(sea_ice<span class="op">$</span>date)</a>
+<a class="sourceLine" id="cb396-3" title="3"><span class="kw">head</span>(sea_ice)</a></code></pre></div>
 <pre><code>##         date   extent year year_day
 ## 1 1978-10-26 10.19591 1978      299
 ## 2 1978-10-28 10.34363 1978      301
@@ -581,31 +581,31 @@ square-kilometres.</p></li>
 ## 5 1978-11-03 10.76997 1978      307
 ## 6 1978-11-05 10.96294 1978      309</code></pre>
 <p>Using these two new variables we can now create a seasonal plot. Note that in order to tell <code>ggplot()</code> to produce a separate line for each year we specify <code>group=year</code> as part of <code>aes()</code>.</p>
-<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb405-1" title="1"><span class="kw">ggplot</span>(sea_ice) <span class="op">+</span></a>
-<a class="sourceLine" id="cb405-2" title="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>year_day, <span class="dt">y=</span>extent, <span class="dt">group=</span>year),</a>
-<a class="sourceLine" id="cb405-3" title="3">            <span class="dt">alpha=</span><span class="fl">0.5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb398-1" title="1"><span class="kw">ggplot</span>(sea_ice) <span class="op">+</span></a>
+<a class="sourceLine" id="cb398-2" title="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>year_day, <span class="dt">y=</span>extent, <span class="dt">group=</span>year),</a>
+<a class="sourceLine" id="cb398-3" title="3">            <span class="dt">alpha=</span><span class="fl">0.5</span>)</a></code></pre></div>
 <p><img src="week3/theme-seasonal.png" width="\linewidth" />
 To highlight which lines belong to which year modify the plot so we colour each line according to year:</p>
-<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb406-1" title="1"><span class="kw">ggplot</span>(sea_ice) <span class="op">+</span></a>
-<a class="sourceLine" id="cb406-2" title="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>year_day, <span class="dt">y=</span>extent, <span class="dt">group=</span>year, <span class="dt">colour=</span>year),</a>
-<a class="sourceLine" id="cb406-3" title="3">            <span class="dt">alpha=</span><span class="fl">0.5</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb406-4" title="4"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;top&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb399-1" title="1"><span class="kw">ggplot</span>(sea_ice) <span class="op">+</span></a>
+<a class="sourceLine" id="cb399-2" title="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>year_day, <span class="dt">y=</span>extent, <span class="dt">group=</span>year, <span class="dt">colour=</span>year),</a>
+<a class="sourceLine" id="cb399-3" title="3">            <span class="dt">alpha=</span><span class="fl">0.5</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb399-4" title="4"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;top&quot;</span>)</a></code></pre></div>
 <p>To change the colours used for the gradient, and the labels shown on the colour bar for year, add <code>scale_colour_gradient()</code> to your <code>ggplot()</code> command:</p>
-<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb407-1" title="1"><span class="kw">ggplot</span>(sea_ice) <span class="op">+</span></a>
-<a class="sourceLine" id="cb407-2" title="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>year_day, <span class="dt">y=</span>extent, <span class="dt">group=</span>year, <span class="dt">colour=</span>year),</a>
-<a class="sourceLine" id="cb407-3" title="3">            <span class="dt">alpha=</span><span class="fl">0.5</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb407-4" title="4"><span class="st">  </span><span class="kw">scale_colour_gradient</span>(<span class="dt">low=</span><span class="st">&quot;red&quot;</span>, <span class="dt">high=</span><span class="st">&quot;blue&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb407-5" title="5"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;top&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb400-1" title="1"><span class="kw">ggplot</span>(sea_ice) <span class="op">+</span></a>
+<a class="sourceLine" id="cb400-2" title="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>year_day, <span class="dt">y=</span>extent, <span class="dt">group=</span>year, <span class="dt">colour=</span>year),</a>
+<a class="sourceLine" id="cb400-3" title="3">            <span class="dt">alpha=</span><span class="fl">0.5</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb400-4" title="4"><span class="st">  </span><span class="kw">scale_colour_gradient</span>(<span class="dt">low=</span><span class="st">&quot;red&quot;</span>, <span class="dt">high=</span><span class="st">&quot;blue&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb400-5" title="5"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;top&quot;</span>)</a></code></pre></div>
 <p>Try other colours to see if you can find something that looks pretty. An alternative to picking colours yourself is to use the colour brewer:<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a></p>
-<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb408-1" title="1"><span class="kw">library</span>(RColorBrewer)</a>
-<a class="sourceLine" id="cb408-2" title="2">palette &lt;-<span class="st"> </span><span class="kw">brewer.pal</span>(<span class="dv">3</span>, <span class="dt">name=</span><span class="st">&quot;BrBG&quot;</span>)</a>
-<a class="sourceLine" id="cb408-3" title="3"></a>
-<a class="sourceLine" id="cb408-4" title="4"><span class="kw">ggplot</span>(sea_ice) <span class="op">+</span></a>
-<a class="sourceLine" id="cb408-5" title="5"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>year_day, <span class="dt">y=</span>extent, <span class="dt">group=</span>year, <span class="dt">colour=</span>year),</a>
-<a class="sourceLine" id="cb408-6" title="6">            <span class="dt">alpha=</span><span class="fl">0.5</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb408-7" title="7"><span class="st">  </span><span class="kw">scale_colour_gradient</span>(<span class="dt">low=</span>palette[<span class="dv">1</span>], <span class="dt">high=</span>palette[<span class="dv">3</span>]) <span class="op">+</span></a>
-<a class="sourceLine" id="cb408-8" title="8"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;top&quot;</span>)</a></code></pre></div>
-<p><img src="images/unnamed-chunk-178-1.png" width="672" /></p>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb401-1" title="1"><span class="kw">library</span>(RColorBrewer)</a>
+<a class="sourceLine" id="cb401-2" title="2">palette &lt;-<span class="st"> </span><span class="kw">brewer.pal</span>(<span class="dv">3</span>, <span class="dt">name=</span><span class="st">&quot;BrBG&quot;</span>)</a>
+<a class="sourceLine" id="cb401-3" title="3"></a>
+<a class="sourceLine" id="cb401-4" title="4"><span class="kw">ggplot</span>(sea_ice) <span class="op">+</span></a>
+<a class="sourceLine" id="cb401-5" title="5"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>year_day, <span class="dt">y=</span>extent, <span class="dt">group=</span>year, <span class="dt">colour=</span>year),</a>
+<a class="sourceLine" id="cb401-6" title="6">            <span class="dt">alpha=</span><span class="fl">0.5</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb401-7" title="7"><span class="st">  </span><span class="kw">scale_colour_gradient</span>(<span class="dt">low=</span>palette[<span class="dv">1</span>], <span class="dt">high=</span>palette[<span class="dv">3</span>]) <span class="op">+</span></a>
+<a class="sourceLine" id="cb401-8" title="8"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;top&quot;</span>)</a></code></pre></div>
+<p><img src="images/unnamed-chunk-172-1.png" width="672" /></p>
 </div>
 </div>
 <div id="summarising-data-over-time" class="section level2">
@@ -620,9 +620,9 @@ any variation due to seasonality. There are three ways of doing this:</p>
 <p>We will consider each of these approaches using the R packages we
 have covered so far in the course. The first of these is the simplest
 to implement, we begin by keeping only October observations:</p>
-<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb409-1" title="1">sea_ice<span class="op">$</span>month &lt;-<span class="st"> </span><span class="kw">month</span>(sea_ice<span class="op">$</span>date)</a>
-<a class="sourceLine" id="cb409-2" title="2">sea_ice_oct &lt;-<span class="st"> </span><span class="kw">filter</span>(sea_ice,  month <span class="op">==</span><span class="st"> </span><span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb409-3" title="3"><span class="kw">head</span>(sea_ice_oct)</a></code></pre></div>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb402-1" title="1">sea_ice<span class="op">$</span>month &lt;-<span class="st"> </span><span class="kw">month</span>(sea_ice<span class="op">$</span>date)</a>
+<a class="sourceLine" id="cb402-2" title="2">sea_ice_oct &lt;-<span class="st"> </span><span class="kw">filter</span>(sea_ice,  month <span class="op">==</span><span class="st"> </span><span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb402-3" title="3"><span class="kw">head</span>(sea_ice_oct)</a></code></pre></div>
 <pre><code>##         date   extent year year_day month
 ## 1 1978-10-26 10.19591 1978      299    10
 ## 2 1978-10-28 10.34363 1978      301    10
@@ -643,25 +643,25 @@ use <code>group_by()</code> from <code>dplyr</code>, whose first
 argument is the data frame of interest and all subsequent arguments are the
 variables to be grouped on. The following will create groups for each unique
 value in <code>year</code>:</p>
-<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb411-1" title="1">sea_ice_oct_grp &lt;-<span class="st"> </span><span class="kw">group_by</span>(sea_ice_oct, year)</a>
-<a class="sourceLine" id="cb411-2" title="2"><span class="kw">is.grouped_df</span>(sea_ice_oct_grp)</a></code></pre></div>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb404-1" title="1">sea_ice_oct_grp &lt;-<span class="st"> </span><span class="kw">group_by</span>(sea_ice_oct, year)</a>
+<a class="sourceLine" id="cb404-2" title="2"><span class="kw">is.grouped_df</span>(sea_ice_oct_grp)</a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p><code>sea_ice_oct_grp</code> is a grouped data frame. Use <code>ungroup()</code> to remove a grouping that is no longer needed.
 To summarise each group we send <code>sea_ice_oct_grp</code> to the
 <code>summarise()</code> function which will produce a new data frame
 containing the grouping variable (just <code>year</code> in this case) and
 any summary variables we decide to calculate:</p>
-<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb413-1" title="1">oct_summary &lt;-<span class="st"> </span><span class="kw">summarise</span>(sea_ice_oct_grp,</a>
-<a class="sourceLine" id="cb413-2" title="2">  <span class="dt">date     =</span> <span class="kw">first</span>(date),</a>
-<a class="sourceLine" id="cb413-3" title="3">  <span class="dt">extent   =</span> <span class="kw">first</span>(extent),</a>
-<a class="sourceLine" id="cb413-4" title="4">  <span class="dt">year_day =</span> <span class="kw">first</span>(year_day)</a>
-<a class="sourceLine" id="cb413-5" title="5">)</a></code></pre></div>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb406-1" title="1">oct_summary &lt;-<span class="st"> </span><span class="kw">summarise</span>(sea_ice_oct_grp,</a>
+<a class="sourceLine" id="cb406-2" title="2">  <span class="dt">date     =</span> <span class="kw">first</span>(date),</a>
+<a class="sourceLine" id="cb406-3" title="3">  <span class="dt">extent   =</span> <span class="kw">first</span>(extent),</a>
+<a class="sourceLine" id="cb406-4" title="4">  <span class="dt">year_day =</span> <span class="kw">first</span>(year_day)</a>
+<a class="sourceLine" id="cb406-5" title="5">)</a></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <p>The code above summarises each group simply by taking the first row in each
 subgroup and stores the results in a data frame called <code>oct_summary</code>.
 This is, of course, a very crude summary. But it does give us one
 observation per October of every year.</p>
-<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb415-1" title="1"><span class="kw">head</span>(oct_summary)</a></code></pre></div>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb408-1" title="1"><span class="kw">head</span>(oct_summary)</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##    year date       extent year_day
 ##   &lt;dbl&gt; &lt;date&gt;      &lt;dbl&gt;    &lt;dbl&gt;
@@ -686,7 +686,7 @@ Figure 3.6: Ice extent (million sq-km) in October each year. Only first observat
 <h3><span class="header-section-number">3.3.2</span> Yearly averages</h3>
 <p>To calculate the average of a variable in a data frame, we pass the variable
 to the <code>mean()</code> function:</p>
-<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb417-1" title="1"><span class="kw">mean</span>(sea_ice<span class="op">$</span>extent)</a></code></pre></div>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb410-1" title="1"><span class="kw">mean</span>(sea_ice<span class="op">$</span>extent)</a></code></pre></div>
 <pre><code>## [1] 11.44243</code></pre>
 <p>This calculated the mean across all observations of <code>extent</code>.
 Repeat the process of grouping and summarising, but on year instead of month.
@@ -711,14 +711,14 @@ to calculate an average. We then move on to the next observation and then
 calculate its average based on its previous 12 months. This process
 runs until we reach the last row in our data, but only starts
 once we have at least 12 months of data:</p>
-<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb419-1" title="1"><span class="kw">min</span>(sea_ice<span class="op">$</span>date) <span class="op">+</span><span class="st"> </span><span class="kw">months</span>(<span class="dv">12</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb412-1" title="1"><span class="kw">min</span>(sea_ice<span class="op">$</span>date) <span class="op">+</span><span class="st"> </span><span class="kw">months</span>(<span class="dv">12</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;1979-10-26&quot;</code></pre>
 <p>This would be the first time point at which our average is calculated.
 To calculate the moving average, we iterate over the rows in <code>sea_ice</code>
 using a <code>for</code> loop:</p>
-<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb421-1" title="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(sea_ice)) {</a>
-<a class="sourceLine" id="cb421-2" title="2">    <span class="co"># ... moving average code ...</span></a>
-<a class="sourceLine" id="cb421-3" title="3">}</a></code></pre></div>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb414-1" title="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(sea_ice)) {</a>
+<a class="sourceLine" id="cb414-2" title="2">    <span class="co"># ... moving average code ...</span></a>
+<a class="sourceLine" id="cb414-3" title="3">}</a></code></pre></div>
 <p>There are several steps we need to take in order to calculate the
 moving average. For each row we need to:</p>
 <ul>
@@ -728,28 +728,28 @@ moving average. For each row we need to:</p>
 </ul>
 <p>Note that once you execute the code below, it will take a while to finish, as
 looping is a slow process in R, and we have a lot of rows to loop over:</p>
-<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb422-1" title="1"><span class="co"># create our new variable, fill it with missing values</span></a>
-<a class="sourceLine" id="cb422-2" title="2">sea_ice<span class="op">$</span>extent_mavg &lt;-<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb422-3" title="3"></a>
-<a class="sourceLine" id="cb422-4" title="4"><span class="co"># set our window size (in days)</span></a>
-<a class="sourceLine" id="cb422-5" title="5">window_size &lt;-<span class="st"> </span><span class="dv">365</span></a>
-<a class="sourceLine" id="cb422-6" title="6"></a>
-<a class="sourceLine" id="cb422-7" title="7"><span class="co"># when do we start our averaging?</span></a>
-<a class="sourceLine" id="cb422-8" title="8">start_at &lt;-<span class="st"> </span><span class="kw">min</span>(sea_ice<span class="op">$</span>date) <span class="op">+</span><span class="st"> </span><span class="kw">days</span>(window_size)</a>
-<a class="sourceLine" id="cb422-9" title="9"></a>
-<a class="sourceLine" id="cb422-10" title="10"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(sea_ice)) {</a>
-<a class="sourceLine" id="cb422-11" title="11">    current_date &lt;-<span class="st"> </span>sea_ice<span class="op">$</span>date[i]</a>
-<a class="sourceLine" id="cb422-12" title="12"></a>
-<a class="sourceLine" id="cb422-13" title="13">    <span class="co"># are we at or beyond the start date yet?</span></a>
-<a class="sourceLine" id="cb422-14" title="14">    <span class="cf">if</span> (current_date <span class="op">&gt;=</span><span class="st"> </span>start_at) {</a>
-<a class="sourceLine" id="cb422-15" title="15">      <span class="co"># identify the previous 12-month subset</span></a>
-<a class="sourceLine" id="cb422-16" title="16">      from &lt;-<span class="st"> </span>current_date <span class="op">-</span><span class="st"> </span><span class="kw">days</span>(window_size)</a>
-<a class="sourceLine" id="cb422-17" title="17">      sub_set &lt;-<span class="st"> </span><span class="kw">filter</span>(sea_ice, (date <span class="op">&gt;</span><span class="st"> </span>from) <span class="op">&amp;</span><span class="st"> </span>(date <span class="op">&lt;=</span><span class="st"> </span>current_date))</a>
-<a class="sourceLine" id="cb422-18" title="18"></a>
-<a class="sourceLine" id="cb422-19" title="19">      <span class="co"># calc and store average</span></a>
-<a class="sourceLine" id="cb422-20" title="20">      sea_ice<span class="op">$</span>extent_mavg[i] &lt;-<span class="st"> </span><span class="kw">mean</span>(sub_set<span class="op">$</span>extent)</a>
-<a class="sourceLine" id="cb422-21" title="21">    }</a>
-<a class="sourceLine" id="cb422-22" title="22">}</a></code></pre></div>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb415-1" title="1"><span class="co"># create our new variable, fill it with missing values</span></a>
+<a class="sourceLine" id="cb415-2" title="2">sea_ice<span class="op">$</span>extent_mavg &lt;-<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb415-3" title="3"></a>
+<a class="sourceLine" id="cb415-4" title="4"><span class="co"># set our window size (in days)</span></a>
+<a class="sourceLine" id="cb415-5" title="5">window_size &lt;-<span class="st"> </span><span class="dv">365</span></a>
+<a class="sourceLine" id="cb415-6" title="6"></a>
+<a class="sourceLine" id="cb415-7" title="7"><span class="co"># when do we start our averaging?</span></a>
+<a class="sourceLine" id="cb415-8" title="8">start_at &lt;-<span class="st"> </span><span class="kw">min</span>(sea_ice<span class="op">$</span>date) <span class="op">+</span><span class="st"> </span><span class="kw">days</span>(window_size)</a>
+<a class="sourceLine" id="cb415-9" title="9"></a>
+<a class="sourceLine" id="cb415-10" title="10"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(sea_ice)) {</a>
+<a class="sourceLine" id="cb415-11" title="11">    current_date &lt;-<span class="st"> </span>sea_ice<span class="op">$</span>date[i]</a>
+<a class="sourceLine" id="cb415-12" title="12"></a>
+<a class="sourceLine" id="cb415-13" title="13">    <span class="co"># are we at or beyond the start date yet?</span></a>
+<a class="sourceLine" id="cb415-14" title="14">    <span class="cf">if</span> (current_date <span class="op">&gt;=</span><span class="st"> </span>start_at) {</a>
+<a class="sourceLine" id="cb415-15" title="15">      <span class="co"># identify the previous 12-month subset</span></a>
+<a class="sourceLine" id="cb415-16" title="16">      from &lt;-<span class="st"> </span>current_date <span class="op">-</span><span class="st"> </span><span class="kw">days</span>(window_size)</a>
+<a class="sourceLine" id="cb415-17" title="17">      sub_set &lt;-<span class="st"> </span><span class="kw">filter</span>(sea_ice, (date <span class="op">&gt;</span><span class="st"> </span>from) <span class="op">&amp;</span><span class="st"> </span>(date <span class="op">&lt;=</span><span class="st"> </span>current_date))</a>
+<a class="sourceLine" id="cb415-18" title="18"></a>
+<a class="sourceLine" id="cb415-19" title="19">      <span class="co"># calc and store average</span></a>
+<a class="sourceLine" id="cb415-20" title="20">      sea_ice<span class="op">$</span>extent_mavg[i] &lt;-<span class="st"> </span><span class="kw">mean</span>(sub_set<span class="op">$</span>extent)</a>
+<a class="sourceLine" id="cb415-21" title="21">    }</a>
+<a class="sourceLine" id="cb415-22" title="22">}</a></code></pre></div>
 <p>In a similar fashion to the previous group-averaging, now visualise
 the moving average results over time.</p>
 <p><img src="week3/theme-extent-mavg.png" width="\linewidth" />
@@ -762,13 +762,13 @@ What happens to the graph when you modify your window size to be 6 months
 <p>The original sea ice extent data did not actually contain a timestamp. The
 timestamp you parsed earlier was created by combining several columns in the original
 data. The original data is in <code>orig_NH_seaice_extent.csv</code> in the data sets folder on Moodle. Download this to your working directory and load it into R:</p>
-<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb423-1" title="1">sea_ice_orig &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/orig_NH_seaice_extent.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb423-2" title="2"><span class="kw">names</span>(sea_ice_orig)</a></code></pre></div>
+<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb416-1" title="1">sea_ice_orig &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/orig_NH_seaice_extent.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb416-2" title="2"><span class="kw">names</span>(sea_ice_orig)</a></code></pre></div>
 <pre><code>## [1] &quot;Year&quot;        &quot;Month&quot;       &quot;Day&quot;         &quot;Extent&quot;      &quot;Missing&quot;    
 ## [6] &quot;Source.Data&quot;</code></pre>
-<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb425-1" title="1"><span class="co"># remove junk columns</span></a>
-<a class="sourceLine" id="cb425-2" title="2">sea_ice_orig &lt;-<span class="st"> </span><span class="kw">select</span>(sea_ice_orig, <span class="op">-</span>Missing, <span class="op">-</span>Source.Data)</a>
-<a class="sourceLine" id="cb425-3" title="3"><span class="kw">head</span>(sea_ice_orig)</a></code></pre></div>
+<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb418-1" title="1"><span class="co"># remove junk columns</span></a>
+<a class="sourceLine" id="cb418-2" title="2">sea_ice_orig &lt;-<span class="st"> </span><span class="kw">select</span>(sea_ice_orig, <span class="op">-</span>Missing, <span class="op">-</span>Source.Data)</a>
+<a class="sourceLine" id="cb418-3" title="3"><span class="kw">head</span>(sea_ice_orig)</a></code></pre></div>
 <pre><code>##   Year Month Day   Extent
 ## 1 2014     1   1 12.97145
 ## 2 2014     1   2 13.06702
@@ -782,25 +782,25 @@ into a timestamp we need to join each row of year, month and day together.
 To do this we use the <code>str_c()</code> function from the <code>stringr</code>
 package. Install this package and the load it using <code>library()</code>, check
 the help page for <code>str_c()</code> and test how it works:</p>
-<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb427-1" title="1"><span class="kw">str_c</span>(<span class="dv">2014</span>, <span class="dv">09</span>, <span class="dv">15</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb420-1" title="1"><span class="kw">str_c</span>(<span class="dv">2014</span>, <span class="dv">09</span>, <span class="dv">15</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;2014915&quot;</code></pre>
-<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb429-1" title="1"><span class="kw">str_c</span>(<span class="dv">2014</span>, <span class="dv">09</span>, <span class="dv">15</span>, <span class="dt">sep=</span><span class="st">&quot;/&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb422-1" title="1"><span class="kw">str_c</span>(<span class="dv">2014</span>, <span class="dv">09</span>, <span class="dv">15</span>, <span class="dt">sep=</span><span class="st">&quot;/&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;2014/9/15&quot;</code></pre>
 <p>We can also use vectors:</p>
-<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb431-1" title="1">animal &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;monkey&quot;</span>, <span class="st">&quot;human&quot;</span>, <span class="st">&quot;cat&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;zebra&quot;</span>)</a>
-<a class="sourceLine" id="cb431-2" title="2">food &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;banana&quot;</span>, <span class="st">&quot;pizza&quot;</span>, <span class="st">&quot;fish&quot;</span>, <span class="st">&quot;anything&quot;</span>, <span class="st">&quot;grass&quot;</span>)</a>
-<a class="sourceLine" id="cb431-3" title="3"><span class="kw">str_c</span>(animal, <span class="st">&quot; would like &quot;</span>, food)</a></code></pre></div>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb424-1" title="1">animal &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;monkey&quot;</span>, <span class="st">&quot;human&quot;</span>, <span class="st">&quot;cat&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;zebra&quot;</span>)</a>
+<a class="sourceLine" id="cb424-2" title="2">food &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;banana&quot;</span>, <span class="st">&quot;pizza&quot;</span>, <span class="st">&quot;fish&quot;</span>, <span class="st">&quot;anything&quot;</span>, <span class="st">&quot;grass&quot;</span>)</a>
+<a class="sourceLine" id="cb424-3" title="3"><span class="kw">str_c</span>(animal, <span class="st">&quot; would like &quot;</span>, food)</a></code></pre></div>
 <pre><code>## [1] &quot;monkey would like banana&quot; &quot;human would like pizza&quot;  
 ## [3] &quot;cat would like fish&quot;      &quot;dog would like anything&quot; 
 ## [5] &quot;zebra would like grass&quot;</code></pre>
 <p>The <code>collapse</code> arugment combines all strings together:</p>
-<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb433-1" title="1"><span class="kw">str_c</span>(animal, <span class="st">&quot; would like &quot;</span>, food, <span class="dt">collapse=</span><span class="st">&quot;, and &quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb426-1" title="1"><span class="kw">str_c</span>(animal, <span class="st">&quot; would like &quot;</span>, food, <span class="dt">collapse=</span><span class="st">&quot;, and &quot;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;monkey would like banana, and human would like pizza, and cat would like fish, and dog would like anything, and zebra would like grass&quot;</code></pre>
 <p>Use <code>str_c()</code> along with <code>mutate()</code> to create a date
 variable within the <code>sea_ice_orig</code> data frame. Depending
 on how you use the sep argument, <code>sea_ice_orig</code> should
 look something like this:</p>
-<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb435-1" title="1"><span class="kw">head</span>(sea_ice_orig)</a></code></pre></div>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb428-1" title="1"><span class="kw">head</span>(sea_ice_orig)</a></code></pre></div>
 <pre><code>##   Year Month Day   Extent
 ## 1 2014     1   1 12.97145
 ## 2 2014     1   2 13.06702
@@ -816,11 +816,11 @@ summarise a data frame.</p>
 <h2><span class="header-section-number">3.5</span> Time zones</h2>
 <p>Time zones give multiple names to the same <em>instance</em> of time.
 For example,</p>
-<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb437-1" title="1"><span class="co"># Australian Christmas lunch</span></a>
-<a class="sourceLine" id="cb437-2" title="2">aus_christmas &lt;-<span class="st"> </span><span class="kw">ymd_hms</span>(<span class="st">&quot;2010-12-25 13:00:00&quot;</span>,</a>
-<a class="sourceLine" id="cb437-3" title="3">                         <span class="dt">tz=</span><span class="st">&quot;Australia/Melbourne&quot;</span>)</a>
-<a class="sourceLine" id="cb437-4" title="4"><span class="co"># In UK time</span></a>
-<a class="sourceLine" id="cb437-5" title="5"><span class="kw">with_tz</span>(aus_christmas, <span class="dt">tz=</span><span class="st">&quot;GMT&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb430-1" title="1"><span class="co"># Australian Christmas lunch</span></a>
+<a class="sourceLine" id="cb430-2" title="2">aus_christmas &lt;-<span class="st"> </span><span class="kw">ymd_hms</span>(<span class="st">&quot;2010-12-25 13:00:00&quot;</span>,</a>
+<a class="sourceLine" id="cb430-3" title="3">                         <span class="dt">tz=</span><span class="st">&quot;Australia/Melbourne&quot;</span>)</a>
+<a class="sourceLine" id="cb430-4" title="4"><span class="co"># In UK time</span></a>
+<a class="sourceLine" id="cb430-5" title="5"><span class="kw">with_tz</span>(aus_christmas, <span class="dt">tz=</span><span class="st">&quot;GMT&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;2010-12-25 02:00:00 GMT&quot;</code></pre>
 <p>Both of these describe the same instant. The first shows how the instant is
 labelled in Melbourne time (AEDT). While the second shows the same instant but
@@ -836,48 +836,48 @@ in data by two ways. First, we can change the time zone in which an instant
 is displayed by using the function <code>with_tz()</code>. This changes how the
 clock time is displayed, but not the specific instant of time that is
 referred to. For example:</p>
-<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb439-1" title="1">uk_christmas &lt;-<span class="st"> </span><span class="kw">ymd_hms</span>(<span class="st">&quot;2010-12-25 13:00:00&quot;</span>, <span class="dt">tz=</span><span class="st">&quot;GMT&quot;</span>)</a>
-<a class="sourceLine" id="cb439-2" title="2"><span class="kw">with_tz</span>(uk_christmas, <span class="st">&quot;UTC&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb432-1" title="1">uk_christmas &lt;-<span class="st"> </span><span class="kw">ymd_hms</span>(<span class="st">&quot;2010-12-25 13:00:00&quot;</span>, <span class="dt">tz=</span><span class="st">&quot;GMT&quot;</span>)</a>
+<a class="sourceLine" id="cb432-2" title="2"><span class="kw">with_tz</span>(uk_christmas, <span class="st">&quot;UTC&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;2010-12-25 13:00:00 UTC&quot;</code></pre>
-<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb441-1" title="1"><span class="kw">with_tz</span>(aus_christmas, <span class="st">&quot;UTC&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb434-1" title="1"><span class="kw">with_tz</span>(aus_christmas, <span class="st">&quot;UTC&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;2010-12-25 02:00:00 UTC&quot;</code></pre>
 <p>The <code>force_tz()</code> function does the opposite of <code>with_tz()</code>; it changes the
 actual instant of time saved in the object, while keeping the displayed
 clock time the same. The new time zone value is the indicator of this change.
 For example, the code below moves us to a new instant that occurs 11 hours
 later.</p>
-<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb443-1" title="1"><span class="kw">force_tz</span>(aus_christmas, <span class="st">&quot;UTC&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb436-1" title="1"><span class="kw">force_tz</span>(aus_christmas, <span class="st">&quot;UTC&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;2010-12-25 13:00:00 UTC&quot;</code></pre>
 <p>The <code>with_tz()</code> and <code>force_tz()</code> functions only work with time zones
 recognised by R. To see a long list of these, use <code>OlsonNames()</code>.</p>
-<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb445-1" title="1"><span class="kw">head</span>(<span class="kw">OlsonNames</span>())</a></code></pre></div>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb438-1" title="1"><span class="kw">head</span>(<span class="kw">OlsonNames</span>())</a></code></pre></div>
 <pre><code>## [1] &quot;Africa/Abidjan&quot;     &quot;Africa/Accra&quot;       &quot;Africa/Addis_Ababa&quot;
 ## [4] &quot;Africa/Algiers&quot;     &quot;Africa/Asmara&quot;      &quot;Africa/Asmera&quot;</code></pre>
 <p>Finally, note that the <code>ymd_hms</code> family of functions will, by default,
 parse all timestamps as being in the UTC timezone. Regardless of whether the
 timestamp contains a reference to the actual timezone. Here is an example
 of a timestamp in USA Eastern Standard Time (EST) being overwritten as UTC:</p>
-<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb447-1" title="1"><span class="kw">ymd_hms</span>(<span class="st">&quot;2010-12-25 13:00:00 EST&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb440-1" title="1"><span class="kw">ymd_hms</span>(<span class="st">&quot;2010-12-25 13:00:00 EST&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;2010-12-25 13:00:00 UTC&quot;</code></pre>
 <p>To ensure your timestamp is parsed as being in the correct timezone
 you need to pass the timezone to the <code>tz</code> argument of
 the <code>ymd_hms()</code> function:</p>
-<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb449-1" title="1"><span class="kw">ymd_hms</span>(<span class="st">&quot;2010-12-25 13:00:00 EST&quot;</span>, <span class="dt">tz=</span><span class="st">&quot;EST&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb442-1" title="1"><span class="kw">ymd_hms</span>(<span class="st">&quot;2010-12-25 13:00:00 EST&quot;</span>, <span class="dt">tz=</span><span class="st">&quot;EST&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;2010-12-25 13:00:00 EST&quot;</code></pre>
 <p>Note that if you the <code>tz</code> argument has to be a valid timezone otherwise
 <code>with_tz()</code> will not perform the proper conversion when converting
 it to a different timezone:</p>
-<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb451-1" title="1"><span class="kw">try</span>(tz_pickle &lt;-<span class="st"> </span><span class="kw">ymd_hms</span>(<span class="st">&quot;2010-12-25 13:00:00&quot;</span>, <span class="dt">tz=</span><span class="st">&quot;PICKLE&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb444-1" title="1"><span class="kw">try</span>(tz_pickle &lt;-<span class="st"> </span><span class="kw">ymd_hms</span>(<span class="st">&quot;2010-12-25 13:00:00&quot;</span>, <span class="dt">tz=</span><span class="st">&quot;PICKLE&quot;</span>))</a></code></pre></div>
 <pre><code>## Error in C_force_tz(time, tz = tzone, roll) : 
 ##   CCTZ: Unrecognized output timezone: &quot;PICKLE&quot;</code></pre>
-<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb453-1" title="1"><span class="kw">try</span>(<span class="kw">with_tz</span>(tz_pickle, <span class="st">&quot;UTC&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb446-1" title="1"><span class="kw">try</span>(<span class="kw">with_tz</span>(tz_pickle, <span class="st">&quot;UTC&quot;</span>))</a></code></pre></div>
 <pre><code>## Error in is.data.frame(time) : object &#39;tz_pickle&#39; not found</code></pre>
 <p>The timezone PICKLE is silently replaced to UTC, even though PICKLE is not an actual timezone. A more real example; while EST is a valid timezone in R, USA Central Standard Time (CST) is not, although it <em>is</em> an actual timezone. Instead of <code>CST</code> we have to use <code>CST6CDT</code> which represents both the CST and CDT timezones (both are GMT - 6 hours).</p>
-<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb455-1" title="1"><span class="kw">any</span>(<span class="kw">OlsonNames</span>() <span class="op">==</span><span class="st"> &quot;EST&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb448-1" title="1"><span class="kw">any</span>(<span class="kw">OlsonNames</span>() <span class="op">==</span><span class="st"> &quot;EST&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb457-1" title="1"><span class="kw">any</span>(<span class="kw">OlsonNames</span>() <span class="op">==</span><span class="st"> &quot;CST&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb450-1" title="1"><span class="kw">any</span>(<span class="kw">OlsonNames</span>() <span class="op">==</span><span class="st"> &quot;CST&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb459-1" title="1"><span class="kw">any</span>(<span class="kw">OlsonNames</span>() <span class="op">==</span><span class="st"> &quot;CST6CDT&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb452-1" title="1"><span class="kw">any</span>(<span class="kw">OlsonNames</span>() <span class="op">==</span><span class="st"> &quot;CST6CDT&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>Because of all these issues, a good strategy is:</p>
 <ul>

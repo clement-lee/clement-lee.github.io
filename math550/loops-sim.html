@@ -197,10 +197,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 is on moodle. Look for differences. Make sure to integrate any improvements
 in style into this week’s code.</li>
 <li>Revise the Summary sections on Data Manipulation and Basic Plots from
-last weeks Lab. Also scan through the section on Logical Comparisons.
+last week. Also scan through the section on Logical Comparisons.
 You will be making use of this knowledge this week.</li>
-<li>As usual, to save the code you write for this lab, create a new
-R notebook (or script) in your R progamming folder, on your H drive,</li>
+<li>As usual, to save the code you write for this week, create a new
+R notebook (or script) in your R programming folder, on your H drive.</li>
 <li>Write a few introductory comments at the top stating that this script covers
 the basics of looping, writing conditional statwments, and simulating
 probabilities.</li>
@@ -211,7 +211,7 @@ probabilities.</li>
 <p>Or indeed,</p>
 <div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb258-1" title="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
 <ul>
-<li>As you work through each section in the lab notes, consider adding a section break in your script. Note that in an R script the new sectioning markup in RStudio works by detecting the name within <code># ----</code> such as</li>
+<li>As you work through each section in the notes, consider adding a section break in your script. Note that in an R script the new sectioning markup in RStudio works by detecting the name within <code># ----</code> such as</li>
 </ul>
 <div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb259-1" title="1"><span class="co"># Loops ----</span></a></code></pre></div>
 <p>as a section title in your script. You can then use RStudio editor controls to jump to different places in your script.</p>
@@ -221,7 +221,7 @@ probabilities.</li>
 ## Level 2 heading</code></pre>
 <ul>
 <li>For each of the exercise questions consider starting a new script entirely.</li>
-<li>The purpose of this lab is to get you writing and thinking about <code>for</code> loops and conditional statements, also known as <code>if</code> statements. The second half of the lab focuses on probability simulation.</li>
+<li>The purpose of this chapter is to get you writing and thinking about <code>for</code> loops and conditional statements, also known as <code>if</code> statements. The second half of the chapter focuses on probability simulation.</li>
 </ul>
 </div>
 <div id="loops" class="section level2">
@@ -236,7 +236,7 @@ sequence of numbers. Can you see the pattern?</p>
 <p>The sequence is known as the Fibonacci sequence which is calculated as
 follows; starting with 1 and 1, each subsequent number is the sum of the previous two. We will use this sequence as an example for learning about loops in R.</p>
 <p>First, we will need to cover another way to pick out individual elements
-from a vector. We have seen in previous labs, that we can use
+from a vector. We have seen in previous chapters, that we can use
 <code>filter()</code> to reduce a data frame. And we have seen that we can pass
 a logical vector (a vector containing a series of <code>TRUE</code> and <code>FALSE</code> values)
 to select out elements of a different vector:</p>
@@ -259,7 +259,7 @@ can use the colon shortcut:</p>
 <div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb270-1" title="1">fib[<span class="dv">3</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
 <pre><code>## [1] 2 3 5</code></pre>
 <p>To generalise, if <code>x</code> is a vector, and <code>i</code> is a positive
-integer, then <code>x[i]</code>, will be the <strong>i</strong>th element of <code>x</code>.
+integer, then <code>x[i]</code>, will be the <span class="math inline">\(i\)</span>th element of <code>x</code>.
 And if <code>y</code> is a vector of positive integers, then <code>x[y]</code>
 gives the corresponding elements of <code>x</code> as a vector (note that some programming languages like python are zero based which means the first element of a vector is referred to as <code>x[0]</code>).</p>
 <div id="writing-a-for-loop" class="section level3">
@@ -282,7 +282,7 @@ the sum of the previous two. Written mathematically this looks like:</p>
 r_{i} = r_{i-1} + r_{i-2} \quad \text{for}\quad i &gt; 2.
 \]</span></p>
 <p>So, the idea is to write code that lets <code>i</code> go from 3 up to 100,
-and as it does so, we calculate the <strong>i</strong>th value of the Fibonacci sequence,
+and as it does so, we calculate the <span class="math inline">\(i\)</span>th value of the Fibonacci sequence,
 storing the results in a vector:</p>
 <div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb272-1" title="1"><span class="co"># parameters</span></a>
 <a class="sourceLine" id="cb272-2" title="2">n &lt;-<span class="st"> </span><span class="dv">100</span></a>
@@ -300,7 +300,7 @@ and <code>r</code> initialises the sequence.</p>
 There are two parts to specifying a <code>for</code> loop. There is the index
 which is specified in the round brackets, and then there is the code to be
 repeated between the curly brackets:</p>
-<p><img src="week2/loop.png" width="0.7\linewidth" /></p>
+<p><img src="week2/loop.png" width="50%" /></p>
 <p>When specifying the index we use the phrase <code>in</code> rather than
 a equals symbol.</p>
 <p>If everything goes well, when you run the code your <code>r</code> vector
@@ -337,7 +337,7 @@ S_{(t+1)} = p_0 J_t.
 Where <span class="math inline">\(p_0\)</span> is the proportion that survive to the subadult stage.
 Similarly, we define the proportion of subadults that survive as <span class="math inline">\(p_1\)</span>,
 and adults as <span class="math inline">\(p_2\)</span>.</p>
-<p><img src="week2/growth-diagram.png" width="\linewidth" /></p>
+<p><img src="week2/growth-diagram.png" width="50%" /></p>
 <p>The number of adults at time <span class="math inline">\(t+1\)</span> has two sources:
 <span class="math display">\[
 A_{(t+1)} = p_1 S_t + p_2 A_t.
@@ -367,7 +367,7 @@ studies of species which have a constant ratio of males and females.
 Thus, our <span class="math inline">\(J\)</span>, <span class="math inline">\(S\)</span>, and <span class="math inline">\(A\)</span> parameters refer only to the number of females
 at each time period.</p>
 <div class="figure"><span id="fig:owl"></span>
-<img src="week2/Northern_Spotted_Owl.jpg" alt="Northern spotted owl, a near threatened species whose wingspan is approximately one metre." width="\linewidth" />
+<img src="week2/Northern_Spotted_Owl.jpg" alt="Northern spotted owl, a near threatened species whose wingspan is approximately one metre." width="50%" />
 <p class="caption">
 Figure 2.1: Northern spotted owl, a near threatened species whose wingspan is approximately one metre.
 </p>
@@ -437,7 +437,7 @@ new estimates. For example, adding the subadult equation would look like:</li>
 <li>Are you happy with your axis labels?</li>
 </ul>
 <p>Your plot should look something like this:</p>
-<p><img src="week2/theme-owl-pop.png" width="0.7\linewidth" /></p>
+<p><img src="images/owl-pop-1.png" width="70%" /></p>
 </div>
 <div id="when-not-to-loop" class="section level3">
 <h3><span class="header-section-number">2.2.3</span> When not to loop</h3>
@@ -470,20 +470,20 @@ want to square:</p>
 <a class="sourceLine" id="cb278-18" title="18"><span class="co"># how much time does each method take to execute?</span></a>
 <a class="sourceLine" id="cb278-19" title="19"><span class="kw">system.time</span>(<span class="kw">square_x_loop</span>())</a></code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.826   0.048   0.874</code></pre>
+##   0.850   0.044   0.895</code></pre>
 <div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb280-1" title="1"><span class="kw">system.time</span>(<span class="kw">square_x_vector</span>())</a></code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.049   0.036   0.085</code></pre>
+##   0.057   0.024   0.081</code></pre>
 <p>The <code>for</code> loop took longer than the vector approach. This is because of the way R is optimised for thinking with vectors, rather than thinking about processing individual values. With other more low-level programming languages you might not see any difference in terms of speed between these two methods, in fact it might even be the other way around.</p>
 <p>However, you should only consider a different approach when your loop seems to
 be taking a long time, and in these cases there will usually be a better way to code the solution. In all other cases where looping seems to solve your problem in a timely manner this is good enough.</p>
 </div>
 <div id="summary" class="section level3">
 <h3><span class="header-section-number">2.2.4</span> Summary</h3>
-<ul>
+<ol style="list-style-type: decimal">
 <li>Elements of vectors can be picked out of the vector using one or more
 indexes:</li>
-</ul>
+</ol>
 <div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb282-1" title="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>, <span class="st">&quot;e&quot;</span>)</a>
 <a class="sourceLine" id="cb282-2" title="2">x[<span class="dv">3</span>]</a></code></pre></div>
 <pre><code>## [1] &quot;c&quot;</code></pre>
@@ -491,21 +491,20 @@ indexes:</li>
 <pre><code>## [1] &quot;b&quot; &quot;c&quot; &quot;d&quot;</code></pre>
 <div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb286-1" title="1">x[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>)]</a></code></pre></div>
 <pre><code>## [1] &quot;a&quot; &quot;e&quot;</code></pre>
-<ul>
-<li><p>A <code>for</code> loop repeatedly executes a block of code. The number of repetitions
+<ol start="2" style="list-style-type: decimal">
+<li>A <code>for</code> loop repeatedly executes a block of code. The number of repetitions
 is based on the size of the sequence passed to the index. The index itself is an
-object which can be used within the block of code.</p>
-<p>Example:</p></li>
-</ul>
+object which can be used within the block of code.</li>
+</ol>
+<p>Example:</p>
 <div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb288-1" title="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>)) {</a>
 <a class="sourceLine" id="cb288-2" title="2">	<span class="co"># code to repeatedly execute</span></a>
 <a class="sourceLine" id="cb288-3" title="3">	<span class="kw">print</span>(i)</a>
 <a class="sourceLine" id="cb288-4" title="4">}</a></code></pre></div>
-<ul>
+<ol start="3" style="list-style-type: decimal">
 <li><p>Recursive equations, or problems that involve calculating values based on previous values in the sequence are solved most excellently with <code>for</code> loops.</p></li>
-<li><p>If you write a loop and it executes very slowly, cancel it, and see if there is a better approach. There usually is, and it will most likely involve vectors.
-\end{enumerate}</p></li>
-</ul>
+<li><p>If you write a loop and it executes very slowly, cancel it, and see if there is a better approach. There usually is, and it will most likely involve vectors.</p></li>
+</ol>
 </div>
 </div>
 <div id="conditional-statements" class="section level2">
@@ -530,7 +529,7 @@ This is done by using the <code>if</code> command, here is one in action:</p>
 ## [1] &quot;Give a cat some fish for lunch.&quot;
 ## [1] &quot;Give a turtle some pizza for lunch.&quot;
 ## [1] &quot;Give a zebra some pizza for lunch.&quot;</code></pre>
-<p>Which generates a message for each animal.</p>
+<p>which generates a message for each animal.</p>
 <p>The structure of an <code>if</code> statement is very similar to that of
 a <code>for</code> loop. The code they execute (or do not execute) lies
 between curly brackets. Whether or not an <code>if</code> statement executes
@@ -590,12 +589,12 @@ reads:</p>
 <a class="sourceLine" id="cb293-21" title="21"> }</a>
 <a class="sourceLine" id="cb293-22" title="22"></a>
 <a class="sourceLine" id="cb293-23" title="23"><span class="kw">roll_d6</span>()</a></code></pre></div>
-<pre><code>## [1] 1</code></pre>
+<pre><code>## [1] 2</code></pre>
 <p>The function currently has no arguments, this is because everything about
 rolling a single dice is fixed. A feature that we could add is to allow multiple dice
 rolls with one call to <code>roll_d6()</code>, though we should assume by default
 that the user just wants a single roll. Modify <code>roll_d6()</code> to allow
-for this by looping over the existing code within the function <strong>n</strong> times and
+for this by looping over the existing code within the function <span class="math inline">\(n\)</span> times and
 storing the results:</p>
 <div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb295-1" title="1">roll_d6 &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">n=</span><span class="dv">1</span>) {</a>
 <a class="sourceLine" id="cb295-2" title="2">	<span class="co"># empty vector of results</span></a>
@@ -623,16 +622,12 @@ storing the results:</p>
 <a class="sourceLine" id="cb295-24" title="24">	}</a>
 <a class="sourceLine" id="cb295-25" title="25">	<span class="kw">return</span>(results)</a>
 <a class="sourceLine" id="cb295-26" title="26">}</a></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-121"></span>
-<img src="week2/theme-dice-hist.png" alt="An example of simulating 20 dice rolls." width="\linewidth" />
-<p class="caption">
-Figure 2.2: An example of simulating 20 dice rolls.
-</p>
-</div>
+<p>Here is an example of simulating 20 dice rolls.</p>
+<p><img src="images/dice_hist-1.png" width="70%" /></p>
 <p>Play with this function; simulate a number of dice rolls and plot a graph of the results. Alter the number of dice rolls simulated, and see what it does to the graph. Note that the dice results are perfectly random, and any variation you see between the frequency of certain numbers is purely due to chance.</p>
 <div id="summary-1" class="section level3">
 <h3><span class="header-section-number">2.3.1</span> Summary</h3>
-<p>You can have execute a single line of code or block of code based on a certain logical comparison being true. This is done using an <code>if</code> statement which can take the following form:<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a></p>
+<p>You can execute a single line of code or block of code based on a certain logical comparison being true. This is done using an <code>if</code> statement which can take the following form:<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a></p>
 <div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb296-1" title="1"><span class="cf">if</span> ( condition1 ) {</a>
 <a class="sourceLine" id="cb296-2" title="2">	<span class="co"># code block 1</span></a>
 <a class="sourceLine" id="cb296-3" title="3">} <span class="cf">else</span> <span class="cf">if</span> ( condition2 ) {</a>
@@ -660,7 +655,7 @@ or processes might be described by them?</li>
 <li>How simulation can show the law of large numbers (LLN) in action.</li>
 </ul>
 <p>Firstly, a random event is simply an event for which we do not know, <strong>for certain</strong>, what the outcome will be, though we may know the probability of each possible outcome. Examples are; flipping a coin, playing rock paper scissors, rolling dice, number of offspring, gender of the offspring.</p>
-<p><img src="week2/RPS.png" width="0.5\linewidth" /><img src="week2/D12.png" width="0.5\linewidth" /></p>
+<p><img src="week2/RPS.png" width="45%" /><img src="week2/D12.png" width="45%" /></p>
 <div id="random-sampling" class="section level3">
 <h3><span class="header-section-number">2.4.1</span> Random sampling</h3>
 <p>Randomly sampling from a discrete set of values in R is easy! To do this we use the <code>sample()</code> function, which resamples values from a vector, with or without replacement. It has a number of different uses. In the list below <code>n</code> is an integer, <code>x</code> is a vector, <code>p</code> is a vector probabilities with the same length of <code>x</code>:</p>
@@ -669,7 +664,7 @@ or processes might be described by them?</li>
 <li><code>sample(x)</code> randomly permute <code>x</code></li>
 <li><code>sample(x, replace=TRUE)</code> a bootstrap sample</li>
 <li><code>sample(x, n)</code> sample <code>n</code> times from <code>x</code> without replacement</li>
-<li><code>sample(x, n, replace=TRUE)</code> sample <strong>n</strong> times from <code>x</code> with replacement</li>
+<li><code>sample(x, n, replace=TRUE)</code> sample <span class="math inline">\(n\)</span> times from <code>x</code> with replacement</li>
 <li><code>sample(x, n, replace=TRUE, prob=p)</code> same as above, but sample each element of <code>x</code> with probability <code>p</code></li>
 </ul>
 <p>The last three of these provides us with different ways of sampling from a finite discrete set of values.</p>
@@ -682,27 +677,18 @@ or processes might be described by them?</li>
 <a class="sourceLine" id="cb297-3" title="3"></a>
 <a class="sourceLine" id="cb297-4" title="4"><span class="co"># players, make your choice</span></a>
 <a class="sourceLine" id="cb297-5" title="5">p1 &lt;-<span class="st"> </span><span class="kw">sample</span>(x, <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb297-6" title="6">p2 &lt;-<span class="st"> </span><span class="kw">sample</span>(x, <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb297-7" title="7"></a>
-<a class="sourceLine" id="cb297-8" title="8">p1</a></code></pre></div>
-<pre><code>## [1] &quot;Paper&quot;</code></pre>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb299-1" title="1">p2</a></code></pre></div>
-<pre><code>## [1] &quot;Scissors&quot;</code></pre>
-<p>The values of <code>p1</code> and <code>p2</code> show who won.</p>
-<p>If you want to do best of 3 do:</p>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb301-1" title="1"><span class="co"># players, make your choice (three times)</span></a>
-<a class="sourceLine" id="cb301-2" title="2">p1 &lt;-<span class="st"> </span><span class="kw">sample</span>(x, <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb301-3" title="3">p2 &lt;-<span class="st"> </span><span class="kw">sample</span>(x, <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb301-4" title="4"></a>
-<a class="sourceLine" id="cb301-5" title="5"><span class="co"># best of 3</span></a>
-<a class="sourceLine" id="cb301-6" title="6"><span class="kw">rbind</span>(p1, p2)</a></code></pre></div>
-<pre><code>##    [,1]       [,2]    [,3]      
-## p1 &quot;Paper&quot;    &quot;Rock&quot;  &quot;Scissors&quot;
-## p2 &quot;Scissors&quot; &quot;Paper&quot; &quot;Rock&quot;</code></pre>
+<a class="sourceLine" id="cb297-6" title="6">p2 &lt;-<span class="st"> </span><span class="kw">sample</span>(x, <span class="dv">1</span>)</a></code></pre></div>
+<p>Check the values of <code>p1</code> and <code>p2</code> to see who won. If you want to do best of 3 do:</p>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb298-1" title="1"><span class="co"># players, make your choice (three times)</span></a>
+<a class="sourceLine" id="cb298-2" title="2">p1 &lt;-<span class="st"> </span><span class="kw">sample</span>(x, <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb298-3" title="3">p2 &lt;-<span class="st"> </span><span class="kw">sample</span>(x, <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb298-4" title="4"></a>
+<a class="sourceLine" id="cb298-5" title="5"><span class="co"># best of 3</span></a>
+<a class="sourceLine" id="cb298-6" title="6"><span class="kw">rbind</span>(p1, p2)</a></code></pre></div>
 </div>
 <div id="simulating-the-law-of-large-numbers" class="section level3">
 <h3><span class="header-section-number">2.4.3</span> Simulating the law of large numbers</h3>
-<p>The law of large numbers is a theorem from mathematics which states the following; if a random process could be repeated many, many, many times, the long-run <em>proportion</em> (or fraction) of times that a particular outcome happens <em>stabilises</em>. This means that for a small number of repetitions, we can expect to see a large amount of variability regarding the proportion that <em>hit</em>. Whereas, for a large number of repetitions, the proportion of ``hits’’ would be more stable (less varied).</p>
+<p>The law of large numbers is a theorem from mathematics which states the following; if a random process could be repeated many, many, many times, the long-run <em>proportion</em> (or fraction) of times that a particular outcome happens <em>stabilises</em>. This means that for a small number of repetitions, we can expect to see a large amount of variability regarding the proportion that <em>hit</em>. Whereas, for a large number of repetitions, the proportion of <em>hits</em> would be more stable (less varied).</p>
 <p>For example, when looking at science GCSE results from schools, we would expect to see that for the small schools (often in a quaint village), the proportion of the children obtaining a grade C or above would vary wildly from small school to small school. However, looking at the same proportion but for big city schools, we would expect to see less variation in the proportion from big school to big school. Let us put this in to action.<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a></p>
 <p>Start a script or rmarkdown file, with a title-section including information that we are simulating the law of large numbers. With the particular application being that we are looking at how the variability in the proportion of children obtaining a science GCSE grade C or above within a school is dependent on the size of the school.</p>
 <p>To start, we are going to use the <code>rbinom()</code> function to simulate one schools worth of GCSE results. This function is one of the standard functions that comes with R (no need for packages) and allows us to randomly draw from a binomial distribution.</p>
@@ -710,63 +696,37 @@ or processes might be described by them?</li>
 <p>And set the number of observations to be one, as we’re only interested in looking at one small school right now.</p>
 <p>When you send this command to the console, it should return a count. To express this as a proportion, update your command to divide by the size of the school.</p>
 <p>Now, we are interested in the results of <span class="math inline">\(100\)</span> schools of this size, increase the number of observations accordingly. Create a data frame with one column containing these results, and a second column containing the size of the schools.</p>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb303-1" title="1">n_obs &lt;-<span class="st"> </span><span class="dv">100</span></a>
-<a class="sourceLine" id="cb303-2" title="2">size  &lt;-<span class="st"> </span><span class="dv">30</span></a>
-<a class="sourceLine" id="cb303-3" title="3">pr    &lt;-<span class="st"> </span><span class="fl">0.59</span></a>
-<a class="sourceLine" id="cb303-4" title="4"></a>
-<a class="sourceLine" id="cb303-5" title="5">tiny_schools &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
-<a class="sourceLine" id="cb303-6" title="6">	<span class="dt">sci_prop =</span> <span class="kw">rbinom</span>(n_obs, size, pr),</a>
-<a class="sourceLine" id="cb303-7" title="7">	<span class="dt">size     =</span> size</a>
-<a class="sourceLine" id="cb303-8" title="8">)</a></code></pre></div>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb299-1" title="1">n_obs &lt;-<span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb299-2" title="2">size  &lt;-<span class="st"> </span><span class="dv">30</span></a>
+<a class="sourceLine" id="cb299-3" title="3">pr    &lt;-<span class="st"> </span><span class="fl">0.59</span></a>
+<a class="sourceLine" id="cb299-4" title="4"></a>
+<a class="sourceLine" id="cb299-5" title="5">tiny_schools &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb299-6" title="6">	<span class="dt">sci_prop =</span> <span class="kw">rbinom</span>(n_obs, size, pr),</a>
+<a class="sourceLine" id="cb299-7" title="7">	<span class="dt">size     =</span> size</a>
+<a class="sourceLine" id="cb299-8" title="8">)</a></code></pre></div>
 <p>Repeat the above process, but create a new data frame for each of the
 following sized schools; small (size of <span class="math inline">\(100\)</span>), medium schools (size of <span class="math inline">\(200\)</span>),
 large (size of <span class="math inline">\(500\)</span>), and mega schools (size of <span class="math inline">\(1000\)</span>). Combine the
 rows of each of these data frames into one data frame by using <code>rbind()</code>
 as follows:</p>
-<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb304-1" title="1">schools &lt;-<span class="st"> </span><span class="kw">rbind</span>(</a>
-<a class="sourceLine" id="cb304-2" title="2">	tiny_schools,</a>
-<a class="sourceLine" id="cb304-3" title="3">	small_schools,</a>
-<a class="sourceLine" id="cb304-4" title="4">	medium_schools,</a>
-<a class="sourceLine" id="cb304-5" title="5">	large_schools,</a>
-<a class="sourceLine" id="cb304-6" title="6">	mega_schools</a>
-<a class="sourceLine" id="cb304-7" title="7">)</a></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb300-1" title="1">schools &lt;-<span class="st"> </span><span class="kw">rbind</span>(</a>
+<a class="sourceLine" id="cb300-2" title="2">	tiny_schools,</a>
+<a class="sourceLine" id="cb300-3" title="3">	small_schools,</a>
+<a class="sourceLine" id="cb300-4" title="4">	medium_schools,</a>
+<a class="sourceLine" id="cb300-5" title="5">	large_schools,</a>
+<a class="sourceLine" id="cb300-6" title="6">	mega_schools</a>
+<a class="sourceLine" id="cb300-7" title="7">)</a></code></pre></div>
 <div class="figure"><span id="fig:gcse"></span>
-<img src="week2/theme-gcse.png" alt="Variation in proportion due to size of the year group. Demonstrating the law of large numbers." width="\linewidth" />
+<img src="images/gcse-1.png" alt="Variation in proportion due to size of the year group. Demonstrating the law of large numbers." width="70%" />
 <p class="caption">
-Figure 2.3: Variation in proportion due to size of the year group. Demonstrating the law of large numbers.
+Figure 2.2: Variation in proportion due to size of the year group. Demonstrating the law of large numbers.
 </p>
 </div>
-<p>Create a <code>ggplot</code> comparing school size to the proportion of those of who got grades C and above. Check if it looks similar to Figure <a href="loops-sim.html#fig:gcse">2.3</a>.</p>
+<p>Create a <code>ggplot</code> comparing school size to the proportion of those of who got grades C and above. Check if it looks similar to Figure <a href="loops-sim.html#fig:gcse">2.2</a>.</p>
 <p>How do you interpret this plot? Well, for a start, we know from our code that all children across all schools had the same probability of getting a grade C or above, so no school is inherently doing anything different in preparing it’s children for the GCSE exams. In fact, the only thing we allowed to vary was the size of the school. So the variation we are seeing in regards to the proportion of students who obtained a grade C or above within each school is related to the size of the year group at that school. And we see that the big year groups, tend to be closer to the true proportion than the smaller groups. This is the law of large numbers.</p>
 <p>If you did not know about the law of large numbers, and you were to simply look at the top 25 schools, then you would likely conclude that small schools are better than big schools, as the top ranks are dominated by the smaller-sized schools. We can see the top 25 schools with:</p>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb305-1" title="1">schools &lt;-<span class="st"> </span><span class="kw">arrange</span>(schools, <span class="kw">desc</span>(sci_prop))</a>
-<a class="sourceLine" id="cb305-2" title="2">schools[<span class="dv">1</span><span class="op">:</span><span class="dv">25</span>, ]</a></code></pre></div>
-<pre><code>##    sci_prop size
-## 1       620 1000
-## 2       619 1000
-## 3       616 1000
-## 4       616 1000
-## 5       615 1000
-## 6       613 1000
-## 7       608 1000
-## 8       608 1000
-## 9       608 1000
-## 10      607 1000
-## 11      605 1000
-## 12      605 1000
-## 13      605 1000
-## 14      605 1000
-## 15      604 1000
-## 16      604 1000
-## 17      603 1000
-## 18      602 1000
-## 19      602 1000
-## 20      602 1000
-## 21      602 1000
-## 22      601 1000
-## 23      600 1000
-## 24      600 1000
-## 25      599 1000</code></pre>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb301-1" title="1">schools &lt;-<span class="st"> </span><span class="kw">arrange</span>(schools, <span class="kw">desc</span>(sci_prop))</a>
+<a class="sourceLine" id="cb301-2" title="2">schools[<span class="dv">1</span><span class="op">:</span><span class="dv">25</span>, ]</a></code></pre></div>
 </div>
 <div id="probability-distributions" class="section level3">
 <h3><span class="header-section-number">2.4.4</span> Probability distributions</h3>
@@ -823,13 +783,13 @@ Figure 2.3: Variation in proportion due to size of the year group. Demonstrating
 <p><a href="http://nemeth.shinyapps.io/rbinom" class="uri">http://nemeth.shinyapps.io/rbinom</a></p>
 <p>On each of these pages you can adjust the parameters of the random functions and see the results instantly. Note these webpages are Shiny Apps which are simple to create in RStudio. We will meet these again later in the course.</p>
 <p>To directly simulate random values in R:</p>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb307-1" title="1">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n=</span><span class="dv">10</span>, <span class="dt">mean=</span><span class="dv">0</span>, <span class="dt">sd=</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb307-2" title="2"><span class="kw">print</span>(x)</a></code></pre></div>
-<pre><code>##  [1] -0.2553506 -1.4070782 -0.1075473 -0.6774847  1.4187847 -1.9626268
-##  [7]  2.2928732 -1.4461735 -0.2027110  1.4930238</code></pre>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb309-1" title="1"><span class="kw">qplot</span>(x)</a></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb302-1" title="1">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n=</span><span class="dv">10</span>, <span class="dt">mean=</span><span class="dv">0</span>, <span class="dt">sd=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb302-2" title="2"><span class="kw">print</span>(x)</a></code></pre></div>
+<pre><code>##  [1]  0.01593416  0.17485484 -0.61743859  1.68082666 -0.86537503  0.88374391
+##  [7]  1.16457391  0.05594423 -1.17949905 -1.63178444</code></pre>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb304-1" title="1"><span class="kw">qplot</span>(x) <span class="co"># quick but not recommended for complex plots - use ggplot()</span></a></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="images/unnamed-chunk-130-1.png" width="672" /></p>
+<p><img src="images/rnorm10-1.png" width="672" /></p>
 <p>If you rerun these two commands repeatedly you will notice that the <span class="math inline">\(10\)</span> values you draw each time changes.</p>
 <p>You may have noticed that all of the random functions start with <code>r</code> and follow with an abbreviation of the distribution name. Replacing <code>r</code> with <code>d</code>, <code>p</code>, <code>q</code> will give you the names of the functions that allow you to calculate density values, cumulative probabilities, and quantiles, respectively.</p>
 </div>
@@ -837,36 +797,29 @@ Figure 2.3: Variation in proportion due to size of the year group. Demonstrating
 <h3><span class="header-section-number">2.4.5</span> Repeating your simulation</h3>
 <p>The numbers produced by <code>rnorm()</code>, <code>rbinom()</code>, and the other <code>r...</code> functions are actually <em>pseudo</em>-random numbers. They are random enough rather than genuinely random.</p>
 <p>The state of the random generator is controlled by the object <code>.Random.seed</code> which contains a list of integers:</p>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb311-1" title="1"><span class="co"># next 3 values to be used by the random generator</span></a>
-<a class="sourceLine" id="cb311-2" title="2">.Random.seed[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</a></code></pre></div>
-<pre><code>## [1]      10403        502 1495353663</code></pre>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb306-1" title="1"><span class="co"># next 3 values to be used by the random generator</span></a>
+<a class="sourceLine" id="cb306-2" title="2">.Random.seed[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</a></code></pre></div>
+<pre><code>## [1]      10403        619 -470778465</code></pre>
 <p>Whenever <code>sample()</code> or an <code>r</code> function is run, the current state of <code>.Random.seed</code> is used.</p>
 <p>In order to re-run a simulation, we need to control the starting point of <code>.Random.seed</code> this can be done via <code>set.seed()</code> like so:</p>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb313-1" title="1"><span class="kw">set.seed</span>(<span class="dv">4578</span>)</a>
-<a class="sourceLine" id="cb313-2" title="2"><span class="kw">rnorm</span>(<span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb308-1" title="1"><span class="kw">set.seed</span>(<span class="dv">4578</span>)</a>
+<a class="sourceLine" id="cb308-2" title="2"><span class="kw">rnorm</span>(<span class="dv">4</span>)</a></code></pre></div>
 <pre><code>## [1] -0.3906706 -1.8656330 -0.2399937 -0.8530353</code></pre>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb315-1" title="1"><span class="kw">rnorm</span>(<span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb310-1" title="1"><span class="kw">rnorm</span>(<span class="dv">4</span>)</a></code></pre></div>
 <pre><code>## [1] -1.1927956  0.3692942 -1.4857336 -0.3040490</code></pre>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb317-1" title="1"><span class="kw">set.seed</span>(<span class="dv">4578</span>)</a>
-<a class="sourceLine" id="cb317-2" title="2"><span class="kw">rnorm</span>(<span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb312-1" title="1"><span class="kw">set.seed</span>(<span class="dv">4578</span>)</a>
+<a class="sourceLine" id="cb312-2" title="2"><span class="kw">rnorm</span>(<span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## [1] -0.3906706 -1.8656330</code></pre>
-<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb319-1" title="1"><span class="kw">rnorm</span>(<span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb314-1" title="1"><span class="kw">rnorm</span>(<span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## [1] -0.2399937 -0.8530353</code></pre>
 <p>You would typically set your seed when you are performing simulations and wish to make your work reproducible. This allows others to rerun your code on their computers and obtain the same results. Without setting our seeds to be the same, even if we run the same code, the numbers we would generate would be different.</p>
 </div>
 <div id="densities" class="section level3">
 <h3><span class="header-section-number">2.4.6</span> Densities</h3>
 <p>The density function is probably the least used in practice out of the four function types. But if, for instance, you wanted to draw a probability distribution, such as the normal distribution then it could be quickly done like this:</p>
-<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb321-1" title="1">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="dt">by=</span><span class="fl">0.1</span>)</a>
-<a class="sourceLine" id="cb321-2" title="2">dn &lt;-<span class="st"> </span><span class="kw">dnorm</span>(x)</a>
-<a class="sourceLine" id="cb321-3" title="3"><span class="kw">qplot</span>(x, dn, <span class="dt">geom=</span><span class="st">&quot;line&quot;</span>)</a></code></pre></div>
-<p><img src="week2/theme-dnorm.png" width="\linewidth" /></p>
+<p><img src="images/dnorm-1.png" width="70%" /></p>
 <p>For discrete distributions, where variables can only take distinct values, it is more appropriate to draw a bar chart rather than a continuous line. Here is a binomial distribution with <span class="math inline">\(size=10\)</span> and <span class="math inline">\(p=0.33\)</span>:</p>
-<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb322-1" title="1">x=<span class="dv">1</span><span class="op">:</span><span class="dv">10</span></a>
-<a class="sourceLine" id="cb322-2" title="2">binom &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x=</span>x,</a>
-<a class="sourceLine" id="cb322-3" title="3">                    <span class="dt">db=</span><span class="kw">dbinom</span>(x, <span class="dt">size=</span><span class="dv">10</span>, <span class="dt">prob=</span><span class="fl">0.33</span>))</a>
-<a class="sourceLine" id="cb322-4" title="4"><span class="kw">ggplot</span>(binom,<span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">factor</span>(x), <span class="dt">y=</span>db)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>)</a></code></pre></div>
-<p><img src="week2/theme-dbinom.png" width="\linewidth" /></p>
+<p><img src="images/dbinom-1.png" width="70%" /></p>
 </div>
 <div id="probabilities" class="section level3">
 <h3><span class="header-section-number">2.4.7</span> Probabilities</h3>
@@ -875,15 +828,15 @@ Figure 2.3: Variation in proportion due to size of the year group. Demonstrating
 \text{Pr}(X \leq 2) ~~~\text{where}~~~ X \sim \text{Normal}(0, 1),
 \]</span>
 we would use <code>pnorm()</code> such that</p>
-<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb323-1" title="1"><span class="kw">pnorm</span>(<span class="dv">2</span>, <span class="dt">mean=</span><span class="dv">0</span>, <span class="dt">sd=</span><span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb316-1" title="1"><span class="kw">pnorm</span>(<span class="dv">2</span>, <span class="dt">mean=</span><span class="dv">0</span>, <span class="dt">sd=</span><span class="dv">1</span>)</a></code></pre></div>
 <pre><code>## [1] 0.9772499</code></pre>
 <p>Similarly, to calculate the probability of flipping a coin ten times and observing <em>at least</em> 3 heads:</p>
-<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb325-1" title="1"><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pbinom</span>(<span class="dv">2</span>, <span class="dt">size=</span><span class="dv">10</span>, <span class="dt">prob=</span><span class="fl">0.5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb318-1" title="1"><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pbinom</span>(<span class="dv">2</span>, <span class="dt">size=</span><span class="dv">10</span>, <span class="dt">prob=</span><span class="fl">0.5</span>)</a></code></pre></div>
 <pre><code>## [1] 0.9453125</code></pre>
 <p>The <code>p</code> functions compute the probability for a given number or vector of numbers. These functions also goes by the ominous title of the “Cumulative Distribution Function”. This is because the word <em>cumulative</em> refers to the fact that we always calculate the probability of less than or equal to our number occurring.</p>
 <p>When you carry out statistical tests such as a t-test or chi-sqaured test, once you have calculated your summary statistic, you can then use <code>pt()</code> or <code>pchisq()</code>, respectively, to calculate your <span class="math inline">\(p\)</span>-value. As performing these tests is a common practice in statistics we obviously have functions that will do all of this for us (namely <code>t.test()</code> and <code>chisq.test()</code>, but inside these functions they are using these <code>p...()</code> functions.</p>
 <p>Also note that when calculating <span class="math inline">\(p\)</span>-values when you want the upper tail (which is most of the time) it is better practice to code:</p>
-<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb327-1" title="1"><span class="kw">pbinom</span>(<span class="dv">2</span>, <span class="dt">size=</span><span class="dv">10</span>, <span class="dt">prob=</span><span class="fl">0.5</span>, <span class="dt">lower.tail=</span><span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb320-1" title="1"><span class="kw">pbinom</span>(<span class="dv">2</span>, <span class="dt">size=</span><span class="dv">10</span>, <span class="dt">prob=</span><span class="fl">0.5</span>, <span class="dt">lower.tail=</span><span class="ot">FALSE</span>)</a></code></pre></div>
 <pre><code>## [1] 0.9453125</code></pre>
 <p>This is because the <code>lower.tail</code> option is better at handling cases at the extremes of the distributions.</p>
 </div>
@@ -892,18 +845,18 @@ we would use <code>pnorm()</code> such that</p>
 <p>The quantile functions are the opposite to the probability functions.
 To use <code>qnorm()</code> we have to specify a probability, and it will return
 the corresponding value of <span class="math inline">\(X\)</span>:</p>
-<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb329-1" title="1"><span class="kw">qnorm</span>(<span class="fl">0.975</span>, <span class="dt">mean=</span><span class="dv">0</span>, <span class="dt">sd=</span><span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb322-1" title="1"><span class="kw">qnorm</span>(<span class="fl">0.975</span>, <span class="dt">mean=</span><span class="dv">0</span>, <span class="dt">sd=</span><span class="dv">1</span>)</a></code></pre></div>
 <pre><code>## [1] 1.959964</code></pre>
 <p>To rewrite this mathematically:
 <span class="math display">\[
 \text{Pr}(X \leq 1.96) = 0.975 ~~~\text{where}~~~ X \sim \text{Normal}(0, 1).
 \]</span></p>
 <p>Similarly, if we let <span class="math inline">\(Z \sim \text{Normal}(1, 9)\)</span>. To find the value <span class="math inline">\(q\)</span> (quantile) such that Pr<span class="math inline">\((Z \leq q)\)</span> is <span class="math inline">\(0.05\)</span> type:</p>
-<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb331-1" title="1"><span class="kw">qnorm</span>(<span class="fl">0.05</span>, <span class="dt">mean=</span><span class="dv">1</span>, <span class="dt">sd=</span><span class="kw">sqrt</span>(<span class="dv">9</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb324-1" title="1"><span class="kw">qnorm</span>(<span class="fl">0.05</span>, <span class="dt">mean=</span><span class="dv">1</span>, <span class="dt">sd=</span><span class="kw">sqrt</span>(<span class="dv">9</span>))</a></code></pre></div>
 <pre><code>## [1] -3.934561</code></pre>
 <p>These functions also take a vector of quantiles. For example to find Pr<span class="math inline">\((Z \leq -3.9)\)</span>, Pr<span class="math inline">\((Z \leq 0)\)</span>, and Pr<span class="math inline">\((Z \leq 7)\)</span> type:</p>
-<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb333-1" title="1">q &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="fl">3.9</span>, <span class="dv">0</span>, <span class="dv">7</span>)</a>
-<a class="sourceLine" id="cb333-2" title="2"><span class="kw">pnorm</span>(q, <span class="dt">mean=</span><span class="dv">1</span>, <span class="dt">sd=</span><span class="kw">sqrt</span>(<span class="dv">9</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb326-1" title="1">q &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="fl">3.9</span>, <span class="dv">0</span>, <span class="dv">7</span>)</a>
+<a class="sourceLine" id="cb326-2" title="2"><span class="kw">pnorm</span>(q, <span class="dt">mean=</span><span class="dv">1</span>, <span class="dt">sd=</span><span class="kw">sqrt</span>(<span class="dv">9</span>))</a></code></pre></div>
 <pre><code>## [1] 0.05119945 0.36944134 0.97724987</code></pre>
 </div>
 <div id="summary-2" class="section level3">
@@ -913,31 +866,31 @@ the corresponding value of <span class="math inline">\(X\)</span>:</p>
 <li><p>R provides functions for generating random numbers from the common probability distributions. All functions return a vector of <code>n</code> realisations. Table <a href="loops-sim.html#tab:rfunc">2.1</a> contains a list of some these functions. Note that R does not necessarily use the same parameterisation for these probability distributions as you will see in your courses, or in popular stats text books. Therefore always check the help page of the function to confirm its particular parameterisation.</p></li>
 </ul>
 <p>Example:</p>
-<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb335-1" title="1"><span class="co"># simulate 10 unbiased-coin flips</span></a>
-<a class="sourceLine" id="cb335-2" title="2"><span class="kw">rbinom</span>(<span class="dv">10</span>, <span class="dv">1</span>, <span class="fl">0.5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb328-1" title="1"><span class="co"># simulate 10 unbiased-coin flips</span></a>
+<a class="sourceLine" id="cb328-2" title="2"><span class="kw">rbinom</span>(<span class="dv">10</span>, <span class="dv">1</span>, <span class="fl">0.5</span>)</a></code></pre></div>
 <pre><code>##  [1] 0 0 1 0 0 0 0 0 0 1</code></pre>
-<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb337-1" title="1"><span class="co"># simulate total number of heads for 2 trials</span></a>
-<a class="sourceLine" id="cb337-2" title="2"><span class="co"># of 100 unbiased-coin flips</span></a>
-<a class="sourceLine" id="cb337-3" title="3"><span class="kw">rbinom</span>(<span class="dv">2</span>, <span class="dv">100</span>, <span class="fl">0.5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb330-1" title="1"><span class="co"># simulate total number of heads for 2 trials</span></a>
+<a class="sourceLine" id="cb330-2" title="2"><span class="co"># of 100 unbiased-coin flips</span></a>
+<a class="sourceLine" id="cb330-3" title="3"><span class="kw">rbinom</span>(<span class="dv">2</span>, <span class="dv">100</span>, <span class="fl">0.5</span>)</a></code></pre></div>
 <pre><code>## [1] 46 46</code></pre>
-<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb339-1" title="1"><span class="co"># draw from 5 values from a standard normal distribution</span></a>
-<a class="sourceLine" id="cb339-2" title="2"><span class="co"># Standard normal distribution N(0,1^2)</span></a>
-<a class="sourceLine" id="cb339-3" title="3"><span class="co"># mean = 0 and standard deviation = 1</span></a>
-<a class="sourceLine" id="cb339-4" title="4"><span class="kw">rnorm</span>(<span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb332-1" title="1"><span class="co"># draw from 5 values from a standard normal distribution</span></a>
+<a class="sourceLine" id="cb332-2" title="2"><span class="co"># Standard normal distribution N(0,1^2)</span></a>
+<a class="sourceLine" id="cb332-3" title="3"><span class="co"># mean = 0 and standard deviation = 1</span></a>
+<a class="sourceLine" id="cb332-4" title="4"><span class="kw">rnorm</span>(<span class="dv">5</span>)</a></code></pre></div>
 <pre><code>## [1] -0.1047152  0.9304077  1.4534803 -0.9740542 -0.4645038</code></pre>
 <ul>
 <li><p>To ensure your simulations are reproducible use <code>set.seed()</code> to specify a starting point for the random number generator.</p></li>
 <li><p>The first letter of all the functions in Table <a href="loops-sim.html#tab:rfunc">2.1</a> is <code>r</code> which stands for “random”. For each probability distribution there are also density (<code>d</code>), quantile (<code>q</code>), and cumulative probability functions (<code>p</code>).</p></li>
 </ul>
 <p>For example, say, <span class="math inline">\(X \sim \text{Normal}(6, 5)\)</span>, then to calculate the probability that we observe <span class="math inline">\(x\)</span> being less than or equal to <span class="math inline">\(3\)</span>, <span class="math inline">\(\text{Pr}(X \leq 3)\)</span>:</p>
-<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb341-1" title="1"><span class="kw">pnorm</span>(<span class="dv">3</span>, <span class="dt">mean=</span><span class="dv">6</span>, <span class="dt">sd=</span><span class="kw">sqrt</span>(<span class="dv">5</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb334-1" title="1"><span class="kw">pnorm</span>(<span class="dv">3</span>, <span class="dt">mean=</span><span class="dv">6</span>, <span class="dt">sd=</span><span class="kw">sqrt</span>(<span class="dv">5</span>))</a></code></pre></div>
 <pre><code>## [1] 0.08985625</code></pre>
 <p>Similarly, if we wanted to calculate what quantile, <span class="math inline">\(q\)</span>, of <span class="math inline">\(X\)</span> would correspond to the following:
 <span class="math display">\[
 \text{Pr}(X \leq q) = 0.975
 \]</span>
 then we would use the following command:</p>
-<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb343-1" title="1"><span class="kw">qnorm</span>(<span class="fl">0.975</span>, <span class="dt">mean=</span><span class="dv">6</span>, <span class="dt">sd=</span><span class="kw">sqrt</span>(<span class="dv">5</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb336-1" title="1"><span class="kw">qnorm</span>(<span class="fl">0.975</span>, <span class="dt">mean=</span><span class="dv">6</span>, <span class="dt">sd=</span><span class="kw">sqrt</span>(<span class="dv">5</span>))</a></code></pre></div>
 <pre><code>## [1] 10.38261</code></pre>
 </div>
 <div id="exercises" class="section level3">
@@ -955,7 +908,7 @@ d.Compare these against the 0.25 and 0.75 quantiles calculated using <code>qnorm
 <ul>
 <li>Note that differences in quantile values are due to your vector containing randomly simulated values.</li>
 <li>Quantiles from <code>qnorm()</code> should be 19.60408 and 30.39592.</li>
-<li>Quantiles from your vector should be 19.206859 and 31.505227.</li>
+<li>Quantiles from your vector should be 19.20686 and 31.50523.</li>
 </ul>
 <ol start="2" style="list-style-type: decimal">
 <li>Play with random generator functions for other probability distributions:</li>
@@ -970,44 +923,44 @@ d.Compare these against the 0.25 and 0.75 quantiles calculated using <code>qnorm
 </div>
 <div id="combining-loops-and-simulation" class="section level2">
 <h2><span class="header-section-number">2.5</span> Combining Loops and Simulation</h2>
-<p>The population model discussed in the Loop section is considered to be a deterministic model as there is no random variation, it is simply a set of equations we evaluate at each time point. What we can do is give this model a random component. We do this by changing the way we think about individuals in the population. For example, instead of saying 0.24 of females produce an offspring, we know say each female has a probability of 0.24 of producing an offspring. So, the deterministic model looked like this:</p>
-<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb345-1" title="1"><span class="co"># time period</span></a>
-<a class="sourceLine" id="cb345-2" title="2">years &lt;-<span class="st"> </span><span class="dv">20</span></a>
-<a class="sourceLine" id="cb345-3" title="3"></a>
-<a class="sourceLine" id="cb345-4" title="4"><span class="co"># constants</span></a>
-<a class="sourceLine" id="cb345-5" title="5">p0 &lt;-<span class="st"> </span><span class="fl">0.11</span></a>
-<a class="sourceLine" id="cb345-6" title="6">p1 &lt;-<span class="st"> </span><span class="fl">0.71</span></a>
-<a class="sourceLine" id="cb345-7" title="7">p2 &lt;-<span class="st"> </span><span class="fl">0.94</span></a>
-<a class="sourceLine" id="cb345-8" title="8">f  &lt;-<span class="st"> </span><span class="fl">0.24</span></a>
-<a class="sourceLine" id="cb345-9" title="9"></a>
-<a class="sourceLine" id="cb345-10" title="10"><span class="co"># initial population sizes</span></a>
-<a class="sourceLine" id="cb345-11" title="11">J &lt;-<span class="st"> </span><span class="dv">1200</span></a>
-<a class="sourceLine" id="cb345-12" title="12">S &lt;-<span class="st">  </span><span class="dv">800</span></a>
-<a class="sourceLine" id="cb345-13" title="13">A &lt;-<span class="st"> </span><span class="dv">2000</span></a>
-<a class="sourceLine" id="cb345-14" title="14"><span class="co"># population growth model</span></a>
-<a class="sourceLine" id="cb345-15" title="15"><span class="cf">for</span> (t <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>(years<span class="dv">-1</span>)) {</a>
-<a class="sourceLine" id="cb345-16" title="16">	S[t<span class="op">+</span><span class="dv">1</span>] &lt;-<span class="st"> </span>p0<span class="op">*</span>J[t]</a>
-<a class="sourceLine" id="cb345-17" title="17">	A[t<span class="op">+</span><span class="dv">1</span>] &lt;-<span class="st"> </span>p1<span class="op">*</span>S[t] <span class="op">+</span><span class="st"> </span>p2<span class="op">*</span>A[t]</a>
-<a class="sourceLine" id="cb345-18" title="18">	J[t<span class="op">+</span><span class="dv">1</span>] &lt;-<span class="st"> </span>f<span class="op">*</span>A[t]</a>
-<a class="sourceLine" id="cb345-19" title="19">}</a>
-<a class="sourceLine" id="cb345-20" title="20"></a>
-<a class="sourceLine" id="cb345-21" title="21"><span class="co"># store the results</span></a>
-<a class="sourceLine" id="cb345-22" title="22">owl_pop &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
-<a class="sourceLine" id="cb345-23" title="23">	<span class="dt">time  =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span>years, <span class="dv">3</span>),</a>
-<a class="sourceLine" id="cb345-24" title="24">	<span class="dt">group =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;J&quot;</span>, <span class="st">&quot;S&quot;</span>, <span class="st">&quot;A&quot;</span>), <span class="dt">each=</span>years),</a>
-<a class="sourceLine" id="cb345-25" title="25">	<span class="dt">size  =</span> <span class="kw">c</span>(J, S, A)</a>
-<a class="sourceLine" id="cb345-26" title="26">)</a>
-<a class="sourceLine" id="cb345-27" title="27"></a>
-<a class="sourceLine" id="cb345-28" title="28"><span class="co"># plot the results</span></a>
-<a class="sourceLine" id="cb345-29" title="29"><span class="kw">ggplot</span>(owl_pop) <span class="op">+</span></a>
-<a class="sourceLine" id="cb345-30" title="30">	<span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>time, <span class="dt">y=</span>size, <span class="dt">colour=</span>group, <span class="dt">linetype=</span>group)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb345-31" title="31">	<span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;top&quot;</span>)</a></code></pre></div>
-<p>Essentially, we want to replace the determinisitc equations in the for loop with calls to <code>rbinom()</code>. For example, for the subadult population, at each iteration we want to simulate one binomial sample with a size of <code>J[t]</code> with probability of success equal to <code>p0</code>.</p>
-<p>Make these changes, and rerun the whole script. If you repeatedly rerun the script you will generate slight variations on the plot, this is due to the random component. Finally, set your seed to <code>87856</code>, rerun your script, and check if the plot you produce matches Figure <a href="loops-sim.html#fig:rnd-owl">2.4</a>.</p>
+<p>The population model discussed in the Section <a href="loops-sim.html#loops">2.2</a> is considered to be a deterministic model as there is no random variation, it is simply a set of equations we evaluate at each time point. What we can do is give this model a random component. We do this by changing the way we think about individuals in the population. For example, instead of saying 0.24 of females produce an offspring, we know say each female has a probability of 0.24 of producing an offspring. So, the deterministic model looked like this:</p>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb338-1" title="1"><span class="co"># time period</span></a>
+<a class="sourceLine" id="cb338-2" title="2">years &lt;-<span class="st"> </span><span class="dv">20</span></a>
+<a class="sourceLine" id="cb338-3" title="3"></a>
+<a class="sourceLine" id="cb338-4" title="4"><span class="co"># constants</span></a>
+<a class="sourceLine" id="cb338-5" title="5">p0 &lt;-<span class="st"> </span><span class="fl">0.11</span></a>
+<a class="sourceLine" id="cb338-6" title="6">p1 &lt;-<span class="st"> </span><span class="fl">0.71</span></a>
+<a class="sourceLine" id="cb338-7" title="7">p2 &lt;-<span class="st"> </span><span class="fl">0.94</span></a>
+<a class="sourceLine" id="cb338-8" title="8">f  &lt;-<span class="st"> </span><span class="fl">0.24</span></a>
+<a class="sourceLine" id="cb338-9" title="9"></a>
+<a class="sourceLine" id="cb338-10" title="10"><span class="co"># initial population sizes</span></a>
+<a class="sourceLine" id="cb338-11" title="11">J &lt;-<span class="st"> </span><span class="dv">1200</span></a>
+<a class="sourceLine" id="cb338-12" title="12">S &lt;-<span class="st">  </span><span class="dv">800</span></a>
+<a class="sourceLine" id="cb338-13" title="13">A &lt;-<span class="st"> </span><span class="dv">2000</span></a>
+<a class="sourceLine" id="cb338-14" title="14"><span class="co"># population growth model</span></a>
+<a class="sourceLine" id="cb338-15" title="15"><span class="cf">for</span> (t <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>(years<span class="dv">-1</span>)) {</a>
+<a class="sourceLine" id="cb338-16" title="16">	S[t<span class="op">+</span><span class="dv">1</span>] &lt;-<span class="st"> </span>p0<span class="op">*</span>J[t]</a>
+<a class="sourceLine" id="cb338-17" title="17">	A[t<span class="op">+</span><span class="dv">1</span>] &lt;-<span class="st"> </span>p1<span class="op">*</span>S[t] <span class="op">+</span><span class="st"> </span>p2<span class="op">*</span>A[t]</a>
+<a class="sourceLine" id="cb338-18" title="18">	J[t<span class="op">+</span><span class="dv">1</span>] &lt;-<span class="st"> </span>f<span class="op">*</span>A[t]</a>
+<a class="sourceLine" id="cb338-19" title="19">}</a>
+<a class="sourceLine" id="cb338-20" title="20"></a>
+<a class="sourceLine" id="cb338-21" title="21"><span class="co"># store the results</span></a>
+<a class="sourceLine" id="cb338-22" title="22">owl_pop &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb338-23" title="23">	<span class="dt">time  =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span>years, <span class="dv">3</span>),</a>
+<a class="sourceLine" id="cb338-24" title="24">	<span class="dt">group =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;J&quot;</span>, <span class="st">&quot;S&quot;</span>, <span class="st">&quot;A&quot;</span>), <span class="dt">each=</span>years),</a>
+<a class="sourceLine" id="cb338-25" title="25">	<span class="dt">size  =</span> <span class="kw">c</span>(J, S, A)</a>
+<a class="sourceLine" id="cb338-26" title="26">)</a>
+<a class="sourceLine" id="cb338-27" title="27"></a>
+<a class="sourceLine" id="cb338-28" title="28"><span class="co"># plot the results</span></a>
+<a class="sourceLine" id="cb338-29" title="29"><span class="kw">ggplot</span>(owl_pop) <span class="op">+</span></a>
+<a class="sourceLine" id="cb338-30" title="30">	<span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>time, <span class="dt">y=</span>size, <span class="dt">colour=</span>group, <span class="dt">linetype=</span>group)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb338-31" title="31">	<span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;top&quot;</span>)</a></code></pre></div>
+<p>Essentially, we want to replace the deterministic equations in the for loop with calls to <code>rbinom()</code>. For example, for the subadult population, at each iteration we want to simulate one binomial sample with a size of <code>J[t]</code> with probability of success equal to <code>p0</code>.</p>
+<p>Make these changes, and rerun the whole script. If you repeatedly rerun the script you will generate slight variations on the plot, this is due to the random component. Finally, set your seed to <code>87856</code>, rerun your script, and check if the plot you produce matches Figure <a href="loops-sim.html#fig:rnd-owl">2.3</a>.</p>
 <div class="figure"><span id="fig:rnd-owl"></span>
-<img src="week2/theme-rnd-owl.png" alt="Stochastic population growth model over the next 20 years for the Northern spotted owls. Random seed was set to 87856." width="\linewidth" />
+<img src="images/rnd-owl-1.png" alt="Stochastic population growth model over the next 20 years for the Northern spotted owls. Random seed was set to 87856." width="70%" />
 <p class="caption">
-Figure 2.4: Stochastic population growth model over the next 20 years for the Northern spotted owls. Random seed was set to 87856.
+Figure 2.3: Stochastic population growth model over the next 20 years for the Northern spotted owls. Random seed was set to 87856.
 </p>
 </div>
 
