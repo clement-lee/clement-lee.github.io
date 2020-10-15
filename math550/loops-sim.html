@@ -200,7 +200,7 @@ in style into this week’s code.</li>
 last week. Also scan through the section on Logical Comparisons.
 You will be making use of this knowledge this week.</li>
 <li>As usual, to save the code you write for this week, create a new
-R notebook (or script) in your R programming folder, on your H drive.</li>
+R notebook (or script) in your R programming folder.</li>
 <li>Write a few introductory comments at the top stating that this script covers
 the basics of looping, writing conditional statwments, and simulating
 probabilities.</li>
@@ -470,10 +470,10 @@ want to square:</p>
 <a class="sourceLine" id="cb278-18" title="18"><span class="co"># how much time does each method take to execute?</span></a>
 <a class="sourceLine" id="cb278-19" title="19"><span class="kw">system.time</span>(<span class="kw">square_x_loop</span>())</a></code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.850   0.044   0.895</code></pre>
+##   1.025   0.048   1.076</code></pre>
 <div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb280-1" title="1"><span class="kw">system.time</span>(<span class="kw">square_x_vector</span>())</a></code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.057   0.024   0.081</code></pre>
+##   0.045   0.048   0.094</code></pre>
 <p>The <code>for</code> loop took longer than the vector approach. This is because of the way R is optimised for thinking with vectors, rather than thinking about processing individual values. With other more low-level programming languages you might not see any difference in terms of speed between these two methods, in fact it might even be the other way around.</p>
 <p>However, you should only consider a different approach when your loop seems to
 be taking a long time, and in these cases there will usually be a better way to code the solution. In all other cases where looping seems to solve your problem in a timely manner this is good enough.</p>
@@ -589,7 +589,7 @@ reads:</p>
 <a class="sourceLine" id="cb293-21" title="21"> }</a>
 <a class="sourceLine" id="cb293-22" title="22"></a>
 <a class="sourceLine" id="cb293-23" title="23"><span class="kw">roll_d6</span>()</a></code></pre></div>
-<pre><code>## [1] 2</code></pre>
+<pre><code>## [1] 5</code></pre>
 <p>The function currently has no arguments, this is because everything about
 rolling a single dice is fixed. A feature that we could add is to allow multiple dice
 rolls with one call to <code>roll_d6()</code>, though we should assume by default
