@@ -160,7 +160,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.1" data-path="string.html"><a href="string.html#preamble"><i class="fa fa-check"></i><b>4.1</b> Preamble</a></li>
 <li class="chapter" data-level="4.2" data-path="string.html"><a href="string.html#introducing-regular-expressions"><i class="fa fa-check"></i><b>4.2</b> Introducing regular expressions</a></li>
 <li class="chapter" data-level="4.3" data-path="string.html"><a href="string.html#working-with-strings-and-regular-expressions"><i class="fa fa-check"></i><b>4.3</b> Working with strings and regular expressions</a></li>
-<li class="chapter" data-level="4.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#exercises"><i class="fa fa-check"></i><b>4.4</b> Exercises</a></li>
+<li class="chapter" data-level="4.4" data-path="string.html"><a href="string.html#string-exercises"><i class="fa fa-check"></i><b>4.4</b> String Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="web-app.html"><a href="web-app.html"><i class="fa fa-check"></i><b>5</b> Web scraping, interactive graphics, Shiny Apps, package building, and more</a><ul>
 <li class="chapter" data-level="5.1" data-path="web-app.html"><a href="web-app.html#packages"><i class="fa fa-check"></i><b>5.1</b> Packages</a></li>
@@ -340,7 +340,7 @@ For example, if we save the current system time:<a href="#fn12" class="footnote-
 <div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb351-1" title="1"><span class="kw">year</span>(stamp) <span class="co"># for illustration only; your output might vary</span></a></code></pre></div>
 <pre><code>## [1] 2020</code></pre>
 <div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb353-1" title="1"><span class="kw">minute</span>(stamp) <span class="co"># your output might vary</span></a></code></pre></div>
-<pre><code>## [1] 51</code></pre>
+<pre><code>## [1] 40</code></pre>
 <p>For the month and weekday elements (<code>mday</code> and <code>wday</code>), we can also specify whether we want to extract the numerical value of the element, an abbreviation of the name of the month or weekday, or the full name.
 For example:</p>
 <table>
@@ -403,7 +403,7 @@ For example:</p>
 <pre><code>## [1] October
 ## 12 Levels: January &lt; February &lt; March &lt; April &lt; May &lt; June &lt; ... &lt; December</code></pre>
 <div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb361-1" title="1"><span class="kw">wday</span>(stamp, <span class="dt">label=</span><span class="ot">TRUE</span>, <span class="dt">abbr=</span><span class="ot">FALSE</span>) <span class="co"># your output might vary</span></a></code></pre></div>
-<pre><code>## [1] Thursday
+<pre><code>## [1] Tuesday
 ## 7 Levels: Sunday &lt; Monday &lt; Tuesday &lt; Wednesday &lt; Thursday &lt; ... &lt; Saturday</code></pre>
 </div>
 <div id="arithmetic-with-timestamps" class="section level3">
@@ -444,7 +444,7 @@ them. To do this use the helper functions;
 <code>hours()</code>, <code>minutes()</code>, and <code>seconds()</code>. Where
 the first and only argument is the amount of that unit of time:</p>
 <div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb371-1" title="1">stamp <span class="op">-</span><span class="st"> </span><span class="kw">hours</span>(<span class="dv">48</span>) <span class="op">-</span><span class="st"> </span><span class="kw">minutes</span>(<span class="dv">30</span>)</a></code></pre></div>
-<pre><code>## [1] &quot;2020-10-13 23:21:44 BST&quot;</code></pre>
+<pre><code>## [1] &quot;2020-10-18 19:10:43 BST&quot;</code></pre>
 </div>
 <div id="intervals-and-durations" class="section level3">
 <h3><span class="header-section-number">3.2.4</span> Intervals and durations</h3>
