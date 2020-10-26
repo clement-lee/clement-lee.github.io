@@ -49,6 +49,15 @@
 
 
 
+<script src="libs/detect-resize-0.5.3/jquery.resize.js"></script>
+<link href="libs/jquery-ui-1.11.4/jquery-ui.min.css" rel="stylesheet" />
+<script src="libs/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+<script src="libs/d3-3.5.2/d3.min.js"></script>
+<script src="libs/vega-1.4.3/vega.min.js"></script>
+<script src="libs/lodash-2.2.1/lodash.min.js"></script>
+<script>var lodash = _.noConflict();</script>
+<link href="libs/ggvis-0.4.6/css/ggvis.css" rel="stylesheet" />
+<script src="libs/ggvis-0.4.6/js/ggvis.js"></script>
 
 
 <style type="text/css">
@@ -168,7 +177,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3" data-path="web-app.html"><a href="web-app.html#alternative-graphics"><i class="fa fa-check"></i><b>5.3</b> Alternative graphics</a></li>
 <li class="chapter" data-level="5.4" data-path="web-app.html"><a href="web-app.html#shiny-web-applications"><i class="fa fa-check"></i><b>5.4</b> Shiny Web Applications</a></li>
 <li class="chapter" data-level="5.5" data-path="web-app.html"><a href="web-app.html#rmarkdown-html-notebooks-and-ipythonjupyter-notebooks"><i class="fa fa-check"></i><b>5.5</b> Rmarkdown HTML notebooks and Ipython/Jupyter notebooks</a></li>
-<li class="chapter" data-level="5.6" data-path="web-app.html"><a href="web-app.html#exercise-housing-in-new-york-city"><i class="fa fa-check"></i><b>5.6</b> Exercise: Housing in New York City</a></li>
+<li class="chapter" data-level="5.6" data-path="web-app.html"><a href="web-app.html#exercise-housing-in-london"><i class="fa fa-check"></i><b>5.6</b> Exercise: Housing in London</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="further-reading.html"><a href="further-reading.html"><i class="fa fa-check"></i>Further reading</a></li>
 </ul>
@@ -193,41 +202,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="packages" class="section level2">
 <h2><span class="header-section-number">5.1</span> Packages</h2>
 <ul>
-<li><p>Install the new packages <code>rvest</code> and <code>ggvis</code>. It will also be worth installing <code>readr</code> and <code>purrr</code>.</p></li>
-<li><p>Load in the new packages and <code>ggplot2</code>:</p></li>
+<li><p>Install the new packages <code>rvest</code> and <code>ggvis</code>. It will also be worth installing <code>readr</code> and <code>purrr</code>, if you haven’t done so.</p></li>
+<li><p>Load in the new packages and <code>ggplot2</code>. Collectively, you can load in <code>readr</code>, <code>purrr</code> &amp; <code>ggplot2</code> via <code>tidyverse</code>:</p></li>
 </ul>
 <div class="sourceCode" id="cb520"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb520-1" title="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb520-2" title="2"><span class="kw">library</span>(ggvis)</a></code></pre></div>
-<pre><code>## 
-## Attaching package: &#39;ggvis&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
-## 
-##     resolution</code></pre>
-<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb523-1" title="1"><span class="kw">library</span>(rvest)</a></code></pre></div>
-<pre><code>## Loading required package: xml2</code></pre>
-<pre><code>## 
-## Attaching package: &#39;rvest&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:purrr&#39;:
-## 
-##     pluck</code></pre>
-<pre><code>## The following object is masked from &#39;package:readr&#39;:
-## 
-##     guess_encoding</code></pre>
+<a class="sourceLine" id="cb520-2" title="2"><span class="kw">library</span>(ggvis)</a>
+<a class="sourceLine" id="cb520-3" title="3"><span class="kw">library</span>(rvest)</a></code></pre></div>
 </div>
 <div id="collecting-data" class="section level2">
 <h2><span class="header-section-number">5.2</span> Collecting data</h2>
-<p>So far the data we’ve used in the labs has been provided for you. More importantly, it’s been given to you in a nice format (e.g. no missing values). In practice you’ll find that most data are messy and that analysing real data requires you to spend time cleaning and manipulating the data into a useable form before you can do your analysis.</p>
+<p>So far the data we’ve used has been provided for you. More importantly, it’s been given to you in a nice format (e.g. no missing values). In practice you’ll find that most data are messy and that analysing real data requires you to spend time cleaning and manipulating the data into a useable form before you can do your analysis.</p>
 <p>One of the best sources of data is the internet. There are now over a billion websites containing data on almost anything you can think of (e.g. income, world poverty, property values, film releases, etc.).</p>
 <div id="simple-scraping" class="section level3">
 <h3><span class="header-section-number">5.2.1</span> Simple scraping</h3>
-<p>In the first lab we looked at a dataset containing information about planets in our solar system. In that exercise we input that data manually. However, we can obtain these data by <em>scraping</em> the data directly from the web.<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a></p>
+<p>In Chapter 0 we looked at a dataset containing information about planets in our solar system. In that exercise we input that data manually. However, we can obtain these data by <em>scraping</em> the data directly from the web.<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a></p>
 <p>The <code>rvest</code> package from Hadley Wickham will allow us to read the data directly from the website. So let’s try it out. Start by loading the package if you haven’t already.</p>
-<div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb528-1" title="1"><span class="kw">library</span>(rvest)</a></code></pre></div>
+<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb521-1" title="1"><span class="kw">library</span>(rvest)</a></code></pre></div>
 <p>Once we’ve found a good website containing the data we want, we can scrape the data from the website and store it in a <code>data.frame</code> object</p>
-<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb529-1" title="1">html &lt;-<span class="st"> </span><span class="kw">read_html</span>(<span class="st">&quot;http://nssdc.gsfc.nasa.gov/planetary/factsheet/&quot;</span>) </a>
-<a class="sourceLine" id="cb529-2" title="2">html_data &lt;-<span class="st"> </span><span class="kw">html_node</span>(html, <span class="st">&quot;table&quot;</span>) <span class="co"># extract parts of HTML text</span></a>
-<a class="sourceLine" id="cb529-3" title="3">planet_data &lt;-<span class="st"> </span><span class="kw">html_table</span>(html_data, <span class="dt">header=</span><span class="ot">TRUE</span>) <span class="co"># display table</span></a>
-<a class="sourceLine" id="cb529-4" title="4"><span class="kw">head</span>(planet_data)</a></code></pre></div>
+<div class="sourceCode" id="cb522"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb522-1" title="1">html &lt;-<span class="st"> </span><span class="kw">read_html</span>(<span class="st">&quot;http://nssdc.gsfc.nasa.gov/planetary/factsheet/&quot;</span>) </a>
+<a class="sourceLine" id="cb522-2" title="2">html_data &lt;-<span class="st"> </span><span class="kw">html_node</span>(html, <span class="st">&quot;table&quot;</span>) <span class="co"># extract parts of HTML text</span></a>
+<a class="sourceLine" id="cb522-3" title="3">planet_data &lt;-<span class="st"> </span><span class="kw">html_table</span>(html_data, <span class="dt">header=</span><span class="ot">TRUE</span>) <span class="co"># display table</span></a>
+<a class="sourceLine" id="cb522-4" title="4"><span class="kw">head</span>(planet_data)</a></code></pre></div>
 <pre><code>##                           MERCURY   VENUS  EARTH  MOON  MARS JUPITER  SATURN
 ## 1           Mass (1024kg)   0.330    4.87   5.97 0.073 0.642    1898     568
 ## 2           Diameter (km)    4879  12,104 12,756  3475  6792 142,984 120,536
@@ -251,11 +246,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>Used correctly, these functions will allow you to scrape data from alot of websites. However, as you can imagine, the more complex the design of the website, the harder it will be to identify what you’re looking for.</p>
 <p>You may find the <a href="https://selectorgadget.com" class="uri">https://selectorgadget.com</a> tool particularly useful. This tool can be added as an extension to Google Chrome.<a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a> When activated you can simply hover your mouse over the section of the website you want to scrape and the selectorgadget tool will tell you what the xpath/CSS link is.</p>
-<p>Piping is also helpful when running web scraping code. Piping allows you to direct the output from one function to another and then another and then another, etc. by using the <code>\%&gt;\%</code> operator from the <code>dplyr</code> package. As an example, here in an alternative way of implementing the above:</p>
-<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb531-1" title="1">planet_data &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb531-2" title="2"><span class="st">  </span><span class="kw">read_html</span>(<span class="st">&quot;http://nssdc.gsfc.nasa.gov/planetary/factsheet/&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb531-3" title="3"><span class="st">    </span><span class="kw">html_node</span>(<span class="st">&quot;table&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb531-4" title="4"><span class="st">    </span><span class="kw">html_table</span>(<span class="dt">header=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<p>Piping is also helpful when running web scraping code. Piping allows you to direct the output from one function to another and then another and then another, etc. by using the <code>%&gt;%</code> operator from the <code>dplyr</code> package. As an example, here in an alternative way of implementing the above:</p>
+<div class="sourceCode" id="cb524"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb524-1" title="1">planet_data &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb524-2" title="2"><span class="st">    </span><span class="kw">read_html</span>(<span class="st">&quot;http://nssdc.gsfc.nasa.gov/planetary/factsheet/&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb524-3" title="3"><span class="st">    </span><span class="kw">html_node</span>(<span class="st">&quot;table&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb524-4" title="4"><span class="st">    </span><span class="kw">html_table</span>(<span class="dt">header=</span><span class="ot">TRUE</span>)</a></code></pre></div>
 <p>You’ll notice by comparing the two implementations, that <code>function(a, b)</code> is equivalent to <code>a %&gt;% function(b)</code>. We are plugging our variable into the first argument of the function. If instead we want <code>function(b, a)</code>, then we’ll need to use the form <code>a %&gt;% function(b,.)</code>.</p>
 </div>
 <div id="exercise" class="section level3">
@@ -266,26 +261,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">5.2.3</span> Google Scholar</h3>
 <p>Google scholar is a helpful resource for finding academic works. In addition to finding journal articles, you can also find profiles of researchers and see what they work on, the papers they publish, how influential they are, and who they work with.</p>
 <p>Let’s consider the Google Scholar page of Peter Diggle, Lancaster University Distiguished University Professor of Statistics.</p>
-<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb532-1" title="1">page &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb532-2" title="2"><span class="kw">read_html</span>(<span class="st">&quot;https://scholar.google.com/citations?user=GcTKrPIAAAAJ&amp;hl=en&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb525-1" title="1">page &lt;-<span class="st"> </span><span class="kw">read_html</span>(<span class="st">&quot;https://scholar.google.com/citations?user=GcTKrPIAAAAJ&amp;hl=en&quot;</span>)</a></code></pre></div>
 <p>On the Google Scholar page there are several tables. There is a summary of the researcher’s output (top right). The main table contains the details of each of the researcher’s papers. Let’s scrape these two tables (remember the <code>.</code> indicates the contents from the pipe so far).</p>
-<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb533-1" title="1">overview &lt;-<span class="st"> </span>page <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb533-2" title="2">		<span class="kw">html_nodes</span>(<span class="st">&quot;table&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb533-3" title="3">		.[[<span class="dv">1</span>]] <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb533-4" title="4">		<span class="kw">html_table</span>()</a>
-<a class="sourceLine" id="cb533-5" title="5">            </a>
-<a class="sourceLine" id="cb533-6" title="6">citations &lt;-<span class="st"> </span>page <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb533-7" title="7">		<span class="kw">html_nodes</span>(<span class="st">&quot;table&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb533-8" title="8">		.[[<span class="dv">2</span>]] <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb533-9" title="9">		<span class="kw">html_table</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb533-10" title="10">		.[<span class="op">-</span><span class="dv">1</span>,<span class="dv">2</span>] <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb533-11" title="11">		readr<span class="op">::</span><span class="kw">parse_number</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb526"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb526-1" title="1">overview &lt;-<span class="st"> </span>page <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb526-2" title="2"><span class="st">    </span><span class="kw">html_nodes</span>(<span class="st">&quot;table&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb526-3" title="3"><span class="st">    </span>.[[<span class="dv">1</span>]] <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb526-4" title="4"><span class="st">    </span><span class="kw">html_table</span>()</a>
+<a class="sourceLine" id="cb526-5" title="5">            </a>
+<a class="sourceLine" id="cb526-6" title="6">citations &lt;-<span class="st"> </span>page <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb526-7" title="7"><span class="st">    </span><span class="kw">html_nodes</span>(<span class="st">&quot;table&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb526-8" title="8"><span class="st">    </span>.[[<span class="dv">2</span>]] <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb526-9" title="9"><span class="st">    </span><span class="kw">html_table</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb526-10" title="10"><span class="st">    </span>.[<span class="op">-</span><span class="dv">1</span>,<span class="dv">2</span>] <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb526-11" title="11"><span class="st">    </span>readr<span class="op">::</span><span class="kw">parse_number</span>()</a></code></pre></div>
 <ul>
 <li>The first operation is straightforward. We’re simply scraping the first list element (i.e. <code>[[1]]</code>), which is a table from the webpage.</li>
 <li>The second line is a little trickier with two additional operations. Firstly, we’re using <code>[-1,2]</code> to remove the first row of the table and select the second column, just the citations.</li>
 </ul>
-<div class="figure"><span id="fig:unnamed-chunk-222"></span>
-<img src="week5/citations.png" alt="The citations of Prof. Diggle's papers" width="\linewidth" />
+<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb527-1" title="1"><span class="kw">barplot</span>(citations, <span class="dt">main=</span><span class="st">&quot;How many times have Prof. Diggle&#39;s papers been cited?&quot;</span>, </a>
+<a class="sourceLine" id="cb527-2" title="2">        <span class="dt">ylab=</span><span class="st">&#39;Number of citations&#39;</span>, <span class="dt">col=</span><span class="st">&quot;skyblue&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;&quot;</span>)</a></code></pre></div>
+<div class="figure"><span id="fig:diggle"></span>
+<img src="images/diggle-1.png" alt="The citations of Prof. Diggle's papers" width="672" />
 <p class="caption">
 Figure 5.1: The citations of Prof. Diggle’s papers
 </p>
@@ -295,20 +291,20 @@ Figure 5.1: The citations of Prof. Diggle’s papers
 <li>The last operation, <code>readr::parse_number()</code>, is simply stripping everything out that isn’t numeric.<a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a></li>
 </ul>
 <p>We have obtained some of the information on the webpage.</p>
-<div class="sourceCode" id="cb534"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb534-1" title="1"><span class="kw">head</span>(overview)</a></code></pre></div>
+<div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb528-1" title="1"><span class="kw">head</span>(overview)</a></code></pre></div>
 <pre><code>##               All Since 2015
-## 1 Citations 49766      16602
+## 1 Citations 49802      16638
 ## 2   h-index    86         53
 ## 3 i10-index   273        203</code></pre>
-<div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb536-1" title="1"><span class="kw">head</span>(citations)</a></code></pre></div>
-<pre><code>## [1] 11831  5298  3398  1393  1381  1252</code></pre>
+<div class="sourceCode" id="cb530"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb530-1" title="1"><span class="kw">head</span>(citations)</a></code></pre></div>
+<pre><code>## [1] 11836  5301  3400  1393  1380  1253</code></pre>
 <p>Researchers almost never publish alone and will work with numerous collaborators, often across various disciplines. Prof. Diggle is no exception, let’s have a look at some of his co-authors. Remember that the selectorgadget Chrome extension can help you find the name of the CSS tag you need to provide to <code>html_nodes()</code>. Another way is to press <em>Ctrl+Shift+I</em> in Chrome and view the HTML source code. Remember also that websites are frequently updated and so the next time you run this code it will fail if Google have changed the Google Scholar HTML code.</p>
-<div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb538-1" title="1">Coauthors =<span class="st"> </span>page <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb538-2" title="2"><span class="st">     </span><span class="kw">html_nodes</span>(<span class="dt">css=</span><span class="st">&quot;.gsc_rsb_a_desc a&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb538-3" title="3"><span class="st">     </span><span class="kw">html_text</span>()</a>
-<a class="sourceLine" id="cb538-4" title="4">Coauthors =<span class="st"> </span><span class="kw">as.data.frame</span>(Coauthors)</a>
-<a class="sourceLine" id="cb538-5" title="5"><span class="kw">names</span>(Coauthors)=<span class="st">&#39;Coauthors&#39;</span></a>
-<a class="sourceLine" id="cb538-6" title="6"><span class="kw">head</span>(Coauthors)</a></code></pre></div>
+<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb532-1" title="1">Coauthors &lt;-<span class="st"> </span>page <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb532-2" title="2"><span class="st">     </span><span class="kw">html_nodes</span>(<span class="dt">css =</span> <span class="st">&quot;.gsc_rsb_a_desc a&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb532-3" title="3"><span class="st">     </span><span class="kw">html_text</span>()</a>
+<a class="sourceLine" id="cb532-4" title="4">Coauthors &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(Coauthors)</a>
+<a class="sourceLine" id="cb532-5" title="5"><span class="kw">names</span>(Coauthors) &lt;-<span class="st"> &#39;Coauthors&#39;</span></a>
+<a class="sourceLine" id="cb532-6" title="6"><span class="kw">head</span>(Coauthors)</a></code></pre></div>
 <pre><code>## [1] Coauthors
 ## &lt;0 rows&gt; (or 0-length row.names)</code></pre>
 </div>
@@ -318,51 +314,734 @@ Figure 5.1: The citations of Prof. Diggle’s papers
 <div id="introducing-ggvis" class="section level3">
 <h3><span class="header-section-number">5.3.1</span> Introducing ggvis</h3>
 <p>By now we are familiar with using the <code>ggplot2</code> package instead of the base R graphics engine to produce figures. Now we’re going to look at another package, <code>ggvis</code>, which you’ll notice has the same graph building philosophy, albeit with a slightly different syntax. Install the package and then load it,</p>
-<div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb540-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;ggvis&quot;</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb541-1" title="1"><span class="kw">library</span>(ggvis)</a></code></pre></div>
+<div class="sourceCode" id="cb534"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb534-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;ggvis&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb535-1" title="1"><span class="kw">library</span>(ggvis)</a></code></pre></div>
 <p>We’re going to practice some of the basics of <code>ggvis</code> with a demo dataset that can be found in the R base package. The <code>mtcars</code> dataset contains data on 32 cars from 1973–74. Let’s start by plotting the horsepower against the miles per gallon.</p>
-<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb542-1" title="1"><span class="co"># first layer is the points of a scatter plot</span></a>
-<a class="sourceLine" id="cb542-2" title="2"><span class="co"># second layer is a simple linear model, </span></a>
-<a class="sourceLine" id="cb542-3" title="3"><span class="co"># SE=TRUE displays confidence bans around the predictions</span></a>
-<a class="sourceLine" id="cb542-4" title="4">mtcars <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb542-5" title="5"><span class="st">  </span><span class="kw">ggvis</span>(<span class="op">~</span>hp, <span class="op">~</span>mpg, <span class="dt">fill :=</span> <span class="st">&quot;red&quot;</span>, <span class="dt">stroke :=</span> <span class="st">&quot;black&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb542-6" title="6"><span class="st">  </span><span class="kw">layer_points</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb542-7" title="7"><span class="st">  </span><span class="kw">layer_model_predictions</span>(<span class="dt">model=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">TRUE</span>) </a></code></pre></div>
-<p>This plot can be broken down into smaller components in the same as <code>ggplot</code> graphics are built-up from smaller components. We’re plotting the data and overlaying a straight line, which is the prediction from a linear model that we’ve fitted to the data. We have also added pointwise 95% confidence interval bands to our linear model.</p>
-<p><img src="week5/ggvis-lm-fit.png" width="\linewidth" />
-Horsepower is related to the number of cylinders in the engine. So let’s group the data into number of cylinders and then, treating each group independently, fit a new linear model. Therefore, we are fitting a piecewise linear model.</p>
-<div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb543-1" title="1"><span class="co">#piecewise linear</span></a>
-<a class="sourceLine" id="cb543-2" title="2">mtcars <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb543-3" title="3"><span class="st">  </span><span class="kw">ggvis</span>(<span class="op">~</span>wt, <span class="op">~</span>mpg, <span class="dt">fill =</span> <span class="op">~</span><span class="kw">factor</span>(cyl)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb543-4" title="4"><span class="st">  </span><span class="kw">layer_points</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb543-5" title="5"><span class="st">  </span><span class="kw">group_by</span>(cyl) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb543-6" title="6"><span class="st">  </span><span class="kw">layer_model_predictions</span>(<span class="dt">model =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb543-7" title="7"><span class="co"># the group_by(cyl) tells next layer to group by cylinder factor</span></a></code></pre></div>
-<p>The plot shows three separate lines, with their corresponding 95% confidence intervals.</p>
-<div class="figure"><span id="fig:unnamed-chunk-230"></span>
-<img src="week5/ggvis-piecewise-linear.png" alt="Piecewise linear model plot using `ggvis`." width="\linewidth" />
-<p class="caption">
-Figure 5.2: Piecewise linear model plot using <code>ggvis</code>.
-</p>
+<div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb536-1" title="1"><span class="co"># first layer is the points of a scatter plot</span></a>
+<a class="sourceLine" id="cb536-2" title="2"><span class="co"># second layer is a simple linear model, </span></a>
+<a class="sourceLine" id="cb536-3" title="3"><span class="co"># SE=TRUE displays confidence bans around the predictions</span></a>
+<a class="sourceLine" id="cb536-4" title="4">mtcars <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb536-5" title="5"><span class="st">    </span><span class="kw">ggvis</span>(<span class="op">~</span>hp, <span class="op">~</span>mpg, <span class="dt">fill :=</span> <span class="st">&quot;red&quot;</span>, <span class="dt">stroke :=</span> <span class="st">&quot;black&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb536-6" title="6"><span class="st">    </span><span class="kw">layer_points</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb536-7" title="7"><span class="st">    </span><span class="kw">layer_model_predictions</span>(<span class="dt">model=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">TRUE</span>) </a></code></pre></div>
+<pre><code>## Guessing formula = mpg ~ hp</code></pre>
+<div id="plot_id400232867-container" class="ggvis-output-container">
+<div id="plot_id400232867" class="ggvis-output"></div>
+<div class="plot-gear-icon">
+<nav class="ggvis-control">
+<a class="ggvis-dropdown-toggle" title="Controls" onclick="return false;"></a>
+<ul class="ggvis-dropdown">
+<li>
+Renderer: 
+<a id="plot_id400232867_renderer_svg" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id400232867" data-renderer="svg">SVG</a>
+ | 
+<a id="plot_id400232867_renderer_canvas" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id400232867" data-renderer="canvas">Canvas</a>
+</li>
+<li>
+<a id="plot_id400232867_download" class="ggvis-download" data-plot-id="plot_id400232867">Download</a>
+</li>
+</ul>
+</nav>
 </div>
+</div>
+<script type="text/javascript">
+var plot_id400232867_spec = {
+  "data": [
+    {
+      "name": ".0",
+      "format": {
+        "type": "csv",
+        "parse": {
+          "hp": "number",
+          "mpg": "number"
+        }
+      },
+      "values": "\"hp\",\"mpg\"\n110,21\n110,21\n93,22.8\n110,21.4\n175,18.7\n105,18.1\n245,14.3\n62,24.4\n95,22.8\n123,19.2\n123,17.8\n180,16.4\n180,17.3\n180,15.2\n205,10.4\n215,10.4\n230,14.7\n66,32.4\n52,30.4\n65,33.9\n97,21.5\n150,15.5\n150,15.2\n245,13.3\n175,19.2\n66,27.3\n91,26\n113,30.4\n264,15.8\n175,19.7\n335,15\n109,21.4"
+    },
+    {
+      "name": ".0/model_prediction1",
+      "format": {
+        "type": "csv",
+        "parse": {
+          "resp_upr_": "number",
+          "pred_": "number",
+          "resp_lwr_": "number",
+          "resp_": "number"
+        }
+      },
+      "values": "\"resp_upr_\",\"pred_\",\"resp_lwr_\",\"resp_\"\n28.9539561667808,52,24.1480239930215,26.5509900799012\n28.6496491775942,55.5822784810127,23.9635055975436,26.3065773875689\n28.3461713713736,59.1645569620253,23.7781580190995,26.0621646952366\n28.0435887590415,62.746835443038,23.591915246767,25.8177520029042\n27.7419733779546,66.3291139240506,23.4047052431893,25.5733393105719\n27.4414038030538,69.9113924050633,23.2164494334254,25.3289266182396\n27.1419656700355,73.4936708860759,23.0270621817791,25.0845139259073\n26.8437521980344,77.0759493670886,22.8364502691156,24.840101233575\n26.5468646942973,80.6582278481013,22.644512388188,24.5956885412427\n26.251413017124,84.2405063291139,22.4511386806968,24.3512758489104\n25.9575159659163,87.8227848101266,22.2562103472398,24.1068631565781\n25.6653015585694,91.4050632911392,22.0595993699221,23.8624504642458\n25.3749071469108,94.9873417721519,21.8611683969161,23.6180377719135\n25.0864793110353,98.5696202531646,21.6607708481269,23.3736250795811\n24.8001734641519,102.151898734177,21.4582513103458,23.1292123872488\n24.5161530924815,105.73417721519,21.2534462973516,22.8847996949165\n24.234588551911,109.316455696203,21.0461854532575,22.6403870025842\n23.9556553471669,112.898734177215,20.8362932733369,22.3959743102519\n23.6795318332236,116.481012658228,20.6235914026156,22.1515616179196\n23.406396305344,120.063291139241,20.4079015458306,21.9071489255873\n23.1364234855123,123.645569620253,20.1890489809976,21.662736233255\n22.8697804690234,127.227848101266,19.9668666128219,21.4183235409227\n22.6066222625552,130.810126582278,19.7411994346255,21.1739108485903\n22.3470871172004,134.392405063291,19.5119091953157,20.929498156258\n22.0912919258557,137.974683544304,19.2788790019957,20.6850854639257\n21.8393280006864,141.556962025316,19.0420175425005,20.4406727715934\n21.5912575599297,145.139240506329,18.8012625985925,20.1962600792611\n21.3471112247681,148.721518987342,18.5565835490895,19.9518473869288\n21.1068867545826,152.303797468354,18.3079826346104,19.7074346945965\n20.870549140235,155.886075949367,18.0554948642934,19.4630220022642\n20.6380320464542,159.46835443038,17.7991865734096,19.2186093099319\n20.4092404673463,163.050632911392,17.5391527678528,18.9741966175996\n20.1840543545007,166.632911392405,17.2755134960338,18.7297839252672\n19.9623329104666,170.215189873418,17.0084095554033,18.4853712329349\n19.7439192178523,173.79746835443,16.7379978633529,18.2409585406026\n19.5286448929564,177.379746835443,16.4644468035843,17.9965458482703\n19.3163345026336,180.962025316456,16.1879318092424,17.752133155938\n19.1068095506137,184.544303797468,15.9086313765977,17.5077204636057\n18.8998919115727,188.126582278481,15.6267236309741,17.2633077712734\n18.6954066575702,191.708860759494,15.3423835003119,17.0188950789411\n18.4931842755888,195.291139240506,15.0557804976288,16.7744823866088\n18.293062314226,198.873417721519,14.7670770743269,16.5300696942765\n18.0948865224078,202.455696202532,14.4764274814805,16.2856570019441\n17.8985115554182,206.037974683544,14.1839770638055,16.0412443096118\n17.7038013264989,209.620253164557,13.8898619080601,15.7968316172795\n17.510629078716,213.20253164557,13.5942087711785,15.5524189249472\n17.3188772443094,216.784810126582,13.2971352209205,15.3080062326149\n17.1284371493558,220.367088607595,12.9987499312094,15.0635935402826\n16.939208611706,223.949367088608,12.6991530841945,14.8191808479503\n16.7510994707369,227.53164556962,12.398436840499,14.574768155618\n16.5640250789958,231.113924050633,12.0966858475755,14.3303554632857\n16.377907778547,234.696202531646,11.7939777633597,14.0859427709534\n16.1926763787963,238.278481012658,11.4903837784458,13.841530078621\n16.0082656477047,241.860759493671,11.1859691248727,13.5971173862887\n15.8246158244662,245.443037974684,10.8807935634466,13.3527046939564\n15.6416721587767,249.025316455696,10.5749118444715,13.1082920016241\n15.4593844795965,252.607594936709,10.2683741389871,12.8638793092918\n15.2777067946728,256.189873417722,9.96122643924618,12.6194666169595\n15.0965969209158,259.772151898734,9.65351092833856,12.3750539246272\n14.9160161449042,263.354430379747,9.34526631968554,12.1306412322949\n14.7359289122555,266.936708860759,9.03652816766962,11.8862285399626\n14.5563025442557,270.518987341772,8.72732915100475,11.6418158476303\n14.3771069799548,274.101265822785,8.41769933064106,11.3974031552979\n14.1983145418528,277.683544303797,8.10766638407845,11.1529904629656\n14.0198997232979,281.26582278481,7.79725581796873,10.9085777706333\n13.8418389957637,284.848101265823,7.48649116083834,10.664165078301\n13.6641106342545,288.430379746835,7.17539413768294,10.4197523859687\n13.4866945591898,292.012658227848,6.86398482808294,10.1753396936364\n13.3095721932318,295.594936708861,6.55228180937632,9.93092700130408\n13.1327263316361,299.177215189873,6.24030228630747,9.68651430897177\n12.9561410248252,302.759493670886,5.92806220845368,9.44210161663946\n12.779801471997,306.341772151899,5.61557637661734,9.19768892430714\n12.6036939246859,309.924050632911,5.30285853926373,8.95327623197483\n12.4278055993024,313.506329113924,4.98992147998267,8.70886353964253\n12.2521245977622,317.088607594937,4.67677709685819,8.46445084731021\n12.076639835412,320.670886075949,4.36343647454384,8.22003815497791\n11.9013409755296,324.253164556962,4.04990994976163,7.9756254626456\n11.7262183697557,327.835443037975,3.73620717087089,7.73121277031328\n11.5512630038744,331.417721518987,3.4223371520876,7.48680007798098\n11.3764664484213,335,3.10830832287606,7.24238738564866"
+    },
+    {
+      "name": "scale/x",
+      "format": {
+        "type": "csv",
+        "parse": {
+          "domain": "number"
+        }
+      },
+      "values": "\"domain\"\n37.85\n349.15"
+    },
+    {
+      "name": "scale/y",
+      "format": {
+        "type": "csv",
+        "parse": {
+          "domain": "number"
+        }
+      },
+      "values": "\"domain\"\n1.56872373901986\n35.4395845838562"
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "domain": {
+        "data": "scale/x",
+        "field": "data.domain"
+      },
+      "zero": false,
+      "nice": false,
+      "clamp": false,
+      "range": "width"
+    },
+    {
+      "name": "y",
+      "domain": {
+        "data": "scale/y",
+        "field": "data.domain"
+      },
+      "zero": false,
+      "nice": false,
+      "clamp": false,
+      "range": "height"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "properties": {
+        "update": {
+          "size": {
+            "value": 50
+          },
+          "fill": {
+            "value": "red"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "x": {
+            "scale": "x",
+            "field": "data.hp"
+          },
+          "y": {
+            "scale": "y",
+            "field": "data.mpg"
+          }
+        },
+        "ggvis": {
+          "data": {
+            "value": ".0"
+          }
+        }
+      },
+      "from": {
+        "data": ".0"
+      }
+    },
+    {
+      "type": "area",
+      "properties": {
+        "update": {
+          "fill": {
+            "value": "red"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "data.resp_upr_"
+          },
+          "fillOpacity": {
+            "value": 0.2
+          },
+          "x": {
+            "scale": "x",
+            "field": "data.pred_"
+          },
+          "y": {
+            "scale": "y",
+            "field": "data.resp_lwr_"
+          },
+          "stroke": {
+            "value": "transparent"
+          }
+        },
+        "ggvis": {
+          "data": {
+            "value": ".0/model_prediction1"
+          }
+        }
+      },
+      "from": {
+        "data": ".0/model_prediction1"
+      }
+    },
+    {
+      "type": "line",
+      "properties": {
+        "update": {
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 2
+          },
+          "x": {
+            "scale": "x",
+            "field": "data.pred_"
+          },
+          "y": {
+            "scale": "y",
+            "field": "data.resp_"
+          },
+          "fill": {
+            "value": "transparent"
+          }
+        },
+        "ggvis": {
+          "data": {
+            "value": ".0/model_prediction1"
+          }
+        }
+      },
+      "from": {
+        "data": ".0/model_prediction1"
+      }
+    }
+  ],
+  "legends": [],
+  "axes": [
+    {
+      "type": "x",
+      "scale": "x",
+      "orient": "bottom",
+      "layer": "back",
+      "grid": true,
+      "title": "hp"
+    },
+    {
+      "type": "y",
+      "scale": "y",
+      "orient": "left",
+      "layer": "back",
+      "grid": true,
+      "title": "mpg"
+    }
+  ],
+  "padding": null,
+  "ggvis_opts": {
+    "keep_aspect": false,
+    "resizable": true,
+    "padding": {},
+    "duration": 250,
+    "renderer": "svg",
+    "hover_duration": 0,
+    "width": 672,
+    "height": 480
+  },
+  "handlers": null
+};
+ggvis.getPlot("plot_id400232867").parseSpec(plot_id400232867_spec);
+</script>
+<p>This plot can be broken down into smaller components in the same as <code>ggplot</code> graphics are built-up from smaller components. We’re plotting the data and overlaying a straight line, which is the prediction from a linear model that we’ve fitted to the data. We have also added pointwise 95% confidence interval bands to our linear model.</p>
+<p>Horsepower is related to the number of cylinders in the engine. So let’s group the data into number of cylinders and then, treating each group independently, fit a new linear model. Therefore, we are fitting a piecewise linear model.</p>
+<div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb538-1" title="1"><span class="co">## piecewise linear</span></a>
+<a class="sourceLine" id="cb538-2" title="2">mtcars <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb538-3" title="3"><span class="st">    </span><span class="kw">ggvis</span>(<span class="op">~</span>wt, <span class="op">~</span>mpg, <span class="dt">fill =</span> <span class="op">~</span><span class="kw">factor</span>(cyl)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb538-4" title="4"><span class="st">    </span><span class="kw">layer_points</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb538-5" title="5"><span class="st">    </span><span class="kw">group_by</span>(cyl) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb538-6" title="6"><span class="st">    </span><span class="kw">layer_model_predictions</span>(<span class="dt">model =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## Guessing formula = mpg ~ wt</code></pre>
+<div id="plot_id241246402-container" class="ggvis-output-container">
+<div id="plot_id241246402" class="ggvis-output"></div>
+<div class="plot-gear-icon">
+<nav class="ggvis-control">
+<a class="ggvis-dropdown-toggle" title="Controls" onclick="return false;"></a>
+<ul class="ggvis-dropdown">
+<li>
+Renderer: 
+<a id="plot_id241246402_renderer_svg" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id241246402" data-renderer="svg">SVG</a>
+ | 
+<a id="plot_id241246402_renderer_canvas" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id241246402" data-renderer="canvas">Canvas</a>
+</li>
+<li>
+<a id="plot_id241246402_download" class="ggvis-download" data-plot-id="plot_id241246402">Download</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+<script type="text/javascript">
+var plot_id241246402_spec = {
+  "data": [
+    {
+      "name": ".0",
+      "format": {
+        "type": "csv",
+        "parse": {
+          "wt": "number",
+          "mpg": "number"
+        }
+      },
+      "values": "\"factor(cyl)\",\"wt\",\"mpg\"\n\"6\",2.62,21\n\"6\",2.875,21\n\"4\",2.32,22.8\n\"6\",3.215,21.4\n\"8\",3.44,18.7\n\"6\",3.46,18.1\n\"8\",3.57,14.3\n\"4\",3.19,24.4\n\"4\",3.15,22.8\n\"6\",3.44,19.2\n\"6\",3.44,17.8\n\"8\",4.07,16.4\n\"8\",3.73,17.3\n\"8\",3.78,15.2\n\"8\",5.25,10.4\n\"8\",5.424,10.4\n\"8\",5.345,14.7\n\"4\",2.2,32.4\n\"4\",1.615,30.4\n\"4\",1.835,33.9\n\"4\",2.465,21.5\n\"8\",3.52,15.5\n\"8\",3.435,15.2\n\"8\",3.84,13.3\n\"8\",3.845,19.2\n\"4\",1.935,27.3\n\"4\",2.14,26\n\"4\",1.513,30.4\n\"8\",3.17,15.8\n\"6\",2.77,19.7\n\"8\",3.57,15\n\"4\",2.78,21.4"
+    },
+    {
+      "name": ".0/group_by1/model_prediction2_flat",
+      "format": {
+        "type": "csv",
+        "parse": {
+          "cyl": "number",
+          "resp_upr_": "number",
+          "pred_": "number",
+          "resp_lwr_": "number",
+          "resp_": "number"
+        }
+      },
+      "values": "\"cyl\",\"factor(cyl)\",\"resp_upr_\",\"pred_\",\"resp_lwr_\",\"resp_\"\n4,\"4\",34.9800883018005,1.513,27.0744052837557,31.0272467927781\n4,\"4\",34.7878615744043,1.53422784810127,27.0268836222127,30.9073725983085\n4,\"4\",34.5963328605434,1.55545569620253,26.9786639471342,30.7874984038388\n4,\"4\",34.4055423024242,1.5766835443038,26.9297061163141,30.6676242093691\n4,\"4\",34.2155327168905,1.59791139240506,26.8799673129085,30.5477500148995\n4,\"4\",34.0263497684374,1.61913924050633,26.8294018724222,30.4278758204298\n4,\"4\",33.8380421479348,1.64036708860759,26.7779611039855,30.3080016259602\n4,\"4\",33.6506617556389,1.66159493670886,26.7255931073421,30.1881274314905\n4,\"4\",33.4642638865707,1.68282278481013,26.6722425874709,30.0682532370208\n4,\"4\",33.278907415743,1.70405063291139,26.6178506693593,29.9483790425512\n4,\"4\",33.094654980002,1.72527848101266,26.562354716161,29.8285048480815\n4,\"4\",32.9115731524215,1.74650632911392,26.5056881548022,29.7086306536118\n4,\"4\",32.7297326042198,1.76773417721519,26.4477803140646,29.5887564591422\n4,\"4\",32.5492082480776,1.78896202531646,26.3885562812674,29.4688822646725\n4,\"4\",32.3700793555192,1.81018987341772,26.3279367848865,29.3490080702029\n4,\"4\",32.1924296396951,1.83141772151899,26.2658381117713,29.2291338757332\n4,\"4\",32.016347293513,1.85264556962025,26.2021720690141,29.1092596812635\n4,\"4\",31.8419249716569,1.87387341772152,26.1368460019308,28.9893854867939\n4,\"4\",31.6692597036891,1.89510126582278,26.0697628809594,28.8695112923242\n4,\"4\",31.4984527242664,1.91632911392405,26.0008214714427,28.7496370978545\n4,\"4\",31.3296092056584,1.93755696202532,25.9299166011113,28.6297629033849\n4,\"4\",31.1628378774112,1.95878481012658,25.8569395404193,28.5098887089152\n4,\"4\",30.9982505183714,1.98001265822785,25.7817785105198,28.3900145144456\n4,\"4\",30.8359613076045,2.00124050632911,25.7043193323473,28.2701403199759\n4,\"4\",30.6760860232353,2.02246835443038,25.6244462277772,28.1502661255062\n4,\"4\",30.5187410821409,2.04369620253165,25.5420427799323,28.0303919310366\n4,\"4\",30.3640424188694,2.06492405063291,25.4569930542644,27.9105177365669\n4,\"4\",30.2121042092076,2.08615189873418,25.3691828749869,27.7906435420973\n4,\"4\",30.0630374523529,2.10737974683544,25.2785012429023,27.6707693476276\n4,\"4\",29.9169484353639,2.12860759493671,25.1848418709519,27.5508951531579\n4,\"4\",29.7739371139142,2.14983544303797,25.0881048034624,27.4310209586883\n4,\"4\",29.6340954535847,2.17106329113924,24.9881980748525,27.3111467642186\n4,\"4\",29.49750578503,2.19229113924051,24.8850393544679,27.1912725697489\n4,\"4\",29.3642392332396,2.21351898734177,24.778557517319,27.0713983752793\n4,\"4\",29.2343542847436,2.23474683544304,24.6686940768756,26.9515241808096\n4,\"4\",29.1078955560778,2.2559746835443,24.5554044166022,26.83164998634\n4,\"4\",28.9848928216124,2.27720253164557,24.4386587621282,26.7117757918703\n4,\"4\",28.8653603489254,2.29843037974684,24.3184428458759,26.5919015974006\n4,\"4\",28.7492965757988,2.3196582278481,24.1947582300632,26.472027402931\n4,\"4\",28.6366841457288,2.34088607594937,24.0676222711938,26.3521532084613\n4,\"4\",28.5274903000826,2.36211392405063,23.9370677279007,26.2322790139917\n4,\"4\",28.4216676064509,2.3833417721519,23.8031420325931,26.112404819522\n4,\"4\",28.3191549860566,2.40456962025316,23.665906264048,25.9925306250523\n4,\"4\",28.2198789897303,2.42579746835443,23.5254338714351,25.8726564305827\n4,\"4\",28.1237552629424,2.4470253164557,23.3818092092836,25.752782236113\n4,\"4\",28.0306901361137,2.46825316455696,23.235125947173,25.6329080416433\n4,\"4\",27.9405822767629,2.48948101265823,23.0854854175844,25.5130338471737\n4,\"4\",27.8533243444002,2.51070886075949,22.9329949610078,25.393159652704\n4,\"4\",27.7688045964828,2.53193670886076,22.7777663199859,25.2732854582344\n4,\"4\",27.686908403153,2.55316455696203,22.6199141243764,25.1534112637647\n4,\"4\",27.6075196387857,2.57439240506329,22.4595544998043,25.033537069295\n4,\"4\",27.5305219286576,2.59562025316456,22.2968038209931,24.9136628748254\n4,\"4\",27.455799738566,2.61684810126582,22.1317776221454,24.7937886803557\n4,\"4\",27.3832393034878,2.63807594936709,21.9645896682843,24.673914485886\n4,\"4\",27.312729398101,2.65930379746835,21.7953511847317,24.5540402914164\n4,\"4\",27.2441619571281,2.68053164556962,21.6241702367653,24.4341660969467\n4,\"4\",27.1774325570663,2.70175949367089,21.4511512478878,24.3142919024771\n4,\"4\",27.1124407731176,2.72298734177215,21.2763946428972,24.1944177080074\n4,\"4\",27.0490904262451,2.74421518987342,21.0999966008303,24.0745435135377\n4,\"4\",26.9872897354914,2.76544303797468,20.9220489026447,23.9546693190681\n4,\"4\",26.9269513902401,2.78667088607595,20.7426388589567,23.8347951245984\n4,\"4\",26.8679925561809,2.80789873417721,20.5618493040766,23.7149209301288\n4,\"4\",26.8103348275276,2.82912658227848,20.3797586437906,23.5950467356591\n4,\"4\",26.7539041366752,2.85035443037975,20.1964409457036,23.4751725411894\n4,\"4\",26.6986306310718,2.87158227848101,20.0119660623677,23.3552983467198\n4,\"4\",26.6444485256997,2.89281012658228,19.8263997788006,23.2354241522501\n4,\"4\",26.5912959382549,2.91403797468354,19.639803977306,23.1155499577804\n4,\"4\",26.5391147129223,2.93526582278481,19.4522368136993,22.9956757633108\n4,\"4\",26.4878502375736,2.95649367088608,19.2637529001086,22.8758015688411\n4,\"4\",26.43745125828,2.97772151898734,19.0744034904629,22.7559273743715\n4,\"4\",26.3878696942205,2.99894936708861,18.8842366655831,22.6360531799018\n4,\"4\",26.3390604553797,3.02017721518987,18.6932975154845,22.5161789854321\n4,\"4\",26.2909812648498,3.04140506329114,18.5016283170751,22.3963047909625\n4,\"4\",26.2435924870719,3.0626329113924,18.3092687059137,22.2764305964928\n4,\"4\",26.1968569629596,3.08386075949367,18.1162558410868,22.1565564020232\n4,\"4\",26.1507398525278,3.10508860759494,17.9226245625792,22.0366822075535\n4,\"4\",26.1052084853965,3.1263164556962,17.7284075407712,21.9168080130838\n4,\"4\",26.0602322193357,3.14754430379747,17.5336354178926,21.7969338186142\n4,\"4\",26.0157823068645,3.16877215189873,17.3383369414245,21.6770596241445\n4,\"4\",25.9718317697946,3.19,17.1425390895551,21.5571854296748\n6,\"6\",23.1723845745727,2.62,19.0775493306446,21.1249669526086\n6,\"6\",23.1125231041877,2.6306329113924,19.0782895608045,21.0954063324961\n6,\"6\",23.0528695730455,2.64126582278481,19.0788218517216,21.0658457123835\n6,\"6\",22.993433572926,2.65189873417722,19.0791366116161,21.036285092271\n6,\"6\",22.9342252187496,2.66253164556962,19.0792237255673,21.0067244721585\n6,\"6\",22.8752551778727,2.67316455696203,19.0790725262192,20.9771638520459\n6,\"6\",22.8165347005907,2.68379746835443,19.0786717632761,20.9476032319334\n6,\"6\",22.7580756517921,2.69443037974684,19.0780095718497,20.9180426118209\n6,\"6\",22.699890543671,2.70506329113924,19.0770734397456,20.8884819917083\n6,\"6\",22.6419925693754,2.71569620253165,19.0758501738162,20.8589213715958\n6,\"6\",22.5843956374238,2.72632911392405,19.0743258655427,20.8293607514833\n6,\"6\",22.5271144066764,2.73696202531646,19.072485856065,20.7998001313707\n6,\"6\",22.4701643215869,2.74759493670886,19.0703147009294,20.7702395112582\n6,\"6\",22.4135616473952,2.75822784810127,19.0677961348961,20.7406788911456\n6,\"6\",22.3573235048459,2.76886075949367,19.0649130372203,20.7111182710331\n6,\"6\",22.3014679039278,2.77949367088608,19.0616473979134,20.6815576509206\n6,\"6\",22.2460137760314,2.79012658227848,19.0579802855846,20.651997030808\n6,\"6\",22.1909810038126,2.80075949367089,19.0538918175784,20.6224364106955\n6,\"6\",22.1363904479253,2.81139240506329,19.0493611332406,20.592875790583\n6,\"6\",22.0822639696583,2.8220253164557,19.0443663712825,20.5633151704704\n6,\"6\",22.0286244483649,2.8326582278481,19.0388846523509,20.5337545503579\n6,\"6\",21.9754957924307,2.84329113924051,19.03289206806,20.5041939302453\n6,\"6\",21.9229029423707,2.85392405063291,19.026363677895,20.4746333101328\n6,\"6\",21.870871864499,2.86455696202532,19.0192735155415,20.4450726900203\n6,\"6\",21.8194295334774,2.87518987341772,19.0115946063381,20.4155120699077\n6,\"6\",21.7686039019237,2.88582278481013,19.0032989976667,20.3859514497952\n6,\"6\",21.7184238551734,2.89645569620253,18.9943578041919,20.3563908296827\n6,\"6\",21.6689191492339,2.90708860759494,18.9847412699063,20.3268302095701\n6,\"6\",21.6201203299789,2.91772151898734,18.9744188489363,20.2972695894576\n6,\"6\",21.5720586317122,2.92835443037975,18.9633593069779,20.267708969345\n6,\"6\",21.5247658533985,2.93898734177215,18.9515308450665,20.2381483492325\n6,\"6\",21.4782742111402,2.94962025316456,18.9389012470997,20.20858772912\n6,\"6\",21.432616165881,2.96025316455696,18.9254380521338,20.1790271090074\n6,\"6\",21.3878242258559,2.97088607594937,18.9111087519339,20.1494664888949\n6,\"6\",21.3439307239869,2.98151898734177,18.8958810135778,20.1199058687824\n6,\"6\",21.3009675712443,2.99215189873418,18.8797229260953,20.0903452486698\n6,\"6\",21.2589659879359,3.00278481012658,18.8626032691787,20.0607846285573\n6,\"6\",21.2179562159366,3.01341772151899,18.8444918009529,20.0312240084447\n6,\"6\",21.1779672159739,3.02405063291139,18.8253595606905,20.0016633883322\n6,\"6\",21.1390263551952,3.0346835443038,18.8051791812441,19.9721027682197\n6,\"6\",21.1011590912963,3.0453164556962,18.783925204918,19.9425421481071\n6,\"6\",21.0643886603937,3.05594936708861,18.7615743955954,19.9129815279946\n6,\"6\",21.0287357765203,3.06658227848101,18.7381060392438,19.8834209078821\n6,\"6\",20.9942183510101,3.07721518987342,18.713502224529,19.8538602877695\n6,\"6\",20.9608512400729,3.08784810126582,18.687748095241,19.824299667657\n6,\"6\",20.9286460284799,3.09848101265823,18.660832066609,19.7947390475445\n6,\"6\",20.8976108564787,3.10911392405063,18.6327459983851,19.7651784274319\n6,\"6\",20.8677502958511,3.11974683544304,18.6034853187876,19.7356178073194\n6,\"6\",20.8390652794599,3.13037974683544,18.5730490949538,19.7060571872068\n6,\"6\",20.8115530867982,3.14101265822785,18.5414400473904,19.6764965670943\n6,\"6\",20.785207386061,3.15164556962025,18.5086645079026,19.6469359469818\n6,\"6\",20.7600183312298,3.16227848101266,18.4747323225087,19.6173753268692\n6,\"6\",20.7359727107328,3.17291139240506,18.4396567027806,19.5878147067567\n6,\"6\",20.7130541425258,3.18354430379747,18.4034540307625,19.5582540866442\n6,\"6\",20.6912433090431,3.19417721518987,18.3661436240201,19.5286934665316\n6,\"6\",20.6705182244534,3.20481012658228,18.3277474683848,19.4991328464191\n6,\"6\",20.6508545260602,3.21544303797468,18.2882899265529,19.4695722263065\n6,\"6\",20.6322257815163,3.22607594936709,18.2477974308717,19.440011606194\n6,\"6\",20.6146038037327,3.23670886075949,18.2062981684303,19.4104509860815\n6,\"6\",20.5979589659109,3.2473417721519,18.163821766027,19.3808903659689\n6,\"6\",20.5822605099377,3.2579746835443,18.1203989817751,19.3513297458564\n6,\"6\",20.5674768423646,3.26860759493671,18.0760614091232,19.3217691257439\n6,\"6\",20.5535758132878,3.27924050632911,18.0308411979748,19.2922085056313\n6,\"6\",20.5405249745576,3.28987341772152,17.9847707964799,19.2626478855188\n6,\"6\",20.5282918148291,3.30050632911392,17.9378827159833,19.2330872654062\n6,\"6\",20.5168439699684,3.31113924050633,17.890209320619,19.2035266452937\n6,\"6\",20.5061494082127,3.32177215189873,17.8417826421496,19.1739660251812\n6,\"6\",20.4961765902363,3.33240506329114,17.792634219901,19.1444054050686\n6,\"6\",20.4868946048837,3.34303797468354,17.7427949650285,19.1148447849561\n6,\"6\",20.4782732818028,3.35367088607595,17.6922950478843,19.0852841648436\n6,\"6\",20.4702832825505,3.36430379746835,17.6411638069116,19.055723544731\n6,\"6\",20.462896171969,3.37493670886076,17.589429677268,19.0261629246185\n6,\"6\",20.4560844717538,3.38556962025316,17.5371201372581,18.9966023045059\n6,\"6\",20.4498216981771,3.39620253164557,17.4842616706097,18.9670416843934\n6,\"6\",20.4440823859077,3.40683544303797,17.430879742654,18.9374810642809\n6,\"6\",20.4388420997957,3.41746835443038,17.376998788541,18.9079204441683\n6,\"6\",20.4340774363812,3.42810126582278,17.3226422117304,18.8783598240558\n6,\"6\",20.4297660167573,3.43873417721519,17.2678323911292,18.8487992039433\n6,\"6\",20.4258864722709,3.44936708860759,17.2125906953905,18.8192385838307\n6,\"6\",20.4224184243942,3.46,17.1569375030421,18.7896779637182\n8,\"8\",18.6992958991983,3.17,15.1367057991096,16.9180008491539\n8,\"8\",18.6025504459053,3.19853164556962,15.1083435287008,16.8554469873031\n8,\"8\",18.5063553048496,3.22706329113924,15.0794309460548,16.7928931254522\n8,\"8\",18.4107435277022,3.25559493670886,15.0499349995005,16.7303392636013\n8,\"8\",18.315750221402,3.28412658227848,15.019820582099,16.6677854017505\n8,\"8\",18.221412627596,3.3126582278481,14.9890504522032,16.6052315398996\n8,\"8\",18.1277701911419,3.34118987341772,14.9575851649556,16.5426776780488\n8,\"8\",18.0348646136681,3.36972151898734,14.9253830187278,16.4801238161979\n8,\"8\",17.9427398874988,3.39825316455696,14.8924000211953,16.4175699543471\n8,\"8\",17.851442304536,3.42678481012658,14.8585898804564,16.3550160924962\n8,\"8\",17.761020433982,3.4553164556962,14.8239040273087,16.2924622306453\n8,\"8\",17.6715250621331,3.48384810126582,14.7882916754559,16.2299083687945\n8,\"8\",17.5830090869368,3.51237974683544,14.7516999269504,16.1673545069436\n8,\"8\",17.495527359662,3.54091139240506,14.7140739305235,16.1048006450928\n8,\"8\",17.4091364659871,3.56944303797468,14.6753571004967,16.0422467832419\n8,\"8\",17.3238944391672,3.5979746835443,14.6354914036149,15.9796929213911\n8,\"8\",17.2398603988275,3.62650632911392,14.5944177202529,15.9171390595402\n8,\"8\",17.1570941104565,3.65503797468354,14.5520762849222,15.8545851976894\n8,\"8\",17.0756554629441,3.68356962025316,14.5084072087328,15.7920313358385\n8,\"8\",16.9956038645804,3.71210126582278,14.4633510833949,15.7294774739876\n8,\"8\",16.9169975618057,3.7406329113924,14.4168496624679,15.6669236121368\n8,\"8\",16.8398928895852,3.76916455696203,14.3688466109867,15.6043697502859\n8,\"8\",16.7643434673734,3.79769620253165,14.3192883094967,15.5418158884351\n8,\"8\",16.6903993599216,3.82622784810127,14.2681246932468,15.4792620265842\n8,\"8\",16.6181062272256,3.85475949367089,14.2153101022411,15.4167081647334\n8,\"8\",16.5475044921959,3.88329113924051,14.160804113569,15.3541543028825\n8,\"8\",16.4786285576011,3.91182278481013,14.1045723244621,15.2916004410316\n8,\"8\",16.4115061049729,3.94035443037975,14.0465870533887,15.2290465791808\n8,\"8\",16.3461575070749,3.96888607594937,13.9868279275849,15.1664927173299\n8,\"8\",16.2825953820421,3.99741772151899,13.9252823289161,15.1039388554791\n8,\"8\",16.2208243114707,4.02594936708861,13.8619456757857,15.0413849936282\n8,\"8\",16.1608407369642,4.05448101265823,13.7968215265906,14.9788311317774\n8,\"8\",16.1026330405336,4.08301265822785,13.7299214993194,14.9162772699265\n8,\"8\",16.0461818046536,4.11154430379747,13.6612650114977,14.8537234080756\n8,\"8\",15.9914602385588,4.14007594936709,13.5908788538908,14.7911695462248\n8,\"8\",15.9384347493815,4.16860759493671,13.5187966193663,14.7286156843739\n8,\"8\",15.8870656306358,4.19713924050633,13.4450580144103,14.6660618225231\n8,\"8\",15.8373078367516,4.22567088607595,13.3697080845928,14.6035079606722\n8,\"8\",15.7891118109792,4.25420253164557,13.2927963866635,14.5409540988214\n8,\"8\",15.7424243348589,4.28273417721519,13.2143761390822,14.4784002369705\n8,\"8\",15.6971893702164,4.31126582278481,13.1345033800229,14.4158463751197\n8,\"8\",15.6533488687944,4.33979746835443,13.0532361577432,14.3532925132688\n8,\"8\",15.6108435296072,4.36832911392405,12.9706337732286,14.2907386514179\n8,\"8\",15.5696134893919,4.39686075949367,12.8867560897423,14.2281847895671\n8,\"8\",15.5295989366614,4.42539240506329,12.801662918771,14.1656309277162\n8,\"8\",15.4907406445313,4.45392405063291,12.7154134871994,14.1030770658654\n8,\"8\",15.4529804214564,4.48245569620253,12.6280659865726,14.0405232040145\n8,\"8\",15.4162614821927,4.51098734177215,12.5396772021346,13.9779693421637\n8,\"8\",15.3805287436658,4.53951898734177,12.4503022169598,13.9154154803128\n8,\"8\",15.3457290520454,4.56805063291139,12.3599941848785,13.8528616184619\n8,\"8\",15.3118113482838,4.59658227848101,12.2688041649384,13.7903077566111\n8,\"8\",15.2787267797939,4.62511392405063,12.1767810097265,13.7277538947602\n8,\"8\",15.2464287659408,4.65364556962025,12.0839712998779,13.6652000329094\n8,\"8\",15.2148730247105,4.68217721518987,11.9904193174065,13.6026461710585\n8,\"8\",15.1840175674012,4.71070886075949,11.8961670510141,13.5400923092077\n8,\"8\",15.1538226675399,4.73924050632911,11.8012542271737,13.4775384473568\n8,\"8\",15.1242508095215,4.76777215189873,11.7057183614904,13.4149845855059\n8,\"8\",15.0952666217545,4.79630379746835,11.6095948255557,13.3524307236551\n8,\"8\",15.0668367983996,4.82483544303797,11.5129169252088,13.2898768618042\n8,\"8\",15.0389300131448,4.8533670886076,11.415715986762,13.2273229999534\n8,\"8\",15.0115168278645,4.88189873417722,11.3180214483406,13.1647691381025\n8,\"8\",14.9845695984917,4.91043037974684,11.2198609540116,13.1022152762517\n8,\"8\",14.9580623799677,4.93896202531646,11.1212604488339,13.0396614144008\n8,\"8\",14.9319708317432,4.96749367088608,11.0222442733567,12.97710755255\n8,\"8\",14.9062721249679,4.9960253164557,10.9228352564302,12.9145536906991\n8,\"8\",14.8809448522267,5.02455696202532,10.8230548054698,12.8519998288482\n8,\"8\",14.8559689404472,5.05308860759494,10.7229229935476,12.7894459669974\n8,\"8\",14.8313255674154,5.08162025316456,10.6224586428776,12.7268921051465\n8,\"8\",14.8069970821816,5.11015189873418,10.5216794044097,12.6643382432957\n8,\"8\",14.7829669295166,5.1386835443038,10.420601833373,12.6017843814448\n8,\"8\",14.7592195784832,5.16721518987342,10.3192414607047,12.539230519594\n8,\"8\",14.7357404551115,5.19574683544304,10.2176128603747,12.4766766577431\n8,\"8\",14.7125158791116,5.22427848101266,10.1157297126729,12.4141227958922\n8,\"8\",14.6895330045135,5.25281012658228,10.0136048635692,12.3515689340414\n8,\"8\",14.6667797640944,5.2813417721519,9.91125038028669,12.2890150721905\n8,\"8\",14.6442448174328,5.30987341772152,9.80867760324656,12.2264612103397\n8,\"8\",14.6219175024161,5.33840506329114,9.70589719456153,12.1639073484888\n8,\"8\",14.5997877900186,5.36693670886076,9.60291918325737,12.101353486638\n8,\"8\",14.5778462421665,5.39546835443038,9.49975300740769,12.0387996247871\n8,\"8\",14.5560839725069,5.424,9.3964075533656,11.9762457629362"
+    },
+    {
+      "name": ".0/group_by1/model_prediction2",
+      "source": ".0/group_by1/model_prediction2_flat",
+      "transform": [
+        {
+          "type": "treefacet",
+          "keys": [
+            "data.cyl"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "scale/fill",
+      "format": {
+        "type": "csv",
+        "parse": {}
+      },
+      "values": "\"domain\"\n\"4\"\n\"6\"\n\"8\""
+    },
+    {
+      "name": "scale/x",
+      "format": {
+        "type": "csv",
+        "parse": {
+          "domain": "number"
+        }
+      },
+      "values": "\"domain\"\n1.31745\n5.61955"
+    },
+    {
+      "name": "scale/y",
+      "format": {
+        "type": "csv",
+        "parse": {
+          "domain": "number"
+        }
+      },
+      "values": "\"domain\"\n8.11722351594386\n36.2592723392223"
+    }
+  ],
+  "scales": [
+    {
+      "name": "fill",
+      "type": "ordinal",
+      "domain": {
+        "data": "scale/fill",
+        "field": "data.domain"
+      },
+      "points": true,
+      "sort": false,
+      "range": "category10"
+    },
+    {
+      "name": "x",
+      "domain": {
+        "data": "scale/x",
+        "field": "data.domain"
+      },
+      "zero": false,
+      "nice": false,
+      "clamp": false,
+      "range": "width"
+    },
+    {
+      "name": "y",
+      "domain": {
+        "data": "scale/y",
+        "field": "data.domain"
+      },
+      "zero": false,
+      "nice": false,
+      "clamp": false,
+      "range": "height"
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "properties": {
+        "update": {
+          "size": {
+            "value": 50
+          },
+          "fill": {
+            "scale": "fill",
+            "field": "data.factor(cyl)"
+          },
+          "x": {
+            "scale": "x",
+            "field": "data.wt"
+          },
+          "y": {
+            "scale": "y",
+            "field": "data.mpg"
+          }
+        },
+        "ggvis": {
+          "data": {
+            "value": ".0"
+          }
+        }
+      },
+      "from": {
+        "data": ".0"
+      }
+    },
+    {
+      "type": "group",
+      "from": {
+        "data": ".0/group_by1/model_prediction2"
+      },
+      "marks": [
+        {
+          "type": "area",
+          "properties": {
+            "update": {
+              "fill": {
+                "scale": "fill",
+                "field": "data.factor(cyl)"
+              },
+              "y2": {
+                "scale": "y",
+                "field": "data.resp_upr_"
+              },
+              "fillOpacity": {
+                "value": 0.2
+              },
+              "x": {
+                "scale": "x",
+                "field": "data.pred_"
+              },
+              "y": {
+                "scale": "y",
+                "field": "data.resp_lwr_"
+              },
+              "stroke": {
+                "value": "transparent"
+              }
+            },
+            "ggvis": {
+              "data": {
+                "value": ".0/group_by1/model_prediction2"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "from": {
+        "data": ".0/group_by1/model_prediction2"
+      },
+      "marks": [
+        {
+          "type": "line",
+          "properties": {
+            "update": {
+              "stroke": {
+                "value": "#000000"
+              },
+              "strokeWidth": {
+                "value": 2
+              },
+              "x": {
+                "scale": "x",
+                "field": "data.pred_"
+              },
+              "y": {
+                "scale": "y",
+                "field": "data.resp_"
+              },
+              "fill": {
+                "value": "transparent"
+              }
+            },
+            "ggvis": {
+              "data": {
+                "value": ".0/group_by1/model_prediction2"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "orient": "right",
+      "fill": "fill",
+      "title": "factor(cyl)"
+    }
+  ],
+  "axes": [
+    {
+      "type": "x",
+      "scale": "x",
+      "orient": "bottom",
+      "layer": "back",
+      "grid": true,
+      "title": "wt"
+    },
+    {
+      "type": "y",
+      "scale": "y",
+      "orient": "left",
+      "layer": "back",
+      "grid": true,
+      "title": "mpg"
+    }
+  ],
+  "padding": null,
+  "ggvis_opts": {
+    "keep_aspect": false,
+    "resizable": true,
+    "padding": {},
+    "duration": 250,
+    "renderer": "svg",
+    "hover_duration": 0,
+    "width": 672,
+    "height": 480
+  },
+  "handlers": null
+};
+ggvis.getPlot("plot_id241246402").parseSpec(plot_id241246402_spec);
+</script>
+<div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb540-1" title="1"><span class="co">## the group_by(cyl) tells next layer to group by cylinder factor</span></a></code></pre></div>
+<p>The plot shows three separate lines, with their corresponding 95% confidence intervals.</p>
 </div>
 <div id="interactiveresponsive-graphics" class="section level3">
 <h3><span class="header-section-number">5.3.2</span> Interactive/responsive graphics</h3>
 <p>You might be wondering, why should I use <code>ggvis</code> when I can use <code>ggplot</code>? One of the main advantages of <code>ggvis</code> is that you can make your graphics interactive (they will be viewed with a browser to achieve this). This can be particularly cool if you want to embed your graphics in a responsive web environment, or you wish to manipulate features of the plot to gain a deeper insight into the data you’re plotting.</p>
-<p>The following code generates a basic interactive plot.</p>
-<div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb544-1" title="1"><span class="co"># In this plot we have:</span></a>
-<a class="sourceLine" id="cb544-2" title="2"><span class="co"># a smoothing layer with input selection for span</span></a>
-<a class="sourceLine" id="cb544-3" title="3"><span class="co"># and a point layer with input selection for size</span></a>
-<a class="sourceLine" id="cb544-4" title="4">mtcars <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb544-5" title="5"><span class="st">  </span><span class="kw">ggvis</span>(<span class="op">~</span>wt, <span class="op">~</span>mpg, <span class="dt">fill :=</span> <span class="st">&quot;purple&quot;</span>, <span class="dt">stroke :=</span> <span class="st">&quot;black&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb544-6" title="6"><span class="st">  </span><span class="kw">layer_smooths</span>(<span class="dt">span =</span> <span class="kw">input_slider</span>(<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dt">value =</span> <span class="dv">1</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb544-7" title="7"><span class="st">  </span><span class="kw">layer_points</span>(<span class="dt">size :=</span> <span class="kw">input_slider</span>(<span class="dv">100</span>, <span class="dv">1000</span>, <span class="dt">value =</span> <span class="dv">100</span>)) </a></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-232"></span>
-<img src="week5/ggvis-interactive.png" alt="Interactive plot using `ggvis`. When viewed in the RStudio Viewer or in a web browser you can move the sliders at the bottom with your mouse." width="\linewidth" />
-<p class="caption">
-Figure 5.3: Interactive plot using <code>ggvis</code>. When viewed in the RStudio Viewer or in a web browser you can move the sliders at the bottom with your mouse.
-</p>
+<p>The following code generates a basic interactive plot, when it is run alone in R/RStudio console. Read the warning to see why it is not interactive here.</p>
+<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb541-1" title="1"><span class="co"># In this plot we have:</span></a>
+<a class="sourceLine" id="cb541-2" title="2"><span class="co"># a smoothing layer with input selection for span</span></a>
+<a class="sourceLine" id="cb541-3" title="3"><span class="co"># and a point layer with input selection for size</span></a>
+<a class="sourceLine" id="cb541-4" title="4">vis0 &lt;-<span class="st"> </span>mtcars <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb541-5" title="5"><span class="st">    </span><span class="kw">ggvis</span>(<span class="op">~</span>wt, <span class="op">~</span>mpg, <span class="dt">fill :=</span> <span class="st">&quot;purple&quot;</span>, <span class="dt">stroke :=</span> <span class="st">&quot;black&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb541-6" title="6"><span class="st">    </span><span class="kw">layer_smooths</span>(<span class="dt">span =</span> <span class="kw">input_slider</span>(<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dt">value =</span> <span class="dv">1</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb541-7" title="7"><span class="st">    </span><span class="kw">layer_points</span>(<span class="dt">size :=</span> <span class="kw">input_slider</span>(<span class="dv">100</span>, <span class="dv">1000</span>, <span class="dt">value =</span> <span class="dv">100</span>))</a>
+<a class="sourceLine" id="cb541-8" title="8">vis0</a></code></pre></div>
+<pre><code>## Warning: Can&#39;t output dynamic/interactive ggvis plots in a knitr document.
+## Generating a static (non-dynamic, non-interactive) version of the plot.</code></pre>
+<div id="plot_id812560195-container" class="ggvis-output-container">
+<div id="plot_id812560195" class="ggvis-output"></div>
+<div class="plot-gear-icon">
+<nav class="ggvis-control">
+<a class="ggvis-dropdown-toggle" title="Controls" onclick="return false;"></a>
+<ul class="ggvis-dropdown">
+<li>
+Renderer: 
+<a id="plot_id812560195_renderer_svg" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id812560195" data-renderer="svg">SVG</a>
+ | 
+<a id="plot_id812560195_renderer_canvas" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id812560195" data-renderer="canvas">Canvas</a>
+</li>
+<li>
+<a id="plot_id812560195_download" class="ggvis-download" data-plot-id="plot_id812560195">Download</a>
+</li>
+</ul>
+</nav>
 </div>
+</div>
+<script type="text/javascript">
+var plot_id812560195_spec = {
+  "data": [
+    {
+      "name": ".0",
+      "format": {
+        "type": "csv",
+        "parse": {
+          "wt": "number",
+          "mpg": "number",
+          "reactive_137215067": "number"
+        }
+      },
+      "values": "\"wt\",\"mpg\",\"reactive_137215067\"\n2.62,21,100\n2.875,21,100\n2.32,22.8,100\n3.215,21.4,100\n3.44,18.7,100\n3.46,18.1,100\n3.57,14.3,100\n3.19,24.4,100\n3.15,22.8,100\n3.44,19.2,100\n3.44,17.8,100\n4.07,16.4,100\n3.73,17.3,100\n3.78,15.2,100\n5.25,10.4,100\n5.424,10.4,100\n5.345,14.7,100\n2.2,32.4,100\n1.615,30.4,100\n1.835,33.9,100\n2.465,21.5,100\n3.52,15.5,100\n3.435,15.2,100\n3.84,13.3,100\n3.845,19.2,100\n1.935,27.3,100\n2.14,26,100\n1.513,30.4,100\n3.17,15.8,100\n2.77,19.7,100\n3.57,15,100\n2.78,21.4,100"
+    },
+    {
+      "name": ".0/model_prediction1",
+      "format": {
+        "type": "csv",
+        "parse": {
+          "pred_": "number",
+          "resp_": "number"
+        }
+      },
+      "values": "\"pred_\",\"resp_\"\n1.513,32.3559076033652\n1.56250632911392,31.8753059433938\n1.61201265822785,31.4002837186303\n1.66151898734177,30.9307786143783\n1.7110253164557,30.4667283159411\n1.76053164556962,30.0080705086221\n1.81003797468354,29.5547428777247\n1.85954430379747,29.1066831085523\n1.90905063291139,28.6638288864083\n1.95855696202532,28.2261593300757\n2.00806329113924,27.7939085521993\n2.05756962025316,27.3671227416083\n2.10707594936709,26.9458006046978\n2.15658227848101,26.5299408478625\n2.20608860759494,26.1195421774975\n2.25559493670886,25.7146032999975\n2.30510126582278,25.3151229217576\n2.35460759493671,24.9210997491726\n2.40411392405063,24.5325324886374\n2.45362025316456,24.1494198465469\n2.50312658227848,23.7704013112288\n2.55263291139241,23.3930410310992\n2.60213924050633,23.0184854507692\n2.65164556962025,22.648013375053\n2.70115189873418,22.2829036087647\n2.7506582278481,21.9244349567186\n2.80016455696203,21.5738862237289\n2.84967088607595,21.2325362146096\n2.89917721518987,20.8994648774453\n2.9486835443038,20.563314278298\n2.99818987341772,20.2260322794124\n3.04769620253165,19.8921207313051\n3.09720253164557,19.5660814844932\n3.14670886075949,19.2524163894935\n3.19621518987342,18.9556272968227\n3.24572151898734,18.6776819657173\n3.29522784810127,18.4109241123963\n3.34473417721519,18.1533810871694\n3.39424050632911,17.9038917888661\n3.44374683544304,17.6613801039195\n3.49325316455696,17.4367412601373\n3.54275949367089,17.2198928657746\n3.59226582278481,16.9885817927012\n3.64177215189873,16.7560619903523\n3.69127848101266,16.5274875375278\n3.74078481012658,16.3032371340526\n3.79029113924051,16.0836894797512\n3.83979746835443,15.8692232744485\n3.88930379746835,15.6600927173047\n3.93881012658228,15.4562638006676\n3.9883164556962,15.2577332064667\n4.03782278481013,15.064498632161\n4.08732911392405,14.8765577752094\n4.13683544303798,14.6939083330709\n4.1863417721519,14.5165480032044\n4.23584810126582,14.344474483069\n4.28535443037975,14.1776854701235\n4.33486075949367,14.016178661827\n4.3843670886076,13.8599517556385\n4.43387341772152,13.7090024490167\n4.48337974683544,13.5633284394209\n4.53288607594937,13.4229274243098\n4.58239240506329,13.2877971011425\n4.63189873417722,13.157935167378\n4.68140506329114,13.0333393204751\n4.73091139240506,12.9140072578929\n4.78041772151899,12.7999366770903\n4.82992405063291,12.6911252755264\n4.87943037974684,12.58757075066\n4.92893670886076,12.4892707999501\n4.97844303797468,12.3962231208557\n5.02794936708861,12.3084254108357\n5.07745569620253,12.2258753673492\n5.12696202531646,12.148570687855\n5.17646835443038,12.0765090698122\n5.2259746835443,12.0096882106797\n5.27548101265823,11.9481058079165\n5.32498734177215,11.8917595589815\n5.37449367088608,11.8406471613337\n5.424,11.7947663124321"
+    },
+    {
+      "name": "scale/x",
+      "format": {
+        "type": "csv",
+        "parse": {
+          "domain": "number"
+        }
+      },
+      "values": "\"domain\"\n1.31745\n5.61955"
+    },
+    {
+      "name": "scale/y",
+      "format": {
+        "type": "csv",
+        "parse": {
+          "domain": "number"
+        }
+      },
+      "values": "\"domain\"\n9.225\n35.075"
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "domain": {
+        "data": "scale/x",
+        "field": "data.domain"
+      },
+      "zero": false,
+      "nice": false,
+      "clamp": false,
+      "range": "width"
+    },
+    {
+      "name": "y",
+      "domain": {
+        "data": "scale/y",
+        "field": "data.domain"
+      },
+      "zero": false,
+      "nice": false,
+      "clamp": false,
+      "range": "height"
+    }
+  ],
+  "marks": [
+    {
+      "type": "line",
+      "properties": {
+        "update": {
+          "stroke": {
+            "value": "black"
+          },
+          "strokeWidth": {
+            "value": 2
+          },
+          "x": {
+            "scale": "x",
+            "field": "data.pred_"
+          },
+          "y": {
+            "scale": "y",
+            "field": "data.resp_"
+          },
+          "fill": {
+            "value": "transparent"
+          }
+        },
+        "ggvis": {
+          "data": {
+            "value": ".0/model_prediction1"
+          }
+        }
+      },
+      "from": {
+        "data": ".0/model_prediction1"
+      }
+    },
+    {
+      "type": "symbol",
+      "properties": {
+        "update": {
+          "fill": {
+            "value": "purple"
+          },
+          "stroke": {
+            "value": "black"
+          },
+          "x": {
+            "scale": "x",
+            "field": "data.wt"
+          },
+          "y": {
+            "scale": "y",
+            "field": "data.mpg"
+          },
+          "size": {
+            "field": "data.reactive_137215067"
+          }
+        },
+        "ggvis": {
+          "data": {
+            "value": ".0"
+          }
+        }
+      },
+      "from": {
+        "data": ".0"
+      }
+    }
+  ],
+  "legends": [],
+  "axes": [
+    {
+      "type": "x",
+      "scale": "x",
+      "orient": "bottom",
+      "layer": "back",
+      "grid": true,
+      "title": "wt"
+    },
+    {
+      "type": "y",
+      "scale": "y",
+      "orient": "left",
+      "layer": "back",
+      "grid": true,
+      "title": "mpg"
+    }
+  ],
+  "padding": null,
+  "ggvis_opts": {
+    "keep_aspect": false,
+    "resizable": true,
+    "padding": {},
+    "duration": 250,
+    "renderer": "svg",
+    "hover_duration": 0,
+    "width": 672,
+    "height": 480
+  },
+  "handlers": null
+};
+ggvis.getPlot("plot_id812560195").parseSpec(plot_id812560195_spec);
+</script>
 <p>This particular plot has two sliders which you can play with to:</p>
 <ul>
 <li>adjust the size of the data points;</li>
@@ -373,29 +1052,207 @@ Figure 5.3: Interactive plot using <code>ggvis</code>. When viewed in the RStudi
 <p>When modelling a dataset we often make assumptions about how the data is generated. For example, do the residuals follow an underlying Normal distribution, and if so, can we estimate it’s parameters. Alternatively, the data may be distributed as a Poisson, Gamma, or Chi-squared distribution. It’s not always appropriate to assume that the data fits some pre-specified distributional family, especially if we don’t have a lot of data. Instead, we may want to model the data without making such distributional assumptions. In statistics this is known as nonparametrics, and the most common type of nonparametric density estimation is <em>kernel density estimation</em>. Further details can be found here <a href="https://en.wikipedia.org/wiki/Kernel_density_estimation" class="uri">https://en.wikipedia.org/wiki/Kernel_density_estimation</a>.</p>
 <p>Essentially kernel density estimation replaces each data point with a kernel function (e.g. Gaussian, Epanechnikov), and aims to approximate the underlying population density by smoothing your data (which is assumed to be a sample from the population).</p>
 <p>Run the code below and see what happens when you change the kernel function and smoothing parameter (more commonly known as the bandwidth).</p>
-<div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb545-1" title="1"><span class="co"># In this plot we have an input slider to select the bandwidth of smoother</span></a>
-<a class="sourceLine" id="cb545-2" title="2">mtcars <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb545-3" title="3">	<span class="kw">ggvis</span>(<span class="op">~</span>wt) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb545-4" title="4">	<span class="kw">layer_densities</span>(</a>
-<a class="sourceLine" id="cb545-5" title="5">	<span class="dt">adjust =</span> <span class="kw">input_slider</span>(.<span class="dv">1</span>, <span class="dv">2</span>, <span class="dt">value =</span> <span class="dv">1</span>, <span class="dt">step =</span> <span class="fl">.1</span>, </a>
-<a class="sourceLine" id="cb545-6" title="6">		<span class="dt">label =</span> <span class="st">&quot;Bandwidth adjustment&quot;</span>), </a>
-<a class="sourceLine" id="cb545-7" title="7">	<span class="dt">kernel =</span> <span class="kw">input_select</span>(</a>
-<a class="sourceLine" id="cb545-8" title="8">		<span class="kw">c</span>(<span class="st">&quot;Gaussian&quot;</span> =<span class="st"> &quot;gaussian&quot;</span>,</a>
-<a class="sourceLine" id="cb545-9" title="9">		<span class="st">&quot;Epanechnikov&quot;</span> =<span class="st"> &quot;epanechnikov&quot;</span>,</a>
-<a class="sourceLine" id="cb545-10" title="10">		<span class="st">&quot;Rectangular&quot;</span> =<span class="st"> &quot;rectangular&quot;</span>,</a>
-<a class="sourceLine" id="cb545-11" title="11">		<span class="st">&quot;Triangular&quot;</span> =<span class="st"> &quot;triangular&quot;</span>,</a>
-<a class="sourceLine" id="cb545-12" title="12">		<span class="st">&quot;Biweight&quot;</span> =<span class="st"> &quot;biweight&quot;</span>,</a>
-<a class="sourceLine" id="cb545-13" title="13">		<span class="st">&quot;Cosine&quot;</span> =<span class="st"> &quot;cosine&quot;</span>,</a>
-<a class="sourceLine" id="cb545-14" title="14">		<span class="st">&quot;Optcosine&quot;</span> =<span class="st"> &quot;optcosine&quot;</span>),</a>
-<a class="sourceLine" id="cb545-15" title="15">	<span class="dt">label =</span> <span class="st">&quot;Kernel&quot;</span>)</a>
-<a class="sourceLine" id="cb545-16" title="16">	)</a></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-234"></span>
-<img src="week5/ggvis-interactive-2.png" alt="Another interactive plot using `ggvis`." width="\linewidth" />
-<p class="caption">
-Figure 5.4: Another interactive plot using <code>ggvis</code>.
-</p>
+<div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb543-1" title="1"><span class="co"># In this plot we have an input slider to select the bandwidth of smoother</span></a>
+<a class="sourceLine" id="cb543-2" title="2">mtcars <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb543-3" title="3"><span class="st">    </span><span class="kw">ggvis</span>(<span class="op">~</span>wt) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb543-4" title="4"><span class="st">    </span><span class="kw">layer_densities</span>(</a>
+<a class="sourceLine" id="cb543-5" title="5">        <span class="dt">adjust =</span> <span class="kw">input_slider</span>(</a>
+<a class="sourceLine" id="cb543-6" title="6">		    <span class="fl">.1</span>, <span class="dv">2</span>, <span class="dt">value =</span> <span class="dv">1</span>, <span class="dt">step =</span> <span class="fl">.1</span>, </a>
+<a class="sourceLine" id="cb543-7" title="7">            <span class="dt">label =</span> <span class="st">&quot;Bandwidth adjustment&quot;</span></a>
+<a class="sourceLine" id="cb543-8" title="8">		), </a>
+<a class="sourceLine" id="cb543-9" title="9">        <span class="dt">kernel =</span> <span class="kw">input_select</span>(</a>
+<a class="sourceLine" id="cb543-10" title="10">            <span class="kw">c</span>(<span class="st">&quot;Gaussian&quot;</span> =<span class="st"> &quot;gaussian&quot;</span>,</a>
+<a class="sourceLine" id="cb543-11" title="11">              <span class="st">&quot;Epanechnikov&quot;</span> =<span class="st"> &quot;epanechnikov&quot;</span>,</a>
+<a class="sourceLine" id="cb543-12" title="12">              <span class="st">&quot;Rectangular&quot;</span> =<span class="st"> &quot;rectangular&quot;</span>,</a>
+<a class="sourceLine" id="cb543-13" title="13">              <span class="st">&quot;Triangular&quot;</span> =<span class="st"> &quot;triangular&quot;</span>,</a>
+<a class="sourceLine" id="cb543-14" title="14">              <span class="st">&quot;Biweight&quot;</span> =<span class="st"> &quot;biweight&quot;</span>,</a>
+<a class="sourceLine" id="cb543-15" title="15">              <span class="st">&quot;Cosine&quot;</span> =<span class="st"> &quot;cosine&quot;</span>,</a>
+<a class="sourceLine" id="cb543-16" title="16">              <span class="st">&quot;Optcosine&quot;</span> =<span class="st"> &quot;optcosine&quot;</span>),</a>
+<a class="sourceLine" id="cb543-17" title="17">            <span class="dt">label =</span> <span class="st">&quot;Kernel&quot;</span></a>
+<a class="sourceLine" id="cb543-18" title="18">        )</a>
+<a class="sourceLine" id="cb543-19" title="19">    )</a></code></pre></div>
+<pre><code>## Warning: Can&#39;t output dynamic/interactive ggvis plots in a knitr document.
+## Generating a static (non-dynamic, non-interactive) version of the plot.</code></pre>
+<p><div id="plot_id680721530-container" class="ggvis-output-container">
+<div id="plot_id680721530" class="ggvis-output"></div>
+<div class="plot-gear-icon">
+<nav class="ggvis-control">
+<a class="ggvis-dropdown-toggle" title="Controls" onclick="return false;"></a>
+<ul class="ggvis-dropdown">
+<li>
+Renderer: 
+<a id="plot_id680721530_renderer_svg" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id680721530" data-renderer="svg">SVG</a>
+ | 
+<a id="plot_id680721530_renderer_canvas" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id680721530" data-renderer="canvas">Canvas</a>
+</li>
+<li>
+<a id="plot_id680721530_download" class="ggvis-download" data-plot-id="plot_id680721530">Download</a>
+</li>
+</ul>
+</nav>
 </div>
-<p>The plot allows you to choose which kernel you are using and also to adjust the bandwidth. This is much more convenient than plotting many different plots.</p>
+</div>
+<script type="text/javascript">
+var plot_id680721530_spec = {
+  "data": [
+    {
+      "name": ".0/density1",
+      "format": {
+        "type": "csv",
+        "parse": {
+          "pred_": "number",
+          "resp_": "number"
+        }
+      },
+      "values": "\"pred_\",\"resp_\"\n0.47657276119403,0.000588305747859961\n0.500038857184665,0.000724273083006101\n0.5235049531753,0.000890187050444256\n0.546971049165935,0.00108639939899363\n0.57043714515657,0.00132202357771975\n0.593903241147205,0.00160228383342272\n0.61736933713784,0.00192930604137108\n0.640835433128475,0.0023199484048341\n0.66430152911911,0.00277373177947855\n0.687767625109745,0.00329897159395508\n0.71123372110038,0.00391592050709678\n0.734699817091015,0.00462020854905097\n0.75816591308165,0.00543105642564582\n0.781632009072285,0.00636122905954197\n0.80509810506292,0.00740902990206435\n0.828564201053556,0.00860665962140432\n0.852030297044191,0.00995092627877982\n0.875496393034826,0.0114478928900423\n0.898962489025461,0.0131380338308608\n0.922428585016096,0.0150003605143442\n0.945894681006731,0.0170589587074326\n0.969360776997366,0.0193336408734796\n0.992826872988001,0.0218073027330216\n1.01629296897864,0.0245167988061496\n1.03975906496927,0.0274522481725405\n1.06322516095991,0.030603195001548\n1.08669125695054,0.0340176945552008\n1.11015735294118,0.0376512150966534\n1.13362344893181,0.0415147783711084\n1.15708954492245,0.0456236581361032\n1.18055564091308,0.0499397569574342\n1.20402173690372,0.0544801938390768\n1.22748783289435,0.0592261890143605\n1.25095392888499,0.0641496857588712\n1.27442002487562,0.0692672807927108\n1.29788612086626,0.0745350664949882\n1.32135221685689,0.0799387963862219\n1.34481831284753,0.0854730845112284\n1.36828440883816,0.0910989118296549\n1.3917505048288,0.0968039845543404\n1.41521660081943,0.10256505697024\n1.43868269681007,0.108356278936408\n1.4621487928007,0.114158052603272\n1.48561488879134,0.119947620380374\n1.50908098478197,0.125706241141974\n1.53254708077261,0.131406117950836\n1.55601317676324,0.13703877379697\n1.57947927275388,0.142581704367193\n1.60294536874451,0.148015308507181\n1.62641146473515,0.153339098776507\n1.64987756072578,0.158523637620211\n1.67334365671642,0.163569769293107\n1.69680975270705,0.168477769214092\n1.72027584869769,0.173211707121597\n1.74374194468832,0.177797160097589\n1.76720804067896,0.182221148588676\n1.79067413666959,0.186470128321248\n1.81414023266023,0.190565894223406\n1.83760632865086,0.194489046743278\n1.8610724246415,0.198249312190565\n1.88453852063213,0.201861258388592\n1.90800461662277,0.205299759984403\n1.9314707126134,0.208595101735944\n1.95493680860404,0.21174720371779\n1.97840290459467,0.214746128558949\n2.00186900058531,0.217619055710213\n2.02533509657594,0.220358250314979\n2.04880119256658,0.222972351354043\n2.07226728855721,0.22547937185284\n2.09573338454785,0.227869145533736\n2.11919948053848,0.230164118536311\n2.14266557652912,0.232373069642056\n2.16613167251975,0.234493957333701\n2.18959776851039,0.236550276116201\n2.21306386450102,0.238546825000922\n2.23652996049166,0.2404944940664\n2.25999605648229,0.242409856403358\n2.28346215247293,0.244302118591343\n2.30692824846356,0.246187154052006\n2.3303943444542,0.248078195078307\n2.35386044044483,0.249994054456612\n2.37732653643547,0.251945864480615\n2.4007926324261,0.253952088341491\n2.42425872841674,0.256034439307748\n2.44772482440737,0.258200157685418\n2.47119092039801,0.260480234840795\n2.49465701638864,0.262887276040962\n2.51812311237928,0.265429623289554\n2.54158920836992,0.268157623850324\n2.56505530436055,0.271060870502926\n2.58852140035119,0.274165981418292\n2.61198749634182,0.277514909239932\n2.63545359233246,0.281093306433413\n2.65891968832309,0.284948842850159\n2.68238578431373,0.28909478862154\n2.70585188030436,0.293522692859792\n2.729317976295,0.298303373644743\n2.75278407228563,0.303405492454256\n2.77625016827627,0.308842781005075\n2.7997162642669,0.314672468825679\n2.82318236025754,0.320841951350047\n2.84664845624817,0.327388009296796\n2.87011455223881,0.334313528401153\n2.89358064822944,0.341574309208405\n2.91704674422008,0.34921230263341\n2.94051284021071,0.357172196848272\n2.96397893620135,0.365422564268619\n2.98744503219198,0.373979658968043\n3.01091112818262,0.382757040499513\n3.03437722417325,0.391729418297882\n3.05784332016389,0.400851445916785\n3.08130941615452,0.410052258391934\n3.10477551214516,0.41927464669286\n3.12824160813579,0.428446903986893\n3.15170770412643,0.437506444591615\n3.17517380011706,0.446337359525645\n3.1986398961077,0.45489908932678\n3.22210599209833,0.463097299356939\n3.24557208808897,0.470808274881651\n3.2690381840796,0.47801645916918\n3.29250428007024,0.484571980663196\n3.31597037606087,0.490414712483011\n3.33943647205151,0.495532896974292\n3.36290256804214,0.499707356577843\n3.38636866403278,0.503007430520713\n3.40983476002341,0.50536374270938\n3.43330085601405,0.506604746402882\n3.45676695200468,0.506855170831414\n3.48023304799532,0.505979448983149\n3.50369914398595,0.503956733075168\n3.52716523997659,0.50088835859495\n3.55063133596722,0.49659690704771\n3.57409743195786,0.49122849476299\n3.59756352794849,0.484822634537357\n3.62102962393913,0.477245134425987\n3.64449571992976,0.468722266350565\n3.6679618159204,0.459220073914058\n3.69142791191103,0.448764231534265\n3.71489400790167,0.437520186859911\n3.7383601038923,0.425444151111721\n3.76182619988294,0.412676555651337\n3.78529229587357,0.399324822957639\n3.80875839186421,0.385364423059024\n3.83222448785484,0.370981801407406\n3.85569058384548,0.356228145313849\n3.87915667983611,0.341168107887202\n3.90262277582675,0.325918851310435\n3.92608887181738,0.31054146377493\n3.94955496780802,0.295122987954801\n3.97302106379865,0.279735015276659\n3.99648715978929,0.264467545839267\n4.01995325577992,0.249369736702943\n4.04341935177056,0.234506533148838\n4.06688544776119,0.219969822244311\n4.09035154375183,0.205765187230396\n4.11381763974246,0.191980232004599\n4.1372837357331,0.178655774985774\n4.16074983172373,0.165785320026581\n4.18421592771437,0.153487025119876\n4.207682023705,0.141720132216641\n4.23114811969564,0.130502843513284\n4.25461421568627,0.119939299117928\n4.27808031167691,0.109941933547032\n4.30154640766754,0.100573865508889\n4.32501250365818,0.0918569491044449\n4.34847859964882,0.0837247867257952\n4.37194469563945,0.0762698518184738\n4.39541079163009,0.0694291663623666\n4.41887688762072,0.0631720210349336\n4.44234298361136,0.0576020887132944\n4.46580907960199,0.0525948484625015\n4.48927517559263,0.0481822537167722\n4.51274127158326,0.0443877465111966\n4.5362073675739,0.0411245045719512\n4.55967346356453,0.0384521532829531\n4.58313955955517,0.0363230471916599\n4.6066056555458,0.034686678331604\n4.63007175153644,0.0336253856736586\n4.65353784752707,0.0330310415821457\n4.67700394351771,0.0329088119494924\n4.70047003950834,0.0332853095966733\n4.72393613549898,0.034074605079647\n4.74740223148961,0.0353050008600573\n4.77086832748025,0.0369437710637535\n4.79433442347088,0.0389346713187357\n4.81780051946152,0.0413133346664632\n4.84126661545215,0.0440016087874552\n4.86473271144279,0.0469737451832132\n4.88819880743342,0.0502319019268268\n4.91166490342406,0.0536994689174903\n4.93513099941469,0.0573596885607711\n4.95859709540533,0.0611727868175278\n4.98206319139596,0.0650845858409954\n5.0055292873866,0.0690625448997926\n5.02899538337723,0.073054448450008\n5.05246147936787,0.0770177515057958\n5.0759275753585,0.0808926599718601\n5.09939367134914,0.0846479612648478\n5.12285976733977,0.0882287774067613\n5.14632586333041,0.0915781162196236\n5.16979195932104,0.0946825828069427\n5.19325805531168,0.0974630656383904\n5.21672415130231,0.0999038074609484\n5.24019024729295,0.10199689700958\n5.26365634328358,0.103636132214907\n5.28712243927422,0.104876362760662\n5.31058853526485,0.105678210963512\n5.33405463125549,0.105991737776539\n5.35752072724612,0.105875999877197\n5.38098682323676,0.105278066834482\n5.40445291922739,0.104221730637657\n5.42791901521803,0.102755262955625\n5.45138511120866,0.100822121610224\n5.4748512071993,0.0985116212588494\n5.49831730318993,0.0958431761950774\n5.52178339918057,0.0928091563510123\n5.5452494951712,0.0894973863739413\n5.56871559116184,0.0859177346803468\n5.59218168715247,0.0821128653800113\n5.61564778314311,0.0781427681369737\n5.63911387913374,0.0740263647030907\n5.66257997512438,0.0698214666825946\n5.68604607111501,0.065566733331274\n5.70951216710565,0.0612987238240994\n5.73297826309628,0.0570549899176621\n5.75644435908692,0.0528708488687483\n5.77991045507755,0.0487812647557613\n5.80337655106819,0.0448011611297671\n5.82684264705882,0.040972798817257\n5.85030874304946,0.0373044403840629\n5.87377483904009,0.0338018282719775\n5.89724093503073,0.0305137421689991\n5.92070703102136,0.02741170956353\n5.944173127012,0.0245134888958932\n5.96763922300263,0.0218364984542014\n5.99110531899327,0.0193523804323015\n6.0145714149839,0.0170834811516878\n6.03803751097454,0.0150147552741877\n6.06150360696517,0.0131250651432092\n6.08496970295581,0.0114398163944226\n6.10843579894645,0.00991867478030012\n6.13190189493708,0.00855704008494726\n6.15536799092772,0.00736022989079235\n6.17883408691835,0.0062940952665126\n6.20230018290898,0.00536159351487882\n6.22576627889962,0.00454929609457793\n6.24923237489025,0.00383612098897806\n6.27269847088089,0.00322758920329379\n6.29616456687152,0.00270097417850955\n6.31963066286216,0.00224701018477414\n6.34309675885279,0.00186649434899076\n6.36656285484343,0.00154011874867967\n6.39002895083407,0.00126553506510706\n6.4134950468247,0.00103676805954035\n6.43696114281534,0.000843276202509978\n6.46042723880597,0.000684690514374704"
+    },
+    {
+      "name": "scale/x",
+      "format": {
+        "type": "csv",
+        "parse": {
+          "domain": "number"
+        }
+      },
+      "values": "\"domain\"\n0.177380037313432\n6.75961996268657"
+    },
+    {
+      "name": "scale/y",
+      "format": {
+        "type": "csv",
+        "parse": {
+          "domain": "number"
+        }
+      },
+      "values": "\"domain\"\n-0.0253427585415707\n0.532197929372985"
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "domain": {
+        "data": "scale/x",
+        "field": "data.domain"
+      },
+      "zero": false,
+      "nice": false,
+      "clamp": false,
+      "range": "width"
+    },
+    {
+      "name": "y",
+      "domain": {
+        "data": "scale/y",
+        "field": "data.domain"
+      },
+      "zero": false,
+      "nice": false,
+      "clamp": false,
+      "range": "height"
+    }
+  ],
+  "marks": [
+    {
+      "type": "area",
+      "properties": {
+        "update": {
+          "fill": {
+            "value": "#333333"
+          },
+          "y2": {
+            "scale": "y",
+            "value": 0
+          },
+          "fillOpacity": {
+            "value": 0.2
+          },
+          "x": {
+            "scale": "x",
+            "field": "data.pred_"
+          },
+          "y": {
+            "scale": "y",
+            "field": "data.resp_"
+          },
+          "stroke": {
+            "value": "transparent"
+          }
+        },
+        "ggvis": {
+          "data": {
+            "value": ".0/density1"
+          }
+        }
+      },
+      "from": {
+        "data": ".0/density1"
+      }
+    },
+    {
+      "type": "line",
+      "properties": {
+        "update": {
+          "stroke": {
+            "value": "#000000"
+          },
+          "x": {
+            "scale": "x",
+            "field": "data.pred_"
+          },
+          "y": {
+            "scale": "y",
+            "field": "data.resp_"
+          },
+          "fill": {
+            "value": "transparent"
+          }
+        },
+        "ggvis": {
+          "data": {
+            "value": ".0/density1"
+          }
+        }
+      },
+      "from": {
+        "data": ".0/density1"
+      }
+    }
+  ],
+  "legends": [],
+  "axes": [
+    {
+      "type": "x",
+      "scale": "x",
+      "orient": "bottom",
+      "layer": "back",
+      "grid": true,
+      "title": "wt"
+    },
+    {
+      "type": "y",
+      "scale": "y",
+      "orient": "left",
+      "layer": "back",
+      "grid": true,
+      "title": "density"
+    }
+  ],
+  "padding": null,
+  "ggvis_opts": {
+    "keep_aspect": false,
+    "resizable": true,
+    "padding": {},
+    "duration": 250,
+    "renderer": "svg",
+    "hover_duration": 0,
+    "width": 672,
+    "height": 480
+  },
+  "handlers": null
+};
+ggvis.getPlot("plot_id680721530").parseSpec(plot_id680721530_spec);
+</script>
+The plot allows you to choose which kernel you are using and also to adjust the bandwidth. This is much more convenient than plotting many different plots.</p>
 </div>
 </div>
 <div id="shiny-web-applications" class="section level2">
@@ -409,10 +1266,10 @@ Figure 5.4: Another interactive plot using <code>ggvis</code>.
 <li>and choose which directory (folder) that you want to make it in.</li>
 </ul>
 <p>If you chose the single file approach you now get a single file called <code>app.R</code> to edit. However the placeholder code provided by RStudio will actually run. Click the “Run App” button in the top right corner of the Source pane. RStudio will open a new Viewer window running the app.</p>
-<div class="figure"><span id="fig:unnamed-chunk-235"></span>
+<div class="figure"><span id="fig:unnamed-chunk-230"></span>
 <img src="week5/example-shiny-app.png" alt="Example Shiny App by RStudio." width="\linewidth" />
 <p class="caption">
-Figure 5.5: Example Shiny App by RStudio.
+Figure 5.2: Example Shiny App by RStudio.
 </p>
 </div>
 <p>As with the <code>ggvis</code> interactive plots you see that you can move the slider with your mouse and R recalculates and redraws the plot. Experiment with moving the slider.</p>
@@ -421,83 +1278,83 @@ Figure 5.5: Example Shiny App by RStudio.
 <p>Whilst your app is running you will notice that the RStudio console reports “Listening on <a href="http://127.0.0.1:4122" class="uri">http://127.0.0.1:4122</a>”. In order to be able to resume your R session you must close the window your app is running in.</p>
 <div id="other-rstudio-features-we-havent-covered" class="section level3">
 <h3><span class="header-section-number">5.4.1</span> Other RStudio features we haven’t covered</h3>
-<p>RStudio has many features we haven’t covered. It has brilliant features when you are building your own package (personally I would never build a package outside of RStudio anymore). When building a package and some other tasks you need the RStudio “Build” pane. To see this I think you must define the top level directory for your package (or bookdown book etc.) as an RStudio project. This creates an <code>.Rproj</code> file in the directory which RStudio detects and then shows the Build pane.</p>
+<p>RStudio has many features we haven’t covered. It has brilliant features when you are building your own package. A previous lecturer of this module said personally they would never build a package outside of RStudio anymore. When building a package and some other tasks you need the RStudio “Build” pane. To see this I think you must define the top level directory for your package (or bookdown book etc.) as an RStudio project. This creates an <code>.Rproj</code> file in the directory which RStudio detects and then shows the Build pane.</p>
 <p>RStudio can also run Sweave documents (which contain both LaTeX and R code) and also many types of presentation including LaTeX beamer and RStudio’s <code>.Rpres</code> format.</p>
 </div>
 </div>
 <div id="rmarkdown-html-notebooks-and-ipythonjupyter-notebooks" class="section level2">
 <h2><span class="header-section-number">5.5</span> Rmarkdown HTML notebooks and Ipython/Jupyter notebooks</h2>
-<p>An advanced type of Rmarkdown document is an “R Notebook”. These are R markdown files with the <code>output</code> in the YAML header defined as</p>
+<p>You may have already written Rmarkdown files to generate documents by now. An advanced type of Rmarkdown document is an “R Notebook”. These are R markdown files with the <code>output</code> in the YAML header defined as</p>
 <pre><code>output:
   html_notebook: default</code></pre>
 <p>When you first save an Rmarkdown file with this output definition its output file with extension <code>.nb.html</code> is created immediately (even if you have not evaluated any of your code blocks).</p>
 <p>The <code>.nb.html</code> file format is very clever because it actually contains the Rmarkdown code as well as the html output. Therefore, if you open an <code>.nb.html</code> file in RStudio it will show the associated <code>.Rmd</code> code even if you don’t have that separate file.</p>
 <p>The R output shown in the <code>.nb.html</code> file is the output from the code blocks which have been run, i.e. if you have not evaluated all of the R code blocks in your Rmd file then not all of the output will be present in the <code>.nb.html</code> file.</p>
-<p>The other main notebook format used in Data Science are Ipython/Jupyter notebooks <a href="http://jupyter.org/" class="uri">http://jupyter.org/</a>. These keep the R read-evaluation-print-loop running in the background so you can evaluate one cell of code at a time live in your browser. A screen shot of an example notebook is shown at side of the page.</p>
-<div class="figure"><span id="fig:unnamed-chunk-236"></span>
+<p>The other main notebook format used in Data Science are Ipython/Jupyter notebooks <a href="https://jupyter.org/" class="uri">https://jupyter.org/</a>. These keep the R read-evaluation-print-loop running in the background so you can evaluate one cell of code at a time live in your browser. A screen shot of an example notebook is shown at side of the page.</p>
+<div class="figure"><span id="fig:unnamed-chunk-231"></span>
 <img src="week5/jupyter-notebook-example.png" alt="Example Jupyter notebook." width="\linewidth" />
 <p class="caption">
-Figure 5.6: Example Jupyter notebook.
+Figure 5.3: Example Jupyter notebook.
 </p>
 </div>
-<p>To try a Jupyter notebook without having to install it on your local machine, you can try it in a browser at <a href="https://try.jupyter.org/" class="uri">https://try.jupyter.org/</a>. However, my personal experience of this website is not good. Either the R kernel dies or you cannot get a space to launch a notebook. Running Jupyter notebooks on my own machine has been reliable.</p>
-<p>If you want to try such notebooks installation instructions are here: <a href="http://jupyter.org/install.html" class="uri">http://jupyter.org/install.html</a>. This is easiest to do on your own computer. If you are on a University Windows network computer these will probably fail. One element of getting Jupyter notebooks running is installing the IPython/Jupyter R kernel (the notebooks can use kernels for other languages such as Python, Julia, and many other languages). Instructions can be found here <a href="https://irkernel.github.io/installation/" class="uri">https://irkernel.github.io/installation/</a>.</p>
+<p>To try a Jupyter notebook without having to install it on your local machine, you can try it in a browser at <a href="https://jupyter.org/try" class="uri">https://jupyter.org/try</a>. However, some didn’t have good experience with this website. Either the R kernel dies or you cannot get a space to launch a notebook. Running Jupyter notebooks on my own machine has been reliable.</p>
+<p>If you want to try such notebooks installation instructions are here: <a href="https://jupyter.org/install.html" class="uri">https://jupyter.org/install.html</a>. This is easiest to do on your own computer. If you are on a University Windows network computer these will probably fail. One element of getting Jupyter notebooks running is installing the IPython/Jupyter R kernel (the notebooks can use kernels for other languages such as Python, Julia, and many other languages). Instructions can be found here <a href="https://irkernel.github.io/installation/" class="uri">https://irkernel.github.io/installation/</a>.</p>
 </div>
-<div id="exercise-housing-in-new-york-city" class="section level2">
-<h2><span class="header-section-number">5.6</span> Exercise: Housing in New York City</h2>
-<p>We’ve now covered the basics of the <code>rvest</code> and <code>ggvis</code> packages. We’re now going look at combining these packages, along with others (including <code>dplyr</code>) to perform statistical analysis on dataset we have scraped from the web.</p>
-<p>If you have installed the <code>tidyverse</code> package hopefully that has given you the <code>purrr</code> and <code>readr</code> packages already.</p>
-<p>New York city contains some of the most expensive property in the world, particularly Manhattan. The property market is a rich source of data which contains many interesting nuances. For example, just because a property is big, doesn’t mean it’s expensive.</p>
-<p>Have a look at <a href="https://www.zillow.com" class="uri">https://www.zillow.com</a> to get an idea of its layout. Try searching for some property, anywhere in the USA will do, and you’ll notice that the web page of the search results is split into two halves. There’s a map and a series of photo cards. Pulling data from the map, or overlaying data onto a map is possible with the <code>ggvis</code> package, but a little beyond what we’re going to cover today.<a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a></p>
-<p>Instead we’re going to focus on the photo cards which contain textual information.</p>
-<p>The code below will extract the address, price, size, and the number of bedrooms and bathrooms of each property in the search results:</p>
-<div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb547-1" title="1"><span class="co"># Note that this web address is quite long here so I&#39;ve split it </span></a>
-<a class="sourceLine" id="cb547-2" title="2"><span class="co"># over several lines using paste0(), but you could just have it on the same line</span></a>
-<a class="sourceLine" id="cb547-3" title="3"></a>
-<a class="sourceLine" id="cb547-4" title="4">page &lt;-<span class="st"> </span><span class="kw">read_html</span>(<span class="kw">paste0</span>(<span class="st">&quot;http://www.zillow.com/homes/for_sale/&quot;</span>,  <span class="st">&quot;Manhattan-New-York-NY/12530_rid/globalrelevanceex_sort/&quot;</span>, <span class="st">&quot;40.894829,-73.795167,40.664754,-74.151879_rect/11_zm/1_p/&quot;</span>))</a>
-<a class="sourceLine" id="cb547-5" title="5"></a>
-<a class="sourceLine" id="cb547-6" title="6"><span class="co"># extract html details from the photo cards</span></a>
-<a class="sourceLine" id="cb547-7" title="7">houses &lt;-<span class="st"> </span>page <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb547-8" title="8"><span class="st">        </span><span class="kw">html_nodes</span>(<span class="st">&quot;.photo-cards li article&quot;</span>)</a>
-<a class="sourceLine" id="cb547-9" title="9"></a>
-<a class="sourceLine" id="cb547-10" title="10">address &lt;-<span class="st"> </span>houses <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb547-11" title="11"><span class="st">        </span><span class="kw">html_node</span>(<span class="st">&quot;.zsg-photo-card-address&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb547-12" title="12"><span class="st">        </span><span class="kw">html_text</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb547-13" title="13"><span class="st">        </span><span class="kw">gsub</span>(<span class="st">&#39;,&#39;</span>,<span class="st">&#39;&#39;</span>,.) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb547-14" title="14"><span class="st">        </span><span class="kw">gsub</span>(<span class="st">&#39;</span><span class="ch">\\</span><span class="st">s&#39;</span>,<span class="st">&#39;_&#39;</span>,.)</a>
-<a class="sourceLine" id="cb547-15" title="15"></a>
-<a class="sourceLine" id="cb547-16" title="16">price &lt;-<span class="st"> </span>houses <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb547-17" title="17"><span class="st">        </span><span class="kw">html_node</span>(<span class="st">&quot;.zsg-photo-card-price&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb547-18" title="18"><span class="st">        </span><span class="kw">html_text</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb547-19" title="19"><span class="st">        </span>readr<span class="op">::</span><span class="kw">parse_number</span>()</a>
-<a class="sourceLine" id="cb547-20" title="20"></a>
-<a class="sourceLine" id="cb547-21" title="21">params &lt;-<span class="st"> </span>houses <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb547-22" title="22"><span class="st">        </span><span class="kw">html_node</span>(<span class="st">&quot;.zsg-photo-card-info&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb547-23" title="23"><span class="st">        </span><span class="kw">html_text</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb547-24" title="24"><span class="st">        </span><span class="kw">strsplit</span>(<span class="st">&quot;\u00b7&quot;</span>)</a>
-<a class="sourceLine" id="cb547-25" title="25"></a>
-<a class="sourceLine" id="cb547-26" title="26">beds &lt;-<span class="st"> </span>params <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb547-27" title="27">		purrr<span class="op">::</span><span class="kw">map_chr</span>(<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb547-28" title="28">		<span class="kw">gsub</span>(<span class="st">&#39;</span><span class="ch">\\</span><span class="st">D&#39;</span>,<span class="st">&#39;&#39;</span>,.)</a>
-<a class="sourceLine" id="cb547-29" title="29">		</a>
-<a class="sourceLine" id="cb547-30" title="30">baths &lt;-<span class="st"> </span>params <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb547-31" title="31">	purrr<span class="op">::</span><span class="kw">map_chr</span>(<span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb547-32" title="32">	readr<span class="op">::</span><span class="kw">parse_number</span>()</a>
-<a class="sourceLine" id="cb547-33" title="33">	</a>
-<a class="sourceLine" id="cb547-34" title="34">house_area &lt;-<span class="st"> </span>params <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb547-35" title="35">		purrr<span class="op">::</span><span class="kw">map_chr</span>(<span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb547-36" title="36">		<span class="kw">gsub</span>(<span class="st">&#39;</span><span class="ch">\\</span><span class="st">D&#39;</span>,<span class="st">&#39;&#39;</span>,.)</a>
-<a class="sourceLine" id="cb547-37" title="37"></a>
-<a class="sourceLine" id="cb547-38" title="38">ny_housing &lt;-<span class="st"> </span><span class="kw">data.frame</span>(address, price, beds, baths, house_area)</a></code></pre></div>
-<p>You may get some warnings when you run this code. Let’s ignore those for the moment. You’ll find scraping data from website is never trivial. Web developers design their sites to be pretty and not scraper friendly. Companies that specialise in web scraping spend a significant portion of their time updating scrapers when websites are updated.</p>
+<div id="exercise-housing-in-london" class="section level2">
+<h2><span class="header-section-number">5.6</span> Exercise: Housing in London</h2>
+<p><strong><em>Caution: The code in this section may not work if the website changes its structure and layout.</em></strong></p>
+<p>We’ve now covered the basics of the <code>rvest</code> and <code>ggvis</code> packages. We’re now going look at combining these packages, along with other <code>tidyverse</code> packages to perform statistical analysis on dataset we have scraped from the web.</p>
+<p>The city of London contains some of the most expensive properties in the UK, particularly Knightsbridge. The property market is a rich source of data which contains many interesting nuances. For example, just because a property is big, doesn’t mean it’s expensive.</p>
+<p>Have a look at <a href="https://www.zoopla.co.uk" class="uri">https://www.zoopla.co.uk</a> to get an idea of its layout. Try searching for some properties, anywhere in the UK will do, and you’ll notice that the web page of the search results can be viewed either as a list or on a map. Pulling data from the map, or overlaying data onto a map is possible with the <code>ggvis</code> package, but a little beyond what we’re going to cover today.<a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a></p>
+<p>Instead we’re going to focus on the list of photo cards which contain textual information.</p>
+<p>The code below will extract the address, price, and the number of bedrooms and bathrooms of each property in the search results:</p>
+<div class="sourceCode" id="cb546"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb546-1" title="1"><span class="co"># Note that this web address is quite long here so I&#39;ve split it </span></a>
+<a class="sourceLine" id="cb546-2" title="2"><span class="co"># over several lines using paste0(), but you could just have it on the same line</span></a>
+<a class="sourceLine" id="cb546-3" title="3"></a>
+<a class="sourceLine" id="cb546-4" title="4">page &lt;-<span class="st"> </span><span class="kw">read_html</span>(</a>
+<a class="sourceLine" id="cb546-5" title="5">    <span class="kw">paste0</span>(</a>
+<a class="sourceLine" id="cb546-6" title="6">        <span class="st">&quot;https://www.zoopla.co.uk/for-sale/property/london/knightsbridge/&quot;</span>,</a>
+<a class="sourceLine" id="cb546-7" title="7">        <span class="st">&quot;?page_size=100&amp;q=Knightsbridge%2C%20London&amp;view_type=list&quot;</span></a>
+<a class="sourceLine" id="cb546-8" title="8">    )</a>
+<a class="sourceLine" id="cb546-9" title="9">)</a>
+<a class="sourceLine" id="cb546-10" title="10"></a>
+<a class="sourceLine" id="cb546-11" title="11"><span class="co"># extract html details</span></a>
+<a class="sourceLine" id="cb546-12" title="12">address &lt;-<span class="st"> </span>page <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb546-13" title="13"><span class="st">    </span><span class="kw">html_nodes</span>(<span class="st">&quot;.listing-results-address&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb546-14" title="14"><span class="st">    </span><span class="kw">html_text</span>()</a>
+<a class="sourceLine" id="cb546-15" title="15"></a>
+<a class="sourceLine" id="cb546-16" title="16">price &lt;-<span class="st"> </span>page <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb546-17" title="17"><span class="st">    </span><span class="kw">html_nodes</span>(<span class="st">&quot;.text-price&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb546-18" title="18"><span class="st">    </span><span class="kw">html_text</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb546-19" title="19"><span class="st">    </span>readr<span class="op">::</span><span class="kw">parse_number</span>()</a>
+<a class="sourceLine" id="cb546-20" title="20"></a>
+<a class="sourceLine" id="cb546-21" title="21">beds &lt;-<span class="st"> </span>page <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb546-22" title="22"><span class="st">    </span><span class="kw">html_nodes</span>(<span class="st">&quot;.num-beds&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb546-23" title="23"><span class="st">    </span><span class="kw">html_text</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb546-24" title="24"><span class="st">    </span>readr<span class="op">::</span><span class="kw">parse_number</span>()</a>
+<a class="sourceLine" id="cb546-25" title="25"></a>
+<a class="sourceLine" id="cb546-26" title="26">baths &lt;-<span class="st"> </span>page <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb546-27" title="27"><span class="st">    </span><span class="kw">html_nodes</span>(<span class="st">&quot;.num-baths&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb546-28" title="28"><span class="st">    </span><span class="kw">html_text</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb546-29" title="29"><span class="st">    </span>readr<span class="op">::</span><span class="kw">parse_number</span>()</a>
+<a class="sourceLine" id="cb546-30" title="30"></a>
+<a class="sourceLine" id="cb546-31" title="31">house_area &lt;-<span class="st"> </span>page <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb546-32" title="32"><span class="st">    </span><span class="kw">html_nodes</span>(<span class="st">&quot;.num-sqft&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb546-33" title="33"><span class="st">    </span><span class="kw">html_text</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb546-34" title="34"><span class="st">    </span>readr<span class="op">::</span><span class="kw">parse_number</span>()</a>
+<a class="sourceLine" id="cb546-35" title="35"></a>
+<a class="sourceLine" id="cb546-36" title="36">knightsbridge_housing &lt;-<span class="st"> </span><span class="kw">data.frame</span>(address, price, beds, baths, house_area)</a></code></pre></div>
+<pre><code>## Error in data.frame(address, price, beds, baths, house_area): arguments imply differing number of rows: 103, 91, 96, 20</code></pre>
+<p>You may get some warnings/errors when you run this code. Let’s ignore those for the moment. You’ll find scraping data from website is never trivial. Web developers design their sites to be pretty and not scraper friendly. Companies that specialise in web scraping spend a significant portion of their time updating scrapers when websites are updated.</p>
 <p>Your task is to utilise what you’ve learnt over the past few weeks to perform some statistical analyses on these data. Here are some suggestions for things to explore.</p>
 <ul>
+<li>The biggest problem is that the lengths of the vectors <code>address</code>, <code>price</code>, <code>beds</code>, <code>baths</code> &amp; <code>house_area</code> are different, so R returns an error when creating the data frame. See the help page <code>html_nodes()</code> for an explanation.</li>
+<li>Therefore, before further exploring the data, find a way to impute the missing values for some properties. You will need the functions with the prefix <code>map</code> from the <code>purrr</code> package, which we didn’t have time to cover.</li>
+<li>Can we write a function to trim the code above, as almost all vectors are created by the use of <code>html_nodes()</code>, <code>html_text()</code>, and <code>readr::parse_number()</code>?</li>
 <li>It’s always a good idea to take a look at the data. The two most obvious functions to use here would be <code>View()</code> and <code>head()</code>.</li>
 <li>It’s also a good idea to look at some simple summary statistics, such as mean, median, max, etc. Another useful function for summarising your data is <code>summary()</code>. Note that this function will only work on numeric class data. If there are any non-numeric values in your data fix your data frame so that the appropriate columns are of class numeric.</li>
-<li>You’ll notice that in the raw data that “Studio” often appears under “number of bedrooms”, really we’d want a number so that we can do summaries on the data. Here I’ve just removed anything that’s not a number, can you do something better?</li>
 <li>As we saw with the Google Scholar data, when we scrape data from a website we’re only scraping what is on that particular page. This is fine, but if the data we want is over multiple pages then we need to be clever. Try to use a <code>for</code> loop to loop over each webpage and scrape the data you want. <em>Hint: Most websites follow a logical naming and numbering structure.</em></li>
 <li>Create an interactive <code>ggvis</code> plot to explore one or more variables.</li>
-<li>As I’ve already mentioned, location is a very important factor. The longitude and latitude for each property is availble (hint: look at <code>houses[[1]]</code>). Can you extract this data and plot the search results either on a grid or map and highlight the expensive parts of the city?</li>
 </ul>
 
 </div>
