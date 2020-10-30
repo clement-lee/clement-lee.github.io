@@ -759,31 +759,27 @@ boiling let’s count how many replaces were made:</p>
 <h3><span class="header-section-number">4.3.6</span> Building large expressions</h3>
 <p>If we wanted to find products that contained fruit, we simply have to create
 one long alternating pattern of literal fruit names (e.g. <code>(apple|orange|pear|raisin)</code>, as there is no smart compact expression we can write down that will match only fruit names.</p>
-<p>The file <code>list_of_fruit.txt</code> is a list of fruit, read it into R and format the contents such that it looks like a list of fruit, with the first few rows looking something like this:</p>
-<pre><code>Apple
-Apricot
-Avocado
-Banana</code></pre>
-<p>For example,</p>
-<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb514-1" title="1">fruit &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">file=</span><span class="st">&quot;list_of_fruit.txt&quot;</span>, <span class="dt">header=</span><span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb514-2" title="2">                    <span class="dt">stringsAsFactors=</span><span class="ot">FALSE</span>)</a></code></pre></div>
-<p>We are not interested in keeping this data in a data frame, so we can go ahead
-and overwrite the <code>fruit</code> object with the <code>V1</code> variable:</p>
-<div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb515-1" title="1">fruit &lt;-<span class="st"> </span>fruit<span class="op">$</span>V1</a></code></pre></div>
-<p>Now <code>fruit</code> is just a vector of fruit names. Check the length of
-<code>fruit</code> to see how many we actually have. Next, we can start to build
-our expression by first collapsing all the different fruit names together, and
-then adding parenthesis either side:</p>
-<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb516-1" title="1">fruit_expr &lt;-<span class="st"> </span><span class="kw">str_c</span>(fruit, <span class="dt">collapse=</span><span class="st">&quot;|&quot;</span>)</a>
-<a class="sourceLine" id="cb516-2" title="2">fruit_expr &lt;-<span class="st"> </span><span class="kw">str_c</span>(<span class="st">&quot;(&quot;</span>, fruit_expr, <span class="st">&quot;)&quot;</span>)</a>
-<a class="sourceLine" id="cb516-3" title="3"><span class="kw">str_length</span>(fruit_expr)</a></code></pre></div>
-<pre><code>## [1] 769</code></pre>
-<p>Our fruit expression has 769 characters which means it’s very long. Let’s put this into action:</p>
-<div class="sourceCode" id="cb518"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb518-1" title="1">bf<span class="op">$</span>has_fruit &lt;-<span class="st"> </span><span class="kw">str_detect</span>(bf<span class="op">$</span>ingredients, fruit_expr)</a>
-<a class="sourceLine" id="cb518-2" title="2"><span class="kw">table</span>(bf<span class="op">$</span>has_fruit)</a></code></pre></div>
+<p>There should be a data set <code>fruit</code> in the package <code>stringr</code> that is just a vector of fruit names. Load it in R and have a look:</p>
+<div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb513-1" title="1"><span class="kw">data</span>(fruit)</a>
+<a class="sourceLine" id="cb513-2" title="2"><span class="kw">head</span>(fruit)</a></code></pre></div>
+<pre><code>## [1] &quot;apple&quot;       &quot;apricot&quot;     &quot;avocado&quot;     &quot;banana&quot;      &quot;bell pepper&quot;
+## [6] &quot;bilberry&quot;</code></pre>
+<p>Check the length of <code>fruit</code> to see how many we actually have. We also make the first letter of the name upper case:</p>
+<div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb515-1" title="1">fruit &lt;-<span class="st"> </span><span class="kw">str_to_sentence</span>(fruit)</a>
+<a class="sourceLine" id="cb515-2" title="2"><span class="kw">head</span>(fruit)</a></code></pre></div>
+<pre><code>## [1] &quot;Apple&quot;       &quot;Apricot&quot;     &quot;Avocado&quot;     &quot;Banana&quot;      &quot;Bell pepper&quot;
+## [6] &quot;Bilberry&quot;</code></pre>
+<p>Next, we can start to build our expression by first collapsing all the different fruit names together, and then adding parenthesis either side:</p>
+<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb517-1" title="1">fruit_expr &lt;-<span class="st"> </span><span class="kw">str_c</span>(fruit, <span class="dt">collapse=</span><span class="st">&quot;|&quot;</span>)</a>
+<a class="sourceLine" id="cb517-2" title="2">fruit_expr &lt;-<span class="st"> </span><span class="kw">str_c</span>(<span class="st">&quot;(&quot;</span>, fruit_expr, <span class="st">&quot;)&quot;</span>)</a>
+<a class="sourceLine" id="cb517-3" title="3"><span class="kw">str_length</span>(fruit_expr)</a></code></pre></div>
+<pre><code>## [1] 728</code></pre>
+<p>Our fruit expression has 728 characters which means it’s very long. Let’s put this into action:</p>
+<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb519-1" title="1">bf<span class="op">$</span>has_fruit &lt;-<span class="st"> </span><span class="kw">str_detect</span>(bf<span class="op">$</span>ingredients, fruit_expr)</a>
+<a class="sourceLine" id="cb519-2" title="2"><span class="kw">table</span>(bf<span class="op">$</span>has_fruit)</a></code></pre></div>
 <pre><code>## 
 ## FALSE  TRUE 
-##  2278  2074</code></pre>
+##  2662  1690</code></pre>
 <p>We can use this technique of concatenating a list to build several features,
 such as whether or not a product:</p>
 <ul>

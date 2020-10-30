@@ -479,10 +479,10 @@ want to square:</p>
 <a class="sourceLine" id="cb278-18" title="18"><span class="co"># how much time does each method take to execute?</span></a>
 <a class="sourceLine" id="cb278-19" title="19"><span class="kw">system.time</span>(<span class="kw">square_x_loop</span>())</a></code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.929   0.048   0.976</code></pre>
+##   0.936   0.020   0.956</code></pre>
 <div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb280-1" title="1"><span class="kw">system.time</span>(<span class="kw">square_x_vector</span>())</a></code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.031   0.052   0.083</code></pre>
+##   0.052   0.028   0.080</code></pre>
 <p>The <code>for</code> loop took longer than the vector approach. This is because of the way R is optimised for thinking with vectors, rather than thinking about processing individual values. With other more low-level programming languages you might not see any difference in terms of speed between these two methods, in fact it might even be the other way around.</p>
 <p>However, you should only consider a different approach when your loop seems to
 be taking a long time, and in these cases there will usually be a better way to code the solution. In all other cases where looping seems to solve your problem in a timely manner this is good enough.</p>
