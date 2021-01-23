@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 Classical Theory of Maxima of IID Variables | Lancaster University MATH562/482/582</title>
+  <meta name="description" content="2 Classical Theory of Maxima of IID Variables | Lancaster University MATH562/482/582" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 Classical Theory of Maxima of IID Variables | Lancaster University MATH562/482/582" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 Classical Theory of Maxima of IID Variables | Lancaster University MATH562/482/582" />
+  
+  
+  
+
+<meta name="author" content="Lecturers: Clement Lee &amp; Zak Varty" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="intro.html"/>
+<link rel="next" href="alternative.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#role-of-extreme-value-theory"><i class="fa fa-check"></i><b>1.1</b> Role of Extreme Value Theory</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="intro.html"><a href="intro.html#inadequacies-of-standard-statistical-approaches"><i class="fa fa-check"></i><b>1.1.1</b> Inadequacies of standard statistical approaches</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#sect:applications"><i class="fa fa-check"></i><b>1.2</b> Application areas of extreme value theory</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="intro.html"><a href="intro.html#oxford-and-worthing-annual-maxima-temperatures"><i class="fa fa-check"></i><b>1.2.1</b> Oxford and Worthing annual maxima temperatures</a></li>
+<li class="chapter" data-level="1.2.2" data-path="intro.html"><a href="intro.html#oceanographic-variables"><i class="fa fa-check"></i><b>1.2.2</b> Oceanographic variables</a></li>
+<li class="chapter" data-level="1.2.3" data-path="intro.html"><a href="intro.html#section:FTSEintro"><i class="fa fa-check"></i><b>1.2.3</b> FTSE Index</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#whats-in-the-course-for-you"><i class="fa fa-check"></i><b>1.3</b> What’s in the course for you?</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="block-maxima.html"><a href="block-maxima.html"><i class="fa fa-check"></i><b>2</b> Classical Theory of Maxima of IID Variables</a><ul>
+<li class="chapter" data-level="2.1" data-path="block-maxima.html"><a href="block-maxima.html#block-maxima-1"><i class="fa fa-check"></i><b>2.1</b> Block Maxima</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="block-maxima.html"><a href="block-maxima.html#sect:maxima"><i class="fa fa-check"></i><b>2.1.1</b> Distributional Theory for <span class="math inline">\(M_n\)</span></a></li>
+<li class="chapter" data-level="2.1.2" data-path="block-maxima.html"><a href="block-maxima.html#illustrative-example-the-maximum-of-exponential-variables"><i class="fa fa-check"></i><b>2.1.2</b> Illustrative example: the maximum of Exponential variables</a></li>
+<li class="chapter" data-level="2.1.3" data-path="block-maxima.html"><a href="block-maxima.html#extremal-types-theorem-ett"><i class="fa fa-check"></i><b>2.1.3</b> Extremal Types Theorem (ETT)</a></li>
+<li class="chapter" data-level="2.1.4" data-path="block-maxima.html"><a href="block-maxima.html#the-generalised-extreme-value-gev-distribution"><i class="fa fa-check"></i><b>2.1.4</b> The Generalised Extreme Value (GEV) Distribution</a></li>
+<li class="chapter" data-level="2.1.5" data-path="block-maxima.html"><a href="block-maxima.html#uett"><i class="fa fa-check"></i><b>2.1.5</b> Unified Extremal Types Theorem (UETT)</a></li>
+<li class="chapter" data-level="2.1.6" data-path="block-maxima.html"><a href="block-maxima.html#moments-of-the-gev"><i class="fa fa-check"></i><b>2.1.6</b> Moments of the GEV</a></li>
+<li class="chapter" data-level="2.1.7" data-path="block-maxima.html"><a href="block-maxima.html#connections-between-clt-and-uett"><i class="fa fa-check"></i><b>2.1.7</b> Connections between CLT and UETT</a></li>
+<li class="chapter" data-level="2.1.8" data-path="block-maxima.html"><a href="block-maxima.html#pseudo-proofs"><i class="fa fa-check"></i><b>2.1.8</b> Pseudo Proofs</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="block-maxima.html"><a href="block-maxima.html#sect:domains-of-attraction"><i class="fa fa-check"></i><b>2.2</b> Domains of attraction</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="block-maxima.html"><a href="block-maxima.html#doa"><i class="fa fa-check"></i><b>2.2.1</b> Domains of attraction for random variables with absolutely continuous distributions</a></li>
+<li class="chapter" data-level="2.2.2" data-path="block-maxima.html"><a href="block-maxima.html#examples-of-domains-of-attractions"><i class="fa fa-check"></i><b>2.2.2</b> Examples of domains of attractions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="block-maxima.html"><a href="block-maxima.html#inference"><i class="fa fa-check"></i><b>2.3</b> Inference for maxima of IID variables</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="block-maxima.html"><a href="block-maxima.html#sect:mle-gev"><i class="fa fa-check"></i><b>2.3.1</b> Inference for the GEV distribution</a></li>
+<li class="chapter" data-level="2.3.2" data-path="block-maxima.html"><a href="block-maxima.html#sect:mle-gev-max-temperature"><i class="fa fa-check"></i><b>2.3.2</b> Example: fitting the GEV to temperature maxima</a></li>
+<li class="chapter" data-level="2.3.3" data-path="block-maxima.html"><a href="block-maxima.html#return-levels-and-return-periods"><i class="fa fa-check"></i><b>2.3.3</b> Return levels and return periods</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="alternative.html"><a href="alternative.html"><i class="fa fa-check"></i><b>3</b> Alternative Characterisation and Improved Inferences</a><ul>
+<li class="chapter" data-level="3.1" data-path="alternative.html"><a href="alternative.html#point-process-characterisation"><i class="fa fa-check"></i><b>3.1</b> Point process characterisation</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="alternative.html"><a href="alternative.html#aside-on-poisson-processes"><i class="fa fa-check"></i><b>3.1.1</b> Aside on Poisson processes</a></li>
+<li class="chapter" data-level="3.1.2" data-path="alternative.html"><a href="alternative.html#the-limiting-point-process"><i class="fa fa-check"></i><b>3.1.2</b> The limiting point process</a></li>
+<li class="chapter" data-level="3.1.3" data-path="alternative.html"><a href="alternative.html#proof-of-point-process-limit"><i class="fa fa-check"></i><b>3.1.3</b> Proof of point process limit</a></li>
+<li class="chapter" data-level="3.1.4" data-path="alternative.html"><a href="alternative.html#sect:poisson-process-limit"><i class="fa fa-check"></i><b>3.1.4</b> The value of the Poisson process limit</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="alternative.html"><a href="alternative.html#sect:threshold-exceedances"><i class="fa fa-check"></i><b>3.2</b> Threshold exceedances</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="alternative.html"><a href="alternative.html#practical-implications-of-limit"><i class="fa fa-check"></i><b>3.2.1</b> Practical implications of limit</a></li>
+<li class="chapter" data-level="3.2.2" data-path="alternative.html"><a href="alternative.html#properties-of-gpd"><i class="fa fa-check"></i><b>3.2.2</b> Properties of GPD</a></li>
+<li class="chapter" data-level="3.2.3" data-path="alternative.html"><a href="alternative.html#inference-for-the-generalised-pareto-distribution"><i class="fa fa-check"></i><b>3.2.3</b> Inference for the generalised Pareto distribution</a></li>
+<li class="chapter" data-level="3.2.4" data-path="alternative.html"><a href="alternative.html#example-fitting-the-gpd-to-newlyn-data"><i class="fa fa-check"></i><b>3.2.4</b> Example: fitting the GPD to Newlyn data</a></li>
+<li class="chapter" data-level="3.2.5" data-path="alternative.html"><a href="alternative.html#sect:return-level-gpd"><i class="fa fa-check"></i><b>3.2.5</b> Return levels &amp; return periods</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="alternative.html"><a href="alternative.html#sect:r-largest"><i class="fa fa-check"></i><b>3.3</b> The <em>r</em>-largest approach</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="non-iid.html"><a href="non-iid.html"><i class="fa fa-check"></i><b>4</b> Extremes of Non-identically Distributed Variables</a><ul>
+<li class="chapter" data-level="4.1" data-path="non-iid.html"><a href="non-iid.html#sect:nonstationaryMeanVar"><i class="fa fa-check"></i><b>4.1</b> Examples of non-identically distributed processes</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="non-iid.html"><a href="non-iid.html#reading-ozone-data"><i class="fa fa-check"></i><b>4.1.1</b> Reading ozone data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="non-iid.html"><a href="non-iid.html#sect:existing"><i class="fa fa-check"></i><b>4.2</b> Existing methods for non-identically distributed processes</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="non-iid.html"><a href="non-iid.html#models-for-block-maxima-and-r-largest"><i class="fa fa-check"></i><b>4.2.1</b> Models for block maxima and <span class="math inline">\(r\)</span>-largest</a></li>
+<li class="chapter" data-level="4.2.2" data-path="non-iid.html"><a href="non-iid.html#models-for-threshold-exceedances"><i class="fa fa-check"></i><b>4.2.2</b> Models for threshold exceedances</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="non-iid.html"><a href="non-iid.html#sect:preprocessing"><i class="fa fa-check"></i><b>4.3</b> Pre-processing method</a></li>
+<li class="chapter" data-level="4.4" data-path="non-iid.html"><a href="non-iid.html#sect:reading-ozone"><i class="fa fa-check"></i><b>4.4</b> Analysis of Reading ozone data</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="stationary.html"><a href="stationary.html"><i class="fa fa-check"></i><b>5</b> Extremes of Stationary Processes</a><ul>
+<li class="chapter" data-level="5.1" data-path="stationary.html"><a href="stationary.html#background"><i class="fa fa-check"></i><b>5.1</b> Background</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="stationary.html"><a href="stationary.html#long-range-asymptotic-independence-condition"><i class="fa fa-check"></i><b>5.1.1</b> Long-range asymptotic independence condition</a></li>
+<li class="chapter" data-level="5.1.2" data-path="stationary.html"><a href="stationary.html#asymptotic-independence-of-maxima-aim"><i class="fa fa-check"></i><b>5.1.2</b> Asymptotic independence of Maxima (AIM)</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="stationary.html"><a href="stationary.html#unified-extremal-types-theorem-for-stationary-sequences"><i class="fa fa-check"></i><b>5.2</b> Unified Extremal Types Theorem for stationary sequences</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="stationary.html"><a href="stationary.html#extremes-of-frechet-marginal-variables"><i class="fa fa-check"></i><b>5.2.1</b> Extremes of Frechet marginal variables</a></li>
+<li class="chapter" data-level="5.2.2" data-path="stationary.html"><a href="stationary.html#motivating-example-moving-maxima"><i class="fa fa-check"></i><b>5.2.2</b> Motivating Example: Moving Maxima</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="stationary.html"><a href="stationary.html#extremal-index"><i class="fa fa-check"></i><b>5.3</b> The Extremal Index</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="stationary.html"><a href="stationary.html#extremal-index-for-moving-maxima-example"><i class="fa fa-check"></i><b>5.3.1</b> Extremal index for Moving Maxima example</a></li>
+<li class="chapter" data-level="5.3.2" data-path="stationary.html"><a href="stationary.html#implications-of-short-range-extremal-dependence"><i class="fa fa-check"></i><b>5.3.2</b> Implications of short-range extremal dependence</a></li>
+<li class="chapter" data-level="5.3.3" data-path="stationary.html"><a href="stationary.html#distribution-of-the-maximum"><i class="fa fa-check"></i><b>5.3.3</b> Distribution of the Maximum</a></li>
+<li class="chapter" data-level="5.3.4" data-path="stationary.html"><a href="stationary.html#threshold-exceedances"><i class="fa fa-check"></i><b>5.3.4</b> Threshold exceedances</a></li>
+<li class="chapter" data-level="5.3.5" data-path="stationary.html"><a href="stationary.html#cluster-maxima-point-process-intensity"><i class="fa fa-check"></i><b>5.3.5</b> Cluster maxima point process intensity</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="inference-dependent.html"><a href="inference-dependent.html"><i class="fa fa-check"></i><b>6</b> Statistical Inference for Extremes of Stationary Processes</a><ul>
+<li class="chapter" data-level="6.1" data-path="inference-dependent.html"><a href="inference-dependent.html#identifying-independent-clusters"><i class="fa fa-check"></i><b>6.1</b> Identifying independent clusters</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="inference-dependent.html"><a href="inference-dependent.html#the-runs-method-declustering"><i class="fa fa-check"></i><b>6.1.1</b> The runs method: declustering</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="inference-dependent.html"><a href="inference-dependent.html#modelling-cluster-maxima-and-all-exceedances"><i class="fa fa-check"></i><b>6.2</b> Modelling cluster maxima and all exceedances</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="inference-dependent.html"><a href="inference-dependent.html#point-process-intensity-estimation"><i class="fa fa-check"></i><b>6.2.1</b> Point process intensity estimation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="finance.html"><a href="finance.html"><i class="fa fa-check"></i><b>7</b> Extremes in Finance</a></li>
+<li class="chapter" data-level="8" data-path="further.html"><a href="further.html"><i class="fa fa-check"></i><b>8</b> Further Reading</a><ul>
+<li class="chapter" data-level="8.1" data-path="further.html"><a href="further.html#general-books"><i class="fa fa-check"></i><b>8.1</b> General &amp; books</a></li>
+<li class="chapter" data-level="8.2" data-path="further.html"><a href="further.html#multivariate-extremes-tail-dependence"><i class="fa fa-check"></i><b>8.2</b> Multivariate extremes &amp; tail dependence</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lancaster University MATH562/482/582</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="block-maxima" class="section level1">
+<h1><span class="header-section-number">2</span> Classical Theory of Maxima of IID Variables</h1>
+<p>There are many ways to undertake tail estimation based on different characteristics of the sample which we may consider extreme. We will focus on univariate features. We start by assuming that the extremes are independent and identically distributed (IID). In this context we cover</p>
+<ul>
+<li>block maxima (Chapter <a href="block-maxima.html#block-maxima">2</a>)</li>
+<li>exceedances of some fixed level (Section <a href="alternative.html#sect:threshold-exceedances">3.2</a>)</li>
+<li><span class="math inline">\(r\)</span>-largest/smallest values (Section <a href="alternative.html#sect:r-largest">3.3</a>)</li>
+</ul>
+<p>We then move on to non-identically distributed data, and over</p>
+<ul>
+<li>covariate modelling (Section <a href="non-iid.html#sect:existing">4.2</a>)</li>
+<li>process modelling (Section <a href="non-iid.html#sect:preprocessing">4.3</a>)</li>
+</ul>
+<p>Finally we consider data which cannot be assumed to be independent, looking at</p>
+<ul>
+<li>maximum (Chapter <a href="stationary.html#stationary">5</a>)</li>
+<li>clustering of extremes (Chapter <a href="inference-dependent.html#inference-dependent">6</a>)</li>
+</ul>
+<div id="block-maxima-1" class="section level2">
+<h2><span class="header-section-number">2.1</span> Block Maxima</h2>
+<p>We will only present extreme value theory and methods for the upper tail. This is not restrictive due to the symmetry in the arguments. For example, let
+<span class="math display">\[\begin{align*}
+M_{X,n}=\max(X_1, \ldots ,X_n) \mbox{ and }
+m_{X,n}=\min(X_1, \ldots ,X_n).
+\end{align*}\]</span>
+Then
+<span class="math display">\[\begin{align*}
+m_{X,n}=-\max(-X_1, \ldots ,-X_n)=-M_{-X,n},
+\end{align*}\]</span>
+so all distributional results for minima can be derived from results for maxima.</p>
+<p>Notation: when it is clear we will drop the <span class="math inline">\(X\)</span> subscript from <span class="math inline">\(M_{X,n}\)</span>, i.e.
+<span class="math display">\[\begin{eqnarray*}
+  M_{n}=\max(X_1, \ldots ,X_n).
+\end{eqnarray*}\]</span></p>
+<div id="sect:maxima" class="section level3">
+<h3><span class="header-section-number">2.1.1</span> Distributional Theory for <span class="math inline">\(M_n\)</span></h3>
+<p>For the remainder of this section, we will focus on the distribution of sample maxima. Suppose that <span class="math inline">\(X_1, \ldots, X_n\)</span> is a sequence of IID random variables with distribution function <span class="math inline">\(F\)</span>. Then
+<span class="math display">\[\begin{eqnarray*}
+\Pr(M_n\leq x) &amp; = &amp; \Pr(X_1\leq x,\ldots, X_n\leq x)\\
+               &amp; = &amp; \Pr(X_1\leq x)\ldots \Pr(X_n\leq x)\\
+               &amp; = &amp; \{F(x)\}^n.
+\end{eqnarray*}\]</span></p>
+<p>If we are interested in <span class="math inline">\(M_n\)</span> but <span class="math inline">\(F\)</span> is unknown, this formula is not of any help. As we are often interested in the maximum of a large number of variables this suggests an approach to modelling <span class="math inline">\(M_n\)</span> using an asymptotic argument. In particular, we may hope that a simple formulation may arise for the distribution of <span class="math inline">\(M_n\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span>, and that this formulation may not depend too strongly on the form of <span class="math inline">\(F\)</span>.</p>
+<p>However, <span class="math inline">\(M_n\rightarrow x^F\)</span> in probability as <span class="math inline">\(n\rightarrow \infty\)</span>, where
+<span class="math display">\[\begin{eqnarray*}
+  x^F=\sup\{x: F(x)&lt;1\},
+\end{eqnarray*}\]</span>
+From this, <span class="math inline">\(M_n\)</span> converges to the upper end point of <span class="math inline">\(F\)</span>. The asymptotic distribution of <span class="math inline">\(M_n\)</span> is termed degenerate.</p>
+<p>This suggests that a bit more subtlety is required. Let us see what we can learn from the theory of sums.</p>
+<p><strong>Aside on limit results for sums</strong></p>
+<p>As previously let <span class="math inline">\(X_1, \ldots, X_n\)</span> be IID, but now we define <span class="math inline">\(E(X_i)=\mu\)</span>, Var<span class="math inline">\((X_i)=\sigma^2&lt;\infty\)</span>.</p>
+<p>Let
+<span class="math display">\[\begin{eqnarray*}
+\overline{X}_n =\frac{\sum_{i=1}^n X_i}{n}.
+\end{eqnarray*}\]</span>
+The weak law of large numbers says that
+<span class="math display">\[\begin{eqnarray*}
+\overline{X}_n \rightarrow \mu \mbox{ (in probability) as }n\rightarrow \infty.
+\end{eqnarray*}\]</span>
+Therefore the asymptotic distribution of <span class="math inline">\(\overline{X}_n\)</span> is
+degenerate.</p>
+<p>The Central Limit Theorem (CLT) overcomes this problem by including a linear normalisation so that for all fixed <span class="math inline">\(x\)</span>
+<span class="math display">\[\begin{eqnarray*}
+\Pr\left(\frac{\overline{X}_n-\mu_n}{\sigma_n}\leq x\right)\rightarrow \Phi(x)
+\mbox{ as }n\rightarrow \infty,
+\end{eqnarray*}\]</span>
+where <span class="math inline">\(\mu_n=E(\overline{X}_n)=\mu\)</span> ,
+<span class="math inline">\(\sigma_n=\sqrt{\mbox{Var}(\overline{X}_n)}=\sigma/\sqrt{n}\)</span> and <span class="math inline">\(\Phi\)</span> is the distribution function of a standard Normal random variable.</p>
+<p>CLT revision:</p>
+<ul>
+<li>the limit distribution is the same whatever the underlying distribution <span class="math inline">\(F\)</span> (provided <span class="math inline">\(\sigma^2&lt;\infty\)</span>);</li>
+<li><p>the normalisation gives the variable
+<span class="math display">\[\begin{eqnarray*}
+n^{1/2}(\overline{X}_n-\mu)/\sigma,
+\end{eqnarray*}\]</span>
+i.e. normalisation blows up differences between <span class="math inline">\(\overline{X}_n\)</span> and <span class="math inline">\(\mu\)</span>.</p></li>
+<li>the normalisation depends on the features of <span class="math inline">\(F\)</span>;</li>
+<li><p>the CLT motivates the model
+<span class="math display">\[\begin{eqnarray*}
+\overline{X}_n \sim N(\mu,\sigma^2/n)
+\end{eqnarray*}\]</span>
+as a model for finite <span class="math inline">\(n\)</span>. This is an asymptotically justified model for observations which are formed by taking sums.</p></li>
+</ul>
+</div>
+<div id="illustrative-example-the-maximum-of-exponential-variables" class="section level3">
+<h3><span class="header-section-number">2.1.2</span> Illustrative example: the maximum of Exponential variables</h3>
+<p>We now return to maxima. Consider the maximum of Exponential<span class="math inline">\((1)\)</span> variables <span class="math inline">\(X_1,\ldots,X_n\)</span>. Is it possible to obtain a linear normalisation of <span class="math inline">\(M_n\)</span> to give a non-degenerate limit distribution?</p>
+<p>First take the cumulative distribution function of the Exponential<span class="math inline">\((1)\)</span> distribution:
+<span class="math display">\[\begin{eqnarray*}
+F(x)=1-\exp(-x) \mbox{ for } x&gt;0.
+\end{eqnarray*}\]</span>
+As <span class="math inline">\(M_n\rightarrow \infty\)</span> we need to blow up the deviations of <span class="math inline">\(M_n\)</span> from <span class="math inline">\(\infty\)</span>. Try <span class="math inline">\(M_n-\log n\)</span>. Then
+<span class="math display">\[\begin{eqnarray*}
+  \Pr(M_n-\log n\leq x) &amp;= &amp;\Pr(M_n\leq x+\log n)\\
+  &amp; = &amp; \{F(x+\log n)\}^n\\
+  &amp; = &amp; \{1-\exp(-x-\log n)\}^n \mbox{ for } x&gt;-\log n\\
+  &amp; = &amp; \{1-\exp(-x)\exp(-\log n)\}^n\\
+  &amp; = &amp; \{1-\exp(-x)/n\}^n\\
+  &amp; \rightarrow &amp; \exp[-\exp(-x)] \mbox{ as }n \rightarrow \infty
+  \mbox{ for }-\infty &lt; x&lt;\infty.
+\end{eqnarray*}\]</span></p>
+<p>The last step uses the result <span class="math inline">\((1+y/n)^n\rightarrow \exp(y)\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span> for any fixed <span class="math inline">\(y\)</span>.</p>
+</div>
+<div id="extremal-types-theorem-ett" class="section level3">
+<h3><span class="header-section-number">2.1.3</span> Extremal Types Theorem (ETT)</h3>
+<p>For subsequent use, we need to introduce the notion of an equivalence class of distributions, i.e. distributions of the same type</p>
+<p>If <span class="math inline">\(F_1\)</span> and <span class="math inline">\(F_2\)</span> are two distribution functions and there exist constants <span class="math inline">\(a&gt;0\)</span> and <span class="math inline">\(b\)</span> such that
+<span class="math display">\[\begin{eqnarray*}
+F_2(ax+b)=F_1(x) \mbox{ for all }x,
+\end{eqnarray*}\]</span>
+then <span class="math inline">\(F_1\)</span> and <span class="math inline">\(F_2\)</span> are of the same type. So the two distributions are the same up to location and scale parameters.</p>
+<p>Examples:</p>
+<ul>
+<li><span class="math inline">\(N(\mu_1,\sigma_1^2)\)</span> and <span class="math inline">\(N(\mu_2,\sigma_2^2)\)</span> are of the same type;</li>
+<li><span class="math inline">\(\Gamma(\alpha,\beta)\)</span> is Gamma distribution with scale <span class="math inline">\(\beta\)</span> and shape <span class="math inline">\(\alpha\)</span>, then<br />
+<span class="math inline">\(\Gamma(\alpha,\beta_1)\)</span> and <span class="math inline">\(\Gamma(\alpha,\beta_2)\)</span> are of the same type;<br />
+<span class="math inline">\(\Gamma(\alpha_1,\beta)\)</span> and <span class="math inline">\(\Gamma(\alpha_2,\beta)\)</span> are not of the same type.</li>
+</ul>
+<p>The following result can be viewed as an analogue to the CLT, for block maxima. Further details can be found in <span class="citation">Leadbetter (<a href="#ref-leadbetter83">1983</a>)</span>.</p>
+<hr />
+<p><strong>Theorem</strong> <em>Extremal Types Theorem</em><br />
+<em>If there exist sequences of constants <span class="math inline">\(a_n&gt;0\)</span> and <span class="math inline">\(b_n\)</span>, such that, as <span class="math inline">\(n\rightarrow \infty\)</span></em>
+<span class="math display">\[\begin{eqnarray*}
+\Pr\left(\frac{M_n-b_n}{a_n}\leq x\right)\rightarrow G(x)
+\end{eqnarray*}\]</span>
+<em>for some non-degenerate distribution <span class="math inline">\(G\)</span>, then <span class="math inline">\(G\)</span> is of the same type as one of the following distributions:</em></p>
+<p><strong>Gumbel</strong>
+<span class="math display">\[\begin{eqnarray*}
+G(x)=\exp\{-\exp(-x)\} \mbox{ for }-\infty&lt;x&lt;\infty;
+\end{eqnarray*}\]</span>
+<strong>Fréchet</strong>
+<span class="math display">\[\begin{eqnarray*}
+G(x)=\left\{
+\begin{array}{ll}
+0 &amp; x\leq 0\\
+\exp(-x^{-\alpha}) &amp; x&gt;0, \alpha&gt;0;
+\end{array}
+\right.
+\end{eqnarray*}\]</span>
+<strong>Negative Weibull</strong>
+<span class="math display">\[\begin{eqnarray*}
+G(x)=\left\{
+\begin{array}{ll}
+\exp[-(-x)^{\alpha}] &amp; x&lt;0, \alpha&gt;0;\\
+1 &amp; x\geq 0.
+\end{array}
+\right.
+\end{eqnarray*}\]</span></p>
+<hr />
+</div>
+<div id="the-generalised-extreme-value-gev-distribution" class="section level3">
+<h3><span class="header-section-number">2.1.4</span> The Generalised Extreme Value (GEV) Distribution</h3>
+<p>For statistical purposes it is inconvenient to work with three distinct classes of limiting distribution as in the ETT, so it is preferable to adopt a parametrisation which unifies these distributions. <span class="citation"><span>v</span>on Mises (<a href="#ref-vonMises54">1954</a>)</span> and <span class="citation">Jenkinson (<a href="#ref-jenkinson55">1955</a>)</span> derived the Generalised Extreme Value GEV<span class="math inline">\((\mu,\sigma,\xi)\)</span> distribution with distribution function
+<span class="math display">\[\begin{eqnarray*}
+  G(x) = \exp\left\{-\left[1+\xi\left(\frac{x-\mu}{\sigma}\right)\right]_+^{-1/\xi}\right\}
+\end{eqnarray*}\]</span>
+where <span class="math inline">\(x_+=\max(x,0)\)</span> and <span class="math inline">\(\sigma&gt;0\)</span>, so up to type the GEV distribution is
+<span class="math display">\[\begin{eqnarray*}
+G(x)=\exp\left[-(1+\xi x)_+^{-1/\xi}\right].
+\end{eqnarray*}\]</span></p>
+<ul>
+<li>Gumbel corresponds to <span class="math inline">\(\xi=0\)</span> (taken as the limit <span class="math inline">\(\xi\rightarrow0\)</span>);<br />
+GEV<span class="math inline">\((0,1,0)=\)</span> Gumbel;</li>
+<li>Frechet corresponds to <span class="math inline">\(\xi&gt;0\)</span>;<br />
+GEV<span class="math inline">\((1,\alpha^{-1},\alpha^{-1})=\)</span> Frechet<span class="math inline">\((\alpha)\)</span>;</li>
+<li>Negative Weibull corresponds to <span class="math inline">\(\xi&lt;0\)</span>;<br />
+GEV<span class="math inline">\((-1,\alpha^{-1},-\alpha^{-1})=\)</span> Negative Weibull<span class="math inline">\((\alpha)\)</span>.</li>
+</ul>
+<hr />
+</div>
+<div id="uett" class="section level3">
+<h3><span class="header-section-number">2.1.5</span> Unified Extremal Types Theorem (UETT)</h3>
+<p><strong>Theorem</strong><br />
+<em>If there exist sequences of constants <span class="math inline">\(a_n&gt;0\)</span> and <span class="math inline">\(b_n\)</span>, such that, as <span class="math inline">\(n\rightarrow \infty\)</span></em>
+<span class="math display" id="eq:gev-lim">\[\begin{eqnarray}
+\Pr\left(\frac{M_n-b_n}{a_n}\leq x\right)\rightarrow G(x)
+\tag{2.1}
+\end{eqnarray}\]</span>
+<em>for some non-degenerate distribution <span class="math inline">\(G\)</span>, then <span class="math inline">\(G\)</span> is of the same type as</em>
+<span class="math display">\[\begin{eqnarray*}
+G(x)=\exp\left[-(1+\xi x)_+^{-1/\xi}\right]
+\end{eqnarray*}\]</span>
+<em>for some value of <span class="math inline">\(\xi\)</span>.</em></p>
+<hr />
+<p>Notes on UETT:</p>
+<ul>
+<li><span class="math inline">\(\xi\)</span> is termed the shape parameter (or tail index);</li>
+<li><span class="math inline">\(\xi&gt;0\)</span> heavy upper tail,<br />
+<span class="math inline">\(\xi=0\)</span> Exponential upper tail,<br />
+<span class="math inline">\(\xi&lt;0\)</span> tail with finite upper limit;</li>
+<li>UETT does not guarantee the existence of a non-degenerate limit or say which type will arise (i.e. which <span class="math inline">\(\xi\)</span> value) when such a limit exists (it depends on <span class="math inline">\(F\)</span>, but only weakly);</li>
+<li>Unlike the CLT, the UETT does not tell us how to pick <span class="math inline">\(a_n\)</span> and <span class="math inline">\(b_n\)</span> (see Section <a href="block-maxima.html#sect:domains-of-attraction">2.2</a>);</li>
+<li>Unlike the CLT, the UETT has an infinite set of limit distributions (indexed by <span class="math inline">\(\xi\)</span>).</li>
+</ul>
+</div>
+<div id="moments-of-the-gev" class="section level3">
+<h3><span class="header-section-number">2.1.6</span> Moments of the GEV</h3>
+<p>Suppose <span class="math inline">\(Y\sim\)</span> GEV<span class="math inline">\((\mu,\sigma,\xi)\)</span>. Then the moments of the GEV are as follows (there is no need to derive these). If <span class="math inline">\(r&gt;0\)</span> and <span class="math inline">\(\xi&gt;1/r\)</span> then
+<span class="math display">\[\begin{eqnarray*}
+E(Y^r)=\sum_{j=0}^r \binom{r}{j}
+(\mu-\sigma/\xi)^j(\sigma/\xi)^{r-j}
+\Gamma(1-\xi(r-j))
+\end{eqnarray*}\]</span>
+and <span class="math inline">\(E(Y^r)=\infty\)</span> if <span class="math inline">\(\xi\geq1/r\)</span>.</p>
+<p>So the expectation and variance are not always finite, in particular
+<span class="math display">\[\begin{eqnarray*}
+E(Y)=\mu+\frac{\sigma}{\xi}[\Gamma(1-\xi)-1]\mbox{ for }\xi&lt;1
+\end{eqnarray*}\]</span>
+and Var<span class="math inline">\((Y)=\infty\)</span> if <span class="math inline">\(\xi\geq 1/2\)</span>.</p>
+</div>
+<div id="connections-between-clt-and-uett" class="section level3">
+<h3><span class="header-section-number">2.1.7</span> Connections between CLT and UETT</h3>
+<p>Is the UETT really much weaker than the CLT?</p>
+<ul>
+<li><strong>UETT</strong> gives a <strong>family</strong> of limit distribution types, parametrised by <span class="math inline">\(\xi\)</span>,</li>
+<li>the <strong>CLT</strong> gives a <strong>single type</strong>, the Normal distribution.</li>
+</ul>
+<p>The difference is really a matter of story-telling. The <span style="color: red;">CLT</span> has the condition that Var<span class="math inline">\((X_i)&lt;\infty\)</span> which is not required for the UETT.</p>
+<p>If this restriction is removed then the results look much more similar.</p>
+<p>If Var<span class="math inline">\((X_i)=\sigma^2&lt;\infty\)</span>,
+<span class="math display">\[\begin{eqnarray*}
+\Pr\left(\frac{n^{1/2}(\overline{X}_n-\mu)}{\sigma}\leq x\right)
+\rightarrow \Phi(x)
+\mbox{ as }n\rightarrow \infty,
+\end{eqnarray*}\]</span>
+If Var<span class="math inline">\((X_i)=\infty\)</span>, there exists <span class="math inline">\(c&gt;\frac{1}{2}\)</span> such that
+<span class="math display">\[\begin{eqnarray*}
+\Pr\left(n^{1-c}\overline{X}_n\leq x\right) \rightarrow \mbox{SSL}(c)
+\mbox{ as }n\rightarrow \infty,
+\end{eqnarray*}\]</span>
+where SSL is a Sum-Stable-Law<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>
+distribution. So more generally, sums have limit laws that are parameterised by <span class="math inline">\(c\)</span>.</p>
+</div>
+<div id="pseudo-proofs" class="section level3">
+<h3><span class="header-section-number">2.1.8</span> Pseudo Proofs</h3>
+<p>Here we justify why, if a non-degenerate limit distribution exists, it has to be of the stated form.</p>
+<p><strong>Proof of CLT</strong></p>
+<p>For simplicity of presentation we take E<span class="math inline">\((X_i)=0\)</span> and Var<span class="math inline">\((X_i)=1\)</span>.</p>
+<p>Let <span class="math inline">\(S_n\)</span> denote the standardised variable <span class="math inline">\(\overline{X}_n\)</span>,
+<span class="math display">\[\begin{eqnarray*}
+  S_n = n^{1/2}\overline{X}_n=\frac{1}{\sqrt{n}}\sum_{i=1}^n X_i,
+\end{eqnarray*}\]</span>
+then E<span class="math inline">\((S_n) = 0\)</span> and Var<span class="math inline">\((S_n) =1\)</span>.</p>
+<p>Let us assume that <span class="math inline">\(S_n\)</span> converges in distribution to some random variable <span class="math inline">\(Y\)</span> with an unknown distribution. That means that when <span class="math inline">\(n\)</span> is large the distribution of <span class="math inline">\(S_n\)</span> is well approximated by the distribution of <span class="math inline">\(Y\)</span>, or that the distribution of <span class="math inline">\(\sum_{i=1}^n X_i\)</span> is well approximated by the distribution of <span class="math inline">\(\sqrt{n}Y\)</span>.</p>
+<p>We now think of the sum <span class="math inline">\(\sum_{i=1}^n X_i\)</span> as being the sum of sums. Specifically, let <span class="math inline">\(k\)</span> be a fixed positive integer and define <span class="math inline">\(r_n=\mbox{integer part}(n/k)\)</span>. Then, on ignoring the last little bit of the sum,
+<span class="math display">\[\begin{eqnarray*}
+\sum_{i=1}^n X_i \approx \sum_{j=1}^k \sum_{i=r_{n}(j-1)+1}^{r_{n}j} X_i
+\end{eqnarray*}\]</span></p>
+<p>Note that the smaller sums are independent, because they are sums over different <span class="math inline">\(X\)</span>’s. If <span class="math inline">\(n\)</span> is large, so is <span class="math inline">\(r_n\)</span>, so each smaller sum has approximately the same distribution as <span class="math inline">\(\sqrt{r_n}Y\)</span>.</p>
+<p>Now, letting <span class="math inline">\(Y_1, \ldots ,Y_k\)</span> be independent random variables each distributed as <span class="math inline">\(Y\)</span>, this implies that
+<span class="math display">\[\begin{eqnarray*}
+\sqrt{n}Y &amp; = &amp; \sqrt{r_n}Y_1+ \ldots +\sqrt{r_n}Y_k\\
+\sqrt{k}Y &amp; = &amp; Y_1+ \ldots +Y_k
+\end{eqnarray*}\]</span></p>
+<p>Thus the distribution of <span class="math inline">\(Y\)</span> has to have the property that when we add independent random variables with the same distribution as <span class="math inline">\(Y\)</span> we get (apart from scaling) the same distribution back. This is exactly the convolution property of the Normal distribution, and since the Normal distribution is the only distribution with finite variance with this property this shows at least heuristically why the limit distribution (if it exists) of the sum of IID random variables with finite variance has to be Normal.</p>
+<p><strong>Proof of UETT</strong></p>
+<p>Let us assume that <span class="math inline">\((M_n-b_n)/a_n\)</span> converges in distribution to some random variable <span class="math inline">\(Y\)</span> with an unknown distribution. That means that when <span class="math inline">\(n\)</span> is large the distribution of <span class="math inline">\((M_n-b_n)/a_n\)</span> is well approximated by the distribution of <span class="math inline">\(Y\)</span>, or that the distribution of <span class="math inline">\(M_n\)</span> is well approximated by the distribution of <span class="math inline">\(a_{n}Y+b_{n}\)</span>.</p>
+<p>We now think of <span class="math inline">\(M_n\)</span> as being the maximum of maxima. Specifically, let <span class="math inline">\(k\)</span> be a fixed positive integer and define <span class="math inline">\(r_n=\mbox{integer part}(n/k)\)</span>.
+<span class="math display">\[\begin{eqnarray*}
+M_n \approx \max_{j=1,\ldots, k} \max(X_{r_{n}(j-1)+1}, \ldots X_{r_{n}j}).
+\end{eqnarray*}\]</span>
+Again, this requires us to ignore the last little bit of the max.</p>
+<p>These smaller maxima are independent, because they are maxima over different <span class="math inline">\(X\)</span>’s. If <span class="math inline">\(n\)</span> is large, so is <span class="math inline">\(r_n\)</span>, so each smaller maxima has approximately the same distribution as <span class="math inline">\(a_{r_n}Y+b_{r_n}\)</span>. Letting <span class="math inline">\(Y_1, \ldots ,Y_k\)</span> be independent random variables each distributed as <span class="math inline">\(Y\)</span> then this implies</p>
+<p><span class="math display">\[\begin{eqnarray*}
+a_{n}Y+b_n &amp; = &amp; a_{r_n}\max(Y_1, \ldots ,Y_k)+b_{r_n}\\
+\left\{
+\frac{a_{n}Y+b_{n}-b_{r_n}}{a_{r_n}}
+\right\} &amp; = &amp; 
+\max(Y_1, \ldots ,Y_k)
+\end{eqnarray*}\]</span></p>
+<p>Thus the distribution of <span class="math inline">\(Y\)</span> has to have the property that when we maximise independent random variables with the same distribution as <span class="math inline">\(Y\)</span> we get the same distributional type back. This property can be written in terms of the distribution function as
+<span class="math display">\[\begin{align}
+G(A_k x+B_k)=\{G(x)\}^k \mbox{ for constants }A_k&gt;0 \mbox { and }B_k
+\end{align}\]</span>
+for all <span class="math inline">\(k\)</span>. This property is called max-stability. The GEV distribution is the only distribution which satisfies this max-stability property.</p>
+<p>This shows, at least heuristically, why the limit distribution (if it exists) of the maximum of IID random variables has to be GEV.</p>
+</div>
+</div>
+<div id="sect:domains-of-attraction" class="section level2">
+<h2><span class="header-section-number">2.2</span> Domains of attraction</h2>
+<p>In statistical applications we often pay little regard to the population distribution <span class="math inline">\(F\)</span>, but use the above theory to motivate the fitting of a GEV to block maxima <span class="math inline">\(M_n\)</span>.</p>
+<ul>
+<li>This reflects standard practice throughout statistical inference in which tests are based on the asymptotic normality of sample means without reference to the parent distribution.</li>
+<li>There is substantial probabilistic research in extreme value theory, a major concern of which has been characterising the domains of attraction for the extreme value limits, or in other words:<br />
+<em><span style="color: red;">given a limit distribution from the GEV class, characterise the set of distributions <span class="math inline">\(F\)</span> for which the normalised <span class="math inline">\(M_n\)</span> have that limit</span></em>;<br />
+or alternatively,<br />
+<em><span style="color: red;">given a distribution <span class="math inline">\(F\)</span>, find <span class="math inline">\(a_n\)</span> and <span class="math inline">\(b_n\)</span> such that a limit for <span class="math inline">\(M_n\)</span> is obtained, and what is that limit?</span></em></li>
+<li>In full generality, this is a hard question. We focus on <em>domains of attraction</em> for random variables with absolutely continuous distributions.</li>
+</ul>
+<div id="doa" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> Domains of attraction for random variables with absolutely continuous distributions</h3>
+<p>Define the reciprocal hazard function <span class="math inline">\(h\)</span> by
+<span class="math display" id="eq:inverse-hazard">\[\begin{eqnarray}
+h(x)=\frac{1-F(x)}{f(x)} \mbox{ for }x_F&lt;x&lt;x^F,
+\tag{2.2}
+\end{eqnarray}\]</span>
+where <span class="math inline">\(f(x)\)</span> is the density function, <span class="math inline">\(x_F\)</span> and <span class="math inline">\(x^F\)</span> are the lower and upper end points of the distribution respectively.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<p>By a series of rearrangements of the distribution function, it can be shown that for each <span class="math inline">\(u\)</span> and <span class="math inline">\(x\)</span> there exists a <span class="math inline">\(y\)</span> such <span class="math inline">\(u\leq y \leq u+xh(u)\)</span> such that
+<span class="math display" id="eq:domain">\[\begin{eqnarray}
+\frac{1-F(u+xh(u))}{1-F(u)}=[1+h^{\prime}(y)x]_+^{-1/h^{\prime}(y)}.
+\tag{2.3}
+\end{eqnarray}\]</span>
+We suppose that <span class="math inline">\(h^{\prime}(y)\rightarrow \xi\)</span> as <span class="math inline">\(y\rightarrow x^F\)</span> (where <span class="math inline">\(\xi\)</span> is finite).</p>
+<p>Now fix <span class="math inline">\(x\)</span> and let <span class="math inline">\(u\rightarrow x^F\)</span>, and define</p>
+<ul>
+<li><span class="math inline">\(b_n\)</span> to be the <span class="math inline">\(1-1/n\)</span> quantile, i.e. <span class="math inline">\(1-F(b_n)=1/n\)</span>,</li>
+<li><span class="math inline">\(a_n=h(b_n)\)</span>, i.e. a function of the hazard in the extremes.</li>
+</ul>
+<p>Letting <span class="math inline">\(u=b_n\)</span> in equation <a href="block-maxima.html#eq:domain">(2.3)</a> gives
+<span class="math display" id="eq:domain2">\[\begin{eqnarray}
+  n[1-F(a_n x+b_n)]\rightarrow (1+\xi x)_+^{-1/\xi} \mbox{ as
+  }n\rightarrow \infty.
+  \tag{2.4}
+\end{eqnarray}\]</span></p>
+<p>As <span class="math inline">\(-\log(x)=-\log[1-(1-x)]\approx 1-x\)</span> as <span class="math inline">\(x \uparrow 1\)</span> then the left hand side of equation <a href="block-maxima.html#eq:domain2">(2.4)</a> is approximately <span class="math inline">\(-n\log F(a_n x+b_n)\)</span>, so it follows that
+<span class="math display">\[\begin{eqnarray*}
+\{F(a_n x+b_n)\}^n\rightarrow\exp[-(1+\xi x)_+^{-1/\xi}].
+\end{eqnarray*}\]</span>
+Thus the domains of attraction problem is simple: a GEV<span class="math inline">\((0,1,\xi)\)</span> type distribution is obtained as a limit if
+<span class="math display">\[\begin{eqnarray*}
+  h^{\prime}(y)\rightarrow \xi \mbox{ as }y\rightarrow x^F,
+\end{eqnarray*}\]</span>
+and we pick <span class="math inline">\(a_n\)</span> and <span class="math inline">\(b_n\)</span> by:
+<span class="math display">\[\begin{eqnarray*}
+  1-F(b_n)=1/n \mbox{ and }a_n=h(b_n).
+\end{eqnarray*}\]</span>
+A Gumbel limit is obtained when the reciprocal hazard function is approximately constant for extreme values (this arises frequently in applications).</p>
+</div>
+<div id="examples-of-domains-of-attractions" class="section level3">
+<h3><span class="header-section-number">2.2.2</span> Examples of domains of attractions</h3>
+<hr />
+<p><strong>Exponential(1)</strong></p>
+<p><span class="math inline">\(F(x)=1-\exp(-x)\)</span>, <span class="math inline">\(f(x)=\exp(-x)\)</span> and so <span class="math inline">\(h(x)=1\)</span> for all <span class="math inline">\(x&gt;0\)</span> (constant hazard). Then</p>
+<p><span class="math display">\[\begin{eqnarray*}
+  h^{\prime}(x)=0 \mbox{ for all } x
+\end{eqnarray*}\]</span>
+so <span class="math inline">\(\xi=0\)</span>, <span class="math inline">\(\exp(-b_n)=1/n\)</span> so <span class="math inline">\(b_n=\log n\)</span> and <span class="math inline">\(a_n=h(b_n)=1\)</span>. Thus,
+<span class="math display">\[\begin{eqnarray*}
+  M_n-\log n
+\end{eqnarray*}\]</span>
+converges to a Gumbel distribution.</p>
+<hr />
+<p><strong>Normal distribution</strong></p>
+<p>For large <span class="math inline">\(x\)</span>
+<span class="math display">\[\begin{eqnarray*}
+  1-\Phi(x)\approx (2\pi)^{-1/2}\exp(-x^2/2)(x^{-1}-x^{-3}+3x^{-5}+ \ldots ).
+\end{eqnarray*}\]</span>
+It follows that <span class="math inline">\(h(x)=x^{-1}-x^{-3}+ \ldots\)</span>, hence
+<span class="math display">\[\begin{eqnarray*}
+  h^{\prime}(x)=-x^{-2}+3x^{-4}+ \ldots
+\end{eqnarray*}\]</span>
+so <span class="math inline">\(\xi=0\)</span> and <span class="math inline">\(b_n\)</span> can be only expressed asymptotically as
+<span class="math display">\[\begin{eqnarray*}
+b_n=(2\log n)^{1/2}-\frac{1}{2}(2\log n)^{-1/2}[\log(\log n)+\log(4\pi)]
+\mbox{ and } a_n=(2\log n)^{-1/2}.
+\end{eqnarray*}\]</span>
+Note that since <span class="math inline">\(a_n\rightarrow 0\)</span> it implies that <span class="math inline">\(M_n\sim b_n\)</span>, i.e. <span class="math inline">\(M_n \sim (2\log n)^{1/2}\)</span>.</p>
+<p>Maxima of Normal variables grow very slowly, and deterministically!</p>
+<hr />
+<p><strong>Distributions with regularly varying upper tails</strong></p>
+<p>An important class of distributions have regularly varying tails, i.e.
+<span class="math display">\[\begin{eqnarray*}
+\frac{1-F(tx)}{1-F(t)}\rightarrow x^{-\alpha} \mbox{ as } t\rightarrow \infty 
+\end{eqnarray*}\]</span>
+for fixed <span class="math inline">\(x&gt;0\)</span> and <span class="math inline">\(\alpha&gt;0\)</span>. Within this class are distributions with upper tails with
+<span class="math display">\[\begin{eqnarray*}
+1-F(x) \sim c/x^{\alpha} \mbox{ as }x\rightarrow \infty,
+\end{eqnarray*}\]</span>
+for <span class="math inline">\(c&gt;0\)</span> and <span class="math inline">\(\alpha&gt;0\)</span>. Examples include Pareto, Cauchy, <span class="math inline">\(t\)</span> and <span class="math inline">\(F\)</span> distributions. Then
+<span class="math display">\[\begin{eqnarray*}
+  f(x)\sim \alpha c x^{-\alpha-1}, h(x)\sim \alpha^{-1}x 
+  \mbox{ and } h^{\prime}(x)\sim \alpha^{-1}\mbox{ as }x \rightarrow \infty.
+\end{eqnarray*}\]</span>
+It follows that <span class="math inline">\(\xi=\alpha^{-1}\)</span>, <span class="math inline">\(b_n=(cn)^{1/\alpha}\)</span> and <span class="math inline">\(a_n=\alpha^{-1}(cn)^{1/\alpha}\)</span>.</p>
+<p>A Frechet<span class="math inline">\((\alpha)\)</span> type limit is obtained.</p>
+</div>
+</div>
+<div id="inference" class="section level2">
+<h2><span class="header-section-number">2.3</span> Inference for maxima of IID variables</h2>
+<p>We now introduce statistical models based on the probabilistic ideas seen so far and explore some issues that arise when we wish to carry out statistical inference for these models.</p>
+<p>The fundamental premise in all statistical extreme value modelling is that<br />
+<em><span style="color: red;">we can approximate the distribution of extreme values by the limiting theoretical forms.</span></em><br />
+The issue throughout is then to define <em>extreme values</em> in the above to be sufficiently extreme that the approximation by the limiting form is good!</p>
+<div id="sect:mle-gev" class="section level3">
+<h3><span class="header-section-number">2.3.1</span> Inference for the GEV distribution</h3>
+<p>The GEV distribution is used to model data arising as block maxima. Suppose that <span class="math inline">\(X_1,X_2,\ldots\)</span> is an IID sequence of random variables having common distribution function <span class="math inline">\(F\)</span>, and <span class="math inline">\(M_n=\max(X_1,\ldots,X_n)\)</span>. According to the Unified Extremal Types Theorem, we assume that
+<span class="math display">\[\begin{eqnarray*}
+  M_n\sim\mbox{GEV}(\mu,\sigma,\xi)
+\end{eqnarray*}\]</span>
+Why should this be appropriate?</p>
+<p>We start by assuming the limit in the expression <a href="block-maxima.html#eq:gev-lim">(2.1)</a> to hold exactly for some finite <span class="math inline">\(n\)</span> so that
+<span class="math display" id="eq:gev-lim-II">\[\begin{eqnarray}
+  \Pr\left(\frac{M_n-b_n}{a_n}\leq x\right) = \exp\left[-(1+\xi x)_+^{-1/\xi}\right]
+  \tag{2.5}
+\end{eqnarray}\]</span></p>
+<p>Although the sequences <span class="math inline">\(a_n\)</span> and <span class="math inline">\(b_n\)</span> in the expression <a href="block-maxima.html#eq:gev-lim">(2.1)</a> depend on the original underlying distribution <span class="math inline">\(F\)</span>, for finite, fixed <span class="math inline">\(n\)</span>, they are just normalising constants so we can rewrite <a href="block-maxima.html#eq:gev-lim-II">(2.5)</a> as
+<span class="math display">\[\begin{eqnarray*}
+  \Pr(M_n\leq y) = \exp\left[-(1+\xi x)_+^{-1/\xi}\right]\mbox{ with }y=a_n
+  x+b_n
+\end{eqnarray*}\]</span>
+That is
+<span class="math display">\[\begin{eqnarray*}
+  \Pr(M_n\leq y) &amp;=&amp;\exp\left[-\left\{1+\xi\left(\frac{y-b_n}{a_n}\right)\right\}_+^{-1/\xi}\right]\\
+&amp;=&amp;\exp\left[-\left\{1+\xi\left(\frac{y-\mu}{\sigma}\right)\right\}_+^{-1/\xi}\right]~~~\sigma&gt;0.
+\end{eqnarray*}\]</span></p>
+<p>The key assumption we have made here is that of the expression <a href="block-maxima.html#eq:gev-lim-II">(2.5)</a>. The validity of this assumption relies on:</p>
+<ul>
+<li>choice of <span class="math inline">\(n\)</span>: we need to construct <span class="math inline">\(M_n\)</span> by taking the maximum of sufficiently many observations;</li>
+<li>flatness of <span class="math inline">\(h&#39;\)</span>: with <span class="math inline">\(h\)</span> defined as in equation <a href="block-maxima.html#eq:inverse-hazard">(2.2)</a>, this is determined by the original distribution <span class="math inline">\(F\)</span>.</li>
+</ul>
+<p><strong>Maximum likelihood estimation for the GEV</strong><br />
+The parameters in the GEV can be estimated using any one of a number of inference methods, including maximum likelihood, Bayesian, and method of moments (and variant there of). We stick to the first method. Maximisation of the log-likelihood obtained from the GEV model with respect to parameters <span class="math inline">\(\boldsymbol\theta = (\mu,\sigma,\xi)&#39;\)</span> gives the global maximum likelihood estimate over the entire GEV class of models. Note that</p>
+<ul>
+<li>Numerical maximisation is required as there is no analytical solution.</li>
+<li>Parameter constraints are necessary to ensure a log-likelihood value of <span class="math inline">\(-\infty\)</span> for parameter combinations for which the observed data lie beyond an endpoint of the distribution.</li>
+<li>Then subject to conditions on <span class="math inline">\(\xi\)</span> (<span class="math inline">\(\xi&gt;-1/2\)</span>) given below,
+<span class="math display">\[\begin{eqnarray*}
+\hat{\boldsymbol{\theta}}(\boldsymbol{X})\sim\mbox{MVN}\left(\boldsymbol{\theta},{\cal I}_E^{-1}(\boldsymbol{\theta})\right)
+\end{eqnarray*}\]</span></li>
+</ul>
+<p>In practice, as <span class="math inline">\(\hat{\boldsymbol{\theta}}\)</span> is also unknown, the (expected or observed) information matrix is evaluated at its estimate <span class="math inline">\(\hat{\boldsymbol{\theta}}(\boldsymbol{X})\)</span> using the observed information, so we can write
+<span class="math display">\[\begin{eqnarray*}
+  \hat{\boldsymbol{\theta}}(\boldsymbol{X})\sim\mbox{MVN}\left(\boldsymbol{\theta},{\cal I}_O^{-1}(\boldsymbol{\theta}(\boldsymbol{x}))\right),
+\end{eqnarray*}\]</span>
+where <span class="math inline">\({\cal I}_O^{-1}(\hat{\boldsymbol{\theta}})\)</span> is the inverse of the observed information matrix evaluated at the MLE. <span class="math inline">\({\cal I}_O^{-1}(\hat{\boldsymbol{\theta}})\)</span> can be calculated analytically, however it is easier to use numerical differencing. This is the approach taken in these notes and in the course labs.</p>
+<p>Confidence intervals for the parameter values and for derived quantities follow from the approximate Normality of the MLE.</p>
+<p><strong>Regularity of maximum likelihood estimates</strong><br />
+Potential difficulties can arise concerning the regularity conditions required for the maximum likelihood estimator to exhibit the usual asymptotic properties. These difficulties arise because the endpoints of the support of the distributions we consider are determined by the parameter values, so that standard asymptotic results are not automatically applicable.</p>
+<p><span class="citation">Smith (<a href="#ref-smith85">1985</a>)</span> gives the following results for the GEV:</p>
+<ul>
+<li><span class="math inline">\(-1/2&lt;\xi\)</span>: MLE regular despite parameters determining an endpoint;<br />
+<span class="math inline">\(\sqrt{n}(\hat\xi-\xi)\rightarrow\)</span>N<span class="math inline">\((0,C)\)</span>;</li>
+<li><span class="math inline">\(-1&lt;\xi&lt;-1/2\)</span>: estimators can be obtained but are super-efficient;<br />
+<span class="math inline">\(n^{-\xi}(\hat\xi-\xi)\rightarrow\)</span>SSL<span class="math inline">\((\xi)\)</span>;</li>
+<li><span class="math inline">\(\xi&lt;-1\)</span>: the fitted end-point equals the largest observation.</li>
+</ul>
+<p>When <span class="math inline">\(\xi&lt;-1/2\)</span>, the distributions have very short bounded upper tails. This is rarely encountered in practice, so the theoretical limitations of maximum likelihood methods rarely cause practical difficulties.</p>
+<p><strong>Other inferential approaches</strong><br />
+Bayesian inference</p>
+<ul>
+<li>This is also feasible</li>
+<li>Implemented using MCMC</li>
+<li>Prior information of great value in situations where we have little information about extremes of variables</li>
+<li>See <span class="citation">Stuart G. Coles and Powell (<a href="#ref-cp96">1996</a>)</span> for more details</li>
+</ul>
+<p>Moment based estimators</p>
+<ul>
+<li>Lack flexibility</li>
+<li>No facility for easy development of covariate models</li>
+<li>Unable to reflect uncertainty accurately via skew confidence intervals</li>
+<li>See <span class="citation">Hosking, Wallis, and Wood (<a href="#ref-hww85">1985</a>)</span>, <span class="citation">Dekkers, Einmahl, and de Haan (<a href="#ref-ded89">1989</a>)</span> for more details</li>
+</ul>
+</div>
+<div id="sect:mle-gev-max-temperature" class="section level3">
+<h3><span class="header-section-number">2.3.2</span> Example: fitting the GEV to temperature maxima</h3>
+<div class="figure" style="text-align: center"><span id="fig:ii-i"></span>
+<img src="images/oxford.worthing.gev.qq.plot.png" alt="Q-Q plot for GEV fits to Oxford and Worthing annual maximum temperature data sets." width="85%" />
+<p class="caption">
+Figure 2.1: Q-Q plot for GEV fits to Oxford and Worthing annual maximum temperature data sets.
+</p>
+</div>
+<p>The GEV distribution seems an appropriate choice of model for the Oxford and Worthing temperature data since these are annual maxima data. We check the appropriatenes of this model choice using Q-Q plots shown in Figure <a href="block-maxima.html#fig:ii-i">2.1</a>. Q-Q plots emphasise model fit to observations in the tail of the distribution.</p>
+<p>The GEV parameter estimates for these data sets are as follows:</p>
+<table>
+<tbody>
+<tr class="odd">
+<td></td>
+<td>Oxford</td>
+<td>Worthing</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\hat\mu\)</span></td>
+<td>83.8 (0.52)</td>
+<td>78.5 (0.39)</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\hat\sigma\)</span></td>
+<td>4.3 (0.36)</td>
+<td>3.1 (0.27)</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\hat\xi\)</span></td>
+<td>-0.29 (0.07)</td>
+<td>-0.11 (0.07)</td>
+</tr>
+</tbody>
+</table>
+<p>The estimated correlation matrices for <span class="math inline">\(\boldsymbol\theta\)</span> are, for Oxford and Worthington respectively:</p>
+<p><span class="math display">\[ \begin{aligned}
+  \mbox{Corr}\left(\hat{\boldsymbol{\theta}}\right)&amp;=\left(\begin{array}{lll}
+      1.00 &amp; 0.00 &amp; -0.37\\
+    0.00 &amp; 1.00 &amp; -0.57\\
+    -0.37 &amp; -0.57 &amp; 1.00\\
+  \end{array}\right)
+  ~~~\mbox{and}~~~
+  \left(\begin{array}{rrr}
+    1.00 &amp; 0.24 &amp;-0.35 \\
+    0.24 &amp; 1.00 &amp; -0.38\\
+    -0.35 &amp; -0.38 &amp; 1.00\\
+  \end{array}\right)
+\end{aligned} \]</span></p>
+<p>The 95% confidence intervals for the shape parameter <span class="math inline">\(\xi\)</span> based on the Normal approximation are <span class="math inline">\((-0.42, -0.15)\)</span> and <span class="math inline">\((-0.25, 0.03)\)</span> for Oxford and Worthing, respectively. Contrast these with the profile likelihood based 95% confidence intervals which reflect the skewness in the likelihood for this parameter:</p>
+<div class="figure" style="text-align: center"><span id="fig:ii-ii"></span>
+<img src="images/oxford.worthing.gev.xi.pl.plot.png" alt="Profile log-likelihood functions for the GEV shape parameter $\xi$ for the Oxford and Worthing temperature data sets." width="85%" />
+<p class="caption">
+Figure 2.2: Profile log-likelihood functions for the GEV shape parameter <span class="math inline">\(\xi\)</span> for the Oxford and Worthing temperature data sets.
+</p>
+</div>
+<p>The profile likelihood for <span class="math inline">\(\xi\)</span> is calculated by fixing the value of <span class="math inline">\(\xi=\xi_0\)</span> and maximising the log-likelihood with respect to <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>. This process is repeated for a number of values of <span class="math inline">\(\xi_0\)</span>. The maximised values of the log-likelihood give the profile log-likelihood for <span class="math inline">\(\xi\)</span>.</p>
+</div>
+<div id="return-levels-and-return-periods" class="section level3">
+<h3><span class="header-section-number">2.3.3</span> Return levels and return periods</h3>
+<p>The practical question to be addressed in most applications is:<br />
+<em><span style="color: red;">What is the probability of a given process giving a value which exceeds a given level <span class="math inline">\(z\)</span> in a future time period?</span></em></p>
+<p>Or, equivalently,<br />
+<em><span style="color: red;">What level <span class="math inline">\(z\)</span> ensures this probability is sufficiently small?</span></em></p>
+<p>This is often expressed using return levels and return periods:</p>
+<ul>
+<li>Return period of level <span class="math inline">\(z\)</span>: the expected waiting time until <span class="math inline">\(z\)</span> is next exceeded;</li>
+<li><span class="math inline">\(T\)</span> year return level: the level for which the expected waiting time between exceedances is <span class="math inline">\(T\)</span> years.</li>
+</ul>
+<p>In applications <span class="math inline">\(T\)</span> is often 100 years yet only 5-30 years of data are available. For IID processes, return level and return periods correspond to quantiles and exceedance probabilities respectively. If
+<span class="math display">\[\begin{eqnarray*}
+  1-F(z_p)=p
+\end{eqnarray*}\]</span>
+then the return level <span class="math inline">\(z_p\)</span> has return period <span class="math inline">\(p^{-1}\)</span> observations.</p>
+<p><strong>Return level estimation for the GEV</strong><br />
+The <span class="math inline">\(1/p\)</span> return level <span class="math inline">\(z_p\)</span> is the <span class="math inline">\(1-p\)</span> quantile of the GEV distribution for <span class="math inline">\(0&lt;p&lt;1\)</span>.</p>
+<p>Substituting the maximum likelihood estimates of the GEV parameters into the quantile function for the GEV, we obtain maximum likelihood estimates of the <span class="math inline">\(1/p\)</span> return level as:
+<span class="math display">\[\begin{eqnarray}
+\label{eqn:return.level}
+  \hat z_p=
+  \left\{
+    \begin{array}{ll}
+      \hat\mu -
+      \frac{\hat\sigma}{\hat\xi}\left[1-\{-\log(1-p)\}^{-\hat\xi}\right],
+      &amp;\mbox{ for } \hat\xi\neq0,\\
+      \hat\mu-\hat\sigma\log\{-\log(1-p)\},&amp;\mbox{ for } \hat\xi=0.
+    \end{array}
+  \right.
+\end{eqnarray}\]</span></p>
+<p>To obtain the variance of the estimated return level, the delta method gives us
+<span class="math display">\[\begin{eqnarray*} 
+  \mbox{Var}(\hat z_p) = \nabla z_p&#39;V\nabla z_p,
+\end{eqnarray*}\]</span>
+where <span class="math inline">\(V\)</span> is the variance-covariance matrix of <span class="math inline">\((\hat\mu,\hat\sigma,\hat\xi)\)</span> and <span class="math inline">\(\nabla z_p\)</span> is the vector of first derivatives of <span class="math inline">\(z_p\)</span> with respect to <span class="math inline">\(\mu,\sigma\)</span> and <span class="math inline">\(\xi\)</span> respectively, evaluated at the MLE’s for these parameters.</p>
+<p>This expression is used to construct confidence intervals for <span class="math inline">\(\hat z_p\)</span> based on the approximate Normal distribution of <span class="math inline">\(\hat z_p\)</span>. Such confidence intervals are symmetric by construction, as can be seen in Figure <a href="block-maxima.html#fig:ii-iii">2.3</a>, which shows <span class="math inline">\(\hat z_p\)</span> against return period, with pointwise 95% confidence intervals. Empirical return levels are also shown for model validation. There are 80 points in each data set so the largest data point corresponds to the empirical 80 year return level. The smaller curvature in the Worthing return level plot is due to the value of the shape parameter, <span class="math inline">\(\xi\)</span>, for Worthing being closer to zero. If <span class="math inline">\(\xi=0\)</span> then the return level curve is linear on this scale.</p>
+<div class="figure" style="text-align: center"><span id="fig:ii-iii"></span>
+<img src="images/oxford.worthing.gev.ret.level.plot.png" alt="Annual maximum return levels for the Oxford and Worthing temperature data sets." width="85%" />
+<p class="caption">
+Figure 2.3: Annual maximum return levels for the Oxford and Worthing temperature data sets.
+</p>
+</div>
+<p>The Normal approximation to the distribution of maximum likelihood estimators may be poor when we are estimating return levels that correspond to long return periods. Profile likelihood based inferences can often give a more accurate representation of uncertainty.</p>
+<p>We obtain the profile log-likelihood for return level <span class="math inline">\(z_p\)</span> as follows:</p>
+<ol style="list-style-type: decimal">
+<li>re-parameterise the GEV model so that <span class="math inline">\(z_p\)</span> is a model parameter, for example:
+<span class="math display">\[\begin{eqnarray*}
+ \mu = z_p+\frac{\sigma}{\xi}\left[1-\{-\log(1-p)\}^{-\xi}\right].
+  \end{eqnarray*}\]</span>
+The log-likelihood is now a function of parameters <span class="math inline">\((z_p,\sigma,\xi)\)</span>.</li>
+<li>Fix <span class="math inline">\(z_p=z_p^\ast\)</span> and maximise the log-likelihood} with respect to the remaining parameters.</li>
+<li>Repeat step 2 for a number of values of <span class="math inline">\(z_p^\ast\)</span>.</li>
+<li>The maximised values of the log-likelihood give the profile log-likelihood for <span class="math inline">\(z_p\)</span>.</li>
+</ol>
+<p>The skewness of the profile log-likelihood for return levels <span class="math inline">\(z_p\)</span> reflects the greater uncertainty we have about higher return levels, where we have less information from the data.</p>
+<div class="figure" style="text-align: center"><span id="fig:ii-iv"></span>
+<img src="images/oxford.worthing.gev.ret.level.pl.plot.png" alt="Profile log-likelihoods for the 20-year return level of the annual maxima for the Oxford and Worthing temperature datasets." width="85%" />
+<p class="caption">
+Figure 2.4: Profile log-likelihoods for the 20-year return level of the annual maxima for the Oxford and Worthing temperature datasets.
+</p>
+</div>
+<p>The plots in Figure <a href="block-maxima.html#fig:ii-iv">2.4</a> show the profile log-likelihoods for the 20 year return level <span class="math inline">\(z_{0.05}\)</span>. These profile log-likelihoods are reasonably symmetric as we have 80 years’ worth of data so estimation of this quantile does not involve extrapolation.</p>
+<p>The plots in Figure <a href="block-maxima.html#fig:ii-v">2.5</a> shows the profile log-likelihoods for the 200 year return level <span class="math inline">\(z_{0.005}\)</span>. These profile log-likelihoods are much more skewed than the profile log-likelihoods for the 20-year return level shown in Figure <a href="block-maxima.html#fig:ii-iv">2.4</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:ii-v"></span>
+<img src="images/oxford.worthing.gev.ret.level.200.pl.plot.png" alt="Profile log-likelihoods for the 200-year return level of the annual maxima for the Oxford and Worthing temperature datasets." width="85%" />
+<p class="caption">
+Figure 2.5: Profile log-likelihoods for the 200-year return level of the annual maxima for the Oxford and Worthing temperature datasets.
+</p>
+</div>
+<p><strong>Pooling data for more efficient estimation</strong><br />
+Many environmental applications of extreme value methods have found that the assumption of a common shape parameter over suitably similar scenarios is often reasonable in practice.</p>
+<p>The shape parameter <span class="math inline">\(\xi\)</span> is the most difficult parameter of the GEV to estimate, and so if information can be pooled from different sources to estimate this parameter then considerable efficiency gains can be made. A justification for this approach is that the shape parameter is thought to describe an inherent feature of many processes. Changes in scenario that affect the size or variability of the observed values of the process do not change the shape characteristics of these observations. Of course, any assumption of common shape parameter must be supported by diagnostics such as formal likelihood ratio tests, as well as graphical model diagnostics for the pooled data sets, such as the Q-Q plots shown in Section <a href="block-maxima.html#sect:mle-gev-max-temperature">2.3.2</a>.</p>
+<p>Examples of applications in which a common shape parameter is assumed include <span class="citation">Buishand (<a href="#ref-buishand89">1989</a>)</span>; <span class="citation">Smith (<a href="#ref-smith89">1989</a>)</span>; <span class="citation">Coles and Tawn (<a href="#ref-ct90">1990</a>)</span>; <span class="citation">S. G. Coles and Tawn (<a href="#ref-ct96">1996</a>)</span>; <span class="citation">Robinson and Tawn (<a href="#ref-rt97">1997</a>)</span>; <span class="citation">Heffernan and Tawn (<a href="#ref-ht01">2001</a>)</span>; and <span class="citation">Heffernan and Tawn (<a href="#ref-ht03">2003</a>)</span>.</p>
+<p>Previously we fitted the GEV separately to the Oxford and Worthing data sets. These datasets both describe the same type of process i.e. temperature annual maxima and therefore it is appropriate to consider pooling data from both datasets to estimate the shape parameter jointly.</p>
+<p>Confidence intervals for <span class="math inline">\(\xi\)</span> overlap, suggesting that a common shape parameter may indeed be appropriate here. We assume independence between the variables at the two sites and use a Generalised Likelihood Ratio Test, comparing:</p>
+<ul>
+<li>Null Model: with common shape parameter;</li>
+<li>Alternative Model: with separate shape parameters.</li>
+</ul>
+<p>We obtain a deviance
+<span class="math display">\[\begin{eqnarray*}
+  D=2\left\{l_{\mbox{sep}} - l_{\mbox{pooled}}\right\} = 3.18
+\end{eqnarray*}\]</span>
+Under the Null Hypothesis, <span class="math inline">\(D\sim\chi^2_1\)</span> and so we obtain a <span class="math inline">\(p\)</span>-value of 0.07, and proceed with a common shape parameter.</p>
+<p>The separate and pooled model parameter estimates are:</p>
+<table>
+<tbody>
+<tr class="odd">
+<td></td>
+<td>Oxford, Separate</td>
+<td>Worthing, Separate</td>
+<td>Oxford, Pooled</td>
+<td>Worthing, Pooled</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\hat\mu\)</span></td>
+<td>83.8 (0.52)</td>
+<td>78.5 (0.39)</td>
+<td>83.5 (0.49)</td>
+<td>78.6 (0.40)</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\hat\sigma\)</span></td>
+<td>4.3 (0.36)</td>
+<td>3.1 (0.27)</td>
+<td>4.1 (0.31)</td>
+<td>3.3 (0.30)</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\hat\xi\)</span></td>
+<td>-0.29 (0.07)</td>
+<td>-0.11 (0.07)</td>
+<td>-0.184 (0.049)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Note particularly the effect on the standard errors of <em>all</em> the parameter estimates, most of which have reduced. Of course, here we have ignored any dependence between the annual maxima occurring in the same year at the two sites, so that we may have underestimated the uncertainty associated with our parameter
+estimates.</p>
+
+</div>
+</div>
+</div>
+<h3>Bibliography</h3>
+<div id="refs" class="references">
+<div id="ref-buishand89">
+<p>Buishand, T. A. 1989. “Statistics of Extremes in Climatology.” <em>Statistica Neerlandica</em> 43: 1—30.</p>
+</div>
+<div id="ref-ct90">
+<p>Coles, S. G., and J. A. Tawn. 1990. “Statistics of Coastal Flood Prevention.” <em>Philosophical Transactions of the Royal Society A</em> 332: 457–76. <a href="https://doi.org/10.1098/rsta.1990.0126">https://doi.org/10.1098/rsta.1990.0126</a>.</p>
+</div>
+<div id="ref-ct96">
+<p>Coles, S. 1996. “A Bayesian Analysis of Extreme Rainfall Data.” <em>Applied Statistics</em> 45: 463–78.</p>
+</div>
+<div id="ref-cp96">
+<p>Coles, Stuart G., and Elwyn A. Powell. 1996. “Bayesian Methods in Extreme Value Modelling: A Review and New Developments.” <em>International Statistical Review / Revue Internationale de Statistique</em> 64 (1): 119–36. <a href="http://www.jstor.org/stable/1403426">http://www.jstor.org/stable/1403426</a>.</p>
+</div>
+<div id="ref-ded89">
+<p>Dekkers, A. L. M., J. H. J. Einmahl, and L. de Haan. 1989. “A Moment Estimator for the Index of an Extreme Value Distribution.” <em>Annals of Statistics</em> 17: 1833–55.</p>
+</div>
+<div id="ref-ht01">
+<p>Heffernan, J. E., and J. A. Tawn. 2001. “Extreme Value Analysis of a Large Designed Experiment: A Case Study in Bulk Carrier Safety.” <em>Extremes</em> 4: 359–78.</p>
+</div>
+<div id="ref-ht03">
+<p>Heffernan, J. 2003. “An Extreme Value Analysis for the Investigation into the Sinking of the M.V. Derbyshire.” <em>Applied Statistics</em> 52: 337–54.</p>
+</div>
+<div id="ref-hww85">
+<p>Hosking, J. R. M, J. R. Wallis, and E.F. Wood. 1985. “Estimation of the Generalised Extreme-Value Distribution by the Method of Probability-Weighted Moments.” <em>Technometrics</em> 27: 251–61.</p>
+</div>
+<div id="ref-jenkinson55">
+<p>Jenkinson, A. F. 1955. “The Frequency Distribution of the Annual Maximum (or Minimum) Values of Meteorological Events.” <em>Quarterly Journal of the Royal Meteorological Society</em> 81: 158–72.</p>
+</div>
+<div id="ref-leadbetter83">
+<p>Leadbetter, M. R. 1983. “Extremes and Local Dependence in Stationary Sequences.” <em>Wahrscheinlichkeitsth</em> 65: 291–306.</p>
+</div>
+<div id="ref-rt97">
+<p>Robinson, M. E., and J. A. Tawn. 1997. “Statistics for Extreme Sea-Currents.” <em>Applied Statistics</em> 46: 183–205.</p>
+</div>
+<div id="ref-smith85">
+<p>Smith, R. L. 1985. “Maximum Likelihood Estimation in a Class of Non-Regular Cases.” <em>Biometrika</em> 72: 67–90.</p>
+</div>
+<div id="ref-smith89">
+<p>Smith, R. 1989. “Extreme Value Analysis of Environmental Time Series: An Application to Trend Detection in Ground Level Ozone (with Discussion).” <em>Statistical Science</em> 4: 367–93.</p>
+</div>
+<div id="ref-vonMises54">
+<p><span>v</span>on Mises, R. 1954. “La Distribution de La Plus Grande de <span class="math inline">\(n\)</span> Valeurs.” <em>Selected Papers, Volume II</em>, 271–94.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>SSL have the problem that in general they do not have a closed form distribution function, one example is the Cauchy distribution.<br />
+For more details on sum-stable laws see <span class="citation">Feller (<a href="#ref-feller71">1971</a>)</span> and <span class="citation">Leadbetter, Lindgren, and Rootzén (<a href="#ref-llr83">1983</a>)</span>.<br />
+It turns out that <span class="math inline">\(c\)</span> is linked to the tail behaviour of <span class="math inline">\(X_i\)</span>. If the distribution of <span class="math inline">\(X_i\)</span> is symmetrical and the UETT applies, then <span class="math inline">\(c=\xi\)</span> (for details see Section <a href="block-maxima.html#sect:domains-of-attraction">2.2</a>) so in general there is a strong tie up between the limit theory of sums and maxima when the underlying tails are heavy.<a href="block-maxima.html#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>Weaker conditions than absolute continuity of the density function can be obtained (see <span class="citation">Galambos (<a href="#ref-galambos87">1987</a>)</span>; and <span class="citation">Leadbetter, Lindgren, and Rootzén (<a href="#ref-llr83">1983</a>)</span>; <span class="citation">Resnick (<a href="#ref-resnick87">1987</a>)</span>), but these provide much less insight.<a href="block-maxima.html#fnref2" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="alternative.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 Extremes of Non-identically Distributed Variables | Lancaster University MATH562/482/582</title>
+  <meta name="description" content="4 Extremes of Non-identically Distributed Variables | Lancaster University MATH562/482/582" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 Extremes of Non-identically Distributed Variables | Lancaster University MATH562/482/582" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 Extremes of Non-identically Distributed Variables | Lancaster University MATH562/482/582" />
+  
+  
+  
+
+<meta name="author" content="Lecturers: Clement Lee &amp; Zak Varty" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="alternative.html"/>
+<link rel="next" href="stationary.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#role-of-extreme-value-theory"><i class="fa fa-check"></i><b>1.1</b> Role of Extreme Value Theory</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="intro.html"><a href="intro.html#inadequacies-of-standard-statistical-approaches"><i class="fa fa-check"></i><b>1.1.1</b> Inadequacies of standard statistical approaches</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#sect:applications"><i class="fa fa-check"></i><b>1.2</b> Application areas of extreme value theory</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="intro.html"><a href="intro.html#oxford-and-worthing-annual-maxima-temperatures"><i class="fa fa-check"></i><b>1.2.1</b> Oxford and Worthing annual maxima temperatures</a></li>
+<li class="chapter" data-level="1.2.2" data-path="intro.html"><a href="intro.html#oceanographic-variables"><i class="fa fa-check"></i><b>1.2.2</b> Oceanographic variables</a></li>
+<li class="chapter" data-level="1.2.3" data-path="intro.html"><a href="intro.html#section:FTSEintro"><i class="fa fa-check"></i><b>1.2.3</b> FTSE Index</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#whats-in-the-course-for-you"><i class="fa fa-check"></i><b>1.3</b> What’s in the course for you?</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="block-maxima.html"><a href="block-maxima.html"><i class="fa fa-check"></i><b>2</b> Classical Theory of Maxima of IID Variables</a><ul>
+<li class="chapter" data-level="2.1" data-path="block-maxima.html"><a href="block-maxima.html#block-maxima-1"><i class="fa fa-check"></i><b>2.1</b> Block Maxima</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="block-maxima.html"><a href="block-maxima.html#sect:maxima"><i class="fa fa-check"></i><b>2.1.1</b> Distributional Theory for <span class="math inline">\(M_n\)</span></a></li>
+<li class="chapter" data-level="2.1.2" data-path="block-maxima.html"><a href="block-maxima.html#illustrative-example-the-maximum-of-exponential-variables"><i class="fa fa-check"></i><b>2.1.2</b> Illustrative example: the maximum of Exponential variables</a></li>
+<li class="chapter" data-level="2.1.3" data-path="block-maxima.html"><a href="block-maxima.html#extremal-types-theorem-ett"><i class="fa fa-check"></i><b>2.1.3</b> Extremal Types Theorem (ETT)</a></li>
+<li class="chapter" data-level="2.1.4" data-path="block-maxima.html"><a href="block-maxima.html#the-generalised-extreme-value-gev-distribution"><i class="fa fa-check"></i><b>2.1.4</b> The Generalised Extreme Value (GEV) Distribution</a></li>
+<li class="chapter" data-level="2.1.5" data-path="block-maxima.html"><a href="block-maxima.html#uett"><i class="fa fa-check"></i><b>2.1.5</b> Unified Extremal Types Theorem (UETT)</a></li>
+<li class="chapter" data-level="2.1.6" data-path="block-maxima.html"><a href="block-maxima.html#moments-of-the-gev"><i class="fa fa-check"></i><b>2.1.6</b> Moments of the GEV</a></li>
+<li class="chapter" data-level="2.1.7" data-path="block-maxima.html"><a href="block-maxima.html#connections-between-clt-and-uett"><i class="fa fa-check"></i><b>2.1.7</b> Connections between CLT and UETT</a></li>
+<li class="chapter" data-level="2.1.8" data-path="block-maxima.html"><a href="block-maxima.html#pseudo-proofs"><i class="fa fa-check"></i><b>2.1.8</b> Pseudo Proofs</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="block-maxima.html"><a href="block-maxima.html#sect:domains-of-attraction"><i class="fa fa-check"></i><b>2.2</b> Domains of attraction</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="block-maxima.html"><a href="block-maxima.html#doa"><i class="fa fa-check"></i><b>2.2.1</b> Domains of attraction for random variables with absolutely continuous distributions</a></li>
+<li class="chapter" data-level="2.2.2" data-path="block-maxima.html"><a href="block-maxima.html#examples-of-domains-of-attractions"><i class="fa fa-check"></i><b>2.2.2</b> Examples of domains of attractions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="block-maxima.html"><a href="block-maxima.html#inference"><i class="fa fa-check"></i><b>2.3</b> Inference for maxima of IID variables</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="block-maxima.html"><a href="block-maxima.html#sect:mle-gev"><i class="fa fa-check"></i><b>2.3.1</b> Inference for the GEV distribution</a></li>
+<li class="chapter" data-level="2.3.2" data-path="block-maxima.html"><a href="block-maxima.html#sect:mle-gev-max-temperature"><i class="fa fa-check"></i><b>2.3.2</b> Example: fitting the GEV to temperature maxima</a></li>
+<li class="chapter" data-level="2.3.3" data-path="block-maxima.html"><a href="block-maxima.html#return-levels-and-return-periods"><i class="fa fa-check"></i><b>2.3.3</b> Return levels and return periods</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="alternative.html"><a href="alternative.html"><i class="fa fa-check"></i><b>3</b> Alternative Characterisation and Improved Inferences</a><ul>
+<li class="chapter" data-level="3.1" data-path="alternative.html"><a href="alternative.html#point-process-characterisation"><i class="fa fa-check"></i><b>3.1</b> Point process characterisation</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="alternative.html"><a href="alternative.html#aside-on-poisson-processes"><i class="fa fa-check"></i><b>3.1.1</b> Aside on Poisson processes</a></li>
+<li class="chapter" data-level="3.1.2" data-path="alternative.html"><a href="alternative.html#the-limiting-point-process"><i class="fa fa-check"></i><b>3.1.2</b> The limiting point process</a></li>
+<li class="chapter" data-level="3.1.3" data-path="alternative.html"><a href="alternative.html#proof-of-point-process-limit"><i class="fa fa-check"></i><b>3.1.3</b> Proof of point process limit</a></li>
+<li class="chapter" data-level="3.1.4" data-path="alternative.html"><a href="alternative.html#sect:poisson-process-limit"><i class="fa fa-check"></i><b>3.1.4</b> The value of the Poisson process limit</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="alternative.html"><a href="alternative.html#sect:threshold-exceedances"><i class="fa fa-check"></i><b>3.2</b> Threshold exceedances</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="alternative.html"><a href="alternative.html#practical-implications-of-limit"><i class="fa fa-check"></i><b>3.2.1</b> Practical implications of limit</a></li>
+<li class="chapter" data-level="3.2.2" data-path="alternative.html"><a href="alternative.html#properties-of-gpd"><i class="fa fa-check"></i><b>3.2.2</b> Properties of GPD</a></li>
+<li class="chapter" data-level="3.2.3" data-path="alternative.html"><a href="alternative.html#inference-for-the-generalised-pareto-distribution"><i class="fa fa-check"></i><b>3.2.3</b> Inference for the generalised Pareto distribution</a></li>
+<li class="chapter" data-level="3.2.4" data-path="alternative.html"><a href="alternative.html#example-fitting-the-gpd-to-newlyn-data"><i class="fa fa-check"></i><b>3.2.4</b> Example: fitting the GPD to Newlyn data</a></li>
+<li class="chapter" data-level="3.2.5" data-path="alternative.html"><a href="alternative.html#sect:return-level-gpd"><i class="fa fa-check"></i><b>3.2.5</b> Return levels &amp; return periods</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="alternative.html"><a href="alternative.html#sect:r-largest"><i class="fa fa-check"></i><b>3.3</b> The <em>r</em>-largest approach</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="non-iid.html"><a href="non-iid.html"><i class="fa fa-check"></i><b>4</b> Extremes of Non-identically Distributed Variables</a><ul>
+<li class="chapter" data-level="4.1" data-path="non-iid.html"><a href="non-iid.html#sect:nonstationaryMeanVar"><i class="fa fa-check"></i><b>4.1</b> Examples of non-identically distributed processes</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="non-iid.html"><a href="non-iid.html#reading-ozone-data"><i class="fa fa-check"></i><b>4.1.1</b> Reading ozone data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="non-iid.html"><a href="non-iid.html#sect:existing"><i class="fa fa-check"></i><b>4.2</b> Existing methods for non-identically distributed processes</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="non-iid.html"><a href="non-iid.html#models-for-block-maxima-and-r-largest"><i class="fa fa-check"></i><b>4.2.1</b> Models for block maxima and <span class="math inline">\(r\)</span>-largest</a></li>
+<li class="chapter" data-level="4.2.2" data-path="non-iid.html"><a href="non-iid.html#models-for-threshold-exceedances"><i class="fa fa-check"></i><b>4.2.2</b> Models for threshold exceedances</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="non-iid.html"><a href="non-iid.html#sect:preprocessing"><i class="fa fa-check"></i><b>4.3</b> Pre-processing method</a></li>
+<li class="chapter" data-level="4.4" data-path="non-iid.html"><a href="non-iid.html#sect:reading-ozone"><i class="fa fa-check"></i><b>4.4</b> Analysis of Reading ozone data</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="stationary.html"><a href="stationary.html"><i class="fa fa-check"></i><b>5</b> Extremes of Stationary Processes</a><ul>
+<li class="chapter" data-level="5.1" data-path="stationary.html"><a href="stationary.html#background"><i class="fa fa-check"></i><b>5.1</b> Background</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="stationary.html"><a href="stationary.html#long-range-asymptotic-independence-condition"><i class="fa fa-check"></i><b>5.1.1</b> Long-range asymptotic independence condition</a></li>
+<li class="chapter" data-level="5.1.2" data-path="stationary.html"><a href="stationary.html#asymptotic-independence-of-maxima-aim"><i class="fa fa-check"></i><b>5.1.2</b> Asymptotic independence of Maxima (AIM)</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="stationary.html"><a href="stationary.html#unified-extremal-types-theorem-for-stationary-sequences"><i class="fa fa-check"></i><b>5.2</b> Unified Extremal Types Theorem for stationary sequences</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="stationary.html"><a href="stationary.html#extremes-of-frechet-marginal-variables"><i class="fa fa-check"></i><b>5.2.1</b> Extremes of Frechet marginal variables</a></li>
+<li class="chapter" data-level="5.2.2" data-path="stationary.html"><a href="stationary.html#motivating-example-moving-maxima"><i class="fa fa-check"></i><b>5.2.2</b> Motivating Example: Moving Maxima</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="stationary.html"><a href="stationary.html#extremal-index"><i class="fa fa-check"></i><b>5.3</b> The Extremal Index</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="stationary.html"><a href="stationary.html#extremal-index-for-moving-maxima-example"><i class="fa fa-check"></i><b>5.3.1</b> Extremal index for Moving Maxima example</a></li>
+<li class="chapter" data-level="5.3.2" data-path="stationary.html"><a href="stationary.html#implications-of-short-range-extremal-dependence"><i class="fa fa-check"></i><b>5.3.2</b> Implications of short-range extremal dependence</a></li>
+<li class="chapter" data-level="5.3.3" data-path="stationary.html"><a href="stationary.html#distribution-of-the-maximum"><i class="fa fa-check"></i><b>5.3.3</b> Distribution of the Maximum</a></li>
+<li class="chapter" data-level="5.3.4" data-path="stationary.html"><a href="stationary.html#threshold-exceedances"><i class="fa fa-check"></i><b>5.3.4</b> Threshold exceedances</a></li>
+<li class="chapter" data-level="5.3.5" data-path="stationary.html"><a href="stationary.html#cluster-maxima-point-process-intensity"><i class="fa fa-check"></i><b>5.3.5</b> Cluster maxima point process intensity</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="inference-dependent.html"><a href="inference-dependent.html"><i class="fa fa-check"></i><b>6</b> Statistical Inference for Extremes of Stationary Processes</a><ul>
+<li class="chapter" data-level="6.1" data-path="inference-dependent.html"><a href="inference-dependent.html#identifying-independent-clusters"><i class="fa fa-check"></i><b>6.1</b> Identifying independent clusters</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="inference-dependent.html"><a href="inference-dependent.html#the-runs-method-declustering"><i class="fa fa-check"></i><b>6.1.1</b> The runs method: declustering</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="inference-dependent.html"><a href="inference-dependent.html#modelling-cluster-maxima-and-all-exceedances"><i class="fa fa-check"></i><b>6.2</b> Modelling cluster maxima and all exceedances</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="inference-dependent.html"><a href="inference-dependent.html#point-process-intensity-estimation"><i class="fa fa-check"></i><b>6.2.1</b> Point process intensity estimation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="finance.html"><a href="finance.html"><i class="fa fa-check"></i><b>7</b> Extremes in Finance</a></li>
+<li class="chapter" data-level="8" data-path="further.html"><a href="further.html"><i class="fa fa-check"></i><b>8</b> Further Reading</a><ul>
+<li class="chapter" data-level="8.1" data-path="further.html"><a href="further.html#general-books"><i class="fa fa-check"></i><b>8.1</b> General &amp; books</a></li>
+<li class="chapter" data-level="8.2" data-path="further.html"><a href="further.html#multivariate-extremes-tail-dependence"><i class="fa fa-check"></i><b>8.2</b> Multivariate extremes &amp; tail dependence</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lancaster University MATH562/482/582</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="non-iid" class="section level1">
+<h1><span class="header-section-number">4</span> Extremes of Non-identically Distributed Variables</h1>
+<p>Though it is possible to study the asymptotics of maxima of processes with specified forms of non-identically distributed variables, the results are generally too specific to be of use in modelling data for which the form of departure from identically distributed is unknown.</p>
+<p>Since many interesting data sets are in fact non-identically distributed the question of how to produce good models in this situation is an interesting and important one. We begin by examining some examples of non-identically distributed processes. We shall then discuss some of the existing ideas on how to model such processes, before introducing an alternative approach which allows us to use information in the entire process to define the extremes.</p>
+<div id="sect:nonstationaryMeanVar" class="section level2">
+<h2><span class="header-section-number">4.1</span> Examples of non-identically distributed processes</h2>
+<p>We look at two examples of non-identically distributed processes;</p>
+<ul>
+<li>Simulated data - where we can specify different kinds of marginal distribution;</li>
+<li>Reading ozone data set.</li>
+</ul>
+<p>We shall discuss what it means for a process to have non-identically distributed margins and some of the forms that this may take. These forms of non-identical distribution are specifically chosen to lead into the modelling approach discussed in Section .</p>
+<p><strong>Trend in mean level</strong><br />
+The simplest form of non-identical marginal distribution is to have a trend in the mean (average) of a process. Here we show linear and cyclic (or seasonal) trends in Figure <a href="non-iid.html#fig:iv-meanTrend">4.1</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:iv-meanTrend"></span>
+<img src="images/meanTrend.png" alt="Trend in mean." width="85%" />
+<p class="caption">
+Figure 4.1: Trend in mean.
+</p>
+</div>
+<p><strong>Trend in variability</strong><br />
+Alternatively, we might instead observe some form of trend in the variability of the process. Again the examples we show in Figure <a href="non-iid.html#fig:iv-varTrend">4.2</a> have linear and cyclic trends in variance.</p>
+<div class="figure" style="text-align: center"><span id="fig:iv-varTrend"></span>
+<img src="images/varianceTrend.png" alt="Trend in variance." width="85%" />
+<p class="caption">
+Figure 4.2: Trend in variance.
+</p>
+</div>
+<p><strong>Notation</strong><br />
+Let <span class="math inline">\(\{Y_t\}\)</span> be a non-identically distributed process and let <span class="math inline">\(\{Z_t\}\)</span> be some IID process. We can express trends in the mean and variance of <span class="math inline">\(\{Y_t\}\)</span> as
+<span class="math display" id="eq:meanTrend">\[\begin{eqnarray}
+Y_t  = Z_t + \alpha(t); \tag{4.1}
+\end{eqnarray}\]</span>
+and
+<span class="math display" id="eq:varTrend">\[\begin{eqnarray}
+Y_t  = \beta(t) Z_t; \tag{4.2}
+\end{eqnarray}\]</span>
+where <span class="math inline">\(\alpha(t)\)</span> and <span class="math inline">\(\beta(t)&gt;0\)</span> are functions of time. Later we see that these can also be functions of covariates which may or may not vary in time. Note that in any practical situation we would observe only the data <span class="math inline">\(\{Y_t\}\)</span> and covariates.</p>
+<p>Clearly expressions <a href="non-iid.html#eq:meanTrend">(4.1)</a> and <a href="non-iid.html#eq:varTrend">(4.2)</a> can be combined if the process <span class="math inline">\(\{Y_t\}\)</span> has trends in both mean and variance. In fact, we use these expressions to study the extremes of the observed process <span class="math inline">\(\{Y_t\}\)</span> in Section <a href="non-iid.html#sect:preprocessing">4.3</a>.</p>
+<p>By defining the non-identically distributed process as a function of a sequence of IID random variables and a deterministic trend it becomes clear how to simulate the processes with trens in mean and/or variance.</p>
+<ul>
+<li>First simulate the IID sequence, the examples here use standard Gumbel random variables.</li>
+<li>Now add the the trend using equations <a href="non-iid.html#eq:meanTrend">(4.1)</a> and <a href="non-iid.html#eq:varTrend">(4.2)</a> e.g. for a linear trend in mean the required mean function is <span class="math inline">\(\alpha(t)=\alpha_0+\alpha_1 t\)</span>.</li>
+</ul>
+<p>The simplest method of simulating of the IID sequence is to use the probability integral transform on an IID sequence of standard uniform random variables.</p>
+<div id="reading-ozone-data" class="section level3">
+<h3><span class="header-section-number">4.1.1</span> Reading ozone data</h3>
+<p>Surface-level ozone (O<span class="math inline">\(_3\)</span>) levels measured at a site in central Reading are shown in Figure <a href="non-iid.html#fig:iv-i">4.3</a>. Data are daily maxima of hourly observations and are measured in <span class="math inline">\(\mu\)</span>gm<span class="math inline">\(^{-3}\)</span>. The trends in this data are not so obvious, but there is clearly seasonality - in this case an annual cycle.</p>
+<div class="figure" style="text-align: center"><span id="fig:iv-i"></span>
+<img src="images/Ozone.png" alt="Daily maximum ozone in central Reading." width="85%" />
+<p class="caption">
+Figure 4.3: Daily maximum ozone in central Reading.
+</p>
+</div>
+<p>Why is treating a non-identically distributed process as if it were identically distributed unreasonable?</p>
+<p>From a statistical point of view, we would be violating the identically distributed part of the IID assumption which will lead to bias in parameter estimates.</p>
+<p>From a scientific point of view we would lose vital information about the underlying mechanisms which generate the data which could otherwise be incorporated in a more realistic model.</p>
+<p>It is always important to bear in mind what we want to use the model for - forecasting (prediction), an understanding of the mechanisms driving the process or identification of trends. All of these either benefit from or require a model which incorporates non-identical margins.</p>
+<p><strong>Scientific notes on Ozone</strong><br />
+As discussed above, it is important to have as good an understanding of the scientific background to your data set as possible and to fully understand the uses of a statistical model.</p>
+<p>Interesting questions posed in the analysis of ozone include the prediction of high levels of ozone, for public health warnings, and the identification of long-term trends, to assess the impact of legislation to reduce pollution.</p>
+<p>Ozone is a secondary pollutant, meaning it is formed in the atmosphere, from precursors (chemicals such as NO<span class="math inline">\(_\mathrm{X}\)</span> and VOC’s) by a series of mostly photochemical (light driven) reactions. Thus meteorological conditions strongly influence the levels of ozone observed. Specifically, ozone levels are high in warm, sunny and still conditions.</p>
+</div>
+</div>
+<div id="sect:existing" class="section level2">
+<h2><span class="header-section-number">4.2</span> Existing methods for non-identically distributed processes</h2>
+<p>Existing methods for modelling non-identically distributed processes focus on fitting models with covariates. Specifically, the block maxima, <span class="math inline">\(r\)</span>-largest and threshold exceedance models introduced for IID data are maintained, and the non-identical margins are modelled directly through the model parameters.</p>
+<p>Covariate models are easily fitted under the likelihood framework and the covariates in the best fitting models are selected using standard methods, e.g. using forward selection and comparing nested models with the likelihood ratio test.</p>
+<div id="models-for-block-maxima-and-r-largest" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Models for block maxima and <span class="math inline">\(r\)</span>-largest</h3>
+<p>This fitting is straightforward to do and involves iterating through the following steps:</p>
+<ol style="list-style-type: decimal">
+<li>propose linear covariate models for the appropriate parameters of the GEV (the covariate could be time, but could be other explanatory variables depending on the application);</li>
+<li>choose a link function for these parameters;</li>
+<li>fit the proposed models using maximum-likelihood;</li>
+<li>use likelihood methods such as likelihood ratio tests for model selection;</li>
+<li>check model fit using standard diagnostic tools such as return level and <span class="math inline">\(q-q\)</span> plots.</li>
+</ol>
+<p>Examples of possible models are a linear time trend in the mean or a linear time trend in the scale parameter, using the log-link function in the latter:
+<span class="math display">\[\begin{eqnarray*}
+\mathrm{GEV}(\mu_0+\mu_1t,\sigma,\xi);~~~\mathrm{GEV}(\mu,\exp\{\sigma_0+\sigma_1t\},\xi)
+\end{eqnarray*}\]</span></p>
+</div>
+<div id="models-for-threshold-exceedances" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> Models for threshold exceedances</h3>
+<p>The simplest threshold exceedance model for a non-identically distributed process is to split the process into blocks, so that the data within each block is assumed to be IID. The GPD model for IID data is then applied to the data in each block. For example, we could split the Reading ozone data into seasons and analyse each one separately, using the threshold exceedances model.</p>
+<p>However, the most common approach takes the threshold exceedances approach and models the non-identical margins directly through the inclusion of covariates in the model parameters, in a similar manner to the covariate models for block maxima and <span class="math inline">\(r\)</span>-largest observations. This approach was popularised by the paper of <span class="citation">Davison and Smith (<a href="#ref-ds90">1990</a>)</span>.</p>
+<p><strong>The existing method</strong><br />
+The only difference between the existing threshold exceedance approaches for identically and non-identically distributed processes are that families of covariates are incorporated into the GPD and rate parameters in the non-stationary case. We shall denote the covariates associated with <span class="math inline">\(\{Y_t\}\)</span> by
+<span class="math inline">\(\mathbf{X}_t\)</span>. The modelling approach is then</p>
+<ul>
+<li>Pick a constant threshold, <span class="math inline">\(u\)</span>;</li>
+<li>Let <span class="math inline">\(\phi_u=\Pr(Y_t&gt;u)\)</span>, then model this exceedance probability by <span class="math inline">\(\phi_u=\phi_u(\mathbf{x}_t)\)</span>;</li>
+<li>Model the exceedances of <span class="math inline">\(u\)</span> by a GPD distribution with parameters <span class="math inline">\(\sigma_u(\mathbf{x_t})\)</span> and <span class="math inline">\(\xi(\mathbf{x}_t)\)</span>.</li>
+</ul>
+<p>The rate and GPD scale parameters are forced to lie in the ranges <span class="math inline">\(0 &lt; \phi_u(\mathbf{x}_t) &lt; 1\)</span> and <span class="math inline">\(\sigma_u(\mathbf{x}_t)&gt;0\)</span>. In the covariate models we ensure this by using, respectively, logit- and log-link functions. Note also that it is common to assume that the shape parameter <span class="math inline">\(\xi\)</span> is constant, due to the large amount of data needed to model this parameter well. However we continue to think of it as a function of the covariates, in order to work with the most general form of the model.</p>
+<p>Functions of the parameters <span class="math inline">\(\phi_u(\mathbf{x}_t),\sigma_u(\mathbf{x_t}),\xi(\mathbf{x}_t)\)</span> are usually taken to be linear functions of the covariates:
+<span class="math display">\[\begin{eqnarray*}
+\mathrm{logit}~\phi_u(\mathbf{x}_t)=\boldsymbol{\phi}&#39;\mathbf{x}_t,~\log
+\sigma_u(\mathbf{x}_t)=\boldsymbol{\sigma}_u&#39;\mathbf{x}_t,~\mathrm{and}~\xi(\mathbf{x}_t)=\boldsymbol{\xi}&#39;\mathbf{x}_t. 
+\end{eqnarray*}\]</span>
+However, other work has looked at fitting non-parametric <span class="citation">(Hall and Tajvidi <a href="#ref-ht00">2000</a>)</span> and additive <span class="citation">(Chavez-Demoulin and Davison, <a href="#ref-cd05">n.d.</a>)</span> models instead. We shall stay within the linear framework.</p>
+<p><strong>Inference</strong><br />
+We have chosen to work in the likelihood framework under which the non-identically distributed models can be easily fitted. The likelihood for the existing model is
+<span class="math display">\[\begin{eqnarray*}
+\small
+L(\boldsymbol{\phi}_u,\boldsymbol{\sigma}_u,\boldsymbol{\xi})=\prod_{t=1}^n
+(1-\phi_u(\mathbf{x}_t))^{1-I_t}
+\left(\frac{\phi_u(\mathbf{x}_t)}{\sigma_u(\mathbf{x}_t)}\left[1+\xi(\mathbf{x}_t)\left(\frac{y_t-u}{\sigma_u(\mathbf{x}_t)}\right)\right]_+^{-1/\xi(\mathbf{x}_t)-1}\right) ^{I_t}
+\end{eqnarray*}\]</span>
+where <span class="math inline">\(I_t=I[Y_t&gt;u]\)</span> is the indicator function taking the value 1 if the observation is an exceedance and zero otherwise.</p>
+<p>The covariates can be selected using standard techniques from linear regression e.g.forward selection in which nested models are compared using the likelihood ratio test.</p>
+<p><strong>Return levels</strong><br />
+In Section <a href="alternative.html#sect:return-level-gpd">3.2.5</a> we looked at estimating return levels for the GEV. The conditional <span class="math inline">\(1/p\)</span> return level for the non-identically distributed GPD model satisfies <span class="math inline">\(\Pr(Y_t &gt; y_{t,p}|\mathbf{X}_t=\mathbf{x}_t) = p\)</span>. If <span class="math inline">\(y_{t,p}&gt;u\)</span> and <span class="math inline">\(\phi(\mathbf{x}_t)&gt;p\)</span>, this is given by
+<span class="math display">\[\begin{eqnarray*}
+y_{t,p} = u + \frac{\sigma_u(\mathbf{x}_t)}{\xi(\mathbf{x}_t)}\left[\left(\frac{\phi(\mathbf{x}_t)}{p}\right)^{\xi(\mathbf{x}_t)}-1\right].
+\end{eqnarray*}\]</span>
+To obtain the marginal return level, i.e. <span class="math inline">\(\Pr(Y_t&gt;y_p)=p\)</span>, we must integrate out the covariates. In the absence of information on their joint distribution we estimate this empirically so that <span class="math inline">\(y_p\)</span> satisfies
+<span class="math display">\[\begin{eqnarray*}
+p=\frac{1}{n}\sum_{t=1}^n
+\phi_u(\mathbf{x}_t)\left[1+\xi(\mathbf{x}_t)\frac{y_p-u}{\sigma_u(\mathbf{x}_t)}\right]_+^{-1/\xi(\mathbf{x}_t)} .
+\end{eqnarray*}\]</span>
+This can be solved for <span class="math inline">\(y_p\)</span> using a numerical root-finder.</p>
+</div>
+</div>
+<div id="sect:preprocessing" class="section level2">
+<h2><span class="header-section-number">4.3</span> Pre-processing method</h2>
+<p>An alternative method to model the extremes of a non-identically distributed process <span class="math inline">\(\{Y_t\}\)</span> is to pre-process (or pre-whiten) the process to obtain a process that is much closer to the IID assumption than the original one. We then model the
+extremes of the pre-processed process.</p>
+<p>The advantages of this method include</p>
+<ul>
+<li>computational simplicity;</li>
+<li>better interpretability;</li>
+<li>greater efficiency;</li>
+<li>better theoretical justification.</li>
+</ul>
+<p><strong>Pre-processing</strong><br />
+Aim: transform the process <span class="math inline">\(\{Y_t\}\)</span> to have identical margins.</p>
+<p>One way to do this is to assume the non-identical margins are formed because of a trend in the mean and/or variance, as shown in the examples of section <a href="non-iid.html#sect:nonstationaryMeanVar">4.1</a>. We propose going one step further and allow the shape of the underlying marginal distributions of the process to have a trend also. We model this through a Box-Cox parameter <span class="math inline">\(\lambda(\mathbf{x}_t)\)</span>.</p>
+<p>Recall that <span class="math inline">\(\{Z_t\}\)</span> is an IID process. This model is equivalent to assuming that
+<span class="math display" id="eq:preprocessing">\[\begin{equation}
+\frac{Y_t^{\lambda(\mathbf{x}_t)}-1}{\lambda(\mathbf{x}_t)} = \beta(\mathbf{x}_t) Z_t + \alpha(\mathbf{x}_t).
+\tag{4.3}
+\end{equation}\]</span></p>
+<p>Having obtained the series <span class="math inline">\(\{Z_t\}\)</span> we model the tails using existing methods;</p>
+<ul>
+<li>Pick a constant threshold, <span class="math inline">\(u_z\)</span>;</li>
+<li>Let <span class="math inline">\(\phi_{z,u}=\Pr(Z_t&gt;u)\)</span>, then model this exceedance probability by <span class="math inline">\(\phi_{z,u}=\phi_{z,u}(\mathbf{x}_t)\)</span>;</li>
+<li>Model the exceedances of <span class="math inline">\(u_z\)</span> by a GPD distribution with parameters <span class="math inline">\(\sigma_{z,u}(\mathbf{x_t})\)</span> and <span class="math inline">\(\xi_z(\mathbf{x}_t)\)</span>.</li>
+</ul>
+<p>In an ideal world, in which the marginal distribution is perfectly captured in the pre-processing parameters <span class="math inline">\((\alpha(\mathbf{x}_t),\beta(\mathbf{x}_t),\lambda(\mathbf{x}_t))\)</span> we would not need parameters in the exceedance or GPD covariates. In reality, the pre-processed data will not be IID, perhaps due to missing covariates or because the covariate models are not sensitive enough to pick up subtle relationships, hence the need for covariates.</p>
+<p><strong>Inference</strong><br />
+Under the likelihood framework this model is simple to fit. First the pre-processing parameters <span class="math inline">\((\alpha(\mathbf{x}_t),\beta(\mathbf{x}_t),\lambda(\mathbf{x}_t))\)</span> are estimated. There is a range of ways to do this, for simplicity we assume the margins are normal. The process is then transformed using equation <a href="non-iid.html#eq:preprocessing">(4.3)</a> and the extremes model fitted following the existing method.</p>
+<p>Conditional and marginal return levels are found in exactly the same manner as for the existing method, except that they must be back-transformed to the original scale using equation <a href="non-iid.html#eq:preprocessing">(4.3)</a>. Thus if <span class="math inline">\(z_{p,t}\)</span> satisfies <span class="math inline">\(\Pr(Z_t&gt;z_{t,p})=p\)</span> the conditional return levels on the original scale are
+<span class="math display">\[\begin{eqnarray*}
+y_{t,p}=[\lambda(\mathbf{x}_t)(\beta(\mathbf{x}_t)z_{t,p}+\alpha(\mathbf{x}_t))+1]^{1/\lambda(\mathbf{x}_t)}.
+\end{eqnarray*}\]</span></p>
+<p>Due to the two-stage nature of the inference procedure of the pre-processing method, confidence intervals for the return levels must be found by bootstrap methods, resampling from the pre-processed data <span class="math inline">\(\{Z_t\}\)</span>.</p>
+<p><strong>Efficiency</strong><br />
+Figure <a href="non-iid.html#fig:iv-iii">4.4</a> compares the efficiency of the existing and pre-processing models for estimating <span class="math inline">\(\alpha_1\)</span> in models <span class="math inline">\(Y_t=Z_t+\alpha(t)\)</span> where</p>
+<ul>
+<li><span class="math inline">\(\alpha(t) = \alpha_0 + \alpha_1 t\)</span> (LHS)</li>
+<li><span class="math inline">\(\alpha(t) = \alpha_0 + \alpha_1 \sqrt 2\cos(\frac{2\pi t}{N}+\frac{\pi}{4})\)</span> (RHS)</li>
+</ul>
+<p>In these plots, dashed lines show the expected efficiency loss since the existing method uses only threshold exceedances.</p>
+<div class="figure" style="text-align: center"><span id="fig:iv-iii"></span>
+<img src="images/efficiency.png" alt="Efficiency of pre-processing and existing methods for modelling threshold exceedances" width="85%" />
+<p class="caption">
+Figure 4.4: Efficiency of pre-processing and existing methods for modelling threshold exceedances
+</p>
+</div>
+</div>
+<div id="sect:reading-ozone" class="section level2">
+<h2><span class="header-section-number">4.4</span> Analysis of Reading ozone data</h2>
+<p>We analyse the Reading ozone data using existing and pre-processing methods and compare the results. Following the previous discussion on the science behind the production of atmospheric ozone, we consider daily maxima of NO, NO<span class="math inline">\(_2\)</span> and temperature, aggregate daily sunshine and a year-on-year trend as covariates. We also consider first-order interactions of these. The meteorological data has been obtained from a site situated less than 2km from the air quality monitoring site, courtesy of the UK Met. Office.</p>
+<p>We use maximum likelihood estimation throughout and forward selection to choice our covariates.</p>
+<p>Figure <a href="non-iid.html#fig:iv-v">4.5</a> shows the daily maxima of NO (<span class="math inline">\(\mu\mathrm{gm}^{-3}\)</span>), NO<span class="math inline">\(_2\)</span> (<span class="math inline">\(\mu\mathrm{gm}^{-3}\)</span>) and temperature (<span class="math inline">\(^{\circ}\)</span>C) and daily aggregate hours of sunshine.</p>
+<div class="figure" style="text-align: center"><span id="fig:iv-v"></span>
+<img src="images/covariates.png" alt="Ozone covariates." width="85%" />
+<p class="caption">
+Figure 4.5: Ozone covariates.
+</p>
+</div>
+<p><strong>Pre-processing parameters</strong><br />
+It is standard practise to assume that atmospheric data sets, such as the Reading ozone data, are (log)-normal. In a procedure similar to quasi-likelihood we assume the data to be normal in our estimation of the pre-processing parameters <span class="math inline">\((\alpha(\mathbf{x}_t),\beta(\mathbf{x}_t),\lambda(\mathbf{x}_t))\)</span>. The best fitting models are
+<span class="math display">\[\begin{eqnarray*}
+\lambda(\mathbf{x}_t) &amp; = &amp; \lambda_0 + \lambda_1 \mathrm{NO}_2 +
+\lambda_2\mathrm{NO} + \lambda_3\mathrm{Temp} + \lambda_4
+\mathrm{Sun} + \lambda_5 \mathrm{Year} \\ &amp;&amp;-
+\lambda_6\mathrm{NO}_2 \times \mathrm{Temp} -
+\lambda_7\mathrm{NO}_2 \times \mathrm{Sun} -
+\lambda_8 \mathrm{Temp}\times \mathrm{Sun}\\  
+\alpha(\mathbf{x}_t) &amp; = &amp; \alpha_0 + \alpha_1 \mathrm{NO}_2 -
+\alpha_2\mathrm{NO} + \alpha_3\mathrm{Sun} + \alpha_4\mathrm{NO}_2
+\times \mathrm{NO}\\ &amp;&amp; -\alpha_5\mathrm{NO}_2 \times \mathrm{Sun}
++\alpha_6\mathrm{NO} \times \mathrm{Sun}\\ 
+\log \beta (\mathbf{x}_t) &amp; = &amp; \beta_0 + \beta_1\mathrm{NO}
+-\beta_2\mathrm{Year}\\. 
+\end{eqnarray*}\]</span></p>
+<p><strong>Thresholds</strong><br />
+Figure <a href="non-iid.html#fig:iv-vi">4.6</a> shows the data with the 90% constant (existing method) and varying (pre-processing method) thresholds. Note how closely the varying threshold follows the data.</p>
+<div class="figure" style="text-align: center"><span id="fig:iv-vi"></span>
+<img src="images/Ozone2.png" alt="Daily maximum ozone with pre-processing threshold shown." width="85%" />
+<p class="caption">
+Figure 4.6: Daily maximum ozone with pre-processing threshold shown.
+</p>
+</div>
+<p><strong>Exceedances parameter</strong><br />
+Figure <a href="non-iid.html#fig:iv-vii">4.7</a> shows estimates of the exceedance parameter <span class="math inline">\(\phi_u(\mathbf{x}_t)\)</span>. The estimate is constant for the pre-processing method, but extremely variable for the existing method. Notice that the probability of an exceedance under the existing method is also very high (<span class="math inline">\(&gt; 0.5\)</span>) in the summer months - are such data really extreme?</p>
+<div class="figure" style="text-align: center"><span id="fig:iv-vii"></span>
+<img src="images/ratePar.png" alt="Rate parameters for the pre-processing and existing methods for modelling threshold exceedances." width="85%" />
+<p class="caption">
+Figure 4.7: Rate parameters for the pre-processing and existing methods for modelling threshold exceedances.
+</p>
+</div>
+<p><strong>GPD parameters</strong><br />
+MLE’s of the parameters in the best fitting model for the exceedances of the 90% threshold using the existing method are
+<span class="math display">\[\begin{eqnarray*}
+\mathrm{logit}~\phi_{z,u}(\mathbf{x}_t) &amp; = &amp;
+  -5.53-0.0371\mathrm{NO}+0.0127\mathrm{NO}_2+0.137\mathrm{Temp}\\ &amp; &amp;
+  +0.273\mathrm{Sun}+0.000209\mathrm{NO}\times\mathrm{NO}_2;\\
+\log \sigma_{z,u} &amp; = &amp; 1.18+0.0848\mathrm{Temp}+0.0578\mathrm{Sun}; \\
+\xi(\mathbf{x}_t) &amp; = &amp; -0.337;
+\end{eqnarray*}\]</span>
+and using the pre-processing method are
+<span class="math display">\[\begin{eqnarray*}
+\phi_{z,u}(\mathbf{x}_t) &amp; = &amp; 0.100; \\
+\sigma_{z,u} &amp; = &amp; 0.670; \\
+\xi(\mathbf{x}_t) &amp; = &amp; -0.192.
+\end{eqnarray*}\]</span>
+In this case the pre-processing method results in a much simplified tail model which is therefore much easier to fit.</p>
+<p><strong>Conditional return levels</strong><br />
+Point estimates (dots) of 99% return levels, with 95% bootstrapped confidence intervals (vertical lines) are shown in Figure <a href="non-iid.html#fig:iv-viii">4.8</a>. Crosses denote observed data.</p>
+<div class="figure" style="text-align: center"><span id="fig:iv-viii"></span>
+<img src="images/rtnLevels.png" alt="99\% return levels, with 95\% confidence intervals, from both pre-processing and existing methods. Crosses show observed data." width="85%" />
+<p class="caption">
+Figure 4.8: 99% return levels, with 95% confidence intervals, from both pre-processing and existing methods. Crosses show observed data.
+</p>
+</div>
+<p>Finally, Figure <a href="non-iid.html#fig:iv-ix">4.9</a> displays box plots of the 95% confidence interval widths for the two methods. The confidence intervals are generally much wider when we use the existing method than when we use the pre-processing method.</p>
+<div class="figure" style="text-align: center"><span id="fig:iv-ix"></span>
+<img src="images/rtnLevelsCi.png" alt="Boxplots of bootstrapped 95\% confidence intervals of the 99\% return levels shown in Figure 4.8." width="85%" />
+<p class="caption">
+Figure 4.9: Boxplots of bootstrapped 95% confidence intervals of the 99% return levels shown in Figure <span class="citation">(<span class="citeproc-not-found" data-reference-id="ref"><strong>???</strong></span>)</span>(fig:iv-viii).
+</p>
+</div>
+
+</div>
+</div>
+<h3>Bibliography</h3>
+<div id="refs" class="references">
+<div id="ref-cd05">
+<p>Chavez-Demoulin, V., and A. C. Davison. n.d. “Generalized Additive Modelling of Sample Extremes.” <em>Applied Statistics</em> 54 (1): 207–22.</p>
+</div>
+<div id="ref-ds90">
+<p>Davison, A. C., and R. L. Smith. 1990. “Models for Exceedances over High Thresholds.” <em>Journal of the Royal Statistical Society B</em> 52 (3): 393–442.</p>
+</div>
+<div id="ref-ht00">
+<p>Hall, P., and N. Tajvidi. 2000. “Nonparametric Analysis of Temporal Trend When Fitting Parametric Models to Extreme-Value Data.” <em>Statistical Science</em> 15 (2): 153–67.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="alternative.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="stationary.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

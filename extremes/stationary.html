@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5 Extremes of Stationary Processes | Lancaster University MATH562/482/582</title>
+  <meta name="description" content="5 Extremes of Stationary Processes | Lancaster University MATH562/482/582" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5 Extremes of Stationary Processes | Lancaster University MATH562/482/582" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5 Extremes of Stationary Processes | Lancaster University MATH562/482/582" />
+  
+  
+  
+
+<meta name="author" content="Lecturers: Clement Lee &amp; Zak Varty" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="non-iid.html"/>
+<link rel="next" href="inference-dependent.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#role-of-extreme-value-theory"><i class="fa fa-check"></i><b>1.1</b> Role of Extreme Value Theory</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="intro.html"><a href="intro.html#inadequacies-of-standard-statistical-approaches"><i class="fa fa-check"></i><b>1.1.1</b> Inadequacies of standard statistical approaches</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#sect:applications"><i class="fa fa-check"></i><b>1.2</b> Application areas of extreme value theory</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="intro.html"><a href="intro.html#oxford-and-worthing-annual-maxima-temperatures"><i class="fa fa-check"></i><b>1.2.1</b> Oxford and Worthing annual maxima temperatures</a></li>
+<li class="chapter" data-level="1.2.2" data-path="intro.html"><a href="intro.html#oceanographic-variables"><i class="fa fa-check"></i><b>1.2.2</b> Oceanographic variables</a></li>
+<li class="chapter" data-level="1.2.3" data-path="intro.html"><a href="intro.html#section:FTSEintro"><i class="fa fa-check"></i><b>1.2.3</b> FTSE Index</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#whats-in-the-course-for-you"><i class="fa fa-check"></i><b>1.3</b> What’s in the course for you?</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="block-maxima.html"><a href="block-maxima.html"><i class="fa fa-check"></i><b>2</b> Classical Theory of Maxima of IID Variables</a><ul>
+<li class="chapter" data-level="2.1" data-path="block-maxima.html"><a href="block-maxima.html#block-maxima-1"><i class="fa fa-check"></i><b>2.1</b> Block Maxima</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="block-maxima.html"><a href="block-maxima.html#sect:maxima"><i class="fa fa-check"></i><b>2.1.1</b> Distributional Theory for <span class="math inline">\(M_n\)</span></a></li>
+<li class="chapter" data-level="2.1.2" data-path="block-maxima.html"><a href="block-maxima.html#illustrative-example-the-maximum-of-exponential-variables"><i class="fa fa-check"></i><b>2.1.2</b> Illustrative example: the maximum of Exponential variables</a></li>
+<li class="chapter" data-level="2.1.3" data-path="block-maxima.html"><a href="block-maxima.html#extremal-types-theorem-ett"><i class="fa fa-check"></i><b>2.1.3</b> Extremal Types Theorem (ETT)</a></li>
+<li class="chapter" data-level="2.1.4" data-path="block-maxima.html"><a href="block-maxima.html#the-generalised-extreme-value-gev-distribution"><i class="fa fa-check"></i><b>2.1.4</b> The Generalised Extreme Value (GEV) Distribution</a></li>
+<li class="chapter" data-level="2.1.5" data-path="block-maxima.html"><a href="block-maxima.html#uett"><i class="fa fa-check"></i><b>2.1.5</b> Unified Extremal Types Theorem (UETT)</a></li>
+<li class="chapter" data-level="2.1.6" data-path="block-maxima.html"><a href="block-maxima.html#moments-of-the-gev"><i class="fa fa-check"></i><b>2.1.6</b> Moments of the GEV</a></li>
+<li class="chapter" data-level="2.1.7" data-path="block-maxima.html"><a href="block-maxima.html#connections-between-clt-and-uett"><i class="fa fa-check"></i><b>2.1.7</b> Connections between CLT and UETT</a></li>
+<li class="chapter" data-level="2.1.8" data-path="block-maxima.html"><a href="block-maxima.html#pseudo-proofs"><i class="fa fa-check"></i><b>2.1.8</b> Pseudo Proofs</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="block-maxima.html"><a href="block-maxima.html#sect:domains-of-attraction"><i class="fa fa-check"></i><b>2.2</b> Domains of attraction</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="block-maxima.html"><a href="block-maxima.html#doa"><i class="fa fa-check"></i><b>2.2.1</b> Domains of attraction for random variables with absolutely continuous distributions</a></li>
+<li class="chapter" data-level="2.2.2" data-path="block-maxima.html"><a href="block-maxima.html#examples-of-domains-of-attractions"><i class="fa fa-check"></i><b>2.2.2</b> Examples of domains of attractions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="block-maxima.html"><a href="block-maxima.html#inference"><i class="fa fa-check"></i><b>2.3</b> Inference for maxima of IID variables</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="block-maxima.html"><a href="block-maxima.html#sect:mle-gev"><i class="fa fa-check"></i><b>2.3.1</b> Inference for the GEV distribution</a></li>
+<li class="chapter" data-level="2.3.2" data-path="block-maxima.html"><a href="block-maxima.html#sect:mle-gev-max-temperature"><i class="fa fa-check"></i><b>2.3.2</b> Example: fitting the GEV to temperature maxima</a></li>
+<li class="chapter" data-level="2.3.3" data-path="block-maxima.html"><a href="block-maxima.html#return-levels-and-return-periods"><i class="fa fa-check"></i><b>2.3.3</b> Return levels and return periods</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="alternative.html"><a href="alternative.html"><i class="fa fa-check"></i><b>3</b> Alternative Characterisation and Improved Inferences</a><ul>
+<li class="chapter" data-level="3.1" data-path="alternative.html"><a href="alternative.html#point-process-characterisation"><i class="fa fa-check"></i><b>3.1</b> Point process characterisation</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="alternative.html"><a href="alternative.html#aside-on-poisson-processes"><i class="fa fa-check"></i><b>3.1.1</b> Aside on Poisson processes</a></li>
+<li class="chapter" data-level="3.1.2" data-path="alternative.html"><a href="alternative.html#the-limiting-point-process"><i class="fa fa-check"></i><b>3.1.2</b> The limiting point process</a></li>
+<li class="chapter" data-level="3.1.3" data-path="alternative.html"><a href="alternative.html#proof-of-point-process-limit"><i class="fa fa-check"></i><b>3.1.3</b> Proof of point process limit</a></li>
+<li class="chapter" data-level="3.1.4" data-path="alternative.html"><a href="alternative.html#sect:poisson-process-limit"><i class="fa fa-check"></i><b>3.1.4</b> The value of the Poisson process limit</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="alternative.html"><a href="alternative.html#sect:threshold-exceedances"><i class="fa fa-check"></i><b>3.2</b> Threshold exceedances</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="alternative.html"><a href="alternative.html#practical-implications-of-limit"><i class="fa fa-check"></i><b>3.2.1</b> Practical implications of limit</a></li>
+<li class="chapter" data-level="3.2.2" data-path="alternative.html"><a href="alternative.html#properties-of-gpd"><i class="fa fa-check"></i><b>3.2.2</b> Properties of GPD</a></li>
+<li class="chapter" data-level="3.2.3" data-path="alternative.html"><a href="alternative.html#inference-for-the-generalised-pareto-distribution"><i class="fa fa-check"></i><b>3.2.3</b> Inference for the generalised Pareto distribution</a></li>
+<li class="chapter" data-level="3.2.4" data-path="alternative.html"><a href="alternative.html#example-fitting-the-gpd-to-newlyn-data"><i class="fa fa-check"></i><b>3.2.4</b> Example: fitting the GPD to Newlyn data</a></li>
+<li class="chapter" data-level="3.2.5" data-path="alternative.html"><a href="alternative.html#sect:return-level-gpd"><i class="fa fa-check"></i><b>3.2.5</b> Return levels &amp; return periods</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="alternative.html"><a href="alternative.html#sect:r-largest"><i class="fa fa-check"></i><b>3.3</b> The <em>r</em>-largest approach</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="non-iid.html"><a href="non-iid.html"><i class="fa fa-check"></i><b>4</b> Extremes of Non-identically Distributed Variables</a><ul>
+<li class="chapter" data-level="4.1" data-path="non-iid.html"><a href="non-iid.html#sect:nonstationaryMeanVar"><i class="fa fa-check"></i><b>4.1</b> Examples of non-identically distributed processes</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="non-iid.html"><a href="non-iid.html#reading-ozone-data"><i class="fa fa-check"></i><b>4.1.1</b> Reading ozone data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="non-iid.html"><a href="non-iid.html#sect:existing"><i class="fa fa-check"></i><b>4.2</b> Existing methods for non-identically distributed processes</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="non-iid.html"><a href="non-iid.html#models-for-block-maxima-and-r-largest"><i class="fa fa-check"></i><b>4.2.1</b> Models for block maxima and <span class="math inline">\(r\)</span>-largest</a></li>
+<li class="chapter" data-level="4.2.2" data-path="non-iid.html"><a href="non-iid.html#models-for-threshold-exceedances"><i class="fa fa-check"></i><b>4.2.2</b> Models for threshold exceedances</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="non-iid.html"><a href="non-iid.html#sect:preprocessing"><i class="fa fa-check"></i><b>4.3</b> Pre-processing method</a></li>
+<li class="chapter" data-level="4.4" data-path="non-iid.html"><a href="non-iid.html#sect:reading-ozone"><i class="fa fa-check"></i><b>4.4</b> Analysis of Reading ozone data</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="stationary.html"><a href="stationary.html"><i class="fa fa-check"></i><b>5</b> Extremes of Stationary Processes</a><ul>
+<li class="chapter" data-level="5.1" data-path="stationary.html"><a href="stationary.html#background"><i class="fa fa-check"></i><b>5.1</b> Background</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="stationary.html"><a href="stationary.html#long-range-asymptotic-independence-condition"><i class="fa fa-check"></i><b>5.1.1</b> Long-range asymptotic independence condition</a></li>
+<li class="chapter" data-level="5.1.2" data-path="stationary.html"><a href="stationary.html#asymptotic-independence-of-maxima-aim"><i class="fa fa-check"></i><b>5.1.2</b> Asymptotic independence of Maxima (AIM)</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="stationary.html"><a href="stationary.html#unified-extremal-types-theorem-for-stationary-sequences"><i class="fa fa-check"></i><b>5.2</b> Unified Extremal Types Theorem for stationary sequences</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="stationary.html"><a href="stationary.html#extremes-of-frechet-marginal-variables"><i class="fa fa-check"></i><b>5.2.1</b> Extremes of Frechet marginal variables</a></li>
+<li class="chapter" data-level="5.2.2" data-path="stationary.html"><a href="stationary.html#motivating-example-moving-maxima"><i class="fa fa-check"></i><b>5.2.2</b> Motivating Example: Moving Maxima</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="stationary.html"><a href="stationary.html#extremal-index"><i class="fa fa-check"></i><b>5.3</b> The Extremal Index</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="stationary.html"><a href="stationary.html#extremal-index-for-moving-maxima-example"><i class="fa fa-check"></i><b>5.3.1</b> Extremal index for Moving Maxima example</a></li>
+<li class="chapter" data-level="5.3.2" data-path="stationary.html"><a href="stationary.html#implications-of-short-range-extremal-dependence"><i class="fa fa-check"></i><b>5.3.2</b> Implications of short-range extremal dependence</a></li>
+<li class="chapter" data-level="5.3.3" data-path="stationary.html"><a href="stationary.html#distribution-of-the-maximum"><i class="fa fa-check"></i><b>5.3.3</b> Distribution of the Maximum</a></li>
+<li class="chapter" data-level="5.3.4" data-path="stationary.html"><a href="stationary.html#threshold-exceedances"><i class="fa fa-check"></i><b>5.3.4</b> Threshold exceedances</a></li>
+<li class="chapter" data-level="5.3.5" data-path="stationary.html"><a href="stationary.html#cluster-maxima-point-process-intensity"><i class="fa fa-check"></i><b>5.3.5</b> Cluster maxima point process intensity</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="inference-dependent.html"><a href="inference-dependent.html"><i class="fa fa-check"></i><b>6</b> Statistical Inference for Extremes of Stationary Processes</a><ul>
+<li class="chapter" data-level="6.1" data-path="inference-dependent.html"><a href="inference-dependent.html#identifying-independent-clusters"><i class="fa fa-check"></i><b>6.1</b> Identifying independent clusters</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="inference-dependent.html"><a href="inference-dependent.html#the-runs-method-declustering"><i class="fa fa-check"></i><b>6.1.1</b> The runs method: declustering</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="inference-dependent.html"><a href="inference-dependent.html#modelling-cluster-maxima-and-all-exceedances"><i class="fa fa-check"></i><b>6.2</b> Modelling cluster maxima and all exceedances</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="inference-dependent.html"><a href="inference-dependent.html#point-process-intensity-estimation"><i class="fa fa-check"></i><b>6.2.1</b> Point process intensity estimation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="finance.html"><a href="finance.html"><i class="fa fa-check"></i><b>7</b> Extremes in Finance</a></li>
+<li class="chapter" data-level="8" data-path="further.html"><a href="further.html"><i class="fa fa-check"></i><b>8</b> Further Reading</a><ul>
+<li class="chapter" data-level="8.1" data-path="further.html"><a href="further.html#general-books"><i class="fa fa-check"></i><b>8.1</b> General &amp; books</a></li>
+<li class="chapter" data-level="8.2" data-path="further.html"><a href="further.html#multivariate-extremes-tail-dependence"><i class="fa fa-check"></i><b>8.2</b> Multivariate extremes &amp; tail dependence</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lancaster University MATH562/482/582</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="stationary" class="section level1">
+<h1><span class="header-section-number">5</span> Extremes of Stationary Processes</h1>
+<p>Here, we will explore the impact of dependence between values in the series on the extreme values when observed at long-range and short-range. As previously we will focus on</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(M_n=\max(X_1, \ldots ,X_n)\)</span>;</li>
+<li>exceedances of a high threshold.</li>
+</ol>
+<div id="background" class="section level2">
+<h2><span class="header-section-number">5.1</span> Background</h2>
+<p>A process <span class="math inline">\(\{X_t\}\)</span> is said to be a stationary process if the joint distributions of
+<span class="math display">\[\begin{eqnarray*}
+(X_{t_1}, \ldots ,X_{t_k})\mbox{ and } (X_{t_1+\tau}, \ldots ,X_{t_k+\tau})
+\end{eqnarray*}\]</span>
+are the same for any <span class="math inline">\(k\)</span>, <span class="math inline">\(t_1, \ldots ,t_k\)</span> and <span class="math inline">\(\tau\)</span>. Throughout we will assume that the univariate marginal distribution function is <span class="math inline">\(F\)</span>, <em>i.e.</em>
+<span class="math display">\[\begin{eqnarray*}
+F(x)=\Pr(X_t\leq x) \mbox{ for all }t.
+\end{eqnarray*}\]</span></p>
+<div id="long-range-asymptotic-independence-condition" class="section level3">
+<h3><span class="header-section-number">5.1.1</span> Long-range asymptotic independence condition</h3>
+<p>We suppose that there exist normalising sequences <span class="math inline">\(a_{n}\)</span> and <span class="math inline">\(b_{n}\)</span> such that
+<span class="math display">\[\begin{eqnarray*}
+\frac{M_{n} - b_{n}}{a_{n}}
+\end{eqnarray*}\]</span>
+has a non-degenerate limit distribution. We want to characterise the limit behaviour of this variable. In the absence of any conditions that limit the amount of long-range dependence that can be present in the values of the series, any limit distribution can be obtained.</p>
+<p>For example let <span class="math inline">\(X_t=X_1\)</span> for all <span class="math inline">\(t\)</span>, then for all <span class="math inline">\(n\)</span>
+<span class="math display">\[\begin{eqnarray*}
+\Pr(M_n\leq x)=\Pr(X_1\leq x)=F(x),
+\end{eqnarray*}\]</span>
+so the class of limit distributions covers all distributions.</p>
+<p>Again, let’s see what we can learn from the CLT. A CLT for stationary processes exists and this also has to limit long-range dependence. The condition is termed <em>strong mixing</em>, it ensures that events separated sufficiently in time are <em>effectively</em> independent and so allows there to be enough independent variables for a CLT on these variables to apply.</p>
+</div>
+<div id="asymptotic-independence-of-maxima-aim" class="section level3">
+<h3><span class="header-section-number">5.1.2</span> Asymptotic independence of Maxima (AIM)</h3>
+<p>Let <span class="math inline">\(M_{i,j}=\max(X_i, \ldots, X_j)\)</span> and <span class="math inline">\(u_{n} = a_{n} x + b_{n}\)</span> for <span class="math inline">\(a_n, b_n\)</span> defined above and <span class="math inline">\(x\)</span> any real number.</p>
+<p>The AIM<span class="math inline">\((u_n)\)</span> condition is that there exists a sequence <span class="math inline">\(q_{n}\)</span> of positive integers with <span class="math inline">\(q_{n} = o(n)\)</span> such that for all <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>
+<span class="math display">\[\begin{align}
+  \max |&amp;\Pr (M_{1,i} \leq u_{n} , M_{i+q_{n}, i+q_{n}+j } \leq u_{n}) - \nonumber\\
+  &amp;\Pr (M_{1,i} \leq u_{n}) \Pr (M_{1,j} \leq u_{n}) | \rightarrow 0\mbox{ as }n \rightarrow \infty.
+  \label{eq:AIM}
+\end{align}\]</span></p>
+<p>The condition ensures that separated groups of extreme points become increasingly close to being independent as their separation and level both increase at appropriate rates.</p>
+<p>There are many other similar conditions depending on the particular extremal property that is of interest, see <span class="citation">Leadbetter, Lindgren, and Rootzén (<a href="#ref-llr83">1983</a>)</span> and <span class="citation">O’Brien (<a href="#ref-obrien87">1987</a>)</span>.</p>
+</div>
+</div>
+<div id="unified-extremal-types-theorem-for-stationary-sequences" class="section level2">
+<h2><span class="header-section-number">5.2</span> Unified Extremal Types Theorem for stationary sequences</h2>
+<p><strong>Theorem</strong>
+<em>Suppose that there exist normalising sequences <span class="math inline">\(a_{n}\)</span> and <span class="math inline">\(b_{n}\)</span> such that</em>
+<span class="math display">\[\begin{eqnarray*}
+\Pr\left(\frac{M_{n} - b_{n}}{a_{n}}\leq x\right) \rightarrow H(x) \mbox{ as }
+n\rightarrow \infty,
+\end{eqnarray*}\]</span>
+<em>where <span class="math inline">\(H\)</span> is a non-degenerate distribution, and that the AIM<span class="math inline">\((a_n x+b_n)\)</span> condition holds, then <span class="math inline">\(H\)</span> is of the same type as</em>
+<span class="math display">\[\begin{eqnarray*}
+\exp\left[-(1+\xi x)_+^{-1/\xi}\right],
+\end{eqnarray*}\]</span>
+<em>i.e. a GEV limit distribution.</em></p>
+<p><strong>Outline strategy of proof</strong></p>
+<ol style="list-style-type: decimal">
+<li>partition time into a series of alternating long and short blocks, <span class="math inline">\(k\)</span> of each;</li>
+<li>let the numbers in long and short blocks be <span class="math inline">\(r_n\)</span> and <span class="math inline">\(q_n\)</span> respectively with <span class="math inline">\(r_n\rightarrow \infty\)</span>, <span class="math inline">\(q_n\rightarrow \infty\)</span> and <span class="math inline">\(q_n/r_n\rightarrow 0;\)</span></li>
+<li>in a neighbouring pair of long and short blocks, the maximum over the two blocks is likely to be in the long block;</li>
+<li>all maxima tend to fall into the long blocks;</li>
+<li>long block maxima are approximately independent as they are separated in time by the short blocks, so satisfy AIM<span class="math inline">\((u_n)\)</span> condition;</li>
+<li>long block maxima satisfy the max-stability property, and hence are GEV.</li>
+</ol>
+<p>A few comments on this theorem:</p>
+<ul>
+<li>at a practical level this is all we need, the maximum of a stationary sequence that has some independence at long-range follows a GEV distribution;</li>
+<li>the result does not show how the dependence changes the behaviour of <span class="math inline">\(M_n\)</span>;</li>
+</ul>
+<p>We separate marginal and dependence features for the remainder of the chapter and subsequently fix the marginal distribution <span class="math inline">\(F\)</span> of the <span class="math inline">\(\{X_t\}\)</span> to be Frechet.</p>
+<div id="extremes-of-frechet-marginal-variables" class="section level3">
+<h3><span class="header-section-number">5.2.1</span> Extremes of Frechet marginal variables</h3>
+<p>Let <span class="math inline">\(\{X_t\}\)</span> be a stationary process which has Frechet marginal distributions, i.e.
+<span class="math display">\[\begin{eqnarray*}
+F(x)=\exp(-1/x)\mbox{ for }x&gt;0.
+\end{eqnarray*}\]</span>
+Let <span class="math inline">\(\hat{M}_n\)</span> denote the maximum of <span class="math inline">\(n\)</span> IID variables with marginal distribution <span class="math inline">\(F\)</span> then
+<span class="math display">\[\begin{eqnarray*}
+\Pr\left(\frac{\hat{M}_n}{n}\leq x\right)=\{F(nx)\}^n=\exp(-1/x)=G(x),
+\end{eqnarray*}\]</span>
+i.e. <span class="math inline">\(\hat{M}_n/n\)</span> has a Frechet limit distribution for all <span class="math inline">\(n\)</span> and we denote the limit distribution of the maximum of the IID variables by <span class="math inline">\(G\)</span>.</p>
+<p>Suppose that <span class="math inline">\(M_n=\max(X_1, \ldots ,X_n)\)</span>, that <span class="math inline">\(\{X_t\}\)</span> satisfies the AIM<span class="math inline">\((nx)\)</span> condition and that
+<span class="math display">\[\begin{eqnarray*}
+\Pr\left(\frac{M_n}{n}\leq x\right)\rightarrow H(x),
+\end{eqnarray*}\]</span>
+then we can assess the effect of dependence on <span class="math inline">\(M_n\)</span> by looking at the difference between <span class="math inline">\(H\)</span> and <span class="math inline">\(G\)</span>.</p>
+</div>
+<div id="motivating-example-moving-maxima" class="section level3">
+<h3><span class="header-section-number">5.2.2</span> Motivating Example: Moving Maxima</h3>
+<p>Let <span class="math inline">\(\{Y_t\}\)</span> be IID with <span class="math inline">\(F_Y(y)=\exp[-1/(2y)]\)</span>, <em>i.e.</em> Frechet type marginals. Define, for all <span class="math inline">\(t\)</span>
+<span class="math display">\[\begin{eqnarray*}
+X_t=\max(Y_t,Y_{t-1})
+\end{eqnarray*}\]</span>
+An example of this process is shown in Figure <a href="stationary.html#fig:v-i">5.1</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:v-i"></span>
+<img src="images/moving.max.plot.png" alt="Example of a moving maxima process." width="85%" />
+<p class="caption">
+Figure 5.1: Example of a moving maxima process.
+</p>
+</div>
+<p><strong>Marginal properties</strong><br />
+The marginal distribution of the <span class="math inline">\(\{X_t\}\)</span> process is:
+<span class="math display">\[\begin{eqnarray*}
+\Pr(X_t\leq x) &amp; = &amp; \Pr(Y_t\leq x,Y_{t-1}\leq x)\\
+               &amp; = &amp; \{F_Y(x)\}^2\\
+               &amp; = &amp; \exp[-2/(2x)]\\
+               &amp; = &amp; \exp(-1/x),
+\end{eqnarray*}\]</span>
+<em>i.e.</em> Frechet distributed.</p>
+<p><strong>Dependence properties</strong></p>
+<ul>
+<li>For <span class="math inline">\(\tau&gt;1\)</span>, <span class="math inline">\((X_t,X_{t+\tau})\)</span> is independent as the associated <span class="math inline">\(Y\)</span> variables are all different for each of the <span class="math inline">\(X\)</span>’s and hence the <span class="math inline">\(X\)</span>’s are independent.</li>
+<li>For <span class="math inline">\(\tau=1\)</span>, <span class="math inline">\((X_t,X_{t+\tau})\)</span> is dependent as the both <span class="math inline">\(X_t\)</span> and <span class="math inline">\(X_{t+1}\)</span> are functions of <span class="math inline">\(Y_t\)</span>;</li>
+<li>it is clear that long-range independence holds;</li>
+<li>extreme values occur as groups or clusters of independent values, with two values per cluster for all the largest values.</li>
+</ul>
+<p><strong>Derivation of <span class="math inline">\(H\)</span></strong>
+<span class="math display">\[\begin{eqnarray*}
+\Pr\left(\frac{M_n}{n}\leq x\right)
+                       &amp; = &amp; \Pr(X_1\leq nx, \ldots ,X_n \leq nx)\\
+                       &amp; = &amp; \Pr(Y_0\leq nx, Y_1\leq nx, \ldots ,Y_n\leq nx)\\
+                       &amp; = &amp; [F_Y(nx)]^{n+1}\\
+                       &amp; = &amp; \{\exp[-1/(2nx)]\}^{n+1}\\
+                       &amp; = &amp; \exp[-(n+1)/(2nx)]\\
+                       &amp; \rightarrow &amp; \exp[-1/(2x)]\mbox{ as }n\rightarrow \infty\\
+                       &amp; = &amp; \{G(x)\}^{1/2}\\
+                       &amp; = &amp; H(x).
+\end{eqnarray*}\]</span></p>
+</div>
+</div>
+<div id="extremal-index" class="section level2">
+<h2><span class="header-section-number">5.3</span> The Extremal Index</h2>
+<p>The previous example shows that short-range dependence in the extreme values of the process affects the limiting distribution of <span class="math inline">\(M_n\)</span>. Before expanding on this further, we first present a measure of short-range extremal dependence, termed the extremal index.</p>
+<p>Define the extremal index <span class="math inline">\(\theta\)</span>, for variables with Frechet marginals, by
+<span class="math display">\[\begin{eqnarray*}
+\theta &amp; = &amp; \lim_{n\rightarrow \infty} \Pr(M_{2,p_n}\leq n\,|\, X_1&gt;n)\\
+&amp; =&amp; \lim_{n\rightarrow \infty} \{1-\Pr(M_{2,p_n}&gt; n\,|\, X_1&gt;n)\}
+\end{eqnarray*}\]</span>
+where <span class="math inline">\(p_n=o(n)\)</span>.</p>
+<p>The extremal index has the following features:</p>
+<ul>
+<li><span class="math inline">\(0\le \theta \leq 1\)</span>;</li>
+<li>larger values of <span class="math inline">\(\theta\)</span> correspond to weaker short-range extremal dependence;</li>
+<li>for an IID process <span class="math inline">\(\theta=1\)</span> as
+<span class="math display">\[\begin{eqnarray*}
+\theta &amp; = &amp; \lim_{n\rightarrow \infty} \{F(n)\}^{p_n}\\
+     &amp; = &amp; \lim_{n\rightarrow \infty} \exp(-p_n/n)\\
+     &amp; \rightarrow &amp; 1 \mbox{ as }n\rightarrow \infty,
+\end{eqnarray*}\]</span>
+(since <span class="math inline">\(p_n/n\rightarrow 0\)</span>);</li>
+<li>if a process is independent for all lags <span class="math inline">\(\tau\ge m\)</span>, for some finite <span class="math inline">\(m\)</span> then <span class="math inline">\(1/m\le \theta \le 1\)</span>.</li>
+</ul>
+<div id="extremal-index-for-moving-maxima-example" class="section level3">
+<h3><span class="header-section-number">5.3.1</span> Extremal index for Moving Maxima example</h3>
+<p>From the realisation of the process it is clear that <span class="math inline">\(\theta=1/2\)</span>. The theoretical derivation is
+<span class="math display">\[\begin{eqnarray*}
+\Pr(M_{2,p_n}\leq n\,|\, X_1&gt;n) &amp; = &amp;
+           \Pr(Y_1\leq n, Y_2\leq n,\ldots ,Y_{p_n}\leq n\,|\, \max(Y_0,Y_1)&gt;n)\\
+      &amp; \approx  &amp;
+           \Pr(Y_1\leq n, Y_2\leq n,\ldots ,Y_{p_n}\leq n\,|\, Y_0&gt;n)\times\frac{1}{2}\\
+&amp; &amp; + \Pr(Y_1\leq n, Y_2\leq n,\ldots ,Y_{p_n}\leq n\,|\, Y_1&gt;n)\times\frac{1}{2}\\
+      &amp; \rightarrow &amp; 1\times \frac{1}{2}+0\times \frac{1}{2}\\
+      &amp; = &amp; \frac{1}{2}=\theta.
+\end{eqnarray*}\]</span></p>
+</div>
+<div id="implications-of-short-range-extremal-dependence" class="section level3">
+<h3><span class="header-section-number">5.3.2</span> Implications of short-range extremal dependence</h3>
+<p>Combining the above results and examples, the following result should appear to be quite natural.</p>
+<p>For variables with Frechet marginal distributions, provided that <span class="math inline">\(\Pr(M_n/n\leq x)\rightarrow H(x)\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span> to a non-degenerate limit <span class="math inline">\(H\)</span> then if</p>
+<ul>
+<li>AIM<span class="math inline">\((nx)\)</span> condition holds;</li>
+<li><span class="math inline">\(\theta\)</span> exists</li>
+</ul>
+<p>then
+<span class="math display">\[\begin{eqnarray*}
+H(x)=\{G(x)\}^{\theta}.
+\end{eqnarray*}\]</span></p>
+<p>The implications of this result are that, except for a really weak long-range dependence condition:</p>
+<ol style="list-style-type: decimal">
+<li>for stationary processes the effect of dependence is through <span class="math inline">\(\theta\)</span> only;</li>
+<li><span class="math inline">\(\theta\)</span> can be absorbed into the normalising constants, so dependence does not change the limiting type;</li>
+<li>the limit suggests
+<span class="math display">\[\begin{eqnarray*}
+H(x)=\lim_{n\rightarrow \infty}\left[\{F(nx)\}^n\right]^{\theta}
+=\lim_{n\rightarrow \infty}\{F(nx)\}^{n\theta},
+\end{eqnarray*}\]</span>
+so <span class="math inline">\(n\theta\)</span> can be thought of as an effective number of independent variables.</li>
+</ol>
+</div>
+<div id="distribution-of-the-maximum" class="section level3">
+<h3><span class="header-section-number">5.3.3</span> Distribution of the Maximum</h3>
+<p>Consider random variables <span class="math inline">\(X_1, \ldots ,X_n\)</span> with arbitrary distribution function <span class="math inline">\(F\)</span> and which satisfy the AIM<span class="math inline">\((u_n)\)</span> condition. As <span class="math inline">\(n\rightarrow \infty\)</span>
+<span class="math display">\[\begin{eqnarray*}
+  \Pr\left(\frac{M_n-b_n}{a_n}\leq y\right)
+\rightarrow 
+\exp\left[-\theta \left\{1+\xi\left(\frac{y-\mu}{\sigma}\right)\right\}_+^{-1/\xi}\right],
+\end{eqnarray*}\]</span>
+where if the variables are IID <span class="math inline">\(\theta=1\)</span>.</p>
+</div>
+<div id="threshold-exceedances" class="section level3">
+<h3><span class="header-section-number">5.3.4</span> Threshold exceedances</h3>
+<p>We assume that</p>
+<ul>
+<li><span class="math inline">\(\{X_t\}\)</span> is a stationary process with arbitrary distribution function <span class="math inline">\(F\)</span>;</li>
+<li>the required norming constants for an IID process with marginal <span class="math inline">\(F\)</span> are <span class="math inline">\(a_n\)</span> and <span class="math inline">\(b_n\)</span> with limit distribution <span class="math inline">\(G\)</span>, a GEV<span class="math inline">\((0,1,\xi)\)</span> distribution;</li>
+<li>a long-range asymptotic independence condition (similar to the AIM<span class="math inline">\((a_nx+b_n)\)</span> condition) holds.</li>
+</ul>
+<p>Consider the point processes
+<span class="math display">\[\begin{eqnarray*}
+P_n=\left\{\left(\frac{i}{n+1},\frac{X_i-b_n}{a_n}\right);i=1, \ldots ,n\right\}
+\end{eqnarray*}\]</span>
+on <span class="math inline">\([0,1]\times [0,\infty)\)</span>. Figure <a href="stationary.html#fig:v-iii">5.2</a> shows a point process <span class="math inline">\(P_n\)</span> for <span class="math inline">\(n=10,100,1000,10000\)</span> respectively with <span class="math inline">\(X_t\sim\)</span> Moving Max <span class="math inline">\(\left(\alpha_0=\frac{1}{3},\alpha_1=\frac{1}{2},\alpha_2=\frac{1}{6}\right)\)</span>.</p>
+<div class="figure" style="text-align: center"><span id="fig:v-iii"></span>
+<img src="images/mov.max.pp.conv.plot.png" alt="Point process $P_n$ representation of the moving maxima process for $n=10,100,1000,10000$." width="85%" />
+<p class="caption">
+Figure 5.2: Point process <span class="math inline">\(P_n\)</span> representation of the moving maxima process for <span class="math inline">\(n=10,100,1000,10000\)</span>.
+</p>
+</div>
+</div>
+<div id="cluster-maxima-point-process-intensity" class="section level3">
+<h3><span class="header-section-number">5.3.5</span> Cluster maxima point process intensity</h3>
+<p>For data over a high threshold <span class="math inline">\(u\)</span> we absorb the location and scale normalisation into the parameters to give the intensity of the non-homogeneous Poisson Process for the cluster maxima as
+<span class="math display">\[\begin{eqnarray}
+\lambda(t,y)=\theta \sigma^{-1}[1+\xi (y-\mu)/\sigma]_+^{-1-1/\xi}
+\label{eqn:clust.max.intensity}
+\end{eqnarray}\]</span></p>
+<p><strong>Implications of the limit process: clusters</strong><br />
+Fixing a threshold level <span class="math inline">\(u&gt;b_l\)</span> we have that:</p>
+<ol style="list-style-type: decimal">
+<li>clusters are those set of points exceeding <span class="math inline">\(u\)</span> which occur at the same normalised time. In the original series these are large points which occur within a short time period of one another.</li>
+<li>the expected number of exceedances of <span class="math inline">\(u\)</span> per cluster (for which the cluster maxima exceeds <span class="math inline">\(u\)</span>) is <span class="math inline">\(\theta^{-1}\)</span>, irrespective of the level <span class="math inline">\(u\)</span>;</li>
+<li>relative to independent series, when <span class="math inline">\(\theta&lt;1\)</span> there are fewer clusters (by a factor <span class="math inline">\(\theta\)</span>) and more exceedances per cluster (by a factor <span class="math inline">\(\theta^{-1}\)</span>);</li>
+<li>values in one cluster are independent of values in another cluster;</li>
+<li>values within a cluster are dependent.</li>
+</ol>
+<p><strong>Implications of the limit process: exceedances</strong><br />
+Fixing a threshold level <span class="math inline">\(u&gt;b_l\)</span> we have that:</p>
+<ol style="list-style-type: decimal">
+<li>the rate of cluster maxima exceeding the threshold <span class="math inline">\(u\)</span> is
+<span class="math display">\[\begin{eqnarray*}
+\theta [1+\xi(u-\mu)/\sigma]_+^{-1/\xi}.
+\end{eqnarray*}\]</span></li>
+<li>the rate of arbitrary values exceeding the threshold <span class="math inline">\(u\)</span> is
+<span class="math display">\[\begin{eqnarray*}
+[1+\xi(u-\mu)/\sigma]_+^{-1/\xi}.
+\end{eqnarray*}\]</span></li>
+<li>the cluster maxima that exceed the threshold are independent, and follow a GPD<span class="math inline">\((\sigma_u,\xi)\)</span>, with shape parameter <span class="math inline">\(\xi\)</span>; GPD<span class="math inline">\((\sigma_u,\xi)\)</span> model for cluster maxima excesses over <span class="math inline">\(u\)</span>, where
+<span class="math display">\[\begin{eqnarray*}
+\sigma_u=\sigma+\xi(u-\mu).
+\end{eqnarray*}\]</span></li>
+<li>arbitrary (in time) excesses over <span class="math inline">\(u\)</span> also follow a GPD<span class="math inline">\((\sigma_u,\xi)\)</span>, i.e.  with the same parameters as the cluster maxima;</li>
+</ol>
+
+</div>
+</div>
+</div>
+<h3>Bibliography</h3>
+<div id="refs" class="references">
+<div id="ref-llr83">
+<p>Leadbetter, M. R., G. Lindgren, and H. Rootzén. 1983. <em>Extremes and Related Properties of Random Sequences and Series</em>. New York: Springer Verlag.</p>
+</div>
+<div id="ref-obrien87">
+<p>O’Brien, G. L. 1987. “Extreme Values for Stationary and Markov Sequences.” <em>Annals of Probability</em> 15: 281–91.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="non-iid.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="inference-dependent.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

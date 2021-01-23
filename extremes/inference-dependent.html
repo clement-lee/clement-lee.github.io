@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6 Statistical Inference for Extremes of Stationary Processes | Lancaster University MATH562/482/582</title>
+  <meta name="description" content="6 Statistical Inference for Extremes of Stationary Processes | Lancaster University MATH562/482/582" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6 Statistical Inference for Extremes of Stationary Processes | Lancaster University MATH562/482/582" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6 Statistical Inference for Extremes of Stationary Processes | Lancaster University MATH562/482/582" />
+  
+  
+  
+
+<meta name="author" content="Lecturers: Clement Lee &amp; Zak Varty" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="stationary.html"/>
+<link rel="next" href="finance.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#role-of-extreme-value-theory"><i class="fa fa-check"></i><b>1.1</b> Role of Extreme Value Theory</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="intro.html"><a href="intro.html#inadequacies-of-standard-statistical-approaches"><i class="fa fa-check"></i><b>1.1.1</b> Inadequacies of standard statistical approaches</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#sect:applications"><i class="fa fa-check"></i><b>1.2</b> Application areas of extreme value theory</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="intro.html"><a href="intro.html#oxford-and-worthing-annual-maxima-temperatures"><i class="fa fa-check"></i><b>1.2.1</b> Oxford and Worthing annual maxima temperatures</a></li>
+<li class="chapter" data-level="1.2.2" data-path="intro.html"><a href="intro.html#oceanographic-variables"><i class="fa fa-check"></i><b>1.2.2</b> Oceanographic variables</a></li>
+<li class="chapter" data-level="1.2.3" data-path="intro.html"><a href="intro.html#section:FTSEintro"><i class="fa fa-check"></i><b>1.2.3</b> FTSE Index</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#whats-in-the-course-for-you"><i class="fa fa-check"></i><b>1.3</b> What’s in the course for you?</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="block-maxima.html"><a href="block-maxima.html"><i class="fa fa-check"></i><b>2</b> Classical Theory of Maxima of IID Variables</a><ul>
+<li class="chapter" data-level="2.1" data-path="block-maxima.html"><a href="block-maxima.html#block-maxima-1"><i class="fa fa-check"></i><b>2.1</b> Block Maxima</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="block-maxima.html"><a href="block-maxima.html#sect:maxima"><i class="fa fa-check"></i><b>2.1.1</b> Distributional Theory for <span class="math inline">\(M_n\)</span></a></li>
+<li class="chapter" data-level="2.1.2" data-path="block-maxima.html"><a href="block-maxima.html#illustrative-example-the-maximum-of-exponential-variables"><i class="fa fa-check"></i><b>2.1.2</b> Illustrative example: the maximum of Exponential variables</a></li>
+<li class="chapter" data-level="2.1.3" data-path="block-maxima.html"><a href="block-maxima.html#extremal-types-theorem-ett"><i class="fa fa-check"></i><b>2.1.3</b> Extremal Types Theorem (ETT)</a></li>
+<li class="chapter" data-level="2.1.4" data-path="block-maxima.html"><a href="block-maxima.html#the-generalised-extreme-value-gev-distribution"><i class="fa fa-check"></i><b>2.1.4</b> The Generalised Extreme Value (GEV) Distribution</a></li>
+<li class="chapter" data-level="2.1.5" data-path="block-maxima.html"><a href="block-maxima.html#uett"><i class="fa fa-check"></i><b>2.1.5</b> Unified Extremal Types Theorem (UETT)</a></li>
+<li class="chapter" data-level="2.1.6" data-path="block-maxima.html"><a href="block-maxima.html#moments-of-the-gev"><i class="fa fa-check"></i><b>2.1.6</b> Moments of the GEV</a></li>
+<li class="chapter" data-level="2.1.7" data-path="block-maxima.html"><a href="block-maxima.html#connections-between-clt-and-uett"><i class="fa fa-check"></i><b>2.1.7</b> Connections between CLT and UETT</a></li>
+<li class="chapter" data-level="2.1.8" data-path="block-maxima.html"><a href="block-maxima.html#pseudo-proofs"><i class="fa fa-check"></i><b>2.1.8</b> Pseudo Proofs</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="block-maxima.html"><a href="block-maxima.html#sect:domains-of-attraction"><i class="fa fa-check"></i><b>2.2</b> Domains of attraction</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="block-maxima.html"><a href="block-maxima.html#doa"><i class="fa fa-check"></i><b>2.2.1</b> Domains of attraction for random variables with absolutely continuous distributions</a></li>
+<li class="chapter" data-level="2.2.2" data-path="block-maxima.html"><a href="block-maxima.html#examples-of-domains-of-attractions"><i class="fa fa-check"></i><b>2.2.2</b> Examples of domains of attractions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="block-maxima.html"><a href="block-maxima.html#inference"><i class="fa fa-check"></i><b>2.3</b> Inference for maxima of IID variables</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="block-maxima.html"><a href="block-maxima.html#sect:mle-gev"><i class="fa fa-check"></i><b>2.3.1</b> Inference for the GEV distribution</a></li>
+<li class="chapter" data-level="2.3.2" data-path="block-maxima.html"><a href="block-maxima.html#sect:mle-gev-max-temperature"><i class="fa fa-check"></i><b>2.3.2</b> Example: fitting the GEV to temperature maxima</a></li>
+<li class="chapter" data-level="2.3.3" data-path="block-maxima.html"><a href="block-maxima.html#return-levels-and-return-periods"><i class="fa fa-check"></i><b>2.3.3</b> Return levels and return periods</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="alternative.html"><a href="alternative.html"><i class="fa fa-check"></i><b>3</b> Alternative Characterisation and Improved Inferences</a><ul>
+<li class="chapter" data-level="3.1" data-path="alternative.html"><a href="alternative.html#point-process-characterisation"><i class="fa fa-check"></i><b>3.1</b> Point process characterisation</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="alternative.html"><a href="alternative.html#aside-on-poisson-processes"><i class="fa fa-check"></i><b>3.1.1</b> Aside on Poisson processes</a></li>
+<li class="chapter" data-level="3.1.2" data-path="alternative.html"><a href="alternative.html#the-limiting-point-process"><i class="fa fa-check"></i><b>3.1.2</b> The limiting point process</a></li>
+<li class="chapter" data-level="3.1.3" data-path="alternative.html"><a href="alternative.html#proof-of-point-process-limit"><i class="fa fa-check"></i><b>3.1.3</b> Proof of point process limit</a></li>
+<li class="chapter" data-level="3.1.4" data-path="alternative.html"><a href="alternative.html#sect:poisson-process-limit"><i class="fa fa-check"></i><b>3.1.4</b> The value of the Poisson process limit</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="alternative.html"><a href="alternative.html#sect:threshold-exceedances"><i class="fa fa-check"></i><b>3.2</b> Threshold exceedances</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="alternative.html"><a href="alternative.html#practical-implications-of-limit"><i class="fa fa-check"></i><b>3.2.1</b> Practical implications of limit</a></li>
+<li class="chapter" data-level="3.2.2" data-path="alternative.html"><a href="alternative.html#properties-of-gpd"><i class="fa fa-check"></i><b>3.2.2</b> Properties of GPD</a></li>
+<li class="chapter" data-level="3.2.3" data-path="alternative.html"><a href="alternative.html#inference-for-the-generalised-pareto-distribution"><i class="fa fa-check"></i><b>3.2.3</b> Inference for the generalised Pareto distribution</a></li>
+<li class="chapter" data-level="3.2.4" data-path="alternative.html"><a href="alternative.html#example-fitting-the-gpd-to-newlyn-data"><i class="fa fa-check"></i><b>3.2.4</b> Example: fitting the GPD to Newlyn data</a></li>
+<li class="chapter" data-level="3.2.5" data-path="alternative.html"><a href="alternative.html#sect:return-level-gpd"><i class="fa fa-check"></i><b>3.2.5</b> Return levels &amp; return periods</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="alternative.html"><a href="alternative.html#sect:r-largest"><i class="fa fa-check"></i><b>3.3</b> The <em>r</em>-largest approach</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="non-iid.html"><a href="non-iid.html"><i class="fa fa-check"></i><b>4</b> Extremes of Non-identically Distributed Variables</a><ul>
+<li class="chapter" data-level="4.1" data-path="non-iid.html"><a href="non-iid.html#sect:nonstationaryMeanVar"><i class="fa fa-check"></i><b>4.1</b> Examples of non-identically distributed processes</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="non-iid.html"><a href="non-iid.html#reading-ozone-data"><i class="fa fa-check"></i><b>4.1.1</b> Reading ozone data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="non-iid.html"><a href="non-iid.html#sect:existing"><i class="fa fa-check"></i><b>4.2</b> Existing methods for non-identically distributed processes</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="non-iid.html"><a href="non-iid.html#models-for-block-maxima-and-r-largest"><i class="fa fa-check"></i><b>4.2.1</b> Models for block maxima and <span class="math inline">\(r\)</span>-largest</a></li>
+<li class="chapter" data-level="4.2.2" data-path="non-iid.html"><a href="non-iid.html#models-for-threshold-exceedances"><i class="fa fa-check"></i><b>4.2.2</b> Models for threshold exceedances</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="non-iid.html"><a href="non-iid.html#sect:preprocessing"><i class="fa fa-check"></i><b>4.3</b> Pre-processing method</a></li>
+<li class="chapter" data-level="4.4" data-path="non-iid.html"><a href="non-iid.html#sect:reading-ozone"><i class="fa fa-check"></i><b>4.4</b> Analysis of Reading ozone data</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="stationary.html"><a href="stationary.html"><i class="fa fa-check"></i><b>5</b> Extremes of Stationary Processes</a><ul>
+<li class="chapter" data-level="5.1" data-path="stationary.html"><a href="stationary.html#background"><i class="fa fa-check"></i><b>5.1</b> Background</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="stationary.html"><a href="stationary.html#long-range-asymptotic-independence-condition"><i class="fa fa-check"></i><b>5.1.1</b> Long-range asymptotic independence condition</a></li>
+<li class="chapter" data-level="5.1.2" data-path="stationary.html"><a href="stationary.html#asymptotic-independence-of-maxima-aim"><i class="fa fa-check"></i><b>5.1.2</b> Asymptotic independence of Maxima (AIM)</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="stationary.html"><a href="stationary.html#unified-extremal-types-theorem-for-stationary-sequences"><i class="fa fa-check"></i><b>5.2</b> Unified Extremal Types Theorem for stationary sequences</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="stationary.html"><a href="stationary.html#extremes-of-frechet-marginal-variables"><i class="fa fa-check"></i><b>5.2.1</b> Extremes of Frechet marginal variables</a></li>
+<li class="chapter" data-level="5.2.2" data-path="stationary.html"><a href="stationary.html#motivating-example-moving-maxima"><i class="fa fa-check"></i><b>5.2.2</b> Motivating Example: Moving Maxima</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="stationary.html"><a href="stationary.html#extremal-index"><i class="fa fa-check"></i><b>5.3</b> The Extremal Index</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="stationary.html"><a href="stationary.html#extremal-index-for-moving-maxima-example"><i class="fa fa-check"></i><b>5.3.1</b> Extremal index for Moving Maxima example</a></li>
+<li class="chapter" data-level="5.3.2" data-path="stationary.html"><a href="stationary.html#implications-of-short-range-extremal-dependence"><i class="fa fa-check"></i><b>5.3.2</b> Implications of short-range extremal dependence</a></li>
+<li class="chapter" data-level="5.3.3" data-path="stationary.html"><a href="stationary.html#distribution-of-the-maximum"><i class="fa fa-check"></i><b>5.3.3</b> Distribution of the Maximum</a></li>
+<li class="chapter" data-level="5.3.4" data-path="stationary.html"><a href="stationary.html#threshold-exceedances"><i class="fa fa-check"></i><b>5.3.4</b> Threshold exceedances</a></li>
+<li class="chapter" data-level="5.3.5" data-path="stationary.html"><a href="stationary.html#cluster-maxima-point-process-intensity"><i class="fa fa-check"></i><b>5.3.5</b> Cluster maxima point process intensity</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="inference-dependent.html"><a href="inference-dependent.html"><i class="fa fa-check"></i><b>6</b> Statistical Inference for Extremes of Stationary Processes</a><ul>
+<li class="chapter" data-level="6.1" data-path="inference-dependent.html"><a href="inference-dependent.html#identifying-independent-clusters"><i class="fa fa-check"></i><b>6.1</b> Identifying independent clusters</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="inference-dependent.html"><a href="inference-dependent.html#the-runs-method-declustering"><i class="fa fa-check"></i><b>6.1.1</b> The runs method: declustering</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="inference-dependent.html"><a href="inference-dependent.html#modelling-cluster-maxima-and-all-exceedances"><i class="fa fa-check"></i><b>6.2</b> Modelling cluster maxima and all exceedances</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="inference-dependent.html"><a href="inference-dependent.html#point-process-intensity-estimation"><i class="fa fa-check"></i><b>6.2.1</b> Point process intensity estimation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="finance.html"><a href="finance.html"><i class="fa fa-check"></i><b>7</b> Extremes in Finance</a></li>
+<li class="chapter" data-level="8" data-path="further.html"><a href="further.html"><i class="fa fa-check"></i><b>8</b> Further Reading</a><ul>
+<li class="chapter" data-level="8.1" data-path="further.html"><a href="further.html#general-books"><i class="fa fa-check"></i><b>8.1</b> General &amp; books</a></li>
+<li class="chapter" data-level="8.2" data-path="further.html"><a href="further.html#multivariate-extremes-tail-dependence"><i class="fa fa-check"></i><b>8.2</b> Multivariate extremes &amp; tail dependence</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lancaster University MATH562/482/582</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="inference-dependent" class="section level1">
+<h1><span class="header-section-number">6</span> Statistical Inference for Extremes of Stationary Processes</h1>
+<p>We now consider the additional <em>practical difficulties</em> encountered due to dependence in analysing the extreme values of a stationary process. In a practical data analysis we have to:</p>
+<ul>
+<li>select a high threshold;</li>
+<li>identify clusters of extreme values which are independent from one another;</li>
+<li>estimate the extremal index;</li>
+</ul>
+<p>When clusters are defined we</p>
+<ul>
+<li>extract the cluster maxima and fit the GPD distribution to the cluster maxima over the threshold;</li>
+<li>estimate characteristics of the cluster;</li>
+<li>assess sensitivity of cluster characteristics to threshold selection.</li>
+</ul>
+<div id="identifying-independent-clusters" class="section level2">
+<h2><span class="header-section-number">6.1</span> Identifying independent clusters</h2>
+<p>There are a number of ways of identifying independent clusters of extreme values. Here we will focus on the runs method, proposed by <span class="citation">Smith and Weissman (<a href="#ref-sw94">1994</a>)</span>, but blocks and intervals methods also exist <span class="citation">(Ferro and Segers <a href="#ref-sf03">2003</a>)</span>, and <span class="citation">Ledford and Tawn (<a href="#ref-lt03">2003</a>)</span> identified conditions that could be tested for independence between clusters.</p>
+<div id="the-runs-method-declustering" class="section level3">
+<h3><span class="header-section-number">6.1.1</span> The runs method: declustering</h3>
+<p>For a selected high threshold <span class="math inline">\(u\)</span> we conclude that if consecutive exceedances of the threshold <span class="math inline">\(u\)</span> are separated by a set of <span class="math inline">\(m\)</span> consecutive observations <em>below</em> the threshold <span class="math inline">\(u\)</span> then the exceedances belong to separate clusters.</p>
+<p>Similarly, exceedances separated by less than <span class="math inline">\(m\)</span> consecutive non-exceedances are deemed to be in the same cluster.</p>
+<p>The choice of <span class="math inline">\(u\)</span> and <span class="math inline">\(m\)</span> is critical, <span class="math inline">\(m\)</span> needs to be the time lag when the process is ``independent in the extremes’’.</p>
+<p><strong>The runs method: extremal index estimation</strong><br />
+This algorithm motivates the runs estimator of the extremal index <span class="math inline">\(\theta\)</span>.</p>
+<ol style="list-style-type: decimal">
+<li>Use the empirical form the extremal index,
+<span class="math display">\[\begin{eqnarray*}
+\hat{\theta}(u,m) &amp; = &amp;  \hat{\Pr}(M_{2,m+1}\leq u\,|\, X_1&gt;u),
+\end{eqnarray*}\]</span>
+using the empirical probability.</li>
+<li><span class="math inline">\(\hat{\theta}(u,m)\)</span> is identical to <span class="math inline">\(1/\mbox{mean cluster size}\)</span> with clusters defined by the runs method.</li>
+</ol>
+<p><strong>Example: daily rainfall data</strong></p>
+<p>We illustrate the use of these cluster identification and extremal index estimation using a time series of daily rainfall accumulations at a location in south-west England, recorded during 1914-1962. This data set is shown in Figure <a href="inference-dependent.html#fig:vi-i">6.1</a>. Note that the series is assumed to be stationary over this observation period.</p>
+<div class="figure" style="text-align: center"><span id="fig:vi-i"></span>
+<img src="images/rain.data.plot.png" alt="Daily rainfall." width="85%" />
+<p class="caption">
+Figure 6.1: Daily rainfall.
+</p>
+</div>
+<p>Figure <a href="inference-dependent.html#fig:vi-ii">6.2</a> shows a plot of the extremal index of the rainfall data, for <span class="math inline">\(m=1\)</span> and <span class="math inline">\(m=2\)</span>. From this we can see that</p>
+<ul>
+<li><span class="math inline">\(\hat{\theta}(u,m)\)</span> are threshold dependent</li>
+<li>increasing <span class="math inline">\(m\)</span> does not materially change our estimate <span class="math inline">\(\hat{\theta}(u,m)\)</span></li>
+<li><span class="math inline">\(m=1\)</span> is appropriate for cluster identification</li>
+<li>the value of <span class="math inline">\(\theta(u,m)\approx 1\)</span> indicates weak short-range dependence with a limiting cluster size of 1 for higher thresholds.</li>
+<li>from experience we know rainfall episodes last a number of days, but this analysis tells us that extreme daily rainfall events tend to be isolated.</li>
+</ul>
+<div class="figure" style="text-align: center"><span id="fig:vi-ii"></span>
+<img src="images/rain.extremal.index.plot.png" alt="Extremal index estimates using the runs estimator with $m=1$ or $m=2$, for the rainfall data shown above." width="85%" />
+<p class="caption">
+Figure 6.2: Extremal index estimates using the runs estimator with <span class="math inline">\(m=1\)</span> or <span class="math inline">\(m=2\)</span>, for the rainfall data shown above.
+</p>
+</div>
+<p><strong>Example: financial time series data</strong></p>
+<p>We now turn to estimating clustering for the financial time series data. We focus on the <em>squared</em> returns from the FTSE 100 share index; these are shown in Figure <a href="inference-dependent.html#fig:vi-iii">6.3</a>. We make the initial assumption that the series is stationary over this observation period.</p>
+<div class="figure" style="text-align: center"><span id="fig:vi-iii"></span>
+<img src="images/ftse.sqr.returns.plot.png" alt="Squared returns for the FTSE 100 share index." width="85%" />
+<p class="caption">
+Figure 6.3: Squared returns for the FTSE 100 share index.
+</p>
+</div>
+<p>The extremal index for the squared returns shown in Figure <a href="inference-dependent.html#fig:vi-iii">6.3</a> is shown in Figure <a href="inference-dependent.html#fig:vi-iv">6.4</a>. From this plot we can see that</p>
+<ul>
+<li><span class="math inline">\(\hat{\theta}(u,m)\)</span> is stable for <span class="math inline">\(u\geq 0.005\)</span> corresponding to the 0.95 quantile of the squared returns;</li>
+<li>the value of <span class="math inline">\(\hat{\theta}(u,m)\approx0.35\)</span> suggests that the mean cluster size is around 2.9;</li>
+<li><span class="math inline">\(m=10\)</span> seems fine for cluster identification.</li>
+</ul>
+<div class="figure" style="text-align: center"><span id="fig:vi-iv"></span>
+<img src="images/ftse.UKreturns.sq.ret.extremal.index.plot.png" alt="Extremal Index of the squared returnes for the FTSE 100 data, estimated using the runs method with $m=10$." width="85%" />
+<p class="caption">
+Figure 6.4: Extremal Index of the squared returnes for the FTSE 100 data, estimated using the runs method with <span class="math inline">\(m=10\)</span>.
+</p>
+</div>
+<p>We now investigate the source of serial dependence being the changing volatility of the process. We first standardise the returns series by</p>
+<ul>
+<li>subtracting the local mean</li>
+<li>dividing by the local standard deviation</li>
+</ul>
+<p>We work with the squared standardised series as shown in Figure <a href="inference-dependent.html#fig:vi-v">6.5</a>. Local means and standard deviations were calculated using the <span class="math inline">\(h=20\)</span> observations centred on the value to be standardised. There is little sensitivity to this choice of <span class="math inline">\(m\)</span> for values of <span class="math inline">\(h\)</span> between 2 and 50.</p>
+<div class="figure" style="text-align: center"><span id="fig:vi-v"></span>
+<img src="images/ftse.std.sqr.returns.plot.png" alt="Standardised squared returns for the FTSE 100 series." width="85%" />
+<p class="caption">
+Figure 6.5: Standardised squared returns for the FTSE 100 series.
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:vi-vi"></span>
+<img src="images/ftse.UK.std.sqr.ret.extremal.index.plot.png" alt="Extremal index for the standardised squared returns of the FTSE 100 series. Estimates made using the runs method with $m=1$ and $m=2$." width="85%" />
+<p class="caption">
+Figure 6.6: Extremal index for the standardised squared returns of the FTSE 100 series. Estimates made using the runs method with <span class="math inline">\(m=1\)</span> and <span class="math inline">\(m=2\)</span>.
+</p>
+</div>
+<p>The extremal index for the squared standardised returns is shown in Figure <a href="inference-dependent.html#fig:vi-vi">6.6</a>. From this plot,</p>
+<ul>
+<li>estimates of <span class="math inline">\(\theta(u,m)\)</span> are threshold dependent;</li>
+<li>increasing <span class="math inline">\(m\)</span> does not materially change our conclusions, <span class="math inline">\(m=1\)</span> is fine for cluster identification;</li>
+<li>the limiting value of <span class="math inline">\(\theta=1\)</span> indicates weak short-range independence with a limiting cluster size of 1;</li>
+<li>by undertaking the more sophisticated analysis and standardising the series we appear to have accounted for all the short-range dependence in the series.</li>
+</ul>
+</div>
+</div>
+<div id="modelling-cluster-maxima-and-all-exceedances" class="section level2">
+<h2><span class="header-section-number">6.2</span> Modelling cluster maxima and all exceedances</h2>
+<p>For a specific threshold <span class="math inline">\(u\)</span>, we can</p>
+<ul>
+<li>model the cluster maxima
+<ul>
+<li>fit the GPD<span class="math inline">\((\sigma_u,\xi)\)</span> model for cluster maxima excesses over <span class="math inline">\(u\)</span>.</li>
+<li>standard errors can be obtained by usual methods as cluster maxima are independent.</li>
+</ul></li>
+<li>model all exceedances
+<ul>
+<li>fit the GPD<span class="math inline">\((\sigma_u,\xi)\)</span> model for the excess of all exceedances over <span class="math inline">\(u\)</span>.</li>
+<li>the data are dependent so block bootstrap methods are needed for standard error evaluation.</li>
+</ul></li>
+</ul>
+<div id="point-process-intensity-estimation" class="section level3">
+<h3><span class="header-section-number">6.2.1</span> Point process intensity estimation</h3>
+<p>To estimate <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span> in the point process intensity we need information in addition to that given by our estimate of <span class="math inline">\(\sigma_u\)</span> and <span class="math inline">\(\xi\)</span>. This information is given by the expected number of cluster maxima exceeding <span class="math inline">\(u\)</span>. Equating the point process and sample values gives
+<span class="math display">\[\begin{eqnarray*}
+\theta [1+\xi(u-\mu)/\sigma]_+^{-1/\xi}=n_{cl,u}.
+\end{eqnarray*}\]</span>
+It follows that
+<span class="math display">\[\begin{eqnarray*}
+\hat{\sigma}=\hat\sigma_u(n_{exc,u})^{\hat{\xi}}\mbox{ and }
+\hat{\mu}=u+(\hat{\sigma}-\hat{\sigma}_u)/\hat{\xi}.
+\end{eqnarray*}\]</span></p>
+<p>Note that <span class="math inline">\(\theta\)</span> is estimated by <span class="math inline">\(\hat{\theta}_u =n_{cl,u}/n_{exc,u}\)</span>, i.e. the number of clusters above <span class="math inline">\(u\)</span> divided by the number of exceedances of <span class="math inline">\(u\)</span>.</p>
+<p><strong>Example: Squared FTSE returns</strong><br />
+For the squared FTSE returns</p>
+<ul>
+<li>using a declustering parameter of <span class="math inline">\(m=10\)</span> and a threshold of <span class="math inline">\(u=0.004\)</span> corresponding to the 0.95 quantile of the squared returns gives <span class="math inline">\(n_{cl,u}=134\)</span> independent clusters</li>
+<li>there are <span class="math inline">\(n_{exc,u}=429\)</span> exceedances of <span class="math inline">\(u\)</span></li>
+<li>we estimate the extremal index as <span class="math inline">\(\hat\theta=0.31\)</span></li>
+<li>fitting a GPD to cluster maxima gives
+<span class="math display">\[\begin{eqnarray*}
+  \hat\sigma_u = 0.000232 (0.0000679) ~~~\hat\xi = 0.653 (0.152)
+\end{eqnarray*}\]</span></li>
+<li>combining the above estimates gives
+<span class="math display">\[\begin{eqnarray*}
+\hat{\sigma}=\hat\sigma_u(n_{exc,u})^{\hat{\xi}} = 0.012\mbox{ and }
+\hat{\mu}=u+(\hat{\sigma}-\hat\sigma_u)/\hat{\xi} = 0.0223.
+\end{eqnarray*}\]</span></li>
+</ul>
+
+</div>
+</div>
+</div>
+<h3>Bibliography</h3>
+<div id="refs" class="references">
+<div id="ref-sf03">
+<p>Ferro, C. A. T., and J. Segers. 2003. “Inference for Clusters of Extreme Values.” <em>Journal of the Royal Statistical Society B</em> 65: 545–56.</p>
+</div>
+<div id="ref-lt03">
+<p>Ledford, A. 2003. “Diagnostics for Dependence Within Time Series Extremes.” <em>Journal of the Royal Statistical Society B</em> 65: 521–43.</p>
+</div>
+<div id="ref-sw94">
+<p>Smith, R. L., and I. Weissman. 1994. “Estimating the Extremal Index.” <em>Journal of the Royal Statistical Society B</em> 56: 515–28.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="stationary.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="finance.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -31,4 +31,8 @@ output:
 [Scopus](https://www.scopus.com/authid/detail.uri?authorId=57195286419)  
 [LinkedIn](https://www.linkedin.com/in/clement-lee-153a9bb8/)  
 [Page at Lancaster](https://www.lancaster.ac.uk/maths/people/clement-lee)  
-[Github](https://github.com/clement-lee)  
+[Github](https://github.com/clement-lee)
+
+## Teaching
+[MATH550/SCC.461: R programming](math550/index.html)  
+[MATH482/562/582: Extremes](extremes/index.html)

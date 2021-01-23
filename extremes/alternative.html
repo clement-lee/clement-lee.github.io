@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 Alternative Characterisation and Improved Inferences | Lancaster University MATH562/482/582</title>
+  <meta name="description" content="3 Alternative Characterisation and Improved Inferences | Lancaster University MATH562/482/582" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 Alternative Characterisation and Improved Inferences | Lancaster University MATH562/482/582" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 Alternative Characterisation and Improved Inferences | Lancaster University MATH562/482/582" />
+  
+  
+  
+
+<meta name="author" content="Lecturers: Clement Lee &amp; Zak Varty" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="block-maxima.html"/>
+<link rel="next" href="non-iid.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#role-of-extreme-value-theory"><i class="fa fa-check"></i><b>1.1</b> Role of Extreme Value Theory</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="intro.html"><a href="intro.html#inadequacies-of-standard-statistical-approaches"><i class="fa fa-check"></i><b>1.1.1</b> Inadequacies of standard statistical approaches</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#sect:applications"><i class="fa fa-check"></i><b>1.2</b> Application areas of extreme value theory</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="intro.html"><a href="intro.html#oxford-and-worthing-annual-maxima-temperatures"><i class="fa fa-check"></i><b>1.2.1</b> Oxford and Worthing annual maxima temperatures</a></li>
+<li class="chapter" data-level="1.2.2" data-path="intro.html"><a href="intro.html#oceanographic-variables"><i class="fa fa-check"></i><b>1.2.2</b> Oceanographic variables</a></li>
+<li class="chapter" data-level="1.2.3" data-path="intro.html"><a href="intro.html#section:FTSEintro"><i class="fa fa-check"></i><b>1.2.3</b> FTSE Index</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#whats-in-the-course-for-you"><i class="fa fa-check"></i><b>1.3</b> What’s in the course for you?</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="block-maxima.html"><a href="block-maxima.html"><i class="fa fa-check"></i><b>2</b> Classical Theory of Maxima of IID Variables</a><ul>
+<li class="chapter" data-level="2.1" data-path="block-maxima.html"><a href="block-maxima.html#block-maxima-1"><i class="fa fa-check"></i><b>2.1</b> Block Maxima</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="block-maxima.html"><a href="block-maxima.html#sect:maxima"><i class="fa fa-check"></i><b>2.1.1</b> Distributional Theory for <span class="math inline">\(M_n\)</span></a></li>
+<li class="chapter" data-level="2.1.2" data-path="block-maxima.html"><a href="block-maxima.html#illustrative-example-the-maximum-of-exponential-variables"><i class="fa fa-check"></i><b>2.1.2</b> Illustrative example: the maximum of Exponential variables</a></li>
+<li class="chapter" data-level="2.1.3" data-path="block-maxima.html"><a href="block-maxima.html#extremal-types-theorem-ett"><i class="fa fa-check"></i><b>2.1.3</b> Extremal Types Theorem (ETT)</a></li>
+<li class="chapter" data-level="2.1.4" data-path="block-maxima.html"><a href="block-maxima.html#the-generalised-extreme-value-gev-distribution"><i class="fa fa-check"></i><b>2.1.4</b> The Generalised Extreme Value (GEV) Distribution</a></li>
+<li class="chapter" data-level="2.1.5" data-path="block-maxima.html"><a href="block-maxima.html#uett"><i class="fa fa-check"></i><b>2.1.5</b> Unified Extremal Types Theorem (UETT)</a></li>
+<li class="chapter" data-level="2.1.6" data-path="block-maxima.html"><a href="block-maxima.html#moments-of-the-gev"><i class="fa fa-check"></i><b>2.1.6</b> Moments of the GEV</a></li>
+<li class="chapter" data-level="2.1.7" data-path="block-maxima.html"><a href="block-maxima.html#connections-between-clt-and-uett"><i class="fa fa-check"></i><b>2.1.7</b> Connections between CLT and UETT</a></li>
+<li class="chapter" data-level="2.1.8" data-path="block-maxima.html"><a href="block-maxima.html#pseudo-proofs"><i class="fa fa-check"></i><b>2.1.8</b> Pseudo Proofs</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="block-maxima.html"><a href="block-maxima.html#sect:domains-of-attraction"><i class="fa fa-check"></i><b>2.2</b> Domains of attraction</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="block-maxima.html"><a href="block-maxima.html#doa"><i class="fa fa-check"></i><b>2.2.1</b> Domains of attraction for random variables with absolutely continuous distributions</a></li>
+<li class="chapter" data-level="2.2.2" data-path="block-maxima.html"><a href="block-maxima.html#examples-of-domains-of-attractions"><i class="fa fa-check"></i><b>2.2.2</b> Examples of domains of attractions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="block-maxima.html"><a href="block-maxima.html#inference"><i class="fa fa-check"></i><b>2.3</b> Inference for maxima of IID variables</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="block-maxima.html"><a href="block-maxima.html#sect:mle-gev"><i class="fa fa-check"></i><b>2.3.1</b> Inference for the GEV distribution</a></li>
+<li class="chapter" data-level="2.3.2" data-path="block-maxima.html"><a href="block-maxima.html#sect:mle-gev-max-temperature"><i class="fa fa-check"></i><b>2.3.2</b> Example: fitting the GEV to temperature maxima</a></li>
+<li class="chapter" data-level="2.3.3" data-path="block-maxima.html"><a href="block-maxima.html#return-levels-and-return-periods"><i class="fa fa-check"></i><b>2.3.3</b> Return levels and return periods</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="alternative.html"><a href="alternative.html"><i class="fa fa-check"></i><b>3</b> Alternative Characterisation and Improved Inferences</a><ul>
+<li class="chapter" data-level="3.1" data-path="alternative.html"><a href="alternative.html#point-process-characterisation"><i class="fa fa-check"></i><b>3.1</b> Point process characterisation</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="alternative.html"><a href="alternative.html#aside-on-poisson-processes"><i class="fa fa-check"></i><b>3.1.1</b> Aside on Poisson processes</a></li>
+<li class="chapter" data-level="3.1.2" data-path="alternative.html"><a href="alternative.html#the-limiting-point-process"><i class="fa fa-check"></i><b>3.1.2</b> The limiting point process</a></li>
+<li class="chapter" data-level="3.1.3" data-path="alternative.html"><a href="alternative.html#proof-of-point-process-limit"><i class="fa fa-check"></i><b>3.1.3</b> Proof of point process limit</a></li>
+<li class="chapter" data-level="3.1.4" data-path="alternative.html"><a href="alternative.html#sect:poisson-process-limit"><i class="fa fa-check"></i><b>3.1.4</b> The value of the Poisson process limit</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="alternative.html"><a href="alternative.html#sect:threshold-exceedances"><i class="fa fa-check"></i><b>3.2</b> Threshold exceedances</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="alternative.html"><a href="alternative.html#practical-implications-of-limit"><i class="fa fa-check"></i><b>3.2.1</b> Practical implications of limit</a></li>
+<li class="chapter" data-level="3.2.2" data-path="alternative.html"><a href="alternative.html#properties-of-gpd"><i class="fa fa-check"></i><b>3.2.2</b> Properties of GPD</a></li>
+<li class="chapter" data-level="3.2.3" data-path="alternative.html"><a href="alternative.html#inference-for-the-generalised-pareto-distribution"><i class="fa fa-check"></i><b>3.2.3</b> Inference for the generalised Pareto distribution</a></li>
+<li class="chapter" data-level="3.2.4" data-path="alternative.html"><a href="alternative.html#example-fitting-the-gpd-to-newlyn-data"><i class="fa fa-check"></i><b>3.2.4</b> Example: fitting the GPD to Newlyn data</a></li>
+<li class="chapter" data-level="3.2.5" data-path="alternative.html"><a href="alternative.html#sect:return-level-gpd"><i class="fa fa-check"></i><b>3.2.5</b> Return levels &amp; return periods</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="alternative.html"><a href="alternative.html#sect:r-largest"><i class="fa fa-check"></i><b>3.3</b> The <em>r</em>-largest approach</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="non-iid.html"><a href="non-iid.html"><i class="fa fa-check"></i><b>4</b> Extremes of Non-identically Distributed Variables</a><ul>
+<li class="chapter" data-level="4.1" data-path="non-iid.html"><a href="non-iid.html#sect:nonstationaryMeanVar"><i class="fa fa-check"></i><b>4.1</b> Examples of non-identically distributed processes</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="non-iid.html"><a href="non-iid.html#reading-ozone-data"><i class="fa fa-check"></i><b>4.1.1</b> Reading ozone data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="non-iid.html"><a href="non-iid.html#sect:existing"><i class="fa fa-check"></i><b>4.2</b> Existing methods for non-identically distributed processes</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="non-iid.html"><a href="non-iid.html#models-for-block-maxima-and-r-largest"><i class="fa fa-check"></i><b>4.2.1</b> Models for block maxima and <span class="math inline">\(r\)</span>-largest</a></li>
+<li class="chapter" data-level="4.2.2" data-path="non-iid.html"><a href="non-iid.html#models-for-threshold-exceedances"><i class="fa fa-check"></i><b>4.2.2</b> Models for threshold exceedances</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="non-iid.html"><a href="non-iid.html#sect:preprocessing"><i class="fa fa-check"></i><b>4.3</b> Pre-processing method</a></li>
+<li class="chapter" data-level="4.4" data-path="non-iid.html"><a href="non-iid.html#sect:reading-ozone"><i class="fa fa-check"></i><b>4.4</b> Analysis of Reading ozone data</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="stationary.html"><a href="stationary.html"><i class="fa fa-check"></i><b>5</b> Extremes of Stationary Processes</a><ul>
+<li class="chapter" data-level="5.1" data-path="stationary.html"><a href="stationary.html#background"><i class="fa fa-check"></i><b>5.1</b> Background</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="stationary.html"><a href="stationary.html#long-range-asymptotic-independence-condition"><i class="fa fa-check"></i><b>5.1.1</b> Long-range asymptotic independence condition</a></li>
+<li class="chapter" data-level="5.1.2" data-path="stationary.html"><a href="stationary.html#asymptotic-independence-of-maxima-aim"><i class="fa fa-check"></i><b>5.1.2</b> Asymptotic independence of Maxima (AIM)</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="stationary.html"><a href="stationary.html#unified-extremal-types-theorem-for-stationary-sequences"><i class="fa fa-check"></i><b>5.2</b> Unified Extremal Types Theorem for stationary sequences</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="stationary.html"><a href="stationary.html#extremes-of-frechet-marginal-variables"><i class="fa fa-check"></i><b>5.2.1</b> Extremes of Frechet marginal variables</a></li>
+<li class="chapter" data-level="5.2.2" data-path="stationary.html"><a href="stationary.html#motivating-example-moving-maxima"><i class="fa fa-check"></i><b>5.2.2</b> Motivating Example: Moving Maxima</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="stationary.html"><a href="stationary.html#extremal-index"><i class="fa fa-check"></i><b>5.3</b> The Extremal Index</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="stationary.html"><a href="stationary.html#extremal-index-for-moving-maxima-example"><i class="fa fa-check"></i><b>5.3.1</b> Extremal index for Moving Maxima example</a></li>
+<li class="chapter" data-level="5.3.2" data-path="stationary.html"><a href="stationary.html#implications-of-short-range-extremal-dependence"><i class="fa fa-check"></i><b>5.3.2</b> Implications of short-range extremal dependence</a></li>
+<li class="chapter" data-level="5.3.3" data-path="stationary.html"><a href="stationary.html#distribution-of-the-maximum"><i class="fa fa-check"></i><b>5.3.3</b> Distribution of the Maximum</a></li>
+<li class="chapter" data-level="5.3.4" data-path="stationary.html"><a href="stationary.html#threshold-exceedances"><i class="fa fa-check"></i><b>5.3.4</b> Threshold exceedances</a></li>
+<li class="chapter" data-level="5.3.5" data-path="stationary.html"><a href="stationary.html#cluster-maxima-point-process-intensity"><i class="fa fa-check"></i><b>5.3.5</b> Cluster maxima point process intensity</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="inference-dependent.html"><a href="inference-dependent.html"><i class="fa fa-check"></i><b>6</b> Statistical Inference for Extremes of Stationary Processes</a><ul>
+<li class="chapter" data-level="6.1" data-path="inference-dependent.html"><a href="inference-dependent.html#identifying-independent-clusters"><i class="fa fa-check"></i><b>6.1</b> Identifying independent clusters</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="inference-dependent.html"><a href="inference-dependent.html#the-runs-method-declustering"><i class="fa fa-check"></i><b>6.1.1</b> The runs method: declustering</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="inference-dependent.html"><a href="inference-dependent.html#modelling-cluster-maxima-and-all-exceedances"><i class="fa fa-check"></i><b>6.2</b> Modelling cluster maxima and all exceedances</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="inference-dependent.html"><a href="inference-dependent.html#point-process-intensity-estimation"><i class="fa fa-check"></i><b>6.2.1</b> Point process intensity estimation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="finance.html"><a href="finance.html"><i class="fa fa-check"></i><b>7</b> Extremes in Finance</a></li>
+<li class="chapter" data-level="8" data-path="further.html"><a href="further.html"><i class="fa fa-check"></i><b>8</b> Further Reading</a><ul>
+<li class="chapter" data-level="8.1" data-path="further.html"><a href="further.html#general-books"><i class="fa fa-check"></i><b>8.1</b> General &amp; books</a></li>
+<li class="chapter" data-level="8.2" data-path="further.html"><a href="further.html#multivariate-extremes-tail-dependence"><i class="fa fa-check"></i><b>8.2</b> Multivariate extremes &amp; tail dependence</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lancaster University MATH562/482/582</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="alternative" class="section level1">
+<h1><span class="header-section-number">3</span> Alternative Characterisation and Improved Inferences</h1>
+<p>So far, our interest has been in extreme values and asymptotically motivated models for tail estimation of <span class="math inline">\(F\)</span> (the distribution of <span class="math inline">\(X\)</span>). We have focused on asymptotic models for <span class="math inline">\(G\)</span>, the distribution of normalised <span class="math inline">\(M_n\)</span>. With regard to our objective this is</p>
+<ul>
+<li>not directly relevant theoretically, and</li>
+<li>likely to lead to inefficient statistical procedures - see Figure <a href="alternative.html#fig:iii-i">3.1</a>.</li>
+</ul>
+<div class="figure" style="text-align: center"><span id="fig:iii-i"></span>
+<img src="images/series.thresh.blocks.plot.png" alt="Peaks over threshold v. block maxima." width="85%" />
+<p class="caption">
+Figure 3.1: Peaks over threshold v. block maxima.
+</p>
+</div>
+<p><strong>Motivation for extension of theory for maxima</strong><br />
+We want to learn about possible asymptotically motivated models for <span class="math inline">\(F\)</span> arising from the limiting distribution <span class="math inline">\(G\)</span>. We will initially follow a heuristic approach making approximations that we will subsequently justify rigorously.</p>
+<p>Assume that the limit representation holds for some large <span class="math inline">\(n\)</span>; this means that
+<span class="math display" id="eq:FtoG">\[\begin{eqnarray}
+\{F(a_n x+b_n)\}^n \approx G(x)=\exp\left[-(1+\xi x)_+^{-1/\xi}\right],
+\tag{3.1}
+\end{eqnarray}\]</span>
+for all <span class="math inline">\(x\)</span> such that <span class="math inline">\(a_n x+b_n\)</span> is near <span class="math inline">\(x^F\)</span>. Specifically assume that there is a <strong>threshold</strong> <span class="math inline">\(u\)</span> near <span class="math inline">\(x^F\)</span> such that equation <a href="alternative.html#eq:FtoG">(3.1)</a> holds for all <span class="math inline">\(x\)</span> with <span class="math inline">\(a_n x+b_n&gt;u\)</span>.</p>
+<p>From equation <a href="alternative.html#eq:FtoG">(3.1)</a> it follows that
+<span class="math display">\[\begin{eqnarray*}
+F(a_n x+ b_n) &amp; \approx &amp; G^{1/n}(x) \mbox{ for }a_n x+b_n&gt;u\\
+F(y) &amp; \approx &amp; G^{1/n}\left( \frac{y-b_n}{a_n}\right)
+\mbox{ for }y&gt;u.\\
+\end{eqnarray*}\]</span>
+The RHS here is still a GEV distribution due to the max-stability property. Hence for some <span class="math inline">\(\mu, \sigma&gt;0, \xi\)</span> parameters
+<span class="math display">\[\begin{eqnarray*}
+F(y) &amp; \approx &amp; \exp\left[-\left\{1+\xi\left(\frac{y-\mu}{\sigma}\right)
+\right\}_+^{-1/\xi}\right]\mbox{ for }y&gt;u\\
+F(y) &amp; \approx &amp; 1-\left[1+\xi\left(\frac{y-\mu}{\sigma}\right)
+\right]_+^{-1/\xi}\mbox{ for }y&gt;u.
+\end{eqnarray*}\]</span>
+This approximation is like a tail expansion for <span class="math inline">\(F\)</span> near <span class="math inline">\(x^F\)</span>, with the tail corresponding to the upper tail of a GEV distribution.</p>
+<p>We will also focus on the distribution of the exceedances of a high threshold, i.e. <span class="math inline">\(X\,|\,X&gt;u\)</span>. Alternatively we may define the excess of threshold <span class="math inline">\(u\)</span> as
+<span class="math display">\[\begin{eqnarray*}
+Y_u=(X-u)_+.
+\end{eqnarray*}\]</span>
+Then for <span class="math inline">\(y\geq 0\)</span>
+<span class="math display">\[\begin{eqnarray}
+\Pr(Y_u&gt;y\,|\,Y_u&gt;0) &amp; = &amp; \Pr(X&gt;u+y\,|\, X&gt;u)\nonumber\\
+                 &amp; = &amp; \frac{1-F(u+y)}{1-F(u)}\nonumber\\
+                 &amp; \approx &amp; \frac{[1+\xi(u+y-\mu)/\sigma]_+^{-1/\xi}}
+{[1+\xi(u-\mu)/\sigma]_+^{-1/\xi}}\nonumber\\
+                 &amp; = &amp; [1+\xi y/\sigma_u]_+^{-1/\xi},
+  \label{eqn:gpd}
+\end{eqnarray}\]</span>
+where <span class="math inline">\(\sigma_u=\sigma+\xi(u-\mu)\)</span>. It follows that <span class="math inline">\(Y_u\,|\,Y_u&gt;0\sim \mbox{GPD}(\sigma_u,\xi)\)</span>, i.e. a generalised Pareto distribution with scale parameter <span class="math inline">\(\sigma_u\)</span> and shape parameter <span class="math inline">\(\xi\)</span>.</p>
+<p>In general, if <span class="math inline">\(Y \sim \mbox{GPD}(\sigma, \xi)\)</span>, the cumulative distribution function is given by
+<span class="math display">\[
+F(y) =  \left\{\begin{array}{ll} 1 - \left(1 + \xi\frac{y}{\sigma}\right)^{-1/\xi}, &amp; \mbox{ for } \xi \neq 0, y&gt;0, 1 + \xi\frac{y}{\sigma}&gt;0, \\
+ 1 - \exp\left(-\frac{y}{\sigma}\right) &amp; \mbox{ for } \xi=0, y&gt;0. \end{array}\right.
+\]</span></p>
+<div id="point-process-characterisation" class="section level2">
+<h2><span class="header-section-number">3.1</span> Point process characterisation</h2>
+<p><strong>Assume</strong> that</p>
+<ul>
+<li><span class="math inline">\(X_1, \ldots ,X_n\)</span> are IID with distribution function <span class="math inline">\(F\)</span>;</li>
+<li><span class="math inline">\(F\)</span> is in the domain of attraction of <span class="math inline">\(G\)</span> a GEV<span class="math inline">\((0,1,\xi)\)</span> distribution;</li>
+<li>the required norming constants are <span class="math inline">\(a_n\)</span> and <span class="math inline">\(b_n\)</span>.</li>
+</ul>
+<p>We construct a sequence of point processes <span class="math inline">\(P_1, P_2, \ldots\)</span> on <span class="math inline">\([0,1]\times [0,\infty)\)</span> by
+<span class="math display">\[\begin{eqnarray*}
+P_n=\left\{\left(\frac{i}{n+1},\frac{X_i-b_n}{a_n}\right);i=1, \ldots ,n
+\right\}
+\end{eqnarray*}\]</span>
+and examine the limit process.</p>
+<p>Figure <a href="alternative.html#fig:iii-ii">3.2</a> shows examples of point process <span class="math inline">\(P_n\)</span> for <span class="math inline">\(n=5,10,100,500,1000,10000\)</span> respectively with <span class="math inline">\(X_i\sim\)</span> Exp(1).</p>
+<div class="figure" style="text-align: center"><span id="fig:iii-ii"></span>
+<img src="images/pp.exp.example.plot.png" alt="Example of point processes of various lengths." width="85%" />
+<p class="caption">
+Figure 3.2: Example of point processes of various lengths.
+</p>
+</div>
+<p>Notes on point process convergence:</p>
+<ul>
+<li>the limit process is non-degenerate as <span class="math inline">\((M_n-b_n)/a_n\)</span> (which is the largest point in the <span class="math inline">\(y\)</span>-axis) is non-degenerate;</li>
+<li>small points are normalised to the same value <span class="math inline">\(b_l\)</span>, with
+<span class="math display">\[\begin{eqnarray*}
+b_l=\lim_{n\rightarrow \infty}\frac{x_F-b_n}{a_n};
+\end{eqnarray*}\]</span></li>
+<li>large points of the process are retained in the limit process;</li>
+<li>if we can describe the limit process we have an asymptotically motivated model for all large values.</li>
+</ul>
+<div id="aside-on-poisson-processes" class="section level3">
+<h3><span class="header-section-number">3.1.1</span> Aside on Poisson processes</h3>
+<p>Consider a non-homogeneous Poisson process with intensity <span class="math inline">\(\lambda(x)\)</span> on the set <span class="math inline">\(C\)</span>. Let <span class="math inline">\(N(A)\)</span> be the number of points of the Poisson process in the set <span class="math inline">\(A\subset C\)</span>. The process then has the following properties:</p>
+<ul>
+<li><span class="math inline">\(N(A)\)</span> is a Poisson random variable for any <span class="math inline">\(A\subset C\)</span>;</li>
+<li>The expected value of <span class="math inline">\(N(A)\)</span> is obtained by integrating the intensity:
+<span class="math display">\[\begin{eqnarray*}
+  E(N(A))=\int_{x\in A} \lambda(x)dx=\Lambda(A),
+\end{eqnarray*}\]</span>
+where <span class="math inline">\(\Lambda(A)\)</span> is termed the integrated intensity;</li>
+<li><span class="math inline">\(N(B_1), \ldots ,N(B_k)\)</span> are independent random variables for any <span class="math inline">\(k\)</span> and any disjoint sets <span class="math inline">\(B_1, \ldots ,B_k\)</span>, with <span class="math inline">\(B_i\subset C\)</span> for all <span class="math inline">\(i\)</span>;</li>
+<li>The location of points of <span class="math inline">\(A\)</span> have density <span class="math inline">\(\lambda(x)/\Lambda(A), x\in A\)</span>.</li>
+</ul>
+</div>
+<div id="the-limiting-point-process" class="section level3">
+<h3><span class="header-section-number">3.1.2</span> The limiting point process</h3>
+<p><strong>Theorem</strong><br />
+<em>Under the above condition on <span class="math inline">\(P_n\)</span>, on the set <span class="math inline">\([0,1]\times (b_l+\epsilon,\infty)\)</span>, where <span class="math inline">\(\epsilon&gt;0\)</span>,</em>
+<span class="math display">\[\begin{eqnarray*}
+P_n \rightarrow P \mbox{ as }n\rightarrow \infty,
+\end{eqnarray*}\]</span>
+<em>where <span class="math inline">\(P\)</span> is a non-homogeneous Poisson process with intensity</em>
+<span class="math display">\[\begin{eqnarray*}
+\lambda(t,x)=(1+\xi x)_{+}^{-1-1/\xi}.
+\end{eqnarray*}\]</span></p>
+<p>We will often be interested in sets of the form
+<span class="math display">\[\begin{eqnarray*}
+B_y=[0,1]\times (y,\infty)
+\end{eqnarray*}\]</span>
+where <span class="math inline">\(y&gt;b_l\)</span>, for which
+<span class="math display">\[\begin{eqnarray*}
+\Lambda(B_y) &amp; = &amp; \Lambda([0,1]\times (y,\infty))\\
+             &amp; = &amp; \int_{t=0}^{1} \int_{x=y}^{\infty}\lambda(t,x)\,dxdt\\
+             &amp; = &amp; \int_{t=0}^{1} [-(1+\xi x)_{+}^{-1/\xi}]_{x=y}^{\infty}\,dt\\
+             &amp; = &amp; \int_{t=0}^{1} (1+\xi y)_{+}^{-1/\xi} \,dt\\
+             &amp; = &amp; (1+\xi y)_{+}^{-1/\xi}.
+\end{eqnarray*}\]</span></p>
+</div>
+<div id="proof-of-point-process-limit" class="section level3">
+<h3><span class="header-section-number">3.1.3</span> Proof of point process limit</h3>
+<p>The strategy for proving that a point process <span class="math inline">\(P_n\)</span> converges to a limit process <span class="math inline">\(P\)</span> is as follows <span class="citation">(Kallenberg <a href="#ref-kallenberg83">1983</a>)</span>.</p>
+<p>Let <span class="math inline">\(N_n(B)\)</span> and <span class="math inline">\(N(B)\)</span> be the number of points of <span class="math inline">\(P_n\)</span> and <span class="math inline">\(P\)</span> respectively in set <span class="math inline">\(B\)</span>. Then for unions of sets of the form
+<span class="math display">\[\begin{eqnarray*}
+B=(c_1,d_1]\times \ldots \times (c_m,d_m]
+\end{eqnarray*}\]</span>
+we have to show that as <span class="math inline">\(n\rightarrow \infty\)</span>
+<span class="math display">\[\begin{eqnarray*}
+E(N_n(B))\rightarrow E(N(B))
+\end{eqnarray*}\]</span>
+and
+<span class="math display">\[\begin{eqnarray*}
+\Pr(N_n(B)=0)\rightarrow \Pr(N(B)=0).
+\end{eqnarray*}\]</span></p>
+<p><strong>Proof of Limit</strong></p>
+<p>Take <span class="math inline">\(B_y=(0,1]\times (y,\infty)\)</span></p>
+<p>The <span class="math inline">\(i\)</span>-th point of <span class="math inline">\(P_n\)</span> is in <span class="math inline">\(B_y\)</span> if
+<span class="math display">\[\begin{eqnarray*}
+\frac{X_i-b_n}{a_n}&gt;y \mbox{ i.e.  if }X_i&gt;a_n y +b_n
+\end{eqnarray*}\]</span></p>
+<p>The probability of this is <span class="math inline">\(1-F(a_n y +b_n)\)</span>. Thus the expected number of such points is
+<span class="math display">\[\begin{eqnarray*}
+E(N_n(B_y)) &amp; = &amp; n[1-F(a_n y +b_n)]\\
+          &amp; \sim &amp; -\log \{F(a_n y +b_n)\}^n\\
+                   &amp; \rightarrow &amp; -\log G(y)\\
+                   &amp; = &amp;(1+\xi y)_{+}^{-1/\xi}\\
+                   &amp; = &amp; \Lambda([0,1]\times (y,\infty))\\
+                   &amp; = &amp; \Lambda(B_y)\\
+                   &amp; = &amp; E(N(B_y)).
+\end{eqnarray*}\]</span></p>
+<p>Now consider the event <span class="math inline">\(N_n(B_y)=0\)</span>. This can be expressed as
+<span class="math display">\[\begin{eqnarray*}
+\{N_n(B_y)=0\}=
+\left\{\frac{X_i-b_n}{a_n}\leq y ~~\forall i=1, \ldots ,n\right\}
+=\left\{X_i \leq a_ny+b_n ~~\forall i=1, \ldots ,n\right\}
+\end{eqnarray*}\]</span>
+So
+<span class="math display">\[\begin{eqnarray*}
+\Pr(N_n(B_y)=0) &amp; = &amp; \{F(a_n y+b_n)\}^n\\
+              &amp; \rightarrow &amp; G(y)\\
+              &amp; = &amp; \exp[-(1+\xi y)_{+}^{-1/\xi}]\\
+              &amp; = &amp; \exp[-\Lambda(B_y)]\\
+              &amp; = &amp; \Pr(N(B_y)=0).
+\end{eqnarray*}\]</span></p>
+</div>
+<div id="sect:poisson-process-limit" class="section level3">
+<h3><span class="header-section-number">3.1.4</span> The value of the Poisson process limit</h3>
+<ol style="list-style-type: decimal">
+<li>The result shows that the behaviour of all large values is determined (asymptotically) by the <span class="math inline">\(a_n, b_n\)</span> and <span class="math inline">\(\xi\)</span> characteristics (just as for the maximum);</li>
+<li>if we use all threshold exceedances for statistical inference we have more data to use for inference but the same number of parameters to estimate as using maxima, this suggests potential efficiency gains;</li>
+<li>the likelihood for a Poisson process observed on <span class="math inline">\([0,1]\times (u,\infty)\)</span> applied to exceedances <span class="math inline">\((t_1, x_1), \ldots ,(t_{n_u},x_{n_u})\}\)</span> of <span class="math inline">\(u\)</span> is
+<span class="math display" id="eq:pt-proc-lik">\[\begin{eqnarray}
+ \prod_{i=1}^{n_{u}}\lambda(t_i,x_i) \times \exp\{-\Lambda([0,1]\times (u,\infty))\}.
+ \tag{3.2}
+  \end{eqnarray}\]</span>
+See <span class="citation">Smith (<a href="#ref-smith89">1989</a>)</span> for statistical details of the point process approach.</li>
+</ol>
+</div>
+</div>
+<div id="sect:threshold-exceedances" class="section level2">
+<h2><span class="header-section-number">3.2</span> Threshold exceedances</h2>
+<p>An important consequence of the Poisson process result is that it provides an asymptotic motivation for the generalised Pareto distribution as a conditional model for excesses of a high threshold.</p>
+<p>We focus on points of the process <span class="math inline">\(P_n\)</span> that are large i.e. above a threshold) and look at the distribution of exceedances of this level. For any fixed <span class="math inline">\(v&gt;b_l\)</span>, let
+<span class="math display">\[\begin{eqnarray*}
+u_n(v)=a_n v+b_n,
+\end{eqnarray*}\]</span>
+then <span class="math inline">\(u_n(v)\rightarrow x^F\)</span>, and let <span class="math inline">\(x&gt;0\)</span> then
+<span class="math display">\[\begin{align*}
+&amp;\Pr(X_i&gt;a_n x+u_n(v)\,|\, X_i&gt;u_n(v))\\
+&amp;\quad=\Pr\left(\frac{X_i-b_n}{a_n}&gt;x+v \,\left
+    |\,\frac{X_i-b_n}{a_n}&gt;v\right. \right)\\
+&amp;\quad=\Pr\left(\mbox{a given point in } P_n&gt;x+v \,|\, \mbox{a given point in } P_n&gt;v\right)\\
+&amp;\quad \rightarrow \Pr\left(\mbox{a given point in } P&gt;x+v \,|\, \mbox{a given point in } P&gt;v\right)\\
+&amp;\quad= \frac{\Lambda(B_{x+v})}{\Lambda(B_{v})}\\
+&amp;\quad= \left[1+\xi\frac{x}{1+\xi v}\right]_+^{-1/\xi}\\
+&amp;\quad= \left[1+\xi\frac{x}{\sigma_v}\right]_+^{-1/\xi},
+\end{align*}\]</span>
+where <span class="math inline">\(\sigma_v=1+\xi v\)</span>.</p>
+<p>Hence the limiting distribution for a scaled excess
+<span class="math display">\[\begin{eqnarray*}
+\frac{[X_i-u_n(v)]_+}{a_n}\,|\,X_i&gt;u_n(v)
+\end{eqnarray*}\]</span>
+follows a generalised Pareto distribution, GPD<span class="math inline">\((\sigma_v,\xi)\)</span>.</p>
+<p><strong>Threshold Stability:</strong><br />
+Furthermore, this limit distribution holds whatever value of <span class="math inline">\(v\)</span>, provided <span class="math inline">\(v&gt;b_l\)</span>. Hence there is stability of the form of the limit distribution with respect to the level of the threshold, provided the threshold is large enough for the Poisson process limit to be achieved.</p>
+<div id="practical-implications-of-limit" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Practical implications of limit</h3>
+<p>This limiting result motivates the use of the GPD as a model for excess values over a threshold. This requires fixing <span class="math inline">\(u_n(v)\)</span> at a high threshold, absorbing <span class="math inline">\(a_n\)</span> into the scale parameter and taking the limit as an equality for all <span class="math inline">\(x&gt;0\)</span>. Let <span class="math inline">\(Y_u\)</span> be the excess variable over threshold <span class="math inline">\(u\)</span>:
+<span class="math display">\[\begin{eqnarray*}
+Y_u =(X-u)_+
+\end{eqnarray*}\]</span>
+then for <span class="math inline">\(y&gt;0\)</span>
+<span class="math display">\[\begin{eqnarray*}
+\Pr(Y_u\leq y\,|\,Y_u&gt;0)=1-(1+\xi y/\sigma_u)_+^{-1/\xi}
+\end{eqnarray*}\]</span>
+so <span class="math inline">\(Y_u\,|Y_u&gt;0\sim \mbox{GPD}(\sigma_u,\xi)\)</span>.</p>
+<p>We now have a model for the excess variable, conditional on having observed an excess. To undo this conditioning and obtain a model for the original variable <span class="math inline">\(X\)</span> we model the rate parameter
+<span class="math display">\[\begin{eqnarray*}
+\phi_u = \Pr(Y_u&gt;0) = \Pr(X&gt;u).
+\end{eqnarray*}\]</span></p>
+<p>In the IID case, it follows from the Poisson process limit that the estimate for this is simply the proportion of the data which exceed <span class="math inline">\(u\)</span>
+<span class="math display">\[\begin{eqnarray*}
+\phi_u = \frac{n_u}{n}
+\end{eqnarray*}\]</span>
+where <span class="math inline">\(n_u=\sum_{i=1}^n I[y_t&gt;u]\)</span> and <span class="math inline">\(I[y_t&gt;u]\)</span> is the indicator variable taking the value 1 if the observation is an exceedance.</p>
+</div>
+<div id="properties-of-gpd" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> Properties of GPD</h3>
+<p><strong>Influence of shape parameter</strong><br />
+As with the GEV, the parameter <span class="math inline">\(\xi\)</span> has a substantial impact on the upper tail.</p>
+<ul>
+<li><span class="math inline">\(\xi&gt;0\)</span> is heavy tailed;</li>
+<li><span class="math inline">\(\xi=0\)</span> is the Exponential distribution with mean <span class="math inline">\(\sigma_u\)</span>;</li>
+<li><span class="math inline">\(\xi&lt;0\)</span> is short tailed, with upper bound.</li>
+</ul>
+<p><strong>Moments</strong><br />
+For <span class="math inline">\(r&lt;1/\xi\)</span>
+<span class="math display">\[\begin{eqnarray*}
+E(Y_u^r\,|\,Y_u&gt;0)=\frac{\sigma_u}{\xi}\sum_{j=0}^r\binom{r}{j}
+\frac{(-1)^{j+1}}{(1-\xi j)}
+\end{eqnarray*}\]</span>
+otherwise
+<span class="math display">\[\begin{eqnarray*}
+E(Y_u^r\,|\,Y_u&gt;0)=\infty.
+\end{eqnarray*}\]</span>
+More details of the GPD are given by <span class="citation">Davison and Smith (<a href="#ref-ds90">1990</a>)</span>.</p>
+</div>
+<div id="inference-for-the-generalised-pareto-distribution" class="section level3">
+<h3><span class="header-section-number">3.2.3</span> Inference for the generalised Pareto distribution</h3>
+<p>The generalised Pareto distribution (GPD) is used to model data arising as independent threshold exceedances.</p>
+<p>We assume that excesses <span class="math inline">\(Y_{u,1},\ldots,Y_{u,n}\)</span> of a high threshold <span class="math inline">\(u\)</span> follow GPD(<span class="math inline">\(\sigma,\xi\)</span>) so that
+<span class="math display">\[\begin{eqnarray*}
+  \Pr(Y_u&lt;y\,|\,Y_u&gt;0)=1-\left\{1+\xi\left(\frac{y}{\sigma_u}\right)\right\}_+^{-1/\xi}~~~y&gt;0.
+\end{eqnarray*}\]</span></p>
+<p>Possibly the most important issue in statistical modelling of threshold exceedance data is the choice of threshold <span class="math inline">\(u\)</span>.</p>
+<ul>
+<li>Using as low a threshold as possible maximises the amount of data used, making the statistical inference more efficient;</li>
+<li>If too low a threshold is used, the GPD may not fit well as the asymptotic argument motivating its appropriateness may not apply.</li>
+</ul>
+<p>A threshold choice based on the observed sample is required to balance these two opposing demands. We can exploit some properties of the GPD to help us with threshold selection.</p>
+<p><strong>Threshold stability</strong><br />
+This property states that if the random variable <span class="math inline">\(Y_u\)</span> satisfies
+<span class="math display" id="eq:gpd-cond">\[\begin{eqnarray}
+  Y_u\,|\,Y_u&gt;0\sim\mbox{ GPD}(\sigma_u,\xi)\mbox{ for some threshold }u
+  \tag{3.3}
+\end{eqnarray}\]</span>
+then for any higher threshold <span class="math inline">\(v\ge u\)</span>
+<span class="math display">\[\begin{eqnarray*}
+  Y_v\,|\,Y_v&gt;0 \sim\mbox{ GPD}(\sigma_u+\xi(v-u),\xi)
+\end{eqnarray*}\]</span>
+so that <span class="math inline">\(\xi\)</span> is constant with threshold but <span class="math inline">\(\sigma_v=\sigma_u+\xi(v-u)\)</span> is not.</p>
+<p><strong>Linear mean excess</strong><br />
+When <span class="math inline">\(Y_u\)</span> satisfies <a href="alternative.html#eq:gpd-cond">(3.3)</a>, the mean excess over <span class="math inline">\(v&gt;u\)</span> is
+<span class="math display">\[\begin{eqnarray}
+  E(Y_u | Y_u&gt;0) = \{\sigma_u + \xi(v-u)\}/(1-\xi),\mbox{ for }\xi&lt;1.
+\end{eqnarray}\]</span>
+Thus the shape parameter is invariant to threshold and <span class="math inline">\(E(Y_u| Y_u&gt;0)\)</span> is linear in <span class="math inline">\(v\)</span> with gradient <span class="math inline">\(\xi/(1-\xi)\)</span>.</p>
+<p>Formal algorithms that use within-sample characteristics to select a threshold by minimising the mean square error of the estimated shape parameter, under certain assumptions about the second order tail structure, have been proposed <span class="citation">(Danielsson and Vries <a href="#ref-dd97">1997</a>; Guillou and Hall <a href="#ref-gh01">2001</a>)</span>.</p>
+<p><strong>Threshold selection diagnostics: Mean excess (or residual life) plot</strong><br />
+The sample mean excess over a threshold is plotted against the threshold, for a range of threshold values. If the random variable follows a generalised Pareto distribution over a threshold <span class="math inline">\(u\)</span> then the relationship shown by the plot should be a straight line above <span class="math inline">\(u\)</span> with gradient <span class="math inline">\(\xi/(1-\xi)\)</span>. Confidence intervals are added to each of these plots using the approximate Normality of sample means.</p>
+<p><strong>Threshold selection diagnostics: Parameter stability plot</strong><br />
+We re-parameterise the threshold dependent scale parameter <span class="math inline">\(\sigma_v\)</span> given above as follows:
+<span class="math display">\[\begin{eqnarray}
+  \sigma^\ast=\sigma_v-\xi v
+\end{eqnarray}\]</span>
+Now <span class="math inline">\(\sigma^\ast\)</span> does not depend on the choice of <span class="math inline">\(v\)</span>, provided the original threshold for fitting (<span class="math inline">\(u\)</span>) is high enough.</p>
+<p>The estimated parameters <span class="math inline">\(\hat\sigma^\ast\)</span> and <span class="math inline">\(\hat\xi\)</span> are plotted against the threshold used for estimation. If the random variable follows a generalised Pareto distribution over a threshold <span class="math inline">\(u\)</span> then both parameters <span class="math inline">\((\sigma^\ast,\xi)\)</span> will be constant for exceedances of all thresholds <span class="math inline">\(v\)</span> greater than <span class="math inline">\(u\)</span>. The selected threshold corresponds to the lowest value for which the described properties are achieved. Again, confidence intervals are added to this plot using the approximate Normality of the maximum likelihood estimates of the parameters.</p>
+</div>
+<div id="example-fitting-the-gpd-to-newlyn-data" class="section level3">
+<h3><span class="header-section-number">3.2.4</span> Example: fitting the GPD to Newlyn data</h3>
+<p>Note: The points made in Section <a href="block-maxima.html#sect:mle-gev">2.3.1</a> concerning maximum likelihood for the GEV distribution all apply equally to the use of maximum likelihood to fit the GPD to threshold exceedance data.</p>
+In order to fit the GPD to the Newlyn wave and surge data, we must first choose an appropriate threshold. The mean residual life plots for these data sets are shown in Figure <a href="alternative.html#fig:iii-iv">3.3</a>. These plots suggest a threshold of at least 0.05 for the surge and at least 1.5 for the waves.
+<div class="figure" style="text-align: center"><span id="fig:iii-iv"></span>
+<img src="images/newlyn.gpd.mrl.plot.png" alt="Mean excess plots for the Newlyn surge and wave data sets." width="85%" />
+<p class="caption">
+Figure 3.3: Mean excess plots for the Newlyn surge and wave data sets.
+</p>
+</div>
+<p>Parameter stability plots for the surge variable are shown in Figure <a href="alternative.html#fig:iii-v">3.4</a>, and for the wave height variable in Figure <a href="alternative.html#fig:iii-vi">3.5</a>. For surge, the parameter stability plots suggest a threshold of at least 0.1. For the wave variable, the parameter stability plots suggest a threshold of at least 2.</p>
+<div class="figure" style="text-align: center"><span id="fig:iii-v"></span>
+<img src="images/newlyn.gpd.thresh.stab.surge.plot.png" alt="Parameter stability plots for the Newlyn surge variable." width="85%" />
+<p class="caption">
+Figure 3.4: Parameter stability plots for the Newlyn surge variable.
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:iii-vi"></span>
+<img src="images/newlyn.gpd.thresh.stab.wave.plot.png" alt="Parameter stability plots for the Newlyn wave variable." width="85%" />
+<p class="caption">
+Figure 3.5: Parameter stability plots for the Newlyn wave variable.
+</p>
+</div>
+<p>We proceed with thresholds of 0.1 and 2 for the surge and wave respectively. These correspond to the 0.64 and 0.353 quantiles of these variables respectively.</p>
+<p>Parameter estimates for the GPD fitted at these thresholds are:</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Surge</th>
+<th>Wave</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\hat\sigma\)</span></td>
+<td>0.12 (0.005)</td>
+<td>1.91 (0.061)</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\hat\xi\)</span></td>
+<td>-0.10 (0.026)</td>
+<td>-0.165 (0.022)</td>
+</tr>
+<tr class="odd">
+<td>Corr<span class="math inline">\((\hat\sigma,\hat\xi)\)</span></td>
+<td>-0.73</td>
+<td>-0.80</td>
+</tr>
+</tbody>
+</table>
+<p>Both of these distributions are estimated to have a <em>finite upper endpoint</em>. Finally, Figure <a href="alternative.html#fig:iii-vii">3.6</a> displays contours of the log-likelihood surface showing the negative dependence between these parameters.</p>
+<div class="figure" style="text-align: center"><span id="fig:iii-vii"></span>
+<img src="images/newlyn.surge.gpd.lik.contour.plot.png" alt="Log-likelihood surfaces for the GP parameter for Newlyn surge (left) and wave (right) data." width="47%" /><img src="images/newlyn.wave.gpd.lik.contour.plot.png" alt="Log-likelihood surfaces for the GP parameter for Newlyn surge (left) and wave (right) data." width="47%" />
+<p class="caption">
+Figure 3.6: Log-likelihood surfaces for the GP parameter for Newlyn surge (left) and wave (right) data.
+</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="sect:return-level-gpd" class="section level3">
+<h3><span class="header-section-number">3.2.5</span> Return levels &amp; return periods</h3>
+<p>To estimate the return level <span class="math inline">\(x_p\)</span> corresponding to return periods <span class="math inline">\(1/p\)</span>, we need to solve
+<span class="math display">\[
+1 - F(x_p) = p \,.
+\]</span>
+For a given threshold <span class="math inline">\(u\)</span>, assume that <span class="math inline">\(\phi_u = \Pr(X&gt;u)\)</span>. For practical interest, we assume that <span class="math inline">\(p\)</span> is much smaller than <span class="math inline">\(\phi_u\)</span>.</p>
+<p>As <span class="math inline">\(X-u|X&gt;u \sim \mbox{GPD}(\sigma_u, \xi)\)</span>, we have
+<span class="math display">\[\begin{eqnarray*}
+\Pr(X&gt; x_p) &amp;=&amp; \Pr(X&gt; x_p |X&gt;u) \Pr(X&gt;u) = p \\
+&amp;=&amp; \left\{1 + \xi\frac{x_p-u}{\sigma}\right\}_+^{-1/\xi} \phi_u = p
+\end{eqnarray*}\]</span>
+leading to
+<span class="math display">\[
+x_p = \left\{\begin{array}{ll} u + \frac{\sigma_u}{\xi}\left\{\left(\frac{p}{\phi_u}\right)^{-\xi} - 1\right\} &amp; \mbox{ for } \xi \neq 0 \\
+u -\sigma \log\left(\frac{p}{\phi_u}\right) &amp; \mbox{ for } \xi = 0 \,.
+\end{array}\right.
+\]</span></p>
+</div>
+</div>
+<div id="sect:r-largest" class="section level2">
+<h2><span class="header-section-number">3.3</span> The <em>r</em>-largest approach</h2>
+<p>This technique pre-dates the point process approach to inference but can be derived as a special case of it. Given a sequence of IID variables <span class="math inline">\(X_1,\ldots ,X_n\)</span> the block maximum method is based on the limiting distribution of
+<span class="math display">\[\begin{eqnarray*}
+  \frac{M_n - b_n}{a_n},
+\end{eqnarray*}\]</span>
+the normalised maximum order statistic. We have seen how the GEV distribution can be fitted to such order statistics.</p>
+<p>The so-called <span class="math inline">\(r\)</span>-largest approach allows us to estimate the parameters of the GEV using more than just the single largest observation from each block of data. Using more information generally leads to more efficient estimates.</p>
+<p>Defining <span class="math inline">\(M_n^{(i)}\)</span> to be the <span class="math inline">\(i\)</span>th largest order statistic, we obtain the limiting joint distribution of
+<span class="math display">\[\begin{eqnarray*}
+    \left(
+      \frac{M_n^{(1)} - b_n}{a_n},
+      \frac{M_n^{(2)} - b_n}{a_n},\ldots,
+      \frac{M_n^{(r)} - b_n}{a_n}
+    \right)
+\end{eqnarray*}\]</span>
+for some choice of <span class="math inline">\(r\)</span>.</p>
+<p>Setting <span class="math inline">\(u = M_n^{(r)}\)</span> in <a href="alternative.html#eq:pt-proc-lik">(3.2)</a> gives the following likelihood for the parameters of the GEV:
+<span class="math display">\[\begin{eqnarray*}
+    L(\theta) = \exp\left\{-\left(1 + \xi\frac{M_n^{(r)} - \mu}{\sigma}\right)_{+}^{-1/\xi}\right\}
+    \prod_{i=1}^r\sigma^{-1}\left(1 + \xi \frac{M_n^{(i)} - \mu}{\sigma}\right)_{+}^{-1/\xi - 1}.
+\end{eqnarray*}\]</span></p>
+<p>There is a choice of how many order statistics per block should be used and this choice invokes the usual bias/variance trade-off:</p>
+<ul>
+<li>too many order statistics (<span class="math inline">\(r\)</span> too large) results in bias due to the invalidity of the asymptotics;</li>
+<li>too few order statistics incurs large sampling variability.</li>
+</ul>
+<p>The issue is the same as that of threshold choice in the point process model. A practical approach is to fit using a range of values of <span class="math inline">\(r\)</span> and proceed using a choice of <span class="math inline">\(r\)</span> for which estimates are reasonable stable.</p>
+<p>Note that using the <span class="math inline">\(r\)</span>-largest method with <span class="math inline">\(r=1\)</span> is equivalent to the GEV annual maxima method.</p>
+
+</div>
+</div>
+<h3>Bibliography</h3>
+<div id="refs" class="references">
+<div id="ref-dd97">
+<p>Danielsson, J., and C. G. de Vries. 1997. “Tail Index Estimation with Very High Frequency Data.” <em>Journal of Empirical Finance</em> 4: 241–57.</p>
+</div>
+<div id="ref-ds90">
+<p>Davison, A. C., and R. L. Smith. 1990. “Models for Exceedances over High Thresholds.” <em>Journal of the Royal Statistical Society B</em> 52 (3): 393–442.</p>
+</div>
+<div id="ref-gh01">
+<p>Guillou, A., and P. Hall. 2001. “A Diagnostic for Selecting the Threshold in Extreme Value Analysis.” <em>Journal of the Royal Statistical Society B</em> 63: 293–305.</p>
+</div>
+<div id="ref-kallenberg83">
+<p>Kallenberg, O. 1983. <em>Random Measures</em>. 3rd ed. Berlin-London: Akademie-Verlag; Academic Press.</p>
+</div>
+<div id="ref-smith89">
+<p>Smith, R. 1989. “Extreme Value Analysis of Environmental Time Series: An Application to Trend Detection in Ground Level Ozone (with Discussion).” <em>Statistical Science</em> 4: 367–93.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="block-maxima.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="non-iid.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
