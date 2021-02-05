@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Lancaster University MATH562/482/582</title>
-  <meta name="description" content="Lancaster University MATH562/482/582" />
+  <title>Appendices | Lancaster University MATH562/482/582</title>
+  <meta name="description" content="Appendices | Lancaster University MATH562/482/582" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Lancaster University MATH562/482/582" />
+  <meta property="og:title" content="Appendices | Lancaster University MATH562/482/582" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Lancaster University MATH562/482/582" />
+  <meta name="twitter:title" content="Appendices | Lancaster University MATH562/482/582" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="intro.html"/>
+<link rel="prev" href="further.html"/>
+<link rel="next" href="bibliography.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -200,25 +200,36 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Lancaster University MATH562/482/582</h1>
-<p class="author"><em>Lecturers: Clement Lee &amp; Zak Varty</em></p>
-<p class="date"><em>2020/2021</em></p>
+<div id="appendices" class="section level1 unnumbered">
+<h1>Appendices</h1>
+<div id="formula-sheet" class="section level2 unnumbered">
+<h2>Formula sheet</h2>
+<p>Here is a reminder of some formulae. You may find them helpful for reading the course notes and completing the exercises.</p>
+<p>The Taylor series expansion of a function <span class="math inline">\(f(x)\)</span> about a point <span class="math inline">\(x=a\)</span>:
+<span class="math display">\[\begin{eqnarray*}
+  f(x) = f(a) + f&#39;(a)(x-a) + \frac{f&#39;&#39;(a)}{2!}(x-a)^2 + \ldots + \frac{f^{(n)}(a)}{n!}(x-a)^n + \ldots
+\end{eqnarray*}\]</span>
+If <span class="math inline">\(a = 0\)</span> then the expansion is known as a <em>Maclaurin series</em>.</p>
+<p><span class="math display">\[\begin{eqnarray*}
+  \begin{array}{lrcl}
+\mbox{Taylor series expanison about 0:}&amp;  \exp(x) &amp;=&amp; \sum_{n=0}^\infty \frac{x^n}{n!}\\
+\mbox{Mercator series:} &amp; \log(1+x) &amp;=&amp; \sum_{k=1}^\infty\frac{(-1)^{k+1}}{k}x^k; -1&lt;x\leq1 \\
+&amp;  \exp(x) &amp;=&amp; \lim_{n\rightarrow\infty}\left(1 + \frac xn\right)^n\\
+&amp;  \frac{1}{1-r} &amp;=&amp;\sum_{i=1}^\infty r^{i-1}
+  \end{array}
+\end{eqnarray*}\]</span></p>
 </div>
-<div id="preface" class="section level1 unnumbered">
-<h1>Preface</h1>
-<p>These notes are for both <strong>MATH562: Extreme Value Theory</strong> and <strong>MATH482/582: Assessing Financial Risk: Extreme Value Methods</strong>. The last chapter is for MATH482/582 only, and therefore not examinable for MATH562.</p>
-<p>As the course is to take place over five weeks, the suggested schedule is</p>
-<ul>
-<li>1st week: Chapters <a href="intro.html#intro">1</a> and <a href="block-maxima.html#block-maxima">2</a></li>
-<li>2nd week: Chapter <a href="alternative.html#alternative">3</a></li>
-<li>3rd week: Chapter <a href="non-iid.html#non-iid">4</a></li>
-<li>4th week: Chapters <a href="stationary.html#stationary">5</a> and <a href="inference-dependent.html#inference-dependent">6</a></li>
-<li>5th week: Chapter <a href="finance.html#finance">7</a> (for MATH482/582 only)</li>
-</ul>
-<div id="acknowledgements" class="section level2">
-<h2><span class="header-section-number">0.1</span> Acknowledgements</h2>
-<p>These notes were adapted from lecture notes that have been developed over the years by Prof. Jonathan Tawn, Dr Janet Heffernan, Dr Stuart Coles, Dr Emma Eastoe, and Dr Jenny Wadsworth.</p>
+<div id="asymptotic-notation" class="section level2 unnumbered">
+<h2>Asymptotic notation</h2>
+<p>Here is some notation that is useful for expressing some of the asymptotic relationships presented in this course.</p>
+<p><strong>Big-O notation</strong><br />
+<span class="math inline">\(f(n) = O(g(n))\)</span> means there are positive constants <span class="math inline">\(c\)</span> and <span class="math inline">\(k\)</span>, such that <span class="math inline">\(0 \leq |f(n)| \leq cg(n)\)</span> for all <span class="math inline">\(n\geq k\)</span>. The values of <span class="math inline">\(c\)</span> and <span class="math inline">\(k\)</span> must be fixed for the function <span class="math inline">\(f\)</span> and must not depend on <span class="math inline">\(n\)</span>. Strictly, the character is the upper-case Greek letter Omicron, not the letter O, but who can tell the difference?</p>
+<p>Informally, saying some equation <span class="math inline">\(f(n) = O(g(n))\)</span> means it is less than some constant multiple of <span class="math inline">\(g(n)\)</span>. The notation is read, “f of n is big oh of g of n”.</p>
+<p><strong>Little-o notation</strong><br />
+<span class="math inline">\(f(n) = o(g(n))\)</span> means for all <span class="math inline">\(c &gt; 0\)</span>, there exists some <span class="math inline">\(k &gt; 0\)</span> such that <span class="math inline">\(0 \leq |f(n)| &lt; cg(n)\)</span> for all <span class="math inline">\(n \geq k\)</span>. The value of <span class="math inline">\(k\)</span> must not depend on <span class="math inline">\(n\)</span>, but may depend on <span class="math inline">\(c\)</span>. Strictly, the character is the lower-case Greek letter omicron.</p>
+<p>Informally, saying some equation <span class="math inline">\(f(n) = o(g(n))\)</span> means <span class="math inline">\(f(n)\)</span> becomes insignificant relative to <span class="math inline">\(g(n)\)</span> as <span class="math inline">\(n\)</span> approaches infinity. The notation is read, “f of n is little o of g of n”.</p>
+<p><strong><span class="math inline">\(\sim\)</span>, sim</strong><br />
+<span class="math inline">\(f(x)\sim g(x)\)</span> means <span class="math inline">\(lim_{x \rightarrow \infty} f(x)/g(x) = 1\)</span>. Informally, saying some equation <span class="math inline">\(f(n)\)</span> similar to <span class="math inline">\(g(n)\)</span> means it grows at the same rate as g(n).</p>
 
 </div>
 </div>
@@ -227,8 +238,8 @@
           </div>
         </div>
       </div>
-
-<a href="intro.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="further.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="bibliography.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
