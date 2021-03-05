@@ -173,15 +173,17 @@
 <li class="chapter" data-level="7.3.4" data-path="finance.html"><a href="finance.html#adjustment-to-var-for-all-exceedances"><i class="fa fa-check"></i><b>7.3.4</b> Adjustment to VaR for all exceedances</a></li>
 <li class="chapter" data-level="7.3.5" data-path="finance.html"><a href="finance.html#volatility"><i class="fa fa-check"></i><b>7.3.5</b> Volatility</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="finance.html"><a href="finance.html#case-study-i-daily-bmw-negative-returns"><i class="fa fa-check"></i><b>7.4</b> Case study I: daily BMW (negative) returns</a></li>
-<li class="chapter" data-level="7.5" data-path="finance.html"><a href="finance.html#case-study-ii-danish-fire-loss-data"><i class="fa fa-check"></i><b>7.5</b> Case study II: Danish fire loss data</a></li>
-<li class="chapter" data-level="7.6" data-path="finance.html"><a href="finance.html#possible-references"><i class="fa fa-check"></i><b>7.6</b> Possible references</a></li>
+<li class="chapter" data-level="7.4" data-path="finance.html"><a href="finance.html#volatility-models"><i class="fa fa-check"></i><b>7.4</b> Volatility models</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="finance.html"><a href="finance.html#a-two-stage-approach"><i class="fa fa-check"></i><b>7.4.1</b> A two-stage approach</a></li>
+<li class="chapter" data-level="7.4.2" data-path="finance.html"><a href="finance.html#further-reading"><i class="fa fa-check"></i><b>7.4.2</b> Further reading</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="further.html"><a href="further.html"><i class="fa fa-check"></i><b>8</b> Further Reading</a><ul>
 <li class="chapter" data-level="8.1" data-path="further.html"><a href="further.html#general-books"><i class="fa fa-check"></i><b>8.1</b> General &amp; books</a></li>
 <li class="chapter" data-level="8.2" data-path="further.html"><a href="further.html#multivariate-extremes-tail-dependence"><i class="fa fa-check"></i><b>8.2</b> Multivariate extremes &amp; tail dependence</a></li>
 <li class="chapter" data-level="8.3" data-path="further.html"><a href="further.html#environmental-applications"><i class="fa fa-check"></i><b>8.3</b> Environmental applications</a></li>
 <li class="chapter" data-level="8.4" data-path="further.html"><a href="further.html#financial-applications"><i class="fa fa-check"></i><b>8.4</b> Financial applications</a></li>
+<li class="chapter" data-level="8.5" data-path="further.html"><a href="further.html#blog-post"><i class="fa fa-check"></i><b>8.5</b> Blog post</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html"><i class="fa fa-check"></i>Appendices</a><ul>
 <li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html#formula-sheet"><i class="fa fa-check"></i>Formula sheet</a></li>
@@ -207,6 +209,7 @@
             <section class="normal" id="section-">
 <div id="finance" class="section level1">
 <h1><span class="header-section-number">7</span> Extremes in Finance</h1>
+<p>In this chapter, we look at methods in extreme value theory that are suitable for applications to financial data. However, it should not be mistaken that they are not applicable to other kinds of data e.g. environment data.</p>
 <div id="the-hill-estimator-for-heavy-tailed-data" class="section level2">
 <h2><span class="header-section-number">7.1</span> The Hill estimator for heavy-tailed data</h2>
 <p>Financial data almost always have heavy tails <span class="math inline">\((\xi&gt;0)\)</span>. Sometimes a simpler model is assumed for the survivor function, which is a good approximation to the GPD for large values. We assume
@@ -225,10 +228,9 @@ This model is very similar to the GPD for <span class="math inline">\(\xi&gt;0\)
 \end{align*}\]</span>
 Now <span class="math inline">\(\sigma_u = \sigma+\xi(u-\mu)\)</span>, so <span class="math inline">\(\sigma_u-\xi u\)</span> does not depend on <span class="math inline">\(u\)</span> and furthermore
 <span class="math display">\[\begin{eqnarray*}
- \left(\frac{\sigma_u}{\xi}\right)^{1/\xi} = u^{1/\xi}(1+\frac{\sigma/\xi-\mu}{u})^{1/\xi} \approx u^{1/\xi}
+ \left(\frac{\sigma_u}{\xi}\right)^{1/\xi} = u^{1/\xi}\left(1+\frac{\sigma/\xi-\mu}{u}\right)^{1/\xi} \approx u^{1/\xi}
 \end{eqnarray*}\]</span>
-for large <span class="math inline">\(u\)</span>.</p>
-<p>Therefore <span class="math inline">\(\Pr(X&gt;x|X&gt;u) \approx (u/x)^{1/\xi}\)</span>, for large <span class="math inline">\(x\)</span> and large <span class="math inline">\(u\)</span>, which is the expression <a href="finance.html#eq:PRXu">(7.2)</a> for <span class="math inline">\(\alpha=1/\xi\)</span>.</p>
+for large <span class="math inline">\(u\)</span>. Therefore <span class="math inline">\(\Pr(X&gt;x|X&gt;u) \approx (u/x)^{1/\xi}\)</span>, for large <span class="math inline">\(x\)</span> and large <span class="math inline">\(u\)</span>, which is the expression <a href="finance.html#eq:PRXu">(7.2)</a> for <span class="math inline">\(\alpha=1/\xi\)</span>.</p>
 <div id="the-hill-estimator-of-alpha" class="section level3">
 <h3><span class="header-section-number">7.1.1</span> The Hill estimator of <span class="math inline">\(\alpha\)</span></h3>
 <p>The advantage of equation <a href="finance.html#eq:hill">(7.1)</a> is it lends itself to a simple, closed form estimator for <span class="math inline">\(\alpha\)</span> (equivalently <span class="math inline">\(\xi\)</span>). Although numerical methods now make maximisation of GPD likelihoods very simple, the Hill estimator is still widely used by many who work with heavy-tailed data. There is more than one way to derive the estimator: we shall stick with a likelihood motivation.</p>
@@ -357,7 +359,7 @@ using the estimate of <span class="math inline">\(C\)</span> as in Section <a hr
 </div>
 <div id="value-at-risk-expected-shortfall-volatility" class="section level2">
 <h2><span class="header-section-number">7.3</span> Value at Risk, Expected Shortfall, &amp; Volatility</h2>
-<p><strong>p.64 from previous notes</strong><br />
+<p><strong>p.64 from previous notes (BMW)</strong><br />
 The BMW data were maxima of <span class="math inline">\(n=66\)</span> consecutive negative returns (which is approximately three months of trading days). There were <span class="math inline">\(g=93\)</span> such maxima, so the maxima relate to a total of <span class="math inline">\(T=ng=6138\)</span> daily negative returns.</p>
 <p>The 5% Value at Risk (that is, the negative return value that will be exceeded with probability 5% on a given day) is
 <span class="math display">\[\begin{eqnarray*}
@@ -408,7 +410,7 @@ Assuming <span class="math inline">\(\mbox{VaR}(p)\)</span> to be a high thresho
 \mbox{ES}(p) &amp;= \mbox{VaR}(p) + \frac{\sigma_v}{1-\xi},~~~~~~~~~~~~~~~~~~~~~~~~v=\mbox{VaR}(p)\\
 &amp;= \mbox{VaR}(p) + \frac{\sigma_u + \xi(\mbox{VaR}(p) - u)}{1-\xi}.
 \end{align*}\]</span></p>
-<p><strong>p.143-151 from previous notes</strong><br />
+<p><strong>p.143-151 from previous notes (BMW)</strong><br />
 Thus far we have ignored dependence in our Value at Risk calculations. We have seen two methods for calculating VaR:</p>
 <ol style="list-style-type: decimal">
 <li>Fitting the GEV to “subperiod maxima” (e.g. three-monthly maxima) and solving <span class="math inline">\(\tilde{G}^{1/n}(z_p) \approx F(z_p) = 1-p\)</span></li>
@@ -432,7 +434,7 @@ with <span class="math inline">\(z_p = \mbox{VaR}(p)\)</span>. If <span class="m
 <div id="volatility" class="section level3">
 <h3><span class="header-section-number">7.3.5</span> Volatility</h3>
 <p>In Section <a href="inference-dependent.html#sect:extIndexStdSqrRet">6.1.1.1</a>, we saw that whether or not we account for volatility makes a difference to our analysis.</p>
-<p><img src="images/ftse.data.plot.png" width="85%" style="display: block; margin: auto;" /></p>
+<p><img src="images/ftse_again-1.png" width="85%" style="display: block; margin: auto;" /></p>
 <p>Thus far we have calculated VaR as a quantile of the entire series over a long time period, ignoring the local variation. In practice, we may want to estimate VaR for tomorrow rather than on an arbitrary day.</p>
 <p>One approach to removing volatility is similar to that seen in Section <a href="inference-dependent.html#sect:extIndexStdSqrRet">6.1.1.1</a> . Define the filtered negative returns by
 <span class="math display">\[\begin{eqnarray*}
@@ -446,37 +448,17 @@ where <span class="math inline">\(\tilde{E}(X_t)\)</span> and <span class="math 
 where <span class="math inline">\({\mbox{VaR}_{Z}(p)}\)</span> is the value at risk estimated from the filtered series <span class="math inline">\(Z_t\)</span>.</p>
 </div>
 </div>
-<div id="case-study-i-daily-bmw-negative-returns" class="section level2">
-<h2><span class="header-section-number">7.4</span> Case study I: daily BMW (negative) returns</h2>
-<ul>
-<li>p.16</li>
-<li>p.54-63: Fitting GEV</li>
-<li>p.64: Estimating VaR</li>
-<li>p.148-151: Estimating VaR after accounting for volatility</li>
-</ul>
+<div id="volatility-models" class="section level2">
+<h2><span class="header-section-number">7.4</span> Volatility models</h2>
+<p>Fit GARCH models, then look at the standardised residuals, which are the</p>
+<div id="a-two-stage-approach" class="section level3">
+<h3><span class="header-section-number">7.4.1</span> A two-stage approach</h3>
 </div>
-<div id="case-study-ii-danish-fire-loss-data" class="section level2">
-<h2><span class="header-section-number">7.5</span> Case study II: Danish fire loss data</h2>
-<div class="figure" style="text-align: center"><span id="fig:danish"></span>
-<img src="images/danish-1.png" alt="Fire insurance claims in Denmark between 1980 and 1990." width="85%" />
-<p class="caption">
-Figure 7.1: Fire insurance claims in Denmark between 1980 and 1990.
-</p>
-</div>
-<ul>
-<li>p.89-93: fitting GPD</li>
-<li>p.137: estimating Extremal index</li>
-</ul>
-</div>
-<div id="possible-references" class="section level2">
-<h2><span class="header-section-number">7.6</span> Possible references</h2>
-<ul>
-<li><span class="citation"><span>d</span>e Haan et al. (<a href="#ref-drrd89">1989</a>)</span></li>
-<li><span class="citation">Breidt and Davis (<a href="#ref-bd98">1998</a>)</span></li>
-<li><span class="citation">Laurini and Tawn (<a href="#ref-lt12">2012</a>)</span></li>
-<li><span class="citation">Mikosch and Stărică (<a href="#ref-ms00">2000</a>)</span></li>
-</ul>
+<div id="further-reading" class="section level3">
+<h3><span class="header-section-number">7.4.2</span> Further reading</h3>
+<p>What is described in this section is an empirical approach. For more theoretical results on the extremes of volatility models, please see <span class="citation"><span>d</span>e Haan et al. (<a href="#ref-drrd89">1989</a>)</span>, <span class="citation">Breidt and Davis (<a href="#ref-bd98">1998</a>)</span>, <span class="citation">Mikosch and Stărică (<a href="#ref-ms00">2000</a>)</span>, and <span class="citation">Laurini and Tawn (<a href="#ref-lt12">2012</a>)</span>.</p>
 
+</div>
 </div>
 </div>
 <h3>Bibliography</h3>

@@ -173,15 +173,17 @@
 <li class="chapter" data-level="7.3.4" data-path="finance.html"><a href="finance.html#adjustment-to-var-for-all-exceedances"><i class="fa fa-check"></i><b>7.3.4</b> Adjustment to VaR for all exceedances</a></li>
 <li class="chapter" data-level="7.3.5" data-path="finance.html"><a href="finance.html#volatility"><i class="fa fa-check"></i><b>7.3.5</b> Volatility</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="finance.html"><a href="finance.html#case-study-i-daily-bmw-negative-returns"><i class="fa fa-check"></i><b>7.4</b> Case study I: daily BMW (negative) returns</a></li>
-<li class="chapter" data-level="7.5" data-path="finance.html"><a href="finance.html#case-study-ii-danish-fire-loss-data"><i class="fa fa-check"></i><b>7.5</b> Case study II: Danish fire loss data</a></li>
-<li class="chapter" data-level="7.6" data-path="finance.html"><a href="finance.html#possible-references"><i class="fa fa-check"></i><b>7.6</b> Possible references</a></li>
+<li class="chapter" data-level="7.4" data-path="finance.html"><a href="finance.html#volatility-models"><i class="fa fa-check"></i><b>7.4</b> Volatility models</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="finance.html"><a href="finance.html#a-two-stage-approach"><i class="fa fa-check"></i><b>7.4.1</b> A two-stage approach</a></li>
+<li class="chapter" data-level="7.4.2" data-path="finance.html"><a href="finance.html#further-reading"><i class="fa fa-check"></i><b>7.4.2</b> Further reading</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="further.html"><a href="further.html"><i class="fa fa-check"></i><b>8</b> Further Reading</a><ul>
 <li class="chapter" data-level="8.1" data-path="further.html"><a href="further.html#general-books"><i class="fa fa-check"></i><b>8.1</b> General &amp; books</a></li>
 <li class="chapter" data-level="8.2" data-path="further.html"><a href="further.html#multivariate-extremes-tail-dependence"><i class="fa fa-check"></i><b>8.2</b> Multivariate extremes &amp; tail dependence</a></li>
 <li class="chapter" data-level="8.3" data-path="further.html"><a href="further.html#environmental-applications"><i class="fa fa-check"></i><b>8.3</b> Environmental applications</a></li>
 <li class="chapter" data-level="8.4" data-path="further.html"><a href="further.html#financial-applications"><i class="fa fa-check"></i><b>8.4</b> Financial applications</a></li>
+<li class="chapter" data-level="8.5" data-path="further.html"><a href="further.html#blog-post"><i class="fa fa-check"></i><b>8.5</b> Blog post</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html"><i class="fa fa-check"></i>Appendices</a><ul>
 <li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html#formula-sheet"><i class="fa fa-check"></i>Formula sheet</a></li>
@@ -226,7 +228,7 @@
 <h3><span class="header-section-number">6.1.1</span> The runs method: declustering</h3>
 <p>For a selected high threshold <span class="math inline">\(u\)</span> we conclude that if consecutive exceedances of the threshold <span class="math inline">\(u\)</span> are separated by a set of <span class="math inline">\(m\)</span> consecutive observations <em>below</em> the threshold <span class="math inline">\(u\)</span> then the exceedances belong to separate clusters.</p>
 <p>Similarly, exceedances separated by less than <span class="math inline">\(m\)</span> consecutive non-exceedances are deemed to be in the same cluster.</p>
-<p>The choice of <span class="math inline">\(u\)</span> and <span class="math inline">\(m\)</span> is critical, <span class="math inline">\(m\)</span> needs to be the time lag when the process is ``independent in the extremes’’.</p>
+<p>The choice of <span class="math inline">\(u\)</span> and <span class="math inline">\(m\)</span> is critical, <span class="math inline">\(m\)</span> needs to be the time lag when the process is <em>independent in the extremes</em>.</p>
 <p><strong>The runs method: extremal index estimation</strong><br />
 This algorithm motivates the runs estimator of the extremal index <span class="math inline">\(\theta\)</span>.</p>
 <ol style="list-style-type: decimal">
@@ -240,7 +242,7 @@ using the empirical probability.</li>
 <p><strong>Example: daily rainfall data</strong></p>
 <p>We illustrate the use of these cluster identification and extremal index estimation using a time series of daily rainfall accumulations at a location in south-west England, recorded during 1914-1962. This data set is shown in Figure <a href="inference-dependent.html#fig:vi-i">6.1</a>. Note that the series is assumed to be stationary over this observation period.</p>
 <div class="figure" style="text-align: center"><span id="fig:vi-i"></span>
-<img src="images/rain.data.plot.png" alt="Daily rainfall." width="85%" />
+<img src="images/vi-i-1.png" alt="Daily rainfall." width="85%" />
 <p class="caption">
 Figure 6.1: Daily rainfall.
 </p>
@@ -260,7 +262,7 @@ Figure 6.2: Extremal index estimates using the runs estimator with <span class="
 </p>
 </div>
 <p><strong>Example: financial time series data</strong></p>
-<p>We now turn to estimating clustering for the financial time series data. We focus on the <em>squared</em> returns from the FTSE 100 share index; these are shown in Figure <a href="inference-dependent.html#fig:vi-iii">6.3</a>. We make the initial assumption that the series is stationary over this observation period.</p>
+<p>We now turn to estimating clustering for the financial time series data. We focus on the <em>squared</em> returns from the FTSE 100 share index; these are shown in Figure <a href="inference-dependent.html#fig:vi-iii">6.3</a>. We make the initial assumption that the series is stationary over this observation period. (Note: this is slightly different to the observation period shown in Figure <a href="intro.html#fig:ftse">1.4</a>.)</p>
 <div class="figure" style="text-align: center"><span id="fig:vi-iii"></span>
 <img src="images/ftse.sqr.returns.plot.png" alt="Squared returns for the FTSE 100 share index." width="85%" />
 <p class="caption">

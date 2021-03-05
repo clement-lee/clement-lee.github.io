@@ -173,15 +173,17 @@
 <li class="chapter" data-level="7.3.4" data-path="finance.html"><a href="finance.html#adjustment-to-var-for-all-exceedances"><i class="fa fa-check"></i><b>7.3.4</b> Adjustment to VaR for all exceedances</a></li>
 <li class="chapter" data-level="7.3.5" data-path="finance.html"><a href="finance.html#volatility"><i class="fa fa-check"></i><b>7.3.5</b> Volatility</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="finance.html"><a href="finance.html#case-study-i-daily-bmw-negative-returns"><i class="fa fa-check"></i><b>7.4</b> Case study I: daily BMW (negative) returns</a></li>
-<li class="chapter" data-level="7.5" data-path="finance.html"><a href="finance.html#case-study-ii-danish-fire-loss-data"><i class="fa fa-check"></i><b>7.5</b> Case study II: Danish fire loss data</a></li>
-<li class="chapter" data-level="7.6" data-path="finance.html"><a href="finance.html#possible-references"><i class="fa fa-check"></i><b>7.6</b> Possible references</a></li>
+<li class="chapter" data-level="7.4" data-path="finance.html"><a href="finance.html#volatility-models"><i class="fa fa-check"></i><b>7.4</b> Volatility models</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="finance.html"><a href="finance.html#a-two-stage-approach"><i class="fa fa-check"></i><b>7.4.1</b> A two-stage approach</a></li>
+<li class="chapter" data-level="7.4.2" data-path="finance.html"><a href="finance.html#further-reading"><i class="fa fa-check"></i><b>7.4.2</b> Further reading</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="further.html"><a href="further.html"><i class="fa fa-check"></i><b>8</b> Further Reading</a><ul>
 <li class="chapter" data-level="8.1" data-path="further.html"><a href="further.html#general-books"><i class="fa fa-check"></i><b>8.1</b> General &amp; books</a></li>
 <li class="chapter" data-level="8.2" data-path="further.html"><a href="further.html#multivariate-extremes-tail-dependence"><i class="fa fa-check"></i><b>8.2</b> Multivariate extremes &amp; tail dependence</a></li>
 <li class="chapter" data-level="8.3" data-path="further.html"><a href="further.html#environmental-applications"><i class="fa fa-check"></i><b>8.3</b> Environmental applications</a></li>
 <li class="chapter" data-level="8.4" data-path="further.html"><a href="further.html#financial-applications"><i class="fa fa-check"></i><b>8.4</b> Financial applications</a></li>
+<li class="chapter" data-level="8.5" data-path="further.html"><a href="further.html#blog-post"><i class="fa fa-check"></i><b>8.5</b> Blog post</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html"><i class="fa fa-check"></i>Appendices</a><ul>
 <li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html#formula-sheet"><i class="fa fa-check"></i>Formula sheet</a></li>
@@ -254,7 +256,7 @@ where <span class="math inline">\(\alpha(t)\)</span> and <span class="math inlin
 <h3><span class="header-section-number">4.1.1</span> Reading ozone data</h3>
 <p>Surface-level ozone (O<span class="math inline">\(_3\)</span>) levels measured at a site in central Reading are shown in Figure <a href="non-iid.html#fig:iv-i">4.3</a>. Data are daily maxima of hourly observations and are measured in <span class="math inline">\(\mu\)</span>gm<span class="math inline">\(^{-3}\)</span>. The trends in this data are not so obvious, but there is clearly seasonality - in this case an annual cycle.</p>
 <div class="figure" style="text-align: center"><span id="fig:iv-i"></span>
-<img src="images/Ozone.png" alt="Daily maximum ozone in central Reading." width="85%" />
+<img src="images/iv-i-1.png" alt="Daily maximum ozone in central Reading." width="85%" />
 <p class="caption">
 Figure 4.3: Daily maximum ozone in central Reading.
 </p>
@@ -379,10 +381,10 @@ Figure 4.4: Efficiency of pre-processing and existing methods for modelling thre
 <div id="sect:reading-ozone" class="section level2">
 <h2><span class="header-section-number">4.4</span> Analysis of Reading ozone data</h2>
 <p>We analyse the Reading ozone data using existing and pre-processing methods and compare the results. Following the previous discussion on the science behind the production of atmospheric ozone, we consider daily maxima of NO, NO<span class="math inline">\(_2\)</span> and temperature, aggregate daily sunshine and a year-on-year trend as covariates. We also consider first-order interactions of these. The meteorological data has been obtained from a site situated less than 2km from the air quality monitoring site, courtesy of the UK Met. Office.</p>
-<p>We use maximum likelihood estimation throughout and forward selection to choice our covariates.</p>
+<p>We use maximum likelihood estimation throughout and forward selection to choose our covariates.</p>
 <p>Figure <a href="non-iid.html#fig:iv-v">4.5</a> shows the daily maxima of NO (<span class="math inline">\(\mu\mathrm{gm}^{-3}\)</span>), NO<span class="math inline">\(_2\)</span> (<span class="math inline">\(\mu\mathrm{gm}^{-3}\)</span>) and temperature (<span class="math inline">\(^{\circ}\)</span>C) and daily aggregate hours of sunshine.</p>
 <div class="figure" style="text-align: center"><span id="fig:iv-v"></span>
-<img src="images/covariates.png" alt="Ozone covariates." width="85%" />
+<img src="images/iv-v-1.png" alt="Ozone covariates." width="85%" />
 <p class="caption">
 Figure 4.5: Ozone covariates.
 </p>
@@ -472,7 +474,7 @@ Figure 4.9: Boxplots of bootstrapped 95% confidence intervals of the 99% return 
 <p>Hall, P., and N. Tajvidi. 2000. “Nonparametric Analysis of Temporal Trend When Fitting Parametric Models to Extreme-Value Data.” <em>Statistical Science</em> 15 (2): 153–67.</p>
 </div>
 <div id="ref-wtj10">
-<p>Wadsworth, J. L., J. A. Tawn, and P. Jonathan. 2010. “ACCOUNTING for Choice of Measurement Scale in Extreme Value Modeling.” <em>The Annals of Applied Statistics</em> 4 (3): 1558–78. <a href="http://www.jstor.org/stable/29765567">http://www.jstor.org/stable/29765567</a>.</p>
+<p>Wadsworth, J. L., J. A. Tawn, and P. Jonathan. 2010. “Accounting for Choice of Measurement Scale in Extreme Value Modeling.” <em>The Annals of Applied Statistics</em> 4 (3): 1558–78. <a href="http://www.jstor.org/stable/29765567">http://www.jstor.org/stable/29765567</a>.</p>
 </div>
 </div>
             </section>
