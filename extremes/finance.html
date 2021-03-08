@@ -164,7 +164,8 @@
 <li class="chapter" data-level="7.2.2" data-path="finance.html"><a href="finance.html#alternative-dependence-measures"><i class="fa fa-check"></i><b>7.2.2</b> Alternative dependence measures</a></li>
 <li class="chapter" data-level="7.2.3" data-path="finance.html"><a href="finance.html#the-coefficient-of-tail-dependence"><i class="fa fa-check"></i><b>7.2.3</b> The coefficient of tail dependence</a></li>
 <li class="chapter" data-level="7.2.4" data-path="finance.html"><a href="finance.html#example-dependence-in-negative-returns"><i class="fa fa-check"></i><b>7.2.4</b> Example: dependence in negative returns</a></li>
-<li class="chapter" data-level="7.2.5" data-path="finance.html"><a href="finance.html#relation-between-eta-and-theta"><i class="fa fa-check"></i><b>7.2.5</b> Relation between <span class="math inline">\(\eta\)</span> and <span class="math inline">\(\theta\)</span>?</a></li>
+<li class="chapter" data-level="7.2.5" data-path="finance.html"><a href="finance.html#the-extremal-index-and-the-coefficient-of-tail-dependence"><i class="fa fa-check"></i><b>7.2.5</b> The extremal index and the coefficient of tail dependence</a></li>
+<li class="chapter" data-level="7.2.6" data-path="finance.html"><a href="finance.html#multivariate-extremes-and-further-reading"><i class="fa fa-check"></i><b>7.2.6</b> Multivariate extremes and further reading</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="finance.html"><a href="finance.html#value-at-risk-expected-shortfall-volatility"><i class="fa fa-check"></i><b>7.3</b> Value at Risk, Expected Shortfall, &amp; Volatility</a><ul>
 <li class="chapter" data-level="7.3.1" data-path="finance.html"><a href="finance.html#undoing-the-conditioning"><i class="fa fa-check"></i><b>7.3.1</b> Undoing the conditioning</a></li>
@@ -175,15 +176,12 @@
 </ul></li>
 <li class="chapter" data-level="7.4" data-path="finance.html"><a href="finance.html#volatility-models"><i class="fa fa-check"></i><b>7.4</b> Volatility models</a><ul>
 <li class="chapter" data-level="7.4.1" data-path="finance.html"><a href="finance.html#a-two-stage-approach"><i class="fa fa-check"></i><b>7.4.1</b> A two-stage approach</a></li>
-<li class="chapter" data-level="7.4.2" data-path="finance.html"><a href="finance.html#further-reading"><i class="fa fa-check"></i><b>7.4.2</b> Further reading</a></li>
 </ul></li>
+<li class="chapter" data-level="7.5" data-path="finance.html"><a href="finance.html#further-reading"><i class="fa fa-check"></i><b>7.5</b> Further reading</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="further.html"><a href="further.html"><i class="fa fa-check"></i><b>8</b> Further Reading</a><ul>
 <li class="chapter" data-level="8.1" data-path="further.html"><a href="further.html#general-books"><i class="fa fa-check"></i><b>8.1</b> General &amp; books</a></li>
-<li class="chapter" data-level="8.2" data-path="further.html"><a href="further.html#multivariate-extremes-tail-dependence"><i class="fa fa-check"></i><b>8.2</b> Multivariate extremes &amp; tail dependence</a></li>
-<li class="chapter" data-level="8.3" data-path="further.html"><a href="further.html#environmental-applications"><i class="fa fa-check"></i><b>8.3</b> Environmental applications</a></li>
-<li class="chapter" data-level="8.4" data-path="further.html"><a href="further.html#financial-applications"><i class="fa fa-check"></i><b>8.4</b> Financial applications</a></li>
-<li class="chapter" data-level="8.5" data-path="further.html"><a href="further.html#blog-post"><i class="fa fa-check"></i><b>8.5</b> Blog post</a></li>
+<li class="chapter" data-level="8.2" data-path="further.html"><a href="further.html#environmental-applications"><i class="fa fa-check"></i><b>8.2</b> Environmental applications</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html"><i class="fa fa-check"></i>Appendices</a><ul>
 <li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html#formula-sheet"><i class="fa fa-check"></i>Formula sheet</a></li>
@@ -353,8 +351,14 @@ For <span class="math inline">\(u\)</span> equal to the 0.95 quantile of the <sp
 \end{eqnarray*}\]</span>
 using the estimate of <span class="math inline">\(C\)</span> as in Section <a href="finance.html#sect:hill-c">7.1.2</a>. To translate the estimated <span class="math inline">\(z_p\)</span> back to the returns scale we need to use the inverse of the earlier transformation to the Fréchet scale. This, amongst other reasons, suggests use of Option 2 is preferable for the transformation.</p>
 </div>
-<div id="relation-between-eta-and-theta" class="section level3">
-<h3><span class="header-section-number">7.2.5</span> Relation between <span class="math inline">\(\eta\)</span> and <span class="math inline">\(\theta\)</span>?</h3>
+<div id="the-extremal-index-and-the-coefficient-of-tail-dependence" class="section level3">
+<h3><span class="header-section-number">7.2.5</span> The extremal index and the coefficient of tail dependence</h3>
+<p>The coefficient of tail dependence <span class="math inline">\(\eta\)</span> describes the dependence in the extreme values of <strong>two random variables</strong>. This is different to what we have seen in Chapter <a href="stationary.html#extremal-index">5.3</a>, where the extremal index <span class="math inline">\(\theta\)</span> describes the short-range temporal/serial dependence in the extreme values of <strong>stationary processes</strong>. Their difference is analogous to that between the Pearson correlation of two variables (Chapter <a href="finance.html#correlation">7.2.1</a>) &amp; the autocorrelation function of a time-series.</p>
+<p>It is possible to investigate both kinds of dependence for the same set of variables. For example, we consider the variables <span class="math inline">\(\{X_t\}\)</span> in a stationary (but dependent) process, where we can calculate the extremal index as usual. We can also compute the coefficient of tail dependence by considering <span class="math inline">\(\{X_t\}\)</span> and <span class="math inline">\(\{X_{t-1}\}\)</span> as the two variables of interest.</p>
+</div>
+<div id="multivariate-extremes-and-further-reading" class="section level3">
+<h3><span class="header-section-number">7.2.6</span> Multivariate extremes and further reading</h3>
+<p>The coefficient of tail dependence can be extended to a multivariate setting and computed for all possible pairs of random variables. As multivariate extremes are beyond this module’s scope, we will include some references here. The original proponents of <span class="math inline">\(\eta\)</span> are <span class="citation">Ledford and Tawn (<a href="#ref-lt96">1996</a>)</span> and <span class="citation">Ledford and Tawn (<a href="#ref-lt98">1998</a>)</span>, while <span class="citation">Heffernan (<a href="#ref-heffernan00">2000</a>)</span> provided a comprehensive directory of <span class="math inline">\(\eta\)</span> for different bivariate distributions. Other related works include, in chronological order, <span class="citation">Sibuya (<a href="#ref-sibuya60">1960</a>)</span>, <span class="citation">Mardia (<a href="#ref-mardia64">1964</a>)</span>, <span class="citation"><span>T</span>iago de Oliveira (<a href="#ref-tdo623">n.d.</a>)</span>, <span class="citation">Pickands (<a href="#ref-pickands81">1981</a>)</span>, <span class="citation">Coles and Tawn (<a href="#ref-ct91">1991</a>)</span>, <span class="citation">Ledford and Tawn (<a href="#ref-lt97">1997</a>)</span>, and <span class="citation">Coles, Heffernan, and Tawn (<a href="#ref-cht99">1999</a>)</span>. A general reference on multivariate models and dependence concepts is <span class="citation">Joe (<a href="#ref-joe97">1997</a>)</span>. Finally, <span class="citation">Heffernan and Tawn (<a href="#ref-ht04">2004</a>)</span> proposed a different yet influential <strong>conditional</strong> approach to multivariate extremes.</p>
 </div>
 </div>
 <div id="value-at-risk-expected-shortfall-volatility" class="section level2">
@@ -454,11 +458,11 @@ where <span class="math inline">\({\mbox{VaR}_{Z}(p)}\)</span> is the value at r
 <div id="a-two-stage-approach" class="section level3">
 <h3><span class="header-section-number">7.4.1</span> A two-stage approach</h3>
 </div>
-<div id="further-reading" class="section level3">
-<h3><span class="header-section-number">7.4.2</span> Further reading</h3>
-<p>What is described in this section is an empirical approach. For more theoretical results on the extremes of volatility models, please see <span class="citation"><span>d</span>e Haan et al. (<a href="#ref-drrd89">1989</a>)</span>, <span class="citation">Breidt and Davis (<a href="#ref-bd98">1998</a>)</span>, <span class="citation">Mikosch and Stărică (<a href="#ref-ms00">2000</a>)</span>, and <span class="citation">Laurini and Tawn (<a href="#ref-lt12">2012</a>)</span>.</p>
-
 </div>
+<div id="further-reading" class="section level2">
+<h2><span class="header-section-number">7.5</span> Further reading</h2>
+<p>What is described in the section above is from a methodological point of view. For more theoretical results on the extremes of volatility models, please see <span class="citation"><span>d</span>e Haan et al. (<a href="#ref-drrd89">1989</a>)</span>, <span class="citation">Breidt and Davis (<a href="#ref-bd98">1998</a>)</span>, <span class="citation">Mikosch and Stărică (<a href="#ref-ms00">2000</a>)</span>, and <span class="citation">Laurini and Tawn (<a href="#ref-lt12">2012</a>)</span>. For some more examples of financial applications, see <span class="citation">Figueiredo, Gomes, and Henriques-Rodrigues (<a href="#ref-fgh17">2017</a>)</span> and <span class="citation">Castro-Camilo, de Carvalho, and Wadsworth (<a href="#ref-cdw18">2018</a>)</span>.</p>
+
 </div>
 </div>
 <h3>Bibliography</h3>
@@ -466,14 +470,56 @@ where <span class="math inline">\({\mbox{VaR}_{Z}(p)}\)</span> is the value at r
 <div id="ref-bd98">
 <p>Breidt, J. F., and R. A. Davis. 1998. “Extremes of Stochastic Volatility Models.” <em>Annals of Applied Probability</em> 8: 664–75.</p>
 </div>
+<div id="ref-cdw18">
+<p>Castro-Camilo, Daniela, Miguel de Carvalho, and Jennifer Wadsworth. 2018. “Time-Varying Extreme Value Dependence with Application to Leading European Stock Markets.” <em>Annals of Applied Statistics</em> 12 (1): 283–309. <a href="https://doi.org/10.1214/17-AOAS1089">https://doi.org/10.1214/17-AOAS1089</a>.</p>
+</div>
+<div id="ref-cht99">
+<p>Coles, S. G., J. E. Heffernan, and J. A. Tawn. 1999. “Dependence Measures for Extreme Value Analyses.” <em>Extremes</em> 2: 339–65.</p>
+</div>
+<div id="ref-ct91">
+<p>Coles, S. 1991. “Modelling Extreme Multivariate Events.” <em>Journal of the Royal Statistical Society B</em> 53: 377–92.</p>
+</div>
 <div id="ref-drrd89">
 <p><span>d</span>e Haan, L., S. I. Resnick, H. Rootzén, and C. G. de Vries. 1989. “Extremal Behaviour of Solutions to a Stochastic Difference Equation with Applications to ARCH Processes.” <em>Stochastic Processes and Their Applications</em> 32: 213–24.</p>
+</div>
+<div id="ref-fgh17">
+<p>Figueiredo, Fernanda, M. Ivette Gomes, and Lígia Henriques-Rodrigues. 2017. “Value-at-Risk Estimation and the PORT Mean-of-Order-P Methodology.” <em>REVSTAT – Statistical Journal</em> 15 (2): 187–204. <a href="https://ine.pt/revstat/pdf/rs170202.pdf">https://ine.pt/revstat/pdf/rs170202.pdf</a>.</p>
+</div>
+<div id="ref-heffernan00">
+<p>Heffernan, J. E. 2000. “A Directory of Coefficients of Tail Dependence.” <em>Extremes</em> 3: 279–90.</p>
+</div>
+<div id="ref-ht04">
+<p>Heffernan, J. 2004. “A Conditional Approach for Multivariate Extreme Values (with Discussion).” <em>Journal of the Royal Statistical Society B</em> 66 (3): 497–546.</p>
+</div>
+<div id="ref-joe97">
+<p>Joe, H. 1997. <em>Multivariate Models and Dependence Concepts</em>. London: Chapman; Hall.</p>
 </div>
 <div id="ref-lt12">
 <p>Laurini, F., and J. A. Tawn. 2012. “The Extremal Index for the GARCH<span class="math inline">\((1,1)\)</span> Process.” <em>Extremes</em> 15: 511–29. <a href="https://doi.org/10.1007/s10687-012-0148-z">https://doi.org/10.1007/s10687-012-0148-z</a>.</p>
 </div>
+<div id="ref-lt96">
+<p>Ledford, A. W., and J. A. Tawn. 1996. “Statistics for Near Independence in Multivariate Extreme Values.” <em>Biometrika</em> 83: 169–87.</p>
+</div>
+<div id="ref-lt97">
+<p>Ledford, A. 1997. “Modelling Dependence Within Joint Tail Regions.” <em>Journal of the Royal Statistical Society B</em> 59: 475–99.</p>
+</div>
+<div id="ref-lt98">
+<p>Ledford, A. 1998. “Concomitant Tail Behaviour for Extremes.” <em>Advances in Applied Probability</em> 30: 197–215.</p>
+</div>
+<div id="ref-mardia64">
+<p>Mardia, K. V. 1964. “Asymptotic Independence of Bivariate Extremes.” <em>Calcutta Statistical Association Bulletin</em> 13: 172–78.</p>
+</div>
 <div id="ref-ms00">
 <p>Mikosch, T., and C. Stărică. 2000. “Limit Theory for the Sample Autocorrelations and Extremes of a GARCH<span class="math inline">\((1,1)\)</span> Process.” <em>Annals of Statistics</em> 28: 1427–51.</p>
+</div>
+<div id="ref-pickands81">
+<p>Pickands, J. 1981. “Multivariate Extreme Value Distributions.” In <em>Proceedings 43th, Session of International Statistical Institution</em>, 859–78.</p>
+</div>
+<div id="ref-sibuya60">
+<p>Sibuya, M. 1960. “Bivariate Extreme Statistics.” <em>Annals of the Institute of Statistical Mathematics</em> 11: 195–210.</p>
+</div>
+<div id="ref-tdo623">
+<p><span>T</span>iago de Oliveira, J. n.d. “Structure Theory of Bivariate Extremes; Extensions.” <em>Est. Mat., Estat. E. Econ.</em> 7: 165–95.</p>
 </div>
 </div>
 <div class="footnotes">
