@@ -96,7 +96,7 @@
 <li class="chapter" data-level="2.3" data-path="block-maxima.html"><a href="block-maxima.html#inference"><i class="fa fa-check"></i><b>2.3</b> Inference for maxima of IID variables</a><ul>
 <li class="chapter" data-level="2.3.1" data-path="block-maxima.html"><a href="block-maxima.html#sect:mle-gev"><i class="fa fa-check"></i><b>2.3.1</b> Inference for the GEV distribution</a></li>
 <li class="chapter" data-level="2.3.2" data-path="block-maxima.html"><a href="block-maxima.html#sect:mle-gev-max-temperature"><i class="fa fa-check"></i><b>2.3.2</b> Example: fitting the GEV to temperature maxima</a></li>
-<li class="chapter" data-level="2.3.3" data-path="block-maxima.html"><a href="block-maxima.html#return-levels-and-return-periods"><i class="fa fa-check"></i><b>2.3.3</b> Return levels and return periods</a></li>
+<li class="chapter" data-level="2.3.3" data-path="block-maxima.html"><a href="block-maxima.html#return-levels"><i class="fa fa-check"></i><b>2.3.3</b> Return levels and return periods</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="alternative.html"><a href="alternative.html"><i class="fa fa-check"></i><b>3</b> Alternative Characterisation and Improved Inferences</a><ul>
@@ -168,15 +168,13 @@
 <li class="chapter" data-level="7.2.6" data-path="finance.html"><a href="finance.html#multivariate-extremes-and-further-reading"><i class="fa fa-check"></i><b>7.2.6</b> Multivariate extremes and further reading</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="finance.html"><a href="finance.html#value-at-risk-expected-shortfall-volatility"><i class="fa fa-check"></i><b>7.3</b> Value at Risk, Expected Shortfall, &amp; Volatility</a><ul>
-<li class="chapter" data-level="7.3.1" data-path="finance.html"><a href="finance.html#undoing-the-conditioning"><i class="fa fa-check"></i><b>7.3.1</b> Undoing the conditioning</a></li>
-<li class="chapter" data-level="7.3.2" data-path="finance.html"><a href="finance.html#expected-shortfall"><i class="fa fa-check"></i><b>7.3.2</b> Expected Shortfall</a></li>
-<li class="chapter" data-level="7.3.3" data-path="finance.html"><a href="finance.html#adjustment-to-var-for-subperiod-maxima"><i class="fa fa-check"></i><b>7.3.3</b> Adjustment to VaR for subperiod maxima</a></li>
-<li class="chapter" data-level="7.3.4" data-path="finance.html"><a href="finance.html#adjustment-to-var-for-all-exceedances"><i class="fa fa-check"></i><b>7.3.4</b> Adjustment to VaR for all exceedances</a></li>
+<li class="chapter" data-level="7.3.1" data-path="finance.html"><a href="finance.html#fitting-gev"><i class="fa fa-check"></i><b>7.3.1</b> Fitting GEV</a></li>
+<li class="chapter" data-level="7.3.2" data-path="finance.html"><a href="finance.html#fitting-gpd-undoing-the-conditioning"><i class="fa fa-check"></i><b>7.3.2</b> Fitting GPD &amp; undoing the conditioning</a></li>
+<li class="chapter" data-level="7.3.3" data-path="finance.html"><a href="finance.html#expected-shortfall"><i class="fa fa-check"></i><b>7.3.3</b> Expected Shortfall</a></li>
+<li class="chapter" data-level="7.3.4" data-path="finance.html"><a href="finance.html#adjustment-to-var-for-dependent-data"><i class="fa fa-check"></i><b>7.3.4</b> Adjustment to VaR for dependent data</a></li>
 <li class="chapter" data-level="7.3.5" data-path="finance.html"><a href="finance.html#volatility"><i class="fa fa-check"></i><b>7.3.5</b> Volatility</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="finance.html"><a href="finance.html#volatility-models"><i class="fa fa-check"></i><b>7.4</b> Volatility models</a><ul>
-<li class="chapter" data-level="7.4.1" data-path="finance.html"><a href="finance.html#a-two-stage-approach"><i class="fa fa-check"></i><b>7.4.1</b> A two-stage approach</a></li>
-</ul></li>
+<li class="chapter" data-level="7.4" data-path="finance.html"><a href="finance.html#volatility-models"><i class="fa fa-check"></i><b>7.4</b> Volatility models</a></li>
 <li class="chapter" data-level="7.5" data-path="finance.html"><a href="finance.html#further-reading"><i class="fa fa-check"></i><b>7.5</b> Further reading</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="further.html"><a href="further.html"><i class="fa fa-check"></i><b>8</b> Further Reading</a><ul>
@@ -725,7 +723,7 @@ Figure 2.2: Profile log-likelihood functions for the GEV shape parameter <span c
 <div style="page-break-after: always;"></div>
 <p>The profile likelihood for <span class="math inline">\(\xi\)</span> is calculated by fixing the value of <span class="math inline">\(\xi=\xi_0\)</span> and maximising the log-likelihood with respect to <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>. This process is repeated for a number of values of <span class="math inline">\(\xi_0\)</span>. The maximised values of the log-likelihood give the profile log-likelihood for <span class="math inline">\(\xi\)</span>.</p>
 </div>
-<div id="return-levels-and-return-periods" class="section level3">
+<div id="return-levels" class="section level3">
 <h3><span class="header-section-number">2.3.3</span> Return levels and return periods</h3>
 <p>The practical question to be addressed in most applications is:<br />
 <em><span style="color: red;">What is the probability of a given process giving a value which exceeds a given level <span class="math inline">\(z\)</span> in a future time period?</span></em></p>
@@ -744,8 +742,7 @@ then the return level <span class="math inline">\(z_p\)</span> has return period
 <p><strong>Return level estimation for the GEV</strong><br />
 The <span class="math inline">\(1/p\)</span> return level <span class="math inline">\(z_p\)</span> is the <span class="math inline">\(1-p\)</span> quantile of the GEV distribution for <span class="math inline">\(0&lt;p&lt;1\)</span>.</p>
 <p>Substituting the maximum likelihood estimates of the GEV parameters into the quantile function for the GEV, we obtain maximum likelihood estimates of the <span class="math inline">\(1/p\)</span> return level as:
-<span class="math display">\[\begin{eqnarray}
-\label{eqn:return.level}
+<span class="math display" id="eq:return-level">\[\begin{eqnarray}
   \hat z_p=
   \left\{
     \begin{array}{ll}
@@ -755,6 +752,7 @@ The <span class="math inline">\(1/p\)</span> return level <span class="math inli
       \hat\mu-\hat\sigma\log\{-\log(1-p)\},&amp;\mbox{ for } \hat\xi=0.
     \end{array}
   \right.
+\tag{2.6}
 \end{eqnarray}\]</span></p>
 <p>To obtain the variance of the estimated return level, the delta method gives us
 <span class="math display">\[\begin{eqnarray*} 

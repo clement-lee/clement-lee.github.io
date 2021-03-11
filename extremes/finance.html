@@ -96,7 +96,7 @@
 <li class="chapter" data-level="2.3" data-path="block-maxima.html"><a href="block-maxima.html#inference"><i class="fa fa-check"></i><b>2.3</b> Inference for maxima of IID variables</a><ul>
 <li class="chapter" data-level="2.3.1" data-path="block-maxima.html"><a href="block-maxima.html#sect:mle-gev"><i class="fa fa-check"></i><b>2.3.1</b> Inference for the GEV distribution</a></li>
 <li class="chapter" data-level="2.3.2" data-path="block-maxima.html"><a href="block-maxima.html#sect:mle-gev-max-temperature"><i class="fa fa-check"></i><b>2.3.2</b> Example: fitting the GEV to temperature maxima</a></li>
-<li class="chapter" data-level="2.3.3" data-path="block-maxima.html"><a href="block-maxima.html#return-levels-and-return-periods"><i class="fa fa-check"></i><b>2.3.3</b> Return levels and return periods</a></li>
+<li class="chapter" data-level="2.3.3" data-path="block-maxima.html"><a href="block-maxima.html#return-levels"><i class="fa fa-check"></i><b>2.3.3</b> Return levels and return periods</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="alternative.html"><a href="alternative.html"><i class="fa fa-check"></i><b>3</b> Alternative Characterisation and Improved Inferences</a><ul>
@@ -168,15 +168,13 @@
 <li class="chapter" data-level="7.2.6" data-path="finance.html"><a href="finance.html#multivariate-extremes-and-further-reading"><i class="fa fa-check"></i><b>7.2.6</b> Multivariate extremes and further reading</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="finance.html"><a href="finance.html#value-at-risk-expected-shortfall-volatility"><i class="fa fa-check"></i><b>7.3</b> Value at Risk, Expected Shortfall, &amp; Volatility</a><ul>
-<li class="chapter" data-level="7.3.1" data-path="finance.html"><a href="finance.html#undoing-the-conditioning"><i class="fa fa-check"></i><b>7.3.1</b> Undoing the conditioning</a></li>
-<li class="chapter" data-level="7.3.2" data-path="finance.html"><a href="finance.html#expected-shortfall"><i class="fa fa-check"></i><b>7.3.2</b> Expected Shortfall</a></li>
-<li class="chapter" data-level="7.3.3" data-path="finance.html"><a href="finance.html#adjustment-to-var-for-subperiod-maxima"><i class="fa fa-check"></i><b>7.3.3</b> Adjustment to VaR for subperiod maxima</a></li>
-<li class="chapter" data-level="7.3.4" data-path="finance.html"><a href="finance.html#adjustment-to-var-for-all-exceedances"><i class="fa fa-check"></i><b>7.3.4</b> Adjustment to VaR for all exceedances</a></li>
+<li class="chapter" data-level="7.3.1" data-path="finance.html"><a href="finance.html#fitting-gev"><i class="fa fa-check"></i><b>7.3.1</b> Fitting GEV</a></li>
+<li class="chapter" data-level="7.3.2" data-path="finance.html"><a href="finance.html#fitting-gpd-undoing-the-conditioning"><i class="fa fa-check"></i><b>7.3.2</b> Fitting GPD &amp; undoing the conditioning</a></li>
+<li class="chapter" data-level="7.3.3" data-path="finance.html"><a href="finance.html#expected-shortfall"><i class="fa fa-check"></i><b>7.3.3</b> Expected Shortfall</a></li>
+<li class="chapter" data-level="7.3.4" data-path="finance.html"><a href="finance.html#adjustment-to-var-for-dependent-data"><i class="fa fa-check"></i><b>7.3.4</b> Adjustment to VaR for dependent data</a></li>
 <li class="chapter" data-level="7.3.5" data-path="finance.html"><a href="finance.html#volatility"><i class="fa fa-check"></i><b>7.3.5</b> Volatility</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="finance.html"><a href="finance.html#volatility-models"><i class="fa fa-check"></i><b>7.4</b> Volatility models</a><ul>
-<li class="chapter" data-level="7.4.1" data-path="finance.html"><a href="finance.html#a-two-stage-approach"><i class="fa fa-check"></i><b>7.4.1</b> A two-stage approach</a></li>
-</ul></li>
+<li class="chapter" data-level="7.4" data-path="finance.html"><a href="finance.html#volatility-models"><i class="fa fa-check"></i><b>7.4</b> Volatility models</a></li>
 <li class="chapter" data-level="7.5" data-path="finance.html"><a href="finance.html#further-reading"><i class="fa fa-check"></i><b>7.5</b> Further reading</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="further.html"><a href="further.html"><i class="fa fa-check"></i><b>8</b> Further Reading</a><ul>
@@ -363,101 +361,164 @@ using the estimate of <span class="math inline">\(C\)</span> as in Section <a hr
 </div>
 <div id="value-at-risk-expected-shortfall-volatility" class="section level2">
 <h2><span class="header-section-number">7.3</span> Value at Risk, Expected Shortfall, &amp; Volatility</h2>
-<p><strong>p.64 from previous notes (BMW)</strong><br />
-The BMW data were maxima of <span class="math inline">\(n=66\)</span> consecutive negative returns (which is approximately three months of trading days). There were <span class="math inline">\(g=93\)</span> such maxima, so the maxima relate to a total of <span class="math inline">\(T=ng=6138\)</span> daily negative returns.</p>
-<p>The 5% Value at Risk (that is, the negative return value that will be exceeded with probability 5% on a given day) is
+<p>You may also have learned about Value at Risk (VaR), which is indeed equivalent to high quantiles and return levels we have seen in Section <a href="block-maxima.html#return-levels">2.3.3</a>. In this section, we will look deeper into VaR &amp; a related quantity called Expected Shortfall (also known as <strong>Conditional</strong> VaR), and the effect of volatility in the calculations of VaR.</p>
+<div id="fitting-gev" class="section level3">
+<h3><span class="header-section-number">7.3.1</span> Fitting GEV</h3>
+<p>Often in financial contexts, one is more concerned with the loss in a particular day, rather than the maximum losses over a particular time period (e.g. three months). How can we use the models we have learned to help with this estimation?</p>
+<p>Recall that, for an IID sequence <span class="math inline">\(\{X_t\}\)</span> assumed to come from the distribution <span class="math inline">\(F\)</span>,
+<span class="math display">\[ \Pr(M_n\leq y)=F(y)^n\approx G\left(\frac{y-b_n}{a_n}\right), \]</span>
+where <span class="math inline">\(M_n\)</span> is the block maxima of size <span class="math inline">\(n\)</span> (e.g. maxima of <span class="math inline">\(n\)</span> daily negative returns), and our estimated GEV distribution, <span class="math inline">\(G\left(\frac{y-b_n}{a_n}\right)=\tilde{G}(y)\)</span> is approximately <span class="math inline">\(F(y)^n\)</span>. One way to translate our return levels to quantiles of the original distribution is to solve
+<span class="math display">\[ F(z_p)=\tilde{G}^{1/n}(z_p)=p \]</span>
+giving
+<span class="math display">\[ z_p=\mu-\frac{\sigma}{\xi}\left[1-\left(-n\log p\right)^{-\xi}\right]. \]</span>
+Compare this to Equation <a href="block-maxima.html#eq:return-level">(2.6)</a>. When referring to daily negative returns, this quantity is called the <span class="math inline">\(100p\)</span>% VaR, which is the value that will be exceeded with probability <span class="math inline">\(1-p\)</span>. That is, for a series of negative daily returns, <span class="math inline">\(X_t\)</span>,
+<span class="math display">\[ \Pr(X_t\leq\mbox{VaR}(p))=p \qquad \Leftrightarrow \qquad \Pr(X_t&gt;\mbox{VaR}(p))=1-p. \]</span>
+Note that, the definition of VaR<span class="math inline">\((p)\)</span> varies slightly in the literature, as, for example, the 99% VaR here may be called the 1% VaR elsewhere. Nevertheless, there usually is no ambiguity as investors are most interested in large potential losses.</p>
+<strong>BMW example</strong><br />
+We continue with the daily negative returns seen above, but focus on one of the two stocks, namely BMW.
+<div class="figure" style="text-align: center"><span id="fig:bmw-ts"></span>
+<img src="images/bmw-ts-1.png" alt="Daily negative returns of BMW." width="85%" />
+<p class="caption">
+Figure 7.1: Daily negative returns of BMW.
+</p>
+</div>
+<p>The BMW data were maxima of <span class="math inline">\(n=66\)</span> consecutive negative returns (which is approximately three months of trading days). There were <span class="math inline">\(g=93\)</span> such maxima, so the maxima relate to a total of <span class="math inline">\(T=ng=6138\)</span> daily negative returns.</p>
+<p>The <span class="math inline">\(95\)</span>% VaR (that is, the negative return value that will be exceeded with probability <span class="math inline">\(5\)</span>% on a given day) is
 <span class="math display">\[\begin{eqnarray*}
- \hat\mu -\frac{\hat\sigma}{\hat\xi}\left[1-\{-66\log(1-0.05)\}^{-\hat\xi}\right] = 0.0153
+ \hat\mu -\frac{\hat\sigma}{\hat\xi}\left[1-\{-66\log(0.95)\}^{-\hat\xi}\right] = 0.0153
 \end{eqnarray*}\]</span></p>
-<p>The 1% Value at Risk is
+<p>The <span class="math inline">\(99\)</span>% VaR is
 <span class="math display">\[\begin{eqnarray*}
-\hat\mu -\frac{\hat\sigma}{\hat\xi}\left[1-\{-66\log(1-0.01)\}^{-\hat\xi}\right] = 0.033
+\hat\mu -\frac{\hat\sigma}{\hat\xi}\left[1-\{-66\log(0.99)\}^{-\hat\xi}\right] = 0.0333
 \end{eqnarray*}\]</span></p>
 <p>To obtain estimates of uncertainty, we could again use the delta method or profile likelihood.</p>
-<p><strong>p.96-99 from previous notes</strong><br />
-Suppose we fit the GPD to a series of negative returns. How do we calculate the Value at Risk?</p>
-<p>Recall VaR<span class="math inline">\((p)\)</span> satisfies
-<span class="math display">\[\begin{eqnarray*}
-\Pr(X\leq \mbox{VaR}(p)) = 1-p.
-\end{eqnarray*}\]</span></p>
-<p>We know
+</div>
+<div id="fitting-gpd-undoing-the-conditioning" class="section level3">
+<h3><span class="header-section-number">7.3.2</span> Fitting GPD &amp; undoing the conditioning</h3>
+<p>Suppose we fit the GPD to a series of negative returns. How do we calculate the VaR? We know
 <span class="math display">\[\begin{eqnarray*}
  \Pr(X&gt; x | X&gt;u) = \left[1+\xi\left(\frac{x-u}{\sigma_u}\right)\right]^{-1/\xi}_+.
 \end{eqnarray*}\]</span>
 We need to undo the conditioning to calculate the quantile.</p>
-<div id="undoing-the-conditioning" class="section level3">
-<h3><span class="header-section-number">7.3.1</span> Undoing the conditioning</h3>
 <p>The GPD provides a model for excesses conditional upon being an excess. We undo this conditioning by modelling the number of exceedances, <span class="math inline">\(N_u\)</span>, assuming either</p>
 <ol style="list-style-type: decimal">
-<li><span class="math inline">\(N_u \sim\)</span> Poisson<span class="math inline">\((\gamma_u)\)</span>, ~~~ <span class="math inline">\(\gamma_u = E(N_u)\)</span></li>
-<li><span class="math inline">\(N_u \sim\)</span> Binomial<span class="math inline">\((n,\phi_u)\)</span>, ~~~ <span class="math inline">\(\phi_u=\Pr(X&gt;u)\)</span></li>
+<li><span class="math inline">\(N_u \sim\)</span> Poisson<span class="math inline">\((\gamma_u), ~~~ \gamma_u = E(N_u)\)</span></li>
+<li><span class="math inline">\(N_u \sim\)</span> Binomial<span class="math inline">\((n,\phi_u), ~~~ \phi_u=\Pr(X&gt;u)\)</span></li>
 </ol>
-<p>The first option is equivalent to the Poisson process model of Section <a href="alternative.html#sect:poisson-process-limit">3.1.4</a>, with a different parameterisation. The second is almost equivalent for large sample sizes.</p>
-<p>The maximum likelihood estimate for <span class="math inline">\({\phi_u}\)</span> is <span class="math inline">\({n_u/n}\)</span>, with <span class="math inline">\({N_u=n_u}\)</span> the observed number of exceedances of <span class="math inline">\(u\)</span>, from a total of <span class="math inline">\(n\)</span> data points.</p>
-<p>VaR<span class="math inline">\((p)\)</span> can thus be found by solving
+<p>The first option is equivalent to the Poisson process model of Section <a href="alternative.html#sect:poisson-process-limit">3.1.4</a>, with a different parameterisation. The second is almost equivalent for large sample sizes. The maximum likelihood estimate for <span class="math inline">\({\phi_u}\)</span> is <span class="math inline">\({n_u/n}\)</span>, with <span class="math inline">\({N_u=n_u}\)</span> the observed number of exceedances of <span class="math inline">\(u\)</span>, from a total of <span class="math inline">\(n\)</span> data points. VaR<span class="math inline">\((p)\)</span> can thus be found by solving
 <span class="math display">\[\begin{eqnarray*}
-1-\left[1+\hat\xi\left(\frac{\mbox{VaR}(p)-u}{\hat\sigma_u}\right)\right]^{-1/\hat\xi} \hat\phi_u = 1-p
+1-\left[1+\hat\xi\left(\frac{\mbox{VaR}(p)-u}{\hat\sigma_u}\right)\right]^{-1/\hat\xi} \hat\phi_u = p
 \end{eqnarray*}\]</span>
 to give
 <span class="math display">\[\begin{eqnarray*}
-\mbox{VaR}(p) = u +\frac{\hat\sigma_u}{\hat\xi}\left[\left(\frac{\hat\phi_u}{p}\right)^{\hat\xi}-1\right].
+\mbox{VaR}(p) = u +\frac{\hat\sigma_u}{\hat\xi}\left[\left(\frac{\hat\phi_u}{1-p}\right)^{\hat\xi}-1\right].
 \end{eqnarray*}\]</span></p>
+<p><strong>BMW example</strong><br />
+We continue with the BMW example. We choose <span class="math inline">\(u = 0.03\)</span>, which means there are <span class="math inline">\(136\)</span> exceedances (quite comparable to the number of block maxima). Using the parameter estimates, we can calculate the <span class="math inline">\(95\)</span>% VaR:
+<span class="math display">\[\begin{eqnarray*}
+u + \frac{\hat\sigma_u}{\hat\xi}\left[\left(\frac{\hat\phi_u}{1-0.95}\right)^{\hat\xi}-1\right] = 0.0203
+\end{eqnarray*}\]</span>
+The <span class="math inline">\(99\)</span>% VaR is
+<span class="math display">\[\begin{eqnarray*}
+u + \frac{\hat\sigma_u}{\hat\xi}\left[\left(\frac{\hat\phi_u}{1-0.99}\right)^{\hat\xi}-1\right] = 0.0406
+\end{eqnarray*}\]</span>
+We can see the estimated VaRs are similar but slightly larger than those by using the GEV for block maxima.</p>
 </div>
 <div id="expected-shortfall" class="section level3">
-<h3><span class="header-section-number">7.3.2</span> Expected Shortfall</h3>
-<p>Expected Shortfall, <span class="math inline">\({\mbox{ES}(p)}\)</span>, is the name given to the expected negative return, given that the Value at Risk threshold has been exceeded. If <span class="math inline">\({X}\)</span> denotes a negative return then
+<h3><span class="header-section-number">7.3.3</span> Expected Shortfall</h3>
+<p>Expected Shortfall, <span class="math inline">\({\mbox{ES}(p)}\)</span>, also known as <strong>conditional</strong> VaR, is the name given to the expected negative return, given that the VaR threshold has been exceeded. If <span class="math inline">\({X}\)</span> denotes a negative return then
 <span class="math display">\[\begin{eqnarray*}
  \mbox{ES}(p) = E[X|X&gt;\mbox{VaR}(p)].
 \end{eqnarray*}\]</span>
 Assuming <span class="math inline">\(\mbox{VaR}(p)\)</span> to be a high threshold, and we have fitted a GPD above a threshold <span class="math inline">\({u&lt;\mbox{VaR}(p)}\)</span>, this is calculated using the expression in Section <a href="alternative.html#sect:GPDproperties">3.2.2</a>.
 <span class="math display">\[\begin{align*}
-\mbox{ES}(p) &amp;= \mbox{VaR}(p) + \frac{\sigma_v}{1-\xi},~~~~~~~~~~~~~~~~~~~~~~~~v=\mbox{VaR}(p)\\
+\mbox{ES}(p) &amp;= \mbox{VaR}(p) + \frac{\sigma_v}{1-\xi},\qquad\qquad\qquad(\mbox{where}~v=\mbox{VaR}(p))\\
 &amp;= \mbox{VaR}(p) + \frac{\sigma_u + \xi(\mbox{VaR}(p) - u)}{1-\xi}.
 \end{align*}\]</span></p>
-<p><strong>p.143-151 from previous notes (BMW)</strong><br />
-Thus far we have ignored dependence in our Value at Risk calculations. We have seen two methods for calculating VaR:</p>
+</div>
+<div id="adjustment-to-var-for-dependent-data" class="section level3">
+<h3><span class="header-section-number">7.3.4</span> Adjustment to VaR for dependent data</h3>
+<p>Thus far we have ignored dependence in our VaR calculations. We have seen two methods for calculating VaR:</p>
 <ol style="list-style-type: decimal">
-<li>Fitting the GEV to “subperiod maxima” (e.g. three-monthly maxima) and solving <span class="math inline">\(\tilde{G}^{1/n}(z_p) \approx F(z_p) = 1-p\)</span></li>
-<li>Fitting the GPD to all exceedances and solving <span class="math inline">\(P(X&gt;z_p|X&gt;u)\phi_u \approx 1-F(z_p) = p\)</span></li>
+<li>Fitting the GEV to “subperiod maxima” (e.g. three-monthly maxima) and solving <span class="math inline">\(\tilde{G}^{1/n}(z_p) \approx F(z_p) = p\)</span></li>
+<li>Fitting the GPD to all exceedances and solving <span class="math inline">\(P(X&gt;z_p|X&gt;u)\phi_u \approx 1-F(z_p) = 1-p\)</span></li>
 </ol>
 <p>with <span class="math inline">\(z_p = \mbox{VaR}(p)\)</span>.</p>
-</div>
-<div id="adjustment-to-var-for-subperiod-maxima" class="section level3">
-<h3><span class="header-section-number">7.3.3</span> Adjustment to VaR for subperiod maxima</h3>
-<p>As seen in Section <a href="stationary.html#sect:shortRangeImplications">5.3.2</a> our estimated GEV for a stationary process is <span class="math inline">\(\tilde{H}(x)\approx F(x)^{n\theta}\)</span>. Thus we need to solve <span class="math inline">\({\tilde{H}^{1/(n\theta)}(z_p) = 1-p}\)</span>:
+<p>How do we calculate the VaR when it is evident that there is serial dependence in the data?</p>
+<p><strong>Adjusting for subperiod maxima</strong><br />
+As seen in Section <a href="stationary.html#sect:shortRangeImplications">5.3.2</a> our estimated GEV for a stationary process is <span class="math inline">\(\tilde{H}(x)\approx F(x)^{n\theta}\)</span>. Thus we need to solve <span class="math inline">\({\tilde{H}^{1/(n\theta)}(z_p) = p}\)</span>:
 <span class="math display">\[\begin{eqnarray*}
- \hat{z_p}=\hat\mu -\frac{\hat\sigma}{\hat\xi}\left[1-\{-n\theta\log(1-p)\}^{-\hat\xi}\right]
+ \hat{z_p}=\hat\mu -\frac{\hat\sigma}{\hat\xi}\left[1-\{-n\theta\log p\}^{-\hat\xi}\right]
 \end{eqnarray*}\]</span>
-with <span class="math inline">\(z_p = \mbox{VaR}(p)\)</span>. If <span class="math inline">\(\theta&lt;1\)</span> this estimate is larger than when <span class="math inline">\(\theta=1\)</span>. Ignoring dependence thus means we underestimate value at risk.</p>
-<p>We need all data to estimate the extremal index (via the Runs Method).</p>
+with <span class="math inline">\(z_p = \mbox{VaR}(p)\)</span>. If <span class="math inline">\(\theta&lt;1\)</span> this estimate is larger than when <span class="math inline">\(\theta=1\)</span>. Ignoring dependence thus means we underestimate the VaR. Note that we will still need all data to estimate the extremal index (via the Runs Method).</p>
+<p><strong>Adjusting for all exceedances</strong><br />
+The original estimate is still valid in this case. However, if we use all exceedances to estimate parameters, then an adjustment to the standard errors would be required (cf. Section <a href="inference-dependent.html#sect:modelClusterMaxima">6.2</a>).</p>
+<p><strong>BMW example</strong><br />
+Going back to previous results, the estimates of the GPD parameters for the entire series taking a threshold of <span class="math inline">\(u=0.03\)</span> are <span class="math inline">\(\hat{\sigma}_u=0.0126~(0.00157)\)</span> and <span class="math inline">\(\hat{\xi} = 0.143~(0.0947)\)</span>. The quoted standard errors are too small as the exceedances are not independent.</p>
+<p>The estimates of the GPD parameters using clustering maxima for clusters defind by the runs method taking <span class="math inline">\(u=0.03\)</span> and <span class="math inline">\(m = 10\)</span> are <span class="math inline">\(\hat{\sigma}_u=0.0126~(0.00189)\)</span> and <span class="math inline">\(\hat{\xi} = 0.179~(0.116)\)</span>. These standard errors are more reliable.</p>
+<p>The <span class="math inline">\(99\)</span>% VaR for the three monthly maxima of these data was estimated as <span class="math inline">\(0.0333\)</span>. However, this estimate didn’t take account of the dependence, measured via the extremal index <span class="math inline">\(\theta\)</span>, estimated in Figure <a href="finance.html#fig:bmw-dep">7.2</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:bmw-dep"></span>
+<img src="images/bmw-dep-1.png" alt="Runs estimate of the extremal index for BMW data." width="85%" />
+<p class="caption">
+Figure 7.2: Runs estimate of the extremal index for BMW data.
+</p>
 </div>
-<div id="adjustment-to-var-for-all-exceedances" class="section level3">
-<h3><span class="header-section-number">7.3.4</span> Adjustment to VaR for all exceedances</h3>
-<p>The original estimate is still valid in this case. However, if we use all exceedances to estimate parameters, then an adjustment to the standard errors would be required (cf. Section <a href="inference-dependent.html#sect:modelClusterMaxima">6.2</a>).</p>
+<p>A threshold of <span class="math inline">\(u=0.03\)</span> and run length <span class="math inline">\(m = 10\)</span> appears to give a stable estimate of <span class="math inline">\(\hat{\theta} \approx 0.593\)</span>. Including this in the VaR<span class="math inline">\((0.99)\)</span> calculation gives
+<span class="math display">\[ \hat\mu -\frac{\hat\sigma}{\hat\xi}\left[1-\{-0.593 \times 66 \log(0.99)\}^{-\hat\xi}\right] =  0.0406 \]</span>
+which is exceeded by a proportion of <span class="math inline">\(0.0103\)</span> of the data, and closer to the estimate according to the GPD approach.</p>
 </div>
 <div id="volatility" class="section level3">
 <h3><span class="header-section-number">7.3.5</span> Volatility</h3>
-<p>In Section <a href="inference-dependent.html#sect:extIndexStdSqrRet">6.1.1.1</a>, we saw that whether or not we account for volatility makes a difference to our analysis.</p>
-<p><img src="images/ftse_again-1.png" width="85%" style="display: block; margin: auto;" /></p>
-<p>Thus far we have calculated VaR as a quantile of the entire series over a long time period, ignoring the local variation. In practice, we may want to estimate VaR for tomorrow rather than on an arbitrary day.</p>
+<p>In Section <a href="inference-dependent.html#sect:extIndexStdSqrRet">6.1.1.1</a>, we saw that whether or not we account for volatility makes a difference to our analysis. Thus far we have calculated VaR as a quantile of the entire series over a long time period, ignoring the local variation, which is however usually present in financial time series (see, for example, Figure <a href="finance.html#fig:bmw-ts">7.1</a>). In practice, we may want to estimate VaR for tomorrow rather than on an arbitrary day.</p>
 <p>One approach to removing volatility is similar to that seen in Section <a href="inference-dependent.html#sect:extIndexStdSqrRet">6.1.1.1</a> . Define the filtered negative returns by
 <span class="math display">\[\begin{eqnarray*}
  Z_t = \frac{X_t - \tilde{E}(X_t)}{\tilde{SD}(X_t)}
 \end{eqnarray*}\]</span>
 where <span class="math inline">\(\tilde{E}(X_t)\)</span> and <span class="math inline">\(\tilde{SD}(X_t)\)</span> are local estimates of the mean and standard deviation, for example using the sample mean and sample standard deviation of the previous <span class="math inline">\(h\)</span> observations.</p>
-<p>Suppose that we have a series of length <span class="math inline">\(T\)</span>. The value at risk for the day <span class="math inline">\(T+1\)</span> can be estimated as
+<p>Suppose that we have a series of length <span class="math inline">\(T\)</span>. The VaR for the day <span class="math inline">\(T+1\)</span> can be estimated as
 <span class="math display">\[\begin{eqnarray*}
  \mbox{VaR}(p)[T+1] = \mbox{VaR}_{Z}(p)\times \tilde{SD}(X_T) + \tilde{E}(X_T)
 \end{eqnarray*}\]</span>
-where <span class="math inline">\({\mbox{VaR}_{Z}(p)}\)</span> is the value at risk estimated from the filtered series <span class="math inline">\(Z_t\)</span>.</p>
+where <span class="math inline">\({\mbox{VaR}_{Z}(p)}\)</span> is the VaR estimated from the filtered series <span class="math inline">\(Z_t\)</span>.</p>
+<p><strong>BMW example</strong></p>
+<div class="figure" style="text-align: center"><span id="fig:bmw-vol"></span>
+<img src="images/bmw-vol-1.png" alt="Filtered series for BMW data." width="85%" />
+<p class="caption">
+Figure 7.3: Filtered series for BMW data.
+</p>
+</div>
+<p>We will calculate VaR<span class="math inline">\((p)[t]\)</span> for <span class="math inline">\(t\geq h\)</span>, with <span class="math inline">\(h = 20\)</span>. First we obtain the filtered series, which is shown in Figure <a href="finance.html#fig:bmw-vol">7.3</a>.</p>
+<p>Following the usual procedure the <span class="math inline">\(\text{VaR}(0.99)\)</span> is estimated as <span class="math inline">\(2.46\)</span>. Transforming to the return series gives the following plot of daily <span class="math inline">\(99\)</span>% VaR estimates</p>
+<p><img src="images/bmw-vart-1.png" width="85%" style="display: block; margin: auto;" />
+The proportion of data exceeding <span class="math inline">\(\text{VaR}(0.99)[t]\)</span> is (interestingly) <span class="math inline">\(0.0203\)</span>, much larger than the proportion of data exceeding <span class="math inline">\(\text{VaR}(0.99)\)</span>, which is calculated to be <span class="math inline">\(0.0103\)</span> above.</p>
 </div>
 </div>
 <div id="volatility-models" class="section level2">
 <h2><span class="header-section-number">7.4</span> Volatility models</h2>
-<p>Fit GARCH models, then look at the standardised residuals, which are the</p>
-<div id="a-two-stage-approach" class="section level3">
-<h3><span class="header-section-number">7.4.1</span> A two-stage approach</h3>
+<div class="figure" style="text-align: center"><span id="fig:ftse-again"></span>
+<img src="images/ftse-again-1.png" alt="Returns of the FTSE index." width="85%" />
+<p class="caption">
+Figure 7.4: Returns of the FTSE index.
+</p>
 </div>
+<p>You may have learned about (G)ARCH and other models that account for the volatility directly. Here, we will be using the GARCH<span class="math inline">\((1,1)\)</span> model as an example for the FTSE return series in Figure <a href="finance.html#fig:ftse-again">7.4</a>, denoted by <span class="math inline">\(\{X_t\}\)</span>. The model equations are
+<span class="math display">\[\begin{align*}
+  X_t &amp;= \sigma_t\epsilon_t, \\
+  \sigma_t^2 &amp;= \omega + \alpha X_{t-1}^2 + \beta \sigma_{t-1}^2,
+\end{align*}\]</span>
+where <span class="math inline">\(\omega&gt;0,\alpha\geq0,\beta\geq0\)</span>, and the innovation series <span class="math inline">\(\{\epsilon_t\}\)</span> are IID with expectation 0 and variance 1. It is also usually assumed that the innovations are normally distributed.</p>
+<p>We examine if the normality assumption is reasonable after fitting to the FTSE data. From the Q-Q plot of the residuals, which are proxies of the innovation sequence, we can safely say they are not normally distributed.</p>
+<p><img src="images/ftse_garch-1.png" width="85%" style="display: block; margin: auto;" /></p>
+<p>We can also fit the GPD to high quantiles to the residuals and the negative residuals to examine the behaviour on both tails. According to the parameter stability plots, it could be argued that the residuals (top) have a shape parameter of 0 i.e. the Gumbel distribution, whose DoA contains the normal distribution. On the other hand, it is quite clear that the negative residuals (bottom) have a heavier tail than what would be according to the normal distribution.</p>
+<p><img src="images/ftse_par_stability-1.png" width="85%" style="display: block; margin: auto;" /><img src="images/ftse_par_stability-2.png" width="85%" style="display: block; margin: auto;" /></p>
+<p>Ideally, the asymmetry and heaviness of the tails should be incorporated into the GARCH model. As such a unifying model is beyond the scope of this module, we will simply list out a few practical difficulties:</p>
+<ol style="list-style-type: decimal">
+<li>Not even the Student’s <span class="math inline">\(t\)</span>-distribution can circumvent the issue with the violation of the normality assumption, because the data are asymmetric in the tails, while the distribution itself is symmetric;</li>
+<li>Inherently, it is inconsistent to fit the GARCH model assuming normality first, followed by fitting non-normal distribution(s);</li>
+<li>If we are to fit the GARCH model while assuming the appropriate innovation distribution, we will need a distribution that encompasses not only the two tails but also the body;</li>
+<li>The two constraints of zero mean &amp; unit variance for the innovations are still required.</li>
+</ol>
+<p>See <span class="citation">So and Chan (<a href="#ref-sc14">2014</a>)</span> for an example of incorporating extreme value methods in GARCH models.</p>
 </div>
 <div id="further-reading" class="section level2">
 <h2><span class="header-section-number">7.5</span> Further reading</h2>
@@ -517,6 +578,9 @@ where <span class="math inline">\({\mbox{VaR}_{Z}(p)}\)</span> is the value at r
 </div>
 <div id="ref-sibuya60">
 <p>Sibuya, M. 1960. “Bivariate Extreme Statistics.” <em>Annals of the Institute of Statistical Mathematics</em> 11: 195–210.</p>
+</div>
+<div id="ref-sc14">
+<p>So, M. K. P., and R. K. S. Chan. 2014. “Bayesian Analysis of Tail Asymmetry Based on a Threshold Extreme Value Model.” <em>Computational Statistics and Data Analysis</em> 71: 568–87.</p>
 </div>
 <div id="ref-tdo623">
 <p><span>T</span>iago de Oliveira, J. n.d. “Structure Theory of Bivariate Extremes; Extensions.” <em>Est. Mat., Estat. E. Econ.</em> 7: 165–95.</p>
