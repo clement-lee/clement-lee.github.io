@@ -6,6 +6,9 @@ output:
 ---
 
 ## Talks given
+### On network model selection
+2021-03-10: [Internal reading group](slides/reading_group_20210310.html)
+
 ### On citation networks
 2020-02-20: [CASA seminar](slides/casa_seminar.html)  
 2019-06-13: [CSML seminar](slides/csml_seminar.html)  
