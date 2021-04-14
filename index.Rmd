@@ -6,26 +6,23 @@ output:
 ---
 
 ## Talks given
-### On network model selection
-2021-03-10: [Internal reading group](slides/reading_group_20210310.html)
-
-### On citation networks
+### On various aspects of networks
+2021-04-14: [Public lecture](slides/fst_public_lecture_20210414.html)  
+2021-03-10: [Internal reading group](slides/reading_group_20210310.html)  
 2020-02-20: [CASA seminar](slides/casa_seminar.html)  
 2019-06-13: [CSML seminar](slides/csml_seminar.html)  
 2019-05-24: [DSI seminar](slides/dsi_seminar.html)  
 2018-10-19: [Internal seminar](slides/statsresgroup_network_review.html)  
 2018-08-30: [Compstat conference](slides/compstat.html)  
 2018-08-24: [Open Lab talk](slides/labtalk_citation_network.html)  
+2017-04-21: [Open Lab talk](slides/labtalk.html)  
+2017-03-24: [Internal seminar](slides/network_epidemic.html)  
 
 ### On data visualisations
 2018-12-22: [CSC8111](slides/csc8111.html)  
 
 ### On NHPP modelling of retweets
 2018-01-26: [Internal seminar](slides/tweets_statsresgroup.html)  
-
-### On network epidemic
-2017-04-21: [Open Lab talk](slides/labtalk.html)  
-2017-03-24: [Internal seminar](slides/network_epidemic.html)  
 
 ## Some pages
 [Google scholar](https://scholar.google.co.uk/citations?user=V_i3YwkAAAAJ&hl=en)  
