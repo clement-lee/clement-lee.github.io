@@ -347,9 +347,9 @@ For example, if we save the current system time:<a href="#fn12" class="footnote-
 <pre><code>## [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</code></pre>
 <p>We can then extract each of its elements:</p>
 <div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb351-1" title="1"><span class="kw">year</span>(stamp) <span class="co"># for illustration only; your output might vary</span></a></code></pre></div>
-<pre><code>## [1] 2020</code></pre>
+<pre><code>## [1] 2021</code></pre>
 <div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb353-1" title="1"><span class="kw">minute</span>(stamp) <span class="co"># your output might vary</span></a></code></pre></div>
-<pre><code>## [1] 45</code></pre>
+<pre><code>## [1] 46</code></pre>
 <p>For the month and weekday elements (<code>mday</code> and <code>wday</code>), we can also specify whether we want to extract the numerical value of the element, an abbreviation of the name of the month or weekday, or the full name.
 For example:</p>
 <table>
@@ -412,7 +412,7 @@ For example:</p>
 <pre><code>## [1] October
 ## 12 Levels: January &lt; February &lt; March &lt; April &lt; May &lt; June &lt; ... &lt; December</code></pre>
 <div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb361-1" title="1"><span class="kw">wday</span>(stamp, <span class="dt">label=</span><span class="ot">TRUE</span>, <span class="dt">abbr=</span><span class="ot">FALSE</span>) <span class="co"># your output might vary</span></a></code></pre></div>
-<pre><code>## [1] Friday
+<pre><code>## [1] Monday
 ## 7 Levels: Sunday &lt; Monday &lt; Tuesday &lt; Wednesday &lt; Thursday &lt; ... &lt; Saturday</code></pre>
 </div>
 <div id="arithmetic-with-timestamps" class="section level3">
@@ -453,7 +453,7 @@ them. To do this use the helper functions;
 <code>hours()</code>, <code>minutes()</code>, and <code>seconds()</code>. Where
 the first and only argument is the amount of that unit of time:</p>
 <div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb371-1" title="1">stamp <span class="op">-</span><span class="st"> </span><span class="kw">hours</span>(<span class="dv">48</span>) <span class="op">-</span><span class="st"> </span><span class="kw">minutes</span>(<span class="dv">30</span>)</a></code></pre></div>
-<pre><code>## [1] &quot;2020-10-28 23:15:04 GMT&quot;</code></pre>
+<pre><code>## [1] &quot;2021-10-02 12:16:08 BST&quot;</code></pre>
 </div>
 <div id="intervals-and-durations" class="section level3">
 <h3><span class="header-section-number">3.2.4</span> Intervals and durations</h3>
@@ -603,7 +603,7 @@ square-kilometres.</p></li>
 <a class="sourceLine" id="cb400-6" title="6">            <span class="dt">alpha=</span><span class="fl">0.5</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb400-7" title="7"><span class="st">  </span><span class="kw">scale_colour_gradient</span>(<span class="dt">low=</span>palette[<span class="dv">1</span>], <span class="dt">high=</span>palette[<span class="dv">3</span>]) <span class="op">+</span></a>
 <a class="sourceLine" id="cb400-8" title="8"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;top&quot;</span>)</a></code></pre></div>
-<p><img src="images/sea-ice-colorbrewer-1.png" width="672" /></p>
+<p><img src="images/sea-ice-colorbrewer-1.png" width="50%" /></p>
 </div>
 </div>
 <div id="summarising-data-over-time" class="section level2">

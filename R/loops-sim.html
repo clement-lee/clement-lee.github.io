@@ -479,10 +479,10 @@ want to square:</p>
 <a class="sourceLine" id="cb278-18" title="18"><span class="co"># how much time does each method take to execute?</span></a>
 <a class="sourceLine" id="cb278-19" title="19"><span class="kw">system.time</span>(<span class="kw">square_x_loop</span>())</a></code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.936   0.020   0.956</code></pre>
+##   0.970   0.052   1.022</code></pre>
 <div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb280-1" title="1"><span class="kw">system.time</span>(<span class="kw">square_x_vector</span>())</a></code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.052   0.028   0.080</code></pre>
+##   0.048   0.036   0.083</code></pre>
 <p>The <code>for</code> loop took longer than the vector approach. This is because of the way R is optimised for thinking with vectors, rather than thinking about processing individual values. With other more low-level programming languages you might not see any difference in terms of speed between these two methods, in fact it might even be the other way around.</p>
 <p>However, you should only consider a different approach when your loop seems to
 be taking a long time, and in these cases there will usually be a better way to code the solution. In all other cases where looping seems to solve your problem in a timely manner this is good enough.</p>
@@ -598,7 +598,7 @@ reads:</p>
 <a class="sourceLine" id="cb293-21" title="21"> }</a>
 <a class="sourceLine" id="cb293-22" title="22"></a>
 <a class="sourceLine" id="cb293-23" title="23"><span class="kw">roll_d6</span>()</a></code></pre></div>
-<pre><code>## [1] 2</code></pre>
+<pre><code>## [1] 3</code></pre>
 <p>The function currently has no arguments, this is because everything about
 rolling a single dice is fixed. A feature that we could add is to allow multiple dice
 rolls with one call to <code>roll_d6()</code>, though we should assume by default
@@ -798,7 +798,7 @@ Figure 2.2: Variation in proportion due to size of the year group. Demonstrating
 ##  [7]  1.16457391  0.05594423 -1.17949905 -1.63178444</code></pre>
 <div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb304-1" title="1"><span class="kw">qplot</span>(x) <span class="co"># quick but not recommended for complex plots - use ggplot()</span></a></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="images/rnorm10-1.png" width="672" /></p>
+<p><img src="images/rnorm10-1.png" width="50%" /></p>
 <p>If you rerun these two commands repeatedly you will notice that the <span class="math inline">\(10\)</span> values you draw each time changes.</p>
 <p>You may have noticed that all of the random functions start with <code>r</code> and follow with an abbreviation of the distribution name. Replacing <code>r</code> with <code>d</code>, <code>p</code>, <code>q</code> will give you the names of the functions that allow you to calculate density values, cumulative probabilities, and quantiles, respectively.</p>
 </div>

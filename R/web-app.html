@@ -281,7 +281,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb528-1" title="1"><span class="kw">barplot</span>(citations, <span class="dt">main=</span><span class="st">&quot;How many times have Prof. Diggle&#39;s papers been cited?&quot;</span>, </a>
 <a class="sourceLine" id="cb528-2" title="2">        <span class="dt">ylab=</span><span class="st">&#39;Number of citations&#39;</span>, <span class="dt">col=</span><span class="st">&quot;skyblue&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;&quot;</span>)</a></code></pre></div>
 <div class="figure"><span id="fig:diggle"></span>
-<img src="images/diggle-1.png" alt="The citations of Prof. Diggle's papers" width="672" />
+<img src="images/diggle-1.png" alt="The citations of Prof. Diggle's papers" width="50%" />
 <p class="caption">
 Figure 5.1: The citations of Prof. Diggle’s papers
 </p>
@@ -292,12 +292,12 @@ Figure 5.1: The citations of Prof. Diggle’s papers
 </ul>
 <p>We have obtained some of the information on the webpage.</p>
 <div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb529-1" title="1"><span class="kw">head</span>(overview)</a></code></pre></div>
-<pre><code>##               All Since 2015
-## 1 Citations 49837      16667
-## 2   h-index    86         53
-## 3 i10-index   273        203</code></pre>
+<pre><code>##                All Since 2016
+## 1 Citations 131102      55354
+## 2   h-index     91         58
+## 3 i10-index    307        224</code></pre>
 <div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb531-1" title="1"><span class="kw">head</span>(citations)</a></code></pre></div>
-<pre><code>## [1] 11844  5302  3402  1393  1380  1254</code></pre>
+<pre><code>## [1] 76659 12449  5623  3642  1489  1473</code></pre>
 <p>Researchers almost never publish alone and will work with numerous collaborators, often across various disciplines. Prof. Diggle is no exception, let’s have a look at some of his co-authors. Remember that the selectorgadget Chrome extension can help you find the name of the CSS tag you need to provide to <code>html_nodes()</code>. Another way is to press <em>Ctrl+Shift+I</em> in Chrome and view the HTML source code. Remember also that websites are frequently updated and so the next time you run this code it will fail if Google have changed the Google Scholar HTML code.</p>
 <div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb533-1" title="1">Coauthors &lt;-<span class="st"> </span>page <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb533-2" title="2"><span class="st">     </span><span class="kw">html_nodes</span>(<span class="dt">css =</span> <span class="st">&quot;.gsc_rsb_a_desc a&quot;</span>) <span class="op">%&gt;%</span></a>
@@ -325,27 +325,27 @@ Figure 5.1: The citations of Prof. Diggle’s papers
 <a class="sourceLine" id="cb537-6" title="6"><span class="st">    </span><span class="kw">layer_points</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb537-7" title="7"><span class="st">    </span><span class="kw">layer_model_predictions</span>(<span class="dt">model=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">TRUE</span>) </a></code></pre></div>
 <pre><code>## Guessing formula = mpg ~ hp</code></pre>
-<div id="plot_id400232867-container" class="ggvis-output-container">
-<div id="plot_id400232867" class="ggvis-output"></div>
+<div id="plot_id241246402-container" class="ggvis-output-container">
+<div id="plot_id241246402" class="ggvis-output"></div>
 <div class="plot-gear-icon">
 <nav class="ggvis-control">
 <a class="ggvis-dropdown-toggle" title="Controls" onclick="return false;"></a>
 <ul class="ggvis-dropdown">
 <li>
 Renderer: 
-<a id="plot_id400232867_renderer_svg" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id400232867" data-renderer="svg">SVG</a>
+<a id="plot_id241246402_renderer_svg" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id241246402" data-renderer="svg">SVG</a>
  | 
-<a id="plot_id400232867_renderer_canvas" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id400232867" data-renderer="canvas">Canvas</a>
+<a id="plot_id241246402_renderer_canvas" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id241246402" data-renderer="canvas">Canvas</a>
 </li>
 <li>
-<a id="plot_id400232867_download" class="ggvis-download" data-plot-id="plot_id400232867">Download</a>
+<a id="plot_id241246402_download" class="ggvis-download" data-plot-id="plot_id241246402">Download</a>
 </li>
 </ul>
 </nav>
 </div>
 </div>
 <script type="text/javascript">
-var plot_id400232867_spec = {
+var plot_id241246402_spec = {
   "data": [
     {
       "name": ".0",
@@ -545,12 +545,12 @@ var plot_id400232867_spec = {
     "duration": 250,
     "renderer": "svg",
     "hover_duration": 0,
-    "width": 672,
+    "width": "50%",
     "height": 480
   },
   "handlers": null
 };
-ggvis.getPlot("plot_id400232867").parseSpec(plot_id400232867_spec);
+ggvis.getPlot("plot_id241246402").parseSpec(plot_id241246402_spec);
 </script>
 <p>This plot can be broken down into smaller components in the same as <code>ggplot</code> graphics are built-up from smaller components. We’re plotting the data and overlaying a straight line, which is the prediction from a linear model that we’ve fitted to the data. We have also added pointwise 95% confidence interval bands to our linear model.</p>
 <p>Horsepower is related to the number of cylinders in the engine. So let’s group the data into number of cylinders and then, treating each group independently, fit a new linear model. Therefore, we are fitting a piecewise linear model.</p>
@@ -561,27 +561,27 @@ ggvis.getPlot("plot_id400232867").parseSpec(plot_id400232867_spec);
 <a class="sourceLine" id="cb539-5" title="5"><span class="st">    </span><span class="kw">group_by</span>(cyl) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb539-6" title="6"><span class="st">    </span><span class="kw">layer_model_predictions</span>(<span class="dt">model =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## Guessing formula = mpg ~ wt</code></pre>
-<div id="plot_id241246402-container" class="ggvis-output-container">
-<div id="plot_id241246402" class="ggvis-output"></div>
+<div id="plot_id539749162-container" class="ggvis-output-container">
+<div id="plot_id539749162" class="ggvis-output"></div>
 <div class="plot-gear-icon">
 <nav class="ggvis-control">
 <a class="ggvis-dropdown-toggle" title="Controls" onclick="return false;"></a>
 <ul class="ggvis-dropdown">
 <li>
 Renderer: 
-<a id="plot_id241246402_renderer_svg" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id241246402" data-renderer="svg">SVG</a>
+<a id="plot_id539749162_renderer_svg" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id539749162" data-renderer="svg">SVG</a>
  | 
-<a id="plot_id241246402_renderer_canvas" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id241246402" data-renderer="canvas">Canvas</a>
+<a id="plot_id539749162_renderer_canvas" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id539749162" data-renderer="canvas">Canvas</a>
 </li>
 <li>
-<a id="plot_id241246402_download" class="ggvis-download" data-plot-id="plot_id241246402">Download</a>
+<a id="plot_id539749162_download" class="ggvis-download" data-plot-id="plot_id539749162">Download</a>
 </li>
 </ul>
 </nav>
 </div>
 </div>
 <script type="text/javascript">
-var plot_id241246402_spec = {
+var plot_id539749162_spec = {
   "data": [
     {
       "name": ".0",
@@ -828,12 +828,12 @@ var plot_id241246402_spec = {
     "duration": 250,
     "renderer": "svg",
     "hover_duration": 0,
-    "width": 672,
+    "width": "50%",
     "height": 480
   },
   "handlers": null
 };
-ggvis.getPlot("plot_id241246402").parseSpec(plot_id241246402_spec);
+ggvis.getPlot("plot_id539749162").parseSpec(plot_id539749162_spec);
 </script>
 <div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb541-1" title="1"><span class="co">## the group_by(cyl) tells next layer to group by cylinder factor</span></a></code></pre></div>
 <p>The plot shows three separate lines, with their corresponding 95% confidence intervals.</p>
@@ -852,27 +852,27 @@ ggvis.getPlot("plot_id241246402").parseSpec(plot_id241246402_spec);
 <a class="sourceLine" id="cb542-8" title="8">vis0</a></code></pre></div>
 <pre><code>## Warning: Can&#39;t output dynamic/interactive ggvis plots in a knitr document.
 ## Generating a static (non-dynamic, non-interactive) version of the plot.</code></pre>
-<div id="plot_id812560195-container" class="ggvis-output-container">
-<div id="plot_id812560195" class="ggvis-output"></div>
+<div id="plot_id411342527-container" class="ggvis-output-container">
+<div id="plot_id411342527" class="ggvis-output"></div>
 <div class="plot-gear-icon">
 <nav class="ggvis-control">
 <a class="ggvis-dropdown-toggle" title="Controls" onclick="return false;"></a>
 <ul class="ggvis-dropdown">
 <li>
 Renderer: 
-<a id="plot_id812560195_renderer_svg" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id812560195" data-renderer="svg">SVG</a>
+<a id="plot_id411342527_renderer_svg" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id411342527" data-renderer="svg">SVG</a>
  | 
-<a id="plot_id812560195_renderer_canvas" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id812560195" data-renderer="canvas">Canvas</a>
+<a id="plot_id411342527_renderer_canvas" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id411342527" data-renderer="canvas">Canvas</a>
 </li>
 <li>
-<a id="plot_id812560195_download" class="ggvis-download" data-plot-id="plot_id812560195">Download</a>
+<a id="plot_id411342527_download" class="ggvis-download" data-plot-id="plot_id411342527">Download</a>
 </li>
 </ul>
 </nav>
 </div>
 </div>
 <script type="text/javascript">
-var plot_id812560195_spec = {
+var plot_id411342527_spec = {
   "data": [
     {
       "name": ".0",
@@ -881,10 +881,10 @@ var plot_id812560195_spec = {
         "parse": {
           "wt": "number",
           "mpg": "number",
-          "reactive_137215067": "number"
+          "reactive_812560195": "number"
         }
       },
-      "values": "\"wt\",\"mpg\",\"reactive_137215067\"\n2.62,21,100\n2.875,21,100\n2.32,22.8,100\n3.215,21.4,100\n3.44,18.7,100\n3.46,18.1,100\n3.57,14.3,100\n3.19,24.4,100\n3.15,22.8,100\n3.44,19.2,100\n3.44,17.8,100\n4.07,16.4,100\n3.73,17.3,100\n3.78,15.2,100\n5.25,10.4,100\n5.424,10.4,100\n5.345,14.7,100\n2.2,32.4,100\n1.615,30.4,100\n1.835,33.9,100\n2.465,21.5,100\n3.52,15.5,100\n3.435,15.2,100\n3.84,13.3,100\n3.845,19.2,100\n1.935,27.3,100\n2.14,26,100\n1.513,30.4,100\n3.17,15.8,100\n2.77,19.7,100\n3.57,15,100\n2.78,21.4,100"
+      "values": "\"wt\",\"mpg\",\"reactive_812560195\"\n2.62,21,100\n2.875,21,100\n2.32,22.8,100\n3.215,21.4,100\n3.44,18.7,100\n3.46,18.1,100\n3.57,14.3,100\n3.19,24.4,100\n3.15,22.8,100\n3.44,19.2,100\n3.44,17.8,100\n4.07,16.4,100\n3.73,17.3,100\n3.78,15.2,100\n5.25,10.4,100\n5.424,10.4,100\n5.345,14.7,100\n2.2,32.4,100\n1.615,30.4,100\n1.835,33.9,100\n2.465,21.5,100\n3.52,15.5,100\n3.435,15.2,100\n3.84,13.3,100\n3.845,19.2,100\n1.935,27.3,100\n2.14,26,100\n1.513,30.4,100\n3.17,15.8,100\n2.77,19.7,100\n3.57,15,100\n2.78,21.4,100"
     },
     {
       "name": ".0/model_prediction1",
@@ -994,7 +994,7 @@ var plot_id812560195_spec = {
             "field": "data.mpg"
           },
           "size": {
-            "field": "data.reactive_137215067"
+            "field": "data.reactive_812560195"
           }
         },
         "ggvis": {
@@ -1035,12 +1035,12 @@ var plot_id812560195_spec = {
     "duration": 250,
     "renderer": "svg",
     "hover_duration": 0,
-    "width": 672,
+    "width": "50%",
     "height": 480
   },
   "handlers": null
 };
-ggvis.getPlot("plot_id812560195").parseSpec(plot_id812560195_spec);
+ggvis.getPlot("plot_id411342527").parseSpec(plot_id411342527_spec);
 </script>
 <p>This particular plot has two sliders which you can play with to:</p>
 <ul>
@@ -1073,27 +1073,27 @@ ggvis.getPlot("plot_id812560195").parseSpec(plot_id812560195_spec);
 <a class="sourceLine" id="cb544-19" title="19">    )</a></code></pre></div>
 <pre><code>## Warning: Can&#39;t output dynamic/interactive ggvis plots in a knitr document.
 ## Generating a static (non-dynamic, non-interactive) version of the plot.</code></pre>
-<p><div id="plot_id680721530-container" class="ggvis-output-container">
-<div id="plot_id680721530" class="ggvis-output"></div>
+<p><div id="plot_id324173144-container" class="ggvis-output-container">
+<div id="plot_id324173144" class="ggvis-output"></div>
 <div class="plot-gear-icon">
 <nav class="ggvis-control">
 <a class="ggvis-dropdown-toggle" title="Controls" onclick="return false;"></a>
 <ul class="ggvis-dropdown">
 <li>
 Renderer: 
-<a id="plot_id680721530_renderer_svg" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id680721530" data-renderer="svg">SVG</a>
+<a id="plot_id324173144_renderer_svg" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id324173144" data-renderer="svg">SVG</a>
  | 
-<a id="plot_id680721530_renderer_canvas" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id680721530" data-renderer="canvas">Canvas</a>
+<a id="plot_id324173144_renderer_canvas" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id324173144" data-renderer="canvas">Canvas</a>
 </li>
 <li>
-<a id="plot_id680721530_download" class="ggvis-download" data-plot-id="plot_id680721530">Download</a>
+<a id="plot_id324173144_download" class="ggvis-download" data-plot-id="plot_id324173144">Download</a>
 </li>
 </ul>
 </nav>
 </div>
 </div>
 <script type="text/javascript">
-var plot_id680721530_spec = {
+var plot_id324173144_spec = {
   "data": [
     {
       "name": ".0/density1",
@@ -1245,12 +1245,12 @@ var plot_id680721530_spec = {
     "duration": 250,
     "renderer": "svg",
     "hover_duration": 0,
-    "width": 672,
+    "width": "50%",
     "height": 480
   },
   "handlers": null
 };
-ggvis.getPlot("plot_id680721530").parseSpec(plot_id680721530_spec);
+ggvis.getPlot("plot_id324173144").parseSpec(plot_id324173144_spec);
 </script>
 The plot allows you to choose which kernel you are using and also to adjust the bandwidth. This is much more convenient than plotting many different plots.</p>
 </div>
@@ -1344,7 +1344,6 @@ Figure 5.3: Example Jupyter notebook.
 <a class="sourceLine" id="cb547-34" title="34"><span class="st">    </span>readr<span class="op">::</span><span class="kw">parse_number</span>()</a>
 <a class="sourceLine" id="cb547-35" title="35"></a>
 <a class="sourceLine" id="cb547-36" title="36">knightsbridge_housing &lt;-<span class="st"> </span><span class="kw">data.frame</span>(address, price, beds, baths, house_area)</a></code></pre></div>
-<pre><code>## Error in data.frame(address, price, beds, baths, house_area): arguments imply differing number of rows: 103, 93, 94, 18</code></pre>
 <p>You may get some warnings/errors when you run this code. Let’s ignore those for the moment. You’ll find scraping data from website is never trivial. Web developers design their sites to be pretty and not scraper friendly. Companies that specialise in web scraping spend a significant portion of their time updating scrapers when websites are updated.</p>
 <p>Your task is to utilise what you’ve learnt over the past few weeks to perform some statistical analyses on these data. Here are some suggestions for things to explore.</p>
 <ul>
