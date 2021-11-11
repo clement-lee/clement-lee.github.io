@@ -6,6 +6,7 @@ output:
 ---
 
 ## Talks given (mostly on networks)
+2021-11-11: [Internal reading group](slides/reading_group_20211110.html)  
 2021-07-06: [useR! 2021 conference](slides/useR-elevator-pitch.html)  
 2021-04-14: [Public lecture](slides/fst_public_lecture_20210414.html)  
 2021-03-10: [Internal reading group](slides/reading_group_20210310.html)  
