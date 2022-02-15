@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>7 Extremes in Finance | Lancaster University MATH562/482/582</title>
-  <meta name="description" content="7 Extremes in Finance | Lancaster University MATH562/482/582" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <title>7 Extremes in Finance | Lancaster University MATH456/556</title>
+  <meta name="description" content="7 Extremes in Finance | Lancaster University MATH456/556" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="7 Extremes in Finance | Lancaster University MATH562/482/582" />
+  <meta property="og:title" content="7 Extremes in Finance | Lancaster University MATH456/556" />
   <meta property="og:type" content="book" />
   
   
@@ -16,12 +16,12 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="7 Extremes in Finance | Lancaster University MATH562/482/582" />
+  <meta name="twitter:title" content="7 Extremes in Finance | Lancaster University MATH456/556" />
   
   
   
 
-<meta name="author" content="Lecturers: Clement Lee &amp; Zak Varty" />
+<meta name="author" content="Lecturer: Clement Lee" />
 
 
 
@@ -32,7 +32,8 @@
   
 <link rel="prev" href="inference-dependent.html"/>
 <link rel="next" href="further.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -48,6 +49,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 
@@ -195,7 +198,7 @@
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lancaster University MATH562/482/582</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lancaster University MATH456/556</a>
           </h1>
         </div>
 
@@ -376,7 +379,7 @@ Compare this to Equation <a href="block-maxima.html#eq:return-level">(2.6)</a>. 
 Note that, the definition of VaR<span class="math inline">\((p)\)</span> varies slightly in the literature, as, for example, the 99% VaR here may be called the 1% VaR elsewhere. Nevertheless, there usually is no ambiguity as investors are most interested in large potential losses.</p>
 <strong>BMW example</strong><br />
 We continue with the daily negative returns seen above, but focus on one of the two stocks, namely BMW.
-<div class="figure" style="text-align: center"><span id="fig:bmw-ts"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:bmw-ts"></span>
 <img src="images/bmw-ts-1.png" alt="Daily negative returns of BMW." width="85%" />
 <p class="caption">
 Figure 7.1: Daily negative returns of BMW.
@@ -457,7 +460,7 @@ The original estimate is still valid in this case. However, if we use all exceed
 Going back to previous results, the estimates of the GPD parameters for the entire series taking a threshold of <span class="math inline">\(u=0.03\)</span> are <span class="math inline">\(\hat{\sigma}_u=0.0126~(0.00157)\)</span> and <span class="math inline">\(\hat{\xi} = 0.143~(0.0947)\)</span>. The quoted standard errors are too small as the exceedances are not independent.</p>
 <p>The estimates of the GPD parameters using clustering maxima for clusters defind by the runs method taking <span class="math inline">\(u=0.03\)</span> and <span class="math inline">\(m = 10\)</span> are <span class="math inline">\(\hat{\sigma}_u=0.0126~(0.00189)\)</span> and <span class="math inline">\(\hat{\xi} = 0.179~(0.116)\)</span>. These standard errors are more reliable.</p>
 <p>The <span class="math inline">\(99\)</span>% VaR for the three monthly maxima of these data was estimated as <span class="math inline">\(0.0333\)</span>. However, this estimate didn’t take account of the dependence, measured via the extremal index <span class="math inline">\(\theta\)</span>, estimated in Figure <a href="finance.html#fig:bmw-dep">7.2</a>.</p>
-<div class="figure" style="text-align: center"><span id="fig:bmw-dep"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:bmw-dep"></span>
 <img src="images/bmw-dep-1.png" alt="Runs estimate of the extremal index for BMW data." width="85%" />
 <p class="caption">
 Figure 7.2: Runs estimate of the extremal index for BMW data.
@@ -481,7 +484,7 @@ where <span class="math inline">\(\tilde{E}(X_t)\)</span> and <span class="math 
 \end{eqnarray*}\]</span>
 where <span class="math inline">\({\mbox{VaR}_{Z}(p)}\)</span> is the VaR estimated from the filtered series <span class="math inline">\(Z_t\)</span>.</p>
 <p><strong>BMW example</strong></p>
-<div class="figure" style="text-align: center"><span id="fig:bmw-vol"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:bmw-vol"></span>
 <img src="images/bmw-vol-1.png" alt="Filtered series for BMW data." width="85%" />
 <p class="caption">
 Figure 7.3: Filtered series for BMW data.
@@ -495,7 +498,7 @@ The proportion of data exceeding <span class="math inline">\(\text{VaR}(0.99)[t]
 </div>
 <div id="volatility-models" class="section level2">
 <h2><span class="header-section-number">7.4</span> Volatility models</h2>
-<div class="figure" style="text-align: center"><span id="fig:ftse-again"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ftse-again"></span>
 <img src="images/ftse-again-1.png" alt="Returns of the FTSE index." width="85%" />
 <p class="caption">
 Figure 7.4: Returns of the FTSE index.
@@ -602,7 +605,6 @@ where <span class="math inline">\(\omega&gt;0,\alpha\geq0,\beta\geq0\)</span>, a
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -621,6 +623,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -641,6 +644,10 @@ gitbook.start({
 "text": null
 },
 "download": ["_main.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

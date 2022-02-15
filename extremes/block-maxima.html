@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2 Classical Theory of Maxima of IID Variables | Lancaster University MATH562/482/582</title>
-  <meta name="description" content="2 Classical Theory of Maxima of IID Variables | Lancaster University MATH562/482/582" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <title>2 Classical Theory of Maxima of IID Variables | Lancaster University MATH456/556</title>
+  <meta name="description" content="2 Classical Theory of Maxima of IID Variables | Lancaster University MATH456/556" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2 Classical Theory of Maxima of IID Variables | Lancaster University MATH562/482/582" />
+  <meta property="og:title" content="2 Classical Theory of Maxima of IID Variables | Lancaster University MATH456/556" />
   <meta property="og:type" content="book" />
   
   
@@ -16,12 +16,12 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2 Classical Theory of Maxima of IID Variables | Lancaster University MATH562/482/582" />
+  <meta name="twitter:title" content="2 Classical Theory of Maxima of IID Variables | Lancaster University MATH456/556" />
   
   
   
 
-<meta name="author" content="Lecturers: Clement Lee &amp; Zak Varty" />
+<meta name="author" content="Lecturer: Clement Lee" />
 
 
 
@@ -32,7 +32,8 @@
   
 <link rel="prev" href="intro.html"/>
 <link rel="next" href="alternative.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -48,6 +49,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 
@@ -195,7 +198,7 @@
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lancaster University MATH562/482/582</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lancaster University MATH456/556</a>
           </h1>
         </div>
 
@@ -667,7 +670,7 @@ Bayesian inference</p>
 </div>
 <div id="sect:mle-gev-max-temperature" class="section level3">
 <h3><span class="header-section-number">2.3.2</span> Example: fitting the GEV to temperature maxima</h3>
-<div class="figure" style="text-align: center"><span id="fig:ii-i"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ii-i"></span>
 <img src="images/oxford.worthing.gev.qq.plot.png" alt="Q-Q plot for GEV fits to Oxford and Worthing annual maximum temperature data sets." width="85%" />
 <p class="caption">
 Figure 2.1: Q-Q plot for GEV fits to Oxford and Worthing annual maximum temperature data sets.
@@ -714,7 +717,7 @@ Figure 2.1: Q-Q plot for GEV fits to Oxford and Worthing annual maximum temperat
   \end{array}\right)
 \end{aligned} \]</span></p>
 <p>The 95% confidence intervals for the shape parameter <span class="math inline">\(\xi\)</span> based on the Normal approximation are <span class="math inline">\((-0.42, -0.15)\)</span> and <span class="math inline">\((-0.25, 0.03)\)</span> for Oxford and Worthing, respectively. Contrast these with the profile likelihood based 95% confidence intervals which reflect the skewness in the likelihood for this parameter:</p>
-<div class="figure" style="text-align: center"><span id="fig:ii-ii"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ii-ii"></span>
 <img src="images/oxford.worthing.gev.xi.pl.plot.png" alt="Profile log-likelihood functions for the GEV shape parameter $\xi$ for the Oxford and Worthing temperature data sets." width="85%" />
 <p class="caption">
 Figure 2.2: Profile log-likelihood functions for the GEV shape parameter <span class="math inline">\(\xi\)</span> for the Oxford and Worthing temperature data sets.
@@ -760,7 +763,7 @@ The <span class="math inline">\(1/p\)</span> return level <span class="math inli
 \end{eqnarray*}\]</span>
 where <span class="math inline">\(V\)</span> is the variance-covariance matrix of <span class="math inline">\((\hat\mu,\hat\sigma,\hat\xi)\)</span> and <span class="math inline">\(\nabla z_p\)</span> is the vector of first derivatives of <span class="math inline">\(z_p\)</span> with respect to <span class="math inline">\(\mu,\sigma\)</span> and <span class="math inline">\(\xi\)</span> respectively, evaluated at the MLE’s for these parameters.</p>
 <p>This expression is used to construct confidence intervals for <span class="math inline">\(\hat z_p\)</span> based on the approximate Normal distribution of <span class="math inline">\(\hat z_p\)</span>. Such confidence intervals are symmetric by construction, as can be seen in Figure <a href="block-maxima.html#fig:ii-iii">2.3</a>, which shows <span class="math inline">\(\hat z_p\)</span> against return period, with pointwise 95% confidence intervals. Empirical return levels are also shown for model validation. There are 80 points in each data set so the largest data point corresponds to the empirical 80 year return level. The smaller curvature in the Worthing return level plot is due to the value of the shape parameter, <span class="math inline">\(\xi\)</span>, for Worthing being closer to zero. If <span class="math inline">\(\xi=0\)</span> then the return level curve is linear on this scale.</p>
-<div class="figure" style="text-align: center"><span id="fig:ii-iii"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ii-iii"></span>
 <img src="images/oxford.worthing.gev.ret.level.plot.png" alt="Annual maximum return levels for the Oxford and Worthing temperature data sets." width="85%" />
 <p class="caption">
 Figure 2.3: Annual maximum return levels for the Oxford and Worthing temperature data sets.
@@ -779,7 +782,7 @@ The log-likelihood is now a function of parameters <span class="math inline">\((
 <li>The maximised values of the log-likelihood give the profile log-likelihood for <span class="math inline">\(z_p\)</span>.</li>
 </ol>
 <p>The skewness of the profile log-likelihood for return levels <span class="math inline">\(z_p\)</span> reflects the greater uncertainty we have about higher return levels, where we have less information from the data.</p>
-<div class="figure" style="text-align: center"><span id="fig:ii-iv"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ii-iv"></span>
 <img src="images/oxford.worthing.gev.ret.level.pl.plot.png" alt="Profile log-likelihoods for the 20-year return level of the annual maxima for the Oxford and Worthing temperature datasets." width="85%" />
 <p class="caption">
 Figure 2.4: Profile log-likelihoods for the 20-year return level of the annual maxima for the Oxford and Worthing temperature datasets.
@@ -787,7 +790,7 @@ Figure 2.4: Profile log-likelihoods for the 20-year return level of the annual m
 </div>
 <p>The plots in Figure <a href="block-maxima.html#fig:ii-iv">2.4</a> show the profile log-likelihoods for the 20 year return level <span class="math inline">\(z_{0.05}\)</span>. These profile log-likelihoods are reasonably symmetric as we have 80 years’ worth of data so estimation of this quantile does not involve extrapolation.</p>
 <p>The plots in Figure <a href="block-maxima.html#fig:ii-v">2.5</a> shows the profile log-likelihoods for the 200 year return level <span class="math inline">\(z_{0.005}\)</span>. These profile log-likelihoods are much more skewed than the profile log-likelihoods for the 20-year return level shown in Figure <a href="block-maxima.html#fig:ii-iv">2.4</a>.</p>
-<div class="figure" style="text-align: center"><span id="fig:ii-v"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ii-v"></span>
 <img src="images/oxford.worthing.gev.ret.level.200.pl.plot.png" alt="Profile log-likelihoods for the 200-year return level of the annual maxima for the Oxford and Worthing temperature datasets." width="85%" />
 <p class="caption">
 Figure 2.5: Profile log-likelihoods for the 200-year return level of the annual maxima for the Oxford and Worthing temperature datasets.
@@ -864,6 +867,12 @@ estimates.</p>
 <div id="ref-ded89">
 <p>Dekkers, A. L. M., J. H. J. Einmahl, and L. de Haan. 1989. “A Moment Estimator for the Index of an Extreme Value Distribution.” <em>Annals of Statistics</em> 17: 1833–55.</p>
 </div>
+<div id="ref-feller71">
+<p>Feller, W. 1971. <em>An Introduction to Probability Theory and Its Applications</em>. 2nd ed. John Wiley; Sons.</p>
+</div>
+<div id="ref-galambos87">
+<p>Galambos, J. 1987. <em>The Asymptotic Theory of Extreme Order Statistics</em>. 2nd ed. Malabar, Florida: Krieger.</p>
+</div>
 <div id="ref-ht01">
 <p>Heffernan, J. E., and J. A. Tawn. 2001. “Extreme Value Analysis of a Large Designed Experiment: A Case Study in Bulk Carrier Safety.” <em>Extremes</em> 4: 359–78.</p>
 </div>
@@ -878,6 +887,12 @@ estimates.</p>
 </div>
 <div id="ref-leadbetter83">
 <p>Leadbetter, M. R. 1983. “Extremes and Local Dependence in Stationary Sequences.” <em>Wahrscheinlichkeitsth</em> 65: 291–306.</p>
+</div>
+<div id="ref-llr83">
+<p>Leadbetter, M. R., G. Lindgren, and H. Rootzén. 1983. <em>Extremes and Related Properties of Random Sequences and Series</em>. New York: Springer Verlag.</p>
+</div>
+<div id="ref-resnick87">
+<p>Resnick, S. I. 1987. <em>Extreme Values, Regular Variation, and Point Processes</em>. New York: Springer Verlag.</p>
 </div>
 <div id="ref-rt97">
 <p>Robinson, M. E., and J. A. Tawn. 1997. “Statistics for Extreme Sea-Currents.” <em>Applied Statistics</em> 46: 183–205.</p>
@@ -911,7 +926,6 @@ It turns out that <span class="math inline">\(c\)</span> is linked to the tail b
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -930,6 +944,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -950,6 +965,10 @@ gitbook.start({
 "text": null
 },
 "download": ["_main.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6 Statistical Inference for Extremes of Stationary Processes | Lancaster University MATH562/482/582</title>
-  <meta name="description" content="6 Statistical Inference for Extremes of Stationary Processes | Lancaster University MATH562/482/582" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <title>6 Statistical Inference for Extremes of Stationary Processes | Lancaster University MATH456/556</title>
+  <meta name="description" content="6 Statistical Inference for Extremes of Stationary Processes | Lancaster University MATH456/556" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6 Statistical Inference for Extremes of Stationary Processes | Lancaster University MATH562/482/582" />
+  <meta property="og:title" content="6 Statistical Inference for Extremes of Stationary Processes | Lancaster University MATH456/556" />
   <meta property="og:type" content="book" />
   
   
@@ -16,12 +16,12 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6 Statistical Inference for Extremes of Stationary Processes | Lancaster University MATH562/482/582" />
+  <meta name="twitter:title" content="6 Statistical Inference for Extremes of Stationary Processes | Lancaster University MATH456/556" />
   
   
   
 
-<meta name="author" content="Lecturers: Clement Lee &amp; Zak Varty" />
+<meta name="author" content="Lecturer: Clement Lee" />
 
 
 
@@ -32,7 +32,8 @@
   
 <link rel="prev" href="stationary.html"/>
 <link rel="next" href="finance.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -48,6 +49,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 
@@ -195,7 +198,7 @@
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lancaster University MATH562/482/582</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lancaster University MATH456/556</a>
           </h1>
         </div>
 
@@ -237,7 +240,7 @@ using the empirical probability.</li>
 </ol>
 <p><strong>Example: daily rainfall data</strong></p>
 <p>We illustrate the use of these cluster identification and extremal index estimation using a time series of daily rainfall accumulations at a location in south-west England, recorded during 1914-1962. This data set is shown in Figure <a href="inference-dependent.html#fig:vi-i">6.1</a>. Note that the series is assumed to be stationary over this observation period.</p>
-<div class="figure" style="text-align: center"><span id="fig:vi-i"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:vi-i"></span>
 <img src="images/vi-i-1.png" alt="Daily rainfall." width="85%" />
 <p class="caption">
 Figure 6.1: Daily rainfall.
@@ -251,7 +254,7 @@ Figure 6.1: Daily rainfall.
 <li>the value of <span class="math inline">\(\theta(u,m)\approx 1\)</span> indicates weak short-range dependence with a limiting cluster size of 1 for higher thresholds.</li>
 <li>from experience we know rainfall episodes last a number of days, but this analysis tells us that extreme daily rainfall events tend to be isolated.</li>
 </ul>
-<div class="figure" style="text-align: center"><span id="fig:vi-ii"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:vi-ii"></span>
 <img src="images/rain.extremal.index.plot.png" alt="Extremal index estimates using the runs estimator with $m=1$ or $m=2$, for the rainfall data shown above." width="85%" />
 <p class="caption">
 Figure 6.2: Extremal index estimates using the runs estimator with <span class="math inline">\(m=1\)</span> or <span class="math inline">\(m=2\)</span>, for the rainfall data shown above.
@@ -259,7 +262,7 @@ Figure 6.2: Extremal index estimates using the runs estimator with <span class="
 </div>
 <p><strong>Example: financial time series data</strong></p>
 <p>We now turn to estimating clustering for the financial time series data. We focus on the <em>squared</em> returns from the FTSE 100 share index; these are shown in Figure <a href="inference-dependent.html#fig:vi-iii">6.3</a>. We make the initial assumption that the series is stationary over this observation period. (Note: this is slightly different to the observation period shown in Figure <a href="intro.html#fig:ftse">1.4</a>.)</p>
-<div class="figure" style="text-align: center"><span id="fig:vi-iii"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:vi-iii"></span>
 <img src="images/ftse.sqr.returns.plot.png" alt="Squared returns for the FTSE 100 share index." width="85%" />
 <p class="caption">
 Figure 6.3: Squared returns for the FTSE 100 share index.
@@ -273,7 +276,7 @@ Figure 6.3: Squared returns for the FTSE 100 share index.
 <li>the value of <span class="math inline">\(\hat{\theta}(u,m)\approx0.35\)</span> suggests that the mean cluster size is around 2.9;</li>
 <li><span class="math inline">\(m=10\)</span> seems fine for cluster identification.</li>
 </ul>
-<div class="figure" style="text-align: center"><span id="fig:vi-iv"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:vi-iv"></span>
 <img src="images/ftse.UKreturns.sq.ret.extremal.index.plot.png" alt="Extremal Index of the squared returnes for the FTSE 100 data, estimated using the runs method with $m=10$." width="85%" />
 <p class="caption">
 Figure 6.4: Extremal Index of the squared returnes for the FTSE 100 data, estimated using the runs method with <span class="math inline">\(m=10\)</span>.
@@ -285,13 +288,13 @@ Figure 6.4: Extremal Index of the squared returnes for the FTSE 100 data, estima
 <li>dividing by the local standard deviation</li>
 </ul>
 <p>We work with the squared standardised series as shown in Figure <a href="inference-dependent.html#fig:vi-v">6.5</a>. Local means and standard deviations were calculated using the <span class="math inline">\(h=20\)</span> observations centred on the value to be standardised. There is little sensitivity to this choice of <span class="math inline">\(m\)</span> for values of <span class="math inline">\(h\)</span> between 2 and 50.</p>
-<div class="figure" style="text-align: center"><span id="fig:vi-v"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:vi-v"></span>
 <img src="images/ftse.std.sqr.returns.plot.png" alt="Standardised squared returns for the FTSE 100 series." width="85%" />
 <p class="caption">
 Figure 6.5: Standardised squared returns for the FTSE 100 series.
 </p>
 </div>
-<div class="figure" style="text-align: center"><span id="fig:vi-vi"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:vi-vi"></span>
 <img src="images/ftse.UK.std.sqr.ret.extremal.index.plot.png" alt="Extremal index for the standardised squared returns of the FTSE 100 series. Estimates made using the runs method with $m=1$ and $m=2$." width="85%" />
 <p class="caption">
 Figure 6.6: Extremal index for the standardised squared returns of the FTSE 100 series. Estimates made using the runs method with <span class="math inline">\(m=1\)</span> and <span class="math inline">\(m=2\)</span>.
@@ -376,7 +379,6 @@ For the squared FTSE returns</p>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -395,6 +397,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -415,6 +418,10 @@ gitbook.start({
 "text": null
 },
 "download": ["_main.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

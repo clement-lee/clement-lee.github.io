@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4 Extremes of Non-identically Distributed Variables | Lancaster University MATH562/482/582</title>
-  <meta name="description" content="4 Extremes of Non-identically Distributed Variables | Lancaster University MATH562/482/582" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <title>4 Extremes of Non-identically Distributed Variables | Lancaster University MATH456/556</title>
+  <meta name="description" content="4 Extremes of Non-identically Distributed Variables | Lancaster University MATH456/556" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4 Extremes of Non-identically Distributed Variables | Lancaster University MATH562/482/582" />
+  <meta property="og:title" content="4 Extremes of Non-identically Distributed Variables | Lancaster University MATH456/556" />
   <meta property="og:type" content="book" />
   
   
@@ -16,12 +16,12 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4 Extremes of Non-identically Distributed Variables | Lancaster University MATH562/482/582" />
+  <meta name="twitter:title" content="4 Extremes of Non-identically Distributed Variables | Lancaster University MATH456/556" />
   
   
   
 
-<meta name="author" content="Lecturers: Clement Lee &amp; Zak Varty" />
+<meta name="author" content="Lecturer: Clement Lee" />
 
 
 
@@ -32,7 +32,8 @@
   
 <link rel="prev" href="alternative.html"/>
 <link rel="next" href="stationary.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -48,6 +49,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 
@@ -195,7 +198,7 @@
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lancaster University MATH562/482/582</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lancaster University MATH456/556</a>
           </h1>
         </div>
 
@@ -217,7 +220,7 @@
 <p>We shall discuss what it means for a process to have non-identically distributed margins and some of the forms that this may take. These forms of non-identical distribution are specifically chosen to lead into the modelling approach discussed in Section .</p>
 <p><strong>Trend in mean level</strong><br />
 The simplest form of non-identical marginal distribution is to have a trend in the mean (average) of a process. Here we show linear and cyclic (or seasonal) trends in Figure <a href="non-iid.html#fig:iv-meanTrend">4.1</a>.</p>
-<div class="figure" style="text-align: center"><span id="fig:iv-meanTrend"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:iv-meanTrend"></span>
 <img src="images/meanTrend.png" alt="Trend in mean." width="85%" />
 <p class="caption">
 Figure 4.1: Trend in mean.
@@ -225,7 +228,7 @@ Figure 4.1: Trend in mean.
 </div>
 <p><strong>Trend in variability</strong><br />
 Alternatively, we might instead observe some form of trend in the variability of the process. Again the examples we show in Figure <a href="non-iid.html#fig:iv-varTrend">4.2</a> have linear and cyclic trends in variance.</p>
-<div class="figure" style="text-align: center"><span id="fig:iv-varTrend"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:iv-varTrend"></span>
 <img src="images/varianceTrend.png" alt="Trend in variance." width="85%" />
 <p class="caption">
 Figure 4.2: Trend in variance.
@@ -251,7 +254,7 @@ where <span class="math inline">\(\alpha(t)\)</span> and <span class="math inlin
 <div id="reading-ozone-data" class="section level3">
 <h3><span class="header-section-number">4.1.1</span> Reading ozone data</h3>
 <p>Surface-level ozone (O<span class="math inline">\(_3\)</span>) levels measured at a site in central Reading are shown in Figure <a href="non-iid.html#fig:iv-i">4.3</a>. Data are daily maxima of hourly observations and are measured in <span class="math inline">\(\mu\)</span>gm<span class="math inline">\(^{-3}\)</span>. The trends in this data are not so obvious, but there is clearly seasonality - in this case an annual cycle.</p>
-<div class="figure" style="text-align: center"><span id="fig:iv-i"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:iv-i"></span>
 <img src="images/iv-i-1.png" alt="Daily maximum ozone in central Reading." width="85%" />
 <p class="caption">
 Figure 4.3: Daily maximum ozone in central Reading.
@@ -367,7 +370,7 @@ Figure <a href="non-iid.html#fig:iv-iii">4.4</a> compares the efficiency of the 
 <li><span class="math inline">\(\alpha(t) = \alpha_0 + \alpha_1 \sqrt 2\cos(\frac{2\pi t}{N}+\frac{\pi}{4})\)</span> (RHS)</li>
 </ul>
 <p>In these plots, dashed lines show the expected efficiency loss since the existing method uses only threshold exceedances.</p>
-<div class="figure" style="text-align: center"><span id="fig:iv-iii"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:iv-iii"></span>
 <img src="images/efficiency.png" alt="Efficiency of pre-processing and existing methods for modelling threshold exceedances" width="85%" />
 <p class="caption">
 Figure 4.4: Efficiency of pre-processing and existing methods for modelling threshold exceedances
@@ -379,7 +382,7 @@ Figure 4.4: Efficiency of pre-processing and existing methods for modelling thre
 <p>We analyse the Reading ozone data using existing and pre-processing methods and compare the results. Following the previous discussion on the science behind the production of atmospheric ozone, we consider daily maxima of NO, NO<span class="math inline">\(_2\)</span> and temperature, aggregate daily sunshine and a year-on-year trend as covariates. We also consider first-order interactions of these. The meteorological data has been obtained from a site situated less than 2km from the air quality monitoring site, courtesy of the UK Met. Office.</p>
 <p>We use maximum likelihood estimation throughout and forward selection to choose our covariates.</p>
 <p>Figure <a href="non-iid.html#fig:iv-v">4.5</a> shows the daily maxima of NO (<span class="math inline">\(\mu\mathrm{gm}^{-3}\)</span>), NO<span class="math inline">\(_2\)</span> (<span class="math inline">\(\mu\mathrm{gm}^{-3}\)</span>) and temperature (<span class="math inline">\(^{\circ}\)</span>C) and daily aggregate hours of sunshine.</p>
-<div class="figure" style="text-align: center"><span id="fig:iv-v"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:iv-v"></span>
 <img src="images/iv-v-1.png" alt="Ozone covariates." width="85%" />
 <p class="caption">
 Figure 4.5: Ozone covariates.
@@ -403,7 +406,7 @@ It is standard practise to assume that atmospheric data sets, such as the Readin
 \end{eqnarray*}\]</span></p>
 <p><strong>Thresholds</strong><br />
 Figure <a href="non-iid.html#fig:iv-vi">4.6</a> shows the data with the 90% constant (existing method) and varying (pre-processing method) thresholds. Note how closely the varying threshold follows the data.</p>
-<div class="figure" style="text-align: center"><span id="fig:iv-vi"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:iv-vi"></span>
 <img src="images/Ozone2.png" alt="Daily maximum ozone with pre-processing threshold shown." width="85%" />
 <p class="caption">
 Figure 4.6: Daily maximum ozone with pre-processing threshold shown.
@@ -411,7 +414,7 @@ Figure 4.6: Daily maximum ozone with pre-processing threshold shown.
 </div>
 <p><strong>Exceedances parameter</strong><br />
 Figure <a href="non-iid.html#fig:iv-vii">4.7</a> shows estimates of the exceedance parameter <span class="math inline">\(\phi_u(\mathbf{x}_t)\)</span>. The estimate is constant for the pre-processing method, but extremely variable for the existing method. Notice that the probability of an exceedance under the existing method is also very high (<span class="math inline">\(&gt; 0.5\)</span>) in the summer months - are such data really extreme?</p>
-<div class="figure" style="text-align: center"><span id="fig:iv-vii"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:iv-vii"></span>
 <img src="images/ratePar.png" alt="Rate parameters for the pre-processing and existing methods for modelling threshold exceedances." width="85%" />
 <p class="caption">
 Figure 4.7: Rate parameters for the pre-processing and existing methods for modelling threshold exceedances.
@@ -435,14 +438,14 @@ and using the pre-processing method are
 In this case the pre-processing method results in a much simplified tail model which is therefore much easier to fit.</p>
 <p><strong>Conditional return levels</strong><br />
 Point estimates (dots) of 99% return levels, with 95% bootstrapped confidence intervals (vertical lines) are shown in Figure <a href="non-iid.html#fig:iv-viii">4.8</a>. Crosses denote observed data.</p>
-<div class="figure" style="text-align: center"><span id="fig:iv-viii"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:iv-viii"></span>
 <img src="images/rtnLevels.png" alt="99\% return levels, with 95\% confidence intervals, from both pre-processing and existing methods. Crosses show observed data." width="85%" />
 <p class="caption">
 Figure 4.8: 99% return levels, with 95% confidence intervals, from both pre-processing and existing methods. Crosses show observed data.
 </p>
 </div>
 <p>Finally, Figure <a href="non-iid.html#fig:iv-ix">4.9</a> displays box plots of the 95% confidence interval widths for the two methods. The confidence intervals are generally much wider when we use the existing method than when we use the pre-processing method.</p>
-<div class="figure" style="text-align: center"><span id="fig:iv-ix"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:iv-ix"></span>
 <img src="images/rtnLevelsCi.png" alt="Boxplots of bootstrapped 95\% confidence intervals of the 99\% return levels shown in previous figure." width="85%" />
 <p class="caption">
 Figure 4.9: Boxplots of bootstrapped 95% confidence intervals of the 99% return levels shown in previous figure.
@@ -483,7 +486,6 @@ Figure 4.9: Boxplots of bootstrapped 95% confidence intervals of the 99% return 
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -502,6 +504,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -522,6 +525,10 @@ gitbook.start({
 "text": null
 },
 "download": ["_main.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

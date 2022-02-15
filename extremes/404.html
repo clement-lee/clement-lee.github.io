@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1 Introduction | Lancaster University MATH456/556</title>
-  <meta name="description" content="1 Introduction | Lancaster University MATH456/556" />
+  <title>Page not found | Lancaster University MATH456/556</title>
+  <meta name="description" content="Page not found | Lancaster University MATH456/556" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1 Introduction | Lancaster University MATH456/556" />
+  <meta property="og:title" content="Page not found | Lancaster University MATH456/556" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1 Introduction | Lancaster University MATH456/556" />
+  <meta name="twitter:title" content="Page not found | Lancaster University MATH456/556" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="block-maxima.html"/>
+
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -206,129 +206,19 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="intro" class="section level1">
-<h1><span class="header-section-number">1</span> Introduction</h1>
-<div id="role-of-extreme-value-theory" class="section level2">
-<h2><span class="header-section-number">1.1</span> Role of Extreme Value Theory</h2>
-<p>Consider a set of observations from <em>independent and identically distributed</em> (IID) random variables <span class="math inline">\(X_1, \ldots, X_n\)</span>, with an unknown distribution function <span class="math inline">\(F\)</span>.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:i"></span>
-<img src="images/i-1.png" alt="Data density" width="85%" />
-<p class="caption">
-Figure 1.1: Data density
-</p>
-</div>
-<p>Suppose we want to <em>estimate the tails</em> of <span class="math inline">\(F\)</span>. Figure <a href="intro.html#fig:i">1.1</a> illustrates the difficulties of estimating the tails of <span class="math inline">\(F\)</span> accurately:</p>
-<ul>
-<li>most data are concentrated towards the <em>centre</em> of the distribution;</li>
-<li>by definition <em>observations in the tails are scarce</em>;</li>
-<li>estimates are often required beyond the sample maxima or minima;</li>
-<li>estimation is going to be difficult and will be driven strongly by the assumptions made.</li>
-</ul>
-<div id="inadequacies-of-standard-statistical-approaches" class="section level3">
-<h3><span class="header-section-number">1.1.1</span> Inadequacies of standard statistical approaches</h3>
-<p>Why can standard modelling approaches not be used for estimating tails?</p>
-<p>We could fit a distributional model, e.g. <span class="math inline">\(N(\mu,\sigma^2)\)</span>, to all the data available and use this model to estimate tail probabilities;
-<span class="math display">\[\begin{align*}
-  \hat{\Pr}(X&gt;x)=1-\hat{F}(x)
-  =1-\Phi\left(\frac{x-\hat{\mu}}{\hat{\sigma}}\right)
-\end{align*}\]</span>
-Problems with this include:</p>
-<ul>
-<li>estimates of <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span> are primarily driven by the <em>central values</em> of the data;</li>
-<li>assessment of <em>model fit</em> is driven by the central values;</li>
-<li>different models that <em>fit the body</em> of the data well can have very <em>different extrapolations</em>;</li>
-<li>if interest is only in the tails, why compromise the fit there by attempting to model the body of the distribution simultaneously?</li>
-</ul>
-<p>Extreme value theory provides procedures for tail estimation which are scientifically and statistically rational. It is also intrinsically about <em>extrapolation</em>.</p>
-<ul>
-<li>in all undergraduate courses we are taught not to trust any extrapolation (usually in regression contexts);</li>
-<li>in many applications extrapolations are necessary, so it seems sensible to develop procedures that have some scientific basis.</li>
-</ul>
-</div>
-</div>
-<div id="sect:applications" class="section level2">
-<h2><span class="header-section-number">1.2</span> Application areas of extreme value theory</h2>
-<p>In the course we will see a range of examples. In general, the most active areas of application of extreme value theory are (in order of activity):</p>
-<ul>
-<li>Environment (sea-levels, river-levels, wind speeds, temperatures, rainfall, pollution concentrations);</li>
-<li>Finance (financial markets, investment returns, insurance/re-insurance liabilities, actuarial lifetimes, portfolio risk)</li>
-<li>Internet traffic (file size, number and duration of connections);</li>
-<li>Reliability (weakest link principle)</li>
-<li>Athletics</li>
-<li>Statistical inference/tests. <em>e.g.</em> inference for <span class="math inline">\(\theta\)</span> when <span class="math inline">\(X_i\sim U(0, \theta)\)</span> for <span class="math inline">\(i=1, \ldots, n\)</span>. MLE <span class="math inline">\(\hat{\theta}\)</span> satisfies:
-<span class="math display">\[\begin{align*}
-\hat{\theta}=\max(X_1, \ldots, X_n).
-\end{align*}\]</span></li>
-<li>Asymptotic theory for sums.</li>
-</ul>
-<div id="oxford-and-worthing-annual-maxima-temperatures" class="section level3">
-<h3><span class="header-section-number">1.2.1</span> Oxford and Worthing annual maxima temperatures</h3>
-The first data set, shown in Figure <a href="intro.html#fig:ii">1.2</a>, gives measurements of annual maxima temperatures in degrees Fahrenheit from 1901 to 1980 in Oxford and Worthing, England.
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ii"></span>
-<img src="images/ii-1.png" alt="Annual maximum temperatures at Oxford and Worthing." width="85%" />
-<p class="caption">
-Figure 1.2: Annual maximum temperatures at Oxford and Worthing.
-</p>
-</div>
-</div>
-<div id="oceanographic-variables" class="section level3">
-<h3><span class="header-section-number">1.2.2</span> Oceanographic variables</h3>
-<p>Figure <a href="intro.html#fig:iii">1.3</a> shows concurrent measurements of two oceanographic variables taken just off the Cornish coast at Newlyn:</p>
-<ul>
-<li><strong>Surge (m):</strong> the non-tidal component of still water height, driven by local pressure systems and by wind;</li>
-<li><strong>Wave height (m):</strong> also driven by wind and local meteorological conditions.</li>
-</ul>
-<p>In this example, dependence is due to reliance on common covariates.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:iii"></span>
-<img src="images/iii-1.png" alt="Surge and wave height at Newlyn." width="85%" />
-<p class="caption">
-Figure 1.3: Surge and wave height at Newlyn.
-</p>
-</div>
-</div>
-<div id="section:FTSEintro" class="section level3">
-<h3><span class="header-section-number">1.2.3</span> FTSE Index</h3>
-<p>THE FTSE100 index of the top UK 100 shares in an established index of share price with many investment portfolios set up to track its movement. Figure <a href="intro.html#fig:ftse">1.4</a> shows data on the end of day value of the FTSE index on each week day over the period 1968 to 2001.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ftse"></span>
-<img src="images/ftse-1.png" alt="Time-series of FTSE100 index." width="85%" />
-<p class="caption">
-Figure 1.4: Time-series of FTSE100 index.
-</p>
-</div>
-<p>The general pattern in exponential growth, with some noticeable drops in value corresponding to the Stock Market crashes of Black Monday in October 1987, the Asian crash in 1999 and the reaction to 2001-09-11.</p>
-<p>The index value on a given day is highly related to the value the day before. However, what is interesting to the investor is how it changes from one day to the next, relative to its current value. These relative changes are given by the new variables
-<span class="math display">\[\begin{align*}
- X_t=\frac{FTSE_t-FTSE_{t-1}}{FTSE_{t-1}}\quad\mbox{ for each } t, t=2,3,\ldots
-\end{align*}\]</span>
-which we term the returns, plotted in Figure <a href="intro.html#fig:ftse2">1.5</a>. The average value of the returns series is much more stable over time.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ftse2"></span>
-<img src="images/ftse2-1.png" alt="Time-series of FTSE returns." width="85%" />
-<p class="caption">
-Figure 1.5: Time-series of FTSE returns.
-</p>
-</div>
-</div>
-</div>
-<div id="whats-in-the-course-for-you" class="section level2">
-<h2><span class="header-section-number">1.3</span> What’s in the course for you?</h2>
-<p>This course will give you:</p>
-<ul>
-<li>an appreciation for a formal strategy for statistical modelling;</li>
-<li>insight into the issues associated with using asymptotically motivated models;</li>
-<li>an awareness of an area of probability theory rarely studied at undergraduate level;</li>
-<li>practice in applying standard statistical inference techniques in a new area of statistical application; and</li>
-<li>more background in the CLT and point / Poisson processes.</li>
-</ul>
-
-</div>
+<div id="page-not-found" class="section level1">
+<h1>Page not found</h1>
+<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
+<p>You may want to try searching to find the page's new location, or use
+the table of contents to find the page you are looking for.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="block-maxima.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
