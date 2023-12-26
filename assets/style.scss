@@ -1,6 +1,12 @@
 ---
 ---
 
+@import "{{ site.theme }}";
+
+.inner {
+  max-width: 75%;
+}
+
 //
 // IMPORTS
 //
@@ -32,7 +38,7 @@ body {
 
 .container {
   margin: 0 auto;
-  max-width: 960px;
+  max-width: 740px;
   padding: 0 10px;
   width: 100%;
 }
