@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-I am a [Lecturer](https://www.ncl.ac.uk/maths-physics/people/profile/clementlee.html) (equivalent to Assistant Professor) in Statistics at the School of Mathematics, Statistics and Physics at Newcastle University, UK. Previously I was lecturing at the Department of Mathematics and Statistics at Lancaster University. My CV can be found [here](/cv.pdf).
+I am a [Lecturer](https://www.ncl.ac.uk/maths-physics/people/profile/clementlee.html) (equivalent to Assistant Professor) in Statistics at the School of Mathematics, Statistics and Physics at Newcastle University, UK. Previously I was lecturing at the Department of Mathematics and Statistics at Lancaster University. My CV can be found [here](/cv.pdf). Currently I am the joint local network lead of the [UK Reproducibility Network](https://www.ukrn.org).
 
 Below are the modules I have taught over the years. The materials in 2021-22 are available online due to Covid-19 and online teaching.
 
