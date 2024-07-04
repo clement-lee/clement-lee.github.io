@@ -624,13 +624,14 @@ a column separator --></p>
 <li>“Nice” models imply power law degree distribution</li>
 <li>Preferential attachment <span class="citation">(Barabási and Albert 1999)</span>
 <ul>
-<li>Reference 1</li>
-<li>Reference 2</li>
-<li>Reference 3</li>
+<li>Undirected: <span class="citation">Hofstad (2016b)</span></li>
+<li>Directed: <span class="citation">Bollobás et al. (2001)</span></li>
+<li>Nonlinear: <span class="citation">Oliveira and Spencer (2005)</span>,<br />
+<span class="citation">Rudas, Tóth, and Valkó (2007)</span></li>
 </ul></li>
 <li>Generalised random graphs
 <ul>
-<li>Reference 1</li>
+<li><span class="citation">Hofstad (2016a)</span></li>
 </ul></li>
 </ul>
 </div><div class="column" style="width:2%;">
@@ -701,9 +702,9 @@ a column separator --></p>
 <h1>2. Inadeqaucy of distributions</h1>
 <table>
 <colgroup>
-<col width="31%"></col>
-<col width="37%"></col>
-<col width="31%"></col>
+<col width="38%"></col>
+<col width="33%"></col>
+<col width="27%"></col>
 </colgroup>
 <thead>
 <tr class="header">
@@ -719,24 +720,24 @@ a column separator --></p>
 <td align="left">Requires additional procedure; likelihood under different <span class="math inline">\(u\)</span> not comparable</td>
 </tr>
 <tr class="even">
-<td align="left">Lognormal (REF)</td>
+<td align="left">Lognormal <span class="citation">(Clauset, Shalizi, and Newman 2009; Buzsáki and Mizuseki 2014)</span></td>
 <td align="left">To improve overall fit</td>
-<td align="left">Light-tailed</td>
+<td align="left">Light-tailed; inherently continuous</td>
 </tr>
 <tr class="odd">
-<td align="left">Power law with exponential cut-off (REF)</td>
-<td align="left">Large degrees deviate from straight line</td>
-<td align="left">Light-tailed</td>
+<td align="left">Weibull / stretched exponential <span class="citation">(Malevergne, Pisarenko, and Sornette 2005)</span></td>
+<td align="left">To improve overall fit</td>
+<td align="left">Inherently continuous</td>
 </tr>
 <tr class="even">
-<td align="left">Zipf-polylog <span class="citation">(Valero, Pérez-Casany, and Duarte-López 2022)</span></td>
+<td align="left">Zipf-polylog / power law with exponential cut-off <span class="citation">(Valero, Pérez-Casany, and Duarte-López 2022; Pastor-Satorras and Vespignani 2001)</span></td>
 <td align="left">To improve overall fit; to accommodate “curvature”</td>
 <td align="left">Light-tailed</td>
 </tr>
 <tr class="odd">
 <td align="left">Incorporating extreme value methods <span class="citation">(Voitalov et al. 2019)</span></td>
 <td align="left">Large degrees deviate from straight line</td>
-<td align="left">Assumes heavy-tailed; adds noise to integer data for estimation</td>
+<td align="left">Assumes heavy-tailed; inherently continuous</td>
 </tr>
 <tr class="even">
 <td align="left">Double power law <span class="citation">(Ayed, Lee, and Caron 2019)</span></td>
@@ -965,13 +966,14 @@ a column separator --></p>
 <li>Evolution of the raw data
 <ul>
 <li>A generalised linear model</li>
+<li>Different to <span class="citation">Jeong, Néda, and Barabási (2003)</span> who studied overall growth</li>
 </ul></li>
 <li>Is preferential attachment still evident?
 <ul>
 <li>How do lighter-than-power-law heavy tails arise?</li>
-<li>What modifications to the model are required?</li>
+<li>What modifications to the model are required? Fitness, aging / fatigue?</li>
 </ul></li>
-<li>Showing modified network model <span class="math inline">\(\Rightarrow\)</span> desired limiting degree distribution</li>
+<li>Prove modified network model <span class="math inline">\(\Rightarrow\)</span> desired limiting degree distribution</li>
 </ul>
 </div>
 </div>
@@ -983,8 +985,8 @@ a column separator --></p>
 <li>Paper: <a href="https://arxiv.org/abs/2008.03073" class="uri">https://arxiv.org/abs/2008.03073</a></li>
 </ul>
 </div>
-<div id="bibliography" class="slide section level2 unnumbered">
-<h1 class="unnumbered">Bibliography</h1>
+<div id="references" class="slide section level2 unnumbered">
+<h1 class="unnumbered">References</h1>
 <div id="refs" class="references hanging-indent">
 <div id="ref-alc19">
 <p>Ayed, Fadhel, Juho Lee, and François Caron. 2019. “Beyond the Chinese Restaurant and Pitman-Yor Processes: Statistical Models with Double Power-Law Behavior.” <em>ArXiv E-Print</em>. <a href="http://arxiv.org/abs/1902.04714">http://arxiv.org/abs/1902.04714</a>.</p>
@@ -992,11 +994,38 @@ a column separator --></p>
 <div id="ref-ba99a">
 <p>Barabási, Albert-László, and Réka Albert. 1999. “Emergence of Scaling in Random Networks.” <em>Science</em> 286 (5439): 509–12. <a href="https://doi.org/10.1126/science.286.5439.509">https://doi.org/10.1126/science.286.5439.509</a>.</p>
 </div>
+<div id="ref-brst01">
+<p>Bollobás, B, O Riordan, J Spencer, and G Tusnády. 2001. “The Degree Sequence of a Scale-Free Random Graph Process.” <em>Random Structures Algorithms</em> 18 (3): 279–90. <a href="https://doi.org/10.1002/rsa.1009">https://doi.org/10.1002/rsa.1009</a>.</p>
+</div>
+<div id="ref-bm14">
+<p>Buzsáki, G, and K Mizuseki. 2014. “The Log-Dynamic Brain: How Skewed Distributions Affect Network Operations.” <em>Nature Reviews Neuroscience</em> 15: 264–78. <a href="https://doi.org/10.1038/nrn3687">https://doi.org/10.1038/nrn3687</a>.</p>
+</div>
 <div id="ref-csn09">
-<p>Clauset, A., C. R. Shalizi, and M. E. J. Newman. 2009. “Power-Law Distributions in Empirical Data.” <em>SIAM Review</em> 51 (4): 661–703.</p>
+<p>Clauset, A., C. R. Shalizi, and M. E. J. Newman. 2009. “Power-Law Distributions in Empirical Data.” <em>SIAM Review</em> 51 (4): 661–703. <a href="https://doi.org/10.1137/070710111">https://doi.org/10.1137/070710111</a>.</p>
+</div>
+<div id="ref-hofstad16a">
+<p>Hofstad, Remco van der. 2016a. “Generalized Random Graphs.” In <em>Random Graphs and Complex Networks</em>, 183–215. Cambridge Series in Statistical and Probabilistic Mathematics. Cambridge University Press. <a href="https://doi.org/10.1017/9781316779422.009">https://doi.org/10.1017/9781316779422.009</a>.</p>
+</div>
+<div id="ref-hofstad16b">
+<p>———. 2016b. “Preferential Attachment Models.” In <em>Random Graphs and Complex Networks</em>, 256–300. Cambridge Series in Statistical and Probabilistic Mathematics. Cambridge University Press. <a href="https://doi.org/10.1017/9781316779422.011">https://doi.org/10.1017/9781316779422.011</a>.</p>
+</div>
+<div id="ref-jnb03">
+<p>Jeong, H, Z Néda, and A L Barabási. 2003. “Measuring Preferential Attachment in Evolving Networks.” <em>Europhysics Letters</em> 61 (4): 567–72. <a href="https://doi.org/10.1209/epl/i2003-00166-9">https://doi.org/10.1209/epl/i2003-00166-9</a>.</p>
 </div>
 <div id="ref-jp21">
 <p>Jung, Hohyun, and Frederick Kin Hing Phoa. 2021. “A Mixture Model of Truncated Zeta Distributions with Applications to Scientific Collaboration Networks.” <em>Entropy</em> 23 (5). <a href="https://doi.org/10.3390/e23050502">https://doi.org/10.3390/e23050502</a>.</p>
+</div>
+<div id="ref-mps05">
+<p>Malevergne, Y, V Pisarenko, and D Sornette. 2005. “Empirical Distributions of Stock Returns: Between the Stretched Exponential and the Power Law?” <em>Quantitative Finance</em> 5 (4): 379–401. <a href="https://doi.org/10.1080/14697680500151343">https://doi.org/10.1080/14697680500151343</a>.</p>
+</div>
+<div id="ref-os05">
+<p>Oliveira, R, and J Spencer. 2005. “Connectivity Transitions in Networks with Super-Linear Preferential Attachment.” <em>Internet Mathematics</em> 2 (2): 121–63. <a href="https://doi.org/10.1080/15427951.2005.10129101">https://doi.org/10.1080/15427951.2005.10129101</a>.</p>
+</div>
+<div id="ref-pv01b">
+<p>Pastor-Satorras, Romualdo, and Alessandro Vespignani. 2001. “Epidemic Dynamics and Endemic States in Complex Networks.” <em>Physical Review E</em> 63 (6): 066117. <a href="https://doi.org/10.1103/PhysRevE.63.066117">https://doi.org/10.1103/PhysRevE.63.066117</a>.</p>
+</div>
+<div id="ref-rtv07">
+<p>Rudas, A, B Tóth, and B Valkó. 2007. “Random Trees and General Branching Processes.” <em>Random Structures Algorithms</em> 31 (2): 186–202. <a href="https://doi.org/10.1002/rsa.20137">https://doi.org/10.1002/rsa.20137</a>.</p>
 </div>
 <div id="ref-vpl22">
 <p>Valero, Jordi, Marta Pérez-Casany, and Ariel Duarte-López. 2022. “The Zipf-Polylog Distribution: Modeling Human Interactions Through Social Networks.” <em>Physica A</em> 603. <a href="https://doi.org/10.1016/j.physa.2022.127680">https://doi.org/10.1016/j.physa.2022.127680</a>.</p>
