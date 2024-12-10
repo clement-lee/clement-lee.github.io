@@ -8,6 +8,10 @@ I am a [Lecturer](https://www.ncl.ac.uk/maths-physics/people/profile/clementlee.
 
 Below are the modules I have taught over the years. The materials in 2021-22 are available online due to Covid-19 and online teaching.
 
+## 2024-25
+
+* MAS8403/8407: Statistical Foundations of Data Science
+
 ## 2023-24
 
 * MAS8403/8407: Statistical Foundations of Data Science
