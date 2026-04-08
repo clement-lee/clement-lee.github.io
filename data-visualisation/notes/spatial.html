@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>9 Plotting (geo)spatial data | MAS2908 Data Visualisation</title>
+  <meta name="description" content="This is the notes for MAS2908 Data Visualisation. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="9 Plotting (geo)spatial data | MAS2908 Data Visualisation" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is the notes for MAS2908 Data Visualisation. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="9 Plotting (geo)spatial data | MAS2908 Data Visualisation" />
+  
+  <meta name="twitter:description" content="This is the notes for MAS2908 Data Visualisation. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Clement Lee" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="temporal.html"/>
+<link rel="next" href="interactivity.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites (the boring stuff)</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#module-overview"><i class="fa fa-check"></i><b>1.1</b> Module overview</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#module-contacts"><i class="fa fa-check"></i><b>1.2</b> Module Contacts</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#materials"><i class="fa fa-check"></i><b>1.3</b> Materials</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#copyright-and-licence"><i class="fa fa-check"></i><b>1.4</b> Copyright and Licence</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i><b>1.5</b> Schedule</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#assessment"><i class="fa fa-check"></i><b>1.6</b> Assessment</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="index.html"><a href="index.html#late-work-policy"><i class="fa fa-check"></i><b>1.6.1</b> Late work policy</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#syllabus"><i class="fa fa-check"></i><b>1.7</b> Syllabus</a></li>
+<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#faq"><i class="fa fa-check"></i><b>1.8</b> FAQ</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="sec-intro.html"><a href="sec-intro.html"><i class="fa fa-check"></i><b>2</b> Graphical Presentation of Data with Base R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="sec-intro.html"><a href="sec-intro.html#introduction"><i class="fa fa-check"></i><b>2.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="sec-intro.html"><a href="sec-intro.html#data-frames"><i class="fa fa-check"></i><b>2.1.1</b> Data frames</a></li>
+<li class="chapter" data-level="2.1.2" data-path="sec-intro.html"><a href="sec-intro.html#datasets-used-in-this-chapter"><i class="fa fa-check"></i><b>2.1.2</b> Datasets used in this chapter</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="sec-intro.html"><a href="sec-intro.html#one-variable-continuous"><i class="fa fa-check"></i><b>2.2</b> One variable, continuous</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="sec-intro.html"><a href="sec-intro.html#histogram-base-R"><i class="fa fa-check"></i><b>2.2.1</b> Histograms</a></li>
+<li class="chapter" data-level="2.2.2" data-path="sec-intro.html"><a href="sec-intro.html#density-base-R"><i class="fa fa-check"></i><b>2.2.2</b> Density plots</a></li>
+<li class="chapter" data-level="2.2.3" data-path="sec-intro.html"><a href="sec-intro.html#stem-and-leaf-plots"><i class="fa fa-check"></i><b>2.2.3</b> Stem-and-leaf plots</a></li>
+<li class="chapter" data-level="2.2.4" data-path="sec-intro.html"><a href="sec-intro.html#boxplot-one-var-base-R"><i class="fa fa-check"></i><b>2.2.4</b> Boxplots</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="sec-intro.html"><a href="sec-intro.html#one-variable-discrete"><i class="fa fa-check"></i><b>2.3</b> One variable, discrete</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="sec-intro.html"><a href="sec-intro.html#bar-base-R"><i class="fa fa-check"></i><b>2.3.1</b> Bar charts</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="sec-intro.html"><a href="sec-intro.html#two-variables-both-continuous"><i class="fa fa-check"></i><b>2.4</b> Two variables, both continuous</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="sec-intro.html"><a href="sec-intro.html#scatterplot-base-R"><i class="fa fa-check"></i><b>2.4.1</b> Scatterplots</a></li>
+<li class="chapter" data-level="2.4.2" data-path="sec-intro.html"><a href="sec-intro.html#lineplot-base-R"><i class="fa fa-check"></i><b>2.4.2</b> Line plots</a></li>
+<li class="chapter" data-level="2.4.3" data-path="sec-intro.html"><a href="sec-intro.html#pairs-base-R"><i class="fa fa-check"></i><b>2.4.3</b> Pairs plots (scatterplot matrix)</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="sec-intro.html"><a href="sec-intro.html#two-variables-one-continuous-and-one-discrete"><i class="fa fa-check"></i><b>2.5</b> Two variables, one continuous and one discrete</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="sec-intro.html"><a href="sec-intro.html#problem-base-R"><i class="fa fa-check"></i><b>2.5.1</b> The problem with scatterplots</a></li>
+<li class="chapter" data-level="2.5.2" data-path="sec-intro.html"><a href="sec-intro.html#jitter-base-R"><i class="fa fa-check"></i><b>2.5.2</b> Stripcharts</a></li>
+<li class="chapter" data-level="2.5.3" data-path="sec-intro.html"><a href="sec-intro.html#boxplot-base-R"><i class="fa fa-check"></i><b>2.5.3</b> Boxplots</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="sec-intro.html"><a href="sec-intro.html#two-variables-both-discrete"><i class="fa fa-check"></i><b>2.6</b> Two variables, both discrete</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="sec-intro.html"><a href="sec-intro.html#grouped-base-R"><i class="fa fa-check"></i><b>2.6.1</b> Grouped bar charts</a></li>
+<li class="chapter" data-level="2.6.2" data-path="sec-intro.html"><a href="sec-intro.html#mosaic-plots"><i class="fa fa-check"></i><b>2.6.2</b> Mosaic plots</a></li>
+<li class="chapter" data-level="2.6.3" data-path="sec-intro.html"><a href="sec-intro.html#table-base-R"><i class="fa fa-check"></i><b>2.6.3</b> When a table suffices</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="sec-intro.html"><a href="sec-intro.html#summary"><i class="fa fa-check"></i><b>2.7</b> Summary</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="sec-intro.html"><a href="sec-intro.html#choosing-the-right-plot"><i class="fa fa-check"></i><b>2.7.1</b> Choosing the right plot</a></li>
+<li class="chapter" data-level="2.7.2" data-path="sec-intro.html"><a href="sec-intro.html#what-to-look-for"><i class="fa fa-check"></i><b>2.7.2</b> What to look for</a></li>
+<li class="chapter" data-level="2.7.3" data-path="sec-intro.html"><a href="sec-intro.html#limitations-of-base-r-graphics"><i class="fa fa-check"></i><b>2.7.3</b> Limitations of base R graphics</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html"><i class="fa fa-check"></i><b>3</b> Graphical Presentation of Data with ggplot2</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#introduction-1"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#data-frames-and-tidy-data"><i class="fa fa-check"></i><b>3.2</b> Data frames and tidy data</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#why-tidy-data-matters"><i class="fa fa-check"></i><b>3.2.1</b> Why tidy data matters</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#grammar-of-graphics-ggplot2-package"><i class="fa fa-check"></i><b>3.3</b> Grammar of graphics &amp; <code>ggplot2</code> package</a></li>
+<li class="chapter" data-level="3.4" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#one-variable-continuous-1"><i class="fa fa-check"></i><b>3.4</b> One variable, continuous</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#histogram-ggplot2"><i class="fa fa-check"></i><b>3.4.1</b> Histograms with <code>geom_histogram()</code></a></li>
+<li class="chapter" data-level="3.4.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#density-ggplot2"><i class="fa fa-check"></i><b>3.4.2</b> Density plots with <code>geom_density()</code></a></li>
+<li class="chapter" data-level="3.4.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#boxplot-one-var-ggplot2"><i class="fa fa-check"></i><b>3.4.3</b> Boxplots with <code>geom_boxplot()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#one-variable-discrete-1"><i class="fa fa-check"></i><b>3.5</b> One variable, discrete</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#bar-ggplot2"><i class="fa fa-check"></i><b>3.5.1</b> Bar charts with <code>geom_bar()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#two-variables-both-continuous-1"><i class="fa fa-check"></i><b>3.6</b> Two variables, both continuous</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#scatterplot-ggplot2"><i class="fa fa-check"></i><b>3.6.1</b> Scatterplots with <code>geom_point()</code></a></li>
+<li class="chapter" data-level="3.6.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#lineplot-ggplot2"><i class="fa fa-check"></i><b>3.6.2</b> Line plots with <code>geom_line()</code></a></li>
+<li class="chapter" data-level="3.6.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#pairs-ggplot2"><i class="fa fa-check"></i><b>3.6.3</b> Pairs plots (scatterplot matrix)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#two-variables-one-continuous-and-one-discrete-1"><i class="fa fa-check"></i><b>3.7</b> Two variables, one continuous and one discrete</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#the-problem-with-scatterplots"><i class="fa fa-check"></i><b>3.7.1</b> The problem with scatterplots</a></li>
+<li class="chapter" data-level="3.7.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#jitter-ggplot2"><i class="fa fa-check"></i><b>3.7.2</b> Stripcharts with <code>geom_jitter()</code></a></li>
+<li class="chapter" data-level="3.7.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#boxplot-ggplot2"><i class="fa fa-check"></i><b>3.7.3</b> Boxplots with <code>geom_boxplot()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#two-variables-both-discrete-1"><i class="fa fa-check"></i><b>3.8</b> Two variables, both discrete</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#grouped-ggplot2"><i class="fa fa-check"></i><b>3.8.1</b> Grouped bar charts with <code>geom_bar()</code></a></li>
+<li class="chapter" data-level="3.8.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#count-ggplot2"><i class="fa fa-check"></i><b>3.8.2</b> Count plots with <code>geom_count()</code></a></li>
+<li class="chapter" data-level="3.8.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#table-ggplot2"><i class="fa fa-check"></i><b>3.8.3</b> When a table suffices</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#the-power-of-layers"><i class="fa fa-check"></i><b>3.9</b> The power of layers</a>
+<ul>
+<li class="chapter" data-level="3.9.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#combining-multiple-geoms"><i class="fa fa-check"></i><b>3.9.1</b> Combining multiple geoms</a></li>
+<li class="chapter" data-level="3.9.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#computed-geoms"><i class="fa fa-check"></i><b>3.9.2</b> Computed geoms</a></li>
+<li class="chapter" data-level="3.9.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#multiple-datasets"><i class="fa fa-check"></i><b>3.9.3</b> Plotting multiple datasets</a></li>
+<li class="chapter" data-level="3.9.4" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#overlaying-straight-lines"><i class="fa fa-check"></i><b>3.9.4</b> Overlaying (straight) lines</a></li>
+<li class="chapter" data-level="3.9.5" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#histogram-with-density-overlay"><i class="fa fa-check"></i><b>3.9.5</b> Histogram with density overlay</a></li>
+</ul></li>
+<li class="chapter" data-level="3.10" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#syntax-notes"><i class="fa fa-check"></i><b>3.10</b> Syntax notes</a>
+<ul>
+<li class="chapter" data-level="3.10.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#no-dollar-sign-needed"><i class="fa fa-check"></i><b>3.10.1</b> No dollar sign needed</a></li>
+<li class="chapter" data-level="3.10.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#the-aes-function"><i class="fa fa-check"></i><b>3.10.2</b> The <code>aes()</code> function</a></li>
+<li class="chapter" data-level="3.10.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#a-note-on-qplot"><i class="fa fa-check"></i><b>3.10.3</b> A note on <code>qplot()</code></a></li>
+<li class="chapter" data-level="3.10.4" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#equivalent-syntax-forms"><i class="fa fa-check"></i><b>3.10.4</b> Equivalent syntax forms</a></li>
+</ul></li>
+<li class="chapter" data-level="3.11" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#summary-1"><i class="fa fa-check"></i><b>3.11</b> Summary</a>
+<ul>
+<li class="chapter" data-level="3.11.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#choosing-the-right-plot-1"><i class="fa fa-check"></i><b>3.11.1</b> Choosing the right plot</a></li>
+<li class="chapter" data-level="3.11.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#main-principles"><i class="fa fa-check"></i><b>3.11.2</b> Main principles</a></li>
+<li class="chapter" data-level="3.11.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#features-covered-in-later-chapters"><i class="fa fa-check"></i><b>3.11.3</b> Features covered in later chapters</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="colours.html"><a href="colours.html"><i class="fa fa-check"></i><b>4</b> Colours</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="colours.html"><a href="colours.html#introduction-2"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="colours.html"><a href="colours.html#colour-as-an-aesthetic"><i class="fa fa-check"></i><b>4.2</b> Colour as an aesthetic</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="colours.html"><a href="colours.html#real-world-examples"><i class="fa fa-check"></i><b>4.2.1</b> Real-world examples</a></li>
+<li class="chapter" data-level="4.2.2" data-path="colours.html"><a href="colours.html#syntax-british-and-american-spellings"><i class="fa fa-check"></i><b>4.2.2</b> Syntax: British and American spellings</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="colours.html"><a href="colours.html#colour-vs-fill"><i class="fa fa-check"></i><b>4.3</b> Colour vs fill: which aesthetic to use?</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="colours.html"><a href="colours.html#example-bar-charts"><i class="fa fa-check"></i><b>4.3.1</b> Example: bar charts</a></li>
+<li class="chapter" data-level="4.3.2" data-path="colours.html"><a href="colours.html#when-to-use-each"><i class="fa fa-check"></i><b>4.3.2</b> When to use each</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="colours.html"><a href="colours.html#colour-palettes"><i class="fa fa-check"></i><b>4.4</b> Colour palettes</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="colours.html"><a href="colours.html#discrete-categorical-scales"><i class="fa fa-check"></i><b>4.4.1</b> Discrete (categorical) scales</a></li>
+<li class="chapter" data-level="4.4.2" data-path="colours.html"><a href="colours.html#continuous-scales"><i class="fa fa-check"></i><b>4.4.2</b> Continuous scales</a></li>
+<li class="chapter" data-level="4.4.3" data-path="colours.html"><a href="colours.html#binned-scales"><i class="fa fa-check"></i><b>4.4.3</b> Binned scales</a></li>
+<li class="chapter" data-level="4.4.4" data-path="colours.html"><a href="colours.html#miscellaneous-scales"><i class="fa fa-check"></i><b>4.4.4</b> Miscellaneous scales</a></li>
+<li class="chapter" data-level="4.4.5" data-path="colours.html"><a href="colours.html#available-colorbrewer-palettes"><i class="fa fa-check"></i><b>4.4.5</b> Available ColorBrewer palettes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="colours.html"><a href="colours.html#colourblind"><i class="fa fa-check"></i><b>4.5</b> Colour-blind-friendly palettes</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="colours.html"><a href="colours.html#the-viridis-palettes"><i class="fa fa-check"></i><b>4.5.1</b> The viridis palettes</a></li>
+<li class="chapter" data-level="4.5.2" data-path="colours.html"><a href="colours.html#the-okabe-ito-palette"><i class="fa fa-check"></i><b>4.5.2</b> The Okabe-Ito palette</a></li>
+<li class="chapter" data-level="4.5.3" data-path="colours.html"><a href="colours.html#specifying-colours-with-hex-codes"><i class="fa fa-check"></i><b>4.5.3</b> Specifying colours with hex codes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="colours.html"><a href="colours.html#alpha-scales"><i class="fa fa-check"></i><b>4.6</b> Opacity with <code>alpha</code></a></li>
+<li class="chapter" data-level="4.7" data-path="colours.html"><a href="colours.html#summary-2"><i class="fa fa-check"></i><b>4.7</b> Summary</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="colours.html"><a href="colours.html#colour-scale-functions"><i class="fa fa-check"></i><b>4.7.1</b> Colour scale functions</a></li>
+<li class="chapter" data-level="4.7.2" data-path="colours.html"><a href="colours.html#key-points"><i class="fa fa-check"></i><b>4.7.2</b> Key points</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="other-aesthetics.html"><a href="other-aesthetics.html"><i class="fa fa-check"></i><b>5</b> Other Aesthetics</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="other-aesthetics.html"><a href="other-aesthetics.html#introduction-3"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="other-aesthetics.html"><a href="other-aesthetics.html#shape"><i class="fa fa-check"></i><b>5.2</b> Shape</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="other-aesthetics.html"><a href="other-aesthetics.html#default-shape-mapping"><i class="fa fa-check"></i><b>5.2.1</b> Default shape mapping</a></li>
+<li class="chapter" data-level="5.2.2" data-path="other-aesthetics.html"><a href="other-aesthetics.html#available-shapes"><i class="fa fa-check"></i><b>5.2.2</b> Available shapes</a></li>
+<li class="chapter" data-level="5.2.3" data-path="other-aesthetics.html"><a href="other-aesthetics.html#manual-shape-selection"><i class="fa fa-check"></i><b>5.2.3</b> Manual shape selection</a></li>
+<li class="chapter" data-level="5.2.4" data-path="other-aesthetics.html"><a href="other-aesthetics.html#combining-shape-and-colour"><i class="fa fa-check"></i><b>5.2.4</b> Combining shape and colour</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="other-aesthetics.html"><a href="other-aesthetics.html#linetype"><i class="fa fa-check"></i><b>5.3</b> Line type</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="other-aesthetics.html"><a href="other-aesthetics.html#available-line-types"><i class="fa fa-check"></i><b>5.3.1</b> Available line types</a></li>
+<li class="chapter" data-level="5.3.2" data-path="other-aesthetics.html"><a href="other-aesthetics.html#default-line-type-mapping"><i class="fa fa-check"></i><b>5.3.2</b> Default line type mapping</a></li>
+<li class="chapter" data-level="5.3.3" data-path="other-aesthetics.html"><a href="other-aesthetics.html#combining-line-type-and-colour"><i class="fa fa-check"></i><b>5.3.3</b> Combining line type and colour</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="other-aesthetics.html"><a href="other-aesthetics.html#size"><i class="fa fa-check"></i><b>5.4</b> Size</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="other-aesthetics.html"><a href="other-aesthetics.html#default-size-mapping"><i class="fa fa-check"></i><b>5.4.1</b> Default size mapping</a></li>
+<li class="chapter" data-level="5.4.2" data-path="other-aesthetics.html"><a href="other-aesthetics.html#controlling-the-size-range"><i class="fa fa-check"></i><b>5.4.2</b> Controlling the size range</a></li>
+<li class="chapter" data-level="5.4.3" data-path="other-aesthetics.html"><a href="other-aesthetics.html#size-by-area-vs-radius"><i class="fa fa-check"></i><b>5.4.3</b> Size by area vs radius</a></li>
+<li class="chapter" data-level="5.4.4" data-path="other-aesthetics.html"><a href="other-aesthetics.html#identity-scales"><i class="fa fa-check"></i><b>5.4.4</b> Identity scales</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="other-aesthetics.html"><a href="other-aesthetics.html#xy-axes"><i class="fa fa-check"></i><b>5.5</b> <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> axes</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="other-aesthetics.html"><a href="other-aesthetics.html#default-continuous-scales"><i class="fa fa-check"></i><b>5.5.1</b> Default continuous scales</a></li>
+<li class="chapter" data-level="5.5.2" data-path="other-aesthetics.html"><a href="other-aesthetics.html#setting-axis-limits"><i class="fa fa-check"></i><b>5.5.2</b> Setting axis limits</a></li>
+<li class="chapter" data-level="5.5.3" data-path="other-aesthetics.html"><a href="other-aesthetics.html#log-scales"><i class="fa fa-check"></i><b>5.5.3</b> Logarithmic scales</a></li>
+<li class="chapter" data-level="5.5.4" data-path="other-aesthetics.html"><a href="other-aesthetics.html#available-transformations"><i class="fa fa-check"></i><b>5.5.4</b> Available transformations</a></li>
+<li class="chapter" data-level="5.5.5" data-path="other-aesthetics.html"><a href="other-aesthetics.html#discrete-scales"><i class="fa fa-check"></i><b>5.5.5</b> Discrete scales</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="other-aesthetics.html"><a href="other-aesthetics.html#facets"><i class="fa fa-check"></i><b>5.6</b> Facets</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="other-aesthetics.html"><a href="other-aesthetics.html#facet_wrap"><i class="fa fa-check"></i><b>5.6.1</b> <code>facet_wrap()</code></a></li>
+<li class="chapter" data-level="5.6.2" data-path="other-aesthetics.html"><a href="other-aesthetics.html#facet_grid"><i class="fa fa-check"></i><b>5.6.2</b> <code>facet_grid()</code></a></li>
+<li class="chapter" data-level="5.6.3" data-path="other-aesthetics.html"><a href="other-aesthetics.html#free-scales"><i class="fa fa-check"></i><b>5.6.3</b> Free scales</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="other-aesthetics.html"><a href="other-aesthetics.html#summary-3"><i class="fa fa-check"></i><b>5.7</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="cosmetics.html"><a href="cosmetics.html"><i class="fa fa-check"></i><b>6</b> Plot Cosmetics</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="cosmetics.html"><a href="cosmetics.html#introduction-4"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="cosmetics.html"><a href="cosmetics.html#incremental-workflow"><i class="fa fa-check"></i><b>6.2</b> Incremental workflow</a></li>
+<li class="chapter" data-level="6.3" data-path="cosmetics.html"><a href="cosmetics.html#coordinate-systems"><i class="fa fa-check"></i><b>6.3</b> Coordinate systems</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="cosmetics.html"><a href="cosmetics.html#coord-cartesian"><i class="fa fa-check"></i><b>6.3.1</b> Cartesian coordinates (default)</a></li>
+<li class="chapter" data-level="6.3.2" data-path="cosmetics.html"><a href="cosmetics.html#coord-fixed"><i class="fa fa-check"></i><b>6.3.2</b> Fixed aspect ratio</a></li>
+<li class="chapter" data-level="6.3.3" data-path="cosmetics.html"><a href="cosmetics.html#coord-flip"><i class="fa fa-check"></i><b>6.3.3</b> Flipped coordinates</a></li>
+<li class="chapter" data-level="6.3.4" data-path="cosmetics.html"><a href="cosmetics.html#coord-polar"><i class="fa fa-check"></i><b>6.3.4</b> Polar coordinates</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="cosmetics.html"><a href="cosmetics.html#position-adjustments"><i class="fa fa-check"></i><b>6.4</b> Position adjustments</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="cosmetics.html"><a href="cosmetics.html#jittering-for-overplotting"><i class="fa fa-check"></i><b>6.4.1</b> Jittering (for overplotting)</a></li>
+<li class="chapter" data-level="6.4.2" data-path="cosmetics.html"><a href="cosmetics.html#position-dodge"><i class="fa fa-check"></i><b>6.4.2</b> Dodging (side by side)</a></li>
+<li class="chapter" data-level="6.4.3" data-path="cosmetics.html"><a href="cosmetics.html#stacking-default-for-bars"><i class="fa fa-check"></i><b>6.4.3</b> Stacking (default for bars)</a></li>
+<li class="chapter" data-level="6.4.4" data-path="cosmetics.html"><a href="cosmetics.html#filling-proportions"><i class="fa fa-check"></i><b>6.4.4</b> Filling (proportions)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="cosmetics.html"><a href="cosmetics.html#themes"><i class="fa fa-check"></i><b>6.5</b> Themes</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="cosmetics.html"><a href="cosmetics.html#built-in-themes"><i class="fa fa-check"></i><b>6.5.1</b> Built-in themes</a></li>
+<li class="chapter" data-level="6.5.2" data-path="cosmetics.html"><a href="cosmetics.html#global-theme"><i class="fa fa-check"></i><b>6.5.2</b> Setting a global theme</a></li>
+<li class="chapter" data-level="6.5.3" data-path="cosmetics.html"><a href="cosmetics.html#custom-theme"><i class="fa fa-check"></i><b>6.5.3</b> Customising individual elements</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="cosmetics.html"><a href="cosmetics.html#labels"><i class="fa fa-check"></i><b>6.6</b> Labels</a></li>
+<li class="chapter" data-level="6.7" data-path="cosmetics.html"><a href="cosmetics.html#legends"><i class="fa fa-check"></i><b>6.7</b> Legends</a>
+<ul>
+<li class="chapter" data-level="6.7.1" data-path="cosmetics.html"><a href="cosmetics.html#legend-position"><i class="fa fa-check"></i><b>6.7.1</b> Legend position</a></li>
+<li class="chapter" data-level="6.7.2" data-path="cosmetics.html"><a href="cosmetics.html#legend-inside"><i class="fa fa-check"></i><b>6.7.2</b> Legend inside the plot</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="cosmetics.html"><a href="cosmetics.html#axis-formatting"><i class="fa fa-check"></i><b>6.8</b> Axis formatting</a>
+<ul>
+<li class="chapter" data-level="6.8.1" data-path="cosmetics.html"><a href="cosmetics.html#avoiding-scientific-notation"><i class="fa fa-check"></i><b>6.8.1</b> Avoiding scientific notation</a></li>
+<li class="chapter" data-level="6.8.2" data-path="cosmetics.html"><a href="cosmetics.html#controlling-tick-marks"><i class="fa fa-check"></i><b>6.8.2</b> Controlling tick marks</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="cosmetics.html"><a href="cosmetics.html#summary-4"><i class="fa fa-check"></i><b>6.9</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="stats.html"><a href="stats.html"><i class="fa fa-check"></i><b>7</b> Data Manipulation and Statistical Layers</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="stats.html"><a href="stats.html#introduction-5"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.2" data-path="stats.html"><a href="stats.html#dplyr"><i class="fa fa-check"></i><b>7.2</b> Data manipulation with <code>dplyr</code></a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="stats.html"><a href="stats.html#two-ways-to-do-things"><i class="fa fa-check"></i><b>7.2.1</b> Two ways to do things</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="stats.html"><a href="stats.html#geom-bar-motivation"><i class="fa fa-check"></i><b>7.3</b> Bar charts and counting</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="stats.html"><a href="stats.html#approach-a-count-first-then-plot"><i class="fa fa-check"></i><b>7.3.1</b> Approach A: count first, then plot</a></li>
+<li class="chapter" data-level="7.3.2" data-path="stats.html"><a href="stats.html#a-common-mistake"><i class="fa fa-check"></i><b>7.3.2</b> A common mistake</a></li>
+<li class="chapter" data-level="7.3.3" data-path="stats.html"><a href="stats.html#approach-b-let-geom_bar-count-automatically"><i class="fa fa-check"></i><b>7.3.3</b> Approach B: let <code>geom_bar()</code> count automatically</a></li>
+<li class="chapter" data-level="7.3.4" data-path="stats.html"><a href="stats.html#log-scale-connection"><i class="fa fa-check"></i><b>7.3.4</b> The log-scale connection</a></li>
+<li class="chapter" data-level="7.3.5" data-path="stats.html"><a href="stats.html#what-geoms-compute-for-you"><i class="fa fa-check"></i><b>7.3.5</b> What geoms compute for you</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="stats.html"><a href="stats.html#filter-vs-limits"><i class="fa fa-check"></i><b>7.4</b> Subsetting data</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="stats.html"><a href="stats.html#approach-a"><i class="fa fa-check"></i><b>7.4.1</b> Approach A</a></li>
+<li class="chapter" data-level="7.4.2" data-path="stats.html"><a href="stats.html#approach-bi"><i class="fa fa-check"></i><b>7.4.2</b> Approach B(i)</a></li>
+<li class="chapter" data-level="7.4.3" data-path="stats.html"><a href="stats.html#approach-bii"><i class="fa fa-check"></i><b>7.4.3</b> Approach B(ii)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="stats.html"><a href="stats.html#stat-summary"><i class="fa fa-check"></i><b>7.5</b> Overlaying summaries with <code>stat_summary()</code></a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="stats.html"><a href="stats.html#approach-a-1"><i class="fa fa-check"></i><b>7.5.1</b> Approach A</a></li>
+<li class="chapter" data-level="7.5.2" data-path="stats.html"><a href="stats.html#approach-b"><i class="fa fa-check"></i><b>7.5.2</b> Approach B</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="stats.html"><a href="stats.html#density-histogram"><i class="fa fa-check"></i><b>7.6</b> Histogram with density overlay</a></li>
+<li class="chapter" data-level="7.7" data-path="stats.html"><a href="stats.html#qq-plots"><i class="fa fa-check"></i><b>7.7</b> Q-Q plots for assessing normality</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="stats.html"><a href="stats.html#why-not-just-use-a-histogram-or-density-plot"><i class="fa fa-check"></i><b>7.7.1</b> Why not just use a histogram or density plot?</a></li>
+<li class="chapter" data-level="7.7.2" data-path="stats.html"><a href="stats.html#q-q-plots-in-ggplot2"><i class="fa fa-check"></i><b>7.7.2</b> Q-Q plots in <code>ggplot2</code></a></li>
+<li class="chapter" data-level="7.7.3" data-path="stats.html"><a href="stats.html#interpreting-q-q-plots"><i class="fa fa-check"></i><b>7.7.3</b> Interpreting Q-Q plots</a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="stats.html"><a href="stats.html#stats-summary"><i class="fa fa-check"></i><b>7.8</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="temporal.html"><a href="temporal.html"><i class="fa fa-check"></i><b>8</b> Plotting time series data</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="temporal.html"><a href="temporal.html#datetime-objects"><i class="fa fa-check"></i><b>8.1</b> Creating time objects</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="temporal.html"><a href="temporal.html#the-make_datetime-function"><i class="fa fa-check"></i><b>8.1.1</b> The <code>make_datetime()</code> function</a></li>
+<li class="chapter" data-level="8.1.2" data-path="temporal.html"><a href="temporal.html#plotting-with-time-objects"><i class="fa fa-check"></i><b>8.1.2</b> Plotting with time objects</a></li>
+<li class="chapter" data-level="8.1.3" data-path="temporal.html"><a href="temporal.html#related-functions"><i class="fa fa-check"></i><b>8.1.3</b> Related functions</a></li>
+<li class="chapter" data-level="8.1.4" data-path="temporal.html"><a href="temporal.html#why-this-matters-for-visualisation"><i class="fa fa-check"></i><b>8.1.4</b> Why this matters for visualisation</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="temporal.html"><a href="temporal.html#temporal-viz"><i class="fa fa-check"></i><b>8.2</b> Temporal data visualisation</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="temporal.html"><a href="temporal.html#geom_line-vs-geom_path-the-key-difference"><i class="fa fa-check"></i><b>8.2.1</b> <code>geom_line()</code> vs <code>geom_path()</code>: the key difference</a></li>
+<li class="chapter" data-level="8.2.2" data-path="temporal.html"><a href="temporal.html#when-they-produce-the-same-result"><i class="fa fa-check"></i><b>8.2.2</b> When they produce the same result</a></li>
+<li class="chapter" data-level="8.2.3" data-path="temporal.html"><a href="temporal.html#when-they-differ-shuffled-data"><i class="fa fa-check"></i><b>8.2.3</b> When they differ: shuffled data</a></li>
+<li class="chapter" data-level="8.2.4" data-path="temporal.html"><a href="temporal.html#the-power-of-geom_path-adding-time-as-a-third-dimension"><i class="fa fa-check"></i><b>8.2.4</b> The power of <code>geom_path()</code>: adding time as a third dimension</a></li>
+<li class="chapter" data-level="8.2.5" data-path="temporal.html"><a href="temporal.html#enhancing-the-path-with-colour"><i class="fa fa-check"></i><b>8.2.5</b> Enhancing the path with colour</a></li>
+<li class="chapter" data-level="8.2.6" data-path="temporal.html"><a href="temporal.html#summary-geom_line-vs-geom_path"><i class="fa fa-check"></i><b>8.2.6</b> Summary: <code>geom_line()</code> vs <code>geom_path()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="temporal.html"><a href="temporal.html#scales-labels-zooming"><i class="fa fa-check"></i><b>8.3</b> Scales, labels &amp; zooming</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="temporal.html"><a href="temporal.html#controlling-date-breaks"><i class="fa fa-check"></i><b>8.3.1</b> Controlling date breaks</a></li>
+<li class="chapter" data-level="8.3.2" data-path="temporal.html"><a href="temporal.html#strftime"><i class="fa fa-check"></i><b>8.3.2</b> Formatting date labels</a></li>
+<li class="chapter" data-level="8.3.3" data-path="temporal.html"><a href="temporal.html#labelling-the-time-axis-appropriately"><i class="fa fa-check"></i><b>8.3.3</b> Labelling the time axis appropriately</a></li>
+<li class="chapter" data-level="8.3.4" data-path="temporal.html"><a href="temporal.html#zooming-on-time-series"><i class="fa fa-check"></i><b>8.3.4</b> Zooming on time series</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="temporal.html"><a href="temporal.html#implicit-missing"><i class="fa fa-check"></i><b>8.4</b> A potential pitfall: implicit missing data</a></li>
+<li class="chapter" data-level="8.5" data-path="temporal.html"><a href="temporal.html#summary-temporal-data"><i class="fa fa-check"></i><b>8.5</b> Summary: temporal data</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="spatial.html"><a href="spatial.html"><i class="fa fa-check"></i><b>9</b> Plotting (geo)spatial data</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="spatial.html"><a href="spatial.html#spatial-intro"><i class="fa fa-check"></i><b>9.1</b> Introduction</a></li>
+<li class="chapter" data-level="9.2" data-path="spatial.html"><a href="spatial.html#spatial-why-sf"><i class="fa fa-check"></i><b>9.2</b> Why not just use <code>geom_point()</code>?</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="spatial.html"><a href="spatial.html#the-sf-solution"><i class="fa fa-check"></i><b>9.2.1</b> The <code>sf</code> solution</a></li>
+<li class="chapter" data-level="9.2.2" data-path="spatial.html"><a href="spatial.html#how-geom_sf-differs-from-other-geoms"><i class="fa fa-check"></i><b>9.2.2</b> How <code>geom_sf()</code> differs from other geoms</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="spatial.html"><a href="spatial.html#spatial-geometry"><i class="fa fa-check"></i><b>9.3</b> The key ingredient: geometry</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="spatial.html"><a href="spatial.html#simple-feature-collections"><i class="fa fa-check"></i><b>9.3.1</b> Simple feature collections</a></li>
+<li class="chapter" data-level="9.3.2" data-path="spatial.html"><a href="spatial.html#file-formats-for-spatial-data"><i class="fa fa-check"></i><b>9.3.2</b> File formats for spatial data</a></li>
+<li class="chapter" data-level="9.3.3" data-path="spatial.html"><a href="spatial.html#reading-shapefiles"><i class="fa fa-check"></i><b>9.3.3</b> Reading shapefiles</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="spatial.html"><a href="spatial.html#spatial-scotland"><i class="fa fa-check"></i><b>9.4</b> Example: Scottish Census output areas</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="spatial.html"><a href="spatial.html#point-data-population-weighted-centroids"><i class="fa fa-check"></i><b>9.4.1</b> Point data: population-weighted centroids</a></li>
+<li class="chapter" data-level="9.4.2" data-path="spatial.html"><a href="spatial.html#first-attempt-plotting-points"><i class="fa fa-check"></i><b>9.4.2</b> First attempt: plotting points</a></li>
+<li class="chapter" data-level="9.4.3" data-path="spatial.html"><a href="spatial.html#fix-a-using-polygon-data"><i class="fa fa-check"></i><b>9.4.3</b> Fix (a): Using polygon data</a></li>
+<li class="chapter" data-level="9.4.4" data-path="spatial.html"><a href="spatial.html#background-map"><i class="fa fa-check"></i><b>9.4.4</b> Fix (b): Adding a background map</a></li>
+<li class="chapter" data-level="9.4.5" data-path="spatial.html"><a href="spatial.html#combining-polygons-with-background"><i class="fa fa-check"></i><b>9.4.5</b> Combining: polygons with background</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="spatial.html"><a href="spatial.html#spatial-crs"><i class="fa fa-check"></i><b>9.5</b> Coordinate reference systems</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="spatial.html"><a href="spatial.html#common-coordinate-systems"><i class="fa fa-check"></i><b>9.5.1</b> Common coordinate systems</a></li>
+<li class="chapter" data-level="9.5.2" data-path="spatial.html"><a href="spatial.html#how-the-sf-package-handles-crs"><i class="fa fa-check"></i><b>9.5.2</b> How the <code>sf</code> package handles CRS</a></li>
+<li class="chapter" data-level="9.5.3" data-path="spatial.html"><a href="spatial.html#spatial-create-geom"><i class="fa fa-check"></i><b>9.5.3</b> Creating geometry from coordinates</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="spatial.html"><a href="spatial.html#spatial-polish"><i class="fa fa-check"></i><b>9.6</b> Polishing spatial plots</a></li>
+<li class="chapter" data-level="9.7" data-path="spatial.html"><a href="spatial.html#spatial-summary"><i class="fa fa-check"></i><b>9.7</b> Summary</a>
+<ul>
+<li class="chapter" data-level="9.7.1" data-path="spatial.html"><a href="spatial.html#packages-needed"><i class="fa fa-check"></i><b>9.7.1</b> Packages needed</a></li>
+<li class="chapter" data-level="9.7.2" data-path="spatial.html"><a href="spatial.html#data-requirements"><i class="fa fa-check"></i><b>9.7.2</b> Data requirements</a></li>
+<li class="chapter" data-level="9.7.3" data-path="spatial.html"><a href="spatial.html#coordinate-reference-systems"><i class="fa fa-check"></i><b>9.7.3</b> Coordinate reference systems</a></li>
+<li class="chapter" data-level="9.7.4" data-path="spatial.html"><a href="spatial.html#the-spatial-geom"><i class="fa fa-check"></i><b>9.7.4</b> The spatial geom</a></li>
+<li class="chapter" data-level="9.7.5" data-path="spatial.html"><a href="spatial.html#building-maps"><i class="fa fa-check"></i><b>9.7.5</b> Building maps</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="interactivity.html"><a href="interactivity.html"><i class="fa fa-check"></i><b>10</b> Interactive Visualisation</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="interactivity.html"><a href="interactivity.html#shiny-basics"><i class="fa fa-check"></i><b>10.1</b> Shiny basics</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="interactivity.html"><a href="interactivity.html#minimal-structure"><i class="fa fa-check"></i><b>10.1.1</b> Minimal structure</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="interactivity.html"><a href="interactivity.html#shiny-inputs"><i class="fa fa-check"></i><b>10.2</b> Toggles and controls</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="interactivity.html"><a href="interactivity.html#sliderinput"><i class="fa fa-check"></i><b>10.2.1</b> <code>sliderInput()</code></a></li>
+<li class="chapter" data-level="10.2.2" data-path="interactivity.html"><a href="interactivity.html#plotoutput-and-renderplot"><i class="fa fa-check"></i><b>10.2.2</b> <code>plotOutput()</code> and <code>renderPlot()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="interactivity.html"><a href="interactivity.html#shiny-example"><i class="fa fa-check"></i><b>10.3</b> A complete example</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="interactivity.html"><a href="interactivity.html#step-1-get-the-static-plot-right"><i class="fa fa-check"></i><b>10.3.1</b> Step 1: get the static plot right</a></li>
+<li class="chapter" data-level="10.3.2" data-path="interactivity.html"><a href="interactivity.html#step-2-replace-the-fixed-year-with-a-reactive-input"><i class="fa fa-check"></i><b>10.3.2</b> Step 2: replace the fixed year with a reactive input</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="interactivity.html"><a href="interactivity.html#shiny-select"><i class="fa fa-check"></i><b>10.4</b> <code>selectInput()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="miscellaneous.html"><a href="miscellaneous.html"><i class="fa fa-check"></i><b>11</b> Miscellaneous Topics</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MAS2908 Data Visualisation</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="spatial" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">9</span> Plotting (geo)spatial data<a href="spatial.html#spatial" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="spatial-intro" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Introduction<a href="spatial.html#spatial-intro" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Geographic Information Systems (GIS) are a cornerstone of modern data analysis
+across many disciplines. Geospatial engineers use GIS to plan infrastructure,
+geographers use it to study human and physical landscapes, and archaeologists
+use it to map excavation sites and analyse spatial patterns in artefacts. Many
+universities offer dedicated modules on GIS, and you may encounter such courses
+in Geography, Environmental Science, or Engineering programmes.</p>
+<p>As data scientists, we should not lag behind these specialists. The good news
+is that the grammar of graphics aligns remarkably well with how GIS works.
+Just as we build statistical graphics layer by layer in <code>ggplot2</code>, GIS
+practitioners build maps by layering geographic features on top of one another.
+This conceptual alignment means that once you understand <code>ggplot2</code>, working
+with spatial data is a natural extension rather than a completely new skill.</p>
+<p>In this chapter, we focus on creating static maps using <code>ggplot2</code>. In Chapter
+<a href="interactivity.html#interactivity">10</a>, we will explore interactive versions that allow users
+to zoom, pan, and click on map features.</p>
+</div>
+<div id="spatial-why-sf" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> Why not just use <code>geom_point()</code>?<a href="spatial.html#spatial-why-sf" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If you have a dataset with coordinates — say, longitude and latitude, or
+easting and northing — you might think: “Can’t I just use <code>geom_point()</code> with
+<code>aes(x = longitude, y = latitude)</code>?” The answer is: yes, but only for simple
+cases.</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="spatial.html#cb164-1" aria-hidden="true"></a><span class="co"># This works for a single dataset</span></span>
+<span id="cb164-2"><a href="spatial.html#cb164-2" aria-hidden="true"></a><span class="kw">ggplot</span>(my_data, <span class="kw">aes</span>(<span class="dt">x =</span> longitude, <span class="dt">y =</span> latitude)) <span class="op">+</span></span>
+<span id="cb164-3"><a href="spatial.html#cb164-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<p>However, this approach breaks down when you want to:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Overlay multiple datasets</strong> that use different coordinate systems (e.g.,
+one uses longitude/latitude, another uses British National Grid
+easting/northing)</li>
+<li><strong>Add a background map</strong> from a different source</li>
+<li><strong>Ensure geographic accuracy</strong> across different regions of the world</li>
+</ol>
+<p>The problem is that <code>geom_point()</code> treats coordinates as simple numbers on
+Cartesian axes. It has no understanding that these numbers represent locations
+on Earth, or that different coordinate systems exist.</p>
+<div id="the-sf-solution" class="section level3 hasAnchor" number="9.2.1">
+<h3><span class="header-section-number">9.2.1</span> The <code>sf</code> solution<a href="spatial.html#the-sf-solution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>sf</code> package solves this by attaching <strong>coordinate reference system (CRS)</strong>
+metadata to your data. When you use <code>geom_sf()</code> instead of <code>geom_point()</code>,
+<code>ggplot2</code> knows:</p>
+<ul>
+<li>What coordinate system each dataset uses</li>
+<li>How to transform coordinates between systems</li>
+</ul>
+<p>This means that <strong>the same point on Earth will appear in the same position on
+your plot</strong>, even if different datasets represent that point using different
+coordinate systems. You can layer a dataset in longitude/latitude on top of a
+map in British National Grid, and they will align correctly.</p>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="spatial.html#cb165-1" aria-hidden="true"></a><span class="co"># Two datasets with different coordinate systems</span></span>
+<span id="cb165-2"><a href="spatial.html#cb165-2" aria-hidden="true"></a><span class="co"># will still align correctly when using geom_sf()</span></span>
+<span id="cb165-3"><a href="spatial.html#cb165-3" aria-hidden="true"></a><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb165-4"><a href="spatial.html#cb165-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> uk_map) <span class="op">+</span><span class="st">           </span><span class="co"># In WGS84 (longitude/latitude)</span></span>
+<span id="cb165-5"><a href="spatial.html#cb165-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> scottish_data)      <span class="co"># In British National Grid (easting/northing)</span></span></code></pre></div>
+<p>We will look at how the above code works in practice in Section <a href="spatial.html#spatial-scotland">9.4</a>, and detailed explanations of CRS in Section <a href="spatial.html#spatial-crs">9.5</a>.</p>
+<p>Without <code>sf</code>, you would need to manually convert all coordinates to a common
+system before plotting — a tedious and error-prone process.</p>
+</div>
+<div id="how-geom_sf-differs-from-other-geoms" class="section level3 hasAnchor" number="9.2.2">
+<h3><span class="header-section-number">9.2.2</span> How <code>geom_sf()</code> differs from other geoms<a href="spatial.html#how-geom_sf-differs-from-other-geoms" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Another key difference between <code>geom_sf()</code> and other geoms is that <strong>you do not
+need to specify <code>x</code> and <code>y</code> aesthetics</strong>. With most geoms, you must tell
+<code>ggplot2</code> which variables map to the x- and y-axes:</p>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="spatial.html#cb166-1" aria-hidden="true"></a><span class="co"># Regular geoms require x and y aesthetics</span></span>
+<span id="cb166-2"><a href="spatial.html#cb166-2" aria-hidden="true"></a><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x =</span> variable1, <span class="dt">y =</span> variable2)) <span class="op">+</span></span>
+<span id="cb166-3"><a href="spatial.html#cb166-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<p>With <code>geom_sf()</code>, the geometry column already contains all the positional
+information. The geom simply <strong>plots whatever geometry is in the data</strong>:</p>
+<ul>
+<li>If your data has <code>POINT</code> geometry, points are plotted</li>
+<li>If your data has <code>POLYGON</code> or <code>MULTIPOLYGON</code> geometry, filled polygons are
+plotted</li>
+<li>If your data has <code>LINESTRING</code> geometry, lines are plotted</li>
+</ul>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="spatial.html#cb167-1" aria-hidden="true"></a><span class="co"># geom_sf() reads position from the geometry column automatically</span></span>
+<span id="cb167-2"><a href="spatial.html#cb167-2" aria-hidden="true"></a><span class="kw">ggplot</span>(spatial_data) <span class="op">+</span></span>
+<span id="cb167-3"><a href="spatial.html#cb167-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_sf</span>()  <span class="co"># No aes(x = ..., y = ...) needed!</span></span></code></pre></div>
+<p>All other aesthetic mappings work the same as with regular geoms. You can still
+map variables to <code>colour</code>, <code>fill</code>, <code>size</code>, <code>alpha</code>, <code>linetype</code>, and so on:</p>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="spatial.html#cb168-1" aria-hidden="true"></a><span class="co"># Other aesthetics work as usual</span></span>
+<span id="cb168-2"><a href="spatial.html#cb168-2" aria-hidden="true"></a><span class="kw">ggplot</span>(spatial_data) <span class="op">+</span></span>
+<span id="cb168-3"><a href="spatial.html#cb168-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> population, <span class="dt">colour =</span> region), <span class="dt">size =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<p>This automatic handling of geometry makes <code>geom_sf()</code> both simpler (no need to
+specify x/y) and more powerful (works with any geometry type) than using
+<code>geom_point()</code>, <code>geom_polygon()</code>, or <code>geom_path()</code> manually.</p>
+</div>
+</div>
+<div id="spatial-geometry" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> The key ingredient: geometry<a href="spatial.html#spatial-geometry" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The main principle of working with spatial data remains the same as with any
+other data: we read in a file or load a dataset from a package, then visualise
+it. The crucial difference is that spatial data requires <strong>geometry</strong> — a
+special type of data that describes the shape and location of geographic
+features.</p>
+<div id="simple-feature-collections" class="section level3 hasAnchor" number="9.3.1">
+<h3><span class="header-section-number">9.3.1</span> Simple feature collections<a href="spatial.html#simple-feature-collections" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If a dataset already has geometry information in the correct format, it is
+called a <strong>simple feature collection</strong>. This is essentially a tidy data frame
+with an additional <strong>geometry column</strong>. The geometry column contains the
+spatial information (points, lines, or polygons) for each observation.</p>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="spatial.html#cb169-1" aria-hidden="true"></a><span class="co"># A simple feature collection looks like this:</span></span>
+<span id="cb169-2"><a href="spatial.html#cb169-2" aria-hidden="true"></a><span class="co"># Simple feature collection with 100 features and 3 fields</span></span>
+<span id="cb169-3"><a href="spatial.html#cb169-3" aria-hidden="true"></a><span class="co"># Geometry type: POINT</span></span>
+<span id="cb169-4"><a href="spatial.html#cb169-4" aria-hidden="true"></a><span class="co"># Bounding box:  xmin: -5.7 ymin: 50.0 xmax: 1.8 ymax: 58.6</span></span>
+<span id="cb169-5"><a href="spatial.html#cb169-5" aria-hidden="true"></a><span class="co"># CRS:           EPSG:4326</span></span>
+<span id="cb169-6"><a href="spatial.html#cb169-6" aria-hidden="true"></a><span class="co"># # A tibble: 100 x 4</span></span>
+<span id="cb169-7"><a href="spatial.html#cb169-7" aria-hidden="true"></a><span class="co">#    name        population area_km2           geometry</span></span>
+<span id="cb169-8"><a href="spatial.html#cb169-8" aria-hidden="true"></a><span class="co">#    &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt;        &lt;POINT [°]&gt;</span></span>
+<span id="cb169-9"><a href="spatial.html#cb169-9" aria-hidden="true"></a><span class="co">#  1 Location A        1234     12.5 (-2.345 54.123)</span></span>
+<span id="cb169-10"><a href="spatial.html#cb169-10" aria-hidden="true"></a><span class="co">#  2 Location B        5678     34.2 (-1.567 55.456)</span></span>
+<span id="cb169-11"><a href="spatial.html#cb169-11" aria-hidden="true"></a><span class="co">#  ...</span></span></code></pre></div>
+</div>
+<div id="file-formats-for-spatial-data" class="section level3 hasAnchor" number="9.3.2">
+<h3><span class="header-section-number">9.3.2</span> File formats for spatial data<a href="spatial.html#file-formats-for-spatial-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The file format determines what kind of geometry information is available:</p>
+<p><strong>Flat files (CSV, XLS, XLSX)</strong>:</p>
+<ul>
+<li>Easy to read using <code>read_csv()</code> or <code>read_excel()</code></li>
+<li>Most likely contain point geometry only (e.g., latitude and longitude in
+separate columns)</li>
+<li>The geometry is not in a readily available format, so we need to manipulate
+the data before plotting (see Section <a href="spatial.html#spatial-create-geom">9.5.3</a>)</li>
+</ul>
+<p><strong>Shapefiles (.shp)</strong>:</p>
+<ul>
+<li>The traditional GIS file format</li>
+<li>Can contain point, line, or polygon geometry</li>
+<li>A “shapefile” is actually a collection of files with the same name but
+different extensions (.shp, .shx, .dbf, .prj, etc.)</li>
+<li>Tend to be larger in size than flat files</li>
+<li>Geometry is already in the correct format</li>
+</ul>
+</div>
+<div id="reading-shapefiles" class="section level3 hasAnchor" number="9.3.3">
+<h3><span class="header-section-number">9.3.3</span> Reading shapefiles<a href="spatial.html#reading-shapefiles" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We use <code>read_sf()</code> from the <code>sf</code> package to read shapefiles. You only need to
+point to the <code>.shp</code> file, but <strong>do not delete the companion files</strong> that come
+with it (e.g., <code>.shx</code>, <code>.dbf</code>, <code>.prj</code>): they contain essential metadata such
+as the coordinate reference system information.</p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="spatial.html#cb170-1" aria-hidden="true"></a><span class="kw">library</span>(sf)</span>
+<span id="cb170-2"><a href="spatial.html#cb170-2" aria-hidden="true"></a></span>
+<span id="cb170-3"><a href="spatial.html#cb170-3" aria-hidden="true"></a><span class="co"># Read a shapefile (point to the .shp file; keep the companion files!)</span></span>
+<span id="cb170-4"><a href="spatial.html#cb170-4" aria-hidden="true"></a>spatial_data &lt;-<span class="st"> </span><span class="kw">read_sf</span>(<span class="st">&quot;path/to/file.shp&quot;</span>)</span></code></pre></div>
+<p><code>st_read()</code> achieves the same result; <code>read_sf()</code> is a convenient wrapper that
+returns a tibble and suppresses messages by default.</p>
+</div>
+</div>
+<div id="spatial-scotland" class="section level2 hasAnchor" number="9.4">
+<h2><span class="header-section-number">9.4</span> Example: Scottish Census output areas<a href="spatial.html#spatial-scotland" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To illustrate spatial visualisation, we use data from the 2022 Scottish Census.
+The National Records of Scotland provides geographic data for census output
+areas at <a href="https://www.nrscotland.gov.uk/publications/2022-census-geography-products/" class="uri">https://www.nrscotland.gov.uk/publications/2022-census-geography-products/</a>.
+Download the zip file that says “… Population Weighted Centroids” and decompress / extract the files to your working directory. These files should be in a folder <code>OutputArea2022_PWC/</code> and all with the same name but different file extensions.</p>
+<div id="point-data-population-weighted-centroids" class="section level3 hasAnchor" number="9.4.1">
+<h3><span class="header-section-number">9.4.1</span> Point data: population-weighted centroids<a href="spatial.html#point-data-population-weighted-centroids" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s start by reading the population-weighted centroids (PWC) shapefile.
+Each output area is represented by a single point — the population-weighted
+centre of that area.</p>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="spatial.html#cb171-1" aria-hidden="true"></a>pwc &lt;-</span>
+<span id="cb171-2"><a href="spatial.html#cb171-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">read_sf</span>(<span class="st">&quot;OutputArea2022_PWC/OutputArea2022_PWC.shp&quot;</span>)</span>
+<span id="cb171-3"><a href="spatial.html#cb171-3" aria-hidden="true"></a><span class="kw">head</span>(pwc)</span></code></pre></div>
+<pre><code>## Simple feature collection with 6 features and 7 fields
+## Geometry type: POINT
+## Dimension:     XY
+## Bounding box:  xmin: 392813 ymin: 805762 xmax: 394238 ymax: 806594
+## Projected CRS: OSGB36 / British National Grid
+## # A tibble: 6 × 8
+##   code    HHcount Popcount council masterpc easting northing
+##   &lt;chr&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;   
+## 1 S00136…      61       64 S12000… AB10 1BT 393865  806312  
+## 2 S00136…      64       68 S12000… AB10 1DA 393877  806296  
+## 3 S00136…      62      105 S12000… AB10 1DB 392813  805762  
+## 4 S00136…      49       87 S12000… AB10 1DH 393708  806213  
+## 5 S00136…      47       75 S12000… AB10 1FL 394238  806594  
+## 6 S00136…      49       64 S12000… AB10 1HE 394157  806265  
+## # ℹ 1 more variable: geometry &lt;POINT [m]&gt;</code></pre>
+<p>Notice that <code>pwc</code> is a simple feature collection with a <code>geometry</code> column
+containing <code>POINT</code> data. The dataset includes <code>HHcount</code> (household count) and <code>Popcount</code> (population
+count) for each output area.</p>
+</div>
+<div id="first-attempt-plotting-points" class="section level3 hasAnchor" number="9.4.2">
+<h3><span class="header-section-number">9.4.2</span> First attempt: plotting points<a href="spatial.html#first-attempt-plotting-points" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The simplest call just plots the points as they are:</p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="spatial.html#cb173-1" aria-hidden="true"></a><span class="kw">ggplot</span>(pwc) <span class="op">+</span></span>
+<span id="cb173-2"><a href="spatial.html#cb173-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">size =</span> <span class="fl">0.3</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pwc-simplest"></span>
+<img src="_main_files/figure-html/pwc-simplest-1.png" alt="Scottish census output areas as points." width="85%" />
+<p class="caption">
+Figure 9.1: Scottish census output areas as points.
+</p>
+</div>
+<p>This already gives a recognisable shape of Scotland. We can also colour the
+points by population count:</p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="spatial.html#cb174-1" aria-hidden="true"></a><span class="kw">ggplot</span>(pwc) <span class="op">+</span></span>
+<span id="cb174-2"><a href="spatial.html#cb174-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> Popcount), <span class="dt">size =</span> <span class="fl">0.3</span>) <span class="op">+</span></span>
+<span id="cb174-3"><a href="spatial.html#cb174-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_colour_viridis_c</span>() <span class="op">+</span></span>
+<span id="cb174-4"><a href="spatial.html#cb174-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">colour =</span> <span class="st">&quot;Population&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pwc-points-only"></span>
+<img src="_main_files/figure-html/pwc-points-only-1.png" alt="Scottish census output areas as points, coloured by population count." width="85%" />
+<p class="caption">
+Figure 9.2: Scottish census output areas as points, coloured by population count.
+</p>
+</div>
+<p>This gives us a recognisable shape of Scotland, but there are two problems:</p>
+<ol style="list-style-type: lower-alpha">
+<li><strong>We want polygons, not points</strong>: The dots are hard to see and don’t show
+the actual boundaries of output areas</li>
+<li><strong>No background map</strong>: We have no geographic context — no coastline,
+no country outline</li>
+</ol>
+<p>Let’s fix these issues.</p>
+</div>
+<div id="fix-a-using-polygon-data" class="section level3 hasAnchor" number="9.4.3">
+<h3><span class="header-section-number">9.4.3</span> Fix (a): Using polygon data<a href="spatial.html#fix-a-using-polygon-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For filled areas instead of points, we need the Extent of the Realm (EoR)
+shapefile, which contains polygon geometry. From the same data source, download the zip file that says “… – Extent of the Realm” and extract the files to the working directory. These files should be in a folder <code>OutputArea2022_EoR/</code> and all with the same name but different file extensions.</p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="spatial.html#cb175-1" aria-hidden="true"></a>eor &lt;-</span>
+<span id="cb175-2"><a href="spatial.html#cb175-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">read_sf</span>(<span class="st">&quot;OutputArea2022_EoR/OutputArea2022_EoR.shp&quot;</span>)</span>
+<span id="cb175-3"><a href="spatial.html#cb175-3" aria-hidden="true"></a><span class="kw">head</span>(eor)</span></code></pre></div>
+<pre><code>## Simple feature collection with 6 features and 11 fields
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: 382978.4 ymin: 809487 xmax: 396528 ymax: 816096.1
+## Projected CRS: OSGB36 / British National Grid
+## # A tibble: 6 × 12
+##   code      HHcount Popcount council    sqkm   hect masterpc
+##   &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;   
+## 1 S00135307      62      144 S12000… 10.9    1095.  AB21 0EQ
+## 2 S00135308      33       65 S12000…  5.41    541   AB21 0T…
+## 3 S00135309      71      143 S12000… 10.2    1016.  AB23 8NT
+## 4 S00135310      65      145 S12000…  0.774    77.4 AB21 7ER
+## 5 S00135311      64      151 S12000…  7.81    781.  AB22 8AR
+## 6 S00135312      64      187 S12000…  0.0820    8.2 AB21 7GJ
+## # ℹ 5 more variables: easting &lt;chr&gt;, northing &lt;chr&gt;,
+## #   Shape_Leng &lt;dbl&gt;, Shape_Area &lt;dbl&gt;,
+## #   geometry &lt;MULTIPOLYGON [m]&gt;</code></pre>
+<p>Now we have polygons! The simplest call shows just the boundaries of each
+output area:</p>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="spatial.html#cb177-1" aria-hidden="true"></a><span class="kw">ggplot</span>(eor) <span class="op">+</span></span>
+<span id="cb177-2"><a href="spatial.html#cb177-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_sf</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:eor-simple"></span>
+<img src="_main_files/figure-html/eor-simple-1.png" alt="Scottish census output areas as polygons (boundaries only)." width="85%" />
+<p class="caption">
+Figure 9.3: Scottish census output areas as polygons (boundaries only).
+</p>
+</div>
+<p>To show population density, we fill by <code>Popcount</code>:</p>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="spatial.html#cb178-1" aria-hidden="true"></a><span class="kw">ggplot</span>(eor, <span class="kw">aes</span>(<span class="dt">fill =</span> Popcount)) <span class="op">+</span></span>
+<span id="cb178-2"><a href="spatial.html#cb178-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">colour =</span> <span class="ot">NA</span>) <span class="op">+</span></span>
+<span id="cb178-3"><a href="spatial.html#cb178-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_fill_viridis_c</span>() <span class="op">+</span></span>
+<span id="cb178-4"><a href="spatial.html#cb178-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill =</span> <span class="st">&quot;Population&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:eor-polygons"></span>
+<img src="_main_files/figure-html/eor-polygons-1.png" alt="Scottish census output areas as polygons, coloured by population count." width="85%" />
+<p class="caption">
+Figure 9.4: Scottish census output areas as polygons, coloured by population count.
+</p>
+</div>
+<p>Note the key differences:</p>
+<ul>
+<li>We use <code>fill</code> (not <code>colour</code>) to fill the polygon interiors</li>
+<li>We set <code>colour = NA</code> to remove polygon borders (they would clutter the map
+at this scale)</li>
+</ul>
+</div>
+<div id="background-map" class="section level3 hasAnchor" number="9.4.4">
+<h3><span class="header-section-number">9.4.4</span> Fix (b): Adding a background map<a href="spatial.html#background-map" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To provide geographic context, we can add a map of the United Kingdom using
+the <code>rnaturalearth</code> package:</p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="spatial.html#cb179-1" aria-hidden="true"></a><span class="kw">library</span>(rnaturalearth)</span>
+<span id="cb179-2"><a href="spatial.html#cb179-2" aria-hidden="true"></a></span>
+<span id="cb179-3"><a href="spatial.html#cb179-3" aria-hidden="true"></a><span class="co"># Get UK country outline</span></span>
+<span id="cb179-4"><a href="spatial.html#cb179-4" aria-hidden="true"></a>uk &lt;-<span class="st"> </span><span class="kw">ne_countries</span>(<span class="dt">scale =</span> <span class="st">&quot;medium&quot;</span>, <span class="dt">country =</span> <span class="st">&quot;United Kingdom&quot;</span>,</span>
+<span id="cb179-5"><a href="spatial.html#cb179-5" aria-hidden="true"></a>                   <span class="dt">returnclass =</span> <span class="st">&quot;sf&quot;</span>)</span>
+<span id="cb179-6"><a href="spatial.html#cb179-6" aria-hidden="true"></a></span>
+<span id="cb179-7"><a href="spatial.html#cb179-7" aria-hidden="true"></a><span class="co"># Check what we have</span></span>
+<span id="cb179-8"><a href="spatial.html#cb179-8" aria-hidden="true"></a><span class="kw">class</span>(uk)</span></code></pre></div>
+<pre><code>## [1] &quot;sf&quot;         &quot;data.frame&quot;</code></pre>
+<p>Now let’s create a map with the UK outline as a background, then add our
+census points on top:</p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="spatial.html#cb181-1" aria-hidden="true"></a><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb181-2"><a href="spatial.html#cb181-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> uk) <span class="op">+</span></span>
+<span id="cb181-3"><a href="spatial.html#cb181-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> pwc, <span class="kw">aes</span>(<span class="dt">colour =</span> Popcount), <span class="dt">size =</span> <span class="fl">0.3</span>) <span class="op">+</span></span>
+<span id="cb181-4"><a href="spatial.html#cb181-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_colour_viridis_c</span>() <span class="op">+</span></span>
+<span id="cb181-5"><a href="spatial.html#cb181-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">coord_sf</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">8</span>, <span class="dv">0</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">54</span>, <span class="dv">61</span>), <span class="dt">crs =</span> <span class="dv">4326</span>) <span class="op">+</span></span>
+<span id="cb181-6"><a href="spatial.html#cb181-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">colour =</span> <span class="st">&quot;Population&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pwc-with-basemap"></span>
+<img src="_main_files/figure-html/pwc-with-basemap-1.png" alt="Scottish census output areas with UK background map." width="85%" />
+<p class="caption">
+Figure 9.5: Scottish census output areas with UK background map.
+</p>
+</div>
+<p>Much better! We can now see Scotland in its geographic context. The
+<code>coord_sf()</code> function allows us to zoom into the region of interest by setting
+<code>xlim</code> and <code>ylim</code>. The <code>crs</code> argument specifies which coordinate reference
+system those limit values are expressed in; see Section <a href="spatial.html#spatial-crs">9.5</a>. It is always a good idea to set it
+explicitly: when a map combines layers that use different CRS (as ours does —
+the UK outline is in WGS84 while the census data is in British National Grid),
+<code>ggplot2</code> needs to know which system your <code>xlim</code>/<code>ylim</code> values refer to.
+Using <code>crs = 4326</code> (WGS84 longitude/latitude) is the safest default because
+longitude and latitude are universally understood and work regardless of which
+CRS the underlying data layers use.</p>
+</div>
+<div id="combining-polygons-with-background" class="section level3 hasAnchor" number="9.4.5">
+<h3><span class="header-section-number">9.4.5</span> Combining: polygons with background<a href="spatial.html#combining-polygons-with-background" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For the complete picture, let’s use polygons with the background map:</p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="spatial.html#cb182-1" aria-hidden="true"></a><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb182-2"><a href="spatial.html#cb182-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> uk) <span class="op">+</span></span>
+<span id="cb182-3"><a href="spatial.html#cb182-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> eor, <span class="kw">aes</span>(<span class="dt">fill =</span> Popcount), <span class="dt">colour =</span> <span class="ot">NA</span>) <span class="op">+</span></span>
+<span id="cb182-4"><a href="spatial.html#cb182-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_fill_viridis_c</span>() <span class="op">+</span></span>
+<span id="cb182-5"><a href="spatial.html#cb182-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">coord_sf</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">8</span>, <span class="dv">0</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">54</span>, <span class="dv">61</span>), <span class="dt">crs =</span> <span class="dv">4326</span>) <span class="op">+</span></span>
+<span id="cb182-6"><a href="spatial.html#cb182-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill =</span> <span class="st">&quot;Population&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:eor-with-basemap"></span>
+<img src="_main_files/figure-html/eor-with-basemap-1.png" alt="Scottish census output areas (polygons) with UK background map." width="85%" />
+<p class="caption">
+Figure 9.6: Scottish census output areas (polygons) with UK background map.
+</p>
+</div>
+</div>
+</div>
+<div id="spatial-crs" class="section level2 hasAnchor" number="9.5">
+<h2><span class="header-section-number">9.5</span> Coordinate reference systems<a href="spatial.html#spatial-crs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>An important concept in spatial data is the <strong>coordinate reference system</strong>
+(CRS). Different datasets may use different systems to represent locations
+on Earth.</p>
+<div id="common-coordinate-systems" class="section level3 hasAnchor" number="9.5.1">
+<h3><span class="header-section-number">9.5.1</span> Common coordinate systems<a href="spatial.html#common-coordinate-systems" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>WGS84 (EPSG:4326)</strong>:</p>
+<ul>
+<li>The most common global system</li>
+<li>Uses longitude and latitude in degrees</li>
+<li>What you see on Google Maps</li>
+</ul>
+<p><strong>British National Grid (EPSG:27700)</strong>:</p>
+<ul>
+<li>Used for Great Britain</li>
+<li>Uses easting and northing in metres</li>
+<li>What you see on Ordnance Survey maps</li>
+</ul>
+<p>Pay attention to the number after “EPSG:”; this is the number you use when there is a <code>crs</code> parameter in the function, such as <code>coord_sf()</code> above in Section <a href="spatial.html#background-map">9.4.4</a> and <code>st_as_sf()</code> below.</p>
+</div>
+<div id="how-the-sf-package-handles-crs" class="section level3 hasAnchor" number="9.5.2">
+<h3><span class="header-section-number">9.5.2</span> How the <code>sf</code> package handles CRS<a href="spatial.html#how-the-sf-package-handles-crs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>sf</code> package handles coordinate system translations automatically. This
+means:</p>
+<ul>
+<li>Points represented in different systems will be plotted correctly on the
+same map</li>
+<li>Datasets with different CRS can be layered on top of each other</li>
+</ul>
+<p>Let’s check the CRS of our datasets:</p>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="spatial.html#cb183-1" aria-hidden="true"></a><span class="co"># Check CRS of the census data</span></span>
+<span id="cb183-2"><a href="spatial.html#cb183-2" aria-hidden="true"></a><span class="kw">st_crs</span>(pwc)<span class="op">$</span>input</span></code></pre></div>
+<pre><code>## [1] &quot;OSGB36 / British National Grid&quot;</code></pre>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="spatial.html#cb185-1" aria-hidden="true"></a><span class="co"># Check CRS of the UK map</span></span>
+<span id="cb185-2"><a href="spatial.html#cb185-2" aria-hidden="true"></a><span class="kw">st_crs</span>(uk)<span class="op">$</span>input</span></code></pre></div>
+<pre><code>## [1] &quot;WGS 84&quot;</code></pre>
+<p>Even though these use different coordinate systems, <code>ggplot2</code> with <code>geom_sf()</code>
+handles the transformation automatically.</p>
+</div>
+<div id="spatial-create-geom" class="section level3 hasAnchor" number="9.5.3">
+<h3><span class="header-section-number">9.5.3</span> Creating geometry from coordinates<a href="spatial.html#spatial-create-geom" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The point data in <code>OutputArea2022_PWC</code> is particularly useful for learning
+data manipulation because it contains both:</p>
+<ul>
+<li>The <code>geometry</code> column (ready-to-use spatial data)</li>
+<li>Separate coordinate columns (<code>easting</code>, <code>northing</code>)</li>
+</ul>
+<p>This allows us to practise converting coordinate columns into geometry. If you
+have a CSV file with latitude and longitude columns but no geometry, you can
+create the geometry using <code>st_as_sf()</code>:</p>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="spatial.html#cb187-1" aria-hidden="true"></a><span class="co"># First, let&#39;s see the coordinate columns in our data</span></span>
+<span id="cb187-2"><a href="spatial.html#cb187-2" aria-hidden="true"></a>pwc <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb187-3"><a href="spatial.html#cb187-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">st_drop_geometry</span>() <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb187-4"><a href="spatial.html#cb187-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">select</span>(code, easting, northing) <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb187-5"><a href="spatial.html#cb187-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">head</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 3
+##   code      easting northing
+##   &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;   
+## 1 S00136472 393865  806312  
+## 2 S00136478 393877  806296  
+## 3 S00136558 392813  805762  
+## 4 S00136477 393708  806213  
+## 5 S00136331 394238  806594  
+## 6 S00136454 394157  806265</code></pre>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="spatial.html#cb189-1" aria-hidden="true"></a><span class="co"># If we only had coordinates (no geometry), we could create it like this:</span></span>
+<span id="cb189-2"><a href="spatial.html#cb189-2" aria-hidden="true"></a>pwc_coords &lt;-<span class="st"> </span>pwc <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb189-3"><a href="spatial.html#cb189-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">st_drop_geometry</span>() <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb189-4"><a href="spatial.html#cb189-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">select</span>(code, easting, northing, HHcount, Popcount)</span>
+<span id="cb189-5"><a href="spatial.html#cb189-5" aria-hidden="true"></a></span>
+<span id="cb189-6"><a href="spatial.html#cb189-6" aria-hidden="true"></a><span class="co"># Convert to sf object using the coordinate columns</span></span>
+<span id="cb189-7"><a href="spatial.html#cb189-7" aria-hidden="true"></a>pwc_recreated &lt;-<span class="st"> </span><span class="kw">st_as_sf</span>(pwc_coords,</span>
+<span id="cb189-8"><a href="spatial.html#cb189-8" aria-hidden="true"></a>                          <span class="dt">coords =</span> <span class="kw">c</span>(<span class="st">&quot;easting&quot;</span>, <span class="st">&quot;northing&quot;</span>),</span>
+<span id="cb189-9"><a href="spatial.html#cb189-9" aria-hidden="true"></a>                          <span class="dt">crs =</span> <span class="dv">27700</span>)  <span class="co"># British National Grid</span></span>
+<span id="cb189-10"><a href="spatial.html#cb189-10" aria-hidden="true"></a></span>
+<span id="cb189-11"><a href="spatial.html#cb189-11" aria-hidden="true"></a><span class="co"># Verify it worked</span></span>
+<span id="cb189-12"><a href="spatial.html#cb189-12" aria-hidden="true"></a><span class="kw">class</span>(pwc_recreated)</span></code></pre></div>
+<pre><code>## [1] &quot;sf&quot;         &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="spatial.html#cb191-1" aria-hidden="true"></a><span class="kw">head</span>(pwc_recreated)</span></code></pre></div>
+<pre><code>## Simple feature collection with 6 features and 3 fields
+## Geometry type: POINT
+## Dimension:     XY
+## Bounding box:  xmin: 392813 ymin: 805762 xmax: 394238 ymax: 806594
+## Projected CRS: OSGB36 / British National Grid
+## # A tibble: 6 × 4
+##   code      HHcount Popcount        geometry
+##   &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt;     &lt;POINT [m]&gt;
+## 1 S00136472      61       64 (393865 806312)
+## 2 S00136478      64       68 (393877 806296)
+## 3 S00136558      62      105 (392813 805762)
+## 4 S00136477      49       87 (393708 806213)
+## 5 S00136331      47       75 (394238 806594)
+## 6 S00136454      49       64 (394157 806265)</code></pre>
+<p>The <code>coords</code> argument specifies which columns contain the x and y coordinates,
+and <code>crs</code> specifies the coordinate reference system those coordinates use.</p>
+<p><strong>Important</strong>: The <code>coords</code> argument expects the <strong><span class="math inline">\(x\)</span>-coordinate first, then the
+<span class="math inline">\(y\)</span>-coordinate</strong>. For geographic coordinates:</p>
+<ul>
+<li><strong>Longitude is the <span class="math inline">\(x\)</span>-axis</strong> (east-west position), so it comes first</li>
+<li><strong>Latitude is the <span class="math inline">\(y\)</span>-axis</strong> (north-south position), so it comes second</li>
+</ul>
+<p>This order might feel counterintuitive if you’re used to saying “latitude and
+longitude”, but remember: longitude measures position along the horizontal
+(east-west) direction, just like the <span class="math inline">\(x\)</span>-axis.</p>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="spatial.html#cb193-1" aria-hidden="true"></a><span class="co"># Correct: longitude (x) first, then latitude (y)</span></span>
+<span id="cb193-2"><a href="spatial.html#cb193-2" aria-hidden="true"></a><span class="kw">st_as_sf</span>(data, <span class="dt">coords =</span> <span class="kw">c</span>(<span class="st">&quot;longitude&quot;</span>, <span class="st">&quot;latitude&quot;</span>), <span class="dt">crs =</span> <span class="dv">4326</span>)</span>
+<span id="cb193-3"><a href="spatial.html#cb193-3" aria-hidden="true"></a></span>
+<span id="cb193-4"><a href="spatial.html#cb193-4" aria-hidden="true"></a><span class="co"># Correct: easting (x) first, then northing (y)</span></span>
+<span id="cb193-5"><a href="spatial.html#cb193-5" aria-hidden="true"></a><span class="kw">st_as_sf</span>(data, <span class="dt">coords =</span> <span class="kw">c</span>(<span class="st">&quot;easting&quot;</span>, <span class="st">&quot;northing&quot;</span>), <span class="dt">crs =</span> <span class="dv">27700</span>)</span>
+<span id="cb193-6"><a href="spatial.html#cb193-6" aria-hidden="true"></a></span>
+<span id="cb193-7"><a href="spatial.html#cb193-7" aria-hidden="true"></a><span class="co"># WRONG: latitude first would place points in the wrong locations!</span></span>
+<span id="cb193-8"><a href="spatial.html#cb193-8" aria-hidden="true"></a><span class="co"># st_as_sf(data, coords = c(&quot;latitude&quot;, &quot;longitude&quot;), crs = 4326)</span></span></code></pre></div>
+<p>If your points appear in unexpected locations (e.g., in the ocean instead of on
+land), the first thing to check is whether you have the coordinate order
+correct.</p>
+</div>
+</div>
+<div id="spatial-polish" class="section level2 hasAnchor" number="9.6">
+<h2><span class="header-section-number">9.6</span> Polishing spatial plots<a href="spatial.html#spatial-polish" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Everything you learned in Chapters <a href="colours.html#colours">4</a>, <a href="other-aesthetics.html#other-aesthetics">5</a>, and
+<a href="cosmetics.html#cosmetics">6</a> about colours, legends, and axes applies directly to spatial
+plots:</p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="spatial.html#cb194-1" aria-hidden="true"></a><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb194-2"><a href="spatial.html#cb194-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> uk) <span class="op">+</span></span>
+<span id="cb194-3"><a href="spatial.html#cb194-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> eor, <span class="kw">aes</span>(<span class="dt">fill =</span> Popcount), <span class="dt">colour =</span> <span class="ot">NA</span>) <span class="op">+</span></span>
+<span id="cb194-4"><a href="spatial.html#cb194-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_fill_viridis_c</span>(<span class="dt">option =</span> <span class="st">&quot;plasma&quot;</span>) <span class="op">+</span></span>
+<span id="cb194-5"><a href="spatial.html#cb194-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">coord_sf</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">8</span>, <span class="dv">0</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">54</span>, <span class="dv">61</span>), <span class="dt">crs =</span> <span class="dv">4326</span>) <span class="op">+</span></span>
+<span id="cb194-6"><a href="spatial.html#cb194-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(</span>
+<span id="cb194-7"><a href="spatial.html#cb194-7" aria-hidden="true"></a>    <span class="dt">title =</span> <span class="st">&quot;Population by Census Output Area&quot;</span>,</span>
+<span id="cb194-8"><a href="spatial.html#cb194-8" aria-hidden="true"></a>    <span class="dt">subtitle =</span> <span class="st">&quot;Scotland, 2022 Census&quot;</span>,</span>
+<span id="cb194-9"><a href="spatial.html#cb194-9" aria-hidden="true"></a>    <span class="dt">fill =</span> <span class="st">&quot;Population&quot;</span>,</span>
+<span id="cb194-10"><a href="spatial.html#cb194-10" aria-hidden="true"></a>    <span class="dt">caption =</span> <span class="st">&quot;Source: National Records of Scotland&quot;</span></span>
+<span id="cb194-11"><a href="spatial.html#cb194-11" aria-hidden="true"></a>  ) <span class="op">+</span></span>
+<span id="cb194-12"><a href="spatial.html#cb194-12" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
+<span id="cb194-13"><a href="spatial.html#cb194-13" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:polished-map"></span>
+<img src="_main_files/figure-html/polished-map-1.png" alt="Polished map of Scottish census output areas." width="85%" />
+<p class="caption">
+Figure 9.7: Polished map of Scottish census output areas.
+</p>
+</div>
+</div>
+<div id="spatial-summary" class="section level2 hasAnchor" number="9.7">
+<h2><span class="header-section-number">9.7</span> Summary<a href="spatial.html#spatial-summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="packages-needed" class="section level3 hasAnchor" number="9.7.1">
+<h3><span class="header-section-number">9.7.1</span> Packages needed<a href="spatial.html#packages-needed" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong><code>sf</code></strong>: Reading, manipulating, and writing spatial data</li>
+<li><strong><code>rnaturalearth</code></strong>: Downloading country and region outlines for background
+maps</li>
+</ul>
+</div>
+<div id="data-requirements" class="section level3 hasAnchor" number="9.7.2">
+<h3><span class="header-section-number">9.7.2</span> Data requirements<a href="spatial.html#data-requirements" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Spatial data must be a <strong>simple feature collection</strong>: a tidy data frame plus
+a geometry column.</p>
+<table>
+<colgroup>
+<col width="21%" />
+<col width="43%" />
+<col width="35%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Source</th>
+<th>Geometry types</th>
+<th>Ease of use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Flat files (CSV, XLS, XLSX)</td>
+<td>Points only (coordinates in columns)</td>
+<td>Easy to read, but requires <code>st_as_sf()</code></td>
+</tr>
+<tr class="even">
+<td>Shapefiles (.shp)</td>
+<td>Points, lines, and/or polygons</td>
+<td>Geometry ready, but larger file size</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="coordinate-reference-systems" class="section level3 hasAnchor" number="9.7.3">
+<h3><span class="header-section-number">9.7.3</span> Coordinate reference systems<a href="spatial.html#coordinate-reference-systems" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Different datasets may use different CRS (e.g., WGS84 vs British National
+Grid)</li>
+<li>The <code>sf</code> package handles transformations automatically</li>
+<li>Datasets with different CRS can be plotted together seamlessly</li>
+</ul>
+</div>
+<div id="the-spatial-geom" class="section level3 hasAnchor" number="9.7.4">
+<h3><span class="header-section-number">9.7.4</span> The spatial geom<a href="spatial.html#the-spatial-geom" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong><code>geom_sf()</code></strong> is the key function for plotting spatial data</li>
+<li>Use <code>colour</code> for points and lines</li>
+<li>Use <code>fill</code> for polygon interiors</li>
+<li>Layer multiple <code>geom_sf()</code> calls to build up your map</li>
+<li>Use <code>coord_sf(xlim, ylim, crs = 4326)</code> to zoom to a region of interest;
+always specify <code>crs = 4326</code> so the limits are interpreted as longitude and
+latitude, which is unambiguous regardless of the CRS used by the data layers</li>
+</ul>
+</div>
+<div id="building-maps" class="section level3 hasAnchor" number="9.7.5">
+<h3><span class="header-section-number">9.7.5</span> Building maps<a href="spatial.html#building-maps" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The workflow for creating a map is:</p>
+<ol style="list-style-type: decimal">
+<li>Load background map data (e.g., from <code>rnaturalearth</code>)</li>
+<li>Load your spatial data (shapefile or convert from coordinates)</li>
+<li>Create a <code>ggplot()</code> with <code>geom_sf()</code> layers</li>
+<li>Add scales, labels, and themes as usual</li>
+</ol>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="temporal.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="interactivity.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

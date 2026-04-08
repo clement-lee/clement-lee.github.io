@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6 Plot Cosmetics | MAS2908 Data Visualisation</title>
+  <meta name="description" content="This is the notes for MAS2908 Data Visualisation. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6 Plot Cosmetics | MAS2908 Data Visualisation" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is the notes for MAS2908 Data Visualisation. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6 Plot Cosmetics | MAS2908 Data Visualisation" />
+  
+  <meta name="twitter:description" content="This is the notes for MAS2908 Data Visualisation. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Clement Lee" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="other-aesthetics.html"/>
+<link rel="next" href="stats.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites (the boring stuff)</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#module-overview"><i class="fa fa-check"></i><b>1.1</b> Module overview</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#module-contacts"><i class="fa fa-check"></i><b>1.2</b> Module Contacts</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#materials"><i class="fa fa-check"></i><b>1.3</b> Materials</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#copyright-and-licence"><i class="fa fa-check"></i><b>1.4</b> Copyright and Licence</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i><b>1.5</b> Schedule</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#assessment"><i class="fa fa-check"></i><b>1.6</b> Assessment</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="index.html"><a href="index.html#late-work-policy"><i class="fa fa-check"></i><b>1.6.1</b> Late work policy</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#syllabus"><i class="fa fa-check"></i><b>1.7</b> Syllabus</a></li>
+<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#faq"><i class="fa fa-check"></i><b>1.8</b> FAQ</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="sec-intro.html"><a href="sec-intro.html"><i class="fa fa-check"></i><b>2</b> Graphical Presentation of Data with Base R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="sec-intro.html"><a href="sec-intro.html#introduction"><i class="fa fa-check"></i><b>2.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="sec-intro.html"><a href="sec-intro.html#data-frames"><i class="fa fa-check"></i><b>2.1.1</b> Data frames</a></li>
+<li class="chapter" data-level="2.1.2" data-path="sec-intro.html"><a href="sec-intro.html#datasets-used-in-this-chapter"><i class="fa fa-check"></i><b>2.1.2</b> Datasets used in this chapter</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="sec-intro.html"><a href="sec-intro.html#one-variable-continuous"><i class="fa fa-check"></i><b>2.2</b> One variable, continuous</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="sec-intro.html"><a href="sec-intro.html#histogram-base-R"><i class="fa fa-check"></i><b>2.2.1</b> Histograms</a></li>
+<li class="chapter" data-level="2.2.2" data-path="sec-intro.html"><a href="sec-intro.html#density-base-R"><i class="fa fa-check"></i><b>2.2.2</b> Density plots</a></li>
+<li class="chapter" data-level="2.2.3" data-path="sec-intro.html"><a href="sec-intro.html#stem-and-leaf-plots"><i class="fa fa-check"></i><b>2.2.3</b> Stem-and-leaf plots</a></li>
+<li class="chapter" data-level="2.2.4" data-path="sec-intro.html"><a href="sec-intro.html#boxplot-one-var-base-R"><i class="fa fa-check"></i><b>2.2.4</b> Boxplots</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="sec-intro.html"><a href="sec-intro.html#one-variable-discrete"><i class="fa fa-check"></i><b>2.3</b> One variable, discrete</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="sec-intro.html"><a href="sec-intro.html#bar-base-R"><i class="fa fa-check"></i><b>2.3.1</b> Bar charts</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="sec-intro.html"><a href="sec-intro.html#two-variables-both-continuous"><i class="fa fa-check"></i><b>2.4</b> Two variables, both continuous</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="sec-intro.html"><a href="sec-intro.html#scatterplot-base-R"><i class="fa fa-check"></i><b>2.4.1</b> Scatterplots</a></li>
+<li class="chapter" data-level="2.4.2" data-path="sec-intro.html"><a href="sec-intro.html#lineplot-base-R"><i class="fa fa-check"></i><b>2.4.2</b> Line plots</a></li>
+<li class="chapter" data-level="2.4.3" data-path="sec-intro.html"><a href="sec-intro.html#pairs-base-R"><i class="fa fa-check"></i><b>2.4.3</b> Pairs plots (scatterplot matrix)</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="sec-intro.html"><a href="sec-intro.html#two-variables-one-continuous-and-one-discrete"><i class="fa fa-check"></i><b>2.5</b> Two variables, one continuous and one discrete</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="sec-intro.html"><a href="sec-intro.html#problem-base-R"><i class="fa fa-check"></i><b>2.5.1</b> The problem with scatterplots</a></li>
+<li class="chapter" data-level="2.5.2" data-path="sec-intro.html"><a href="sec-intro.html#jitter-base-R"><i class="fa fa-check"></i><b>2.5.2</b> Stripcharts</a></li>
+<li class="chapter" data-level="2.5.3" data-path="sec-intro.html"><a href="sec-intro.html#boxplot-base-R"><i class="fa fa-check"></i><b>2.5.3</b> Boxplots</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="sec-intro.html"><a href="sec-intro.html#two-variables-both-discrete"><i class="fa fa-check"></i><b>2.6</b> Two variables, both discrete</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="sec-intro.html"><a href="sec-intro.html#grouped-base-R"><i class="fa fa-check"></i><b>2.6.1</b> Grouped bar charts</a></li>
+<li class="chapter" data-level="2.6.2" data-path="sec-intro.html"><a href="sec-intro.html#mosaic-plots"><i class="fa fa-check"></i><b>2.6.2</b> Mosaic plots</a></li>
+<li class="chapter" data-level="2.6.3" data-path="sec-intro.html"><a href="sec-intro.html#table-base-R"><i class="fa fa-check"></i><b>2.6.3</b> When a table suffices</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="sec-intro.html"><a href="sec-intro.html#summary"><i class="fa fa-check"></i><b>2.7</b> Summary</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="sec-intro.html"><a href="sec-intro.html#choosing-the-right-plot"><i class="fa fa-check"></i><b>2.7.1</b> Choosing the right plot</a></li>
+<li class="chapter" data-level="2.7.2" data-path="sec-intro.html"><a href="sec-intro.html#what-to-look-for"><i class="fa fa-check"></i><b>2.7.2</b> What to look for</a></li>
+<li class="chapter" data-level="2.7.3" data-path="sec-intro.html"><a href="sec-intro.html#limitations-of-base-r-graphics"><i class="fa fa-check"></i><b>2.7.3</b> Limitations of base R graphics</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html"><i class="fa fa-check"></i><b>3</b> Graphical Presentation of Data with ggplot2</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#introduction-1"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#data-frames-and-tidy-data"><i class="fa fa-check"></i><b>3.2</b> Data frames and tidy data</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#why-tidy-data-matters"><i class="fa fa-check"></i><b>3.2.1</b> Why tidy data matters</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#grammar-of-graphics-ggplot2-package"><i class="fa fa-check"></i><b>3.3</b> Grammar of graphics &amp; <code>ggplot2</code> package</a></li>
+<li class="chapter" data-level="3.4" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#one-variable-continuous-1"><i class="fa fa-check"></i><b>3.4</b> One variable, continuous</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#histogram-ggplot2"><i class="fa fa-check"></i><b>3.4.1</b> Histograms with <code>geom_histogram()</code></a></li>
+<li class="chapter" data-level="3.4.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#density-ggplot2"><i class="fa fa-check"></i><b>3.4.2</b> Density plots with <code>geom_density()</code></a></li>
+<li class="chapter" data-level="3.4.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#boxplot-one-var-ggplot2"><i class="fa fa-check"></i><b>3.4.3</b> Boxplots with <code>geom_boxplot()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#one-variable-discrete-1"><i class="fa fa-check"></i><b>3.5</b> One variable, discrete</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#bar-ggplot2"><i class="fa fa-check"></i><b>3.5.1</b> Bar charts with <code>geom_bar()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#two-variables-both-continuous-1"><i class="fa fa-check"></i><b>3.6</b> Two variables, both continuous</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#scatterplot-ggplot2"><i class="fa fa-check"></i><b>3.6.1</b> Scatterplots with <code>geom_point()</code></a></li>
+<li class="chapter" data-level="3.6.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#lineplot-ggplot2"><i class="fa fa-check"></i><b>3.6.2</b> Line plots with <code>geom_line()</code></a></li>
+<li class="chapter" data-level="3.6.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#pairs-ggplot2"><i class="fa fa-check"></i><b>3.6.3</b> Pairs plots (scatterplot matrix)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#two-variables-one-continuous-and-one-discrete-1"><i class="fa fa-check"></i><b>3.7</b> Two variables, one continuous and one discrete</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#the-problem-with-scatterplots"><i class="fa fa-check"></i><b>3.7.1</b> The problem with scatterplots</a></li>
+<li class="chapter" data-level="3.7.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#jitter-ggplot2"><i class="fa fa-check"></i><b>3.7.2</b> Stripcharts with <code>geom_jitter()</code></a></li>
+<li class="chapter" data-level="3.7.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#boxplot-ggplot2"><i class="fa fa-check"></i><b>3.7.3</b> Boxplots with <code>geom_boxplot()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#two-variables-both-discrete-1"><i class="fa fa-check"></i><b>3.8</b> Two variables, both discrete</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#grouped-ggplot2"><i class="fa fa-check"></i><b>3.8.1</b> Grouped bar charts with <code>geom_bar()</code></a></li>
+<li class="chapter" data-level="3.8.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#count-ggplot2"><i class="fa fa-check"></i><b>3.8.2</b> Count plots with <code>geom_count()</code></a></li>
+<li class="chapter" data-level="3.8.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#table-ggplot2"><i class="fa fa-check"></i><b>3.8.3</b> When a table suffices</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#the-power-of-layers"><i class="fa fa-check"></i><b>3.9</b> The power of layers</a>
+<ul>
+<li class="chapter" data-level="3.9.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#combining-multiple-geoms"><i class="fa fa-check"></i><b>3.9.1</b> Combining multiple geoms</a></li>
+<li class="chapter" data-level="3.9.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#computed-geoms"><i class="fa fa-check"></i><b>3.9.2</b> Computed geoms</a></li>
+<li class="chapter" data-level="3.9.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#multiple-datasets"><i class="fa fa-check"></i><b>3.9.3</b> Plotting multiple datasets</a></li>
+<li class="chapter" data-level="3.9.4" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#overlaying-straight-lines"><i class="fa fa-check"></i><b>3.9.4</b> Overlaying (straight) lines</a></li>
+<li class="chapter" data-level="3.9.5" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#histogram-with-density-overlay"><i class="fa fa-check"></i><b>3.9.5</b> Histogram with density overlay</a></li>
+</ul></li>
+<li class="chapter" data-level="3.10" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#syntax-notes"><i class="fa fa-check"></i><b>3.10</b> Syntax notes</a>
+<ul>
+<li class="chapter" data-level="3.10.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#no-dollar-sign-needed"><i class="fa fa-check"></i><b>3.10.1</b> No dollar sign needed</a></li>
+<li class="chapter" data-level="3.10.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#the-aes-function"><i class="fa fa-check"></i><b>3.10.2</b> The <code>aes()</code> function</a></li>
+<li class="chapter" data-level="3.10.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#a-note-on-qplot"><i class="fa fa-check"></i><b>3.10.3</b> A note on <code>qplot()</code></a></li>
+<li class="chapter" data-level="3.10.4" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#equivalent-syntax-forms"><i class="fa fa-check"></i><b>3.10.4</b> Equivalent syntax forms</a></li>
+</ul></li>
+<li class="chapter" data-level="3.11" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#summary-1"><i class="fa fa-check"></i><b>3.11</b> Summary</a>
+<ul>
+<li class="chapter" data-level="3.11.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#choosing-the-right-plot-1"><i class="fa fa-check"></i><b>3.11.1</b> Choosing the right plot</a></li>
+<li class="chapter" data-level="3.11.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#main-principles"><i class="fa fa-check"></i><b>3.11.2</b> Main principles</a></li>
+<li class="chapter" data-level="3.11.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#features-covered-in-later-chapters"><i class="fa fa-check"></i><b>3.11.3</b> Features covered in later chapters</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="colours.html"><a href="colours.html"><i class="fa fa-check"></i><b>4</b> Colours</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="colours.html"><a href="colours.html#introduction-2"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="colours.html"><a href="colours.html#colour-as-an-aesthetic"><i class="fa fa-check"></i><b>4.2</b> Colour as an aesthetic</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="colours.html"><a href="colours.html#real-world-examples"><i class="fa fa-check"></i><b>4.2.1</b> Real-world examples</a></li>
+<li class="chapter" data-level="4.2.2" data-path="colours.html"><a href="colours.html#syntax-british-and-american-spellings"><i class="fa fa-check"></i><b>4.2.2</b> Syntax: British and American spellings</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="colours.html"><a href="colours.html#colour-vs-fill"><i class="fa fa-check"></i><b>4.3</b> Colour vs fill: which aesthetic to use?</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="colours.html"><a href="colours.html#example-bar-charts"><i class="fa fa-check"></i><b>4.3.1</b> Example: bar charts</a></li>
+<li class="chapter" data-level="4.3.2" data-path="colours.html"><a href="colours.html#when-to-use-each"><i class="fa fa-check"></i><b>4.3.2</b> When to use each</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="colours.html"><a href="colours.html#colour-palettes"><i class="fa fa-check"></i><b>4.4</b> Colour palettes</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="colours.html"><a href="colours.html#discrete-categorical-scales"><i class="fa fa-check"></i><b>4.4.1</b> Discrete (categorical) scales</a></li>
+<li class="chapter" data-level="4.4.2" data-path="colours.html"><a href="colours.html#continuous-scales"><i class="fa fa-check"></i><b>4.4.2</b> Continuous scales</a></li>
+<li class="chapter" data-level="4.4.3" data-path="colours.html"><a href="colours.html#binned-scales"><i class="fa fa-check"></i><b>4.4.3</b> Binned scales</a></li>
+<li class="chapter" data-level="4.4.4" data-path="colours.html"><a href="colours.html#miscellaneous-scales"><i class="fa fa-check"></i><b>4.4.4</b> Miscellaneous scales</a></li>
+<li class="chapter" data-level="4.4.5" data-path="colours.html"><a href="colours.html#available-colorbrewer-palettes"><i class="fa fa-check"></i><b>4.4.5</b> Available ColorBrewer palettes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="colours.html"><a href="colours.html#colourblind"><i class="fa fa-check"></i><b>4.5</b> Colour-blind-friendly palettes</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="colours.html"><a href="colours.html#the-viridis-palettes"><i class="fa fa-check"></i><b>4.5.1</b> The viridis palettes</a></li>
+<li class="chapter" data-level="4.5.2" data-path="colours.html"><a href="colours.html#the-okabe-ito-palette"><i class="fa fa-check"></i><b>4.5.2</b> The Okabe-Ito palette</a></li>
+<li class="chapter" data-level="4.5.3" data-path="colours.html"><a href="colours.html#specifying-colours-with-hex-codes"><i class="fa fa-check"></i><b>4.5.3</b> Specifying colours with hex codes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="colours.html"><a href="colours.html#alpha-scales"><i class="fa fa-check"></i><b>4.6</b> Opacity with <code>alpha</code></a></li>
+<li class="chapter" data-level="4.7" data-path="colours.html"><a href="colours.html#summary-2"><i class="fa fa-check"></i><b>4.7</b> Summary</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="colours.html"><a href="colours.html#colour-scale-functions"><i class="fa fa-check"></i><b>4.7.1</b> Colour scale functions</a></li>
+<li class="chapter" data-level="4.7.2" data-path="colours.html"><a href="colours.html#key-points"><i class="fa fa-check"></i><b>4.7.2</b> Key points</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="other-aesthetics.html"><a href="other-aesthetics.html"><i class="fa fa-check"></i><b>5</b> Other Aesthetics</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="other-aesthetics.html"><a href="other-aesthetics.html#introduction-3"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="other-aesthetics.html"><a href="other-aesthetics.html#shape"><i class="fa fa-check"></i><b>5.2</b> Shape</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="other-aesthetics.html"><a href="other-aesthetics.html#default-shape-mapping"><i class="fa fa-check"></i><b>5.2.1</b> Default shape mapping</a></li>
+<li class="chapter" data-level="5.2.2" data-path="other-aesthetics.html"><a href="other-aesthetics.html#available-shapes"><i class="fa fa-check"></i><b>5.2.2</b> Available shapes</a></li>
+<li class="chapter" data-level="5.2.3" data-path="other-aesthetics.html"><a href="other-aesthetics.html#manual-shape-selection"><i class="fa fa-check"></i><b>5.2.3</b> Manual shape selection</a></li>
+<li class="chapter" data-level="5.2.4" data-path="other-aesthetics.html"><a href="other-aesthetics.html#combining-shape-and-colour"><i class="fa fa-check"></i><b>5.2.4</b> Combining shape and colour</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="other-aesthetics.html"><a href="other-aesthetics.html#linetype"><i class="fa fa-check"></i><b>5.3</b> Line type</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="other-aesthetics.html"><a href="other-aesthetics.html#available-line-types"><i class="fa fa-check"></i><b>5.3.1</b> Available line types</a></li>
+<li class="chapter" data-level="5.3.2" data-path="other-aesthetics.html"><a href="other-aesthetics.html#default-line-type-mapping"><i class="fa fa-check"></i><b>5.3.2</b> Default line type mapping</a></li>
+<li class="chapter" data-level="5.3.3" data-path="other-aesthetics.html"><a href="other-aesthetics.html#combining-line-type-and-colour"><i class="fa fa-check"></i><b>5.3.3</b> Combining line type and colour</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="other-aesthetics.html"><a href="other-aesthetics.html#size"><i class="fa fa-check"></i><b>5.4</b> Size</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="other-aesthetics.html"><a href="other-aesthetics.html#default-size-mapping"><i class="fa fa-check"></i><b>5.4.1</b> Default size mapping</a></li>
+<li class="chapter" data-level="5.4.2" data-path="other-aesthetics.html"><a href="other-aesthetics.html#controlling-the-size-range"><i class="fa fa-check"></i><b>5.4.2</b> Controlling the size range</a></li>
+<li class="chapter" data-level="5.4.3" data-path="other-aesthetics.html"><a href="other-aesthetics.html#size-by-area-vs-radius"><i class="fa fa-check"></i><b>5.4.3</b> Size by area vs radius</a></li>
+<li class="chapter" data-level="5.4.4" data-path="other-aesthetics.html"><a href="other-aesthetics.html#identity-scales"><i class="fa fa-check"></i><b>5.4.4</b> Identity scales</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="other-aesthetics.html"><a href="other-aesthetics.html#xy-axes"><i class="fa fa-check"></i><b>5.5</b> <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> axes</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="other-aesthetics.html"><a href="other-aesthetics.html#default-continuous-scales"><i class="fa fa-check"></i><b>5.5.1</b> Default continuous scales</a></li>
+<li class="chapter" data-level="5.5.2" data-path="other-aesthetics.html"><a href="other-aesthetics.html#setting-axis-limits"><i class="fa fa-check"></i><b>5.5.2</b> Setting axis limits</a></li>
+<li class="chapter" data-level="5.5.3" data-path="other-aesthetics.html"><a href="other-aesthetics.html#log-scales"><i class="fa fa-check"></i><b>5.5.3</b> Logarithmic scales</a></li>
+<li class="chapter" data-level="5.5.4" data-path="other-aesthetics.html"><a href="other-aesthetics.html#available-transformations"><i class="fa fa-check"></i><b>5.5.4</b> Available transformations</a></li>
+<li class="chapter" data-level="5.5.5" data-path="other-aesthetics.html"><a href="other-aesthetics.html#discrete-scales"><i class="fa fa-check"></i><b>5.5.5</b> Discrete scales</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="other-aesthetics.html"><a href="other-aesthetics.html#facets"><i class="fa fa-check"></i><b>5.6</b> Facets</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="other-aesthetics.html"><a href="other-aesthetics.html#facet_wrap"><i class="fa fa-check"></i><b>5.6.1</b> <code>facet_wrap()</code></a></li>
+<li class="chapter" data-level="5.6.2" data-path="other-aesthetics.html"><a href="other-aesthetics.html#facet_grid"><i class="fa fa-check"></i><b>5.6.2</b> <code>facet_grid()</code></a></li>
+<li class="chapter" data-level="5.6.3" data-path="other-aesthetics.html"><a href="other-aesthetics.html#free-scales"><i class="fa fa-check"></i><b>5.6.3</b> Free scales</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="other-aesthetics.html"><a href="other-aesthetics.html#summary-3"><i class="fa fa-check"></i><b>5.7</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="cosmetics.html"><a href="cosmetics.html"><i class="fa fa-check"></i><b>6</b> Plot Cosmetics</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="cosmetics.html"><a href="cosmetics.html#introduction-4"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="cosmetics.html"><a href="cosmetics.html#incremental-workflow"><i class="fa fa-check"></i><b>6.2</b> Incremental workflow</a></li>
+<li class="chapter" data-level="6.3" data-path="cosmetics.html"><a href="cosmetics.html#coordinate-systems"><i class="fa fa-check"></i><b>6.3</b> Coordinate systems</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="cosmetics.html"><a href="cosmetics.html#coord-cartesian"><i class="fa fa-check"></i><b>6.3.1</b> Cartesian coordinates (default)</a></li>
+<li class="chapter" data-level="6.3.2" data-path="cosmetics.html"><a href="cosmetics.html#coord-fixed"><i class="fa fa-check"></i><b>6.3.2</b> Fixed aspect ratio</a></li>
+<li class="chapter" data-level="6.3.3" data-path="cosmetics.html"><a href="cosmetics.html#coord-flip"><i class="fa fa-check"></i><b>6.3.3</b> Flipped coordinates</a></li>
+<li class="chapter" data-level="6.3.4" data-path="cosmetics.html"><a href="cosmetics.html#coord-polar"><i class="fa fa-check"></i><b>6.3.4</b> Polar coordinates</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="cosmetics.html"><a href="cosmetics.html#position-adjustments"><i class="fa fa-check"></i><b>6.4</b> Position adjustments</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="cosmetics.html"><a href="cosmetics.html#jittering-for-overplotting"><i class="fa fa-check"></i><b>6.4.1</b> Jittering (for overplotting)</a></li>
+<li class="chapter" data-level="6.4.2" data-path="cosmetics.html"><a href="cosmetics.html#position-dodge"><i class="fa fa-check"></i><b>6.4.2</b> Dodging (side by side)</a></li>
+<li class="chapter" data-level="6.4.3" data-path="cosmetics.html"><a href="cosmetics.html#stacking-default-for-bars"><i class="fa fa-check"></i><b>6.4.3</b> Stacking (default for bars)</a></li>
+<li class="chapter" data-level="6.4.4" data-path="cosmetics.html"><a href="cosmetics.html#filling-proportions"><i class="fa fa-check"></i><b>6.4.4</b> Filling (proportions)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="cosmetics.html"><a href="cosmetics.html#themes"><i class="fa fa-check"></i><b>6.5</b> Themes</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="cosmetics.html"><a href="cosmetics.html#built-in-themes"><i class="fa fa-check"></i><b>6.5.1</b> Built-in themes</a></li>
+<li class="chapter" data-level="6.5.2" data-path="cosmetics.html"><a href="cosmetics.html#global-theme"><i class="fa fa-check"></i><b>6.5.2</b> Setting a global theme</a></li>
+<li class="chapter" data-level="6.5.3" data-path="cosmetics.html"><a href="cosmetics.html#custom-theme"><i class="fa fa-check"></i><b>6.5.3</b> Customising individual elements</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="cosmetics.html"><a href="cosmetics.html#labels"><i class="fa fa-check"></i><b>6.6</b> Labels</a></li>
+<li class="chapter" data-level="6.7" data-path="cosmetics.html"><a href="cosmetics.html#legends"><i class="fa fa-check"></i><b>6.7</b> Legends</a>
+<ul>
+<li class="chapter" data-level="6.7.1" data-path="cosmetics.html"><a href="cosmetics.html#legend-position"><i class="fa fa-check"></i><b>6.7.1</b> Legend position</a></li>
+<li class="chapter" data-level="6.7.2" data-path="cosmetics.html"><a href="cosmetics.html#legend-inside"><i class="fa fa-check"></i><b>6.7.2</b> Legend inside the plot</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="cosmetics.html"><a href="cosmetics.html#axis-formatting"><i class="fa fa-check"></i><b>6.8</b> Axis formatting</a>
+<ul>
+<li class="chapter" data-level="6.8.1" data-path="cosmetics.html"><a href="cosmetics.html#avoiding-scientific-notation"><i class="fa fa-check"></i><b>6.8.1</b> Avoiding scientific notation</a></li>
+<li class="chapter" data-level="6.8.2" data-path="cosmetics.html"><a href="cosmetics.html#controlling-tick-marks"><i class="fa fa-check"></i><b>6.8.2</b> Controlling tick marks</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="cosmetics.html"><a href="cosmetics.html#summary-4"><i class="fa fa-check"></i><b>6.9</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="stats.html"><a href="stats.html"><i class="fa fa-check"></i><b>7</b> Data Manipulation and Statistical Layers</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="stats.html"><a href="stats.html#introduction-5"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.2" data-path="stats.html"><a href="stats.html#dplyr"><i class="fa fa-check"></i><b>7.2</b> Data manipulation with <code>dplyr</code></a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="stats.html"><a href="stats.html#two-ways-to-do-things"><i class="fa fa-check"></i><b>7.2.1</b> Two ways to do things</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="stats.html"><a href="stats.html#geom-bar-motivation"><i class="fa fa-check"></i><b>7.3</b> Bar charts and counting</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="stats.html"><a href="stats.html#approach-a-count-first-then-plot"><i class="fa fa-check"></i><b>7.3.1</b> Approach A: count first, then plot</a></li>
+<li class="chapter" data-level="7.3.2" data-path="stats.html"><a href="stats.html#a-common-mistake"><i class="fa fa-check"></i><b>7.3.2</b> A common mistake</a></li>
+<li class="chapter" data-level="7.3.3" data-path="stats.html"><a href="stats.html#approach-b-let-geom_bar-count-automatically"><i class="fa fa-check"></i><b>7.3.3</b> Approach B: let <code>geom_bar()</code> count automatically</a></li>
+<li class="chapter" data-level="7.3.4" data-path="stats.html"><a href="stats.html#log-scale-connection"><i class="fa fa-check"></i><b>7.3.4</b> The log-scale connection</a></li>
+<li class="chapter" data-level="7.3.5" data-path="stats.html"><a href="stats.html#what-geoms-compute-for-you"><i class="fa fa-check"></i><b>7.3.5</b> What geoms compute for you</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="stats.html"><a href="stats.html#filter-vs-limits"><i class="fa fa-check"></i><b>7.4</b> Subsetting data</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="stats.html"><a href="stats.html#approach-a"><i class="fa fa-check"></i><b>7.4.1</b> Approach A</a></li>
+<li class="chapter" data-level="7.4.2" data-path="stats.html"><a href="stats.html#approach-bi"><i class="fa fa-check"></i><b>7.4.2</b> Approach B(i)</a></li>
+<li class="chapter" data-level="7.4.3" data-path="stats.html"><a href="stats.html#approach-bii"><i class="fa fa-check"></i><b>7.4.3</b> Approach B(ii)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="stats.html"><a href="stats.html#stat-summary"><i class="fa fa-check"></i><b>7.5</b> Overlaying summaries with <code>stat_summary()</code></a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="stats.html"><a href="stats.html#approach-a-1"><i class="fa fa-check"></i><b>7.5.1</b> Approach A</a></li>
+<li class="chapter" data-level="7.5.2" data-path="stats.html"><a href="stats.html#approach-b"><i class="fa fa-check"></i><b>7.5.2</b> Approach B</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="stats.html"><a href="stats.html#density-histogram"><i class="fa fa-check"></i><b>7.6</b> Histogram with density overlay</a></li>
+<li class="chapter" data-level="7.7" data-path="stats.html"><a href="stats.html#qq-plots"><i class="fa fa-check"></i><b>7.7</b> Q-Q plots for assessing normality</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="stats.html"><a href="stats.html#why-not-just-use-a-histogram-or-density-plot"><i class="fa fa-check"></i><b>7.7.1</b> Why not just use a histogram or density plot?</a></li>
+<li class="chapter" data-level="7.7.2" data-path="stats.html"><a href="stats.html#q-q-plots-in-ggplot2"><i class="fa fa-check"></i><b>7.7.2</b> Q-Q plots in <code>ggplot2</code></a></li>
+<li class="chapter" data-level="7.7.3" data-path="stats.html"><a href="stats.html#interpreting-q-q-plots"><i class="fa fa-check"></i><b>7.7.3</b> Interpreting Q-Q plots</a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="stats.html"><a href="stats.html#stats-summary"><i class="fa fa-check"></i><b>7.8</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="temporal.html"><a href="temporal.html"><i class="fa fa-check"></i><b>8</b> Plotting time series data</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="temporal.html"><a href="temporal.html#datetime-objects"><i class="fa fa-check"></i><b>8.1</b> Creating time objects</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="temporal.html"><a href="temporal.html#the-make_datetime-function"><i class="fa fa-check"></i><b>8.1.1</b> The <code>make_datetime()</code> function</a></li>
+<li class="chapter" data-level="8.1.2" data-path="temporal.html"><a href="temporal.html#plotting-with-time-objects"><i class="fa fa-check"></i><b>8.1.2</b> Plotting with time objects</a></li>
+<li class="chapter" data-level="8.1.3" data-path="temporal.html"><a href="temporal.html#related-functions"><i class="fa fa-check"></i><b>8.1.3</b> Related functions</a></li>
+<li class="chapter" data-level="8.1.4" data-path="temporal.html"><a href="temporal.html#why-this-matters-for-visualisation"><i class="fa fa-check"></i><b>8.1.4</b> Why this matters for visualisation</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="temporal.html"><a href="temporal.html#temporal-viz"><i class="fa fa-check"></i><b>8.2</b> Temporal data visualisation</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="temporal.html"><a href="temporal.html#geom_line-vs-geom_path-the-key-difference"><i class="fa fa-check"></i><b>8.2.1</b> <code>geom_line()</code> vs <code>geom_path()</code>: the key difference</a></li>
+<li class="chapter" data-level="8.2.2" data-path="temporal.html"><a href="temporal.html#when-they-produce-the-same-result"><i class="fa fa-check"></i><b>8.2.2</b> When they produce the same result</a></li>
+<li class="chapter" data-level="8.2.3" data-path="temporal.html"><a href="temporal.html#when-they-differ-shuffled-data"><i class="fa fa-check"></i><b>8.2.3</b> When they differ: shuffled data</a></li>
+<li class="chapter" data-level="8.2.4" data-path="temporal.html"><a href="temporal.html#the-power-of-geom_path-adding-time-as-a-third-dimension"><i class="fa fa-check"></i><b>8.2.4</b> The power of <code>geom_path()</code>: adding time as a third dimension</a></li>
+<li class="chapter" data-level="8.2.5" data-path="temporal.html"><a href="temporal.html#enhancing-the-path-with-colour"><i class="fa fa-check"></i><b>8.2.5</b> Enhancing the path with colour</a></li>
+<li class="chapter" data-level="8.2.6" data-path="temporal.html"><a href="temporal.html#summary-geom_line-vs-geom_path"><i class="fa fa-check"></i><b>8.2.6</b> Summary: <code>geom_line()</code> vs <code>geom_path()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="temporal.html"><a href="temporal.html#scales-labels-zooming"><i class="fa fa-check"></i><b>8.3</b> Scales, labels &amp; zooming</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="temporal.html"><a href="temporal.html#controlling-date-breaks"><i class="fa fa-check"></i><b>8.3.1</b> Controlling date breaks</a></li>
+<li class="chapter" data-level="8.3.2" data-path="temporal.html"><a href="temporal.html#strftime"><i class="fa fa-check"></i><b>8.3.2</b> Formatting date labels</a></li>
+<li class="chapter" data-level="8.3.3" data-path="temporal.html"><a href="temporal.html#labelling-the-time-axis-appropriately"><i class="fa fa-check"></i><b>8.3.3</b> Labelling the time axis appropriately</a></li>
+<li class="chapter" data-level="8.3.4" data-path="temporal.html"><a href="temporal.html#zooming-on-time-series"><i class="fa fa-check"></i><b>8.3.4</b> Zooming on time series</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="temporal.html"><a href="temporal.html#implicit-missing"><i class="fa fa-check"></i><b>8.4</b> A potential pitfall: implicit missing data</a></li>
+<li class="chapter" data-level="8.5" data-path="temporal.html"><a href="temporal.html#summary-temporal-data"><i class="fa fa-check"></i><b>8.5</b> Summary: temporal data</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="spatial.html"><a href="spatial.html"><i class="fa fa-check"></i><b>9</b> Plotting (geo)spatial data</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="spatial.html"><a href="spatial.html#spatial-intro"><i class="fa fa-check"></i><b>9.1</b> Introduction</a></li>
+<li class="chapter" data-level="9.2" data-path="spatial.html"><a href="spatial.html#spatial-why-sf"><i class="fa fa-check"></i><b>9.2</b> Why not just use <code>geom_point()</code>?</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="spatial.html"><a href="spatial.html#the-sf-solution"><i class="fa fa-check"></i><b>9.2.1</b> The <code>sf</code> solution</a></li>
+<li class="chapter" data-level="9.2.2" data-path="spatial.html"><a href="spatial.html#how-geom_sf-differs-from-other-geoms"><i class="fa fa-check"></i><b>9.2.2</b> How <code>geom_sf()</code> differs from other geoms</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="spatial.html"><a href="spatial.html#spatial-geometry"><i class="fa fa-check"></i><b>9.3</b> The key ingredient: geometry</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="spatial.html"><a href="spatial.html#simple-feature-collections"><i class="fa fa-check"></i><b>9.3.1</b> Simple feature collections</a></li>
+<li class="chapter" data-level="9.3.2" data-path="spatial.html"><a href="spatial.html#file-formats-for-spatial-data"><i class="fa fa-check"></i><b>9.3.2</b> File formats for spatial data</a></li>
+<li class="chapter" data-level="9.3.3" data-path="spatial.html"><a href="spatial.html#reading-shapefiles"><i class="fa fa-check"></i><b>9.3.3</b> Reading shapefiles</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="spatial.html"><a href="spatial.html#spatial-scotland"><i class="fa fa-check"></i><b>9.4</b> Example: Scottish Census output areas</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="spatial.html"><a href="spatial.html#point-data-population-weighted-centroids"><i class="fa fa-check"></i><b>9.4.1</b> Point data: population-weighted centroids</a></li>
+<li class="chapter" data-level="9.4.2" data-path="spatial.html"><a href="spatial.html#first-attempt-plotting-points"><i class="fa fa-check"></i><b>9.4.2</b> First attempt: plotting points</a></li>
+<li class="chapter" data-level="9.4.3" data-path="spatial.html"><a href="spatial.html#fix-a-using-polygon-data"><i class="fa fa-check"></i><b>9.4.3</b> Fix (a): Using polygon data</a></li>
+<li class="chapter" data-level="9.4.4" data-path="spatial.html"><a href="spatial.html#background-map"><i class="fa fa-check"></i><b>9.4.4</b> Fix (b): Adding a background map</a></li>
+<li class="chapter" data-level="9.4.5" data-path="spatial.html"><a href="spatial.html#combining-polygons-with-background"><i class="fa fa-check"></i><b>9.4.5</b> Combining: polygons with background</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="spatial.html"><a href="spatial.html#spatial-crs"><i class="fa fa-check"></i><b>9.5</b> Coordinate reference systems</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="spatial.html"><a href="spatial.html#common-coordinate-systems"><i class="fa fa-check"></i><b>9.5.1</b> Common coordinate systems</a></li>
+<li class="chapter" data-level="9.5.2" data-path="spatial.html"><a href="spatial.html#how-the-sf-package-handles-crs"><i class="fa fa-check"></i><b>9.5.2</b> How the <code>sf</code> package handles CRS</a></li>
+<li class="chapter" data-level="9.5.3" data-path="spatial.html"><a href="spatial.html#spatial-create-geom"><i class="fa fa-check"></i><b>9.5.3</b> Creating geometry from coordinates</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="spatial.html"><a href="spatial.html#spatial-polish"><i class="fa fa-check"></i><b>9.6</b> Polishing spatial plots</a></li>
+<li class="chapter" data-level="9.7" data-path="spatial.html"><a href="spatial.html#spatial-summary"><i class="fa fa-check"></i><b>9.7</b> Summary</a>
+<ul>
+<li class="chapter" data-level="9.7.1" data-path="spatial.html"><a href="spatial.html#packages-needed"><i class="fa fa-check"></i><b>9.7.1</b> Packages needed</a></li>
+<li class="chapter" data-level="9.7.2" data-path="spatial.html"><a href="spatial.html#data-requirements"><i class="fa fa-check"></i><b>9.7.2</b> Data requirements</a></li>
+<li class="chapter" data-level="9.7.3" data-path="spatial.html"><a href="spatial.html#coordinate-reference-systems"><i class="fa fa-check"></i><b>9.7.3</b> Coordinate reference systems</a></li>
+<li class="chapter" data-level="9.7.4" data-path="spatial.html"><a href="spatial.html#the-spatial-geom"><i class="fa fa-check"></i><b>9.7.4</b> The spatial geom</a></li>
+<li class="chapter" data-level="9.7.5" data-path="spatial.html"><a href="spatial.html#building-maps"><i class="fa fa-check"></i><b>9.7.5</b> Building maps</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="interactivity.html"><a href="interactivity.html"><i class="fa fa-check"></i><b>10</b> Interactive Visualisation</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="interactivity.html"><a href="interactivity.html#shiny-basics"><i class="fa fa-check"></i><b>10.1</b> Shiny basics</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="interactivity.html"><a href="interactivity.html#minimal-structure"><i class="fa fa-check"></i><b>10.1.1</b> Minimal structure</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="interactivity.html"><a href="interactivity.html#shiny-inputs"><i class="fa fa-check"></i><b>10.2</b> Toggles and controls</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="interactivity.html"><a href="interactivity.html#sliderinput"><i class="fa fa-check"></i><b>10.2.1</b> <code>sliderInput()</code></a></li>
+<li class="chapter" data-level="10.2.2" data-path="interactivity.html"><a href="interactivity.html#plotoutput-and-renderplot"><i class="fa fa-check"></i><b>10.2.2</b> <code>plotOutput()</code> and <code>renderPlot()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="interactivity.html"><a href="interactivity.html#shiny-example"><i class="fa fa-check"></i><b>10.3</b> A complete example</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="interactivity.html"><a href="interactivity.html#step-1-get-the-static-plot-right"><i class="fa fa-check"></i><b>10.3.1</b> Step 1: get the static plot right</a></li>
+<li class="chapter" data-level="10.3.2" data-path="interactivity.html"><a href="interactivity.html#step-2-replace-the-fixed-year-with-a-reactive-input"><i class="fa fa-check"></i><b>10.3.2</b> Step 2: replace the fixed year with a reactive input</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="interactivity.html"><a href="interactivity.html#shiny-select"><i class="fa fa-check"></i><b>10.4</b> <code>selectInput()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="miscellaneous.html"><a href="miscellaneous.html"><i class="fa fa-check"></i><b>11</b> Miscellaneous Topics</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MAS2908 Data Visualisation</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="cosmetics" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">6</span> Plot Cosmetics<a href="cosmetics.html#cosmetics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="introduction-4" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Introduction<a href="cosmetics.html#introduction-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Beyond mapping data to aesthetics, <code>ggplot2</code> provides extensive control over
+the visual appearance of your plots. This chapter covers the “cosmetic”
+aspects: coordinate systems, position adjustments, themes, labels, legends,
+and axis formatting.</p>
+<p><strong>Note</strong>: This chapter introduces many concepts, but not all are equally
+important. Some (like zooming with <code>coord_cartesian()</code> and using built-in
+themes) are frequently useful, while others (like polar coordinates or
+customising individual theme elements) are more specialised. See the summary
+at the end of this chapter for a priority guide.</p>
+<p>We continue to follow the grammar of graphics: first we create layers using
+geoms (Chapter <a href="ggplot2-intro.html#ggplot2-intro">3</a>), then we add scale layers to control
+aesthetics (Chapters <a href="colours.html#colours">4</a> and <a href="other-aesthetics.html#other-aesthetics">5</a>), and now we
+add coordinate systems and themes to control the overall appearance.</p>
+</div>
+<div id="incremental-workflow" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Incremental workflow<a href="cosmetics.html#incremental-workflow" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A powerful feature of <code>ggplot2</code> is that you can build plots incrementally by
+saving them as objects and adding layers or modifications later. This is
+covered in detail in Practical 5, but the key ideas are:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Save plots as objects</strong>: <code>p &lt;- ggplot(...) + geom_point() + ...</code></li>
+<li><strong>Add layers later</strong>: <code>p + theme_minimal()</code> or <code>p + scale_colour_viridis_d()</code></li>
+<li><strong>Use <code>last_plot()</code> interactively</strong>: In the console, <code>last_plot()</code> returns
+the most recently created plot, allowing quick refinements</li>
+</ol>
+<p>This approach is particularly useful when experimenting with different colour
+schemes, themes, or labels without rewriting the entire plot code.</p>
+</div>
+<div id="coordinate-systems" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Coordinate systems<a href="cosmetics.html#coordinate-systems" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The coordinate system determines how x and y positions are interpreted and
+displayed.</p>
+<div id="coord-cartesian" class="section level3 hasAnchor" number="6.3.1">
+<h3><span class="header-section-number">6.3.1</span> Cartesian coordinates (default)<a href="cosmetics.html#coord-cartesian" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The default <code>coord_cartesian()</code> uses standard Cartesian coordinates. Its main
+use is to <strong>zoom</strong> into a plot without removing data.</p>
+<p>Recall from Section <a href="other-aesthetics.html#xy-axes">5.5</a> that setting axis limits with
+<code>scale_*_continuous(limits = )</code> <strong>removes</strong> data outside the specified range.
+This can be problematic if you later add fitted lines or smoothers, which would
+be computed from the truncated data. In contrast, <code>coord_cartesian()</code> zooms
+visually while preserving all data for calculations:</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="cosmetics.html#cb108-1" aria-hidden="true"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy)) <span class="op">+</span></span>
+<span id="cb108-2"><a href="cosmetics.html#cb108-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb108-3"><a href="cosmetics.html#cb108-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">6</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">15</span>, <span class="dv">40</span>)) <span class="op">+</span></span>
+<span id="cb108-4"><a href="cosmetics.html#cb108-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Engine Displacement (L)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Highway MPG&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:coord-cartesian"></span>
+<img src="_main_files/figure-html/coord-cartesian-1.png" alt="Zooming with coord\_cartesian() preserves all data." width="70%" />
+<p class="caption">
+Figure 6.1: Zooming with coord_cartesian() preserves all data.
+</p>
+</div>
+<p>Compare this to the example in Section <a href="other-aesthetics.html#xy-axes">5.5</a>, which used the same
+limits with <code>scale_*_continuous()</code>. The visual result is similar, but
+<code>coord_cartesian()</code> is safer when you need all data points for statistical
+layers. See also Section <a href="stats.html#filter-vs-limits">7.4</a> in Chapter <a href="stats.html#stats">7</a> for
+a side-by-side comparison of all three approaches, including <code>dplyr::filter()</code>.</p>
+</div>
+<div id="coord-fixed" class="section level3 hasAnchor" number="6.3.2">
+<h3><span class="header-section-number">6.3.2</span> Fixed aspect ratio<a href="cosmetics.html#coord-fixed" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Use <code>coord_fixed()</code> to enforce a specific aspect ratio:</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="cosmetics.html#cb109-1" aria-hidden="true"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> cty, <span class="dt">y =</span> hwy)) <span class="op">+</span></span>
+<span id="cb109-2"><a href="cosmetics.html#cb109-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb109-3"><a href="cosmetics.html#cb109-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">coord_fixed</span>(<span class="dt">ratio =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb109-4"><a href="cosmetics.html#cb109-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;City MPG&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Highway MPG&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:coord-fixed"></span>
+<img src="_main_files/figure-html/coord-fixed-1.png" alt="Fixed 1:1 aspect ratio." width="70%" />
+<p class="caption">
+Figure 6.2: Fixed 1:1 aspect ratio.
+</p>
+</div>
+</div>
+<div id="coord-flip" class="section level3 hasAnchor" number="6.3.3">
+<h3><span class="header-section-number">6.3.3</span> Flipped coordinates<a href="cosmetics.html#coord-flip" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>coord_flip()</code> swaps x and y axes. This is useful for horizontal bar charts:</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="cosmetics.html#cb110-1" aria-hidden="true"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> class)) <span class="op">+</span></span>
+<span id="cb110-2"><a href="cosmetics.html#cb110-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></span>
+<span id="cb110-3"><a href="cosmetics.html#cb110-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></span>
+<span id="cb110-4"><a href="cosmetics.html#cb110-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Vehicle Class&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Count&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:coord-flip"></span>
+<img src="_main_files/figure-html/coord-flip-1.png" alt="Horizontal bar chart using coord\_flip()." width="70%" />
+<p class="caption">
+Figure 6.3: Horizontal bar chart using coord_flip().
+</p>
+</div>
+<p><strong>Note</strong>: After flipping, the <code>x</code> argument in <code>labs()</code> refers to what appears
+as the <em>vertical</em> axis, and <code>y</code> refers to the <em>horizontal</em> axis. This is
+correct but can be confusing — you label based on the original mapping, not
+the visual appearance.</p>
+</div>
+<div id="coord-polar" class="section level3 hasAnchor" number="6.3.4">
+<h3><span class="header-section-number">6.3.4</span> Polar coordinates<a href="cosmetics.html#coord-polar" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>coord_polar()</code> transforms Cartesian coordinates to polar coordinates. A pie
+chart is essentially a stacked bar chart wrapped into a circle:</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="cosmetics.html#cb111-1" aria-hidden="true"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">&quot;&quot;</span>, <span class="dt">fill =</span> drv)) <span class="op">+</span></span>
+<span id="cb111-2"><a href="cosmetics.html#cb111-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">width =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb111-3"><a href="cosmetics.html#cb111-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">coord_polar</span>(<span class="dt">theta =</span> <span class="st">&quot;y&quot;</span>) <span class="op">+</span></span>
+<span id="cb111-4"><a href="cosmetics.html#cb111-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill =</span> <span class="st">&quot;Drive Type&quot;</span>) <span class="op">+</span></span>
+<span id="cb111-5"><a href="cosmetics.html#cb111-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme_void</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:coord-polar"></span>
+<img src="_main_files/figure-html/coord-polar-1.png" alt="Pie chart using coord\_polar() --- a bar chart wrapped into a circle." width="70%" />
+<p class="caption">
+Figure 6.4: Pie chart using coord_polar() — a bar chart wrapped into a circle.
+</p>
+</div>
+<p>Here, <code>geom_bar()</code> creates a stacked bar (counting observations), and
+<code>coord_polar(theta = "y")</code> wraps it into a circle where the angle represents
+the count.</p>
+<p><strong>Note</strong>: Pie charts are generally discouraged because comparing angles is
+harder than comparing lengths. A simple bar chart is almost always easier to
+read.</p>
+</div>
+</div>
+<div id="position-adjustments" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> Position adjustments<a href="cosmetics.html#position-adjustments" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Position adjustments control how overlapping geoms are handled. We have already
+seen two common position adjustments in Chapter <a href="ggplot2-intro.html#ggplot2-intro">3</a>:</p>
+<ul>
+<li><strong>Jittering</strong> with <code>geom_jitter()</code> to reveal overlapping points (Section
+<a href="ggplot2-intro.html#jitter-ggplot2">3.7.2</a>)</li>
+<li><strong>Dodging</strong> with <code>position = "dodge"</code> to place bars side by side</li>
+</ul>
+<p>Here we provide more detail and additional options.</p>
+<div id="jittering-for-overplotting" class="section level3 hasAnchor" number="6.4.1">
+<h3><span class="header-section-number">6.4.1</span> Jittering (for overplotting)<a href="cosmetics.html#jittering-for-overplotting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When points overlap, adding small random noise reveals the underlying
+distribution. Use <code>geom_jitter()</code> or <code>position_jitter()</code>:</p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="cosmetics.html#cb112-1" aria-hidden="true"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> drv, <span class="dt">y =</span> hwy)) <span class="op">+</span></span>
+<span id="cb112-2"><a href="cosmetics.html#cb112-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.2</span>, <span class="dt">height =</span> <span class="dv">0</span>) <span class="op">+</span></span>
+<span id="cb112-3"><a href="cosmetics.html#cb112-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Drive Type&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Highway MPG&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:position-jitter"></span>
+<img src="_main_files/figure-html/position-jitter-1.png" alt="Jittered points to reveal overplotting." width="70%" />
+<p class="caption">
+Figure 6.5: Jittered points to reveal overplotting.
+</p>
+</div>
+<p>The <code>width</code> and <code>height</code> arguments control the amount of jitter. Setting
+<code>height = 0</code> prevents vertical jitter, which is appropriate when the <span class="math inline">\(y\)</span>-axis
+represents measured values.</p>
+</div>
+<div id="position-dodge" class="section level3 hasAnchor" number="6.4.2">
+<h3><span class="header-section-number">6.4.2</span> Dodging (side by side)<a href="cosmetics.html#position-dodge" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Dodging places bars (or other geoms) side by side rather than stacked. We have
+already seen this in Section <a href="ggplot2-intro.html#grouped-ggplot2">3.8.1</a> for grouped bar charts:</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="cosmetics.html#cb113-1" aria-hidden="true"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> drv, <span class="dt">fill =</span> <span class="kw">factor</span>(cyl))) <span class="op">+</span></span>
+<span id="cb113-2"><a href="cosmetics.html#cb113-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="op">+</span></span>
+<span id="cb113-3"><a href="cosmetics.html#cb113-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Drive Type&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Count&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;Cylinders&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:position-dodge"></span>
+<img src="_main_files/figure-html/position-dodge-1.png" alt="Dodged bars (side by side)." width="70%" />
+<p class="caption">
+Figure 6.6: Dodged bars (side by side).
+</p>
+</div>
+<p>Use <code>position_dodge2(preserve = "single")</code> for bars of equal width when some
+groups are missing:</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="cosmetics.html#cb114-1" aria-hidden="true"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> drv, <span class="dt">fill =</span> <span class="kw">factor</span>(cyl))) <span class="op">+</span></span>
+<span id="cb114-2"><a href="cosmetics.html#cb114-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="kw">position_dodge2</span>(<span class="dt">preserve =</span> <span class="st">&quot;single&quot;</span>)) <span class="op">+</span></span>
+<span id="cb114-3"><a href="cosmetics.html#cb114-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Drive Type&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Count&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;Cylinders&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:position-dodge2"></span>
+<img src="_main_files/figure-html/position-dodge2-1.png" alt="Dodged bars with equal width." width="70%" />
+<p class="caption">
+Figure 6.7: Dodged bars with equal width.
+</p>
+</div>
+</div>
+<div id="stacking-default-for-bars" class="section level3 hasAnchor" number="6.4.3">
+<h3><span class="header-section-number">6.4.3</span> Stacking (default for bars)<a href="cosmetics.html#stacking-default-for-bars" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The default position for bars is stacking:</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="cosmetics.html#cb115-1" aria-hidden="true"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> drv, <span class="dt">fill =</span> <span class="kw">factor</span>(cyl))) <span class="op">+</span></span>
+<span id="cb115-2"><a href="cosmetics.html#cb115-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="st">&quot;stack&quot;</span>) <span class="op">+</span></span>
+<span id="cb115-3"><a href="cosmetics.html#cb115-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Drive Type&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Count&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;Cylinders&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:position-stack"></span>
+<img src="_main_files/figure-html/position-stack-1.png" alt="Stacked bars (default)." width="70%" />
+<p class="caption">
+Figure 6.8: Stacked bars (default).
+</p>
+</div>
+</div>
+<div id="filling-proportions" class="section level3 hasAnchor" number="6.4.4">
+<h3><span class="header-section-number">6.4.4</span> Filling (proportions)<a href="cosmetics.html#filling-proportions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>position = "fill"</code> scales bars to equal height, showing proportions:</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="cosmetics.html#cb116-1" aria-hidden="true"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> drv, <span class="dt">fill =</span> <span class="kw">factor</span>(cyl))) <span class="op">+</span></span>
+<span id="cb116-2"><a href="cosmetics.html#cb116-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="st">&quot;fill&quot;</span>) <span class="op">+</span></span>
+<span id="cb116-3"><a href="cosmetics.html#cb116-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Drive Type&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proportion&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;Cylinders&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:position-fill"></span>
+<img src="_main_files/figure-html/position-fill-1.png" alt="Proportional stacked bars." width="70%" />
+<p class="caption">
+Figure 6.9: Proportional stacked bars.
+</p>
+</div>
+</div>
+</div>
+<div id="themes" class="section level2 hasAnchor" number="6.5">
+<h2><span class="header-section-number">6.5</span> Themes<a href="cosmetics.html#themes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Themes control the non-data elements of a plot: background, grid lines,
+fonts, etc.</p>
+<div id="built-in-themes" class="section level3 hasAnchor" number="6.5.1">
+<h3><span class="header-section-number">6.5.1</span> Built-in themes<a href="cosmetics.html#built-in-themes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>ggplot2</code> provides several complete themes. Each theme function accepts a
+<code>base_size</code> argument to control the overall font size (default is 11):</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="cosmetics.html#cb117-1" aria-hidden="true"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy)) <span class="op">+</span></span>
+<span id="cb117-2"><a href="cosmetics.html#cb117-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb117-3"><a href="cosmetics.html#cb117-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Engine Displacement (L)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Highway MPG&quot;</span>)</span>
+<span id="cb117-4"><a href="cosmetics.html#cb117-4" aria-hidden="true"></a></span>
+<span id="cb117-5"><a href="cosmetics.html#cb117-5" aria-hidden="true"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">theme_grey</span>(<span class="dt">base_size =</span> <span class="dv">14</span>)  <span class="co"># default theme, larger text</span></span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:theme-grey"></span>
+<img src="_main_files/figure-html/theme-grey-1.png" alt="Default theme\_grey()." width="70%" />
+<p class="caption">
+Figure 6.10: Default theme_grey().
+</p>
+</div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="cosmetics.html#cb118-1" aria-hidden="true"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>(<span class="dt">base_size =</span> <span class="dv">14</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:theme-bw"></span>
+<img src="_main_files/figure-html/theme-bw-1.png" alt="theme\_bw() - black and white." width="70%" />
+<p class="caption">
+Figure 6.11: theme_bw() - black and white.
+</p>
+</div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="cosmetics.html#cb119-1" aria-hidden="true"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">theme_minimal</span>(<span class="dt">base_size =</span> <span class="dv">14</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:theme-minimal"></span>
+<img src="_main_files/figure-html/theme-minimal-1.png" alt="theme\_minimal() - minimal." width="70%" />
+<p class="caption">
+Figure 6.12: theme_minimal() - minimal.
+</p>
+</div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="cosmetics.html#cb120-1" aria-hidden="true"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">theme_classic</span>(<span class="dt">base_size =</span> <span class="dv">14</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:theme-classic"></span>
+<img src="_main_files/figure-html/theme-classic-1.png" alt="theme\_classic() - classic." width="70%" />
+<p class="caption">
+Figure 6.13: theme_classic() - classic.
+</p>
+</div>
+<p>Increasing <code>base_size</code> is an easy way to make plots more readable,
+especially for presentations or publications.</p>
+</div>
+<div id="global-theme" class="section level3 hasAnchor" number="6.5.2">
+<h3><span class="header-section-number">6.5.2</span> Setting a global theme<a href="cosmetics.html#global-theme" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Use <code>theme_set()</code> to change the default theme for all subsequent plots. You
+can also set a larger <code>base_size</code> globally:</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="cosmetics.html#cb121-1" aria-hidden="true"></a><span class="kw">theme_set</span>(<span class="kw">theme_minimal</span>(<span class="dt">base_size =</span> <span class="dv">14</span>))</span></code></pre></div>
+<p>This is particularly useful in R Markdown documents where you want consistent
+styling across all plots.</p>
+</div>
+<div id="custom-theme" class="section level3 hasAnchor" number="6.5.3">
+<h3><span class="header-section-number">6.5.3</span> Customising individual elements<a href="cosmetics.html#custom-theme" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>theme()</code> function has many arguments for customising specific elements
+of a plot: titles, axis labels, tick labels, grid lines, backgrounds, legends,
+and more. While these options exist, I recommend focusing on overall
+legibility (through <code>base_size</code> and built-in themes) rather than spending
+too much time on fine-grained customisation. The built-in themes are
+well-designed and sufficient for most purposes. The one use of <code>theme()</code> that I would highlight is for the legend position - see Section <a href="cosmetics.html#legends">6.7</a>.</p>
+</div>
+</div>
+<div id="labels" class="section level2 hasAnchor" number="6.6">
+<h2><span class="header-section-number">6.6</span> Labels<a href="cosmetics.html#labels" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We have already used <code>labs()</code> throughout this module for axis labels and
+legend titles. Here we show that <code>labs()</code> can also add titles, subtitles,
+and captions:</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="cosmetics.html#cb122-1" aria-hidden="true"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">colour =</span> <span class="kw">factor</span>(cyl))) <span class="op">+</span></span>
+<span id="cb122-2"><a href="cosmetics.html#cb122-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></span>
+<span id="cb122-3"><a href="cosmetics.html#cb122-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(</span>
+<span id="cb122-4"><a href="cosmetics.html#cb122-4" aria-hidden="true"></a>    <span class="dt">x =</span> <span class="st">&quot;Engine Displacement (L)&quot;</span>,</span>
+<span id="cb122-5"><a href="cosmetics.html#cb122-5" aria-hidden="true"></a>    <span class="dt">y =</span> <span class="st">&quot;Highway MPG&quot;</span>,</span>
+<span id="cb122-6"><a href="cosmetics.html#cb122-6" aria-hidden="true"></a>    <span class="dt">colour =</span> <span class="st">&quot;Cylinders&quot;</span>,</span>
+<span id="cb122-7"><a href="cosmetics.html#cb122-7" aria-hidden="true"></a>    <span class="dt">title =</span> <span class="st">&quot;Fuel Efficiency by Engine Size&quot;</span>,</span>
+<span id="cb122-8"><a href="cosmetics.html#cb122-8" aria-hidden="true"></a>    <span class="dt">subtitle =</span> <span class="st">&quot;Data from mpg dataset&quot;</span>,</span>
+<span id="cb122-9"><a href="cosmetics.html#cb122-9" aria-hidden="true"></a>    <span class="dt">caption =</span> <span class="st">&quot;Source: EPA fuel economy data&quot;</span></span>
+<span id="cb122-10"><a href="cosmetics.html#cb122-10" aria-hidden="true"></a>  )</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:labs-example"></span>
+<img src="_main_files/figure-html/labs-example-1.png" alt="Using labs() for titles, subtitles, and captions." width="70%" />
+<p class="caption">
+Figure 6.14: Using labs() for titles, subtitles, and captions.
+</p>
+</div>
+<p>Note how <code>labs(colour = "Cylinders")</code> fixes the ugly legend title that would
+otherwise appear as “factor(cyl)”. Whenever you map an aesthetic to a
+transformed variable (like <code>factor(cyl)</code> or <code>log(value)</code>), use <code>labs()</code> to
+provide a clean title.</p>
+</div>
+<div id="legends" class="section level2 hasAnchor" number="6.7">
+<h2><span class="header-section-number">6.7</span> Legends<a href="cosmetics.html#legends" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Legends are generated automatically when you map variables to aesthetics.
+You can control their position using <code>theme(legend.position = )</code>.</p>
+<div id="legend-position" class="section level3 hasAnchor" number="6.7.1">
+<h3><span class="header-section-number">6.7.1</span> Legend position<a href="cosmetics.html#legend-position" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="cosmetics.html#cb123-1" aria-hidden="true"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">colour =</span> drv)) <span class="op">+</span></span>
+<span id="cb123-2"><a href="cosmetics.html#cb123-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></span>
+<span id="cb123-3"><a href="cosmetics.html#cb123-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Engine Displacement (L)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Highway MPG&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;Drive&quot;</span>) <span class="op">+</span></span>
+<span id="cb123-4"><a href="cosmetics.html#cb123-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:legend-position"></span>
+<img src="_main_files/figure-html/legend-position-1.png" alt="Legend positioned at bottom." width="70%" />
+<p class="caption">
+Figure 6.15: Legend positioned at bottom.
+</p>
+</div>
+<p>Options for <code>legend.position</code>:</p>
+<ul>
+<li><code>"top"</code>, <code>"bottom"</code>, <code>"left"</code>, <code>"right"</code>: place legend outside the plot area</li>
+<li><code>"none"</code>: remove the legend entirely</li>
+<li><code>"inside"</code>: place legend inside the plot area (see below)</li>
+</ul>
+</div>
+<div id="legend-inside" class="section level3 hasAnchor" number="6.7.2">
+<h3><span class="header-section-number">6.7.2</span> Legend inside the plot<a href="cosmetics.html#legend-inside" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To place a legend inside the plot area, use <code>legend.position = "inside"</code> along
+with <code>legend.position.inside</code> to specify the coordinates:</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="cosmetics.html#cb124-1" aria-hidden="true"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">colour =</span> drv)) <span class="op">+</span></span>
+<span id="cb124-2"><a href="cosmetics.html#cb124-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></span>
+<span id="cb124-3"><a href="cosmetics.html#cb124-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Engine Displacement (L)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Highway MPG&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;Drive&quot;</span>) <span class="op">+</span></span>
+<span id="cb124-4"><a href="cosmetics.html#cb124-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme</span>(</span>
+<span id="cb124-5"><a href="cosmetics.html#cb124-5" aria-hidden="true"></a>    <span class="dt">legend.position =</span> <span class="st">&quot;inside&quot;</span>,</span>
+<span id="cb124-6"><a href="cosmetics.html#cb124-6" aria-hidden="true"></a>    <span class="dt">legend.position.inside =</span> <span class="kw">c</span>(<span class="fl">0.9</span>, <span class="fl">0.8</span>),</span>
+<span id="cb124-7"><a href="cosmetics.html#cb124-7" aria-hidden="true"></a>    <span class="dt">legend.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;grey80&quot;</span>)</span>
+<span id="cb124-8"><a href="cosmetics.html#cb124-8" aria-hidden="true"></a>  )</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:legend-inside"></span>
+<img src="_main_files/figure-html/legend-inside-1.png" alt="Legend inside the plot area." width="70%" />
+<p class="caption">
+Figure 6.16: Legend inside the plot area.
+</p>
+</div>
+<p>The coordinates <code>c(0.9, 0.8)</code> specify the position as fractions of the plot
+area (0 = left/bottom, 1 = right/top).</p>
+</div>
+</div>
+<div id="axis-formatting" class="section level2 hasAnchor" number="6.8">
+<h2><span class="header-section-number">6.8</span> Axis formatting<a href="cosmetics.html#axis-formatting" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="avoiding-scientific-notation" class="section level3 hasAnchor" number="6.8.1">
+<h3><span class="header-section-number">6.8.1</span> Avoiding scientific notation<a href="cosmetics.html#avoiding-scientific-notation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Large numbers are sometimes displayed in scientific notation (e.g., 1e+06
+instead of 1,000,000). To use standard notation with comma separators, use
+<code>scales::label_comma()</code>:</p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="cosmetics.html#cb125-1" aria-hidden="true"></a><span class="co"># Create data with large values</span></span>
+<span id="cb125-2"><a href="cosmetics.html#cb125-2" aria-hidden="true"></a>big_data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb125-3"><a href="cosmetics.html#cb125-3" aria-hidden="true"></a>  <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">100000</span>, <span class="dv">500000</span>, <span class="dv">1000000</span>, <span class="dv">2000000</span>),</span>
+<span id="cb125-4"><a href="cosmetics.html#cb125-4" aria-hidden="true"></a>  <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">25</span>, <span class="dv">40</span>, <span class="dv">55</span>)</span>
+<span id="cb125-5"><a href="cosmetics.html#cb125-5" aria-hidden="true"></a>)</span>
+<span id="cb125-6"><a href="cosmetics.html#cb125-6" aria-hidden="true"></a></span>
+<span id="cb125-7"><a href="cosmetics.html#cb125-7" aria-hidden="true"></a><span class="kw">ggplot</span>(big_data, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span></span>
+<span id="cb125-8"><a href="cosmetics.html#cb125-8" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></span>
+<span id="cb125-9"><a href="cosmetics.html#cb125-9" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span><span class="kw">label_comma</span>()) <span class="op">+</span></span>
+<span id="cb125-10"><a href="cosmetics.html#cb125-10" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Population&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Value&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:scientific-notation"></span>
+<img src="_main_files/figure-html/scientific-notation-1.png" alt="Avoiding scientific notation on axes." width="70%" />
+<p class="caption">
+Figure 6.17: Avoiding scientific notation on axes.
+</p>
+</div>
+<p>Other useful label functions from the <code>scales</code> package:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>label_comma()</code></td>
+<td>Adds comma separators: 1,000,000</td>
+</tr>
+<tr class="even">
+<td><code>label_dollar()</code></td>
+<td>Adds currency symbol: $1,000</td>
+</tr>
+<tr class="odd">
+<td><code>label_percent()</code></td>
+<td>Converts to percentage: 50%</td>
+</tr>
+<tr class="even">
+<td><code>label_scientific()</code></td>
+<td>Forces scientific notation</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="controlling-tick-marks" class="section level3 hasAnchor" number="6.8.2">
+<h3><span class="header-section-number">6.8.2</span> Controlling tick marks<a href="cosmetics.html#controlling-tick-marks" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Use <code>scale_*_continuous()</code> to control where tick marks appear (see also
+Section <a href="other-aesthetics.html#xy-axes">5.5</a> for axis transformations):</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="cosmetics.html#cb126-1" aria-hidden="true"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy)) <span class="op">+</span></span>
+<span id="cb126-2"><a href="cosmetics.html#cb126-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb126-3"><a href="cosmetics.html#cb126-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">2</span>, <span class="dv">7</span>, <span class="dt">by =</span> <span class="dv">1</span>)) <span class="op">+</span></span>
+<span id="cb126-4"><a href="cosmetics.html#cb126-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">15</span>, <span class="dv">45</span>, <span class="dt">by =</span> <span class="dv">5</span>)) <span class="op">+</span></span>
+<span id="cb126-5"><a href="cosmetics.html#cb126-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Engine Displacement (L)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Highway MPG&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:tick-breaks"></span>
+<img src="_main_files/figure-html/tick-breaks-1.png" alt="Custom tick mark positions." width="70%" />
+<p class="caption">
+Figure 6.18: Custom tick mark positions.
+</p>
+</div>
+</div>
+</div>
+<div id="summary-4" class="section level2 hasAnchor" number="6.9">
+<h2><span class="header-section-number">6.9</span> Summary<a href="cosmetics.html#summary-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The following table summarises the topics covered in this chapter with their
+priority for this module:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Topic</th>
+<th>Section</th>
+<th>Priority</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cartesian coordinates (zooming)</td>
+<td><a href="cosmetics.html#coord-cartesian">6.3.1</a></td>
+<td>High</td>
+</tr>
+<tr class="even">
+<td>Fixed aspect ratio</td>
+<td><a href="cosmetics.html#coord-fixed">6.3.2</a></td>
+<td>Medium</td>
+</tr>
+<tr class="odd">
+<td>Flipped coordinates</td>
+<td><a href="cosmetics.html#coord-flip">6.3.3</a></td>
+<td>Medium</td>
+</tr>
+<tr class="even">
+<td>Polar coordinates</td>
+<td><a href="cosmetics.html#coord-polar">6.3.4</a></td>
+<td>Low</td>
+</tr>
+<tr class="odd">
+<td>Position adjustments</td>
+<td><a href="cosmetics.html#position-dodge">6.4.2</a></td>
+<td>Medium (already covered)</td>
+</tr>
+<tr class="even">
+<td>Built-in themes</td>
+<td><a href="cosmetics.html#built-in-themes">6.5.1</a></td>
+<td>Medium</td>
+</tr>
+<tr class="odd">
+<td>Setting a global theme</td>
+<td><a href="cosmetics.html#global-theme">6.5.2</a></td>
+<td>Medium</td>
+</tr>
+<tr class="even">
+<td>Customising individual elements</td>
+<td><a href="cosmetics.html#custom-theme">6.5.3</a></td>
+<td>Low</td>
+</tr>
+<tr class="odd">
+<td>Labels</td>
+<td><a href="cosmetics.html#labels">6.6</a></td>
+<td>Medium (already covered)</td>
+</tr>
+<tr class="even">
+<td>Legend position</td>
+<td><a href="cosmetics.html#legend-position">6.7.1</a></td>
+<td>Medium</td>
+</tr>
+<tr class="odd">
+<td>Legend inside the plot</td>
+<td><a href="cosmetics.html#legend-inside">6.7.2</a></td>
+<td>Low</td>
+</tr>
+<tr class="even">
+<td>Avoiding scientific notation</td>
+<td><a href="cosmetics.html#axis-formatting">6.8</a></td>
+<td>Low</td>
+</tr>
+<tr class="odd">
+<td>Controlling tick marks</td>
+<td><a href="cosmetics.html#axis-formatting">6.8</a></td>
+<td>Low (for now)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li>Use <code>coord_cartesian()</code> to zoom without removing data</li>
+<li>Use <code>theme_*()</code> functions with <code>base_size</code> for easy, consistent styling</li>
+<li>Use <code>labs()</code> to fix legend titles and add titles/captions</li>
+<li>Position adjustments (<code>"dodge"</code>, <code>"jitter"</code>) were introduced in Chapter
+<a href="ggplot2-intro.html#ggplot2-intro">3</a></li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="other-aesthetics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="stats.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

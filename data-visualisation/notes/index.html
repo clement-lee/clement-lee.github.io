@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>MAS2908 Data Visualisation</title>
+  <meta name="description" content="This is the notes for MAS2908 Data Visualisation. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="MAS2908 Data Visualisation" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is the notes for MAS2908 Data Visualisation. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="MAS2908 Data Visualisation" />
+  
+  <meta name="twitter:description" content="This is the notes for MAS2908 Data Visualisation. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Clement Lee" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="sec-intro.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites (the boring stuff)</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#module-overview"><i class="fa fa-check"></i><b>1.1</b> Module overview</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#module-contacts"><i class="fa fa-check"></i><b>1.2</b> Module Contacts</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#materials"><i class="fa fa-check"></i><b>1.3</b> Materials</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#copyright-and-licence"><i class="fa fa-check"></i><b>1.4</b> Copyright and Licence</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i><b>1.5</b> Schedule</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#assessment"><i class="fa fa-check"></i><b>1.6</b> Assessment</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="index.html"><a href="index.html#late-work-policy"><i class="fa fa-check"></i><b>1.6.1</b> Late work policy</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#syllabus"><i class="fa fa-check"></i><b>1.7</b> Syllabus</a></li>
+<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#faq"><i class="fa fa-check"></i><b>1.8</b> FAQ</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="sec-intro.html"><a href="sec-intro.html"><i class="fa fa-check"></i><b>2</b> Graphical Presentation of Data with Base R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="sec-intro.html"><a href="sec-intro.html#introduction"><i class="fa fa-check"></i><b>2.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="sec-intro.html"><a href="sec-intro.html#data-frames"><i class="fa fa-check"></i><b>2.1.1</b> Data frames</a></li>
+<li class="chapter" data-level="2.1.2" data-path="sec-intro.html"><a href="sec-intro.html#datasets-used-in-this-chapter"><i class="fa fa-check"></i><b>2.1.2</b> Datasets used in this chapter</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="sec-intro.html"><a href="sec-intro.html#one-variable-continuous"><i class="fa fa-check"></i><b>2.2</b> One variable, continuous</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="sec-intro.html"><a href="sec-intro.html#histogram-base-R"><i class="fa fa-check"></i><b>2.2.1</b> Histograms</a></li>
+<li class="chapter" data-level="2.2.2" data-path="sec-intro.html"><a href="sec-intro.html#density-base-R"><i class="fa fa-check"></i><b>2.2.2</b> Density plots</a></li>
+<li class="chapter" data-level="2.2.3" data-path="sec-intro.html"><a href="sec-intro.html#stem-and-leaf-plots"><i class="fa fa-check"></i><b>2.2.3</b> Stem-and-leaf plots</a></li>
+<li class="chapter" data-level="2.2.4" data-path="sec-intro.html"><a href="sec-intro.html#boxplot-one-var-base-R"><i class="fa fa-check"></i><b>2.2.4</b> Boxplots</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="sec-intro.html"><a href="sec-intro.html#one-variable-discrete"><i class="fa fa-check"></i><b>2.3</b> One variable, discrete</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="sec-intro.html"><a href="sec-intro.html#bar-base-R"><i class="fa fa-check"></i><b>2.3.1</b> Bar charts</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="sec-intro.html"><a href="sec-intro.html#two-variables-both-continuous"><i class="fa fa-check"></i><b>2.4</b> Two variables, both continuous</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="sec-intro.html"><a href="sec-intro.html#scatterplot-base-R"><i class="fa fa-check"></i><b>2.4.1</b> Scatterplots</a></li>
+<li class="chapter" data-level="2.4.2" data-path="sec-intro.html"><a href="sec-intro.html#lineplot-base-R"><i class="fa fa-check"></i><b>2.4.2</b> Line plots</a></li>
+<li class="chapter" data-level="2.4.3" data-path="sec-intro.html"><a href="sec-intro.html#pairs-base-R"><i class="fa fa-check"></i><b>2.4.3</b> Pairs plots (scatterplot matrix)</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="sec-intro.html"><a href="sec-intro.html#two-variables-one-continuous-and-one-discrete"><i class="fa fa-check"></i><b>2.5</b> Two variables, one continuous and one discrete</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="sec-intro.html"><a href="sec-intro.html#problem-base-R"><i class="fa fa-check"></i><b>2.5.1</b> The problem with scatterplots</a></li>
+<li class="chapter" data-level="2.5.2" data-path="sec-intro.html"><a href="sec-intro.html#jitter-base-R"><i class="fa fa-check"></i><b>2.5.2</b> Stripcharts</a></li>
+<li class="chapter" data-level="2.5.3" data-path="sec-intro.html"><a href="sec-intro.html#boxplot-base-R"><i class="fa fa-check"></i><b>2.5.3</b> Boxplots</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="sec-intro.html"><a href="sec-intro.html#two-variables-both-discrete"><i class="fa fa-check"></i><b>2.6</b> Two variables, both discrete</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="sec-intro.html"><a href="sec-intro.html#grouped-base-R"><i class="fa fa-check"></i><b>2.6.1</b> Grouped bar charts</a></li>
+<li class="chapter" data-level="2.6.2" data-path="sec-intro.html"><a href="sec-intro.html#mosaic-plots"><i class="fa fa-check"></i><b>2.6.2</b> Mosaic plots</a></li>
+<li class="chapter" data-level="2.6.3" data-path="sec-intro.html"><a href="sec-intro.html#table-base-R"><i class="fa fa-check"></i><b>2.6.3</b> When a table suffices</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="sec-intro.html"><a href="sec-intro.html#summary"><i class="fa fa-check"></i><b>2.7</b> Summary</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="sec-intro.html"><a href="sec-intro.html#choosing-the-right-plot"><i class="fa fa-check"></i><b>2.7.1</b> Choosing the right plot</a></li>
+<li class="chapter" data-level="2.7.2" data-path="sec-intro.html"><a href="sec-intro.html#what-to-look-for"><i class="fa fa-check"></i><b>2.7.2</b> What to look for</a></li>
+<li class="chapter" data-level="2.7.3" data-path="sec-intro.html"><a href="sec-intro.html#limitations-of-base-r-graphics"><i class="fa fa-check"></i><b>2.7.3</b> Limitations of base R graphics</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html"><i class="fa fa-check"></i><b>3</b> Graphical Presentation of Data with ggplot2</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#introduction-1"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#data-frames-and-tidy-data"><i class="fa fa-check"></i><b>3.2</b> Data frames and tidy data</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#why-tidy-data-matters"><i class="fa fa-check"></i><b>3.2.1</b> Why tidy data matters</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#grammar-of-graphics-ggplot2-package"><i class="fa fa-check"></i><b>3.3</b> Grammar of graphics &amp; <code>ggplot2</code> package</a></li>
+<li class="chapter" data-level="3.4" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#one-variable-continuous-1"><i class="fa fa-check"></i><b>3.4</b> One variable, continuous</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#histogram-ggplot2"><i class="fa fa-check"></i><b>3.4.1</b> Histograms with <code>geom_histogram()</code></a></li>
+<li class="chapter" data-level="3.4.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#density-ggplot2"><i class="fa fa-check"></i><b>3.4.2</b> Density plots with <code>geom_density()</code></a></li>
+<li class="chapter" data-level="3.4.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#boxplot-one-var-ggplot2"><i class="fa fa-check"></i><b>3.4.3</b> Boxplots with <code>geom_boxplot()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#one-variable-discrete-1"><i class="fa fa-check"></i><b>3.5</b> One variable, discrete</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#bar-ggplot2"><i class="fa fa-check"></i><b>3.5.1</b> Bar charts with <code>geom_bar()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#two-variables-both-continuous-1"><i class="fa fa-check"></i><b>3.6</b> Two variables, both continuous</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#scatterplot-ggplot2"><i class="fa fa-check"></i><b>3.6.1</b> Scatterplots with <code>geom_point()</code></a></li>
+<li class="chapter" data-level="3.6.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#lineplot-ggplot2"><i class="fa fa-check"></i><b>3.6.2</b> Line plots with <code>geom_line()</code></a></li>
+<li class="chapter" data-level="3.6.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#pairs-ggplot2"><i class="fa fa-check"></i><b>3.6.3</b> Pairs plots (scatterplot matrix)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#two-variables-one-continuous-and-one-discrete-1"><i class="fa fa-check"></i><b>3.7</b> Two variables, one continuous and one discrete</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#the-problem-with-scatterplots"><i class="fa fa-check"></i><b>3.7.1</b> The problem with scatterplots</a></li>
+<li class="chapter" data-level="3.7.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#jitter-ggplot2"><i class="fa fa-check"></i><b>3.7.2</b> Stripcharts with <code>geom_jitter()</code></a></li>
+<li class="chapter" data-level="3.7.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#boxplot-ggplot2"><i class="fa fa-check"></i><b>3.7.3</b> Boxplots with <code>geom_boxplot()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#two-variables-both-discrete-1"><i class="fa fa-check"></i><b>3.8</b> Two variables, both discrete</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#grouped-ggplot2"><i class="fa fa-check"></i><b>3.8.1</b> Grouped bar charts with <code>geom_bar()</code></a></li>
+<li class="chapter" data-level="3.8.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#count-ggplot2"><i class="fa fa-check"></i><b>3.8.2</b> Count plots with <code>geom_count()</code></a></li>
+<li class="chapter" data-level="3.8.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#table-ggplot2"><i class="fa fa-check"></i><b>3.8.3</b> When a table suffices</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#the-power-of-layers"><i class="fa fa-check"></i><b>3.9</b> The power of layers</a>
+<ul>
+<li class="chapter" data-level="3.9.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#combining-multiple-geoms"><i class="fa fa-check"></i><b>3.9.1</b> Combining multiple geoms</a></li>
+<li class="chapter" data-level="3.9.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#computed-geoms"><i class="fa fa-check"></i><b>3.9.2</b> Computed geoms</a></li>
+<li class="chapter" data-level="3.9.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#multiple-datasets"><i class="fa fa-check"></i><b>3.9.3</b> Plotting multiple datasets</a></li>
+<li class="chapter" data-level="3.9.4" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#overlaying-straight-lines"><i class="fa fa-check"></i><b>3.9.4</b> Overlaying (straight) lines</a></li>
+<li class="chapter" data-level="3.9.5" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#histogram-with-density-overlay"><i class="fa fa-check"></i><b>3.9.5</b> Histogram with density overlay</a></li>
+</ul></li>
+<li class="chapter" data-level="3.10" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#syntax-notes"><i class="fa fa-check"></i><b>3.10</b> Syntax notes</a>
+<ul>
+<li class="chapter" data-level="3.10.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#no-dollar-sign-needed"><i class="fa fa-check"></i><b>3.10.1</b> No dollar sign needed</a></li>
+<li class="chapter" data-level="3.10.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#the-aes-function"><i class="fa fa-check"></i><b>3.10.2</b> The <code>aes()</code> function</a></li>
+<li class="chapter" data-level="3.10.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#a-note-on-qplot"><i class="fa fa-check"></i><b>3.10.3</b> A note on <code>qplot()</code></a></li>
+<li class="chapter" data-level="3.10.4" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#equivalent-syntax-forms"><i class="fa fa-check"></i><b>3.10.4</b> Equivalent syntax forms</a></li>
+</ul></li>
+<li class="chapter" data-level="3.11" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#summary-1"><i class="fa fa-check"></i><b>3.11</b> Summary</a>
+<ul>
+<li class="chapter" data-level="3.11.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#choosing-the-right-plot-1"><i class="fa fa-check"></i><b>3.11.1</b> Choosing the right plot</a></li>
+<li class="chapter" data-level="3.11.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#main-principles"><i class="fa fa-check"></i><b>3.11.2</b> Main principles</a></li>
+<li class="chapter" data-level="3.11.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#features-covered-in-later-chapters"><i class="fa fa-check"></i><b>3.11.3</b> Features covered in later chapters</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="colours.html"><a href="colours.html"><i class="fa fa-check"></i><b>4</b> Colours</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="colours.html"><a href="colours.html#introduction-2"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="colours.html"><a href="colours.html#colour-as-an-aesthetic"><i class="fa fa-check"></i><b>4.2</b> Colour as an aesthetic</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="colours.html"><a href="colours.html#real-world-examples"><i class="fa fa-check"></i><b>4.2.1</b> Real-world examples</a></li>
+<li class="chapter" data-level="4.2.2" data-path="colours.html"><a href="colours.html#syntax-british-and-american-spellings"><i class="fa fa-check"></i><b>4.2.2</b> Syntax: British and American spellings</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="colours.html"><a href="colours.html#colour-vs-fill"><i class="fa fa-check"></i><b>4.3</b> Colour vs fill: which aesthetic to use?</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="colours.html"><a href="colours.html#example-bar-charts"><i class="fa fa-check"></i><b>4.3.1</b> Example: bar charts</a></li>
+<li class="chapter" data-level="4.3.2" data-path="colours.html"><a href="colours.html#when-to-use-each"><i class="fa fa-check"></i><b>4.3.2</b> When to use each</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="colours.html"><a href="colours.html#colour-palettes"><i class="fa fa-check"></i><b>4.4</b> Colour palettes</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="colours.html"><a href="colours.html#discrete-categorical-scales"><i class="fa fa-check"></i><b>4.4.1</b> Discrete (categorical) scales</a></li>
+<li class="chapter" data-level="4.4.2" data-path="colours.html"><a href="colours.html#continuous-scales"><i class="fa fa-check"></i><b>4.4.2</b> Continuous scales</a></li>
+<li class="chapter" data-level="4.4.3" data-path="colours.html"><a href="colours.html#binned-scales"><i class="fa fa-check"></i><b>4.4.3</b> Binned scales</a></li>
+<li class="chapter" data-level="4.4.4" data-path="colours.html"><a href="colours.html#miscellaneous-scales"><i class="fa fa-check"></i><b>4.4.4</b> Miscellaneous scales</a></li>
+<li class="chapter" data-level="4.4.5" data-path="colours.html"><a href="colours.html#available-colorbrewer-palettes"><i class="fa fa-check"></i><b>4.4.5</b> Available ColorBrewer palettes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="colours.html"><a href="colours.html#colourblind"><i class="fa fa-check"></i><b>4.5</b> Colour-blind-friendly palettes</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="colours.html"><a href="colours.html#the-viridis-palettes"><i class="fa fa-check"></i><b>4.5.1</b> The viridis palettes</a></li>
+<li class="chapter" data-level="4.5.2" data-path="colours.html"><a href="colours.html#the-okabe-ito-palette"><i class="fa fa-check"></i><b>4.5.2</b> The Okabe-Ito palette</a></li>
+<li class="chapter" data-level="4.5.3" data-path="colours.html"><a href="colours.html#specifying-colours-with-hex-codes"><i class="fa fa-check"></i><b>4.5.3</b> Specifying colours with hex codes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="colours.html"><a href="colours.html#alpha-scales"><i class="fa fa-check"></i><b>4.6</b> Opacity with <code>alpha</code></a></li>
+<li class="chapter" data-level="4.7" data-path="colours.html"><a href="colours.html#summary-2"><i class="fa fa-check"></i><b>4.7</b> Summary</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="colours.html"><a href="colours.html#colour-scale-functions"><i class="fa fa-check"></i><b>4.7.1</b> Colour scale functions</a></li>
+<li class="chapter" data-level="4.7.2" data-path="colours.html"><a href="colours.html#key-points"><i class="fa fa-check"></i><b>4.7.2</b> Key points</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="other-aesthetics.html"><a href="other-aesthetics.html"><i class="fa fa-check"></i><b>5</b> Other Aesthetics</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="other-aesthetics.html"><a href="other-aesthetics.html#introduction-3"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="other-aesthetics.html"><a href="other-aesthetics.html#shape"><i class="fa fa-check"></i><b>5.2</b> Shape</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="other-aesthetics.html"><a href="other-aesthetics.html#default-shape-mapping"><i class="fa fa-check"></i><b>5.2.1</b> Default shape mapping</a></li>
+<li class="chapter" data-level="5.2.2" data-path="other-aesthetics.html"><a href="other-aesthetics.html#available-shapes"><i class="fa fa-check"></i><b>5.2.2</b> Available shapes</a></li>
+<li class="chapter" data-level="5.2.3" data-path="other-aesthetics.html"><a href="other-aesthetics.html#manual-shape-selection"><i class="fa fa-check"></i><b>5.2.3</b> Manual shape selection</a></li>
+<li class="chapter" data-level="5.2.4" data-path="other-aesthetics.html"><a href="other-aesthetics.html#combining-shape-and-colour"><i class="fa fa-check"></i><b>5.2.4</b> Combining shape and colour</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="other-aesthetics.html"><a href="other-aesthetics.html#linetype"><i class="fa fa-check"></i><b>5.3</b> Line type</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="other-aesthetics.html"><a href="other-aesthetics.html#available-line-types"><i class="fa fa-check"></i><b>5.3.1</b> Available line types</a></li>
+<li class="chapter" data-level="5.3.2" data-path="other-aesthetics.html"><a href="other-aesthetics.html#default-line-type-mapping"><i class="fa fa-check"></i><b>5.3.2</b> Default line type mapping</a></li>
+<li class="chapter" data-level="5.3.3" data-path="other-aesthetics.html"><a href="other-aesthetics.html#combining-line-type-and-colour"><i class="fa fa-check"></i><b>5.3.3</b> Combining line type and colour</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="other-aesthetics.html"><a href="other-aesthetics.html#size"><i class="fa fa-check"></i><b>5.4</b> Size</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="other-aesthetics.html"><a href="other-aesthetics.html#default-size-mapping"><i class="fa fa-check"></i><b>5.4.1</b> Default size mapping</a></li>
+<li class="chapter" data-level="5.4.2" data-path="other-aesthetics.html"><a href="other-aesthetics.html#controlling-the-size-range"><i class="fa fa-check"></i><b>5.4.2</b> Controlling the size range</a></li>
+<li class="chapter" data-level="5.4.3" data-path="other-aesthetics.html"><a href="other-aesthetics.html#size-by-area-vs-radius"><i class="fa fa-check"></i><b>5.4.3</b> Size by area vs radius</a></li>
+<li class="chapter" data-level="5.4.4" data-path="other-aesthetics.html"><a href="other-aesthetics.html#identity-scales"><i class="fa fa-check"></i><b>5.4.4</b> Identity scales</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="other-aesthetics.html"><a href="other-aesthetics.html#xy-axes"><i class="fa fa-check"></i><b>5.5</b> <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> axes</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="other-aesthetics.html"><a href="other-aesthetics.html#default-continuous-scales"><i class="fa fa-check"></i><b>5.5.1</b> Default continuous scales</a></li>
+<li class="chapter" data-level="5.5.2" data-path="other-aesthetics.html"><a href="other-aesthetics.html#setting-axis-limits"><i class="fa fa-check"></i><b>5.5.2</b> Setting axis limits</a></li>
+<li class="chapter" data-level="5.5.3" data-path="other-aesthetics.html"><a href="other-aesthetics.html#log-scales"><i class="fa fa-check"></i><b>5.5.3</b> Logarithmic scales</a></li>
+<li class="chapter" data-level="5.5.4" data-path="other-aesthetics.html"><a href="other-aesthetics.html#available-transformations"><i class="fa fa-check"></i><b>5.5.4</b> Available transformations</a></li>
+<li class="chapter" data-level="5.5.5" data-path="other-aesthetics.html"><a href="other-aesthetics.html#discrete-scales"><i class="fa fa-check"></i><b>5.5.5</b> Discrete scales</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="other-aesthetics.html"><a href="other-aesthetics.html#facets"><i class="fa fa-check"></i><b>5.6</b> Facets</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="other-aesthetics.html"><a href="other-aesthetics.html#facet_wrap"><i class="fa fa-check"></i><b>5.6.1</b> <code>facet_wrap()</code></a></li>
+<li class="chapter" data-level="5.6.2" data-path="other-aesthetics.html"><a href="other-aesthetics.html#facet_grid"><i class="fa fa-check"></i><b>5.6.2</b> <code>facet_grid()</code></a></li>
+<li class="chapter" data-level="5.6.3" data-path="other-aesthetics.html"><a href="other-aesthetics.html#free-scales"><i class="fa fa-check"></i><b>5.6.3</b> Free scales</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="other-aesthetics.html"><a href="other-aesthetics.html#summary-3"><i class="fa fa-check"></i><b>5.7</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="cosmetics.html"><a href="cosmetics.html"><i class="fa fa-check"></i><b>6</b> Plot Cosmetics</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="cosmetics.html"><a href="cosmetics.html#introduction-4"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="cosmetics.html"><a href="cosmetics.html#incremental-workflow"><i class="fa fa-check"></i><b>6.2</b> Incremental workflow</a></li>
+<li class="chapter" data-level="6.3" data-path="cosmetics.html"><a href="cosmetics.html#coordinate-systems"><i class="fa fa-check"></i><b>6.3</b> Coordinate systems</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="cosmetics.html"><a href="cosmetics.html#coord-cartesian"><i class="fa fa-check"></i><b>6.3.1</b> Cartesian coordinates (default)</a></li>
+<li class="chapter" data-level="6.3.2" data-path="cosmetics.html"><a href="cosmetics.html#coord-fixed"><i class="fa fa-check"></i><b>6.3.2</b> Fixed aspect ratio</a></li>
+<li class="chapter" data-level="6.3.3" data-path="cosmetics.html"><a href="cosmetics.html#coord-flip"><i class="fa fa-check"></i><b>6.3.3</b> Flipped coordinates</a></li>
+<li class="chapter" data-level="6.3.4" data-path="cosmetics.html"><a href="cosmetics.html#coord-polar"><i class="fa fa-check"></i><b>6.3.4</b> Polar coordinates</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="cosmetics.html"><a href="cosmetics.html#position-adjustments"><i class="fa fa-check"></i><b>6.4</b> Position adjustments</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="cosmetics.html"><a href="cosmetics.html#jittering-for-overplotting"><i class="fa fa-check"></i><b>6.4.1</b> Jittering (for overplotting)</a></li>
+<li class="chapter" data-level="6.4.2" data-path="cosmetics.html"><a href="cosmetics.html#position-dodge"><i class="fa fa-check"></i><b>6.4.2</b> Dodging (side by side)</a></li>
+<li class="chapter" data-level="6.4.3" data-path="cosmetics.html"><a href="cosmetics.html#stacking-default-for-bars"><i class="fa fa-check"></i><b>6.4.3</b> Stacking (default for bars)</a></li>
+<li class="chapter" data-level="6.4.4" data-path="cosmetics.html"><a href="cosmetics.html#filling-proportions"><i class="fa fa-check"></i><b>6.4.4</b> Filling (proportions)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="cosmetics.html"><a href="cosmetics.html#themes"><i class="fa fa-check"></i><b>6.5</b> Themes</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="cosmetics.html"><a href="cosmetics.html#built-in-themes"><i class="fa fa-check"></i><b>6.5.1</b> Built-in themes</a></li>
+<li class="chapter" data-level="6.5.2" data-path="cosmetics.html"><a href="cosmetics.html#global-theme"><i class="fa fa-check"></i><b>6.5.2</b> Setting a global theme</a></li>
+<li class="chapter" data-level="6.5.3" data-path="cosmetics.html"><a href="cosmetics.html#custom-theme"><i class="fa fa-check"></i><b>6.5.3</b> Customising individual elements</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="cosmetics.html"><a href="cosmetics.html#labels"><i class="fa fa-check"></i><b>6.6</b> Labels</a></li>
+<li class="chapter" data-level="6.7" data-path="cosmetics.html"><a href="cosmetics.html#legends"><i class="fa fa-check"></i><b>6.7</b> Legends</a>
+<ul>
+<li class="chapter" data-level="6.7.1" data-path="cosmetics.html"><a href="cosmetics.html#legend-position"><i class="fa fa-check"></i><b>6.7.1</b> Legend position</a></li>
+<li class="chapter" data-level="6.7.2" data-path="cosmetics.html"><a href="cosmetics.html#legend-inside"><i class="fa fa-check"></i><b>6.7.2</b> Legend inside the plot</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="cosmetics.html"><a href="cosmetics.html#axis-formatting"><i class="fa fa-check"></i><b>6.8</b> Axis formatting</a>
+<ul>
+<li class="chapter" data-level="6.8.1" data-path="cosmetics.html"><a href="cosmetics.html#avoiding-scientific-notation"><i class="fa fa-check"></i><b>6.8.1</b> Avoiding scientific notation</a></li>
+<li class="chapter" data-level="6.8.2" data-path="cosmetics.html"><a href="cosmetics.html#controlling-tick-marks"><i class="fa fa-check"></i><b>6.8.2</b> Controlling tick marks</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="cosmetics.html"><a href="cosmetics.html#summary-4"><i class="fa fa-check"></i><b>6.9</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="stats.html"><a href="stats.html"><i class="fa fa-check"></i><b>7</b> Data Manipulation and Statistical Layers</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="stats.html"><a href="stats.html#introduction-5"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.2" data-path="stats.html"><a href="stats.html#dplyr"><i class="fa fa-check"></i><b>7.2</b> Data manipulation with <code>dplyr</code></a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="stats.html"><a href="stats.html#two-ways-to-do-things"><i class="fa fa-check"></i><b>7.2.1</b> Two ways to do things</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="stats.html"><a href="stats.html#geom-bar-motivation"><i class="fa fa-check"></i><b>7.3</b> Bar charts and counting</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="stats.html"><a href="stats.html#approach-a-count-first-then-plot"><i class="fa fa-check"></i><b>7.3.1</b> Approach A: count first, then plot</a></li>
+<li class="chapter" data-level="7.3.2" data-path="stats.html"><a href="stats.html#a-common-mistake"><i class="fa fa-check"></i><b>7.3.2</b> A common mistake</a></li>
+<li class="chapter" data-level="7.3.3" data-path="stats.html"><a href="stats.html#approach-b-let-geom_bar-count-automatically"><i class="fa fa-check"></i><b>7.3.3</b> Approach B: let <code>geom_bar()</code> count automatically</a></li>
+<li class="chapter" data-level="7.3.4" data-path="stats.html"><a href="stats.html#log-scale-connection"><i class="fa fa-check"></i><b>7.3.4</b> The log-scale connection</a></li>
+<li class="chapter" data-level="7.3.5" data-path="stats.html"><a href="stats.html#what-geoms-compute-for-you"><i class="fa fa-check"></i><b>7.3.5</b> What geoms compute for you</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="stats.html"><a href="stats.html#filter-vs-limits"><i class="fa fa-check"></i><b>7.4</b> Subsetting data</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="stats.html"><a href="stats.html#approach-a"><i class="fa fa-check"></i><b>7.4.1</b> Approach A</a></li>
+<li class="chapter" data-level="7.4.2" data-path="stats.html"><a href="stats.html#approach-bi"><i class="fa fa-check"></i><b>7.4.2</b> Approach B(i)</a></li>
+<li class="chapter" data-level="7.4.3" data-path="stats.html"><a href="stats.html#approach-bii"><i class="fa fa-check"></i><b>7.4.3</b> Approach B(ii)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="stats.html"><a href="stats.html#stat-summary"><i class="fa fa-check"></i><b>7.5</b> Overlaying summaries with <code>stat_summary()</code></a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="stats.html"><a href="stats.html#approach-a-1"><i class="fa fa-check"></i><b>7.5.1</b> Approach A</a></li>
+<li class="chapter" data-level="7.5.2" data-path="stats.html"><a href="stats.html#approach-b"><i class="fa fa-check"></i><b>7.5.2</b> Approach B</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="stats.html"><a href="stats.html#density-histogram"><i class="fa fa-check"></i><b>7.6</b> Histogram with density overlay</a></li>
+<li class="chapter" data-level="7.7" data-path="stats.html"><a href="stats.html#qq-plots"><i class="fa fa-check"></i><b>7.7</b> Q-Q plots for assessing normality</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="stats.html"><a href="stats.html#why-not-just-use-a-histogram-or-density-plot"><i class="fa fa-check"></i><b>7.7.1</b> Why not just use a histogram or density plot?</a></li>
+<li class="chapter" data-level="7.7.2" data-path="stats.html"><a href="stats.html#q-q-plots-in-ggplot2"><i class="fa fa-check"></i><b>7.7.2</b> Q-Q plots in <code>ggplot2</code></a></li>
+<li class="chapter" data-level="7.7.3" data-path="stats.html"><a href="stats.html#interpreting-q-q-plots"><i class="fa fa-check"></i><b>7.7.3</b> Interpreting Q-Q plots</a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="stats.html"><a href="stats.html#stats-summary"><i class="fa fa-check"></i><b>7.8</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="temporal.html"><a href="temporal.html"><i class="fa fa-check"></i><b>8</b> Plotting time series data</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="temporal.html"><a href="temporal.html#datetime-objects"><i class="fa fa-check"></i><b>8.1</b> Creating time objects</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="temporal.html"><a href="temporal.html#the-make_datetime-function"><i class="fa fa-check"></i><b>8.1.1</b> The <code>make_datetime()</code> function</a></li>
+<li class="chapter" data-level="8.1.2" data-path="temporal.html"><a href="temporal.html#plotting-with-time-objects"><i class="fa fa-check"></i><b>8.1.2</b> Plotting with time objects</a></li>
+<li class="chapter" data-level="8.1.3" data-path="temporal.html"><a href="temporal.html#related-functions"><i class="fa fa-check"></i><b>8.1.3</b> Related functions</a></li>
+<li class="chapter" data-level="8.1.4" data-path="temporal.html"><a href="temporal.html#why-this-matters-for-visualisation"><i class="fa fa-check"></i><b>8.1.4</b> Why this matters for visualisation</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="temporal.html"><a href="temporal.html#temporal-viz"><i class="fa fa-check"></i><b>8.2</b> Temporal data visualisation</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="temporal.html"><a href="temporal.html#geom_line-vs-geom_path-the-key-difference"><i class="fa fa-check"></i><b>8.2.1</b> <code>geom_line()</code> vs <code>geom_path()</code>: the key difference</a></li>
+<li class="chapter" data-level="8.2.2" data-path="temporal.html"><a href="temporal.html#when-they-produce-the-same-result"><i class="fa fa-check"></i><b>8.2.2</b> When they produce the same result</a></li>
+<li class="chapter" data-level="8.2.3" data-path="temporal.html"><a href="temporal.html#when-they-differ-shuffled-data"><i class="fa fa-check"></i><b>8.2.3</b> When they differ: shuffled data</a></li>
+<li class="chapter" data-level="8.2.4" data-path="temporal.html"><a href="temporal.html#the-power-of-geom_path-adding-time-as-a-third-dimension"><i class="fa fa-check"></i><b>8.2.4</b> The power of <code>geom_path()</code>: adding time as a third dimension</a></li>
+<li class="chapter" data-level="8.2.5" data-path="temporal.html"><a href="temporal.html#enhancing-the-path-with-colour"><i class="fa fa-check"></i><b>8.2.5</b> Enhancing the path with colour</a></li>
+<li class="chapter" data-level="8.2.6" data-path="temporal.html"><a href="temporal.html#summary-geom_line-vs-geom_path"><i class="fa fa-check"></i><b>8.2.6</b> Summary: <code>geom_line()</code> vs <code>geom_path()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="temporal.html"><a href="temporal.html#scales-labels-zooming"><i class="fa fa-check"></i><b>8.3</b> Scales, labels &amp; zooming</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="temporal.html"><a href="temporal.html#controlling-date-breaks"><i class="fa fa-check"></i><b>8.3.1</b> Controlling date breaks</a></li>
+<li class="chapter" data-level="8.3.2" data-path="temporal.html"><a href="temporal.html#strftime"><i class="fa fa-check"></i><b>8.3.2</b> Formatting date labels</a></li>
+<li class="chapter" data-level="8.3.3" data-path="temporal.html"><a href="temporal.html#labelling-the-time-axis-appropriately"><i class="fa fa-check"></i><b>8.3.3</b> Labelling the time axis appropriately</a></li>
+<li class="chapter" data-level="8.3.4" data-path="temporal.html"><a href="temporal.html#zooming-on-time-series"><i class="fa fa-check"></i><b>8.3.4</b> Zooming on time series</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="temporal.html"><a href="temporal.html#implicit-missing"><i class="fa fa-check"></i><b>8.4</b> A potential pitfall: implicit missing data</a></li>
+<li class="chapter" data-level="8.5" data-path="temporal.html"><a href="temporal.html#summary-temporal-data"><i class="fa fa-check"></i><b>8.5</b> Summary: temporal data</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="spatial.html"><a href="spatial.html"><i class="fa fa-check"></i><b>9</b> Plotting (geo)spatial data</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="spatial.html"><a href="spatial.html#spatial-intro"><i class="fa fa-check"></i><b>9.1</b> Introduction</a></li>
+<li class="chapter" data-level="9.2" data-path="spatial.html"><a href="spatial.html#spatial-why-sf"><i class="fa fa-check"></i><b>9.2</b> Why not just use <code>geom_point()</code>?</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="spatial.html"><a href="spatial.html#the-sf-solution"><i class="fa fa-check"></i><b>9.2.1</b> The <code>sf</code> solution</a></li>
+<li class="chapter" data-level="9.2.2" data-path="spatial.html"><a href="spatial.html#how-geom_sf-differs-from-other-geoms"><i class="fa fa-check"></i><b>9.2.2</b> How <code>geom_sf()</code> differs from other geoms</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="spatial.html"><a href="spatial.html#spatial-geometry"><i class="fa fa-check"></i><b>9.3</b> The key ingredient: geometry</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="spatial.html"><a href="spatial.html#simple-feature-collections"><i class="fa fa-check"></i><b>9.3.1</b> Simple feature collections</a></li>
+<li class="chapter" data-level="9.3.2" data-path="spatial.html"><a href="spatial.html#file-formats-for-spatial-data"><i class="fa fa-check"></i><b>9.3.2</b> File formats for spatial data</a></li>
+<li class="chapter" data-level="9.3.3" data-path="spatial.html"><a href="spatial.html#reading-shapefiles"><i class="fa fa-check"></i><b>9.3.3</b> Reading shapefiles</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="spatial.html"><a href="spatial.html#spatial-scotland"><i class="fa fa-check"></i><b>9.4</b> Example: Scottish Census output areas</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="spatial.html"><a href="spatial.html#point-data-population-weighted-centroids"><i class="fa fa-check"></i><b>9.4.1</b> Point data: population-weighted centroids</a></li>
+<li class="chapter" data-level="9.4.2" data-path="spatial.html"><a href="spatial.html#first-attempt-plotting-points"><i class="fa fa-check"></i><b>9.4.2</b> First attempt: plotting points</a></li>
+<li class="chapter" data-level="9.4.3" data-path="spatial.html"><a href="spatial.html#fix-a-using-polygon-data"><i class="fa fa-check"></i><b>9.4.3</b> Fix (a): Using polygon data</a></li>
+<li class="chapter" data-level="9.4.4" data-path="spatial.html"><a href="spatial.html#background-map"><i class="fa fa-check"></i><b>9.4.4</b> Fix (b): Adding a background map</a></li>
+<li class="chapter" data-level="9.4.5" data-path="spatial.html"><a href="spatial.html#combining-polygons-with-background"><i class="fa fa-check"></i><b>9.4.5</b> Combining: polygons with background</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="spatial.html"><a href="spatial.html#spatial-crs"><i class="fa fa-check"></i><b>9.5</b> Coordinate reference systems</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="spatial.html"><a href="spatial.html#common-coordinate-systems"><i class="fa fa-check"></i><b>9.5.1</b> Common coordinate systems</a></li>
+<li class="chapter" data-level="9.5.2" data-path="spatial.html"><a href="spatial.html#how-the-sf-package-handles-crs"><i class="fa fa-check"></i><b>9.5.2</b> How the <code>sf</code> package handles CRS</a></li>
+<li class="chapter" data-level="9.5.3" data-path="spatial.html"><a href="spatial.html#spatial-create-geom"><i class="fa fa-check"></i><b>9.5.3</b> Creating geometry from coordinates</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="spatial.html"><a href="spatial.html#spatial-polish"><i class="fa fa-check"></i><b>9.6</b> Polishing spatial plots</a></li>
+<li class="chapter" data-level="9.7" data-path="spatial.html"><a href="spatial.html#spatial-summary"><i class="fa fa-check"></i><b>9.7</b> Summary</a>
+<ul>
+<li class="chapter" data-level="9.7.1" data-path="spatial.html"><a href="spatial.html#packages-needed"><i class="fa fa-check"></i><b>9.7.1</b> Packages needed</a></li>
+<li class="chapter" data-level="9.7.2" data-path="spatial.html"><a href="spatial.html#data-requirements"><i class="fa fa-check"></i><b>9.7.2</b> Data requirements</a></li>
+<li class="chapter" data-level="9.7.3" data-path="spatial.html"><a href="spatial.html#coordinate-reference-systems"><i class="fa fa-check"></i><b>9.7.3</b> Coordinate reference systems</a></li>
+<li class="chapter" data-level="9.7.4" data-path="spatial.html"><a href="spatial.html#the-spatial-geom"><i class="fa fa-check"></i><b>9.7.4</b> The spatial geom</a></li>
+<li class="chapter" data-level="9.7.5" data-path="spatial.html"><a href="spatial.html#building-maps"><i class="fa fa-check"></i><b>9.7.5</b> Building maps</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="interactivity.html"><a href="interactivity.html"><i class="fa fa-check"></i><b>10</b> Interactive Visualisation</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="interactivity.html"><a href="interactivity.html#shiny-basics"><i class="fa fa-check"></i><b>10.1</b> Shiny basics</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="interactivity.html"><a href="interactivity.html#minimal-structure"><i class="fa fa-check"></i><b>10.1.1</b> Minimal structure</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="interactivity.html"><a href="interactivity.html#shiny-inputs"><i class="fa fa-check"></i><b>10.2</b> Toggles and controls</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="interactivity.html"><a href="interactivity.html#sliderinput"><i class="fa fa-check"></i><b>10.2.1</b> <code>sliderInput()</code></a></li>
+<li class="chapter" data-level="10.2.2" data-path="interactivity.html"><a href="interactivity.html#plotoutput-and-renderplot"><i class="fa fa-check"></i><b>10.2.2</b> <code>plotOutput()</code> and <code>renderPlot()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="interactivity.html"><a href="interactivity.html#shiny-example"><i class="fa fa-check"></i><b>10.3</b> A complete example</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="interactivity.html"><a href="interactivity.html#step-1-get-the-static-plot-right"><i class="fa fa-check"></i><b>10.3.1</b> Step 1: get the static plot right</a></li>
+<li class="chapter" data-level="10.3.2" data-path="interactivity.html"><a href="interactivity.html#step-2-replace-the-fixed-year-with-a-reactive-input"><i class="fa fa-check"></i><b>10.3.2</b> Step 2: replace the fixed year with a reactive input</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="interactivity.html"><a href="interactivity.html#shiny-select"><i class="fa fa-check"></i><b>10.4</b> <code>selectInput()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="miscellaneous.html"><a href="miscellaneous.html"><i class="fa fa-check"></i><b>11</b> Miscellaneous Topics</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MAS2908 Data Visualisation</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">MAS2908 Data Visualisation</h1>
+<p class="author"><em>Clement Lee</em></p>
+<p class="date"><em><p>Semester 2, 2025/2026<br />
+<img src="images/full_logo_CMYK.png" style="width:5in" /></p></em></p>
+</div>
+<div id="prerequisites-the-boring-stuff" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">1</span> Prerequisites (the boring stuff)<a href="index.html#prerequisites-the-boring-stuff" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="module-overview" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Module overview<a href="index.html#module-overview" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This is a 10-credit Stage 2 module. This module introduces the principles of data visualisation, the grammar of graphic, and software for data visualisation. You will learn and acquire skills in data exploration and visualisation. By the end of the module, you will be able to process and clean raw data sets, apply the grammar of graphics and visualise the data in the most appropriate way.</p>
+<p>All materials are available on the Canvas page: <a href="https://ncl.instructure.com/courses/66981" class="uri">https://ncl.instructure.com/courses/66981</a>.</p>
+</div>
+<div id="module-contacts" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Module Contacts<a href="index.html#module-contacts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Lecturer: Clement Lee</li>
+<li>Email: <a href="mailto:clement.lee@newcastle.ac.uk" class="email">clement.lee@newcastle.ac.uk</a></li>
+<li>Office: Room 3.12, Herschel Building (location no. 17 on the <a href="https://www.ncl.ac.uk/mediav8/who-we-are/files/newcastle-university-campus-city-map.pdf">campus map</a>)</li>
+<li>Office hour: Tuesday 3-5pm</li>
+</ul>
+</div>
+<div id="materials" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> Materials<a href="index.html#materials" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Lecture materials are available in the Modules area on the Canvas page.</li>
+<li>As this is a new module, materials will be updated as we go along. Announcements will be made when this happens.</li>
+</ul>
+<!--
+* Background material for students unfamiliar/not confident with maths and R can also be found in the Modules area.
+* The lecture notes with the solutions to all examples and exercises will be released at the end of the teaching sessions. (Please kindly remind me if I forget to release them!) If you require them beforehand for e.g. study plan reasons, please don't hesitate to contact me.
+-->
+</div>
+<div id="copyright-and-licence" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> Copyright and Licence<a href="index.html#copyright-and-licence" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>These materials are provided for educational purposes within Newcastle University. The content is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>, meaning you are free to share and adapt the materials for non-commercial purposes, provided you give appropriate credit and distribute any derivative works under the same licence.</p>
+<!-- ### Acknowledgements -->
+</div>
+<div id="schedule" class="section level2 hasAnchor" number="1.5">
+<h2><span class="header-section-number">1.5</span> Schedule<a href="index.html#schedule" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The following teaching sessions take place during the teaching weeks:</p>
+<ul>
+<li>Tuesday 10-11am: Lecture @ Herschel Building Lecture Theatre 2</li>
+<li>Friday 1-2pm: Lecture @ Herschel Building Lecture Theatre 2</li>
+<li>Friday 4-5pm: Computing practical @ Stephenson Building Computer Cluster, Room 2.007</li>
+</ul>
+<p>Below is a preliminary schedule of the chapters we are going to cover.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Week commencing</th>
+<th align="center">Teaching Week</th>
+<th align="center">Chapter</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Jan 26th</td>
+<td align="center">1</td>
+<td align="center"><a href="sec-intro.html#sec-intro">2</a></td>
+</tr>
+<tr class="even">
+<td align="center">Feb 2nd</td>
+<td align="center">2</td>
+<td align="center"><a href="ggplot2-intro.html#ggplot2-intro">3</a></td>
+</tr>
+<tr class="odd">
+<td align="center">Feb 9th</td>
+<td align="center">3</td>
+<td align="center"><a href="colours.html#colours">4</a></td>
+</tr>
+<tr class="even">
+<td align="center">Feb 16th</td>
+<td align="center">4</td>
+<td align="center"><a href="other-aesthetics.html#other-aesthetics">5</a>, <a href="cosmetics.html#cosmetics">6</a></td>
+</tr>
+<tr class="odd">
+<td align="center">Feb 23rd</td>
+<td align="center">5</td>
+<td align="center"><a href="stats.html#stats">7</a></td>
+</tr>
+<tr class="even">
+<td align="center">Mar 2nd</td>
+<td align="center">6</td>
+<td align="center"><a href="temporal.html#temporal">8</a>, <a href="spatial.html#spatial">9</a></td>
+</tr>
+<tr class="odd">
+<td align="center">Mar 9th</td>
+<td align="center">7</td>
+<td align="center"><a href="interactivity.html#interactivity">10</a></td>
+</tr>
+<tr class="even">
+<td align="center">Mar 16th</td>
+<td align="center">8</td>
+<td align="center"><a href="interactivity.html#interactivity">10</a></td>
+</tr>
+<tr class="odd">
+<td align="center">Apr 20th</td>
+<td align="center">9</td>
+<td align="center"><a href="interactivity.html#interactivity">10</a></td>
+</tr>
+<tr class="even">
+<td align="center">Apr 27th</td>
+<td align="center">10</td>
+<td align="center"><a href="miscellaneous.html#miscellaneous">11</a></td>
+</tr>
+<tr class="odd">
+<td align="center">May 4th</td>
+<td align="center">11</td>
+<td align="center">Revision</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="assessment" class="section level2 hasAnchor" number="1.6">
+<h2><span class="header-section-number">1.6</span> Assessment<a href="index.html#assessment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Below is the schedule of the assignments, each of which is worth <strong>10%</strong> of the whole module mark:</p>
+<ul>
+<li>Coursework 1:
+<ul>
+<li>Questions available from: 4/2 (Wed) 4pm</li>
+<li>Submission deadline: 18/2 (Wed) 4pm</li>
+</ul></li>
+<li>Coursework 2:
+<ul>
+<li>Questions available from: 25/2 (Wed) 4pm</li>
+<li>Submission deadline: 11/3 (Wed) 4pm</li>
+</ul></li>
+<li>Coursework 3:
+<ul>
+<li>Questions available from: 18/3 (Wed) 4pm</li>
+<li>Submission deadline: 29/4 (Wed) 4pm</li>
+</ul></li>
+</ul>
+<p>Lastly, there will be a digital exam, worth 70% of the whole module mark, during the summer exam period.</p>
+<div id="late-work-policy" class="section level3 hasAnchor" number="1.6.1">
+<h3><span class="header-section-number">1.6.1</span> Late work policy<a href="index.html#late-work-policy" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Below are the highlights of the late work policy; please check the module Canvas page for details.</p>
+<p>Policy on Late or Missed Coursework and Missed Tests:  For normal written coursework, a deadline extension of up to 7 days can be requested (by means of submitting a PEC form); work submitted within 7 days of the deadline without good reason will be marked for reduced credit (following the University sliding scale). You should note that no work can be accepted more than 7 days after the original deadline; where work cannot be submitted by this time, the PEC Committee may agree instead to ‘discount’ or ‘exempt’ the work (although this would not be routine). For details of the policy (including procedures in the event of illness etc.) please consult the Mathematics, Statistics &amp; Physics Community pages on Canvas, under: <em>Assessment Information, Late Work and Missed Assessments.</em></p>
+</div>
+</div>
+<div id="syllabus" class="section level2 hasAnchor" number="1.7">
+<h2><span class="header-section-number">1.7</span> Syllabus<a href="index.html#syllabus" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The syllabus is on both the Canvas page and the module <a href="https://www.ncl.ac.uk/module-catalogue/">catalogue</a>.</p>
+<p>The materials on the Canvas page are sufficient for completing the assignments. If you would like to read further, there are lots of good texts on visualisation with R. The following books that are available both in the library and online are suitable for the material we cover:</p>
+<ol style="list-style-type: decimal">
+<li><a href="https://r-graphics.org/">R Graphics Cookbook (2nd Edition)</a> by <span class="citation">Chang (<a href="#ref-chang18" role="doc-biblioref">2018</a>)</span></li>
+<li><a href="https://ggplot2-book.org/">ggplot2: Elegant Graphics for Data Analysis</a> by <span class="citation">Wickham (<a href="#ref-wickham16" role="doc-biblioref">2016</a>)</span></li>
+<li><a href="https://plotly-r.com/">Interactive web-based data visualization with R, plotly, and shiny</a> by <span class="citation">Sievert (<a href="#ref-sievert20" role="doc-biblioref">2020</a>)</span></li>
+</ol>
+</div>
+<div id="faq" class="section level2 hasAnchor" number="1.8">
+<h2><span class="header-section-number">1.8</span> FAQ<a href="index.html#faq" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Q: What software do I need for this module?</strong></p>
+<p>A: You will need R for this module, and RStudio is recommended as the integrated development environment (IDE) as this is what we use in class. If you are using a university computer, both R and RStudio should already be installed. If you are using your own computer, you can download R from <a href="https://cran.r-project.org/">CRAN</a> and RStudio from <a href="https://posit.co/download/rstudio-desktop/">Posit</a>.</p>
+<p><strong>Q: Can I use Python instead of R?</strong></p>
+<p>A: While Python is a powerful language for data science, data visualisation is one aspect where R is particularly strong compared to Python. The <code>ggplot2</code> package in R provides a coherent and elegant framework for creating graphics that is unmatched in Python. For this reason, and for consistency in teaching and assessment, we will be using R throughout this module.</p>
+<p><strong>Q: Where can I get help if I’m stuck?</strong></p>
+<p>A: You have several options:</p>
+<ol style="list-style-type: decimal">
+<li>attend the timetabled practical sessions where demonstrators are available to help;</li>
+<li>come to my office hour (see Module Contacts above);</li>
+<li>post questions on the Canvas discussion board where your peers or I can help.</li>
+</ol>
+<p><strong>Q: Can I use AI tools (e.g. ChatGPT, GitHub Copilot) for this module?</strong></p>
+<p>A: I might use AI tools myself to help illustrate concepts and generate examples in these notes. There is no way to stop you from using AI tools for your own learning, but bear in mind that:</p>
+<ol style="list-style-type: lower-alpha">
+<li>you will need to sit an exam under controlled conditions where AI tools are not available, and</li>
+<li>AI-generated code can contain errors or use outdated syntax. You are responsible for understanding and verifying any code you submit.<br />
+Please also refer to the University’s <a href="https://www.ncl.ac.uk/academic-skills-kit/good-academic-practice/artificial-intelligence/">guidance on the responsible use of AI</a>.</li>
+</ol>
+<p><strong>Q: Why should I learn to code when AI can write code for me?</strong></p>
+<p>A: Two reasons:</p>
+<ol style="list-style-type: decimal">
+<li>This module teaches you the <em>framework</em> and <em>principles</em> of data visualisation, not just the syntax. Understanding why certain visualisations work better than others, and what makes a good graphic, requires human judgement that AI cannot replace.</li>
+<li>Even if AI writes code for you, you need a basic understanding of programming to review, debug, and modify that code. Blindly trusting AI-generated code without understanding it is a recipe for errors and miscommunication.</li>
+</ol>
+
+</div>
+</div>
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references hanging-indent">
+<div id="ref-chang18">
+<p>Chang, Winston. 2018. <em>R Graphics Cookbook: Practical Recipes for Visualizing Data</em>. 2nd ed. O’Reilly Media.</p>
+</div>
+<div id="ref-sievert20">
+<p>Sievert, Carson. 2020. <em>Interactive Web-Based Data Visualization with R, Plotly, and Shiny</em>. Chapman &amp; Hall/Crc the R Series. CRC Press.</p>
+</div>
+<div id="ref-wickham16">
+<p>Wickham, Hadley. 2016. <em>ggplot2: Elegant Graphics for Data Analysis</em>. Use R! Springer.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="sec-intro.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 Graphical Presentation of Data with Base R | MAS2908 Data Visualisation</title>
+  <meta name="description" content="This is the notes for MAS2908 Data Visualisation. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 Graphical Presentation of Data with Base R | MAS2908 Data Visualisation" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is the notes for MAS2908 Data Visualisation. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 Graphical Presentation of Data with Base R | MAS2908 Data Visualisation" />
+  
+  <meta name="twitter:description" content="This is the notes for MAS2908 Data Visualisation. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Clement Lee" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="ggplot2-intro.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites (the boring stuff)</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#module-overview"><i class="fa fa-check"></i><b>1.1</b> Module overview</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#module-contacts"><i class="fa fa-check"></i><b>1.2</b> Module Contacts</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#materials"><i class="fa fa-check"></i><b>1.3</b> Materials</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#copyright-and-licence"><i class="fa fa-check"></i><b>1.4</b> Copyright and Licence</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i><b>1.5</b> Schedule</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#assessment"><i class="fa fa-check"></i><b>1.6</b> Assessment</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="index.html"><a href="index.html#late-work-policy"><i class="fa fa-check"></i><b>1.6.1</b> Late work policy</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#syllabus"><i class="fa fa-check"></i><b>1.7</b> Syllabus</a></li>
+<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#faq"><i class="fa fa-check"></i><b>1.8</b> FAQ</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="sec-intro.html"><a href="sec-intro.html"><i class="fa fa-check"></i><b>2</b> Graphical Presentation of Data with Base R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="sec-intro.html"><a href="sec-intro.html#introduction"><i class="fa fa-check"></i><b>2.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="sec-intro.html"><a href="sec-intro.html#data-frames"><i class="fa fa-check"></i><b>2.1.1</b> Data frames</a></li>
+<li class="chapter" data-level="2.1.2" data-path="sec-intro.html"><a href="sec-intro.html#datasets-used-in-this-chapter"><i class="fa fa-check"></i><b>2.1.2</b> Datasets used in this chapter</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="sec-intro.html"><a href="sec-intro.html#one-variable-continuous"><i class="fa fa-check"></i><b>2.2</b> One variable, continuous</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="sec-intro.html"><a href="sec-intro.html#histogram-base-R"><i class="fa fa-check"></i><b>2.2.1</b> Histograms</a></li>
+<li class="chapter" data-level="2.2.2" data-path="sec-intro.html"><a href="sec-intro.html#density-base-R"><i class="fa fa-check"></i><b>2.2.2</b> Density plots</a></li>
+<li class="chapter" data-level="2.2.3" data-path="sec-intro.html"><a href="sec-intro.html#stem-and-leaf-plots"><i class="fa fa-check"></i><b>2.2.3</b> Stem-and-leaf plots</a></li>
+<li class="chapter" data-level="2.2.4" data-path="sec-intro.html"><a href="sec-intro.html#boxplot-one-var-base-R"><i class="fa fa-check"></i><b>2.2.4</b> Boxplots</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="sec-intro.html"><a href="sec-intro.html#one-variable-discrete"><i class="fa fa-check"></i><b>2.3</b> One variable, discrete</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="sec-intro.html"><a href="sec-intro.html#bar-base-R"><i class="fa fa-check"></i><b>2.3.1</b> Bar charts</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="sec-intro.html"><a href="sec-intro.html#two-variables-both-continuous"><i class="fa fa-check"></i><b>2.4</b> Two variables, both continuous</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="sec-intro.html"><a href="sec-intro.html#scatterplot-base-R"><i class="fa fa-check"></i><b>2.4.1</b> Scatterplots</a></li>
+<li class="chapter" data-level="2.4.2" data-path="sec-intro.html"><a href="sec-intro.html#lineplot-base-R"><i class="fa fa-check"></i><b>2.4.2</b> Line plots</a></li>
+<li class="chapter" data-level="2.4.3" data-path="sec-intro.html"><a href="sec-intro.html#pairs-base-R"><i class="fa fa-check"></i><b>2.4.3</b> Pairs plots (scatterplot matrix)</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="sec-intro.html"><a href="sec-intro.html#two-variables-one-continuous-and-one-discrete"><i class="fa fa-check"></i><b>2.5</b> Two variables, one continuous and one discrete</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="sec-intro.html"><a href="sec-intro.html#problem-base-R"><i class="fa fa-check"></i><b>2.5.1</b> The problem with scatterplots</a></li>
+<li class="chapter" data-level="2.5.2" data-path="sec-intro.html"><a href="sec-intro.html#jitter-base-R"><i class="fa fa-check"></i><b>2.5.2</b> Stripcharts</a></li>
+<li class="chapter" data-level="2.5.3" data-path="sec-intro.html"><a href="sec-intro.html#boxplot-base-R"><i class="fa fa-check"></i><b>2.5.3</b> Boxplots</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="sec-intro.html"><a href="sec-intro.html#two-variables-both-discrete"><i class="fa fa-check"></i><b>2.6</b> Two variables, both discrete</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="sec-intro.html"><a href="sec-intro.html#grouped-base-R"><i class="fa fa-check"></i><b>2.6.1</b> Grouped bar charts</a></li>
+<li class="chapter" data-level="2.6.2" data-path="sec-intro.html"><a href="sec-intro.html#mosaic-plots"><i class="fa fa-check"></i><b>2.6.2</b> Mosaic plots</a></li>
+<li class="chapter" data-level="2.6.3" data-path="sec-intro.html"><a href="sec-intro.html#table-base-R"><i class="fa fa-check"></i><b>2.6.3</b> When a table suffices</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="sec-intro.html"><a href="sec-intro.html#summary"><i class="fa fa-check"></i><b>2.7</b> Summary</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="sec-intro.html"><a href="sec-intro.html#choosing-the-right-plot"><i class="fa fa-check"></i><b>2.7.1</b> Choosing the right plot</a></li>
+<li class="chapter" data-level="2.7.2" data-path="sec-intro.html"><a href="sec-intro.html#what-to-look-for"><i class="fa fa-check"></i><b>2.7.2</b> What to look for</a></li>
+<li class="chapter" data-level="2.7.3" data-path="sec-intro.html"><a href="sec-intro.html#limitations-of-base-r-graphics"><i class="fa fa-check"></i><b>2.7.3</b> Limitations of base R graphics</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html"><i class="fa fa-check"></i><b>3</b> Graphical Presentation of Data with ggplot2</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#introduction-1"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#data-frames-and-tidy-data"><i class="fa fa-check"></i><b>3.2</b> Data frames and tidy data</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#why-tidy-data-matters"><i class="fa fa-check"></i><b>3.2.1</b> Why tidy data matters</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#grammar-of-graphics-ggplot2-package"><i class="fa fa-check"></i><b>3.3</b> Grammar of graphics &amp; <code>ggplot2</code> package</a></li>
+<li class="chapter" data-level="3.4" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#one-variable-continuous-1"><i class="fa fa-check"></i><b>3.4</b> One variable, continuous</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#histogram-ggplot2"><i class="fa fa-check"></i><b>3.4.1</b> Histograms with <code>geom_histogram()</code></a></li>
+<li class="chapter" data-level="3.4.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#density-ggplot2"><i class="fa fa-check"></i><b>3.4.2</b> Density plots with <code>geom_density()</code></a></li>
+<li class="chapter" data-level="3.4.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#boxplot-one-var-ggplot2"><i class="fa fa-check"></i><b>3.4.3</b> Boxplots with <code>geom_boxplot()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#one-variable-discrete-1"><i class="fa fa-check"></i><b>3.5</b> One variable, discrete</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#bar-ggplot2"><i class="fa fa-check"></i><b>3.5.1</b> Bar charts with <code>geom_bar()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#two-variables-both-continuous-1"><i class="fa fa-check"></i><b>3.6</b> Two variables, both continuous</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#scatterplot-ggplot2"><i class="fa fa-check"></i><b>3.6.1</b> Scatterplots with <code>geom_point()</code></a></li>
+<li class="chapter" data-level="3.6.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#lineplot-ggplot2"><i class="fa fa-check"></i><b>3.6.2</b> Line plots with <code>geom_line()</code></a></li>
+<li class="chapter" data-level="3.6.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#pairs-ggplot2"><i class="fa fa-check"></i><b>3.6.3</b> Pairs plots (scatterplot matrix)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#two-variables-one-continuous-and-one-discrete-1"><i class="fa fa-check"></i><b>3.7</b> Two variables, one continuous and one discrete</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#the-problem-with-scatterplots"><i class="fa fa-check"></i><b>3.7.1</b> The problem with scatterplots</a></li>
+<li class="chapter" data-level="3.7.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#jitter-ggplot2"><i class="fa fa-check"></i><b>3.7.2</b> Stripcharts with <code>geom_jitter()</code></a></li>
+<li class="chapter" data-level="3.7.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#boxplot-ggplot2"><i class="fa fa-check"></i><b>3.7.3</b> Boxplots with <code>geom_boxplot()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#two-variables-both-discrete-1"><i class="fa fa-check"></i><b>3.8</b> Two variables, both discrete</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#grouped-ggplot2"><i class="fa fa-check"></i><b>3.8.1</b> Grouped bar charts with <code>geom_bar()</code></a></li>
+<li class="chapter" data-level="3.8.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#count-ggplot2"><i class="fa fa-check"></i><b>3.8.2</b> Count plots with <code>geom_count()</code></a></li>
+<li class="chapter" data-level="3.8.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#table-ggplot2"><i class="fa fa-check"></i><b>3.8.3</b> When a table suffices</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#the-power-of-layers"><i class="fa fa-check"></i><b>3.9</b> The power of layers</a>
+<ul>
+<li class="chapter" data-level="3.9.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#combining-multiple-geoms"><i class="fa fa-check"></i><b>3.9.1</b> Combining multiple geoms</a></li>
+<li class="chapter" data-level="3.9.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#computed-geoms"><i class="fa fa-check"></i><b>3.9.2</b> Computed geoms</a></li>
+<li class="chapter" data-level="3.9.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#multiple-datasets"><i class="fa fa-check"></i><b>3.9.3</b> Plotting multiple datasets</a></li>
+<li class="chapter" data-level="3.9.4" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#overlaying-straight-lines"><i class="fa fa-check"></i><b>3.9.4</b> Overlaying (straight) lines</a></li>
+<li class="chapter" data-level="3.9.5" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#histogram-with-density-overlay"><i class="fa fa-check"></i><b>3.9.5</b> Histogram with density overlay</a></li>
+</ul></li>
+<li class="chapter" data-level="3.10" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#syntax-notes"><i class="fa fa-check"></i><b>3.10</b> Syntax notes</a>
+<ul>
+<li class="chapter" data-level="3.10.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#no-dollar-sign-needed"><i class="fa fa-check"></i><b>3.10.1</b> No dollar sign needed</a></li>
+<li class="chapter" data-level="3.10.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#the-aes-function"><i class="fa fa-check"></i><b>3.10.2</b> The <code>aes()</code> function</a></li>
+<li class="chapter" data-level="3.10.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#a-note-on-qplot"><i class="fa fa-check"></i><b>3.10.3</b> A note on <code>qplot()</code></a></li>
+<li class="chapter" data-level="3.10.4" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#equivalent-syntax-forms"><i class="fa fa-check"></i><b>3.10.4</b> Equivalent syntax forms</a></li>
+</ul></li>
+<li class="chapter" data-level="3.11" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#summary-1"><i class="fa fa-check"></i><b>3.11</b> Summary</a>
+<ul>
+<li class="chapter" data-level="3.11.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#choosing-the-right-plot-1"><i class="fa fa-check"></i><b>3.11.1</b> Choosing the right plot</a></li>
+<li class="chapter" data-level="3.11.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#main-principles"><i class="fa fa-check"></i><b>3.11.2</b> Main principles</a></li>
+<li class="chapter" data-level="3.11.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#features-covered-in-later-chapters"><i class="fa fa-check"></i><b>3.11.3</b> Features covered in later chapters</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="colours.html"><a href="colours.html"><i class="fa fa-check"></i><b>4</b> Colours</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="colours.html"><a href="colours.html#introduction-2"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="colours.html"><a href="colours.html#colour-as-an-aesthetic"><i class="fa fa-check"></i><b>4.2</b> Colour as an aesthetic</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="colours.html"><a href="colours.html#real-world-examples"><i class="fa fa-check"></i><b>4.2.1</b> Real-world examples</a></li>
+<li class="chapter" data-level="4.2.2" data-path="colours.html"><a href="colours.html#syntax-british-and-american-spellings"><i class="fa fa-check"></i><b>4.2.2</b> Syntax: British and American spellings</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="colours.html"><a href="colours.html#colour-vs-fill"><i class="fa fa-check"></i><b>4.3</b> Colour vs fill: which aesthetic to use?</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="colours.html"><a href="colours.html#example-bar-charts"><i class="fa fa-check"></i><b>4.3.1</b> Example: bar charts</a></li>
+<li class="chapter" data-level="4.3.2" data-path="colours.html"><a href="colours.html#when-to-use-each"><i class="fa fa-check"></i><b>4.3.2</b> When to use each</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="colours.html"><a href="colours.html#colour-palettes"><i class="fa fa-check"></i><b>4.4</b> Colour palettes</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="colours.html"><a href="colours.html#discrete-categorical-scales"><i class="fa fa-check"></i><b>4.4.1</b> Discrete (categorical) scales</a></li>
+<li class="chapter" data-level="4.4.2" data-path="colours.html"><a href="colours.html#continuous-scales"><i class="fa fa-check"></i><b>4.4.2</b> Continuous scales</a></li>
+<li class="chapter" data-level="4.4.3" data-path="colours.html"><a href="colours.html#binned-scales"><i class="fa fa-check"></i><b>4.4.3</b> Binned scales</a></li>
+<li class="chapter" data-level="4.4.4" data-path="colours.html"><a href="colours.html#miscellaneous-scales"><i class="fa fa-check"></i><b>4.4.4</b> Miscellaneous scales</a></li>
+<li class="chapter" data-level="4.4.5" data-path="colours.html"><a href="colours.html#available-colorbrewer-palettes"><i class="fa fa-check"></i><b>4.4.5</b> Available ColorBrewer palettes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="colours.html"><a href="colours.html#colourblind"><i class="fa fa-check"></i><b>4.5</b> Colour-blind-friendly palettes</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="colours.html"><a href="colours.html#the-viridis-palettes"><i class="fa fa-check"></i><b>4.5.1</b> The viridis palettes</a></li>
+<li class="chapter" data-level="4.5.2" data-path="colours.html"><a href="colours.html#the-okabe-ito-palette"><i class="fa fa-check"></i><b>4.5.2</b> The Okabe-Ito palette</a></li>
+<li class="chapter" data-level="4.5.3" data-path="colours.html"><a href="colours.html#specifying-colours-with-hex-codes"><i class="fa fa-check"></i><b>4.5.3</b> Specifying colours with hex codes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="colours.html"><a href="colours.html#alpha-scales"><i class="fa fa-check"></i><b>4.6</b> Opacity with <code>alpha</code></a></li>
+<li class="chapter" data-level="4.7" data-path="colours.html"><a href="colours.html#summary-2"><i class="fa fa-check"></i><b>4.7</b> Summary</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="colours.html"><a href="colours.html#colour-scale-functions"><i class="fa fa-check"></i><b>4.7.1</b> Colour scale functions</a></li>
+<li class="chapter" data-level="4.7.2" data-path="colours.html"><a href="colours.html#key-points"><i class="fa fa-check"></i><b>4.7.2</b> Key points</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="other-aesthetics.html"><a href="other-aesthetics.html"><i class="fa fa-check"></i><b>5</b> Other Aesthetics</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="other-aesthetics.html"><a href="other-aesthetics.html#introduction-3"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="other-aesthetics.html"><a href="other-aesthetics.html#shape"><i class="fa fa-check"></i><b>5.2</b> Shape</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="other-aesthetics.html"><a href="other-aesthetics.html#default-shape-mapping"><i class="fa fa-check"></i><b>5.2.1</b> Default shape mapping</a></li>
+<li class="chapter" data-level="5.2.2" data-path="other-aesthetics.html"><a href="other-aesthetics.html#available-shapes"><i class="fa fa-check"></i><b>5.2.2</b> Available shapes</a></li>
+<li class="chapter" data-level="5.2.3" data-path="other-aesthetics.html"><a href="other-aesthetics.html#manual-shape-selection"><i class="fa fa-check"></i><b>5.2.3</b> Manual shape selection</a></li>
+<li class="chapter" data-level="5.2.4" data-path="other-aesthetics.html"><a href="other-aesthetics.html#combining-shape-and-colour"><i class="fa fa-check"></i><b>5.2.4</b> Combining shape and colour</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="other-aesthetics.html"><a href="other-aesthetics.html#linetype"><i class="fa fa-check"></i><b>5.3</b> Line type</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="other-aesthetics.html"><a href="other-aesthetics.html#available-line-types"><i class="fa fa-check"></i><b>5.3.1</b> Available line types</a></li>
+<li class="chapter" data-level="5.3.2" data-path="other-aesthetics.html"><a href="other-aesthetics.html#default-line-type-mapping"><i class="fa fa-check"></i><b>5.3.2</b> Default line type mapping</a></li>
+<li class="chapter" data-level="5.3.3" data-path="other-aesthetics.html"><a href="other-aesthetics.html#combining-line-type-and-colour"><i class="fa fa-check"></i><b>5.3.3</b> Combining line type and colour</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="other-aesthetics.html"><a href="other-aesthetics.html#size"><i class="fa fa-check"></i><b>5.4</b> Size</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="other-aesthetics.html"><a href="other-aesthetics.html#default-size-mapping"><i class="fa fa-check"></i><b>5.4.1</b> Default size mapping</a></li>
+<li class="chapter" data-level="5.4.2" data-path="other-aesthetics.html"><a href="other-aesthetics.html#controlling-the-size-range"><i class="fa fa-check"></i><b>5.4.2</b> Controlling the size range</a></li>
+<li class="chapter" data-level="5.4.3" data-path="other-aesthetics.html"><a href="other-aesthetics.html#size-by-area-vs-radius"><i class="fa fa-check"></i><b>5.4.3</b> Size by area vs radius</a></li>
+<li class="chapter" data-level="5.4.4" data-path="other-aesthetics.html"><a href="other-aesthetics.html#identity-scales"><i class="fa fa-check"></i><b>5.4.4</b> Identity scales</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="other-aesthetics.html"><a href="other-aesthetics.html#xy-axes"><i class="fa fa-check"></i><b>5.5</b> <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> axes</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="other-aesthetics.html"><a href="other-aesthetics.html#default-continuous-scales"><i class="fa fa-check"></i><b>5.5.1</b> Default continuous scales</a></li>
+<li class="chapter" data-level="5.5.2" data-path="other-aesthetics.html"><a href="other-aesthetics.html#setting-axis-limits"><i class="fa fa-check"></i><b>5.5.2</b> Setting axis limits</a></li>
+<li class="chapter" data-level="5.5.3" data-path="other-aesthetics.html"><a href="other-aesthetics.html#log-scales"><i class="fa fa-check"></i><b>5.5.3</b> Logarithmic scales</a></li>
+<li class="chapter" data-level="5.5.4" data-path="other-aesthetics.html"><a href="other-aesthetics.html#available-transformations"><i class="fa fa-check"></i><b>5.5.4</b> Available transformations</a></li>
+<li class="chapter" data-level="5.5.5" data-path="other-aesthetics.html"><a href="other-aesthetics.html#discrete-scales"><i class="fa fa-check"></i><b>5.5.5</b> Discrete scales</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="other-aesthetics.html"><a href="other-aesthetics.html#facets"><i class="fa fa-check"></i><b>5.6</b> Facets</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="other-aesthetics.html"><a href="other-aesthetics.html#facet_wrap"><i class="fa fa-check"></i><b>5.6.1</b> <code>facet_wrap()</code></a></li>
+<li class="chapter" data-level="5.6.2" data-path="other-aesthetics.html"><a href="other-aesthetics.html#facet_grid"><i class="fa fa-check"></i><b>5.6.2</b> <code>facet_grid()</code></a></li>
+<li class="chapter" data-level="5.6.3" data-path="other-aesthetics.html"><a href="other-aesthetics.html#free-scales"><i class="fa fa-check"></i><b>5.6.3</b> Free scales</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="other-aesthetics.html"><a href="other-aesthetics.html#summary-3"><i class="fa fa-check"></i><b>5.7</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="cosmetics.html"><a href="cosmetics.html"><i class="fa fa-check"></i><b>6</b> Plot Cosmetics</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="cosmetics.html"><a href="cosmetics.html#introduction-4"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="cosmetics.html"><a href="cosmetics.html#incremental-workflow"><i class="fa fa-check"></i><b>6.2</b> Incremental workflow</a></li>
+<li class="chapter" data-level="6.3" data-path="cosmetics.html"><a href="cosmetics.html#coordinate-systems"><i class="fa fa-check"></i><b>6.3</b> Coordinate systems</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="cosmetics.html"><a href="cosmetics.html#coord-cartesian"><i class="fa fa-check"></i><b>6.3.1</b> Cartesian coordinates (default)</a></li>
+<li class="chapter" data-level="6.3.2" data-path="cosmetics.html"><a href="cosmetics.html#coord-fixed"><i class="fa fa-check"></i><b>6.3.2</b> Fixed aspect ratio</a></li>
+<li class="chapter" data-level="6.3.3" data-path="cosmetics.html"><a href="cosmetics.html#coord-flip"><i class="fa fa-check"></i><b>6.3.3</b> Flipped coordinates</a></li>
+<li class="chapter" data-level="6.3.4" data-path="cosmetics.html"><a href="cosmetics.html#coord-polar"><i class="fa fa-check"></i><b>6.3.4</b> Polar coordinates</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="cosmetics.html"><a href="cosmetics.html#position-adjustments"><i class="fa fa-check"></i><b>6.4</b> Position adjustments</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="cosmetics.html"><a href="cosmetics.html#jittering-for-overplotting"><i class="fa fa-check"></i><b>6.4.1</b> Jittering (for overplotting)</a></li>
+<li class="chapter" data-level="6.4.2" data-path="cosmetics.html"><a href="cosmetics.html#position-dodge"><i class="fa fa-check"></i><b>6.4.2</b> Dodging (side by side)</a></li>
+<li class="chapter" data-level="6.4.3" data-path="cosmetics.html"><a href="cosmetics.html#stacking-default-for-bars"><i class="fa fa-check"></i><b>6.4.3</b> Stacking (default for bars)</a></li>
+<li class="chapter" data-level="6.4.4" data-path="cosmetics.html"><a href="cosmetics.html#filling-proportions"><i class="fa fa-check"></i><b>6.4.4</b> Filling (proportions)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="cosmetics.html"><a href="cosmetics.html#themes"><i class="fa fa-check"></i><b>6.5</b> Themes</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="cosmetics.html"><a href="cosmetics.html#built-in-themes"><i class="fa fa-check"></i><b>6.5.1</b> Built-in themes</a></li>
+<li class="chapter" data-level="6.5.2" data-path="cosmetics.html"><a href="cosmetics.html#global-theme"><i class="fa fa-check"></i><b>6.5.2</b> Setting a global theme</a></li>
+<li class="chapter" data-level="6.5.3" data-path="cosmetics.html"><a href="cosmetics.html#custom-theme"><i class="fa fa-check"></i><b>6.5.3</b> Customising individual elements</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="cosmetics.html"><a href="cosmetics.html#labels"><i class="fa fa-check"></i><b>6.6</b> Labels</a></li>
+<li class="chapter" data-level="6.7" data-path="cosmetics.html"><a href="cosmetics.html#legends"><i class="fa fa-check"></i><b>6.7</b> Legends</a>
+<ul>
+<li class="chapter" data-level="6.7.1" data-path="cosmetics.html"><a href="cosmetics.html#legend-position"><i class="fa fa-check"></i><b>6.7.1</b> Legend position</a></li>
+<li class="chapter" data-level="6.7.2" data-path="cosmetics.html"><a href="cosmetics.html#legend-inside"><i class="fa fa-check"></i><b>6.7.2</b> Legend inside the plot</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="cosmetics.html"><a href="cosmetics.html#axis-formatting"><i class="fa fa-check"></i><b>6.8</b> Axis formatting</a>
+<ul>
+<li class="chapter" data-level="6.8.1" data-path="cosmetics.html"><a href="cosmetics.html#avoiding-scientific-notation"><i class="fa fa-check"></i><b>6.8.1</b> Avoiding scientific notation</a></li>
+<li class="chapter" data-level="6.8.2" data-path="cosmetics.html"><a href="cosmetics.html#controlling-tick-marks"><i class="fa fa-check"></i><b>6.8.2</b> Controlling tick marks</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="cosmetics.html"><a href="cosmetics.html#summary-4"><i class="fa fa-check"></i><b>6.9</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="stats.html"><a href="stats.html"><i class="fa fa-check"></i><b>7</b> Data Manipulation and Statistical Layers</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="stats.html"><a href="stats.html#introduction-5"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.2" data-path="stats.html"><a href="stats.html#dplyr"><i class="fa fa-check"></i><b>7.2</b> Data manipulation with <code>dplyr</code></a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="stats.html"><a href="stats.html#two-ways-to-do-things"><i class="fa fa-check"></i><b>7.2.1</b> Two ways to do things</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="stats.html"><a href="stats.html#geom-bar-motivation"><i class="fa fa-check"></i><b>7.3</b> Bar charts and counting</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="stats.html"><a href="stats.html#approach-a-count-first-then-plot"><i class="fa fa-check"></i><b>7.3.1</b> Approach A: count first, then plot</a></li>
+<li class="chapter" data-level="7.3.2" data-path="stats.html"><a href="stats.html#a-common-mistake"><i class="fa fa-check"></i><b>7.3.2</b> A common mistake</a></li>
+<li class="chapter" data-level="7.3.3" data-path="stats.html"><a href="stats.html#approach-b-let-geom_bar-count-automatically"><i class="fa fa-check"></i><b>7.3.3</b> Approach B: let <code>geom_bar()</code> count automatically</a></li>
+<li class="chapter" data-level="7.3.4" data-path="stats.html"><a href="stats.html#log-scale-connection"><i class="fa fa-check"></i><b>7.3.4</b> The log-scale connection</a></li>
+<li class="chapter" data-level="7.3.5" data-path="stats.html"><a href="stats.html#what-geoms-compute-for-you"><i class="fa fa-check"></i><b>7.3.5</b> What geoms compute for you</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="stats.html"><a href="stats.html#filter-vs-limits"><i class="fa fa-check"></i><b>7.4</b> Subsetting data</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="stats.html"><a href="stats.html#approach-a"><i class="fa fa-check"></i><b>7.4.1</b> Approach A</a></li>
+<li class="chapter" data-level="7.4.2" data-path="stats.html"><a href="stats.html#approach-bi"><i class="fa fa-check"></i><b>7.4.2</b> Approach B(i)</a></li>
+<li class="chapter" data-level="7.4.3" data-path="stats.html"><a href="stats.html#approach-bii"><i class="fa fa-check"></i><b>7.4.3</b> Approach B(ii)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="stats.html"><a href="stats.html#stat-summary"><i class="fa fa-check"></i><b>7.5</b> Overlaying summaries with <code>stat_summary()</code></a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="stats.html"><a href="stats.html#approach-a-1"><i class="fa fa-check"></i><b>7.5.1</b> Approach A</a></li>
+<li class="chapter" data-level="7.5.2" data-path="stats.html"><a href="stats.html#approach-b"><i class="fa fa-check"></i><b>7.5.2</b> Approach B</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="stats.html"><a href="stats.html#density-histogram"><i class="fa fa-check"></i><b>7.6</b> Histogram with density overlay</a></li>
+<li class="chapter" data-level="7.7" data-path="stats.html"><a href="stats.html#qq-plots"><i class="fa fa-check"></i><b>7.7</b> Q-Q plots for assessing normality</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="stats.html"><a href="stats.html#why-not-just-use-a-histogram-or-density-plot"><i class="fa fa-check"></i><b>7.7.1</b> Why not just use a histogram or density plot?</a></li>
+<li class="chapter" data-level="7.7.2" data-path="stats.html"><a href="stats.html#q-q-plots-in-ggplot2"><i class="fa fa-check"></i><b>7.7.2</b> Q-Q plots in <code>ggplot2</code></a></li>
+<li class="chapter" data-level="7.7.3" data-path="stats.html"><a href="stats.html#interpreting-q-q-plots"><i class="fa fa-check"></i><b>7.7.3</b> Interpreting Q-Q plots</a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="stats.html"><a href="stats.html#stats-summary"><i class="fa fa-check"></i><b>7.8</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="temporal.html"><a href="temporal.html"><i class="fa fa-check"></i><b>8</b> Plotting time series data</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="temporal.html"><a href="temporal.html#datetime-objects"><i class="fa fa-check"></i><b>8.1</b> Creating time objects</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="temporal.html"><a href="temporal.html#the-make_datetime-function"><i class="fa fa-check"></i><b>8.1.1</b> The <code>make_datetime()</code> function</a></li>
+<li class="chapter" data-level="8.1.2" data-path="temporal.html"><a href="temporal.html#plotting-with-time-objects"><i class="fa fa-check"></i><b>8.1.2</b> Plotting with time objects</a></li>
+<li class="chapter" data-level="8.1.3" data-path="temporal.html"><a href="temporal.html#related-functions"><i class="fa fa-check"></i><b>8.1.3</b> Related functions</a></li>
+<li class="chapter" data-level="8.1.4" data-path="temporal.html"><a href="temporal.html#why-this-matters-for-visualisation"><i class="fa fa-check"></i><b>8.1.4</b> Why this matters for visualisation</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="temporal.html"><a href="temporal.html#temporal-viz"><i class="fa fa-check"></i><b>8.2</b> Temporal data visualisation</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="temporal.html"><a href="temporal.html#geom_line-vs-geom_path-the-key-difference"><i class="fa fa-check"></i><b>8.2.1</b> <code>geom_line()</code> vs <code>geom_path()</code>: the key difference</a></li>
+<li class="chapter" data-level="8.2.2" data-path="temporal.html"><a href="temporal.html#when-they-produce-the-same-result"><i class="fa fa-check"></i><b>8.2.2</b> When they produce the same result</a></li>
+<li class="chapter" data-level="8.2.3" data-path="temporal.html"><a href="temporal.html#when-they-differ-shuffled-data"><i class="fa fa-check"></i><b>8.2.3</b> When they differ: shuffled data</a></li>
+<li class="chapter" data-level="8.2.4" data-path="temporal.html"><a href="temporal.html#the-power-of-geom_path-adding-time-as-a-third-dimension"><i class="fa fa-check"></i><b>8.2.4</b> The power of <code>geom_path()</code>: adding time as a third dimension</a></li>
+<li class="chapter" data-level="8.2.5" data-path="temporal.html"><a href="temporal.html#enhancing-the-path-with-colour"><i class="fa fa-check"></i><b>8.2.5</b> Enhancing the path with colour</a></li>
+<li class="chapter" data-level="8.2.6" data-path="temporal.html"><a href="temporal.html#summary-geom_line-vs-geom_path"><i class="fa fa-check"></i><b>8.2.6</b> Summary: <code>geom_line()</code> vs <code>geom_path()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="temporal.html"><a href="temporal.html#scales-labels-zooming"><i class="fa fa-check"></i><b>8.3</b> Scales, labels &amp; zooming</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="temporal.html"><a href="temporal.html#controlling-date-breaks"><i class="fa fa-check"></i><b>8.3.1</b> Controlling date breaks</a></li>
+<li class="chapter" data-level="8.3.2" data-path="temporal.html"><a href="temporal.html#strftime"><i class="fa fa-check"></i><b>8.3.2</b> Formatting date labels</a></li>
+<li class="chapter" data-level="8.3.3" data-path="temporal.html"><a href="temporal.html#labelling-the-time-axis-appropriately"><i class="fa fa-check"></i><b>8.3.3</b> Labelling the time axis appropriately</a></li>
+<li class="chapter" data-level="8.3.4" data-path="temporal.html"><a href="temporal.html#zooming-on-time-series"><i class="fa fa-check"></i><b>8.3.4</b> Zooming on time series</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="temporal.html"><a href="temporal.html#implicit-missing"><i class="fa fa-check"></i><b>8.4</b> A potential pitfall: implicit missing data</a></li>
+<li class="chapter" data-level="8.5" data-path="temporal.html"><a href="temporal.html#summary-temporal-data"><i class="fa fa-check"></i><b>8.5</b> Summary: temporal data</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="spatial.html"><a href="spatial.html"><i class="fa fa-check"></i><b>9</b> Plotting (geo)spatial data</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="spatial.html"><a href="spatial.html#spatial-intro"><i class="fa fa-check"></i><b>9.1</b> Introduction</a></li>
+<li class="chapter" data-level="9.2" data-path="spatial.html"><a href="spatial.html#spatial-why-sf"><i class="fa fa-check"></i><b>9.2</b> Why not just use <code>geom_point()</code>?</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="spatial.html"><a href="spatial.html#the-sf-solution"><i class="fa fa-check"></i><b>9.2.1</b> The <code>sf</code> solution</a></li>
+<li class="chapter" data-level="9.2.2" data-path="spatial.html"><a href="spatial.html#how-geom_sf-differs-from-other-geoms"><i class="fa fa-check"></i><b>9.2.2</b> How <code>geom_sf()</code> differs from other geoms</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="spatial.html"><a href="spatial.html#spatial-geometry"><i class="fa fa-check"></i><b>9.3</b> The key ingredient: geometry</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="spatial.html"><a href="spatial.html#simple-feature-collections"><i class="fa fa-check"></i><b>9.3.1</b> Simple feature collections</a></li>
+<li class="chapter" data-level="9.3.2" data-path="spatial.html"><a href="spatial.html#file-formats-for-spatial-data"><i class="fa fa-check"></i><b>9.3.2</b> File formats for spatial data</a></li>
+<li class="chapter" data-level="9.3.3" data-path="spatial.html"><a href="spatial.html#reading-shapefiles"><i class="fa fa-check"></i><b>9.3.3</b> Reading shapefiles</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="spatial.html"><a href="spatial.html#spatial-scotland"><i class="fa fa-check"></i><b>9.4</b> Example: Scottish Census output areas</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="spatial.html"><a href="spatial.html#point-data-population-weighted-centroids"><i class="fa fa-check"></i><b>9.4.1</b> Point data: population-weighted centroids</a></li>
+<li class="chapter" data-level="9.4.2" data-path="spatial.html"><a href="spatial.html#first-attempt-plotting-points"><i class="fa fa-check"></i><b>9.4.2</b> First attempt: plotting points</a></li>
+<li class="chapter" data-level="9.4.3" data-path="spatial.html"><a href="spatial.html#fix-a-using-polygon-data"><i class="fa fa-check"></i><b>9.4.3</b> Fix (a): Using polygon data</a></li>
+<li class="chapter" data-level="9.4.4" data-path="spatial.html"><a href="spatial.html#background-map"><i class="fa fa-check"></i><b>9.4.4</b> Fix (b): Adding a background map</a></li>
+<li class="chapter" data-level="9.4.5" data-path="spatial.html"><a href="spatial.html#combining-polygons-with-background"><i class="fa fa-check"></i><b>9.4.5</b> Combining: polygons with background</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="spatial.html"><a href="spatial.html#spatial-crs"><i class="fa fa-check"></i><b>9.5</b> Coordinate reference systems</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="spatial.html"><a href="spatial.html#common-coordinate-systems"><i class="fa fa-check"></i><b>9.5.1</b> Common coordinate systems</a></li>
+<li class="chapter" data-level="9.5.2" data-path="spatial.html"><a href="spatial.html#how-the-sf-package-handles-crs"><i class="fa fa-check"></i><b>9.5.2</b> How the <code>sf</code> package handles CRS</a></li>
+<li class="chapter" data-level="9.5.3" data-path="spatial.html"><a href="spatial.html#spatial-create-geom"><i class="fa fa-check"></i><b>9.5.3</b> Creating geometry from coordinates</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="spatial.html"><a href="spatial.html#spatial-polish"><i class="fa fa-check"></i><b>9.6</b> Polishing spatial plots</a></li>
+<li class="chapter" data-level="9.7" data-path="spatial.html"><a href="spatial.html#spatial-summary"><i class="fa fa-check"></i><b>9.7</b> Summary</a>
+<ul>
+<li class="chapter" data-level="9.7.1" data-path="spatial.html"><a href="spatial.html#packages-needed"><i class="fa fa-check"></i><b>9.7.1</b> Packages needed</a></li>
+<li class="chapter" data-level="9.7.2" data-path="spatial.html"><a href="spatial.html#data-requirements"><i class="fa fa-check"></i><b>9.7.2</b> Data requirements</a></li>
+<li class="chapter" data-level="9.7.3" data-path="spatial.html"><a href="spatial.html#coordinate-reference-systems"><i class="fa fa-check"></i><b>9.7.3</b> Coordinate reference systems</a></li>
+<li class="chapter" data-level="9.7.4" data-path="spatial.html"><a href="spatial.html#the-spatial-geom"><i class="fa fa-check"></i><b>9.7.4</b> The spatial geom</a></li>
+<li class="chapter" data-level="9.7.5" data-path="spatial.html"><a href="spatial.html#building-maps"><i class="fa fa-check"></i><b>9.7.5</b> Building maps</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="interactivity.html"><a href="interactivity.html"><i class="fa fa-check"></i><b>10</b> Interactive Visualisation</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="interactivity.html"><a href="interactivity.html#shiny-basics"><i class="fa fa-check"></i><b>10.1</b> Shiny basics</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="interactivity.html"><a href="interactivity.html#minimal-structure"><i class="fa fa-check"></i><b>10.1.1</b> Minimal structure</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="interactivity.html"><a href="interactivity.html#shiny-inputs"><i class="fa fa-check"></i><b>10.2</b> Toggles and controls</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="interactivity.html"><a href="interactivity.html#sliderinput"><i class="fa fa-check"></i><b>10.2.1</b> <code>sliderInput()</code></a></li>
+<li class="chapter" data-level="10.2.2" data-path="interactivity.html"><a href="interactivity.html#plotoutput-and-renderplot"><i class="fa fa-check"></i><b>10.2.2</b> <code>plotOutput()</code> and <code>renderPlot()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="interactivity.html"><a href="interactivity.html#shiny-example"><i class="fa fa-check"></i><b>10.3</b> A complete example</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="interactivity.html"><a href="interactivity.html#step-1-get-the-static-plot-right"><i class="fa fa-check"></i><b>10.3.1</b> Step 1: get the static plot right</a></li>
+<li class="chapter" data-level="10.3.2" data-path="interactivity.html"><a href="interactivity.html#step-2-replace-the-fixed-year-with-a-reactive-input"><i class="fa fa-check"></i><b>10.3.2</b> Step 2: replace the fixed year with a reactive input</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="interactivity.html"><a href="interactivity.html#shiny-select"><i class="fa fa-check"></i><b>10.4</b> <code>selectInput()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="miscellaneous.html"><a href="miscellaneous.html"><i class="fa fa-check"></i><b>11</b> Miscellaneous Topics</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MAS2908 Data Visualisation</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="sec-intro" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">2</span> Graphical Presentation of Data with Base R<a href="sec-intro.html#sec-intro" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="introduction" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Introduction<a href="sec-intro.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Graphical displays of data can be very useful in showing the main features
+of a data set. The appropriate form of graph depends on the nature of the
+variables being displayed and what aspects are to be shown. However it
+should be kept in mind that the object is to provide a clear and truthful
+representation of the data, not to distort and not to impress with
+unnecessary “fancy” features.</p>
+<div id="data-frames" class="section level3 hasAnchor" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Data frames<a href="sec-intro.html#data-frames" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In R, we almost exclusively work with <strong>data frames</strong> for data
+visualisation. A data frame is a table where each column represents a
+variable and each row represents an observation.</p>
+<p><strong>Important</strong>: Data frames are <em>not</em> the same as matrices. While both are
+rectangular structures, they differ in key ways:</p>
+<ul>
+<li>A matrix contains elements of a <strong>single type</strong> (e.g., all numeric)</li>
+<li>A data frame can have <strong>different types</strong> in each column (e.g., numeric,
+character, factor)</li>
+<li>Data frames have column names that we use to access variables</li>
+</ul>
+<p>While R has some special object types for specific data (such as <code>ts</code> for
+time series), the unified framework introduced in Chapter <a href="ggplot2-intro.html#ggplot2-intro">3</a>
+and onwards always applies to data frames. This means you do not need to
+convert the class of your data for the sake of visualisation — if your data
+are in a data frame, you are ready to plot.</p>
+<p>If you are unfamiliar with data frames or need a refresher on basic
+operations like creating, subsetting, and manipulating data frames, please
+refer to Practical 1.</p>
+<p>Base R provides a rich set of plotting functions that can be used without
+loading any additional packages. These functions are fast, flexible, and
+form the foundation upon which many other plotting systems are built.</p>
+</div>
+<div id="datasets-used-in-this-chapter" class="section level3 hasAnchor" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> Datasets used in this chapter<a href="sec-intro.html#datasets-used-in-this-chapter" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We primarily use the <code>mpg</code> dataset from the <code>ggplot2</code> package, which
+contains fuel economy data for 234 vehicles from 1999 to 2008:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="sec-intro.html#cb1-1" aria-hidden="true"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="sec-intro.html#cb1-2" aria-hidden="true"></a><span class="kw">head</span>(mpg)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 11
+##   manufacturer model displ  year   cyl trans     drv     cty
+##   &lt;chr&gt;        &lt;chr&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;     &lt;chr&gt; &lt;int&gt;
+## 1 audi         a4      1.8  1999     4 auto(l5)  f        18
+## 2 audi         a4      1.8  1999     4 manual(m… f        21
+## 3 audi         a4      2    2008     4 manual(m… f        20
+## 4 audi         a4      2    2008     4 auto(av)  f        21
+## 5 audi         a4      2.8  1999     6 auto(l5)  f        16
+## 6 audi         a4      2.8  1999     6 manual(m… f        18
+## # ℹ 3 more variables: hwy &lt;int&gt;, fl &lt;chr&gt;, class &lt;chr&gt;</code></pre>
+<p>The variables are:</p>
+<ul>
+<li><code>manufacturer</code>: Car manufacturer</li>
+<li><code>model</code>: Model name</li>
+<li><code>displ</code>: Engine displacement in litres</li>
+<li><code>year</code>: Year of manufacture (1999 or 2008)</li>
+<li><code>cyl</code>: Number of cylinders</li>
+<li><code>trans</code>: Type of transmission</li>
+<li><code>drv</code>: Drive type (f = front-wheel, r = rear-wheel, 4 = 4-wheel)</li>
+<li><code>cty</code>: City miles per gallon</li>
+<li><code>hwy</code>: Highway miles per gallon</li>
+<li><code>fl</code>: Fuel type (e = E85 ethanol, d = diesel, r = regular, p = premium, c = CNG)</li>
+<li><code>class</code>: Type of vehicle (e.g., compact, SUV)</li>
+</ul>
+<p>For time series data, we use the <code>economics</code> dataset:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="sec-intro.html#cb3-1" aria-hidden="true"></a><span class="kw">head</span>(economics)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 6
+##   date         pce    pop psavert uempmed unemploy
+##   &lt;date&gt;     &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;
+## 1 1967-07-01  507. 198712    12.6     4.5     2944
+## 2 1967-08-01  510. 198911    12.6     4.7     2945
+## 3 1967-09-01  516. 199113    11.9     4.6     2958
+## 4 1967-10-01  512. 199311    12.9     4.9     3143
+## 5 1967-11-01  517. 199498    12.8     4.7     3066
+## 6 1967-12-01  525. 199657    11.8     4.8     3018</code></pre>
+<p>This contains US economic time series data from 1967 to 2015. The variables are:</p>
+<ul>
+<li><code>date</code>: Month of data collection</li>
+<li><code>pce</code>: Personal consumption expenditures (billions of dollars)</li>
+<li><code>pop</code>: Total population (thousands)</li>
+<li><code>psavert</code>: Personal savings rate (percent)</li>
+<li><code>uempmed</code>: Median duration of unemployment (weeks)</li>
+<li><code>unemploy</code>: Number of unemployed (thousands)</li>
+</ul>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div id="one-variable-continuous" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> One variable, continuous<a href="sec-intro.html#one-variable-continuous" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When we have a single continuous variable, we want to understand its
+<strong>distribution</strong>: where are the values concentrated, how spread out are
+they, and is the distribution symmetric or skewed?</p>
+<div id="histogram-base-R" class="section level3 hasAnchor" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Histograms<a href="sec-intro.html#histogram-base-R" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Histograms represent the distribution of a sample of values of a continuous
+variable. The range of values is divided into intervals (bins or classes),
+and the frequencies in each class are represented by columns. As the
+variable is continuous, there are no gaps between neighbouring columns.</p>
+<p>The <span class="math inline">\(y\)</span>-axis can show either the count in each class (absolute frequency) or
+the density (relative frequency). Bin widths should be chosen to show the
+distribution without being swamped by random variation.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="sec-intro.html#cb5-1" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb5-2"><a href="sec-intro.html#cb5-2" aria-hidden="true"></a><span class="kw">hist</span>(</span>
+<span id="cb5-3"><a href="sec-intro.html#cb5-3" aria-hidden="true"></a>  mpg<span class="op">$</span>displ,</span>
+<span id="cb5-4"><a href="sec-intro.html#cb5-4" aria-hidden="true"></a>  <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>,</span>
+<span id="cb5-5"><a href="sec-intro.html#cb5-5" aria-hidden="true"></a>  <span class="dt">main =</span> <span class="st">&quot;Absolute Frequency&quot;</span>,</span>
+<span id="cb5-6"><a href="sec-intro.html#cb5-6" aria-hidden="true"></a>  <span class="dt">freq =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb5-7"><a href="sec-intro.html#cb5-7" aria-hidden="true"></a>  <span class="dt">xlab =</span> <span class="st">&quot;Engine Displacement (L)&quot;</span>,</span>
+<span id="cb5-8"><a href="sec-intro.html#cb5-8" aria-hidden="true"></a>  <span class="dt">ylab =</span> <span class="st">&quot;Counts&quot;</span></span>
+<span id="cb5-9"><a href="sec-intro.html#cb5-9" aria-hidden="true"></a>)</span>
+<span id="cb5-10"><a href="sec-intro.html#cb5-10" aria-hidden="true"></a><span class="kw">hist</span>(</span>
+<span id="cb5-11"><a href="sec-intro.html#cb5-11" aria-hidden="true"></a>  mpg<span class="op">$</span>displ,</span>
+<span id="cb5-12"><a href="sec-intro.html#cb5-12" aria-hidden="true"></a>  <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>,</span>
+<span id="cb5-13"><a href="sec-intro.html#cb5-13" aria-hidden="true"></a>  <span class="dt">main =</span> <span class="st">&quot;Relative Frequency&quot;</span>,</span>
+<span id="cb5-14"><a href="sec-intro.html#cb5-14" aria-hidden="true"></a>  <span class="dt">freq =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb5-15"><a href="sec-intro.html#cb5-15" aria-hidden="true"></a>  <span class="dt">xlab =</span> <span class="st">&quot;Engine Displacement (L)&quot;</span>,</span>
+<span id="cb5-16"><a href="sec-intro.html#cb5-16" aria-hidden="true"></a>  <span class="dt">ylab =</span> <span class="st">&quot;Density&quot;</span></span>
+<span id="cb5-17"><a href="sec-intro.html#cb5-17" aria-hidden="true"></a>)</span>
+<span id="cb5-18"><a href="sec-intro.html#cb5-18" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:hist-mpg"></span>
+<img src="_main_files/figure-html/hist-mpg-1.png" alt="Histograms of engine displacement: absolute frequency (left) and relative frequency (right)." width="70%" />
+<p class="caption">
+Figure 2.1: Histograms of engine displacement: absolute frequency (left) and relative frequency (right).
+</p>
+</div>
+<p>The <code>ggplot2</code> equivalent uses <code>geom_histogram()</code> — see Section <a href="ggplot2-intro.html#histogram-ggplot2">3.4.1</a>.</p>
+<p><strong>Exercise</strong>: Create a histogram of <code>cty</code> (city miles per gallon) from the <code>mpg</code> dataset. Use <code>col = "lightblue"</code> and add appropriate axis labels.</p>
+</div>
+<div id="density-base-R" class="section level3 hasAnchor" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Density plots<a href="sec-intro.html#density-base-R" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Density plots provide a smoothed version of a histogram, estimating the
+probability density function of the underlying variable. They are created
+using the <code>density()</code> function combined with <code>plot()</code>:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="sec-intro.html#cb6-1" aria-hidden="true"></a><span class="kw">plot</span>(</span>
+<span id="cb6-2"><a href="sec-intro.html#cb6-2" aria-hidden="true"></a>  <span class="kw">density</span>(mpg<span class="op">$</span>displ),</span>
+<span id="cb6-3"><a href="sec-intro.html#cb6-3" aria-hidden="true"></a>  <span class="dt">main =</span> <span class="st">&quot;Density Plot of Engine Displacement&quot;</span>,</span>
+<span id="cb6-4"><a href="sec-intro.html#cb6-4" aria-hidden="true"></a>  <span class="dt">xlab =</span> <span class="st">&quot;Engine Displacement (L)&quot;</span>,</span>
+<span id="cb6-5"><a href="sec-intro.html#cb6-5" aria-hidden="true"></a>  <span class="dt">col =</span> <span class="st">&quot;darkblue&quot;</span>,</span>
+<span id="cb6-6"><a href="sec-intro.html#cb6-6" aria-hidden="true"></a>  <span class="dt">lwd =</span> <span class="dv">2</span></span>
+<span id="cb6-7"><a href="sec-intro.html#cb6-7" aria-hidden="true"></a>)</span>
+<span id="cb6-8"><a href="sec-intro.html#cb6-8" aria-hidden="true"></a><span class="kw">rug</span>(mpg<span class="op">$</span>displ, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:density-plot"></span>
+<img src="_main_files/figure-html/density-plot-1.png" alt="Density plot of engine displacement." width="70%" />
+<p class="caption">
+Figure 2.2: Density plot of engine displacement.
+</p>
+</div>
+<p>The <code>rug()</code> function adds tick marks showing individual data values along
+the axis.</p>
+<p>The <code>ggplot2</code> equivalent uses <code>geom_density()</code> — see Section <a href="ggplot2-intro.html#density-ggplot2">3.4.2</a>.</p>
+<p><strong>Exercise</strong>: Create a density plot of <code>cty</code> from the <code>mpg</code> dataset. Add a rug plot and use a different colour for the density line.</p>
+</div>
+<div id="stem-and-leaf-plots" class="section level3 hasAnchor" number="2.2.3">
+<h3><span class="header-section-number">2.2.3</span> Stem-and-leaf plots<a href="sec-intro.html#stem-and-leaf-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Stem-and-leaf plots are similar to histograms but show the actual data
+values:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="sec-intro.html#cb7-1" aria-hidden="true"></a><span class="kw">stem</span>(mpg<span class="op">$</span>displ)</span></code></pre></div>
+<pre><code>## 
+##   The decimal point is at the |
+## 
+##   1 | 6666688888888888888999
+##   2 | 0000000000000000000002222224444444444444
+##   2 | 55555555555555555555777777778888888888
+##   3 | 000000001111113333333334444
+##   3 | 555556677788888888999
+##   4 | 00000000000000022224
+##   4 | 6666666666677777777777777777
+##   5 | 002222233333344444444
+##   5 | 67777777799
+##   6 | 0122
+##   6 | 5
+##   7 | 0</code></pre>
+<p>Values on the left (the “stems”) give the first digit(s), and those on the
+right (the “leaves”) the subsequent digit for each observation. This type
+of plot is useful for small datasets but becomes unwieldy for larger ones.</p>
+<p>Note: There is no direct equivalent for stem-and-leaf plots in the unified framework in Chapter <a href="ggplot2-intro.html#ggplot2-intro">3</a>.</p>
+</div>
+<div id="boxplot-one-var-base-R" class="section level3 hasAnchor" number="2.2.4">
+<h3><span class="header-section-number">2.2.4</span> Boxplots<a href="sec-intro.html#boxplot-one-var-base-R" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Boxplots (also known as box-and-whisker plots) provide a visual summary of
+the distribution. The central bar is the median, the box spans the
+interquartile range (IQR), and the whiskers extend to the most extreme
+points within 1.5 times the IQR. Points beyond the whiskers are shown as
+individual outliers.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="sec-intro.html#cb9-1" aria-hidden="true"></a><span class="kw">boxplot</span>(</span>
+<span id="cb9-2"><a href="sec-intro.html#cb9-2" aria-hidden="true"></a>  mpg<span class="op">$</span>displ,</span>
+<span id="cb9-3"><a href="sec-intro.html#cb9-3" aria-hidden="true"></a>  <span class="dt">main =</span> <span class="st">&quot;Engine Displacement&quot;</span>,</span>
+<span id="cb9-4"><a href="sec-intro.html#cb9-4" aria-hidden="true"></a>  <span class="dt">ylab =</span> <span class="st">&quot;Engine Displacement (L)&quot;</span></span>
+<span id="cb9-5"><a href="sec-intro.html#cb9-5" aria-hidden="true"></a>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:boxplot-one-var"></span>
+<img src="_main_files/figure-html/boxplot-one-var-1.png" alt="Boxplot of engine displacement." width="70%" />
+<p class="caption">
+Figure 2.3: Boxplot of engine displacement.
+</p>
+</div>
+<p>While boxplots are most commonly used to compare distributions across
+groups (see Section <a href="sec-intro.html#boxplot-base-R">2.5.3</a>), they are also useful for a
+single variable to quickly identify the median, spread, and any outliers.</p>
+<p>The <code>ggplot2</code> equivalent uses <code>geom_boxplot()</code> — see Section
+<a href="ggplot2-intro.html#boxplot-one-var-ggplot2">3.4.3</a>.</p>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div id="one-variable-discrete" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> One variable, discrete<a href="sec-intro.html#one-variable-discrete" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For discrete or categorical variables, we want to see the frequency of each
+category.</p>
+<div id="bar-base-R" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Bar charts<a href="sec-intro.html#bar-base-R" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Bar charts display the frequency with which each distinct value of a
+variable occurred. The widths of the bars should be equal, and a small gap
+is drawn between each bar to indicate separate categories.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="sec-intro.html#cb10-1" aria-hidden="true"></a><span class="kw">barplot</span>(</span>
+<span id="cb10-2"><a href="sec-intro.html#cb10-2" aria-hidden="true"></a>  <span class="kw">table</span>(mpg<span class="op">$</span>drv),</span>
+<span id="cb10-3"><a href="sec-intro.html#cb10-3" aria-hidden="true"></a>  <span class="dt">xlab =</span> <span class="st">&quot;Drive Type&quot;</span>,</span>
+<span id="cb10-4"><a href="sec-intro.html#cb10-4" aria-hidden="true"></a>  <span class="dt">ylab =</span> <span class="st">&quot;Frequency&quot;</span>,</span>
+<span id="cb10-5"><a href="sec-intro.html#cb10-5" aria-hidden="true"></a>  <span class="dt">col =</span> <span class="st">&quot;steelblue&quot;</span>,</span>
+<span id="cb10-6"><a href="sec-intro.html#cb10-6" aria-hidden="true"></a>  <span class="dt">names.arg =</span> <span class="kw">c</span>(<span class="st">&quot;4-wheel&quot;</span>, <span class="st">&quot;Front&quot;</span>, <span class="st">&quot;Rear&quot;</span>)</span>
+<span id="cb10-7"><a href="sec-intro.html#cb10-7" aria-hidden="true"></a>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:bar-chart"></span>
+<img src="_main_files/figure-html/bar-chart-1.png" alt="Bar chart of drive type in the mpg dataset." width="70%" />
+<p class="caption">
+Figure 2.4: Bar chart of drive type in the mpg dataset.
+</p>
+</div>
+<p>We will see grouped bar charts in the section on two discrete variables
+below.</p>
+<p>The <code>ggplot2</code> equivalent uses <code>geom_bar()</code> — see Section <a href="ggplot2-intro.html#bar-ggplot2">3.5.1</a>.</p>
+<p><strong>Exercise</strong>: Create a bar chart of <code>class</code> (vehicle type) from the <code>mpg</code> dataset. Add appropriate axis labels.</p>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div id="two-variables-both-continuous" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Two variables, both continuous<a href="sec-intro.html#two-variables-both-continuous" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When both variables are continuous, we want to understand their
+<strong>relationship</strong>: are they correlated, is the relationship linear, are
+there clusters or outliers?</p>
+<div id="scatterplot-base-R" class="section level3 hasAnchor" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> Scatterplots<a href="sec-intro.html#scatterplot-base-R" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Scatterplots display the relationship between two continuous variables.
+Each observation is represented as a point in two-dimensional space.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="sec-intro.html#cb11-1" aria-hidden="true"></a><span class="kw">plot</span>(</span>
+<span id="cb11-2"><a href="sec-intro.html#cb11-2" aria-hidden="true"></a>  mpg<span class="op">$</span>displ,</span>
+<span id="cb11-3"><a href="sec-intro.html#cb11-3" aria-hidden="true"></a>  mpg<span class="op">$</span>hwy,</span>
+<span id="cb11-4"><a href="sec-intro.html#cb11-4" aria-hidden="true"></a>  <span class="dt">xlab =</span> <span class="st">&quot;Engine Displacement (L)&quot;</span>,</span>
+<span id="cb11-5"><a href="sec-intro.html#cb11-5" aria-hidden="true"></a>  <span class="dt">ylab =</span> <span class="st">&quot;Highway MPG&quot;</span>,</span>
+<span id="cb11-6"><a href="sec-intro.html#cb11-6" aria-hidden="true"></a>  <span class="dt">main =</span> <span class="st">&quot;Fuel Efficiency vs Engine Size&quot;</span>,</span>
+<span id="cb11-7"><a href="sec-intro.html#cb11-7" aria-hidden="true"></a>  <span class="dt">pch =</span> <span class="dv">19</span></span>
+<span id="cb11-8"><a href="sec-intro.html#cb11-8" aria-hidden="true"></a>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:scatter-basic"></span>
+<img src="_main_files/figure-html/scatter-basic-1.png" alt="Scatterplot of engine displacement vs highway MPG." width="70%" />
+<p class="caption">
+Figure 2.5: Scatterplot of engine displacement vs highway MPG.
+</p>
+</div>
+<p>We can add a regression line to show the trend:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="sec-intro.html#cb12-1" aria-hidden="true"></a><span class="kw">plot</span>(</span>
+<span id="cb12-2"><a href="sec-intro.html#cb12-2" aria-hidden="true"></a>  mpg<span class="op">$</span>displ,</span>
+<span id="cb12-3"><a href="sec-intro.html#cb12-3" aria-hidden="true"></a>  mpg<span class="op">$</span>hwy,</span>
+<span id="cb12-4"><a href="sec-intro.html#cb12-4" aria-hidden="true"></a>  <span class="dt">xlab =</span> <span class="st">&quot;Engine Displacement (L)&quot;</span>,</span>
+<span id="cb12-5"><a href="sec-intro.html#cb12-5" aria-hidden="true"></a>  <span class="dt">ylab =</span> <span class="st">&quot;Highway MPG&quot;</span>,</span>
+<span id="cb12-6"><a href="sec-intro.html#cb12-6" aria-hidden="true"></a>  <span class="dt">main =</span> <span class="st">&quot;Fuel Efficiency vs Engine Size&quot;</span>,</span>
+<span id="cb12-7"><a href="sec-intro.html#cb12-7" aria-hidden="true"></a>  <span class="dt">pch =</span> <span class="dv">19</span></span>
+<span id="cb12-8"><a href="sec-intro.html#cb12-8" aria-hidden="true"></a>)</span>
+<span id="cb12-9"><a href="sec-intro.html#cb12-9" aria-hidden="true"></a><span class="kw">abline</span>(<span class="kw">lm</span>(hwy <span class="op">~</span><span class="st"> </span>displ, <span class="dt">data =</span> mpg), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:scatter-regression"></span>
+<img src="_main_files/figure-html/scatter-regression-1.png" alt="Scatterplot with regression line." width="70%" />
+<p class="caption">
+Figure 2.6: Scatterplot with regression line.
+</p>
+</div>
+<p>The <code>ggplot2</code> equivalent uses <code>geom_point()</code> — see Section <a href="ggplot2-intro.html#scatterplot-ggplot2">3.6.1</a>.</p>
+<p><strong>Exercise</strong>: Create a scatterplot of <code>cty</code> (<span class="math inline">\(y\)</span>-axis) versus <code>hwy</code> (<span class="math inline">\(x\)</span>-axis) from the <code>mpg</code> dataset. Add a regression line. What relationship do you observe?</p>
+</div>
+<div id="lineplot-base-R" class="section level3 hasAnchor" number="2.4.2">
+<h3><span class="header-section-number">2.4.2</span> Line plots<a href="sec-intro.html#lineplot-base-R" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Line plots connect observations in sequence and are used for time series or
+ordered data. For time series data like <code>economics</code>, a line plot shows the
+trend over time:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="sec-intro.html#cb13-1" aria-hidden="true"></a><span class="kw">plot</span>(</span>
+<span id="cb13-2"><a href="sec-intro.html#cb13-2" aria-hidden="true"></a>  economics<span class="op">$</span>date,</span>
+<span id="cb13-3"><a href="sec-intro.html#cb13-3" aria-hidden="true"></a>  economics<span class="op">$</span>unemploy,</span>
+<span id="cb13-4"><a href="sec-intro.html#cb13-4" aria-hidden="true"></a>  <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>,</span>
+<span id="cb13-5"><a href="sec-intro.html#cb13-5" aria-hidden="true"></a>  <span class="dt">xlab =</span> <span class="st">&quot;Date&quot;</span>,</span>
+<span id="cb13-6"><a href="sec-intro.html#cb13-6" aria-hidden="true"></a>  <span class="dt">ylab =</span> <span class="st">&quot;Unemployment (thousands)&quot;</span>,</span>
+<span id="cb13-7"><a href="sec-intro.html#cb13-7" aria-hidden="true"></a>  <span class="dt">main =</span> <span class="st">&quot;US Unemployment Over Time&quot;</span>,</span>
+<span id="cb13-8"><a href="sec-intro.html#cb13-8" aria-hidden="true"></a>  <span class="dt">col =</span> <span class="st">&quot;darkblue&quot;</span></span>
+<span id="cb13-9"><a href="sec-intro.html#cb13-9" aria-hidden="true"></a>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:line-plot"></span>
+<img src="_main_files/figure-html/line-plot-1.png" alt="Unemployment over time in the US." width="70%" />
+<p class="caption">
+Figure 2.7: Unemployment over time in the US.
+</p>
+</div>
+<p>Note that a scatterplot (<code>type = "p"</code> or default) would not be appropriate
+here — the sequential nature of time series data is best shown with
+connected lines:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="sec-intro.html#cb14-1" aria-hidden="true"></a><span class="kw">plot</span>(</span>
+<span id="cb14-2"><a href="sec-intro.html#cb14-2" aria-hidden="true"></a>  economics<span class="op">$</span>date,</span>
+<span id="cb14-3"><a href="sec-intro.html#cb14-3" aria-hidden="true"></a>  economics<span class="op">$</span>unemploy,</span>
+<span id="cb14-4"><a href="sec-intro.html#cb14-4" aria-hidden="true"></a>  <span class="dt">xlab =</span> <span class="st">&quot;Date&quot;</span>,</span>
+<span id="cb14-5"><a href="sec-intro.html#cb14-5" aria-hidden="true"></a>  <span class="dt">ylab =</span> <span class="st">&quot;Unemployment (thousands)&quot;</span>,</span>
+<span id="cb14-6"><a href="sec-intro.html#cb14-6" aria-hidden="true"></a>  <span class="dt">main =</span> <span class="st">&quot;Same Data as Scatterplot&quot;</span>,</span>
+<span id="cb14-7"><a href="sec-intro.html#cb14-7" aria-hidden="true"></a>  <span class="dt">pch =</span> <span class="dv">19</span>,</span>
+<span id="cb14-8"><a href="sec-intro.html#cb14-8" aria-hidden="true"></a>  <span class="dt">cex =</span> <span class="fl">0.5</span></span>
+<span id="cb14-9"><a href="sec-intro.html#cb14-9" aria-hidden="true"></a>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:scatter-timeseries-bad-base"></span>
+<img src="_main_files/figure-html/scatter-timeseries-bad-base-1.png" alt="Scatterplot of time series data --- not as informative as a line plot." width="70%" />
+<p class="caption">
+Figure 2.8: Scatterplot of time series data — not as informative as a line plot.
+</p>
+</div>
+<p>The <code>ggplot2</code> equivalent uses <code>geom_line()</code> — see Section <a href="ggplot2-intro.html#lineplot-ggplot2">3.6.2</a>.</p>
+<p><strong>Exercise</strong>: Create a line plot of <code>psavert</code> (personal savings rate) over time from the <code>economics</code> dataset. Add appropriate axis labels.</p>
+</div>
+<div id="pairs-base-R" class="section level3 hasAnchor" number="2.4.3">
+<h3><span class="header-section-number">2.4.3</span> Pairs plots (scatterplot matrix)<a href="sec-intro.html#pairs-base-R" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Coming back to scatterplot, what if we want to look at pairs of variables simultaneously?
+When exploring relationships among multiple continuous variables, a pairs
+plot (scatterplot matrix) shows all pairwise scatterplots at once:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="sec-intro.html#cb15-1" aria-hidden="true"></a><span class="kw">pairs</span>(</span>
+<span id="cb15-2"><a href="sec-intro.html#cb15-2" aria-hidden="true"></a>  mpg[, <span class="kw">c</span>(<span class="st">&quot;displ&quot;</span>, <span class="st">&quot;cty&quot;</span>, <span class="st">&quot;hwy&quot;</span>)],</span>
+<span id="cb15-3"><a href="sec-intro.html#cb15-3" aria-hidden="true"></a>  <span class="dt">main =</span> <span class="st">&quot;Scatterplot Matrix&quot;</span>,</span>
+<span id="cb15-4"><a href="sec-intro.html#cb15-4" aria-hidden="true"></a>  <span class="dt">pch =</span> <span class="dv">19</span></span>
+<span id="cb15-5"><a href="sec-intro.html#cb15-5" aria-hidden="true"></a>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pairs-plot"></span>
+<img src="_main_files/figure-html/pairs-plot-1.png" alt="Pairs plot of selected mpg variables." width="70%" />
+<p class="caption">
+Figure 2.9: Pairs plot of selected mpg variables.
+</p>
+</div>
+<p>Alternatively, if you have only numeric columns, you can use <code>plot()</code>
+directly on a data frame, which calls <code>pairs()</code> automatically.</p>
+<p>The <code>ggplot2</code> equivalent uses <code>ggpairs()</code> from the <code>GGally</code> package — see
+Section <a href="ggplot2-intro.html#pairs-ggplot2">3.6.3</a>.</p>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div id="two-variables-one-continuous-and-one-discrete" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Two variables, one continuous and one discrete<a href="sec-intro.html#two-variables-one-continuous-and-one-discrete" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When we have one continuous variable and one categorical variable, we
+typically want to <strong>compare distributions</strong> across groups.</p>
+<div id="problem-base-R" class="section level3 hasAnchor" number="2.5.1">
+<h3><span class="header-section-number">2.5.1</span> The problem with scatterplots<a href="sec-intro.html#problem-base-R" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A naive approach might be to use a scatterplot, but this doesn’t work well
+because the discrete variable creates vertical strips of points:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="sec-intro.html#cb16-1" aria-hidden="true"></a><span class="kw">plot</span>(</span>
+<span id="cb16-2"><a href="sec-intro.html#cb16-2" aria-hidden="true"></a>  <span class="kw">as.numeric</span>(<span class="kw">factor</span>(mpg<span class="op">$</span>drv)),</span>
+<span id="cb16-3"><a href="sec-intro.html#cb16-3" aria-hidden="true"></a>  mpg<span class="op">$</span>displ,</span>
+<span id="cb16-4"><a href="sec-intro.html#cb16-4" aria-hidden="true"></a>  <span class="dt">xlab =</span> <span class="st">&quot;Drive Type&quot;</span>,</span>
+<span id="cb16-5"><a href="sec-intro.html#cb16-5" aria-hidden="true"></a>  <span class="dt">ylab =</span> <span class="st">&quot;Engine Displacement (L)&quot;</span>,</span>
+<span id="cb16-6"><a href="sec-intro.html#cb16-6" aria-hidden="true"></a>  <span class="dt">main =</span> <span class="st">&quot;Engine Displacement by Drive Type&quot;</span>,</span>
+<span id="cb16-7"><a href="sec-intro.html#cb16-7" aria-hidden="true"></a>  <span class="dt">pch =</span> <span class="dv">19</span>,</span>
+<span id="cb16-8"><a href="sec-intro.html#cb16-8" aria-hidden="true"></a>  <span class="dt">xaxt =</span> <span class="st">&quot;n&quot;</span></span>
+<span id="cb16-9"><a href="sec-intro.html#cb16-9" aria-hidden="true"></a>)</span>
+<span id="cb16-10"><a href="sec-intro.html#cb16-10" aria-hidden="true"></a><span class="kw">axis</span>(<span class="dv">1</span>, <span class="dt">at =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;4-wheel&quot;</span>, <span class="st">&quot;Front&quot;</span>, <span class="st">&quot;Rear&quot;</span>))</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:scatter-bad"></span>
+<img src="_main_files/figure-html/scatter-bad-1.png" alt="Scatterplot for continuous vs discrete --- not ideal due to overplotting." width="70%" />
+<p class="caption">
+Figure 2.10: Scatterplot for continuous vs discrete — not ideal due to overplotting.
+</p>
+</div>
+<p>Many points overlap, making it hard to see the distribution within each
+group.</p>
+</div>
+<div id="jitter-base-R" class="section level3 hasAnchor" number="2.5.2">
+<h3><span class="header-section-number">2.5.2</span> Stripcharts<a href="sec-intro.html#jitter-base-R" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A stripchart (also called a one-dimensional scatterplot) addresses the
+overplotting problem by adding jitter — small random horizontal offsets:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="sec-intro.html#cb17-1" aria-hidden="true"></a><span class="kw">stripchart</span>(</span>
+<span id="cb17-2"><a href="sec-intro.html#cb17-2" aria-hidden="true"></a>  displ <span class="op">~</span><span class="st"> </span>drv,</span>
+<span id="cb17-3"><a href="sec-intro.html#cb17-3" aria-hidden="true"></a>  <span class="dt">data =</span> mpg,</span>
+<span id="cb17-4"><a href="sec-intro.html#cb17-4" aria-hidden="true"></a>  <span class="dt">method =</span> <span class="st">&quot;jitter&quot;</span>,</span>
+<span id="cb17-5"><a href="sec-intro.html#cb17-5" aria-hidden="true"></a>  <span class="dt">pch =</span> <span class="dv">19</span>,</span>
+<span id="cb17-6"><a href="sec-intro.html#cb17-6" aria-hidden="true"></a>  <span class="dt">vertical =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb17-7"><a href="sec-intro.html#cb17-7" aria-hidden="true"></a>  <span class="dt">xlab =</span> <span class="st">&quot;Drive Type&quot;</span>,</span>
+<span id="cb17-8"><a href="sec-intro.html#cb17-8" aria-hidden="true"></a>  <span class="dt">ylab =</span> <span class="st">&quot;Engine Displacement (L)&quot;</span>,</span>
+<span id="cb17-9"><a href="sec-intro.html#cb17-9" aria-hidden="true"></a>  <span class="dt">group.names =</span> <span class="kw">c</span>(<span class="st">&quot;4-wheel&quot;</span>, <span class="st">&quot;Front&quot;</span>, <span class="st">&quot;Rear&quot;</span>)</span>
+<span id="cb17-10"><a href="sec-intro.html#cb17-10" aria-hidden="true"></a>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:stripchart"></span>
+<img src="_main_files/figure-html/stripchart-1.png" alt="Stripchart of engine displacement by drive type." width="70%" />
+<p class="caption">
+Figure 2.11: Stripchart of engine displacement by drive type.
+</p>
+</div>
+<p>This shows all individual data points, which is useful for smaller datasets.</p>
+<p>The <code>ggplot2</code> equivalent uses <code>geom_jitter()</code> — see Section <a href="ggplot2-intro.html#jitter-ggplot2">3.7.2</a>.</p>
+<p><strong>Exercise</strong>: Create a stripchart of <code>cty</code> by <code>class</code> from the <code>mpg</code> dataset. Use jittering and add appropriate axis labels.</p>
+</div>
+<div id="boxplot-base-R" class="section level3 hasAnchor" number="2.5.3">
+<h3><span class="header-section-number">2.5.3</span> Boxplots<a href="sec-intro.html#boxplot-base-R" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For larger datasets or when summary statistics are more important than
+individual points, boxplots are the standard choice. The central bar is the
+median, the box spans the interquartile range (IQR), and the whiskers
+extend to the most extreme points within 1.5 times the IQR. Points beyond
+the whiskers are shown as individual outliers.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="sec-intro.html#cb18-1" aria-hidden="true"></a><span class="kw">boxplot</span>(</span>
+<span id="cb18-2"><a href="sec-intro.html#cb18-2" aria-hidden="true"></a>  displ <span class="op">~</span><span class="st"> </span>drv,</span>
+<span id="cb18-3"><a href="sec-intro.html#cb18-3" aria-hidden="true"></a>  <span class="dt">data =</span> mpg,</span>
+<span id="cb18-4"><a href="sec-intro.html#cb18-4" aria-hidden="true"></a>  <span class="dt">xlab =</span> <span class="st">&quot;Drive Type&quot;</span>,</span>
+<span id="cb18-5"><a href="sec-intro.html#cb18-5" aria-hidden="true"></a>  <span class="dt">ylab =</span> <span class="st">&quot;Engine Displacement (L)&quot;</span>,</span>
+<span id="cb18-6"><a href="sec-intro.html#cb18-6" aria-hidden="true"></a>  <span class="dt">names =</span> <span class="kw">c</span>(<span class="st">&quot;4-wheel&quot;</span>, <span class="st">&quot;Front&quot;</span>, <span class="st">&quot;Rear&quot;</span>)</span>
+<span id="cb18-7"><a href="sec-intro.html#cb18-7" aria-hidden="true"></a>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:box-plot"></span>
+<img src="_main_files/figure-html/box-plot-1.png" alt="Boxplot of engine displacement by drive type." width="70%" />
+<p class="caption">
+Figure 2.12: Boxplot of engine displacement by drive type.
+</p>
+</div>
+<p>The <code>ggplot2</code> equivalent uses <code>geom_boxplot()</code> — see Section <a href="ggplot2-intro.html#boxplot-ggplot2">3.7.3</a>.</p>
+<p><strong>Exercise</strong>: Create a boxplot of <code>cty</code> by <code>class</code> from the <code>mpg</code> dataset. Which vehicle class has the best city fuel efficiency? Which has the most variability?</p>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div id="two-variables-both-discrete" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> Two variables, both discrete<a href="sec-intro.html#two-variables-both-discrete" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When both variables are categorical, we are looking at the <strong>joint
+frequency distribution</strong>—how often each combination of categories occurs.</p>
+<div id="grouped-base-R" class="section level3 hasAnchor" number="2.6.1">
+<h3><span class="header-section-number">2.6.1</span> Grouped bar charts<a href="sec-intro.html#grouped-base-R" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Grouped bar charts show frequencies for combinations of two categorical
+variables. Here we show vehicle class by drive type:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="sec-intro.html#cb19-1" aria-hidden="true"></a><span class="co"># Create contingency table</span></span>
+<span id="cb19-2"><a href="sec-intro.html#cb19-2" aria-hidden="true"></a>class_drv &lt;-<span class="st"> </span><span class="kw">table</span>(mpg<span class="op">$</span>class, mpg<span class="op">$</span>drv)</span>
+<span id="cb19-3"><a href="sec-intro.html#cb19-3" aria-hidden="true"></a></span>
+<span id="cb19-4"><a href="sec-intro.html#cb19-4" aria-hidden="true"></a><span class="kw">barplot</span>(</span>
+<span id="cb19-5"><a href="sec-intro.html#cb19-5" aria-hidden="true"></a>  class_drv,</span>
+<span id="cb19-6"><a href="sec-intro.html#cb19-6" aria-hidden="true"></a>  <span class="dt">beside =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb19-7"><a href="sec-intro.html#cb19-7" aria-hidden="true"></a>  <span class="dt">xlab =</span> <span class="st">&quot;Drive Type&quot;</span>,</span>
+<span id="cb19-8"><a href="sec-intro.html#cb19-8" aria-hidden="true"></a>  <span class="dt">ylab =</span> <span class="st">&quot;Frequency&quot;</span>,</span>
+<span id="cb19-9"><a href="sec-intro.html#cb19-9" aria-hidden="true"></a>  <span class="dt">col =</span> <span class="kw">rainbow</span>(<span class="dv">7</span>),</span>
+<span id="cb19-10"><a href="sec-intro.html#cb19-10" aria-hidden="true"></a>  <span class="dt">legend.text =</span> <span class="kw">rownames</span>(class_drv),</span>
+<span id="cb19-11"><a href="sec-intro.html#cb19-11" aria-hidden="true"></a>  <span class="dt">args.legend =</span> <span class="kw">list</span>(<span class="dt">x =</span> <span class="st">&quot;topright&quot;</span>, <span class="dt">cex =</span> <span class="fl">0.7</span>),</span>
+<span id="cb19-12"><a href="sec-intro.html#cb19-12" aria-hidden="true"></a>  <span class="dt">names.arg =</span> <span class="kw">c</span>(<span class="st">&quot;4-wheel&quot;</span>, <span class="st">&quot;Front&quot;</span>, <span class="st">&quot;Rear&quot;</span>)</span>
+<span id="cb19-13"><a href="sec-intro.html#cb19-13" aria-hidden="true"></a>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:bar-grouped"></span>
+<img src="_main_files/figure-html/bar-grouped-1.png" alt="Grouped bar chart showing drive type by vehicle class." width="70%" />
+<p class="caption">
+Figure 2.13: Grouped bar chart showing drive type by vehicle class.
+</p>
+</div>
+<p>The <code>ggplot2</code> equivalent uses <code>geom_bar()</code> with the <code>fill</code> aesthetic — see
+Section <a href="ggplot2-intro.html#grouped-ggplot2">3.8.1</a>. Colour customisation is covered in Chapter
+<a href="colours.html#colours">4</a>.</p>
+</div>
+<div id="mosaic-plots" class="section level3 hasAnchor" number="2.6.2">
+<h3><span class="header-section-number">2.6.2</span> Mosaic plots<a href="sec-intro.html#mosaic-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Mosaic plots show the relative frequencies of combinations. The area of
+each rectangle is proportional to the frequency of that combination:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="sec-intro.html#cb20-1" aria-hidden="true"></a><span class="kw">mosaicplot</span>(</span>
+<span id="cb20-2"><a href="sec-intro.html#cb20-2" aria-hidden="true"></a>  <span class="kw">table</span>(mpg<span class="op">$</span>drv, mpg<span class="op">$</span>cyl),</span>
+<span id="cb20-3"><a href="sec-intro.html#cb20-3" aria-hidden="true"></a>  <span class="dt">main =</span> <span class="st">&quot;Drive Type by Cylinders&quot;</span>,</span>
+<span id="cb20-4"><a href="sec-intro.html#cb20-4" aria-hidden="true"></a>  <span class="dt">xlab =</span> <span class="st">&quot;Drive Type&quot;</span>,</span>
+<span id="cb20-5"><a href="sec-intro.html#cb20-5" aria-hidden="true"></a>  <span class="dt">ylab =</span> <span class="st">&quot;Cylinders&quot;</span>,</span>
+<span id="cb20-6"><a href="sec-intro.html#cb20-6" aria-hidden="true"></a>  <span class="dt">color =</span> <span class="ot">TRUE</span></span>
+<span id="cb20-7"><a href="sec-intro.html#cb20-7" aria-hidden="true"></a>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:mosaic-plot"></span>
+<img src="_main_files/figure-html/mosaic-plot-1.png" alt="Mosaic plot of drive type by number of cylinders." width="70%" />
+<p class="caption">
+Figure 2.14: Mosaic plot of drive type by number of cylinders.
+</p>
+</div>
+</div>
+<div id="table-base-R" class="section level3 hasAnchor" number="2.6.3">
+<h3><span class="header-section-number">2.6.3</span> When a table suffices<a href="sec-intro.html#table-base-R" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For two discrete variables, a simple contingency table often communicates
+the information more clearly than a plot:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="sec-intro.html#cb21-1" aria-hidden="true"></a><span class="kw">table</span>(mpg<span class="op">$</span>drv, mpg<span class="op">$</span>cyl)</span></code></pre></div>
+<pre><code>##    
+##      4  5  6  8
+##   4 23  0 32 48
+##   f 58  4 43  1
+##   r  0  0  4 21</code></pre>
+<p>Don’t create visualisations for the sake of visualisations — think about
+whether a plot actually adds value over a numerical summary.</p>
+</div>
+</div>
+<div id="summary" class="section level2 hasAnchor" number="2.7">
+<h2><span class="header-section-number">2.7</span> Summary<a href="sec-intro.html#summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="choosing-the-right-plot" class="section level3 hasAnchor" number="2.7.1">
+<h3><span class="header-section-number">2.7.1</span> Choosing the right plot<a href="sec-intro.html#choosing-the-right-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The appropriate plot type depends on the nature of your variables:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Variables</th>
+<th>Types</th>
+<th>Base R function(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>One continuous</td>
+<td>Distribution</td>
+<td><code>hist()</code>, <code>plot(density())</code></td>
+</tr>
+<tr class="even">
+<td>One continuous</td>
+<td>Summary</td>
+<td><code>boxplot()</code></td>
+</tr>
+<tr class="odd">
+<td>One continuous</td>
+<td>Values</td>
+<td><code>stem()</code></td>
+</tr>
+<tr class="even">
+<td>One discrete</td>
+<td>Frequency</td>
+<td><code>barplot(table())</code></td>
+</tr>
+<tr class="odd">
+<td>Two continuous</td>
+<td>Relationship</td>
+<td><code>plot()</code></td>
+</tr>
+<tr class="even">
+<td>Two continuous</td>
+<td>Time series</td>
+<td><code>plot(type = "l")</code></td>
+</tr>
+<tr class="odd">
+<td>Multiple pairs of continuous</td>
+<td>Pairwise</td>
+<td><code>pairs()</code></td>
+</tr>
+<tr class="even">
+<td>One cont. + one discrete</td>
+<td>Comparison</td>
+<td><code>stripchart()</code>, <code>boxplot()</code></td>
+</tr>
+<tr class="odd">
+<td>Two discrete</td>
+<td>Joint frequency</td>
+<td><code>barplot(table())</code>, <code>mosaicplot()</code></td>
+</tr>
+<tr class="even">
+<td>Two continuous</td>
+<td><span class="math inline">\(+\)</span> straight line</td>
+<td><code>plot()</code> + <code>abline(lm())</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="what-to-look-for" class="section level3 hasAnchor" number="2.7.2">
+<h3><span class="header-section-number">2.7.2</span> What to look for<a href="sec-intro.html#what-to-look-for" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Using these plots, we can understand:</p>
+<ul>
+<li><strong>Distribution shape</strong>: Is it symmetric or skewed? Unimodal or multimodal?</li>
+<li><strong>Centre and spread</strong>: Where are the values concentrated? How variable?</li>
+<li><strong>Outliers</strong>: Are there unusual observations?</li>
+<li><strong>Relationships</strong>: Are two variables correlated? Linear or nonlinear?</li>
+<li><strong>Group differences</strong>: How do distributions differ across categories?</li>
+</ul>
+</div>
+<div id="limitations-of-base-r-graphics" class="section level3 hasAnchor" number="2.7.3">
+<h3><span class="header-section-number">2.7.3</span> Limitations of base R graphics<a href="sec-intro.html#limitations-of-base-r-graphics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>While base R graphics are powerful and flexible, they have several
+limitations:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Inconsistent syntax</strong>: Different plot types use different functions
+with different argument names and behaviours.</p></li>
+<li><p><strong>Clunky customisation</strong>: Adding colours, legends, labels, and titles
+often requires multiple lines of code and careful coordination.</p></li>
+<li><p><strong>No colour-blind-friendly defaults</strong>: Creating accessible visualisations
+requires manual colour selection.</p></li>
+<li><p><strong>Redundant colour use</strong>: It’s common to add colour for aesthetic reasons
+even when it encodes no information.</p></li>
+<li><p><strong>No unified framework</strong>: Each plot type is a standalone function,
+making it difficult to build a mental model of how graphics work.</p></li>
+</ol>
+<p>These limitations are addressed by <code>ggplot2</code>, which provides a unified
+framework based on the <em>grammar of graphics</em>. In the following chapters,
+we will see how <code>ggplot2</code> offers consistent syntax, automatic legends,
+thoughtful defaults, and a layered approach to building graphics.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ggplot2-intro.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

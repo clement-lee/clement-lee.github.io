@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>8 Plotting time series data | MAS2908 Data Visualisation</title>
+  <meta name="description" content="This is the notes for MAS2908 Data Visualisation. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="8 Plotting time series data | MAS2908 Data Visualisation" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is the notes for MAS2908 Data Visualisation. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="8 Plotting time series data | MAS2908 Data Visualisation" />
+  
+  <meta name="twitter:description" content="This is the notes for MAS2908 Data Visualisation. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Clement Lee" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="stats.html"/>
+<link rel="next" href="spatial.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites (the boring stuff)</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#module-overview"><i class="fa fa-check"></i><b>1.1</b> Module overview</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#module-contacts"><i class="fa fa-check"></i><b>1.2</b> Module Contacts</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#materials"><i class="fa fa-check"></i><b>1.3</b> Materials</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#copyright-and-licence"><i class="fa fa-check"></i><b>1.4</b> Copyright and Licence</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i><b>1.5</b> Schedule</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#assessment"><i class="fa fa-check"></i><b>1.6</b> Assessment</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="index.html"><a href="index.html#late-work-policy"><i class="fa fa-check"></i><b>1.6.1</b> Late work policy</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#syllabus"><i class="fa fa-check"></i><b>1.7</b> Syllabus</a></li>
+<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#faq"><i class="fa fa-check"></i><b>1.8</b> FAQ</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="sec-intro.html"><a href="sec-intro.html"><i class="fa fa-check"></i><b>2</b> Graphical Presentation of Data with Base R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="sec-intro.html"><a href="sec-intro.html#introduction"><i class="fa fa-check"></i><b>2.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="sec-intro.html"><a href="sec-intro.html#data-frames"><i class="fa fa-check"></i><b>2.1.1</b> Data frames</a></li>
+<li class="chapter" data-level="2.1.2" data-path="sec-intro.html"><a href="sec-intro.html#datasets-used-in-this-chapter"><i class="fa fa-check"></i><b>2.1.2</b> Datasets used in this chapter</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="sec-intro.html"><a href="sec-intro.html#one-variable-continuous"><i class="fa fa-check"></i><b>2.2</b> One variable, continuous</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="sec-intro.html"><a href="sec-intro.html#histogram-base-R"><i class="fa fa-check"></i><b>2.2.1</b> Histograms</a></li>
+<li class="chapter" data-level="2.2.2" data-path="sec-intro.html"><a href="sec-intro.html#density-base-R"><i class="fa fa-check"></i><b>2.2.2</b> Density plots</a></li>
+<li class="chapter" data-level="2.2.3" data-path="sec-intro.html"><a href="sec-intro.html#stem-and-leaf-plots"><i class="fa fa-check"></i><b>2.2.3</b> Stem-and-leaf plots</a></li>
+<li class="chapter" data-level="2.2.4" data-path="sec-intro.html"><a href="sec-intro.html#boxplot-one-var-base-R"><i class="fa fa-check"></i><b>2.2.4</b> Boxplots</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="sec-intro.html"><a href="sec-intro.html#one-variable-discrete"><i class="fa fa-check"></i><b>2.3</b> One variable, discrete</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="sec-intro.html"><a href="sec-intro.html#bar-base-R"><i class="fa fa-check"></i><b>2.3.1</b> Bar charts</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="sec-intro.html"><a href="sec-intro.html#two-variables-both-continuous"><i class="fa fa-check"></i><b>2.4</b> Two variables, both continuous</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="sec-intro.html"><a href="sec-intro.html#scatterplot-base-R"><i class="fa fa-check"></i><b>2.4.1</b> Scatterplots</a></li>
+<li class="chapter" data-level="2.4.2" data-path="sec-intro.html"><a href="sec-intro.html#lineplot-base-R"><i class="fa fa-check"></i><b>2.4.2</b> Line plots</a></li>
+<li class="chapter" data-level="2.4.3" data-path="sec-intro.html"><a href="sec-intro.html#pairs-base-R"><i class="fa fa-check"></i><b>2.4.3</b> Pairs plots (scatterplot matrix)</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="sec-intro.html"><a href="sec-intro.html#two-variables-one-continuous-and-one-discrete"><i class="fa fa-check"></i><b>2.5</b> Two variables, one continuous and one discrete</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="sec-intro.html"><a href="sec-intro.html#problem-base-R"><i class="fa fa-check"></i><b>2.5.1</b> The problem with scatterplots</a></li>
+<li class="chapter" data-level="2.5.2" data-path="sec-intro.html"><a href="sec-intro.html#jitter-base-R"><i class="fa fa-check"></i><b>2.5.2</b> Stripcharts</a></li>
+<li class="chapter" data-level="2.5.3" data-path="sec-intro.html"><a href="sec-intro.html#boxplot-base-R"><i class="fa fa-check"></i><b>2.5.3</b> Boxplots</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="sec-intro.html"><a href="sec-intro.html#two-variables-both-discrete"><i class="fa fa-check"></i><b>2.6</b> Two variables, both discrete</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="sec-intro.html"><a href="sec-intro.html#grouped-base-R"><i class="fa fa-check"></i><b>2.6.1</b> Grouped bar charts</a></li>
+<li class="chapter" data-level="2.6.2" data-path="sec-intro.html"><a href="sec-intro.html#mosaic-plots"><i class="fa fa-check"></i><b>2.6.2</b> Mosaic plots</a></li>
+<li class="chapter" data-level="2.6.3" data-path="sec-intro.html"><a href="sec-intro.html#table-base-R"><i class="fa fa-check"></i><b>2.6.3</b> When a table suffices</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="sec-intro.html"><a href="sec-intro.html#summary"><i class="fa fa-check"></i><b>2.7</b> Summary</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="sec-intro.html"><a href="sec-intro.html#choosing-the-right-plot"><i class="fa fa-check"></i><b>2.7.1</b> Choosing the right plot</a></li>
+<li class="chapter" data-level="2.7.2" data-path="sec-intro.html"><a href="sec-intro.html#what-to-look-for"><i class="fa fa-check"></i><b>2.7.2</b> What to look for</a></li>
+<li class="chapter" data-level="2.7.3" data-path="sec-intro.html"><a href="sec-intro.html#limitations-of-base-r-graphics"><i class="fa fa-check"></i><b>2.7.3</b> Limitations of base R graphics</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html"><i class="fa fa-check"></i><b>3</b> Graphical Presentation of Data with ggplot2</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#introduction-1"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#data-frames-and-tidy-data"><i class="fa fa-check"></i><b>3.2</b> Data frames and tidy data</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#why-tidy-data-matters"><i class="fa fa-check"></i><b>3.2.1</b> Why tidy data matters</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#grammar-of-graphics-ggplot2-package"><i class="fa fa-check"></i><b>3.3</b> Grammar of graphics &amp; <code>ggplot2</code> package</a></li>
+<li class="chapter" data-level="3.4" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#one-variable-continuous-1"><i class="fa fa-check"></i><b>3.4</b> One variable, continuous</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#histogram-ggplot2"><i class="fa fa-check"></i><b>3.4.1</b> Histograms with <code>geom_histogram()</code></a></li>
+<li class="chapter" data-level="3.4.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#density-ggplot2"><i class="fa fa-check"></i><b>3.4.2</b> Density plots with <code>geom_density()</code></a></li>
+<li class="chapter" data-level="3.4.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#boxplot-one-var-ggplot2"><i class="fa fa-check"></i><b>3.4.3</b> Boxplots with <code>geom_boxplot()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#one-variable-discrete-1"><i class="fa fa-check"></i><b>3.5</b> One variable, discrete</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#bar-ggplot2"><i class="fa fa-check"></i><b>3.5.1</b> Bar charts with <code>geom_bar()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#two-variables-both-continuous-1"><i class="fa fa-check"></i><b>3.6</b> Two variables, both continuous</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#scatterplot-ggplot2"><i class="fa fa-check"></i><b>3.6.1</b> Scatterplots with <code>geom_point()</code></a></li>
+<li class="chapter" data-level="3.6.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#lineplot-ggplot2"><i class="fa fa-check"></i><b>3.6.2</b> Line plots with <code>geom_line()</code></a></li>
+<li class="chapter" data-level="3.6.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#pairs-ggplot2"><i class="fa fa-check"></i><b>3.6.3</b> Pairs plots (scatterplot matrix)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#two-variables-one-continuous-and-one-discrete-1"><i class="fa fa-check"></i><b>3.7</b> Two variables, one continuous and one discrete</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#the-problem-with-scatterplots"><i class="fa fa-check"></i><b>3.7.1</b> The problem with scatterplots</a></li>
+<li class="chapter" data-level="3.7.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#jitter-ggplot2"><i class="fa fa-check"></i><b>3.7.2</b> Stripcharts with <code>geom_jitter()</code></a></li>
+<li class="chapter" data-level="3.7.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#boxplot-ggplot2"><i class="fa fa-check"></i><b>3.7.3</b> Boxplots with <code>geom_boxplot()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#two-variables-both-discrete-1"><i class="fa fa-check"></i><b>3.8</b> Two variables, both discrete</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#grouped-ggplot2"><i class="fa fa-check"></i><b>3.8.1</b> Grouped bar charts with <code>geom_bar()</code></a></li>
+<li class="chapter" data-level="3.8.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#count-ggplot2"><i class="fa fa-check"></i><b>3.8.2</b> Count plots with <code>geom_count()</code></a></li>
+<li class="chapter" data-level="3.8.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#table-ggplot2"><i class="fa fa-check"></i><b>3.8.3</b> When a table suffices</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#the-power-of-layers"><i class="fa fa-check"></i><b>3.9</b> The power of layers</a>
+<ul>
+<li class="chapter" data-level="3.9.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#combining-multiple-geoms"><i class="fa fa-check"></i><b>3.9.1</b> Combining multiple geoms</a></li>
+<li class="chapter" data-level="3.9.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#computed-geoms"><i class="fa fa-check"></i><b>3.9.2</b> Computed geoms</a></li>
+<li class="chapter" data-level="3.9.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#multiple-datasets"><i class="fa fa-check"></i><b>3.9.3</b> Plotting multiple datasets</a></li>
+<li class="chapter" data-level="3.9.4" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#overlaying-straight-lines"><i class="fa fa-check"></i><b>3.9.4</b> Overlaying (straight) lines</a></li>
+<li class="chapter" data-level="3.9.5" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#histogram-with-density-overlay"><i class="fa fa-check"></i><b>3.9.5</b> Histogram with density overlay</a></li>
+</ul></li>
+<li class="chapter" data-level="3.10" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#syntax-notes"><i class="fa fa-check"></i><b>3.10</b> Syntax notes</a>
+<ul>
+<li class="chapter" data-level="3.10.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#no-dollar-sign-needed"><i class="fa fa-check"></i><b>3.10.1</b> No dollar sign needed</a></li>
+<li class="chapter" data-level="3.10.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#the-aes-function"><i class="fa fa-check"></i><b>3.10.2</b> The <code>aes()</code> function</a></li>
+<li class="chapter" data-level="3.10.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#a-note-on-qplot"><i class="fa fa-check"></i><b>3.10.3</b> A note on <code>qplot()</code></a></li>
+<li class="chapter" data-level="3.10.4" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#equivalent-syntax-forms"><i class="fa fa-check"></i><b>3.10.4</b> Equivalent syntax forms</a></li>
+</ul></li>
+<li class="chapter" data-level="3.11" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#summary-1"><i class="fa fa-check"></i><b>3.11</b> Summary</a>
+<ul>
+<li class="chapter" data-level="3.11.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#choosing-the-right-plot-1"><i class="fa fa-check"></i><b>3.11.1</b> Choosing the right plot</a></li>
+<li class="chapter" data-level="3.11.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#main-principles"><i class="fa fa-check"></i><b>3.11.2</b> Main principles</a></li>
+<li class="chapter" data-level="3.11.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#features-covered-in-later-chapters"><i class="fa fa-check"></i><b>3.11.3</b> Features covered in later chapters</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="colours.html"><a href="colours.html"><i class="fa fa-check"></i><b>4</b> Colours</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="colours.html"><a href="colours.html#introduction-2"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="colours.html"><a href="colours.html#colour-as-an-aesthetic"><i class="fa fa-check"></i><b>4.2</b> Colour as an aesthetic</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="colours.html"><a href="colours.html#real-world-examples"><i class="fa fa-check"></i><b>4.2.1</b> Real-world examples</a></li>
+<li class="chapter" data-level="4.2.2" data-path="colours.html"><a href="colours.html#syntax-british-and-american-spellings"><i class="fa fa-check"></i><b>4.2.2</b> Syntax: British and American spellings</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="colours.html"><a href="colours.html#colour-vs-fill"><i class="fa fa-check"></i><b>4.3</b> Colour vs fill: which aesthetic to use?</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="colours.html"><a href="colours.html#example-bar-charts"><i class="fa fa-check"></i><b>4.3.1</b> Example: bar charts</a></li>
+<li class="chapter" data-level="4.3.2" data-path="colours.html"><a href="colours.html#when-to-use-each"><i class="fa fa-check"></i><b>4.3.2</b> When to use each</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="colours.html"><a href="colours.html#colour-palettes"><i class="fa fa-check"></i><b>4.4</b> Colour palettes</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="colours.html"><a href="colours.html#discrete-categorical-scales"><i class="fa fa-check"></i><b>4.4.1</b> Discrete (categorical) scales</a></li>
+<li class="chapter" data-level="4.4.2" data-path="colours.html"><a href="colours.html#continuous-scales"><i class="fa fa-check"></i><b>4.4.2</b> Continuous scales</a></li>
+<li class="chapter" data-level="4.4.3" data-path="colours.html"><a href="colours.html#binned-scales"><i class="fa fa-check"></i><b>4.4.3</b> Binned scales</a></li>
+<li class="chapter" data-level="4.4.4" data-path="colours.html"><a href="colours.html#miscellaneous-scales"><i class="fa fa-check"></i><b>4.4.4</b> Miscellaneous scales</a></li>
+<li class="chapter" data-level="4.4.5" data-path="colours.html"><a href="colours.html#available-colorbrewer-palettes"><i class="fa fa-check"></i><b>4.4.5</b> Available ColorBrewer palettes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="colours.html"><a href="colours.html#colourblind"><i class="fa fa-check"></i><b>4.5</b> Colour-blind-friendly palettes</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="colours.html"><a href="colours.html#the-viridis-palettes"><i class="fa fa-check"></i><b>4.5.1</b> The viridis palettes</a></li>
+<li class="chapter" data-level="4.5.2" data-path="colours.html"><a href="colours.html#the-okabe-ito-palette"><i class="fa fa-check"></i><b>4.5.2</b> The Okabe-Ito palette</a></li>
+<li class="chapter" data-level="4.5.3" data-path="colours.html"><a href="colours.html#specifying-colours-with-hex-codes"><i class="fa fa-check"></i><b>4.5.3</b> Specifying colours with hex codes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="colours.html"><a href="colours.html#alpha-scales"><i class="fa fa-check"></i><b>4.6</b> Opacity with <code>alpha</code></a></li>
+<li class="chapter" data-level="4.7" data-path="colours.html"><a href="colours.html#summary-2"><i class="fa fa-check"></i><b>4.7</b> Summary</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="colours.html"><a href="colours.html#colour-scale-functions"><i class="fa fa-check"></i><b>4.7.1</b> Colour scale functions</a></li>
+<li class="chapter" data-level="4.7.2" data-path="colours.html"><a href="colours.html#key-points"><i class="fa fa-check"></i><b>4.7.2</b> Key points</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="other-aesthetics.html"><a href="other-aesthetics.html"><i class="fa fa-check"></i><b>5</b> Other Aesthetics</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="other-aesthetics.html"><a href="other-aesthetics.html#introduction-3"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="other-aesthetics.html"><a href="other-aesthetics.html#shape"><i class="fa fa-check"></i><b>5.2</b> Shape</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="other-aesthetics.html"><a href="other-aesthetics.html#default-shape-mapping"><i class="fa fa-check"></i><b>5.2.1</b> Default shape mapping</a></li>
+<li class="chapter" data-level="5.2.2" data-path="other-aesthetics.html"><a href="other-aesthetics.html#available-shapes"><i class="fa fa-check"></i><b>5.2.2</b> Available shapes</a></li>
+<li class="chapter" data-level="5.2.3" data-path="other-aesthetics.html"><a href="other-aesthetics.html#manual-shape-selection"><i class="fa fa-check"></i><b>5.2.3</b> Manual shape selection</a></li>
+<li class="chapter" data-level="5.2.4" data-path="other-aesthetics.html"><a href="other-aesthetics.html#combining-shape-and-colour"><i class="fa fa-check"></i><b>5.2.4</b> Combining shape and colour</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="other-aesthetics.html"><a href="other-aesthetics.html#linetype"><i class="fa fa-check"></i><b>5.3</b> Line type</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="other-aesthetics.html"><a href="other-aesthetics.html#available-line-types"><i class="fa fa-check"></i><b>5.3.1</b> Available line types</a></li>
+<li class="chapter" data-level="5.3.2" data-path="other-aesthetics.html"><a href="other-aesthetics.html#default-line-type-mapping"><i class="fa fa-check"></i><b>5.3.2</b> Default line type mapping</a></li>
+<li class="chapter" data-level="5.3.3" data-path="other-aesthetics.html"><a href="other-aesthetics.html#combining-line-type-and-colour"><i class="fa fa-check"></i><b>5.3.3</b> Combining line type and colour</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="other-aesthetics.html"><a href="other-aesthetics.html#size"><i class="fa fa-check"></i><b>5.4</b> Size</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="other-aesthetics.html"><a href="other-aesthetics.html#default-size-mapping"><i class="fa fa-check"></i><b>5.4.1</b> Default size mapping</a></li>
+<li class="chapter" data-level="5.4.2" data-path="other-aesthetics.html"><a href="other-aesthetics.html#controlling-the-size-range"><i class="fa fa-check"></i><b>5.4.2</b> Controlling the size range</a></li>
+<li class="chapter" data-level="5.4.3" data-path="other-aesthetics.html"><a href="other-aesthetics.html#size-by-area-vs-radius"><i class="fa fa-check"></i><b>5.4.3</b> Size by area vs radius</a></li>
+<li class="chapter" data-level="5.4.4" data-path="other-aesthetics.html"><a href="other-aesthetics.html#identity-scales"><i class="fa fa-check"></i><b>5.4.4</b> Identity scales</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="other-aesthetics.html"><a href="other-aesthetics.html#xy-axes"><i class="fa fa-check"></i><b>5.5</b> <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> axes</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="other-aesthetics.html"><a href="other-aesthetics.html#default-continuous-scales"><i class="fa fa-check"></i><b>5.5.1</b> Default continuous scales</a></li>
+<li class="chapter" data-level="5.5.2" data-path="other-aesthetics.html"><a href="other-aesthetics.html#setting-axis-limits"><i class="fa fa-check"></i><b>5.5.2</b> Setting axis limits</a></li>
+<li class="chapter" data-level="5.5.3" data-path="other-aesthetics.html"><a href="other-aesthetics.html#log-scales"><i class="fa fa-check"></i><b>5.5.3</b> Logarithmic scales</a></li>
+<li class="chapter" data-level="5.5.4" data-path="other-aesthetics.html"><a href="other-aesthetics.html#available-transformations"><i class="fa fa-check"></i><b>5.5.4</b> Available transformations</a></li>
+<li class="chapter" data-level="5.5.5" data-path="other-aesthetics.html"><a href="other-aesthetics.html#discrete-scales"><i class="fa fa-check"></i><b>5.5.5</b> Discrete scales</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="other-aesthetics.html"><a href="other-aesthetics.html#facets"><i class="fa fa-check"></i><b>5.6</b> Facets</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="other-aesthetics.html"><a href="other-aesthetics.html#facet_wrap"><i class="fa fa-check"></i><b>5.6.1</b> <code>facet_wrap()</code></a></li>
+<li class="chapter" data-level="5.6.2" data-path="other-aesthetics.html"><a href="other-aesthetics.html#facet_grid"><i class="fa fa-check"></i><b>5.6.2</b> <code>facet_grid()</code></a></li>
+<li class="chapter" data-level="5.6.3" data-path="other-aesthetics.html"><a href="other-aesthetics.html#free-scales"><i class="fa fa-check"></i><b>5.6.3</b> Free scales</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="other-aesthetics.html"><a href="other-aesthetics.html#summary-3"><i class="fa fa-check"></i><b>5.7</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="cosmetics.html"><a href="cosmetics.html"><i class="fa fa-check"></i><b>6</b> Plot Cosmetics</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="cosmetics.html"><a href="cosmetics.html#introduction-4"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="cosmetics.html"><a href="cosmetics.html#incremental-workflow"><i class="fa fa-check"></i><b>6.2</b> Incremental workflow</a></li>
+<li class="chapter" data-level="6.3" data-path="cosmetics.html"><a href="cosmetics.html#coordinate-systems"><i class="fa fa-check"></i><b>6.3</b> Coordinate systems</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="cosmetics.html"><a href="cosmetics.html#coord-cartesian"><i class="fa fa-check"></i><b>6.3.1</b> Cartesian coordinates (default)</a></li>
+<li class="chapter" data-level="6.3.2" data-path="cosmetics.html"><a href="cosmetics.html#coord-fixed"><i class="fa fa-check"></i><b>6.3.2</b> Fixed aspect ratio</a></li>
+<li class="chapter" data-level="6.3.3" data-path="cosmetics.html"><a href="cosmetics.html#coord-flip"><i class="fa fa-check"></i><b>6.3.3</b> Flipped coordinates</a></li>
+<li class="chapter" data-level="6.3.4" data-path="cosmetics.html"><a href="cosmetics.html#coord-polar"><i class="fa fa-check"></i><b>6.3.4</b> Polar coordinates</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="cosmetics.html"><a href="cosmetics.html#position-adjustments"><i class="fa fa-check"></i><b>6.4</b> Position adjustments</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="cosmetics.html"><a href="cosmetics.html#jittering-for-overplotting"><i class="fa fa-check"></i><b>6.4.1</b> Jittering (for overplotting)</a></li>
+<li class="chapter" data-level="6.4.2" data-path="cosmetics.html"><a href="cosmetics.html#position-dodge"><i class="fa fa-check"></i><b>6.4.2</b> Dodging (side by side)</a></li>
+<li class="chapter" data-level="6.4.3" data-path="cosmetics.html"><a href="cosmetics.html#stacking-default-for-bars"><i class="fa fa-check"></i><b>6.4.3</b> Stacking (default for bars)</a></li>
+<li class="chapter" data-level="6.4.4" data-path="cosmetics.html"><a href="cosmetics.html#filling-proportions"><i class="fa fa-check"></i><b>6.4.4</b> Filling (proportions)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="cosmetics.html"><a href="cosmetics.html#themes"><i class="fa fa-check"></i><b>6.5</b> Themes</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="cosmetics.html"><a href="cosmetics.html#built-in-themes"><i class="fa fa-check"></i><b>6.5.1</b> Built-in themes</a></li>
+<li class="chapter" data-level="6.5.2" data-path="cosmetics.html"><a href="cosmetics.html#global-theme"><i class="fa fa-check"></i><b>6.5.2</b> Setting a global theme</a></li>
+<li class="chapter" data-level="6.5.3" data-path="cosmetics.html"><a href="cosmetics.html#custom-theme"><i class="fa fa-check"></i><b>6.5.3</b> Customising individual elements</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="cosmetics.html"><a href="cosmetics.html#labels"><i class="fa fa-check"></i><b>6.6</b> Labels</a></li>
+<li class="chapter" data-level="6.7" data-path="cosmetics.html"><a href="cosmetics.html#legends"><i class="fa fa-check"></i><b>6.7</b> Legends</a>
+<ul>
+<li class="chapter" data-level="6.7.1" data-path="cosmetics.html"><a href="cosmetics.html#legend-position"><i class="fa fa-check"></i><b>6.7.1</b> Legend position</a></li>
+<li class="chapter" data-level="6.7.2" data-path="cosmetics.html"><a href="cosmetics.html#legend-inside"><i class="fa fa-check"></i><b>6.7.2</b> Legend inside the plot</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="cosmetics.html"><a href="cosmetics.html#axis-formatting"><i class="fa fa-check"></i><b>6.8</b> Axis formatting</a>
+<ul>
+<li class="chapter" data-level="6.8.1" data-path="cosmetics.html"><a href="cosmetics.html#avoiding-scientific-notation"><i class="fa fa-check"></i><b>6.8.1</b> Avoiding scientific notation</a></li>
+<li class="chapter" data-level="6.8.2" data-path="cosmetics.html"><a href="cosmetics.html#controlling-tick-marks"><i class="fa fa-check"></i><b>6.8.2</b> Controlling tick marks</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="cosmetics.html"><a href="cosmetics.html#summary-4"><i class="fa fa-check"></i><b>6.9</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="stats.html"><a href="stats.html"><i class="fa fa-check"></i><b>7</b> Data Manipulation and Statistical Layers</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="stats.html"><a href="stats.html#introduction-5"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.2" data-path="stats.html"><a href="stats.html#dplyr"><i class="fa fa-check"></i><b>7.2</b> Data manipulation with <code>dplyr</code></a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="stats.html"><a href="stats.html#two-ways-to-do-things"><i class="fa fa-check"></i><b>7.2.1</b> Two ways to do things</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="stats.html"><a href="stats.html#geom-bar-motivation"><i class="fa fa-check"></i><b>7.3</b> Bar charts and counting</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="stats.html"><a href="stats.html#approach-a-count-first-then-plot"><i class="fa fa-check"></i><b>7.3.1</b> Approach A: count first, then plot</a></li>
+<li class="chapter" data-level="7.3.2" data-path="stats.html"><a href="stats.html#a-common-mistake"><i class="fa fa-check"></i><b>7.3.2</b> A common mistake</a></li>
+<li class="chapter" data-level="7.3.3" data-path="stats.html"><a href="stats.html#approach-b-let-geom_bar-count-automatically"><i class="fa fa-check"></i><b>7.3.3</b> Approach B: let <code>geom_bar()</code> count automatically</a></li>
+<li class="chapter" data-level="7.3.4" data-path="stats.html"><a href="stats.html#log-scale-connection"><i class="fa fa-check"></i><b>7.3.4</b> The log-scale connection</a></li>
+<li class="chapter" data-level="7.3.5" data-path="stats.html"><a href="stats.html#what-geoms-compute-for-you"><i class="fa fa-check"></i><b>7.3.5</b> What geoms compute for you</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="stats.html"><a href="stats.html#filter-vs-limits"><i class="fa fa-check"></i><b>7.4</b> Subsetting data</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="stats.html"><a href="stats.html#approach-a"><i class="fa fa-check"></i><b>7.4.1</b> Approach A</a></li>
+<li class="chapter" data-level="7.4.2" data-path="stats.html"><a href="stats.html#approach-bi"><i class="fa fa-check"></i><b>7.4.2</b> Approach B(i)</a></li>
+<li class="chapter" data-level="7.4.3" data-path="stats.html"><a href="stats.html#approach-bii"><i class="fa fa-check"></i><b>7.4.3</b> Approach B(ii)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="stats.html"><a href="stats.html#stat-summary"><i class="fa fa-check"></i><b>7.5</b> Overlaying summaries with <code>stat_summary()</code></a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="stats.html"><a href="stats.html#approach-a-1"><i class="fa fa-check"></i><b>7.5.1</b> Approach A</a></li>
+<li class="chapter" data-level="7.5.2" data-path="stats.html"><a href="stats.html#approach-b"><i class="fa fa-check"></i><b>7.5.2</b> Approach B</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="stats.html"><a href="stats.html#density-histogram"><i class="fa fa-check"></i><b>7.6</b> Histogram with density overlay</a></li>
+<li class="chapter" data-level="7.7" data-path="stats.html"><a href="stats.html#qq-plots"><i class="fa fa-check"></i><b>7.7</b> Q-Q plots for assessing normality</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="stats.html"><a href="stats.html#why-not-just-use-a-histogram-or-density-plot"><i class="fa fa-check"></i><b>7.7.1</b> Why not just use a histogram or density plot?</a></li>
+<li class="chapter" data-level="7.7.2" data-path="stats.html"><a href="stats.html#q-q-plots-in-ggplot2"><i class="fa fa-check"></i><b>7.7.2</b> Q-Q plots in <code>ggplot2</code></a></li>
+<li class="chapter" data-level="7.7.3" data-path="stats.html"><a href="stats.html#interpreting-q-q-plots"><i class="fa fa-check"></i><b>7.7.3</b> Interpreting Q-Q plots</a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="stats.html"><a href="stats.html#stats-summary"><i class="fa fa-check"></i><b>7.8</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="temporal.html"><a href="temporal.html"><i class="fa fa-check"></i><b>8</b> Plotting time series data</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="temporal.html"><a href="temporal.html#datetime-objects"><i class="fa fa-check"></i><b>8.1</b> Creating time objects</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="temporal.html"><a href="temporal.html#the-make_datetime-function"><i class="fa fa-check"></i><b>8.1.1</b> The <code>make_datetime()</code> function</a></li>
+<li class="chapter" data-level="8.1.2" data-path="temporal.html"><a href="temporal.html#plotting-with-time-objects"><i class="fa fa-check"></i><b>8.1.2</b> Plotting with time objects</a></li>
+<li class="chapter" data-level="8.1.3" data-path="temporal.html"><a href="temporal.html#related-functions"><i class="fa fa-check"></i><b>8.1.3</b> Related functions</a></li>
+<li class="chapter" data-level="8.1.4" data-path="temporal.html"><a href="temporal.html#why-this-matters-for-visualisation"><i class="fa fa-check"></i><b>8.1.4</b> Why this matters for visualisation</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="temporal.html"><a href="temporal.html#temporal-viz"><i class="fa fa-check"></i><b>8.2</b> Temporal data visualisation</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="temporal.html"><a href="temporal.html#geom_line-vs-geom_path-the-key-difference"><i class="fa fa-check"></i><b>8.2.1</b> <code>geom_line()</code> vs <code>geom_path()</code>: the key difference</a></li>
+<li class="chapter" data-level="8.2.2" data-path="temporal.html"><a href="temporal.html#when-they-produce-the-same-result"><i class="fa fa-check"></i><b>8.2.2</b> When they produce the same result</a></li>
+<li class="chapter" data-level="8.2.3" data-path="temporal.html"><a href="temporal.html#when-they-differ-shuffled-data"><i class="fa fa-check"></i><b>8.2.3</b> When they differ: shuffled data</a></li>
+<li class="chapter" data-level="8.2.4" data-path="temporal.html"><a href="temporal.html#the-power-of-geom_path-adding-time-as-a-third-dimension"><i class="fa fa-check"></i><b>8.2.4</b> The power of <code>geom_path()</code>: adding time as a third dimension</a></li>
+<li class="chapter" data-level="8.2.5" data-path="temporal.html"><a href="temporal.html#enhancing-the-path-with-colour"><i class="fa fa-check"></i><b>8.2.5</b> Enhancing the path with colour</a></li>
+<li class="chapter" data-level="8.2.6" data-path="temporal.html"><a href="temporal.html#summary-geom_line-vs-geom_path"><i class="fa fa-check"></i><b>8.2.6</b> Summary: <code>geom_line()</code> vs <code>geom_path()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="temporal.html"><a href="temporal.html#scales-labels-zooming"><i class="fa fa-check"></i><b>8.3</b> Scales, labels &amp; zooming</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="temporal.html"><a href="temporal.html#controlling-date-breaks"><i class="fa fa-check"></i><b>8.3.1</b> Controlling date breaks</a></li>
+<li class="chapter" data-level="8.3.2" data-path="temporal.html"><a href="temporal.html#strftime"><i class="fa fa-check"></i><b>8.3.2</b> Formatting date labels</a></li>
+<li class="chapter" data-level="8.3.3" data-path="temporal.html"><a href="temporal.html#labelling-the-time-axis-appropriately"><i class="fa fa-check"></i><b>8.3.3</b> Labelling the time axis appropriately</a></li>
+<li class="chapter" data-level="8.3.4" data-path="temporal.html"><a href="temporal.html#zooming-on-time-series"><i class="fa fa-check"></i><b>8.3.4</b> Zooming on time series</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="temporal.html"><a href="temporal.html#implicit-missing"><i class="fa fa-check"></i><b>8.4</b> A potential pitfall: implicit missing data</a></li>
+<li class="chapter" data-level="8.5" data-path="temporal.html"><a href="temporal.html#summary-temporal-data"><i class="fa fa-check"></i><b>8.5</b> Summary: temporal data</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="spatial.html"><a href="spatial.html"><i class="fa fa-check"></i><b>9</b> Plotting (geo)spatial data</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="spatial.html"><a href="spatial.html#spatial-intro"><i class="fa fa-check"></i><b>9.1</b> Introduction</a></li>
+<li class="chapter" data-level="9.2" data-path="spatial.html"><a href="spatial.html#spatial-why-sf"><i class="fa fa-check"></i><b>9.2</b> Why not just use <code>geom_point()</code>?</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="spatial.html"><a href="spatial.html#the-sf-solution"><i class="fa fa-check"></i><b>9.2.1</b> The <code>sf</code> solution</a></li>
+<li class="chapter" data-level="9.2.2" data-path="spatial.html"><a href="spatial.html#how-geom_sf-differs-from-other-geoms"><i class="fa fa-check"></i><b>9.2.2</b> How <code>geom_sf()</code> differs from other geoms</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="spatial.html"><a href="spatial.html#spatial-geometry"><i class="fa fa-check"></i><b>9.3</b> The key ingredient: geometry</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="spatial.html"><a href="spatial.html#simple-feature-collections"><i class="fa fa-check"></i><b>9.3.1</b> Simple feature collections</a></li>
+<li class="chapter" data-level="9.3.2" data-path="spatial.html"><a href="spatial.html#file-formats-for-spatial-data"><i class="fa fa-check"></i><b>9.3.2</b> File formats for spatial data</a></li>
+<li class="chapter" data-level="9.3.3" data-path="spatial.html"><a href="spatial.html#reading-shapefiles"><i class="fa fa-check"></i><b>9.3.3</b> Reading shapefiles</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="spatial.html"><a href="spatial.html#spatial-scotland"><i class="fa fa-check"></i><b>9.4</b> Example: Scottish Census output areas</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="spatial.html"><a href="spatial.html#point-data-population-weighted-centroids"><i class="fa fa-check"></i><b>9.4.1</b> Point data: population-weighted centroids</a></li>
+<li class="chapter" data-level="9.4.2" data-path="spatial.html"><a href="spatial.html#first-attempt-plotting-points"><i class="fa fa-check"></i><b>9.4.2</b> First attempt: plotting points</a></li>
+<li class="chapter" data-level="9.4.3" data-path="spatial.html"><a href="spatial.html#fix-a-using-polygon-data"><i class="fa fa-check"></i><b>9.4.3</b> Fix (a): Using polygon data</a></li>
+<li class="chapter" data-level="9.4.4" data-path="spatial.html"><a href="spatial.html#background-map"><i class="fa fa-check"></i><b>9.4.4</b> Fix (b): Adding a background map</a></li>
+<li class="chapter" data-level="9.4.5" data-path="spatial.html"><a href="spatial.html#combining-polygons-with-background"><i class="fa fa-check"></i><b>9.4.5</b> Combining: polygons with background</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="spatial.html"><a href="spatial.html#spatial-crs"><i class="fa fa-check"></i><b>9.5</b> Coordinate reference systems</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="spatial.html"><a href="spatial.html#common-coordinate-systems"><i class="fa fa-check"></i><b>9.5.1</b> Common coordinate systems</a></li>
+<li class="chapter" data-level="9.5.2" data-path="spatial.html"><a href="spatial.html#how-the-sf-package-handles-crs"><i class="fa fa-check"></i><b>9.5.2</b> How the <code>sf</code> package handles CRS</a></li>
+<li class="chapter" data-level="9.5.3" data-path="spatial.html"><a href="spatial.html#spatial-create-geom"><i class="fa fa-check"></i><b>9.5.3</b> Creating geometry from coordinates</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="spatial.html"><a href="spatial.html#spatial-polish"><i class="fa fa-check"></i><b>9.6</b> Polishing spatial plots</a></li>
+<li class="chapter" data-level="9.7" data-path="spatial.html"><a href="spatial.html#spatial-summary"><i class="fa fa-check"></i><b>9.7</b> Summary</a>
+<ul>
+<li class="chapter" data-level="9.7.1" data-path="spatial.html"><a href="spatial.html#packages-needed"><i class="fa fa-check"></i><b>9.7.1</b> Packages needed</a></li>
+<li class="chapter" data-level="9.7.2" data-path="spatial.html"><a href="spatial.html#data-requirements"><i class="fa fa-check"></i><b>9.7.2</b> Data requirements</a></li>
+<li class="chapter" data-level="9.7.3" data-path="spatial.html"><a href="spatial.html#coordinate-reference-systems"><i class="fa fa-check"></i><b>9.7.3</b> Coordinate reference systems</a></li>
+<li class="chapter" data-level="9.7.4" data-path="spatial.html"><a href="spatial.html#the-spatial-geom"><i class="fa fa-check"></i><b>9.7.4</b> The spatial geom</a></li>
+<li class="chapter" data-level="9.7.5" data-path="spatial.html"><a href="spatial.html#building-maps"><i class="fa fa-check"></i><b>9.7.5</b> Building maps</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="interactivity.html"><a href="interactivity.html"><i class="fa fa-check"></i><b>10</b> Interactive Visualisation</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="interactivity.html"><a href="interactivity.html#shiny-basics"><i class="fa fa-check"></i><b>10.1</b> Shiny basics</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="interactivity.html"><a href="interactivity.html#minimal-structure"><i class="fa fa-check"></i><b>10.1.1</b> Minimal structure</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="interactivity.html"><a href="interactivity.html#shiny-inputs"><i class="fa fa-check"></i><b>10.2</b> Toggles and controls</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="interactivity.html"><a href="interactivity.html#sliderinput"><i class="fa fa-check"></i><b>10.2.1</b> <code>sliderInput()</code></a></li>
+<li class="chapter" data-level="10.2.2" data-path="interactivity.html"><a href="interactivity.html#plotoutput-and-renderplot"><i class="fa fa-check"></i><b>10.2.2</b> <code>plotOutput()</code> and <code>renderPlot()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="interactivity.html"><a href="interactivity.html#shiny-example"><i class="fa fa-check"></i><b>10.3</b> A complete example</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="interactivity.html"><a href="interactivity.html#step-1-get-the-static-plot-right"><i class="fa fa-check"></i><b>10.3.1</b> Step 1: get the static plot right</a></li>
+<li class="chapter" data-level="10.3.2" data-path="interactivity.html"><a href="interactivity.html#step-2-replace-the-fixed-year-with-a-reactive-input"><i class="fa fa-check"></i><b>10.3.2</b> Step 2: replace the fixed year with a reactive input</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="interactivity.html"><a href="interactivity.html#shiny-select"><i class="fa fa-check"></i><b>10.4</b> <code>selectInput()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="miscellaneous.html"><a href="miscellaneous.html"><i class="fa fa-check"></i><b>11</b> Miscellaneous Topics</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MAS2908 Data Visualisation</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="temporal" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">8</span> Plotting time series data<a href="temporal.html#temporal" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="datetime-objects" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Creating time objects<a href="temporal.html#datetime-objects" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Before visualising temporal data, we often need to create proper date or
+time objects from separate columns (year, month, day, hour, etc.). The
+<code>lubridate</code> package provides convenient functions for this.</p>
+<blockquote>
+<p><strong>Note:</strong> The technical R name for these objects is “datetime”
+(specifically <code>POSIXct</code>). We use “time object” here to avoid confusion
+with <code>Date</code> objects, since “datetime” contains “date” and the two can
+easily be mixed up.</p>
+</blockquote>
+<div id="the-make_datetime-function" class="section level3 hasAnchor" number="8.1.1">
+<h3><span class="header-section-number">8.1.1</span> The <code>make_datetime()</code> function<a href="temporal.html#the-make_datetime-function" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When your data has date/time components in separate columns, use
+<code>lubridate::make_datetime()</code> to combine them:</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="temporal.html#cb145-1" aria-hidden="true"></a><span class="kw">library</span>(lubridate)</span>
+<span id="cb145-2"><a href="temporal.html#cb145-2" aria-hidden="true"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb145-3"><a href="temporal.html#cb145-3" aria-hidden="true"></a></span>
+<span id="cb145-4"><a href="temporal.html#cb145-4" aria-hidden="true"></a><span class="co"># Example: storms data has separate year, month, day, hour columns</span></span>
+<span id="cb145-5"><a href="temporal.html#cb145-5" aria-hidden="true"></a><span class="co"># Create a datetime column</span></span>
+<span id="cb145-6"><a href="temporal.html#cb145-6" aria-hidden="true"></a>storms_sample &lt;-<span class="st"> </span>storms <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb145-7"><a href="temporal.html#cb145-7" aria-hidden="true"></a><span class="st">  </span><span class="kw">filter</span>(name <span class="op">==</span><span class="st"> &quot;Katrina&quot;</span>, year <span class="op">==</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb145-8"><a href="temporal.html#cb145-8" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">time =</span> <span class="kw">make_datetime</span>(year, month, day, hour))</span>
+<span id="cb145-9"><a href="temporal.html#cb145-9" aria-hidden="true"></a></span>
+<span id="cb145-10"><a href="temporal.html#cb145-10" aria-hidden="true"></a><span class="kw">head</span>(storms_sample)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 14
+##   name    year month   day  hour   lat  long status category
+##   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;     &lt;dbl&gt;
+## 1 Katri…  2005     8    23    18  23.1 -75.1 tropi…       NA
+## 2 Katri…  2005     8    24     0  23.4 -75.7 tropi…       NA
+## 3 Katri…  2005     8    24     6  23.8 -76.2 tropi…       NA
+## 4 Katri…  2005     8    24    12  24.5 -76.5 tropi…       NA
+## 5 Katri…  2005     8    24    18  25.4 -76.9 tropi…       NA
+## 6 Katri…  2005     8    25     0  26   -77.7 tropi…       NA
+## # ℹ 5 more variables: wind &lt;int&gt;, pressure &lt;int&gt;,
+## #   tropicalstorm_force_diameter &lt;int&gt;,
+## #   hurricane_force_diameter &lt;int&gt;, time &lt;dttm&gt;</code></pre>
+<p>The resulting <code>time</code> column is a proper time object that <code>ggplot2</code>
+understands and can plot on a continuous time axis.</p>
+</div>
+<div id="plotting-with-time-objects" class="section level3 hasAnchor" number="8.1.2">
+<h3><span class="header-section-number">8.1.2</span> Plotting with time objects<a href="temporal.html#plotting-with-time-objects" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Once you have a time object column, you can create time series plots:</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="temporal.html#cb147-1" aria-hidden="true"></a><span class="kw">ggplot</span>(storms_sample, <span class="kw">aes</span>(<span class="dt">x =</span> time, <span class="dt">y =</span> wind)) <span class="op">+</span></span>
+<span id="cb147-2"><a href="temporal.html#cb147-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb147-3"><a href="temporal.html#cb147-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb147-4"><a href="temporal.html#cb147-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Date/Time&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Wind Speed (knots)&quot;</span>,</span>
+<span id="cb147-5"><a href="temporal.html#cb147-5" aria-hidden="true"></a>       <span class="dt">title =</span> <span class="st">&quot;Hurricane Katrina (2005)&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:datetime-plot"></span>
+<img src="_main_files/figure-html/datetime-plot-1.png" alt="Hurricane Katrina wind speed over time." width="70%" />
+<p class="caption">
+Figure 8.1: Hurricane Katrina wind speed over time.
+</p>
+</div>
+</div>
+<div id="related-functions" class="section level3 hasAnchor" number="8.1.3">
+<h3><span class="header-section-number">8.1.3</span> Related functions<a href="temporal.html#related-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table>
+<colgroup>
+<col width="35%" />
+<col width="32%" />
+<col width="32%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>make_datetime()</code></td>
+<td>Create time object from components</td>
+<td><code>make_datetime(2024, 1, 15, 14, 30)</code></td>
+</tr>
+<tr class="even">
+<td><code>make_date()</code></td>
+<td>Create date (no time) from components</td>
+<td><code>make_date(2024, 1, 15)</code></td>
+</tr>
+<tr class="odd">
+<td><code>ymd()</code></td>
+<td>Parse date from string</td>
+<td><code>ymd("2024-01-15")</code></td>
+</tr>
+<tr class="even">
+<td><code>ymd_hms()</code></td>
+<td>Parse time from string</td>
+<td><code>ymd_hms("2024-01-15 14:30:00")</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="why-this-matters-for-visualisation" class="section level3 hasAnchor" number="8.1.4">
+<h3><span class="header-section-number">8.1.4</span> Why this matters for visualisation<a href="temporal.html#why-this-matters-for-visualisation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Having proper time objects is essential because:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Correct spacing</strong>: <code>ggplot2</code> spaces points according to actual time
+intervals, not row numbers</li>
+<li><strong>Automatic scales</strong>: <code>scale_x_datetime()</code> is applied automatically with
+sensible breaks and labels</li>
+<li><strong>Proper formatting</strong>: Date labels can be customised using <code>strftime</code> codes (see Section <a href="temporal.html#strftime">8.3.2</a>)</li>
+</ol>
+</div>
+</div>
+<div id="temporal-viz" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Temporal data visualisation<a href="temporal.html#temporal-viz" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Time series data requires special consideration in visualisation. The key tools
+are <code>geom_line()</code> and <code>geom_path()</code>, which behave differently depending on
+how your data is ordered.</p>
+<p>We will use the <code>economics</code> dataset from <code>ggplot2</code> throughout this section.
+This dataset contains US economic time series data from 1967 to 2015:</p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="temporal.html#cb148-1" aria-hidden="true"></a><span class="kw">str</span>(economics)</span></code></pre></div>
+<pre><code>## spc_tbl_ [574 × 6] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+##  $ date    : Date[1:574], format: &quot;1967-07-01&quot; ...
+##  $ pce     : num [1:574] 507 510 516 512 517 ...
+##  $ pop     : num [1:574] 198712 198911 199113 199311 199498 ...
+##  $ psavert : num [1:574] 12.6 12.6 11.9 12.9 12.8 11.8 11.7 12.3 11.7 12.3 ...
+##  $ uempmed : num [1:574] 4.5 4.7 4.6 4.9 4.7 4.8 5.1 4.5 4.1 4.6 ...
+##  $ unemploy: num [1:574] 2944 2945 2958 3143 3066 ...</code></pre>
+<p>Key variables include:</p>
+<ul>
+<li><code>date</code>: Month of data collection</li>
+<li><code>psavert</code>: Personal savings rate (%)</li>
+<li><code>uempmed</code>: Median duration of unemployment (weeks)</li>
+<li><code>unemploy</code>: Number of unemployed (thousands)</li>
+</ul>
+<div id="geom_line-vs-geom_path-the-key-difference" class="section level3 hasAnchor" number="8.2.1">
+<h3><span class="header-section-number">8.2.1</span> <code>geom_line()</code> vs <code>geom_path()</code>: the key difference<a href="temporal.html#geom_line-vs-geom_path-the-key-difference" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Both <code>geom_line()</code> and <code>geom_path()</code> connect points with line segments, but
+they differ in <strong>how they order the points</strong>:</p>
+<ul>
+<li><strong><code>geom_line()</code></strong>: Connects points in order of the <strong><span class="math inline">\(x\)</span>-variable</strong></li>
+<li><strong><code>geom_path()</code></strong>: Connects points in <strong>row order</strong> (the order they appear
+in the data frame)</li>
+</ul>
+</div>
+<div id="when-they-produce-the-same-result" class="section level3 hasAnchor" number="8.2.2">
+<h3><span class="header-section-number">8.2.2</span> When they produce the same result<a href="temporal.html#when-they-produce-the-same-result" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When the data is sorted by the <span class="math inline">\(x\)</span>-variable (which is typically the case for
+time series data), both geoms produce identical results:</p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="temporal.html#cb150-1" aria-hidden="true"></a><span class="co"># economics is already sorted by date</span></span>
+<span id="cb150-2"><a href="temporal.html#cb150-2" aria-hidden="true"></a>p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(economics, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> psavert)) <span class="op">+</span></span>
+<span id="cb150-3"><a href="temporal.html#cb150-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb150-4"><a href="temporal.html#cb150-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Year&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Personal Savings Rate (%)&quot;</span>,</span>
+<span id="cb150-5"><a href="temporal.html#cb150-5" aria-hidden="true"></a>       <span class="dt">title =</span> <span class="st">&quot;Using geom_line()&quot;</span>)</span>
+<span id="cb150-6"><a href="temporal.html#cb150-6" aria-hidden="true"></a></span>
+<span id="cb150-7"><a href="temporal.html#cb150-7" aria-hidden="true"></a>p2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(economics, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> psavert)) <span class="op">+</span></span>
+<span id="cb150-8"><a href="temporal.html#cb150-8" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_path</span>() <span class="op">+</span></span>
+<span id="cb150-9"><a href="temporal.html#cb150-9" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Year&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Personal Savings Rate (%)&quot;</span>,</span>
+<span id="cb150-10"><a href="temporal.html#cb150-10" aria-hidden="true"></a>       <span class="dt">title =</span> <span class="st">&quot;Using geom_path()&quot;</span>)</span>
+<span id="cb150-11"><a href="temporal.html#cb150-11" aria-hidden="true"></a></span>
+<span id="cb150-12"><a href="temporal.html#cb150-12" aria-hidden="true"></a>p1</span>
+<span id="cb150-13"><a href="temporal.html#cb150-13" aria-hidden="true"></a>p2</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:line-vs-path-same"></span>
+<img src="_main_files/figure-html/line-vs-path-same-1.png" alt="With ordered data, geom\_line() and geom\_path() produce identical plots." width="70%" /><img src="_main_files/figure-html/line-vs-path-same-2.png" alt="With ordered data, geom\_line() and geom\_path() produce identical plots." width="70%" />
+<p class="caption">
+Figure 8.2: With ordered data, geom_line() and geom_path() produce identical plots.
+</p>
+</div>
+</div>
+<div id="when-they-differ-shuffled-data" class="section level3 hasAnchor" number="8.2.3">
+<h3><span class="header-section-number">8.2.3</span> When they differ: shuffled data<a href="temporal.html#when-they-differ-shuffled-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If we shuffle the rows, the two geoms behave very differently:</p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="temporal.html#cb151-1" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb151-2"><a href="temporal.html#cb151-2" aria-hidden="true"></a>economics_shuffled &lt;-<span class="st"> </span>economics <span class="op">|</span><span class="er">&gt;</span><span class="st"> </span><span class="kw">slice_sample</span>(<span class="dt">n =</span> <span class="kw">nrow</span>(economics))</span>
+<span id="cb151-3"><a href="temporal.html#cb151-3" aria-hidden="true"></a></span>
+<span id="cb151-4"><a href="temporal.html#cb151-4" aria-hidden="true"></a><span class="co"># geom_line() sorts by x before connecting --- still works!</span></span>
+<span id="cb151-5"><a href="temporal.html#cb151-5" aria-hidden="true"></a><span class="kw">ggplot</span>(economics_shuffled, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> psavert)) <span class="op">+</span></span>
+<span id="cb151-6"><a href="temporal.html#cb151-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb151-7"><a href="temporal.html#cb151-7" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Year&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Personal Savings Rate (%)&quot;</span>,</span>
+<span id="cb151-8"><a href="temporal.html#cb151-8" aria-hidden="true"></a>       <span class="dt">title =</span> <span class="st">&quot;geom_line() with shuffled data --- still correct!&quot;</span>)</span>
+<span id="cb151-9"><a href="temporal.html#cb151-9" aria-hidden="true"></a></span>
+<span id="cb151-10"><a href="temporal.html#cb151-10" aria-hidden="true"></a><span class="co"># geom_path() connects in row order --- chaos!</span></span>
+<span id="cb151-11"><a href="temporal.html#cb151-11" aria-hidden="true"></a><span class="kw">ggplot</span>(economics_shuffled, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> psavert)) <span class="op">+</span></span>
+<span id="cb151-12"><a href="temporal.html#cb151-12" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_path</span>() <span class="op">+</span></span>
+<span id="cb151-13"><a href="temporal.html#cb151-13" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Year&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Personal Savings Rate (%)&quot;</span>,</span>
+<span id="cb151-14"><a href="temporal.html#cb151-14" aria-hidden="true"></a>       <span class="dt">title =</span> <span class="st">&quot;geom_path() with shuffled data --- chaotic!&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:line-vs-path-different"></span>
+<img src="_main_files/figure-html/line-vs-path-different-1.png" alt="With shuffled data, geom\_line() still works but geom\_path() creates chaos." width="70%" /><img src="_main_files/figure-html/line-vs-path-different-2.png" alt="With shuffled data, geom\_line() still works but geom\_path() creates chaos." width="70%" />
+<p class="caption">
+Figure 8.3: With shuffled data, geom_line() still works but geom_path() creates chaos.
+</p>
+</div>
+<p>Key insight: <code>geom_line()</code> is more robust to unsorted data because it
+internally sorts by the <span class="math inline">\(x\)</span>-variable. However, <code>geom_path()</code> has a unique
+capability that <code>geom_line()</code> lacks.</p>
+</div>
+<div id="the-power-of-geom_path-adding-time-as-a-third-dimension" class="section level3 hasAnchor" number="8.2.4">
+<h3><span class="header-section-number">8.2.4</span> The power of <code>geom_path()</code>: adding time as a third dimension<a href="temporal.html#the-power-of-geom_path-adding-time-as-a-third-dimension" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The real strength of <code>geom_path()</code> emerges when you want to visualise how
+<strong>two variables evolve together over time</strong>. By plotting one variable against
+another and connecting points in temporal order, you effectively add time as
+a third dimension to a 2-D plot.</p>
+<p>Consider the relationship between personal savings rate (<code>psavert</code>) and median
+unemployment duration (<code>uempmed</code>):</p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="temporal.html#cb152-1" aria-hidden="true"></a><span class="kw">ggplot</span>(economics, <span class="kw">aes</span>(<span class="dt">x =</span> psavert, <span class="dt">y =</span> uempmed)) <span class="op">+</span></span>
+<span id="cb152-2"><a href="temporal.html#cb152-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_path</span>(<span class="dt">alpha =</span> <span class="fl">0.7</span>) <span class="op">+</span></span>
+<span id="cb152-3"><a href="temporal.html#cb152-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Personal Savings Rate (%)&quot;</span>,</span>
+<span id="cb152-4"><a href="temporal.html#cb152-4" aria-hidden="true"></a>       <span class="dt">y =</span> <span class="st">&quot;Median Unemployment Duration (weeks)&quot;</span>,</span>
+<span id="cb152-5"><a href="temporal.html#cb152-5" aria-hidden="true"></a>       <span class="dt">title =</span> <span class="st">&quot;Evolution of savings and unemployment over time&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:path-two-variables"></span>
+<img src="_main_files/figure-html/path-two-variables-1.png" alt="geom\_path() reveals how two variables evolve together over time." width="70%" />
+<p class="caption">
+Figure 8.4: geom_path() reveals how two variables evolve together over time.
+</p>
+</div>
+<p>The path traces the temporal journey of the US economy through this 2-D space.
+You can see periods where both variables moved together, periods of divergence,
+and the overall trajectory from 1967 to 2015.</p>
+</div>
+<div id="enhancing-the-path-with-colour" class="section level3 hasAnchor" number="8.2.5">
+<h3><span class="header-section-number">8.2.5</span> Enhancing the path with colour<a href="temporal.html#enhancing-the-path-with-colour" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To make the temporal dimension more explicit, map <code>date</code> to colour:</p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="temporal.html#cb153-1" aria-hidden="true"></a><span class="kw">ggplot</span>(economics, <span class="kw">aes</span>(<span class="dt">x =</span> psavert, <span class="dt">y =</span> uempmed, <span class="dt">colour =</span> date)) <span class="op">+</span></span>
+<span id="cb153-2"><a href="temporal.html#cb153-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_path</span>(<span class="dt">linewidth =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb153-3"><a href="temporal.html#cb153-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_colour_viridis_c</span>() <span class="op">+</span></span>
+<span id="cb153-4"><a href="temporal.html#cb153-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Personal Savings Rate (%)&quot;</span>,</span>
+<span id="cb153-5"><a href="temporal.html#cb153-5" aria-hidden="true"></a>       <span class="dt">y =</span> <span class="st">&quot;Median Unemployment Duration (weeks)&quot;</span>,</span>
+<span id="cb153-6"><a href="temporal.html#cb153-6" aria-hidden="true"></a>       <span class="dt">colour =</span> <span class="st">&quot;Date&quot;</span>,</span>
+<span id="cb153-7"><a href="temporal.html#cb153-7" aria-hidden="true"></a>       <span class="dt">title =</span> <span class="st">&quot;Economic trajectory from 1967 to 2015&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:path-colour"></span>
+<img src="_main_files/figure-html/path-colour-1.png" alt="Mapping date to colour makes the temporal progression clear." width="70%" />
+<p class="caption">
+Figure 8.5: Mapping date to colour makes the temporal progression clear.
+</p>
+</div>
+<p>Now the colour gradient clearly shows the direction of time: darker colours
+represent earlier years, lighter colours represent more recent years.</p>
+<!--
+### Adding points to mark key dates
+
+You can overlay points to mark specific observations:
+
+
+```r
+ggplot(economics, aes(x = psavert, y = uempmed, colour = date)) +
+  geom_path(linewidth = 0.8, alpha = 0.7) +
+  geom_point(size = 0.5) +
+  scale_colour_viridis_c() +
+  labs(x = "Personal Savings Rate (%)",
+       y = "Median Unemployment Duration (weeks)",
+       colour = "Date")
+```
+
+<div class="figure" style="text-align: center">
+<img src="_main_files/figure-html/path-with-points-1.png" alt="Adding points to highlight observations along the path." width="70%" />
+<p class="caption">(\#fig:path-with-points)Adding points to highlight observations along the path.</p>
+</div>
+-->
+</div>
+<div id="summary-geom_line-vs-geom_path" class="section level3 hasAnchor" number="8.2.6">
+<h3><span class="header-section-number">8.2.6</span> Summary: <code>geom_line()</code> vs <code>geom_path()</code><a href="temporal.html#summary-geom_line-vs-geom_path" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th><code>geom_line()</code></th>
+<th><code>geom_path()</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Connection order</td>
+<td>By <span class="math inline">\(x\)</span>-value</td>
+<td>By row order</td>
+</tr>
+<tr class="even">
+<td>Robust to shuffled data</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td>Best for</td>
+<td>Standard time series (<span class="math inline">\(y\)</span> vs time)</td>
+<td>Two variables evolving over time</td>
+</tr>
+<tr class="even">
+<td>Adds time as 3rd dimension</td>
+<td>No (time is already on <span class="math inline">\(x\)</span>)</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="scales-labels-zooming" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Scales, labels &amp; zooming<a href="temporal.html#scales-labels-zooming" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When you map a date or time variable to an axis, <code>ggplot2</code> automatically
+uses <code>scale_x_date()</code> or <code>scale_x_datetime()</code>. You can customise these scales
+to control how dates are displayed.</p>
+<div id="controlling-date-breaks" class="section level3 hasAnchor" number="8.3.1">
+<h3><span class="header-section-number">8.3.1</span> Controlling date breaks<a href="temporal.html#controlling-date-breaks" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Use <code>date_breaks</code> to specify the interval between tick marks:</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="temporal.html#cb154-1" aria-hidden="true"></a><span class="kw">ggplot</span>(economics, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> unemploy)) <span class="op">+</span></span>
+<span id="cb154-2"><a href="temporal.html#cb154-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb154-3"><a href="temporal.html#cb154-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_date</span>(<span class="dt">date_breaks =</span> <span class="st">&quot;10 years&quot;</span>, <span class="dt">date_labels =</span> <span class="st">&quot;%Y&quot;</span>) <span class="op">+</span></span>
+<span id="cb154-4"><a href="temporal.html#cb154-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Year&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Unemployment (thousands)&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:date-breaks"></span>
+<img src="_main_files/figure-html/date-breaks-1.png" alt="Custom date breaks every 10 years." width="70%" />
+<p class="caption">
+Figure 8.6: Custom date breaks every 10 years.
+</p>
+</div>
+</div>
+<div id="strftime" class="section level3 hasAnchor" number="8.3.2">
+<h3><span class="header-section-number">8.3.2</span> Formatting date labels<a href="temporal.html#strftime" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>date_labels</code> argument uses <code>strftime</code> codes:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Code</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>%Y</code></td>
+<td>4-digit year</td>
+<td>2024</td>
+</tr>
+<tr class="even">
+<td><code>%y</code></td>
+<td>2-digit year</td>
+<td>24</td>
+</tr>
+<tr class="odd">
+<td><code>%m</code></td>
+<td>Month as number</td>
+<td>01-12</td>
+</tr>
+<tr class="even">
+<td><code>%b</code></td>
+<td>Abbreviated month</td>
+<td>Jan, Feb</td>
+</tr>
+<tr class="odd">
+<td><code>%B</code></td>
+<td>Full month name</td>
+<td>January</td>
+</tr>
+<tr class="even">
+<td><code>%d</code></td>
+<td>Day of month</td>
+<td>01-31</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note</strong>: While controlling tick marks and labels is marked as low priority in
+the summary table of Chapter <a href="cosmetics.html#cosmetics">6</a>, it becomes more important for
+temporal data where readable date formatting significantly affects
+interpretability.</p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="temporal.html#cb155-1" aria-hidden="true"></a><span class="co"># Filter to recent years for clarity</span></span>
+<span id="cb155-2"><a href="temporal.html#cb155-2" aria-hidden="true"></a>economics_recent &lt;-<span class="st"> </span>economics <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb155-3"><a href="temporal.html#cb155-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">filter</span>(date <span class="op">&gt;=</span><span class="st"> </span><span class="kw">as.Date</span>(<span class="st">&quot;2010-01-01&quot;</span>))</span>
+<span id="cb155-4"><a href="temporal.html#cb155-4" aria-hidden="true"></a></span>
+<span id="cb155-5"><a href="temporal.html#cb155-5" aria-hidden="true"></a><span class="kw">ggplot</span>(economics_recent, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> unemploy)) <span class="op">+</span></span>
+<span id="cb155-6"><a href="temporal.html#cb155-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb155-7"><a href="temporal.html#cb155-7" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_date</span>(<span class="dt">date_breaks =</span> <span class="st">&quot;1 year&quot;</span>, <span class="dt">date_labels =</span> <span class="st">&quot;%b %Y&quot;</span>) <span class="op">+</span></span>
+<span id="cb155-8"><a href="temporal.html#cb155-8" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Year&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Unemployment (thousands)&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:date-labels"></span>
+<img src="_main_files/figure-html/date-labels-1.png" alt="Custom date label format." width="70%" />
+<p class="caption">
+Figure 8.7: Custom date label format.
+</p>
+</div>
+</div>
+<div id="labelling-the-time-axis-appropriately" class="section level3 hasAnchor" number="8.3.3">
+<h3><span class="header-section-number">8.3.3</span> Labelling the time axis appropriately<a href="temporal.html#labelling-the-time-axis-appropriately" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Notice that in the <code>economics</code> dataset, the time variable is called <code>date</code>:</p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="temporal.html#cb156-1" aria-hidden="true"></a><span class="kw">head</span>(economics<span class="op">$</span>date)</span></code></pre></div>
+<pre><code>## [1] &quot;1967-07-01&quot; &quot;1967-08-01&quot; &quot;1967-09-01&quot; &quot;1967-10-01&quot;
+## [5] &quot;1967-11-01&quot; &quot;1967-12-01&quot;</code></pre>
+<p>However, when we format the axis labels to show only years (using <code>%Y</code>), what
+appears on the plot is years, not full dates. In this case, labelling the axis
+as “Date” would be misleading. Instead, use <code>labs(x = "Year")</code> to match what is
+actually displayed:</p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="temporal.html#cb158-1" aria-hidden="true"></a><span class="kw">ggplot</span>(economics, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> unemploy)) <span class="op">+</span></span>
+<span id="cb158-2"><a href="temporal.html#cb158-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb158-3"><a href="temporal.html#cb158-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_date</span>(<span class="dt">date_breaks =</span> <span class="st">&quot;10 years&quot;</span>, <span class="dt">date_labels =</span> <span class="st">&quot;%Y&quot;</span>) <span class="op">+</span></span>
+<span id="cb158-4"><a href="temporal.html#cb158-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Year&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Unemployment (thousands)&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:date-axis-label"></span>
+<img src="_main_files/figure-html/date-axis-label-1.png" alt="Label the axis to match what is displayed, not the variable name." width="70%" />
+<p class="caption">
+Figure 8.8: Label the axis to match what is displayed, not the variable name.
+</p>
+</div>
+<p>Alternatively, since years are self-explanatory, you can omit the label entirely
+with <code>labs(x = NULL)</code>:</p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="temporal.html#cb159-1" aria-hidden="true"></a><span class="kw">ggplot</span>(economics, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> unemploy)) <span class="op">+</span></span>
+<span id="cb159-2"><a href="temporal.html#cb159-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb159-3"><a href="temporal.html#cb159-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_date</span>(<span class="dt">date_breaks =</span> <span class="st">&quot;10 years&quot;</span>, <span class="dt">date_labels =</span> <span class="st">&quot;%Y&quot;</span>) <span class="op">+</span></span>
+<span id="cb159-4"><a href="temporal.html#cb159-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="ot">NULL</span>, <span class="dt">y =</span> <span class="st">&quot;Unemployment (thousands)&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:date-axis-null"></span>
+<img src="_main_files/figure-html/date-axis-null-1.png" alt="Years are often self-explanatory and need no label." width="70%" />
+<p class="caption">
+Figure 8.9: Years are often self-explanatory and need no label.
+</p>
+</div>
+<p>The key principle: <strong>label the axis to describe what the reader sees</strong>, not what
+the variable happens to be called in your data.</p>
+<!--
+### Pretty date breaks with `scales`
+
+For automatic "pretty" breaks, use `scales::breaks_pretty()`:
+
+
+```r
+ggplot(economics, aes(x = date, y = unemploy)) +
+  geom_line() +
+  scale_x_date(breaks = scales::breaks_pretty(n = 8)) +
+  labs(x = "Date", y = "Unemployment (thousands)")
+```
+
+<div class="figure" style="text-align: center">
+<img src="_main_files/figure-html/date-pretty-1.png" alt="Automatic pretty date breaks." width="70%" />
+<p class="caption">(\#fig:date-pretty)Automatic pretty date breaks.</p>
+</div>
+-->
+</div>
+<div id="zooming-on-time-series" class="section level3 hasAnchor" number="8.3.4">
+<h3><span class="header-section-number">8.3.4</span> Zooming on time series<a href="temporal.html#zooming-on-time-series" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Use <code>coord_cartesian()</code> to zoom without removing data (important for trend
+lines or smoothers):</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="temporal.html#cb160-1" aria-hidden="true"></a><span class="kw">ggplot</span>(economics, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> unemploy)) <span class="op">+</span></span>
+<span id="cb160-2"><a href="temporal.html#cb160-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb160-3"><a href="temporal.html#cb160-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">xlim =</span> <span class="kw">as.Date</span>(<span class="kw">c</span>(<span class="st">&quot;2000-01-01&quot;</span>, <span class="st">&quot;2015-01-01&quot;</span>))) <span class="op">+</span></span>
+<span id="cb160-4"><a href="temporal.html#cb160-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Date&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Unemployment (thousands)&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:date-zoom"></span>
+<img src="_main_files/figure-html/date-zoom-1.png" alt="Zooming into a time period." width="70%" />
+<p class="caption">
+Figure 8.10: Zooming into a time period.
+</p>
+</div>
+</div>
+</div>
+<div id="implicit-missing" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> A potential pitfall: implicit missing data<a href="temporal.html#implicit-missing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Line plots have a subtle but important limitation: <strong>they cannot show gaps in
+your data if those gaps are implicit rather than explicit</strong>.</p>
+<p>Consider a dataset that contains monthly counts — perhaps crime counts, sales
+figures, or website visits. If this data was produced by counting raw events,
+months with zero occurrences might be <strong>missing entirely</strong> rather than recorded
+as zero. This is called <em>implicit</em> missing data: the absence is hidden because
+the row simply doesn’t exist.</p>
+<p>When you plot such data with <code>geom_line()</code>, the line will connect adjacent
+observations regardless of how much time passed between them. If January and
+March have data but February is missing, the line will connect January directly
+to March with no indication that a month was skipped.</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="temporal.html#cb161-1" aria-hidden="true"></a><span class="co"># Simulated monthly data with February missing</span></span>
+<span id="cb161-2"><a href="temporal.html#cb161-2" aria-hidden="true"></a>monthly_data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb161-3"><a href="temporal.html#cb161-3" aria-hidden="true"></a>  <span class="dt">date =</span> <span class="kw">as.Date</span>(<span class="kw">c</span>(<span class="st">&quot;2024-01-01&quot;</span>, <span class="st">&quot;2024-03-01&quot;</span>, <span class="st">&quot;2024-04-01&quot;</span>,</span>
+<span id="cb161-4"><a href="temporal.html#cb161-4" aria-hidden="true"></a>                   <span class="st">&quot;2024-05-01&quot;</span>, <span class="st">&quot;2024-06-01&quot;</span>)),</span>
+<span id="cb161-5"><a href="temporal.html#cb161-5" aria-hidden="true"></a>  <span class="dt">count =</span> <span class="kw">c</span>(<span class="dv">45</span>, <span class="dv">38</span>, <span class="dv">52</span>, <span class="dv">41</span>, <span class="dv">47</span>)</span>
+<span id="cb161-6"><a href="temporal.html#cb161-6" aria-hidden="true"></a>)</span>
+<span id="cb161-7"><a href="temporal.html#cb161-7" aria-hidden="true"></a></span>
+<span id="cb161-8"><a href="temporal.html#cb161-8" aria-hidden="true"></a><span class="kw">ggplot</span>(monthly_data, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> count)) <span class="op">+</span></span>
+<span id="cb161-9"><a href="temporal.html#cb161-9" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb161-10"><a href="temporal.html#cb161-10" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb161-11"><a href="temporal.html#cb161-11" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_date</span>(<span class="dt">date_breaks =</span> <span class="st">&quot;1 month&quot;</span>, <span class="dt">date_labels =</span> <span class="st">&quot;%b&quot;</span>) <span class="op">+</span></span>
+<span id="cb161-12"><a href="temporal.html#cb161-12" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Month&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Count&quot;</span>,</span>
+<span id="cb161-13"><a href="temporal.html#cb161-13" aria-hidden="true"></a>       <span class="dt">title =</span> <span class="st">&quot;February is missing --- but the plot doesn&#39;t show it!&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:implicit-missing-example"></span>
+<img src="_main_files/figure-html/implicit-missing-example-1.png" alt="Line plots hide implicit missing data." width="70%" />
+<p class="caption">
+Figure 8.11: Line plots hide implicit missing data.
+</p>
+</div>
+<p>Notice how the line connects January directly to March. A casual observer would
+have no idea that February is missing from the data.</p>
+<p>The solution is to make the missingness <em>explicit</em> by ensuring every time
+point has a row, with <code>NA</code> values where data is missing. Once missing months have rows with <code>NA</code> counts, <code>geom_line()</code> will break
+at those points, making the gaps visible:</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="temporal.html#cb162-1" aria-hidden="true"></a><span class="co"># Data with explicit NA for February</span></span>
+<span id="cb162-2"><a href="temporal.html#cb162-2" aria-hidden="true"></a>monthly_data_explicit &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb162-3"><a href="temporal.html#cb162-3" aria-hidden="true"></a>  <span class="dt">date =</span> <span class="kw">as.Date</span>(<span class="kw">c</span>(<span class="st">&quot;2024-01-01&quot;</span>, <span class="st">&quot;2024-02-01&quot;</span>, <span class="st">&quot;2024-03-01&quot;</span>,</span>
+<span id="cb162-4"><a href="temporal.html#cb162-4" aria-hidden="true"></a>                   <span class="st">&quot;2024-04-01&quot;</span>, <span class="st">&quot;2024-05-01&quot;</span>, <span class="st">&quot;2024-06-01&quot;</span>)),</span>
+<span id="cb162-5"><a href="temporal.html#cb162-5" aria-hidden="true"></a>  <span class="dt">count =</span> <span class="kw">c</span>(<span class="dv">45</span>, <span class="ot">NA</span>, <span class="dv">38</span>, <span class="dv">52</span>, <span class="dv">41</span>, <span class="dv">47</span>)</span>
+<span id="cb162-6"><a href="temporal.html#cb162-6" aria-hidden="true"></a>)</span>
+<span id="cb162-7"><a href="temporal.html#cb162-7" aria-hidden="true"></a></span>
+<span id="cb162-8"><a href="temporal.html#cb162-8" aria-hidden="true"></a><span class="kw">ggplot</span>(monthly_data_explicit, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> count)) <span class="op">+</span></span>
+<span id="cb162-9"><a href="temporal.html#cb162-9" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb162-10"><a href="temporal.html#cb162-10" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb162-11"><a href="temporal.html#cb162-11" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_date</span>(<span class="dt">date_breaks =</span> <span class="st">&quot;1 month&quot;</span>, <span class="dt">date_labels =</span> <span class="st">&quot;%b&quot;</span>) <span class="op">+</span></span>
+<span id="cb162-12"><a href="temporal.html#cb162-12" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Month&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Count&quot;</span>,</span>
+<span id="cb162-13"><a href="temporal.html#cb162-13" aria-hidden="true"></a>       <span class="dt">title =</span> <span class="st">&quot;Now the missing February is visible&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: Removed 1 row containing missing values or values outside the
+## scale range (`geom_point()`).</code></pre>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:explicit-missing-example"></span>
+<img src="_main_files/figure-html/explicit-missing-example-1.png" alt="With explicit NA values, the gap becomes visible." width="70%" />
+<p class="caption">
+Figure 8.12: With explicit NA values, the gap becomes visible.
+</p>
+</div>
+<p>The <code>tidyr</code> package
+provides functions like <code>complete()</code> that can fill in missing combinations of
+values. The actual implementation using <code>tidyr::complete()</code> is beyond the scope of this
+module, but it’s worth being aware of this issue when working with aggregated
+data that might have implicit gaps.</p>
+</div>
+<div id="summary-temporal-data" class="section level2 hasAnchor" number="8.5">
+<h2><span class="header-section-number">8.5</span> Summary: temporal data<a href="temporal.html#summary-temporal-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Creating date or time objects using <code>lubridate</code> package:
+<ul>
+<li>Use <code>make_date(year, month, day)</code> to create a <code>Date</code> object from separate integer columns</li>
+<li>Use <code>make_datetime(year, month, day, hour)</code> to create a <code>POSIXct</code> time object when hour (or finer) resolution is needed</li>
+</ul></li>
+<li>Plotting time series:
+<ul>
+<li><code>geom_line()</code> connects points by <span class="math inline">\(x\)</span>-value; robust to unsorted data</li>
+<li><code>geom_path()</code> connects points by row order; powerful for showing how two variables evolve together over time</li>
+<li>Both produce identical results when data is sorted by the <span class="math inline">\(x\)</span>-variable</li>
+</ul></li>
+<li>Date axes:
+<ul>
+<li>Use <code>scale_x_date()</code> to customise time axes</li>
+<li>Control breaks with <code>date_breaks</code> (e.g., <code>"10 years"</code>, <code>"6 months"</code>)</li>
+<li>Format labels with <code>date_labels</code> using strftime codes (<code>%Y</code>, <code>%b</code>, <code>%d</code>)</li>
+<li>Zoom with <code>coord_cartesian()</code> to preserve all data for fitted lines</li>
+</ul></li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="stats.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="spatial.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
