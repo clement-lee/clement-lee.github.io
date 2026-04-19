@@ -476,20 +476,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.4" data-path="interactivity.html"><a href="interactivity.html#shiny-select"><i class="fa fa-check"></i><b>10.4</b> <code>selectInput()</code></a></li>
 <li class="chapter" data-level="10.5" data-path="interactivity.html"><a href="interactivity.html#shiny-leaflet"><i class="fa fa-check"></i><b>10.5</b> Interactive maps with <code>leaflet</code></a>
 <ul>
-<li class="chapter" data-level="10.5.1" data-path="interactivity.html"><a href="interactivity.html#data-preparation"><i class="fa fa-check"></i><b>10.5.1</b> Data preparation</a></li>
+<li class="chapter" data-level="10.5.1" data-path="interactivity.html"><a href="interactivity.html#the-data"><i class="fa fa-check"></i><b>10.5.1</b> The data</a></li>
 <li class="chapter" data-level="10.5.2" data-path="interactivity.html"><a href="interactivity.html#a-basic-leaflet-map"><i class="fa fa-check"></i><b>10.5.2</b> A basic <code>leaflet</code> map</a></li>
-<li class="chapter" data-level="10.5.3" data-path="interactivity.html"><a href="interactivity.html#choropleth-colouring-by-a-variable"><i class="fa fa-check"></i><b>10.5.3</b> Choropleth: colouring by a variable</a></li>
-<li class="chapter" data-level="10.5.4" data-path="interactivity.html"><a href="interactivity.html#making-areas-clickable"><i class="fa fa-check"></i><b>10.5.4</b> Making areas clickable</a></li>
-<li class="chapter" data-level="10.5.5" data-path="interactivity.html"><a href="interactivity.html#shiny-leaflet-app"><i class="fa fa-check"></i><b>10.5.5</b> A complete Shiny + <code>leaflet</code> app</a></li>
+<li class="chapter" data-level="10.5.3" data-path="interactivity.html"><a href="interactivity.html#hover-labels"><i class="fa fa-check"></i><b>10.5.3</b> Hover labels</a></li>
 </ul></li>
-<li class="chapter" data-level="10.6" data-path="interactivity.html"><a href="interactivity.html#cables-example"><i class="fa fa-check"></i><b>10.6</b> Submarine cables: a worked example</a>
-<ul>
-<li class="chapter" data-level="10.6.1" data-path="interactivity.html"><a href="interactivity.html#the-data"><i class="fa fa-check"></i><b>10.6.1</b> The data</a></li>
-<li class="chapter" data-level="10.6.2" data-path="interactivity.html"><a href="interactivity.html#step-1-static-plot-with-ggplot2"><i class="fa fa-check"></i><b>10.6.2</b> Step 1: static plot with <code>ggplot2</code></a></li>
-<li class="chapter" data-level="10.6.3" data-path="interactivity.html"><a href="interactivity.html#step-2-direct-leaflet-equivalent"><i class="fa fa-check"></i><b>10.6.3</b> Step 2: direct <code>leaflet</code> equivalent</a></li>
-<li class="chapter" data-level="10.6.4" data-path="interactivity.html"><a href="interactivity.html#step-3-hover-labels"><i class="fa fa-check"></i><b>10.6.4</b> Step 3: hover labels</a></li>
-<li class="chapter" data-level="10.6.5" data-path="interactivity.html"><a href="interactivity.html#step-4-a-shiny-app-with-regional-views"><i class="fa fa-check"></i><b>10.6.5</b> Step 4: a Shiny app with regional views</a></li>
-</ul></li>
+<li class="chapter" data-level="10.6" data-path="interactivity.html"><a href="interactivity.html#shiny-leaflet-app"><i class="fa fa-check"></i><b>10.6</b> Shiny + <code>leaflet</code></a></li>
+<li class="chapter" data-level="10.7" data-path="interactivity.html"><a href="interactivity.html#summary-5"><i class="fa fa-check"></i><b>10.7</b> Summary</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="miscellaneous.html"><a href="miscellaneous.html"><i class="fa fa-check"></i><b>11</b> Miscellaneous Topics</a>
 <ul>
@@ -575,13 +567,13 @@ observations in a data frame.</p>
 <p>A common use is to mark a threshold or reference value. The following plot of
 city fuel economy by engine displacement adds a dashed horizontal line at the
 mean, making it easy to see which engine sizes are above and below average:</p>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="miscellaneous.html#cb214-1" aria-hidden="true"></a>mean_hwy &lt;-<span class="st"> </span><span class="kw">mean</span>(mpg<span class="op">$</span>hwy)</span>
-<span id="cb214-2"><a href="miscellaneous.html#cb214-2" aria-hidden="true"></a></span>
-<span id="cb214-3"><a href="miscellaneous.html#cb214-3" aria-hidden="true"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(displ, hwy)) <span class="op">+</span></span>
-<span id="cb214-4"><a href="miscellaneous.html#cb214-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.4</span>) <span class="op">+</span></span>
-<span id="cb214-5"><a href="miscellaneous.html#cb214-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> mean_hwy, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;firebrick&quot;</span>) <span class="op">+</span></span>
-<span id="cb214-6"><a href="miscellaneous.html#cb214-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Engine displacement (litres)&quot;</span>,</span>
-<span id="cb214-7"><a href="miscellaneous.html#cb214-7" aria-hidden="true"></a>       <span class="dt">y =</span> <span class="st">&quot;Highway fuel economy (mpg)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="miscellaneous.html#cb205-1" aria-hidden="true"></a>mean_hwy &lt;-<span class="st"> </span><span class="kw">mean</span>(mpg<span class="op">$</span>hwy)</span>
+<span id="cb205-2"><a href="miscellaneous.html#cb205-2" aria-hidden="true"></a></span>
+<span id="cb205-3"><a href="miscellaneous.html#cb205-3" aria-hidden="true"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(displ, hwy)) <span class="op">+</span></span>
+<span id="cb205-4"><a href="miscellaneous.html#cb205-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.4</span>) <span class="op">+</span></span>
+<span id="cb205-5"><a href="miscellaneous.html#cb205-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> mean_hwy, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;firebrick&quot;</span>) <span class="op">+</span></span>
+<span id="cb205-6"><a href="miscellaneous.html#cb205-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Engine displacement (litres)&quot;</span>,</span>
+<span id="cb205-7"><a href="miscellaneous.html#cb205-7" aria-hidden="true"></a>       <span class="dt">y =</span> <span class="st">&quot;Highway fuel economy (mpg)&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:hline-example"></span>
 <img src="main_files/figure-html/hline-example-1.png" alt="Highway fuel economy vs engine displacement, with mean marked." width="70%" />
 <p class="caption">
@@ -591,10 +583,10 @@ Figure 11.1: Highway fuel economy vs engine displacement, with mean marked.
 <p><code>geom_abline()</code> is particularly useful for a <strong>line of equality</strong> (slope 1,
 intercept 0) when comparing two measurements on the same scale — for example,
 city versus highway fuel economy:</p>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="miscellaneous.html#cb215-1" aria-hidden="true"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(cty, hwy)) <span class="op">+</span></span>
-<span id="cb215-2"><a href="miscellaneous.html#cb215-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.4</span>) <span class="op">+</span></span>
-<span id="cb215-3"><a href="miscellaneous.html#cb215-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="dv">0</span>, <span class="dt">slope =</span> <span class="dv">1</span>, <span class="dt">colour =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="op">+</span></span>
-<span id="cb215-4"><a href="miscellaneous.html#cb215-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;City fuel economy (mpg)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Highway fuel economy (mpg)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="miscellaneous.html#cb206-1" aria-hidden="true"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(cty, hwy)) <span class="op">+</span></span>
+<span id="cb206-2"><a href="miscellaneous.html#cb206-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.4</span>) <span class="op">+</span></span>
+<span id="cb206-3"><a href="miscellaneous.html#cb206-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="dv">0</span>, <span class="dt">slope =</span> <span class="dv">1</span>, <span class="dt">colour =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="op">+</span></span>
+<span id="cb206-4"><a href="miscellaneous.html#cb206-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;City fuel economy (mpg)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Highway fuel economy (mpg)&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:abline-example"></span>
 <img src="main_files/figure-html/abline-example-1.png" alt="City vs highway fuel economy with the line of equality." width="70%" />
 <p class="caption">
@@ -612,9 +604,9 @@ unlike a boxplot, it reveals the full shape of the distribution via a smoothed
 density estimate mirrored on both sides. Violins are widest where data are most
 dense, so a bimodal group shows two bulges — information that a boxplot’s
 quartile box cannot convey.</p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="miscellaneous.html#cb216-1" aria-hidden="true"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(class, hwy)) <span class="op">+</span></span>
-<span id="cb216-2"><a href="miscellaneous.html#cb216-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_violin</span>(<span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
-<span id="cb216-3"><a href="miscellaneous.html#cb216-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Vehicle class&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Highway fuel economy (mpg)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="miscellaneous.html#cb207-1" aria-hidden="true"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(class, hwy)) <span class="op">+</span></span>
+<span id="cb207-2"><a href="miscellaneous.html#cb207-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_violin</span>(<span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
+<span id="cb207-3"><a href="miscellaneous.html#cb207-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Vehicle class&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Highway fuel economy (mpg)&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:violin-example"></span>
 <img src="main_files/figure-html/violin-example-1.png" alt="Distribution of highway fuel economy by vehicle class (violin)." width="70%" />
 <p class="caption">
@@ -623,10 +615,10 @@ Figure 11.3: Distribution of highway fuel economy by vehicle class (violin).
 </div>
 <p>It is common to overlay a boxplot on the violin to show the summary statistics
 alongside the distributional shape:</p>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="miscellaneous.html#cb217-1" aria-hidden="true"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(class, hwy)) <span class="op">+</span></span>
-<span id="cb217-2"><a href="miscellaneous.html#cb217-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_violin</span>(<span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.4</span>) <span class="op">+</span></span>
-<span id="cb217-3"><a href="miscellaneous.html#cb217-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">width =</span> <span class="fl">0.15</span>, <span class="dt">outlier.shape =</span> <span class="ot">NA</span>) <span class="op">+</span></span>
-<span id="cb217-4"><a href="miscellaneous.html#cb217-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Vehicle class&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Highway fuel economy (mpg)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="miscellaneous.html#cb208-1" aria-hidden="true"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(class, hwy)) <span class="op">+</span></span>
+<span id="cb208-2"><a href="miscellaneous.html#cb208-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_violin</span>(<span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.4</span>) <span class="op">+</span></span>
+<span id="cb208-3"><a href="miscellaneous.html#cb208-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">width =</span> <span class="fl">0.15</span>, <span class="dt">outlier.shape =</span> <span class="ot">NA</span>) <span class="op">+</span></span>
+<span id="cb208-4"><a href="miscellaneous.html#cb208-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Vehicle class&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Highway fuel economy (mpg)&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:violin-box-example"></span>
 <img src="main_files/figure-html/violin-box-example-1.png" alt="Violin plot with overlaid boxplot." width="70%" />
 <p class="caption">
@@ -641,22 +633,22 @@ the violin already shows the full distribution.</p>
 <p>These geoms annotate individual observations with text. Both require an
 additional <code>label</code> aesthetic. <code>geom_label()</code> draws a filled rectangle behind
 the text, making it easier to read against a busy background.</p>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="miscellaneous.html#cb218-1" aria-hidden="true"></a><span class="co"># A few cars to highlight</span></span>
-<span id="cb218-2"><a href="miscellaneous.html#cb218-2" aria-hidden="true"></a>highlight &lt;-<span class="st"> </span>mpg <span class="op">|</span><span class="er">&gt;</span></span>
-<span id="cb218-3"><a href="miscellaneous.html#cb218-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">filter</span>(class <span class="op">==</span><span class="st"> &quot;2seater&quot;</span> <span class="op">|</span></span>
-<span id="cb218-4"><a href="miscellaneous.html#cb218-4" aria-hidden="true"></a><span class="st">         </span>(manufacturer <span class="op">==</span><span class="st"> &quot;honda&quot;</span> <span class="op">&amp;</span><span class="st"> </span>model <span class="op">==</span><span class="st"> &quot;civic&quot;</span>)) <span class="op">|</span><span class="er">&gt;</span></span>
-<span id="cb218-5"><a href="miscellaneous.html#cb218-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">distinct</span>(manufacturer, model, <span class="dt">.keep_all =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb218-6"><a href="miscellaneous.html#cb218-6" aria-hidden="true"></a></span>
-<span id="cb218-7"><a href="miscellaneous.html#cb218-7" aria-hidden="true"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(displ, hwy)) <span class="op">+</span></span>
-<span id="cb218-8"><a href="miscellaneous.html#cb218-8" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></span>
-<span id="cb218-9"><a href="miscellaneous.html#cb218-9" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> highlight, <span class="dt">colour =</span> <span class="st">&quot;firebrick&quot;</span>, <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb218-10"><a href="miscellaneous.html#cb218-10" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_label</span>(</span>
-<span id="cb218-11"><a href="miscellaneous.html#cb218-11" aria-hidden="true"></a>    <span class="dt">data    =</span> highlight,</span>
-<span id="cb218-12"><a href="miscellaneous.html#cb218-12" aria-hidden="true"></a>    <span class="kw">aes</span>(<span class="dt">label =</span> model),</span>
-<span id="cb218-13"><a href="miscellaneous.html#cb218-13" aria-hidden="true"></a>    <span class="dt">size    =</span> <span class="dv">3</span>,</span>
-<span id="cb218-14"><a href="miscellaneous.html#cb218-14" aria-hidden="true"></a>    <span class="dt">nudge_y =</span> <span class="fl">1.8</span></span>
-<span id="cb218-15"><a href="miscellaneous.html#cb218-15" aria-hidden="true"></a>  ) <span class="op">+</span></span>
-<span id="cb218-16"><a href="miscellaneous.html#cb218-16" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Engine displacement (litres)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Highway economy (mpg)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="miscellaneous.html#cb209-1" aria-hidden="true"></a><span class="co"># A few cars to highlight</span></span>
+<span id="cb209-2"><a href="miscellaneous.html#cb209-2" aria-hidden="true"></a>highlight &lt;-<span class="st"> </span>mpg <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb209-3"><a href="miscellaneous.html#cb209-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">filter</span>(class <span class="op">==</span><span class="st"> &quot;2seater&quot;</span> <span class="op">|</span></span>
+<span id="cb209-4"><a href="miscellaneous.html#cb209-4" aria-hidden="true"></a><span class="st">         </span>(manufacturer <span class="op">==</span><span class="st"> &quot;honda&quot;</span> <span class="op">&amp;</span><span class="st"> </span>model <span class="op">==</span><span class="st"> &quot;civic&quot;</span>)) <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb209-5"><a href="miscellaneous.html#cb209-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">distinct</span>(manufacturer, model, <span class="dt">.keep_all =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb209-6"><a href="miscellaneous.html#cb209-6" aria-hidden="true"></a></span>
+<span id="cb209-7"><a href="miscellaneous.html#cb209-7" aria-hidden="true"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(displ, hwy)) <span class="op">+</span></span>
+<span id="cb209-8"><a href="miscellaneous.html#cb209-8" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></span>
+<span id="cb209-9"><a href="miscellaneous.html#cb209-9" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> highlight, <span class="dt">colour =</span> <span class="st">&quot;firebrick&quot;</span>, <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
+<span id="cb209-10"><a href="miscellaneous.html#cb209-10" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_label</span>(</span>
+<span id="cb209-11"><a href="miscellaneous.html#cb209-11" aria-hidden="true"></a>    <span class="dt">data    =</span> highlight,</span>
+<span id="cb209-12"><a href="miscellaneous.html#cb209-12" aria-hidden="true"></a>    <span class="kw">aes</span>(<span class="dt">label =</span> model),</span>
+<span id="cb209-13"><a href="miscellaneous.html#cb209-13" aria-hidden="true"></a>    <span class="dt">size    =</span> <span class="dv">3</span>,</span>
+<span id="cb209-14"><a href="miscellaneous.html#cb209-14" aria-hidden="true"></a>    <span class="dt">nudge_y =</span> <span class="fl">1.8</span></span>
+<span id="cb209-15"><a href="miscellaneous.html#cb209-15" aria-hidden="true"></a>  ) <span class="op">+</span></span>
+<span id="cb209-16"><a href="miscellaneous.html#cb209-16" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Engine displacement (litres)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Highway economy (mpg)&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:geom-text-example"></span>
 <img src="main_files/figure-html/geom-text-example-1.png" alt="Fuel economy vs engine size, with selected models labelled." width="70%" />
 <p class="caption">
@@ -676,11 +668,11 @@ the <code>x</code> and <code>y</code> aesthetics give the cell centres, and <cod
 <p>The built-in <code>faithfuld</code> dataset is a 2D kernel density estimate of the Old
 Faithful geyser data, stored on a regular grid of eruption duration and waiting
 time values:</p>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="miscellaneous.html#cb219-1" aria-hidden="true"></a><span class="kw">ggplot</span>(faithfuld, <span class="kw">aes</span>(waiting, eruptions)) <span class="op">+</span></span>
-<span id="cb219-2"><a href="miscellaneous.html#cb219-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_raster</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> density)) <span class="op">+</span></span>
-<span id="cb219-3"><a href="miscellaneous.html#cb219-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_fill_viridis_c</span>() <span class="op">+</span></span>
-<span id="cb219-4"><a href="miscellaneous.html#cb219-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Waiting time (minutes)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Eruption duration (minutes)&quot;</span>,</span>
-<span id="cb219-5"><a href="miscellaneous.html#cb219-5" aria-hidden="true"></a>       <span class="dt">fill =</span> <span class="st">&quot;Density&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="miscellaneous.html#cb210-1" aria-hidden="true"></a><span class="kw">ggplot</span>(faithfuld, <span class="kw">aes</span>(waiting, eruptions)) <span class="op">+</span></span>
+<span id="cb210-2"><a href="miscellaneous.html#cb210-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_raster</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> density)) <span class="op">+</span></span>
+<span id="cb210-3"><a href="miscellaneous.html#cb210-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_fill_viridis_c</span>() <span class="op">+</span></span>
+<span id="cb210-4"><a href="miscellaneous.html#cb210-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Waiting time (minutes)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Eruption duration (minutes)&quot;</span>,</span>
+<span id="cb210-5"><a href="miscellaneous.html#cb210-5" aria-hidden="true"></a>       <span class="dt">fill =</span> <span class="st">&quot;Density&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:raster-example"></span>
 <img src="main_files/figure-html/raster-example-1.png" alt="2D kernel density of Old Faithful eruptions displayed with `geom_raster()`." width="70%" />
 <p class="caption">
@@ -691,20 +683,20 @@ Figure 11.6: 2D kernel density of Old Faithful eruptions displayed with <code>ge
 eruptions after a short wait, and long eruptions after a longer wait.</p>
 <p>A very common application of <code>geom_raster()</code> is displaying a <strong>correlation
 matrix</strong>:</p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="miscellaneous.html#cb220-1" aria-hidden="true"></a>cor_long &lt;-<span class="st"> </span>mtcars <span class="op">|</span><span class="er">&gt;</span></span>
-<span id="cb220-2"><a href="miscellaneous.html#cb220-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">select</span>(mpg, cyl, disp, hp, wt) <span class="op">|</span><span class="er">&gt;</span></span>
-<span id="cb220-3"><a href="miscellaneous.html#cb220-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">cor</span>() <span class="op">|</span><span class="er">&gt;</span></span>
-<span id="cb220-4"><a href="miscellaneous.html#cb220-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">as.data.frame</span>() <span class="op">|</span><span class="er">&gt;</span></span>
-<span id="cb220-5"><a href="miscellaneous.html#cb220-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">rownames_to_column</span>(<span class="st">&quot;var1&quot;</span>) <span class="op">|</span><span class="er">&gt;</span></span>
-<span id="cb220-6"><a href="miscellaneous.html#cb220-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="op">-</span>var1, <span class="dt">names_to =</span> <span class="st">&quot;var2&quot;</span>, <span class="dt">values_to =</span> <span class="st">&quot;correlation&quot;</span>)</span>
-<span id="cb220-7"><a href="miscellaneous.html#cb220-7" aria-hidden="true"></a></span>
-<span id="cb220-8"><a href="miscellaneous.html#cb220-8" aria-hidden="true"></a><span class="kw">ggplot</span>(cor_long, <span class="kw">aes</span>(var1, var2, <span class="dt">fill =</span> correlation)) <span class="op">+</span></span>
-<span id="cb220-9"><a href="miscellaneous.html#cb220-9" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_raster</span>() <span class="op">+</span></span>
-<span id="cb220-10"><a href="miscellaneous.html#cb220-10" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> <span class="kw">round</span>(correlation, <span class="dv">2</span>)), <span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></span>
-<span id="cb220-11"><a href="miscellaneous.html#cb220-11" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_fill_gradient2</span>(<span class="dt">low =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="dt">mid =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">high =</span> <span class="st">&quot;firebrick&quot;</span>,</span>
-<span id="cb220-12"><a href="miscellaneous.html#cb220-12" aria-hidden="true"></a>                       <span class="dt">midpoint =</span> <span class="dv">0</span>, <span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)) <span class="op">+</span></span>
-<span id="cb220-13"><a href="miscellaneous.html#cb220-13" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="ot">NULL</span>, <span class="dt">y =</span> <span class="ot">NULL</span>, <span class="dt">fill =</span> <span class="st">&quot;Correlation&quot;</span>) <span class="op">+</span></span>
-<span id="cb220-14"><a href="miscellaneous.html#cb220-14" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="miscellaneous.html#cb211-1" aria-hidden="true"></a>cor_long &lt;-<span class="st"> </span>mtcars <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb211-2"><a href="miscellaneous.html#cb211-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">select</span>(mpg, cyl, disp, hp, wt) <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb211-3"><a href="miscellaneous.html#cb211-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">cor</span>() <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb211-4"><a href="miscellaneous.html#cb211-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">as.data.frame</span>() <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb211-5"><a href="miscellaneous.html#cb211-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">rownames_to_column</span>(<span class="st">&quot;var1&quot;</span>) <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb211-6"><a href="miscellaneous.html#cb211-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="op">-</span>var1, <span class="dt">names_to =</span> <span class="st">&quot;var2&quot;</span>, <span class="dt">values_to =</span> <span class="st">&quot;correlation&quot;</span>)</span>
+<span id="cb211-7"><a href="miscellaneous.html#cb211-7" aria-hidden="true"></a></span>
+<span id="cb211-8"><a href="miscellaneous.html#cb211-8" aria-hidden="true"></a><span class="kw">ggplot</span>(cor_long, <span class="kw">aes</span>(var1, var2, <span class="dt">fill =</span> correlation)) <span class="op">+</span></span>
+<span id="cb211-9"><a href="miscellaneous.html#cb211-9" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_raster</span>() <span class="op">+</span></span>
+<span id="cb211-10"><a href="miscellaneous.html#cb211-10" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> <span class="kw">round</span>(correlation, <span class="dv">2</span>)), <span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></span>
+<span id="cb211-11"><a href="miscellaneous.html#cb211-11" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_fill_gradient2</span>(<span class="dt">low =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="dt">mid =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">high =</span> <span class="st">&quot;firebrick&quot;</span>,</span>
+<span id="cb211-12"><a href="miscellaneous.html#cb211-12" aria-hidden="true"></a>                       <span class="dt">midpoint =</span> <span class="dv">0</span>, <span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)) <span class="op">+</span></span>
+<span id="cb211-13"><a href="miscellaneous.html#cb211-13" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="ot">NULL</span>, <span class="dt">y =</span> <span class="ot">NULL</span>, <span class="dt">fill =</span> <span class="st">&quot;Correlation&quot;</span>) <span class="op">+</span></span>
+<span id="cb211-14"><a href="miscellaneous.html#cb211-14" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:cor-heatmap"></span>
 <img src="main_files/figure-html/cor-heatmap-1.png" alt="Correlation matrix of selected `mtcars` variables." width="70%" />
 <p class="caption">
@@ -717,18 +709,18 @@ Figure 11.7: Correlation matrix of selected <code>mtcars</code> variables.
 <p><code>geom_density_2d()</code> draws contour lines of a 2D kernel density estimate over a
 scatterplot. It shows where observations cluster without relying on point
 overplotting or opacity:</p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="miscellaneous.html#cb221-1" aria-hidden="true"></a><span class="kw">library</span>(palmerpenguins)</span></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="miscellaneous.html#cb212-1" aria-hidden="true"></a><span class="kw">library</span>(palmerpenguins)</span></code></pre></div>
 <pre><code>## 
 ## Attaching package: &#39;palmerpenguins&#39;</code></pre>
 <pre><code>## The following objects are masked from &#39;package:datasets&#39;:
 ## 
 ##     penguins, penguins_raw</code></pre>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="miscellaneous.html#cb224-1" aria-hidden="true"></a>penguins <span class="op">|</span><span class="er">&gt;</span></span>
-<span id="cb224-2"><a href="miscellaneous.html#cb224-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(bill_length_mm), <span class="op">!</span><span class="kw">is.na</span>(bill_depth_mm)) <span class="op">|</span><span class="er">&gt;</span></span>
-<span id="cb224-3"><a href="miscellaneous.html#cb224-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(bill_length_mm, bill_depth_mm)) <span class="op">+</span></span>
-<span id="cb224-4"><a href="miscellaneous.html#cb224-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></span>
-<span id="cb224-5"><a href="miscellaneous.html#cb224-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_density_2d</span>(<span class="dt">colour =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="op">+</span></span>
-<span id="cb224-6"><a href="miscellaneous.html#cb224-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Bill length (mm)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Bill depth (mm)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="miscellaneous.html#cb215-1" aria-hidden="true"></a>penguins <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb215-2"><a href="miscellaneous.html#cb215-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(bill_length_mm), <span class="op">!</span><span class="kw">is.na</span>(bill_depth_mm)) <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb215-3"><a href="miscellaneous.html#cb215-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(bill_length_mm, bill_depth_mm)) <span class="op">+</span></span>
+<span id="cb215-4"><a href="miscellaneous.html#cb215-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></span>
+<span id="cb215-5"><a href="miscellaneous.html#cb215-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_density_2d</span>(<span class="dt">colour =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="op">+</span></span>
+<span id="cb215-6"><a href="miscellaneous.html#cb215-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Bill length (mm)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Bill depth (mm)&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:density2d-example"></span>
 <img src="main_files/figure-html/density2d-example-1.png" alt="Bill length vs depth in Palmer penguins, with 2D density contours." width="70%" />
 <p class="caption">
@@ -737,12 +729,12 @@ Figure 11.8: Bill length vs depth in Palmer penguins, with 2D density contours.
 </div>
 <p><code>geom_density_2d_filled()</code> shades the regions between contours, which can be
 easier to read:</p>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="miscellaneous.html#cb225-1" aria-hidden="true"></a>penguins <span class="op">|</span><span class="er">&gt;</span></span>
-<span id="cb225-2"><a href="miscellaneous.html#cb225-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(bill_length_mm), <span class="op">!</span><span class="kw">is.na</span>(bill_depth_mm)) <span class="op">|</span><span class="er">&gt;</span></span>
-<span id="cb225-3"><a href="miscellaneous.html#cb225-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(bill_length_mm, bill_depth_mm)) <span class="op">+</span></span>
-<span id="cb225-4"><a href="miscellaneous.html#cb225-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_density_2d_filled</span>(<span class="dt">alpha =</span> <span class="fl">0.7</span>) <span class="op">+</span></span>
-<span id="cb225-5"><a href="miscellaneous.html#cb225-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
-<span id="cb225-6"><a href="miscellaneous.html#cb225-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Bill length (mm)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Bill depth (mm)&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;Density level&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="miscellaneous.html#cb216-1" aria-hidden="true"></a>penguins <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb216-2"><a href="miscellaneous.html#cb216-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(bill_length_mm), <span class="op">!</span><span class="kw">is.na</span>(bill_depth_mm)) <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb216-3"><a href="miscellaneous.html#cb216-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(bill_length_mm, bill_depth_mm)) <span class="op">+</span></span>
+<span id="cb216-4"><a href="miscellaneous.html#cb216-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_density_2d_filled</span>(<span class="dt">alpha =</span> <span class="fl">0.7</span>) <span class="op">+</span></span>
+<span id="cb216-5"><a href="miscellaneous.html#cb216-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
+<span id="cb216-6"><a href="miscellaneous.html#cb216-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Bill length (mm)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Bill depth (mm)&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;Density level&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:density2d-filled"></span>
 <img src="main_files/figure-html/density2d-filled-1.png" alt="Filled 2D density contours for Palmer penguin bill measurements." width="70%" />
 <p class="caption">
@@ -759,15 +751,15 @@ instead. Combined with <code>method.args = list(family = binomial)</code>, this 
 <p>In MAS2903 Regression, you will learn that logistic regression models the
 probability of a binary outcome as a sigmoid (S-shaped) function of predictors.
 <code>geom_smooth()</code> can overlay this fitted curve directly on a plot:</p>
-<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="miscellaneous.html#cb226-1" aria-hidden="true"></a><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(hp, am)) <span class="op">+</span></span>
-<span id="cb226-2"><a href="miscellaneous.html#cb226-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">height =</span> <span class="fl">0.05</span>, <span class="dt">width =</span> <span class="dv">0</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
-<span id="cb226-3"><a href="miscellaneous.html#cb226-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_smooth</span>(</span>
-<span id="cb226-4"><a href="miscellaneous.html#cb226-4" aria-hidden="true"></a>    <span class="dt">method      =</span> <span class="st">&quot;glm&quot;</span>,</span>
-<span id="cb226-5"><a href="miscellaneous.html#cb226-5" aria-hidden="true"></a>    <span class="dt">method.args =</span> <span class="kw">list</span>(<span class="dt">family =</span> binomial),</span>
-<span id="cb226-6"><a href="miscellaneous.html#cb226-6" aria-hidden="true"></a>    <span class="dt">se          =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb226-7"><a href="miscellaneous.html#cb226-7" aria-hidden="true"></a>    <span class="dt">colour      =</span> <span class="st">&quot;steelblue&quot;</span></span>
-<span id="cb226-8"><a href="miscellaneous.html#cb226-8" aria-hidden="true"></a>  ) <span class="op">+</span></span>
-<span id="cb226-9"><a href="miscellaneous.html#cb226-9" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Horsepower&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;P(manual transmission)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="miscellaneous.html#cb217-1" aria-hidden="true"></a><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(hp, am)) <span class="op">+</span></span>
+<span id="cb217-2"><a href="miscellaneous.html#cb217-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">height =</span> <span class="fl">0.05</span>, <span class="dt">width =</span> <span class="dv">0</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
+<span id="cb217-3"><a href="miscellaneous.html#cb217-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_smooth</span>(</span>
+<span id="cb217-4"><a href="miscellaneous.html#cb217-4" aria-hidden="true"></a>    <span class="dt">method      =</span> <span class="st">&quot;glm&quot;</span>,</span>
+<span id="cb217-5"><a href="miscellaneous.html#cb217-5" aria-hidden="true"></a>    <span class="dt">method.args =</span> <span class="kw">list</span>(<span class="dt">family =</span> binomial),</span>
+<span id="cb217-6"><a href="miscellaneous.html#cb217-6" aria-hidden="true"></a>    <span class="dt">se          =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb217-7"><a href="miscellaneous.html#cb217-7" aria-hidden="true"></a>    <span class="dt">colour      =</span> <span class="st">&quot;steelblue&quot;</span></span>
+<span id="cb217-8"><a href="miscellaneous.html#cb217-8" aria-hidden="true"></a>  ) <span class="op">+</span></span>
+<span id="cb217-9"><a href="miscellaneous.html#cb217-9" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Horsepower&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;P(manual transmission)&quot;</span>)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:glm-smooth"></span>
 <img src="main_files/figure-html/glm-smooth-1.png" alt="Probability of manual transmission by horsepower, with logistic regression curve." width="70%" />
@@ -790,12 +782,12 @@ that aggregated data can tell a systematically misleading story.</p>
 <p>The Palmer penguin dataset provides a clean illustration. When bill length and
 bill depth are plotted for all penguins together, the relationship appears
 <em>negative</em>:</p>
-<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="miscellaneous.html#cb228-1" aria-hidden="true"></a>penguins <span class="op">|</span><span class="er">&gt;</span></span>
-<span id="cb228-2"><a href="miscellaneous.html#cb228-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(bill_length_mm), <span class="op">!</span><span class="kw">is.na</span>(bill_depth_mm)) <span class="op">|</span><span class="er">&gt;</span></span>
-<span id="cb228-3"><a href="miscellaneous.html#cb228-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(bill_length_mm, bill_depth_mm)) <span class="op">+</span></span>
-<span id="cb228-4"><a href="miscellaneous.html#cb228-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.4</span>) <span class="op">+</span></span>
-<span id="cb228-5"><a href="miscellaneous.html#cb228-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb228-6"><a href="miscellaneous.html#cb228-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Bill length (mm)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Bill depth (mm)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="miscellaneous.html#cb219-1" aria-hidden="true"></a>penguins <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb219-2"><a href="miscellaneous.html#cb219-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(bill_length_mm), <span class="op">!</span><span class="kw">is.na</span>(bill_depth_mm)) <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb219-3"><a href="miscellaneous.html#cb219-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(bill_length_mm, bill_depth_mm)) <span class="op">+</span></span>
+<span id="cb219-4"><a href="miscellaneous.html#cb219-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.4</span>) <span class="op">+</span></span>
+<span id="cb219-5"><a href="miscellaneous.html#cb219-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb219-6"><a href="miscellaneous.html#cb219-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Bill length (mm)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Bill depth (mm)&quot;</span>)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:simpsons-all"></span>
 <img src="main_files/figure-html/simpsons-all-1.png" alt="Bill length vs bill depth across all penguin species --- a negative trend." width="70%" />
@@ -804,12 +796,12 @@ Figure 11.11: Bill length vs bill depth across all penguin species — a negativ
 </p>
 </div>
 <p>Yet within each species, the relationship is clearly <em>positive</em>:</p>
-<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="miscellaneous.html#cb230-1" aria-hidden="true"></a>penguins <span class="op">|</span><span class="er">&gt;</span></span>
-<span id="cb230-2"><a href="miscellaneous.html#cb230-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(bill_length_mm), <span class="op">!</span><span class="kw">is.na</span>(bill_depth_mm)) <span class="op">|</span><span class="er">&gt;</span></span>
-<span id="cb230-3"><a href="miscellaneous.html#cb230-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(bill_length_mm, bill_depth_mm, <span class="dt">colour =</span> species)) <span class="op">+</span></span>
-<span id="cb230-4"><a href="miscellaneous.html#cb230-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></span>
-<span id="cb230-5"><a href="miscellaneous.html#cb230-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb230-6"><a href="miscellaneous.html#cb230-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Bill length (mm)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Bill depth (mm)&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;Species&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="miscellaneous.html#cb221-1" aria-hidden="true"></a>penguins <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb221-2"><a href="miscellaneous.html#cb221-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(bill_length_mm), <span class="op">!</span><span class="kw">is.na</span>(bill_depth_mm)) <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb221-3"><a href="miscellaneous.html#cb221-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(bill_length_mm, bill_depth_mm, <span class="dt">colour =</span> species)) <span class="op">+</span></span>
+<span id="cb221-4"><a href="miscellaneous.html#cb221-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></span>
+<span id="cb221-5"><a href="miscellaneous.html#cb221-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb221-6"><a href="miscellaneous.html#cb221-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Bill length (mm)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Bill depth (mm)&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;Species&quot;</span>)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:simpsons-species"></span>
 <img src="main_files/figure-html/simpsons-species-1.png" alt="Bill length vs bill depth within each penguin species --- a positive trend in every group." width="70%" />
@@ -834,25 +826,25 @@ such <strong>spurious correlations</strong> at tylervigen.com/spurious-correlati
 famous example finds that US per capita cheese consumption and the number of
 people who died by becoming tangled in their bedsheets tracked each other almost
 perfectly over a ten-year period:</p>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="miscellaneous.html#cb232-1" aria-hidden="true"></a><span class="co"># Data from tylervigen.com/spurious-correlations</span></span>
-<span id="cb232-2"><a href="miscellaneous.html#cb232-2" aria-hidden="true"></a>cheese_bed &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
-<span id="cb232-3"><a href="miscellaneous.html#cb232-3" aria-hidden="true"></a>  <span class="dt">year            =</span> <span class="dv">2000</span><span class="op">:</span><span class="dv">2009</span>,</span>
-<span id="cb232-4"><a href="miscellaneous.html#cb232-4" aria-hidden="true"></a>  <span class="dt">cheese_lbs      =</span> <span class="kw">c</span>(<span class="fl">29.8</span>, <span class="fl">30.1</span>, <span class="fl">30.5</span>, <span class="fl">30.6</span>, <span class="fl">31.3</span>,</span>
-<span id="cb232-5"><a href="miscellaneous.html#cb232-5" aria-hidden="true"></a>                      <span class="fl">31.7</span>, <span class="fl">32.6</span>, <span class="fl">33.1</span>, <span class="fl">32.7</span>, <span class="fl">32.8</span>),</span>
-<span id="cb232-6"><a href="miscellaneous.html#cb232-6" aria-hidden="true"></a>  <span class="dt">bedsheet_deaths =</span> <span class="kw">c</span>(<span class="dv">327</span>, <span class="dv">456</span>, <span class="dv">509</span>, <span class="dv">497</span>, <span class="dv">596</span>,</span>
-<span id="cb232-7"><a href="miscellaneous.html#cb232-7" aria-hidden="true"></a>                      <span class="dv">573</span>, <span class="dv">661</span>, <span class="dv">741</span>, <span class="dv">809</span>, <span class="dv">717</span>)</span>
-<span id="cb232-8"><a href="miscellaneous.html#cb232-8" aria-hidden="true"></a>)</span>
-<span id="cb232-9"><a href="miscellaneous.html#cb232-9" aria-hidden="true"></a></span>
-<span id="cb232-10"><a href="miscellaneous.html#cb232-10" aria-hidden="true"></a><span class="kw">ggplot</span>(cheese_bed, <span class="kw">aes</span>(cheese_lbs, bedsheet_deaths)) <span class="op">+</span></span>
-<span id="cb232-11"><a href="miscellaneous.html#cb232-11" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></span>
-<span id="cb232-12"><a href="miscellaneous.html#cb232-12" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb232-13"><a href="miscellaneous.html#cb232-13" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> year), <span class="dt">vjust =</span> <span class="fl">-0.8</span>, <span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></span>
-<span id="cb232-14"><a href="miscellaneous.html#cb232-14" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(</span>
-<span id="cb232-15"><a href="miscellaneous.html#cb232-15" aria-hidden="true"></a>    <span class="dt">x       =</span> <span class="st">&quot;US per capita cheese consumption (lbs)&quot;</span>,</span>
-<span id="cb232-16"><a href="miscellaneous.html#cb232-16" aria-hidden="true"></a>    <span class="dt">y       =</span> <span class="st">&quot;Deaths by bedsheet tangling&quot;</span>,</span>
-<span id="cb232-17"><a href="miscellaneous.html#cb232-17" aria-hidden="true"></a>    <span class="dt">title   =</span> <span class="st">&quot;Correlation = 0.95 (to 2 d.p.)&quot;</span>,</span>
-<span id="cb232-18"><a href="miscellaneous.html#cb232-18" aria-hidden="true"></a>    <span class="dt">caption =</span> <span class="st">&quot;Source: tylervigen.com/spurious-correlations&quot;</span></span>
-<span id="cb232-19"><a href="miscellaneous.html#cb232-19" aria-hidden="true"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="miscellaneous.html#cb223-1" aria-hidden="true"></a><span class="co"># Data from tylervigen.com/spurious-correlations</span></span>
+<span id="cb223-2"><a href="miscellaneous.html#cb223-2" aria-hidden="true"></a>cheese_bed &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
+<span id="cb223-3"><a href="miscellaneous.html#cb223-3" aria-hidden="true"></a>  <span class="dt">year            =</span> <span class="dv">2000</span><span class="op">:</span><span class="dv">2009</span>,</span>
+<span id="cb223-4"><a href="miscellaneous.html#cb223-4" aria-hidden="true"></a>  <span class="dt">cheese_lbs      =</span> <span class="kw">c</span>(<span class="fl">29.8</span>, <span class="fl">30.1</span>, <span class="fl">30.5</span>, <span class="fl">30.6</span>, <span class="fl">31.3</span>,</span>
+<span id="cb223-5"><a href="miscellaneous.html#cb223-5" aria-hidden="true"></a>                      <span class="fl">31.7</span>, <span class="fl">32.6</span>, <span class="fl">33.1</span>, <span class="fl">32.7</span>, <span class="fl">32.8</span>),</span>
+<span id="cb223-6"><a href="miscellaneous.html#cb223-6" aria-hidden="true"></a>  <span class="dt">bedsheet_deaths =</span> <span class="kw">c</span>(<span class="dv">327</span>, <span class="dv">456</span>, <span class="dv">509</span>, <span class="dv">497</span>, <span class="dv">596</span>,</span>
+<span id="cb223-7"><a href="miscellaneous.html#cb223-7" aria-hidden="true"></a>                      <span class="dv">573</span>, <span class="dv">661</span>, <span class="dv">741</span>, <span class="dv">809</span>, <span class="dv">717</span>)</span>
+<span id="cb223-8"><a href="miscellaneous.html#cb223-8" aria-hidden="true"></a>)</span>
+<span id="cb223-9"><a href="miscellaneous.html#cb223-9" aria-hidden="true"></a></span>
+<span id="cb223-10"><a href="miscellaneous.html#cb223-10" aria-hidden="true"></a><span class="kw">ggplot</span>(cheese_bed, <span class="kw">aes</span>(cheese_lbs, bedsheet_deaths)) <span class="op">+</span></span>
+<span id="cb223-11"><a href="miscellaneous.html#cb223-11" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></span>
+<span id="cb223-12"><a href="miscellaneous.html#cb223-12" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb223-13"><a href="miscellaneous.html#cb223-13" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> year), <span class="dt">vjust =</span> <span class="fl">-0.8</span>, <span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></span>
+<span id="cb223-14"><a href="miscellaneous.html#cb223-14" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(</span>
+<span id="cb223-15"><a href="miscellaneous.html#cb223-15" aria-hidden="true"></a>    <span class="dt">x       =</span> <span class="st">&quot;US per capita cheese consumption (lbs)&quot;</span>,</span>
+<span id="cb223-16"><a href="miscellaneous.html#cb223-16" aria-hidden="true"></a>    <span class="dt">y       =</span> <span class="st">&quot;Deaths by bedsheet tangling&quot;</span>,</span>
+<span id="cb223-17"><a href="miscellaneous.html#cb223-17" aria-hidden="true"></a>    <span class="dt">title   =</span> <span class="st">&quot;Correlation = 0.95 (to 2 d.p.)&quot;</span>,</span>
+<span id="cb223-18"><a href="miscellaneous.html#cb223-18" aria-hidden="true"></a>    <span class="dt">caption =</span> <span class="st">&quot;Source: tylervigen.com/spurious-correlations&quot;</span></span>
+<span id="cb223-19"><a href="miscellaneous.html#cb223-19" aria-hidden="true"></a>  )</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:spurious"></span>
 <img src="main_files/figure-html/spurious-1.png" alt="US cheese consumption vs deaths by bedsheet tangling: a spurious correlation." width="70%" />
@@ -879,19 +871,19 @@ means, standard deviations, and correlations, but radically different visual
 structures. The <code>datasauRus</code> package extends this idea dramatically with the
 <code>datasaurus_dozen</code>: thirteen datasets that share the same summary statistics but
 look completely different when plotted.</p>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="miscellaneous.html#cb234-1" aria-hidden="true"></a><span class="kw">library</span>(datasauRus)</span>
-<span id="cb234-2"><a href="miscellaneous.html#cb234-2" aria-hidden="true"></a></span>
-<span id="cb234-3"><a href="miscellaneous.html#cb234-3" aria-hidden="true"></a>datasaurus_dozen <span class="op">|</span><span class="er">&gt;</span></span>
-<span id="cb234-4"><a href="miscellaneous.html#cb234-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">group_by</span>(dataset) <span class="op">|</span><span class="er">&gt;</span></span>
-<span id="cb234-5"><a href="miscellaneous.html#cb234-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">summarise</span>(</span>
-<span id="cb234-6"><a href="miscellaneous.html#cb234-6" aria-hidden="true"></a>    <span class="dt">mean_x =</span> <span class="kw">round</span>(<span class="kw">mean</span>(x), <span class="dv">1</span>),</span>
-<span id="cb234-7"><a href="miscellaneous.html#cb234-7" aria-hidden="true"></a>    <span class="dt">mean_y =</span> <span class="kw">round</span>(<span class="kw">mean</span>(y), <span class="dv">1</span>),</span>
-<span id="cb234-8"><a href="miscellaneous.html#cb234-8" aria-hidden="true"></a>    <span class="dt">sd_x   =</span> <span class="kw">round</span>(<span class="kw">sd</span>(x), <span class="dv">1</span>),</span>
-<span id="cb234-9"><a href="miscellaneous.html#cb234-9" aria-hidden="true"></a>    <span class="dt">sd_y   =</span> <span class="kw">round</span>(<span class="kw">sd</span>(y), <span class="dv">1</span>),</span>
-<span id="cb234-10"><a href="miscellaneous.html#cb234-10" aria-hidden="true"></a>    <span class="dt">cor    =</span> <span class="kw">round</span>(<span class="kw">cor</span>(x, y), <span class="dv">2</span>),</span>
-<span id="cb234-11"><a href="miscellaneous.html#cb234-11" aria-hidden="true"></a>    <span class="dt">.groups =</span> <span class="st">&quot;drop&quot;</span></span>
-<span id="cb234-12"><a href="miscellaneous.html#cb234-12" aria-hidden="true"></a>  ) <span class="op">|</span><span class="er">&gt;</span></span>
-<span id="cb234-13"><a href="miscellaneous.html#cb234-13" aria-hidden="true"></a><span class="st">  </span><span class="kw">head</span>(<span class="dv">6</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="miscellaneous.html#cb225-1" aria-hidden="true"></a><span class="kw">library</span>(datasauRus)</span>
+<span id="cb225-2"><a href="miscellaneous.html#cb225-2" aria-hidden="true"></a></span>
+<span id="cb225-3"><a href="miscellaneous.html#cb225-3" aria-hidden="true"></a>datasaurus_dozen <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb225-4"><a href="miscellaneous.html#cb225-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">group_by</span>(dataset) <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb225-5"><a href="miscellaneous.html#cb225-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">summarise</span>(</span>
+<span id="cb225-6"><a href="miscellaneous.html#cb225-6" aria-hidden="true"></a>    <span class="dt">mean_x =</span> <span class="kw">round</span>(<span class="kw">mean</span>(x), <span class="dv">1</span>),</span>
+<span id="cb225-7"><a href="miscellaneous.html#cb225-7" aria-hidden="true"></a>    <span class="dt">mean_y =</span> <span class="kw">round</span>(<span class="kw">mean</span>(y), <span class="dv">1</span>),</span>
+<span id="cb225-8"><a href="miscellaneous.html#cb225-8" aria-hidden="true"></a>    <span class="dt">sd_x   =</span> <span class="kw">round</span>(<span class="kw">sd</span>(x), <span class="dv">1</span>),</span>
+<span id="cb225-9"><a href="miscellaneous.html#cb225-9" aria-hidden="true"></a>    <span class="dt">sd_y   =</span> <span class="kw">round</span>(<span class="kw">sd</span>(y), <span class="dv">1</span>),</span>
+<span id="cb225-10"><a href="miscellaneous.html#cb225-10" aria-hidden="true"></a>    <span class="dt">cor    =</span> <span class="kw">round</span>(<span class="kw">cor</span>(x, y), <span class="dv">2</span>),</span>
+<span id="cb225-11"><a href="miscellaneous.html#cb225-11" aria-hidden="true"></a>    <span class="dt">.groups =</span> <span class="st">&quot;drop&quot;</span></span>
+<span id="cb225-12"><a href="miscellaneous.html#cb225-12" aria-hidden="true"></a>  ) <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb225-13"><a href="miscellaneous.html#cb225-13" aria-hidden="true"></a><span class="st">  </span><span class="kw">head</span>(<span class="dv">6</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 6
 ##   dataset  mean_x mean_y  sd_x  sd_y   cor
 ##   &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -902,11 +894,11 @@ look completely different when plotted.</p>
 ## 5 dots       54.3   47.8  16.8  26.9 -0.06
 ## 6 h_lines    54.3   47.8  16.8  26.9 -0.06</code></pre>
 <p>Despite the identical statistics, the datasets look nothing alike:</p>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="miscellaneous.html#cb236-1" aria-hidden="true"></a><span class="kw">ggplot</span>(datasaurus_dozen, <span class="kw">aes</span>(x, y)) <span class="op">+</span></span>
-<span id="cb236-2"><a href="miscellaneous.html#cb236-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.5</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
-<span id="cb236-3"><a href="miscellaneous.html#cb236-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>dataset, <span class="dt">ncol =</span> <span class="dv">3</span>) <span class="op">+</span></span>
-<span id="cb236-4"><a href="miscellaneous.html#cb236-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme_void</span>(<span class="dt">base_size =</span> <span class="dv">10</span>) <span class="op">+</span></span>
-<span id="cb236-5"><a href="miscellaneous.html#cb236-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">strip.text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">8</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="miscellaneous.html#cb227-1" aria-hidden="true"></a><span class="kw">ggplot</span>(datasaurus_dozen, <span class="kw">aes</span>(x, y)) <span class="op">+</span></span>
+<span id="cb227-2"><a href="miscellaneous.html#cb227-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.5</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
+<span id="cb227-3"><a href="miscellaneous.html#cb227-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>dataset, <span class="dt">ncol =</span> <span class="dv">3</span>) <span class="op">+</span></span>
+<span id="cb227-4"><a href="miscellaneous.html#cb227-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme_void</span>(<span class="dt">base_size =</span> <span class="dv">10</span>) <span class="op">+</span></span>
+<span id="cb227-5"><a href="miscellaneous.html#cb227-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">strip.text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">8</span>))</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:datasaurus-plot"></span>
 <img src="main_files/figure-html/datasaurus-plot-1.png" alt="The `datasaurus_dozen`: thirteen datasets with identical summary statistics but very different shapes." width="100%" />
 <p class="caption">
@@ -927,29 +919,29 @@ sceptical.</p>
 <p>Snow plotted the deaths on a street map of Soho and marked the locations of the
 neighbourhood’s public water pumps. The spatial pattern was unmistakable: deaths
 clustered tightly around a single pump on Broad Street.</p>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="miscellaneous.html#cb237-1" aria-hidden="true"></a><span class="kw">library</span>(HistData)</span>
-<span id="cb237-2"><a href="miscellaneous.html#cb237-2" aria-hidden="true"></a></span>
-<span id="cb237-3"><a href="miscellaneous.html#cb237-3" aria-hidden="true"></a><span class="kw">ggplot</span>() <span class="op">+</span></span>
-<span id="cb237-4"><a href="miscellaneous.html#cb237-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(</span>
-<span id="cb237-5"><a href="miscellaneous.html#cb237-5" aria-hidden="true"></a>    <span class="dt">data  =</span> Snow.deaths,</span>
-<span id="cb237-6"><a href="miscellaneous.html#cb237-6" aria-hidden="true"></a>    <span class="kw">aes</span>(x, y),</span>
-<span id="cb237-7"><a href="miscellaneous.html#cb237-7" aria-hidden="true"></a>    <span class="dt">size  =</span> <span class="dv">1</span>,</span>
-<span id="cb237-8"><a href="miscellaneous.html#cb237-8" aria-hidden="true"></a>    <span class="dt">alpha =</span> <span class="fl">0.5</span></span>
-<span id="cb237-9"><a href="miscellaneous.html#cb237-9" aria-hidden="true"></a>  ) <span class="op">+</span></span>
-<span id="cb237-10"><a href="miscellaneous.html#cb237-10" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(</span>
-<span id="cb237-11"><a href="miscellaneous.html#cb237-11" aria-hidden="true"></a>    <span class="dt">data   =</span> Snow.pumps,</span>
-<span id="cb237-12"><a href="miscellaneous.html#cb237-12" aria-hidden="true"></a>    <span class="kw">aes</span>(x, y),</span>
-<span id="cb237-13"><a href="miscellaneous.html#cb237-13" aria-hidden="true"></a>    <span class="dt">shape  =</span> <span class="dv">3</span>,</span>
-<span id="cb237-14"><a href="miscellaneous.html#cb237-14" aria-hidden="true"></a>    <span class="dt">size   =</span> <span class="dv">4</span>,</span>
-<span id="cb237-15"><a href="miscellaneous.html#cb237-15" aria-hidden="true"></a>    <span class="dt">stroke =</span> <span class="fl">1.5</span>,</span>
-<span id="cb237-16"><a href="miscellaneous.html#cb237-16" aria-hidden="true"></a>    <span class="dt">colour =</span> <span class="st">&quot;firebrick&quot;</span></span>
-<span id="cb237-17"><a href="miscellaneous.html#cb237-17" aria-hidden="true"></a>  ) <span class="op">+</span></span>
-<span id="cb237-18"><a href="miscellaneous.html#cb237-18" aria-hidden="true"></a><span class="st">  </span><span class="kw">coord_equal</span>() <span class="op">+</span></span>
-<span id="cb237-19"><a href="miscellaneous.html#cb237-19" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme_void</span>() <span class="op">+</span></span>
-<span id="cb237-20"><a href="miscellaneous.html#cb237-20" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(</span>
-<span id="cb237-21"><a href="miscellaneous.html#cb237-21" aria-hidden="true"></a>    <span class="dt">title   =</span> <span class="st">&quot;John Snow&#39;s cholera map, Soho 1854&quot;</span>,</span>
-<span id="cb237-22"><a href="miscellaneous.html#cb237-22" aria-hidden="true"></a>    <span class="dt">caption =</span> <span class="st">&quot;Dots: cholera deaths  |  Red crosses: water pumps&quot;</span></span>
-<span id="cb237-23"><a href="miscellaneous.html#cb237-23" aria-hidden="true"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="miscellaneous.html#cb228-1" aria-hidden="true"></a><span class="kw">library</span>(HistData)</span>
+<span id="cb228-2"><a href="miscellaneous.html#cb228-2" aria-hidden="true"></a></span>
+<span id="cb228-3"><a href="miscellaneous.html#cb228-3" aria-hidden="true"></a><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb228-4"><a href="miscellaneous.html#cb228-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(</span>
+<span id="cb228-5"><a href="miscellaneous.html#cb228-5" aria-hidden="true"></a>    <span class="dt">data  =</span> Snow.deaths,</span>
+<span id="cb228-6"><a href="miscellaneous.html#cb228-6" aria-hidden="true"></a>    <span class="kw">aes</span>(x, y),</span>
+<span id="cb228-7"><a href="miscellaneous.html#cb228-7" aria-hidden="true"></a>    <span class="dt">size  =</span> <span class="dv">1</span>,</span>
+<span id="cb228-8"><a href="miscellaneous.html#cb228-8" aria-hidden="true"></a>    <span class="dt">alpha =</span> <span class="fl">0.5</span></span>
+<span id="cb228-9"><a href="miscellaneous.html#cb228-9" aria-hidden="true"></a>  ) <span class="op">+</span></span>
+<span id="cb228-10"><a href="miscellaneous.html#cb228-10" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(</span>
+<span id="cb228-11"><a href="miscellaneous.html#cb228-11" aria-hidden="true"></a>    <span class="dt">data   =</span> Snow.pumps,</span>
+<span id="cb228-12"><a href="miscellaneous.html#cb228-12" aria-hidden="true"></a>    <span class="kw">aes</span>(x, y),</span>
+<span id="cb228-13"><a href="miscellaneous.html#cb228-13" aria-hidden="true"></a>    <span class="dt">shape  =</span> <span class="dv">3</span>,</span>
+<span id="cb228-14"><a href="miscellaneous.html#cb228-14" aria-hidden="true"></a>    <span class="dt">size   =</span> <span class="dv">4</span>,</span>
+<span id="cb228-15"><a href="miscellaneous.html#cb228-15" aria-hidden="true"></a>    <span class="dt">stroke =</span> <span class="fl">1.5</span>,</span>
+<span id="cb228-16"><a href="miscellaneous.html#cb228-16" aria-hidden="true"></a>    <span class="dt">colour =</span> <span class="st">&quot;firebrick&quot;</span></span>
+<span id="cb228-17"><a href="miscellaneous.html#cb228-17" aria-hidden="true"></a>  ) <span class="op">+</span></span>
+<span id="cb228-18"><a href="miscellaneous.html#cb228-18" aria-hidden="true"></a><span class="st">  </span><span class="kw">coord_equal</span>() <span class="op">+</span></span>
+<span id="cb228-19"><a href="miscellaneous.html#cb228-19" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme_void</span>() <span class="op">+</span></span>
+<span id="cb228-20"><a href="miscellaneous.html#cb228-20" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(</span>
+<span id="cb228-21"><a href="miscellaneous.html#cb228-21" aria-hidden="true"></a>    <span class="dt">title   =</span> <span class="st">&quot;John Snow&#39;s cholera map, Soho 1854&quot;</span>,</span>
+<span id="cb228-22"><a href="miscellaneous.html#cb228-22" aria-hidden="true"></a>    <span class="dt">caption =</span> <span class="st">&quot;Dots: cholera deaths  |  Red crosses: water pumps&quot;</span></span>
+<span id="cb228-23"><a href="miscellaneous.html#cb228-23" aria-hidden="true"></a>  )</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:snow-map"></span>
 <img src="main_files/figure-html/snow-map-1.png" alt="John Snow's 1854 cholera data: deaths (dots) and water pump locations (red crosses)." width="70%" />
 <p class="caption">
@@ -1032,8 +1024,8 @@ bars) when the data support them;</li>
 <li>using facets to show more comparisons in the same area.</li>
 </ul>
 </div>
-<div id="summary-5" class="section level4 unnumbered hasAnchor" number="">
-<h4>Summary<a href="miscellaneous.html#summary-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="summary-6" class="section level4 unnumbered hasAnchor" number="">
+<h4>Summary<a href="miscellaneous.html#summary-6" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <table>
 <colgroup>
 <col width="50%" />
@@ -1093,6 +1085,10 @@ Log scale enables us to see both the body and the outliers, but makes it difficu
 ## Simpson's paradox
 
 (Placeholder: When aggregated data tells a different story from disaggregated data, importance of considering confounding variables)
+
+## Riemann's zeta function
+
+(Placeholder: Polar graph of Riemann's zeta function pracma::zeta(0.5+t*1i), geom_path(aes(x = Im(z), y = Re(z))))
 
 -->
 
