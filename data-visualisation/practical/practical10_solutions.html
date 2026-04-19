@@ -381,7 +381,7 @@ ni_sdz &lt;- read_sf(&quot;geography-sdz2021-esri-shapefile/SDZ2021.shp&quot;) |
 
 names(ni_sdz)
 st_crs(ni_sdz)$epsg</code></pre>
-<p><strong>Answer</strong>: The shapefile has columns SDZ2021_cd, SDZ2021_nm, DEA2014_cd, DEA2014_nm, LGD2014_cd, LGD2014_nm, Area_ha, Perim_km, and geometry. After st_transform(4326) the CRS is EPSG 4326 (WGS84), which leaflet requires.</p>
+<p><strong>Answer</strong>: The shapefile has columns <code>SDZ2021_cd</code>, <code>SDZ2021_nm</code>, <code>DEA2014_cd</code>, <code>DEA2014_nm</code>, <code>LGD2014_cd</code>, <code>LGD2014_nm</code>, <code>Area_ha</code>, <code>Perim_km</code>, and <code>geometry</code>. After <code>st_transform(4326)</code> the CRS is EPSG 4326 (WGS84), which <code>leaflet</code> requires.</p>
 <p>The shapefile contains only boundary and administrative metadata. The
 accompanying census dataset <code>ni-census-sdz2021.csv</code> (available on Canvas)
 records population counts and density per Super Data Zone. If you wanted to
@@ -398,7 +398,7 @@ structure?</p>
 leaflet(ni_sdz) |&gt;
   addTiles() |&gt;
   addPolygons()</code></pre>
-<p><strong>Answer</strong>: The ggplot2 equivalent would be ggplot(ni_sdz) + geom_sf() with a rnaturalearth background added via a separate geom_sf() layer. In leaflet, addTiles() replaces the background layer and addPolygons() replaces geom_sf(). The result is already pannable and zoomable, unlike the static ggplot2 output.</p>
+<p><strong>Answer</strong>: The <code>ggplot2</code> equivalent would be <code>ggplot(ni_sdz) + geom_sf()</code> with a <code>rnaturalearth</code> background added via a separate <code>geom_sf()</code> layer. In <code>leaflet</code>, <code>addTiles()</code> replaces the background layer and <code>addPolygons()</code> replaces <code>geom_sf()</code>. The result is already pannable and zoomable, unlike the static <code>ggplot2</code> output.</p>
 <p>Run this in the console (not inside a Shiny app). The result should be a
 pannable, zoomable map of Northern Ireland with all Super Data Zone
 boundaries drawn.</p></li>
@@ -472,7 +472,7 @@ shinyApp(ui = ui, server = server)</code></pre></li>
 <li><p>Try changing the <code>selectInput</code> to use <code>DEA2014_nm</code> (District Electoral
 Areas) instead of <code>LGD2014_nm</code>. How does the number of choices and the
 granularity of the filtered map change?</p>
-<p><strong>Answer</strong>: Replacing LGD2014_nm with DEA2014_nm gives around 80 choices instead of 11, each covering a smaller geographic area. The filtered maps show fewer polygons but at finer resolution, making it easier to inspect individual Super Data Zones within a single electoral area.</p></li>
+<p><strong>Answer</strong>: Replacing <code>LGD2014_nm</code> with <code>DEA2014_nm</code> gives around 80 choices instead of 11, each covering a smaller geographic area. The filtered maps show fewer polygons but at finer resolution, making it easier to inspect individual Super Data Zones within a single electoral area.</p></li>
 </ol>
 <hr />
 </div>
@@ -508,11 +508,11 @@ strings are used directly?</p>
 leaflet(cables) |&gt;
   addTiles() |&gt;
   addPolylines(color = ~color, weight = 2, opacity = 0.8)</code></pre>
-<p><strong>Answer</strong>: The ggplot2 equivalent is ggplot() + geom_sf(data = cables, aes(colour = color)) + scale_colour_identity(). In leaflet, addPolylines(color = ~color) replaces both geom_sf() and scale_colour_identity() — the tilde formula passes the hex strings directly without a palette mapping. The result is immediately interactive: no fixed bounding box is needed as the user can zoom and pan across the globe.</p></li>
+<p><strong>Answer</strong>: The <code>ggplot2</code> equivalent is <code>ggplot() + geom_sf(data = cables, aes(colour = color)) + scale_colour_identity()</code>. In <code>leaflet</code>, <code>addPolylines(color = ~color)</code> replaces both <code>geom_sf()</code> and <code>scale_colour_identity()</code> — the tilde formula passes the hex strings directly without a palette mapping. The result is immediately interactive: no fixed bounding box is needed as the user can zoom and pan across the globe.</p></li>
 <li><p>Extend the map with hover labels. Follow the pattern from the notes: use
 <code>highlightOptions()</code> to thicken the hovered cable, and wrap the label HTML
 strings with <code>lapply(..., htmltools::HTML)</code>. Include the cable name,
-length, <code>rfs</code>, and owners in the label.</p>
+length, <code>rfs</code>, and <code>owners</code> in the label.</p>
 <pre class="r"><code>leaflet(cables) |&gt;
   addTiles() |&gt;
   addPolylines(
@@ -598,7 +598,7 @@ shinyApp(ui = ui, server = server)</code></pre></li>
 <li><p>Explore a few different <code>rfs</code> values. Do any dates have many cables? Do
 some have only one? What does this tell you about the history of submarine
 cable deployment?</p>
-<p><strong>Answer</strong>: Most early dates (1989-1995) have only one or two cables, reflecting the small number of international connections at the time. Dates in the early 2000s often have several cables, corresponding to the telecom boom. Selecting a recent date may show no cables if no cable in the dataset has that exact rfs string — a reminder that real data requires cleaning before analysis.</p></li>
+<p><strong>Answer</strong>: Most early dates (1989–1995) have only one or two cables, reflecting the small number of international connections at the time. Dates in the early 2000s often have several cables, corresponding to the telecom boom. Selecting a recent date may show no cables if no cable in the dataset has that exact <code>rfs</code> string — a reminder that real data requires cleaning before analysis.</p></li>
 </ol>
 <hr />
 </div>
