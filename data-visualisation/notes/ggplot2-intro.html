@@ -196,7 +196,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#why-tidy-data-matters"><i class="fa fa-check"></i><b>3.2.1</b> Why tidy data matters</a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#grammar-of-graphics-ggplot2-package"><i class="fa fa-check"></i><b>3.3</b> Grammar of graphics &amp; <code>ggplot2</code> package</a></li>
-<li class="chapter" data-level="3.4" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#one-variable-continuous-1"><i class="fa fa-check"></i><b>3.4</b> One variable, continuous</a>
+<li class="chapter" data-level="3.4" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#one-var-cont"><i class="fa fa-check"></i><b>3.4</b> One variable, continuous</a>
 <ul>
 <li class="chapter" data-level="3.4.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#histogram-ggplot2"><i class="fa fa-check"></i><b>3.4.1</b> Histograms with <code>geom_histogram()</code></a></li>
 <li class="chapter" data-level="3.4.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#density-ggplot2"><i class="fa fa-check"></i><b>3.4.2</b> Density plots with <code>geom_density()</code></a></li>
@@ -229,7 +229,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.9.1" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#combining-multiple-geoms"><i class="fa fa-check"></i><b>3.9.1</b> Combining multiple geoms</a></li>
 <li class="chapter" data-level="3.9.2" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#computed-geoms"><i class="fa fa-check"></i><b>3.9.2</b> Computed geoms</a></li>
 <li class="chapter" data-level="3.9.3" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#multiple-datasets"><i class="fa fa-check"></i><b>3.9.3</b> Plotting multiple datasets</a></li>
-<li class="chapter" data-level="3.9.4" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#overlaying-straight-lines"><i class="fa fa-check"></i><b>3.9.4</b> Overlaying (straight) lines</a></li>
+<li class="chapter" data-level="3.9.4" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#overlay-st-line"><i class="fa fa-check"></i><b>3.9.4</b> Overlaying (straight) lines</a></li>
 <li class="chapter" data-level="3.9.5" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#histogram-with-density-overlay"><i class="fa fa-check"></i><b>3.9.5</b> Histogram with density overlay</a></li>
 </ul></li>
 <li class="chapter" data-level="3.10" data-path="ggplot2-intro.html"><a href="ggplot2-intro.html#syntax-notes"><i class="fa fa-check"></i><b>3.10</b> Syntax notes</a>
@@ -491,17 +491,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.1.2" data-path="miscellaneous.html"><a href="miscellaneous.html#geom-violin"><i class="fa fa-check"></i><b>11.1.2</b> <code>geom_violin()</code></a></li>
 <li class="chapter" data-level="11.1.3" data-path="miscellaneous.html"><a href="miscellaneous.html#geom-text"><i class="fa fa-check"></i><b>11.1.3</b> <code>geom_text()</code> and <code>geom_label()</code></a></li>
 <li class="chapter" data-level="11.1.4" data-path="miscellaneous.html"><a href="miscellaneous.html#geom-raster"><i class="fa fa-check"></i><b>11.1.4</b> <code>geom_raster()</code></a></li>
-<li class="chapter" data-level="11.1.5" data-path="miscellaneous.html"><a href="miscellaneous.html#geom-density-2d"><i class="fa fa-check"></i><b>11.1.5</b> <code>geom_density_2d()</code></a></li>
-<li class="chapter" data-level="11.1.6" data-path="miscellaneous.html"><a href="miscellaneous.html#geom-smooth-glm"><i class="fa fa-check"></i><b>11.1.6</b> <code>geom_smooth(method = "glm")</code></a></li>
+<li class="chapter" data-level="11.1.5" data-path="miscellaneous.html"><a href="miscellaneous.html#bivariate-density"><i class="fa fa-check"></i><b>11.1.5</b> Two views of the same bivariate distribution</a></li>
+<li class="chapter" data-level="11.1.6" data-path="miscellaneous.html"><a href="miscellaneous.html#geom-density-2d"><i class="fa fa-check"></i><b>11.1.6</b> <code>geom_density_2d()</code></a></li>
+<li class="chapter" data-level="11.1.7" data-path="miscellaneous.html"><a href="miscellaneous.html#geom-smooth-glm"><i class="fa fa-check"></i><b>11.1.7</b> <code>geom_smooth(method = "glm")</code></a></li>
 </ul></li>
-<li class="chapter" data-level="11.2" data-path="miscellaneous.html"><a href="miscellaneous.html#case-studies"><i class="fa fa-check"></i><b>11.2</b> Case studies and principles</a>
-<ul>
-<li class="chapter" data-level="11.2.1" data-path="miscellaneous.html"><a href="miscellaneous.html#simpsons-paradox"><i class="fa fa-check"></i><b>11.2.1</b> Simpson’s paradox</a></li>
-<li class="chapter" data-level="11.2.2" data-path="miscellaneous.html"><a href="miscellaneous.html#correlation-causation"><i class="fa fa-check"></i><b>11.2.2</b> Correlation does not imply causation</a></li>
-<li class="chapter" data-level="11.2.3" data-path="miscellaneous.html"><a href="miscellaneous.html#datasaurus"><i class="fa fa-check"></i><b>11.2.3</b> Numerical summaries alone are insufficient</a></li>
-<li class="chapter" data-level="11.2.4" data-path="miscellaneous.html"><a href="miscellaneous.html#john-snow"><i class="fa fa-check"></i><b>11.2.4</b> John Snow and the cholera map</a></li>
-<li class="chapter" data-level="11.2.5" data-path="miscellaneous.html"><a href="miscellaneous.html#tufte-principles"><i class="fa fa-check"></i><b>11.2.5</b> What makes a good visualisation?</a></li>
-</ul></li>
+<li class="chapter" data-level="11.2" data-path="miscellaneous.html"><a href="miscellaneous.html#simpsons-paradox"><i class="fa fa-check"></i><b>11.2</b> Simpson’s paradox</a></li>
+<li class="chapter" data-level="11.3" data-path="miscellaneous.html"><a href="miscellaneous.html#correlation-causation"><i class="fa fa-check"></i><b>11.3</b> Correlation does not imply causation</a></li>
+<li class="chapter" data-level="11.4" data-path="miscellaneous.html"><a href="miscellaneous.html#datasaurus"><i class="fa fa-check"></i><b>11.4</b> Numerical summaries alone are insufficient</a></li>
+<li class="chapter" data-level="11.5" data-path="miscellaneous.html"><a href="miscellaneous.html#john-snow"><i class="fa fa-check"></i><b>11.5</b> John Snow and the cholera map</a></li>
+<li class="chapter" data-level="11.6" data-path="miscellaneous.html"><a href="miscellaneous.html#next-year"><i class="fa fa-check"></i><b>11.6</b> Connecting with next year’s modules</a></li>
+<li class="chapter" data-level="11.7" data-path="miscellaneous.html"><a href="miscellaneous.html#tufte-principles"><i class="fa fa-check"></i><b>11.7</b> What makes a good visualisation?</a></li>
+<li class="chapter" data-level="11.8" data-path="miscellaneous.html"><a href="miscellaneous.html#riemann"><i class="fa fa-check"></i><b>11.8</b> Visualising a mathematical function: Riemann’s zeta function</a></li>
+<li class="chapter" data-level="11.9" data-path="miscellaneous.html"><a href="miscellaneous.html#miscellaneous-summary"><i class="fa fa-check"></i><b>11.9</b> Summary</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
@@ -637,8 +638,8 @@ bars)</li>
 after we have seen several examples.</p>
 <div style="page-break-after: always;"></div>
 </div>
-<div id="one-variable-continuous-1" class="section level2 hasAnchor" number="3.4">
-<h2><span class="header-section-number">3.4</span> One variable, continuous<a href="ggplot2-intro.html#one-variable-continuous-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="one-var-cont" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> One variable, continuous<a href="ggplot2-intro.html#one-var-cont" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>When we have a single continuous variable, we want to understand its
 <strong>distribution</strong>.</p>
 <div id="histogram-ggplot2" class="section level3 hasAnchor" number="3.4.1">
@@ -990,8 +991,8 @@ Figure 3.18: Plotting data from two different data frames.
 within each geom. For an alternative that avoids the separate summary data
 frame entirely, see Section <a href="stats.html#stat-summary">7.5</a> in Chapter <a href="stats.html#stats">7</a>.</p>
 </div>
-<div id="overlaying-straight-lines" class="section level3 hasAnchor" number="3.9.4">
-<h3><span class="header-section-number">3.9.4</span> Overlaying (straight) lines<a href="ggplot2-intro.html#overlaying-straight-lines" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="overlay-st-line" class="section level3 hasAnchor" number="3.9.4">
+<h3><span class="header-section-number">3.9.4</span> Overlaying (straight) lines<a href="ggplot2-intro.html#overlay-st-line" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>You might notice that Figure <a href="ggplot2-intro.html#fig:scatter-lm-ggplot">3.17</a> is equivalent to Figure <a href="sec-intro.html#fig:scatter-regression">2.6</a>. For the latter, which uses base R, we had to add the line manually using <code>abline()</code>. For the former, we don’t need to pre-compute the regression line, <strong>but we can</strong> if we want:</p>
 <div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="ggplot2-intro.html#cb55-1" aria-hidden="true"></a>lm0 &lt;-<span class="st"> </span><span class="kw">lm</span>(hwy <span class="op">~</span><span class="st"> </span>displ, <span class="dt">data =</span> mpg)</span>
 <span id="cb55-2"><a href="ggplot2-intro.html#cb55-2" aria-hidden="true"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy)) <span class="op">+</span></span>
