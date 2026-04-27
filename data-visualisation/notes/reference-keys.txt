@@ -137,8 +137,6 @@ fig:cor-heatmap
 fig:raster-example
 fig:faithful-filled
 fig:faithful-contour
-fig:density2d-example
-fig:density2d-filled
 fig:glm-smooth
 fig:simpsons-all
 fig:simpsons-species
@@ -388,7 +386,6 @@ geom-violin
 geom-text
 geom-raster
 bivariate-density
-geom-density-2d
 geom-smooth-glm
 simpsons-paradox
 correlation-causation
