@@ -572,7 +572,7 @@ highway fuel economy by engine displacement adds a dashed horizontal line at
 the mean, making it easy to see which engine sizes are above and below average:</p>
 <div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="miscellaneous.html#cb205-1" aria-hidden="true"></a>mean_hwy &lt;-<span class="st"> </span><span class="kw">mean</span>(mpg<span class="op">$</span>hwy)</span>
 <span id="cb205-2"><a href="miscellaneous.html#cb205-2" aria-hidden="true"></a></span>
-<span id="cb205-3"><a href="miscellaneous.html#cb205-3" aria-hidden="true"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(displ, hwy)) <span class="op">+</span></span>
+<span id="cb205-3"><a href="miscellaneous.html#cb205-3" aria-hidden="true"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy)) <span class="op">+</span></span>
 <span id="cb205-4"><a href="miscellaneous.html#cb205-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.4</span>) <span class="op">+</span></span>
 <span id="cb205-5"><a href="miscellaneous.html#cb205-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> mean_hwy, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;firebrick&quot;</span>) <span class="op">+</span></span>
 <span id="cb205-6"><a href="miscellaneous.html#cb205-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Engine displacement (litres)&quot;</span>,</span>
@@ -589,7 +589,7 @@ supply the intercept and slope directly from a pre-computed <code>lm()</code> ob
 more general use is adding a <strong>line of equality</strong> (slope 1, intercept 0) when
 comparing two measurements on the same scale — for example, city versus
 highway fuel economy:</p>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="miscellaneous.html#cb206-1" aria-hidden="true"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(cty, hwy)) <span class="op">+</span></span>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="miscellaneous.html#cb206-1" aria-hidden="true"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> cty, <span class="dt">y =</span> hwy)) <span class="op">+</span></span>
 <span id="cb206-2"><a href="miscellaneous.html#cb206-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.4</span>) <span class="op">+</span></span>
 <span id="cb206-3"><a href="miscellaneous.html#cb206-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="dv">0</span>, <span class="dt">slope =</span> <span class="dv">1</span>, <span class="dt">colour =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="op">+</span></span>
 <span id="cb206-4"><a href="miscellaneous.html#cb206-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;City fuel economy (mpg)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Highway fuel economy (mpg)&quot;</span>)</span></code></pre></div>
@@ -609,7 +609,7 @@ suspended the convertibility of the US dollar to gold, ending the Bretton Woods
 system:</p>
 <div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="miscellaneous.html#cb207-1" aria-hidden="true"></a><span class="kw">library</span>(lubridate)</span>
 <span id="cb207-2"><a href="miscellaneous.html#cb207-2" aria-hidden="true"></a></span>
-<span id="cb207-3"><a href="miscellaneous.html#cb207-3" aria-hidden="true"></a><span class="kw">ggplot</span>(economics, <span class="kw">aes</span>(date, psavert)) <span class="op">+</span></span>
+<span id="cb207-3"><a href="miscellaneous.html#cb207-3" aria-hidden="true"></a><span class="kw">ggplot</span>(economics, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> psavert)) <span class="op">+</span></span>
 <span id="cb207-4"><a href="miscellaneous.html#cb207-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
 <span id="cb207-5"><a href="miscellaneous.html#cb207-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_vline</span>(</span>
 <span id="cb207-6"><a href="miscellaneous.html#cb207-6" aria-hidden="true"></a>    <span class="dt">xintercept =</span> <span class="kw">as.Date</span>(<span class="st">&quot;1971-08-15&quot;</span>),</span>
@@ -637,7 +637,7 @@ unlike a boxplot, it reveals the full shape of the distribution via a smoothed
 density estimate mirrored on both sides. Violins are widest where data are most
 dense, so a bimodal group shows two bulges — information that a boxplot’s
 quartile box cannot convey.</p>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="miscellaneous.html#cb208-1" aria-hidden="true"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(class, hwy)) <span class="op">+</span></span>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="miscellaneous.html#cb208-1" aria-hidden="true"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> class, <span class="dt">y =</span> hwy)) <span class="op">+</span></span>
 <span id="cb208-2"><a href="miscellaneous.html#cb208-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_violin</span>(<span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
 <span id="cb208-3"><a href="miscellaneous.html#cb208-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Vehicle class&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Highway fuel economy (mpg)&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:violin-example"></span>
@@ -648,7 +648,7 @@ Figure 11.4: Distribution of highway fuel economy by vehicle class (violin).
 </div>
 <p>It is common to overlay a boxplot on the violin to show summary statistics
 alongside the distributional shape:</p>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="miscellaneous.html#cb209-1" aria-hidden="true"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(class, hwy)) <span class="op">+</span></span>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="miscellaneous.html#cb209-1" aria-hidden="true"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> class, <span class="dt">y =</span> hwy)) <span class="op">+</span></span>
 <span id="cb209-2"><a href="miscellaneous.html#cb209-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_violin</span>(<span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.4</span>) <span class="op">+</span></span>
 <span id="cb209-3"><a href="miscellaneous.html#cb209-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">width =</span> <span class="fl">0.15</span>, <span class="dt">outlier.shape =</span> <span class="ot">NA</span>) <span class="op">+</span></span>
 <span id="cb209-4"><a href="miscellaneous.html#cb209-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Vehicle class&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Highway fuel economy (mpg)&quot;</span>)</span></code></pre></div>
@@ -732,7 +732,7 @@ Figure 11.8: Correlation matrix of selected <code>mtcars</code> variables.
 Faithful geyser data, stored on a regular grid of eruption duration and waiting
 time values. This provides a ready-made example of <code>geom_raster()</code> applied to
 a continuous density:</p>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="miscellaneous.html#cb214-1" aria-hidden="true"></a><span class="kw">ggplot</span>(faithfuld, <span class="kw">aes</span>(waiting, eruptions)) <span class="op">+</span></span>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="miscellaneous.html#cb214-1" aria-hidden="true"></a><span class="kw">ggplot</span>(faithfuld, <span class="kw">aes</span>(<span class="dt">x =</span> waiting, <span class="dt">y =</span> eruptions)) <span class="op">+</span></span>
 <span id="cb214-2"><a href="miscellaneous.html#cb214-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_raster</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> density)) <span class="op">+</span></span>
 <span id="cb214-3"><a href="miscellaneous.html#cb214-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_fill_viridis_c</span>() <span class="op">+</span></span>
 <span id="cb214-4"><a href="miscellaneous.html#cb214-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Waiting time (minutes)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Eruption duration (minutes)&quot;</span>,</span>
@@ -754,7 +754,7 @@ in two complementary styles.</p>
 <p>The filled density representation treats density as a continuous surface and
 shades regions according to their estimated density — directly analogous to
 <code>geom_raster()</code> with a pre-computed grid:</p>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="miscellaneous.html#cb215-1" aria-hidden="true"></a><span class="kw">ggplot</span>(faithful, <span class="kw">aes</span>(waiting, eruptions)) <span class="op">+</span></span>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="miscellaneous.html#cb215-1" aria-hidden="true"></a><span class="kw">ggplot</span>(faithful, <span class="kw">aes</span>(<span class="dt">x =</span> waiting, <span class="dt">y =</span> eruptions)) <span class="op">+</span></span>
 <span id="cb215-2"><a href="miscellaneous.html#cb215-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_density_2d_filled</span>(<span class="dt">alpha =</span> <span class="fl">0.8</span>) <span class="op">+</span></span>
 <span id="cb215-3"><a href="miscellaneous.html#cb215-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Waiting time (minutes)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Eruption duration (minutes)&quot;</span>,</span>
 <span id="cb215-4"><a href="miscellaneous.html#cb215-4" aria-hidden="true"></a>       <span class="dt">fill =</span> <span class="st">&quot;Density level&quot;</span>)</span></code></pre></div>
@@ -767,7 +767,7 @@ Figure 11.10: Old Faithful eruption data: filled 2D density estimate.
 <p>The contour representation draws isolines at fixed density levels. Overlaying
 these on a scatterplot shows both the raw data and the estimated density
 structure simultaneously:</p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="miscellaneous.html#cb216-1" aria-hidden="true"></a><span class="kw">ggplot</span>(faithful, <span class="kw">aes</span>(waiting, eruptions)) <span class="op">+</span></span>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="miscellaneous.html#cb216-1" aria-hidden="true"></a><span class="kw">ggplot</span>(faithful, <span class="kw">aes</span>(<span class="dt">x =</span> waiting, <span class="dt">y =</span> eruptions)) <span class="op">+</span></span>
 <span id="cb216-2"><a href="miscellaneous.html#cb216-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></span>
 <span id="cb216-3"><a href="miscellaneous.html#cb216-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_density_2d</span>(<span class="dt">colour =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="op">+</span></span>
 <span id="cb216-4"><a href="miscellaneous.html#cb216-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Waiting time (minutes)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Eruption duration (minutes)&quot;</span>)</span></code></pre></div>
@@ -795,7 +795,7 @@ opacity:</p>
 ##     penguins, penguins_raw</code></pre>
 <div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="miscellaneous.html#cb220-1" aria-hidden="true"></a>penguins <span class="op">|</span><span class="er">&gt;</span></span>
 <span id="cb220-2"><a href="miscellaneous.html#cb220-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(bill_length_mm), <span class="op">!</span><span class="kw">is.na</span>(bill_depth_mm)) <span class="op">|</span><span class="er">&gt;</span></span>
-<span id="cb220-3"><a href="miscellaneous.html#cb220-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(bill_length_mm, bill_depth_mm)) <span class="op">+</span></span>
+<span id="cb220-3"><a href="miscellaneous.html#cb220-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> bill_length_mm, <span class="dt">y =</span> bill_depth_mm)) <span class="op">+</span></span>
 <span id="cb220-4"><a href="miscellaneous.html#cb220-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></span>
 <span id="cb220-5"><a href="miscellaneous.html#cb220-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_density_2d</span>(<span class="dt">colour =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="op">+</span></span>
 <span id="cb220-6"><a href="miscellaneous.html#cb220-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Bill length (mm)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Bill depth (mm)&quot;</span>)</span></code></pre></div>
@@ -809,7 +809,7 @@ Figure 11.12: Bill length vs depth in Palmer penguins, with 2D density contours.
 easier to read:</p>
 <div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="miscellaneous.html#cb221-1" aria-hidden="true"></a>penguins <span class="op">|</span><span class="er">&gt;</span></span>
 <span id="cb221-2"><a href="miscellaneous.html#cb221-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(bill_length_mm), <span class="op">!</span><span class="kw">is.na</span>(bill_depth_mm)) <span class="op">|</span><span class="er">&gt;</span></span>
-<span id="cb221-3"><a href="miscellaneous.html#cb221-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(bill_length_mm, bill_depth_mm)) <span class="op">+</span></span>
+<span id="cb221-3"><a href="miscellaneous.html#cb221-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> bill_length_mm, <span class="dt">y =</span> bill_depth_mm)) <span class="op">+</span></span>
 <span id="cb221-4"><a href="miscellaneous.html#cb221-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_density_2d_filled</span>(<span class="dt">alpha =</span> <span class="fl">0.7</span>) <span class="op">+</span></span>
 <span id="cb221-5"><a href="miscellaneous.html#cb221-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
 <span id="cb221-6"><a href="miscellaneous.html#cb221-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Bill length (mm)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Bill depth (mm)&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;Density level&quot;</span>)</span></code></pre></div>
@@ -869,7 +869,7 @@ bill depth are plotted for all penguins together, the relationship appears
 <em>negative</em>:</p>
 <div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="miscellaneous.html#cb224-1" aria-hidden="true"></a>penguins <span class="op">|</span><span class="er">&gt;</span></span>
 <span id="cb224-2"><a href="miscellaneous.html#cb224-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(bill_length_mm), <span class="op">!</span><span class="kw">is.na</span>(bill_depth_mm)) <span class="op">|</span><span class="er">&gt;</span></span>
-<span id="cb224-3"><a href="miscellaneous.html#cb224-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(bill_length_mm, bill_depth_mm)) <span class="op">+</span></span>
+<span id="cb224-3"><a href="miscellaneous.html#cb224-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> bill_length_mm, <span class="dt">y =</span> bill_depth_mm)) <span class="op">+</span></span>
 <span id="cb224-4"><a href="miscellaneous.html#cb224-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.4</span>) <span class="op">+</span></span>
 <span id="cb224-5"><a href="miscellaneous.html#cb224-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
 <span id="cb224-6"><a href="miscellaneous.html#cb224-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Bill length (mm)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Bill depth (mm)&quot;</span>)</span></code></pre></div>
@@ -883,7 +883,7 @@ Figure 11.15: Bill length vs bill depth across all penguin species — a negativ
 <p>Yet within each species, the relationship is clearly <em>positive</em>:</p>
 <div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="miscellaneous.html#cb226-1" aria-hidden="true"></a>penguins <span class="op">|</span><span class="er">&gt;</span></span>
 <span id="cb226-2"><a href="miscellaneous.html#cb226-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(bill_length_mm), <span class="op">!</span><span class="kw">is.na</span>(bill_depth_mm)) <span class="op">|</span><span class="er">&gt;</span></span>
-<span id="cb226-3"><a href="miscellaneous.html#cb226-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(bill_length_mm, bill_depth_mm, <span class="dt">colour =</span> species)) <span class="op">+</span></span>
+<span id="cb226-3"><a href="miscellaneous.html#cb226-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> bill_length_mm, <span class="dt">y =</span> bill_depth_mm, <span class="dt">colour =</span> species)) <span class="op">+</span></span>
 <span id="cb226-4"><a href="miscellaneous.html#cb226-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></span>
 <span id="cb226-5"><a href="miscellaneous.html#cb226-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
 <span id="cb226-6"><a href="miscellaneous.html#cb226-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Bill length (mm)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Bill depth (mm)&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;Species&quot;</span>)</span></code></pre></div>
@@ -920,7 +920,7 @@ perfectly over a ten-year period:</p>
 <span id="cb228-7"><a href="miscellaneous.html#cb228-7" aria-hidden="true"></a>                      <span class="dv">573</span>, <span class="dv">661</span>, <span class="dv">741</span>, <span class="dv">809</span>, <span class="dv">717</span>)</span>
 <span id="cb228-8"><a href="miscellaneous.html#cb228-8" aria-hidden="true"></a>)</span>
 <span id="cb228-9"><a href="miscellaneous.html#cb228-9" aria-hidden="true"></a></span>
-<span id="cb228-10"><a href="miscellaneous.html#cb228-10" aria-hidden="true"></a><span class="kw">ggplot</span>(cheese_bed, <span class="kw">aes</span>(cheese_lbs, bedsheet_deaths)) <span class="op">+</span></span>
+<span id="cb228-10"><a href="miscellaneous.html#cb228-10" aria-hidden="true"></a><span class="kw">ggplot</span>(cheese_bed, <span class="kw">aes</span>(<span class="dt">x =</span> cheese_lbs, <span class="dt">y =</span> bedsheet_deaths)) <span class="op">+</span></span>
 <span id="cb228-11"><a href="miscellaneous.html#cb228-11" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></span>
 <span id="cb228-12"><a href="miscellaneous.html#cb228-12" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
 <span id="cb228-13"><a href="miscellaneous.html#cb228-13" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> year), <span class="dt">vjust =</span> <span class="fl">-0.8</span>, <span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></span>
@@ -979,7 +979,7 @@ look completely different when plotted.</p>
 ## 5 dots       54.3   47.8  16.8  26.9 -0.06
 ## 6 h_lines    54.3   47.8  16.8  26.9 -0.06</code></pre>
 <p>Despite the identical statistics, the datasets look nothing alike:</p>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="miscellaneous.html#cb232-1" aria-hidden="true"></a><span class="kw">ggplot</span>(datasaurus_dozen, <span class="kw">aes</span>(x, y)) <span class="op">+</span></span>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="miscellaneous.html#cb232-1" aria-hidden="true"></a><span class="kw">ggplot</span>(datasaurus_dozen, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span></span>
 <span id="cb232-2"><a href="miscellaneous.html#cb232-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.5</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
 <span id="cb232-3"><a href="miscellaneous.html#cb232-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>dataset, <span class="dt">ncol =</span> <span class="dv">3</span>) <span class="op">+</span></span>
 <span id="cb232-4"><a href="miscellaneous.html#cb232-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme_void</span>(<span class="dt">base_size =</span> <span class="dv">10</span>) <span class="op">+</span></span>
@@ -1009,13 +1009,13 @@ clustered tightly around a single pump on Broad Street.</p>
 <span id="cb233-3"><a href="miscellaneous.html#cb233-3" aria-hidden="true"></a><span class="kw">ggplot</span>() <span class="op">+</span></span>
 <span id="cb233-4"><a href="miscellaneous.html#cb233-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(</span>
 <span id="cb233-5"><a href="miscellaneous.html#cb233-5" aria-hidden="true"></a>    <span class="dt">data  =</span> Snow.deaths,</span>
-<span id="cb233-6"><a href="miscellaneous.html#cb233-6" aria-hidden="true"></a>    <span class="kw">aes</span>(x, y),</span>
+<span id="cb233-6"><a href="miscellaneous.html#cb233-6" aria-hidden="true"></a>    <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y),</span>
 <span id="cb233-7"><a href="miscellaneous.html#cb233-7" aria-hidden="true"></a>    <span class="dt">size  =</span> <span class="dv">1</span>,</span>
 <span id="cb233-8"><a href="miscellaneous.html#cb233-8" aria-hidden="true"></a>    <span class="dt">alpha =</span> <span class="fl">0.5</span></span>
 <span id="cb233-9"><a href="miscellaneous.html#cb233-9" aria-hidden="true"></a>  ) <span class="op">+</span></span>
 <span id="cb233-10"><a href="miscellaneous.html#cb233-10" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(</span>
 <span id="cb233-11"><a href="miscellaneous.html#cb233-11" aria-hidden="true"></a>    <span class="dt">data   =</span> Snow.pumps,</span>
-<span id="cb233-12"><a href="miscellaneous.html#cb233-12" aria-hidden="true"></a>    <span class="kw">aes</span>(x, y),</span>
+<span id="cb233-12"><a href="miscellaneous.html#cb233-12" aria-hidden="true"></a>    <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y),</span>
 <span id="cb233-13"><a href="miscellaneous.html#cb233-13" aria-hidden="true"></a>    <span class="dt">shape  =</span> <span class="dv">3</span>,</span>
 <span id="cb233-14"><a href="miscellaneous.html#cb233-14" aria-hidden="true"></a>    <span class="dt">size   =</span> <span class="dv">4</span>,</span>
 <span id="cb233-15"><a href="miscellaneous.html#cb233-15" aria-hidden="true"></a>    <span class="dt">stroke =</span> <span class="fl">1.5</span>,</span>
