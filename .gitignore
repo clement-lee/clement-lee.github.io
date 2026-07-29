@@ -7,8 +7,21 @@ slides/src/renv/python/
 slides/src/renv/sandbox/
 slides/src/renv/staging/
 slides/src/render-report.md
+
+# knitr/rmarkdown/LaTeX render byproducts (rendering writes these next to
+# the source; final output only ever belongs in slides/, never src/)
+slides/src/**/*.knit.md
+slides/src/**/*.aux
 slides/src/**/*.log
+slides/src/**/*.tex
+slides/src/**/*.nav
+slides/src/**/*.snm
+slides/src/**/*.toc
+slides/src/**/*.vrb
+slides/src/**/*.out
 slides/src/**/*_cache/
 slides/src/**/*_files/
+slides/src/**/figure/
+
 .Rhistory
 .Rproj.user/
