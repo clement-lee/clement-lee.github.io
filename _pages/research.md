@@ -6,29 +6,29 @@ permalink: /research/
 
 ## Publications
 
-1. **[A Bayesian Nonparametric Stochastic Block Model for Directed Acyclic Graphs](https://doi.org/10.1080/10618600.2025.2554680)** (2026)  
+1. **[Conditional Extremes with Graphical Models](https://doi.org/10.1016/j.csda.2026.108452)** (2027)  
+   A. Farrell, E. F. Eastoe and **C. Lee**. *Computational Statistics & Data Analysis* **225**, 108452.
+
+2. **[The Hierarchical Stochastic Block Model for Replicated Networks](https://link.springer.com/article/10.1007/s11222-026-10929-2)** (2026)  
+   M. Battiston and **C. Lee**. *Statistics and Computing* **36** (4), 180.
+
+3. **[A Bayesian Nonparametric Stochastic Block Model for Directed Acyclic Graphs](https://doi.org/10.1080/10618600.2025.2554680)** (2026)  
    **C. Lee** and M. Battiston. *Journal of Computational and Graphical Statistics* **35** (2), 619--630.
 
-2. **[How to Utilise the Limited Supply of Vaccines for Mpox Control in Thailand among High-Risk GBMSM](https://doi.org/10.1016/j.idm.2026.03.002)** (2026)  
+4. **[How to Utilise the Limited Supply of Vaccines for Mpox Control in Thailand among High-Risk GBMSM](https://doi.org/10.1016/j.idm.2026.03.002)** (2026)  
    S. Jirapanakorn, B. Hunsin, A. Endo, **C. Lee**, S. Jin, B. S. L. Dickens and T. Theparod. *Infectious Disease Modelling* **11** (3), 1009--1021.
 
-3. **[Evidencing Preferential Attachment in Dependency Network Evolution](https://arxiv.org/abs/2509.12135)** (2025)  
+5. **[Evidencing Preferential Attachment in Dependency Network Evolution](https://arxiv.org/abs/2509.12135)** (2025)  
    **C. Lee**. arXiv preprint arXiv:2509.12135.
 
-4. **[Learning Growth Mechanisms of Tail Realistic Preferential Attachment Models from Network Degree Distributions](https://arxiv.org/abs/2506.18726)** (2025)  
+6. **[Learning Growth Mechanisms of Tail Realistic Preferential Attachment Models from Network Degree Distributions](https://arxiv.org/abs/2506.18726)** (2025)  
    T. Boughen, **C. Lee** and V. Palacios Ramirez. arXiv preprint arXiv:2506.18726.
 
-5. **[Software Version Control Using Git: A Primer from UKRN](https://osf.io/preprints/osf/vqru4_v1)** (2025)  
+7. **[Software Version Control Using Git: A Primer from UKRN](https://osf.io/preprints/osf/vqru4_v1)** (2025)  
    **C. Lee** et al. OSF Preprint.
 
-6. **[Conditional Extremes with Graphical Models](https://arxiv.org/abs/2411.17013)** (2024)  
-   A. Farrell, E. F. Eastoe and **C. Lee**. arXiv preprint arXiv:2411.17013.
-
-7. **[Degree Distributions in Networks: Beyond the Power Law](https://doi.org/10.1111/stan.12355)** (2024)  
+8. **[Degree Distributions in Networks: Beyond the Power Law](https://doi.org/10.1111/stan.12355)** (2024)  
    **C. Lee**, E. Eastoe and A. Farrell. *Statistica Neerlandica* **78** (4), 702--718.
-
-8. **[The Hierarchical Stochastic Block Model for Multiple Networks](https://www.researchsquare.com/article/rs-4601684/v1)** (2024)  
-   M. Battiston and **C. Lee**. Submitted.
 
 9. **[Estimating the Asphaltene Critical Nanoaggregation Concentration Region Using Ultrasonic Measurements and Bayesian Inference](https://www.nature.com/articles/s41598-021-85926-8)** (2021)  
    A. Svalova, D. Walshaw, **C. Lee**, V. Demyanov, N. G. Parker, M. J. Povey and G. D. Abbott. *Scientific Reports* **11**, 6698.
