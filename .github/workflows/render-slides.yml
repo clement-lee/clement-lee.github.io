@@ -31,6 +31,14 @@ jobs:
 
       - uses: r-lib/actions/setup-tinytex@v2
 
+      # igraph (GLPK) and magick (ImageMagick Magick++) link against system
+      # libraries that aren't part of the default runner image; renv::restore
+      # installs a binary R package that then fails to *load* without these.
+      - name: Install system dependencies for igraph / magick
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libglpk-dev libmagick++-dev
+
       - name: Restore R packages from lockfile
         working-directory: slides/src
         run: Rscript -e 'renv::restore(prompt = FALSE)'
