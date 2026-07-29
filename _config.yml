@@ -99,4 +99,7 @@ exclude:
   - LICENSE
   - README.md
   - CNAME
+  - slides/src
+  - slides/Makefile
+  - slides/README.md
 
