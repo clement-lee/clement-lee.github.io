@@ -31,13 +31,23 @@ jobs:
 
       - uses: r-lib/actions/setup-tinytex@v2
 
-      # igraph (GLPK) and magick (ImageMagick Magick++) link against system
-      # libraries that aren't part of the default runner image; renv::restore
-      # installs a binary R package that then fails to *load* without these.
-      - name: Install system dependencies for igraph / magick
+      # Several lockfile packages (igraph, gsl, magick, ragg/textshaping/
+      # systemfonts, clipr, ...) wrap C libraries that renv::restore's binary
+      # install doesn't bring with it — it fails at *load* time, not install
+      # time. This list was computed from Posit's sysreqs API against
+      # src/renv.lock (ubuntu/24.04) rather than discovered one CI run at a
+      # time; regenerate it the same way if new packages are added to the
+      # lockfile and CI starts failing to load one of them again:
+      #   https://packagemanager.posit.co/__api__/repos/cran/sysreqs?all=false&pkgname=<pkg>&...&distribution=ubuntu&release=24.04
+      - name: Install system dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y libglpk-dev libmagick++-dev
+          sudo apt-get install -y \
+            libglpk-dev libgsl-dev libmagick++-dev \
+            libcurl4-openssl-dev libssl-dev libxml2-dev zlib1g-dev \
+            libfontconfig1-dev libfreetype6-dev libharfbuzz-dev libfribidi-dev \
+            libjpeg-dev libpng-dev libtiff-dev libwebp-dev \
+            libicu-dev libuv1-dev libx11-dev gsfonts
 
       - name: Restore R packages from lockfile
         working-directory: slides/src
