@@ -1,0 +1,166 @@
+---
+title: "Open Access Publishing" # this gets overridden by the header-includes below when output is beamer_presentation
+subtitle: "MSP Open Research Series"
+author: "Clement Lee"
+date: "January 12th, 2026"
+output: 
+  bookdown::beamer_presentation2:
+    theme: "NewcastleUniversity"
+    latex_engine: xelatex
+    slide_level: 2
+    toc: false
+classoption: "aspectratio=169"
+---
+
+## Overview
+
+* Introduction (15 min)
+* Open Access Publishing (30 min)
+* Q & A (15 min)
+* Breakout discussions (45 min)
+* Summary & next steps (15 min)
+* Lunch (at TR4)
+
+```{r setup}
+#| echo: false
+knitr::opts_chunk$set(echo = FALSE, out.width = "80%", dev.args = list(bg = "white"))
+```
+
+# Open research (OR)
+
+## General principles
+
+::: columns
+
+:::: {.column width="55%"}
+
+Accessible, transparent & reproducible; from inception to dissemination
+
+* Study and design
+* Methods and materials
+* Data
+* Code and software
+* **Publication**
+
+::::
+
+:::: {.column width="45%"}
+
+**Goals:**
+
+Resulting in outputs with
+
+* No restrictions on access
+* Open licence to facilitate reuse
+* Persistent identifier (DOI, citable)
+* Standardised open metadata
+
+::::
+
+:::
+
+## Why should research be (more) open?
+
+* Wider / fairer access to research
+* Accelerates discovery and innovation
+* Facilitates collaboration over competition
+* Improves rigour, reproducibility and transparency
+* Increases public trust
+* Funder / REF (PCE) mandates
+
+## As open as possible, as closed as necessary
+
+Balance benefits of sharing with privacy, ethical & regulartory requirements
+
+* Sensitive data
+* Privacy of participants (consent)
+* Protection of human participants, plant/animal species, historical sites
+* Commercial restrictions or concerns
+* National security
+
+# OR at Newcastle University
+
+## Library Research Services
+
+Open Research Officers:
+
+* Steve Boneham (Training and Development)
+* Heather McKenna (Open Access)
+* Bogdan Metes (Research Data, data.ncl.ac.uk)
+
+## Training
+
+* Preregistration 
+* Computational Reproducibility
+* Qualitative Research
+* Open Data
+* ......
+
+Find out more:
+
+* PGRs: through PGRDP
+* RAs & academics: elements.ncl.ac.uk
+
+## Practice sharing
+
+::: columns
+
+:::: {.column width="50%"}
+
+$$~~$$
+
+* Monthly journal club
+
+* Informal discussion
+
+* https://bit.ly/ncl-repro
+
+::::
+
+:::: {.column width="50%"}
+
+```{r tea}
+#| fig.align: "left"
+knitr::include_graphics("images/tea_logo.png")
+```
+$$~~$$
+
+::::
+
+:::
+
+##
+
+```{r ora}
+#| out.width: "60%"
+knitr::include_graphics("images/ora25.png")
+```
+
+```{r conference}
+#| out.width: "60%"
+knitr::include_graphics("images/conference.png")
+```
+
+* Look out for this year's conference and awards
+
+## Champions
+
+<!-- A community of champions helping to promote and support a more open research culture -->
+
+```{r champions}
+#| out.width: "60%"
+#| fig.align: "center"
+knitr::include_graphics("images/champions.png")
+```
+
+Within MSP:
+
+* Tiago Mesquita Santos Verissimo (Pure Mathematics)
+* Chris Harrison (Physics)
+* Me (Statistics & Data Science)
+
+## Tailor-made workshops
+
+* Need for unit-specific training
+* MSP one of the pioneering schools 
+* Let us know your ideas

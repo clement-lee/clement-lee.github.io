@@ -1,0 +1,300 @@
+---
+title: "Networks Reading Group: Model Selection"
+author: "Clement Lee"
+date: "2021-03-10 (Wed)"
+output:
+  slidy_presentation:
+    toc: true
+    duration: 30
+---
+
+
+## Background
+- Inferring stochastic block model (SBM)
+- Want to "figure out" the number of communities $K$
+- There is no ground truth, only an "optimal" number
+- How to find this "optimal" $K$?
+
+## Approach 1: Fixed
+- Examples
+  * Snijders and Nowicki (1997, Journal of Classification)
+
+## Approach 2: Inferring $K$ as a parameter
+- Examples
+  * McDaid et al. (2013, CSDA)
+  * Peixoto (2014, Physical Review E)
+  * Newman and Reinert (2016, Physical Review Letters)
+  * Ludkin (2020, CSDA)
+- Transdimensional inference algorithm usually required
+  * Split a group into two
+  * Merge two groups into one
+- Not the focus here 
+
+## Approach 3: Selecting via a criterion
+- Examples
+  * Nowicki and Snijers (2001, JASA)
+  * Bickel and Chen (2009, PNAS)
+
+- Usually based on some kind of "log-likelihood"
+  * Same criterion being called differently
+  * Different criteria with similar terms
+
+## Notation
+- $n$: number of nodes
+- $Y$: the $n\times n$ adjacency matrix
+- $Z$: the group memberships, an $n$-vector
+- $\theta$: the collection of parameters involved
+
+## A. Likelihood modularity
+- Bickel and Chen (2009, PNAS)
+- Moving from non model-based modularity
+  * In community detection algorithms
+- $\log\pi(Y|Z,\theta)=$ a function of ...
+  * Number of edges in each group
+  * Number of nodes in each group
+- Once the clustering is done, you can calculate the likelihood modularity
+
+## B. Complete data log-likelihood
+$$ \begin{aligned}
+\pi(Y,Z|\theta) &= \pi(Y|Z,\theta)\times\pi(Z|\theta)\\
+\log\pi(Y,Z|\theta) &= \log\pi(Y|Z,\theta)+\log\pi(Z|\theta)
+\end{aligned} $$
+
+- Given the group memberships (and the parameters), you can calculate this too
+- From here there are at least two routes:
+  1. Multiplying $\pi(Y,Z|\theta)$ by $\pi(\theta)$ and integrating $\theta$ out to obtain $\pi(Y,Z)\rightarrow$ **ICL** $\rightarrow$ **approximate ICL**
+  2. Integrating $Z$ out to obtain $\pi(Y|\theta)\rightarrow$ **observed data (log-)likelihood**
+
+## C. Integrated complete data log-likelihood (ICL)
+$$ \begin{aligned}
+\log\pi(Y,Z) &= \log\int\pi(Y,Z|\theta)\pi(\theta)d\theta
+\end{aligned} $$
+
+- Usually intractable
+- In some cases, (part of) the parameters $\theta$ can be integrated out through the use of conjugate priors
+  * Latouche et al. (2012, Statistical Modelling)
+  * Come & Latouche (2015, Statistical Modelling)
+- If approximation is required for the rest, it's not impossible as the number of parameters is smaller than and/or scales slower than $n$
+- Also equivalent to **Minimum Description Length (MDL)** under some assumptions
+  * Peixoto (2014, Physical Review X)
+  * Newman & Reinhart (2016, Physical Review Letters)
+
+## D. Approximate ICL
+$$ \begin{aligned}
+\log\pi(Y,Z) \approx \max_{\theta}\log\pi(Y,Z|\theta)-\frac{K^2}{2}\log\left(n(n-1)\right)-\frac{K-1}{2}\log n
+\end{aligned} $$
+
+- Proposed by Daudin et al. (2008, Statistics and Computing)
+- Examples
+<!--  * Hayashi et al. (2016, arXiv:1602.02256) -->
+  * Matias and Miele (2017, JRSSB)
+  * Matias et al. (2018, Biometrika)
+  * Stanley et al. (2019, Applied Network Science)
+  
+## E. Observed data log-likelihood
+$$ \begin{aligned}
+\log\pi(Y|\theta) &= \log\left(\sum_{Z}\pi(Y,Z|\theta)\right) \\
+ &= \log\left(\sum_{Z}\left[\pi(Y|Z,\theta)\times\pi(Z|\theta)\right]\right)
+\end{aligned} $$
+
+- Some also call this marginal log-likelihood as $Z$ is integrated out
+- True marginal log-likelihood $\log\pi(Y)$ requires integrating out $\theta$ too
+  * $\log\pi(Y|\theta)\rightarrow\log\pi(Y)$ easier than $\log\pi(Y,Z|\theta)\rightarrow\log\pi(Y|\theta)$
+- Computationally difficult & requires approximation
+
+## F. Approximate observed data log-likelihood
+- Related to variational EM methods
+
+$$ \begin{aligned}
+\log\pi(Y|\theta) &= E_Q\left[\log\pi(Y,Z|\theta) - \log Q(Z)\right] + D_{KL}\left(Q(Z)||\pi(Z|Y,\theta)\right)\\
+\log\pi(Y|\theta) &\approx ~~\quad\log\pi(Y,Z|\theta) - \log Q(Z)
+\end{aligned} $$
+
+- Once a factorisable $Q(Z)$ is found, we can approximate $\log\pi(Y|\theta)$
+- Examples
+  * Decelle et al. (2011, Physical Review E)
+  * Latouche et al. (2012, Statistical Modelling)
+  * Yan et al. (2014, Journal of Statistical Mechanics: Theory and Experiment)
+
+## G. Marginal log-likelihood
+- From observed data log-likelihood
+
+$$ \begin{aligned}
+\log\pi(Y) &= \log\int\pi(Y|\theta)\pi(\theta)d\theta
+\end{aligned} $$
+
+- From ICL
+  * Latouche et al. (2012, Statistical Modelling)
+
+$$ \begin{aligned}
+\log\pi(Y) &= E_Q\left[\log\pi(Y,Z) - \log Q(Z)\right] + D_{KL}\left(Q(Z)||\pi(Z|Y)\right)\\
+\log\pi(Y) &\approx ~~\quad\log\pi(Y,Z) - \log Q(Z)
+\end{aligned} $$
+
+- If we can compute marginal log-likelihood, the choice of $K$ is usually accounted for
+- In practice:
+  * Computational challenging even with approximation
+  * Quality of approximation hard to quantify
+
+## H. Bayesian information criterion (BIC)
+- One step back to (approximate) observed data log-likelihood $\log\pi(Y|\theta)$
+- Impose a penalty term that increases with $K$
+- Similar to BIC for regression models
+- The question now becomes, what should the penalty term be?
+  * Too heavy a penalty - underestimation
+  * Too light a penalty - overestimation
+
+## Some penalties
+- Wang and Bickel (2017, AoS)
+  * Penalty $= \lambda \frac{K(K+1)}{2} n\log n$
+  * Tended to underestimate $K$
+  * Dealt with the marginal log-likelihood
+- Saldana, Yu and Feng (2017, JCGS)
+  * Penalty $= \frac{K(K+1)}{2} \log n$
+  * Tended to overestimate $K$
+- Hu et al. (2019, JASA)
+  * Penalty $= \lambda n \log K + \frac{K(K+1)}{2} \log n$
+  * Corrected BIC
+  * Plug a single estimated $Z$ into the "log-likelihood"
+
+## Yet another direction
+- BIC approximation principle (Schwarz, 1978)
+
+$$ \begin{aligned}
+\log\pi(Y|Z)&=\log\int\pi(Y|Z,\theta)\pi(\theta)d\theta\\
+&\approx \sup_{\theta}\log\pi(Y|Z,\theta)-\frac{1}{2}\frac{K(K+1)}{2}\log\frac{n(n-1)}{2}\\
+&\approx \sup_{\theta}\log\pi(Y|Z,\theta)-\frac{K(K+1)}{2}\log n
+\end{aligned} $$
+
+- Thoughts: approximation better with an extra term?
+
+$$ \begin{aligned}
+\frac{1}{2}\frac{K(K+1)}{2}\log\frac{n(n-1)}{2} &\approx \frac{1}{2}\frac{K(K+1)}{2}\log\frac{n^2}{2}\\
+&= \frac{1}{2}\frac{K(K+1)}{2}\log n^2 - \frac{1}{2}\frac{K(K+1)}{2}\log2\\
+&= \frac{K(K+1)}{2}\log n - \frac{1}{2}\frac{K(K+1)}{2}\log2
+\end{aligned} $$
+
+## Let's go with their approximation
+$$ \begin{aligned}
+\text{ICL} - \log\pi(Z) = \log\pi(Y,Z)-\log\pi(Z)&\approx \sup_{\theta}\log\pi(Y|Z,\theta)-\frac{K(K+1)}{2}\log n\\
+\text{ICL} + \log\tau(Z_K)&\approx \sup_{\theta}\log\pi(Y|Z,\theta)-\frac{K(K+1)}{2}\log n
+\end{aligned} $$
+
+- The last equation is due to $\pi(Z)$ is usually $1/\tau(Z_K)=1/$(number of possibilities of $Z$ under $K$ groups)
+- So the following are equivalent:
+  * Compare $\sup_{\theta}\log\pi(Y|Z,\theta)$ with a penalty of $\frac{K(K+1)}{2}\log n$ across $K$
+  * Compare ICL with an extra term which favours larger $K$
+- For a fair comparison, the penalty should be $\frac{K(K+1)}{2}\log n + \log\pi(Z)$, or some approximation thereof
+
+## Putting a prior over $Z$ & $K$
+- Originally: $\pi(Z) = 1/\tau(Z_K)$ - need to include this term first
+- Hu et al. (2019): $\pi(Z) = 1/\tau(Z_K) \times \left[\tau(Z_K)\right]^{-\delta} = \left[\tau(Z_K)\right]^{-(1+\delta)} = \left[\tau(Z_K)\right]^{-\lambda}$
+  * $\delta>0$: prior weights decrease with $K$
+  * $\delta<0$: prior weights increase with $K$
+- Note: it doesn't affect results if we infer $Z$ based on fixed $K$
+- As each of the $n$ nodes can be in 1 of the $K$ groups, $\tau(Z_K)=K^n$
+
+$$ \begin{aligned}
+\log\pi(Z) &= \log\left[\tau(Z_K)\right]^{-\lambda} = \log\left(K^{-\lambda n}\right) = -\lambda n\log K
+\end{aligned} $$
+
+- Thoughts: Is $\tau(Z_K)=K^n$ the most accurate?
+  * This includes possibilities of empty groups with the $K$ groups
+  * Is the Stirling number $\displaystyle\tau(Z_K)=\left\{n \atop K\right\}$ better?
+
+## Deriving the criterion & penalty
+$$ \begin{aligned}
+\text{ICL} &\approx \sup_{\theta}\log\pi(Y|Z,\theta)-\frac{K(K+1)}{2}\log n + \log\pi(Z)\\
+ &\approx \sup_{\theta}\log\pi(Y|Z,\theta)-\frac{K(K+1)}{2}\log n - \lambda n \log K\\
+ &\approx \sup_{\theta}\log\pi(Y|Z,\theta)-\left(\frac{K(K+1)}{2}\log n + \lambda n \log K\right) \\
+ l(K) &= \max_{Z} \sup_{\theta}\log\pi(Y|Z,\theta)-\left(\frac{K(K+1)}{2}\log n + \lambda n \log K\right)
+\end{aligned} $$
+
+## Wait, they also mentioned ICL
+- Daudin et al. (2008, Statistics and Computing)
+  * There is some other approximation involved, thus arriving at a different penalty
+  * They also derived another approximate ICL (see before)
+- Essentially, Hu et al. (2019):
+  * Maximised the data log-likelihood $\log\pi(Y|Z,\theta)$ w.r.t. both $\theta$ & $Z$
+  * Included a penalty term $\rightarrow$ a proper criterion $l(K)$
+  * Allowed flexibility with the prior through the tuning parameter $\lambda$
+  * Arrived at a quantity $l(K)$ which also approximates the ICL (evaluated at the "optimal" Z)
+
+## Misspecifying $K$
+- $K^{'}$ misspecified, $K$ true
+- $Z^{*}$ & $\theta^{*}$ true
+
+$$ \begin{aligned}
+l(K^{'}) - l(K) &= \left(\max_{Z\in\left[K^{'}\right]^n}\sup_{\theta}\log\pi(Y|Z,\theta) - \log\pi(Y|Z^{*},\theta^{*})\right) \\
+&\quad- \left(\max_{Z\in\left[K\right]^n}\sup_{\theta}\log\pi(Y|Z,\theta) - \log\pi(Y|Z^{*},\theta^{*})\right) \\
+&\quad+ \left(\frac{K^{'}(K^{'}+1)}{2}\log n - \frac{K(K+1)}{2}\log n\right) + \left(\lambda n \log K^{'} - \lambda n \log K\right)\\
+&=\text{A log-likelihood ratio with misspecified $K$}\\
+&\\
+&\quad - \text{A log-likelihood ratio with correct $K$ (and therefore follows the $\chi^2$ distribution divided by 2)}\\
+&\\
+&\quad + \left(\frac{K^{'}(K^{'}+1)}{2} - \frac{K(K+1)}{2}\right)\log n + \lambda n \log\frac{K^{'}}{K}
+\end{aligned} $$
+
+## The theoretical results (that I skipped)
+- Section 3: establishing the asymptotics of the log-likelihood ratios
+- Section 4: proving the consistency of their criterion (under some conditions, of course):
+
+$$ \begin{aligned}
+  \Pr\left(l(K^{'})>l(K)\right)\rightarrow 0\qquad\text{as}\quad n\rightarrow\infty
+\end{aligned} $$
+
+- For $K^{'}>K$ and $K^{'}<K$, there are different conditions
+  * The general idea is $K$ grows slower than some power of $n$ (which is usually the case)
+- They also showed that the criterion by Saldana, Yu, and Feng (2017, JCGS) overestimates $K$:
+
+$$ \begin{aligned}
+  \Pr\left(l(K^{'})>l(K)\right)\rightarrow 1\qquad\text{as}\quad n\rightarrow\infty,\qquad\text{for}\quad K^{'}>K
+\end{aligned} $$
+
+## Degree-corrected SBM
+* Karrer and Newman (2011, Physical Review E)
+* Correcting for the degree heterogeneity within a group
+* Main idea: An extra parameter / latent variable $\omega_i$ for node $i$
+* Increasing adoption of the DC-SBM as it's more realistic
+* The main result still stands for DC-SBM:
+
+$$ \begin{aligned}
+  \Pr\left(l(K^{'})>l(K)\right)\rightarrow 0\qquad\text{as}\quad n\rightarrow\infty
+\end{aligned} $$
+
+## Simulation results
+* Recovering the true $K$ well
+* Caveat: the quality of $\lambda$ depends on true $K$
+  - Small $K$: $\lambda=1$
+  - Large $K$: $\lambda<1$ i.e. lighter penalty is a better choice
+* Thoughts: Inconsistency with regard to Wang and Bickel (2017, AoS)
+  - Claimed to be underestimating $K$ in abstract & discussion
+  - Grossly overestimating $K$ in simulation studies
+  - Penalty of $\lambda \frac{K(K+1)}{2} n\log n$ indeed heavier, and should underestimate $K$
+
+## Real applications
+* Mixed results & no details
+* International trade dataset
+
+|         |Hu et al. (2019)|Saldana et al. (2017)|Chen & Lei (2018)  |
+|:--------|:--|:--|:-|
+|SBM      |5  |10 |3 |
+|DC-SBM   |3  |1  |1  |
+
+* Political blog dataset
+
+|         |Hu et al. (2019)|Saldana et al. (2017)|Chen & Lei (2018)  |
+|:--------|:--|:--|:-|
+|DC-SBM   |2  |1  |2  |
+
+* Thoughts:
+  - Too small to judge that it's dominating other criteria?
+  - Maybe accompany by the values of the criteria to see how closely competing different $K$'s are?
+
+## Model selection between SBM & DC-SBM?
+- Not mentioned here, but possible
+- Examples:
+  * Yan (2016, ASONAM)
+  * Yan et al. (2014, Journal of Statistical Mechanics: Theory and Experiment)
+
+## Thank you!

@@ -1,0 +1,127 @@
+\ProvidesPackage{beamerthemelancasterbeamer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% lancasterbeamer package, will automatically produce slides corresponding to the corporate design standards on  
+% http://www.lancaster.ac.uk/current-staff/communications-toolkit/templates/
+% as of 15 September 2014
+%
+% Requires the image files lancs-block, lancs-corner, LUgenericlogo, LUmathstatslogo, LUdatasciencelogo
+% Uses Robin Long's lancaster theme, with files beamercolorthemelancaster.sty, beamerfontthemelancaster.sty, beamerinnerthemelancaster.sty
+%
+% David Leslie, 15 September 2014
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{tikz}
+
+
+
+\newcommand{\LUlogo}{\includegraphics[height=0.6cm]{img/LUgenericlogo}}
+\DeclareOption{datascience}{\renewcommand{\LUlogo}{\includegraphics[height=0.8cm]{img/LUdatasciencelogo}}}
+\DeclareOption{mathstats}{\renewcommand{\LUlogo}{\includegraphics[height=0.8cm]{img/LUmathstatslogo}}}
+\ProcessOptions\relax
+
+
+\usefonttheme{lancaster}
+\usecolortheme{lancaster}
+\useinnertheme{lancaster}
+
+\setbeamercolor{structure}{fg=lancasterRed,bg=}
+
+
+% Make slides pretty
+\usebackgroundtemplate%{\includegraphics[width=\paperwidth, height=\paperheight]{ContentSlideBackground.pdf}}
+{
+\begin{tikzpicture}[overlay,remember picture]
+    \node[at=(current page.north east),anchor=north east,inner sep=1em] {
+        \LUlogo\hspace*{1em}};
+    \node[at=(current page.south east),anchor=south east,inner sep=-1pt] (corner) {
+        \includegraphics[width=0.2\paperwidth]{img/lancs-corner.pdf}};
+\end{tikzpicture}
+}
+\hypersetup{colorlinks,linkcolor=,urlcolor=lancasterRed}
+\beamertemplatenavigationsymbolsempty
+\setbeamersize{text margin left=0.7cm}
+\setbeamertemplate{frametitle}
+{\vskip-0.3cm
+  \leavevmode
+  \hbox{%
+  \hspace*{0.7cm}\begin{beamercolorbox}[wd=\paperwidth,ht=1.8ex,dp=3.7ex]{frametitle}%
+    \parbox[t]{9cm}{{\raggedright\LARGE\insertframetitle}\\ {\raggedright\large\insertframesubtitle}}
+  \end{beamercolorbox}
+  }%
+}
+% frame title spacing, including grey rule
+\addtobeamertemplate{frametitle}{\vspace*{0.3em}\hspace*{0.5em}}{
+    \vspace*{0.1em}\hspace*{-0.5em}\color[RGB]{155,155,155}\rule{11.9cm}{0.5pt}\vspace*{-0.1em}}
+
+
+% Provide the title slide
+\renewcommand{\maketitle}{
+{
+  \usebackgroundtemplate{
+        \begin{tikzpicture}[overlay,remember picture]
+            \node[at=(current page.north east),anchor=north east,inner sep=1em] {
+                \LUlogo\hspace*{1em}};
+            \node[at=(current page.south),anchor=south,inner sep=1em] {
+                \includegraphics[width=0.9\paperwidth]{img/lancs-block}};
+        \end{tikzpicture}
+    }
+  \begin{frame}[plain]
+  \vskip2.6cm
+  {\LARGE \textcolor{lancasterRed}{\inserttitle}}\\
+  {\large \textcolor{lancasterRed}{\insertsubtitle}}
+  \vskip0pt plus 1filll
+  {\scriptsize\insertdate\\[-0.15cm]
+  \insertauthor}
+\vskip4.8cm
+  \end{frame}
+}
+}
+
+
+\newcommand{\makefinal}{
+{
+    \usebackgroundtemplate{
+        \begin{tikzpicture}[overlay,remember picture]
+            \node[at=(current page.north east),anchor=north east,inner sep=1em] {
+                \LUlogo\hspace*{1em}};
+            \node[at=(current page.south),anchor=south,inner sep=1em] {
+                \includegraphics[width=0.9\paperwidth]{img/lancs-block}};
+        \end{tikzpicture}
+    }
+  \begin{frame}[plain]
+  \vskip2.6cm
+  \vskip0pt plus 1filll
+  {\scriptsize\insertdate\\[-0.15cm]
+  \insertauthor}
+\vskip4.8cm
+  \end{frame}
+}
+}
+
+%backup slides
+\renewenvironment{backupslides}
+{{  \usebackgroundtemplate{        \begin{tikzpicture}[overlay,remember picture]
+            \node[at=(current page.north east),anchor=north east,inner sep=1em] {
+                \LUlogo\hspace*{1em}};
+            \node[at=(current page.south),anchor=south,inner sep=1em] {
+                \includegraphics[width=0.9\paperwidth]{img/lancs-block}};
+        \end{tikzpicture}
+}
+  \begin{frame}[plain]
+    \newcounter{finalframe}
+    \setcounter{finalframe}{\value{framenumber}}
+  \vskip2.6cm
+  {\LARGE \textcolor{lancasterRed}{Backup slides}}
+  \vskip0pt plus 1filll
+  \end{frame}
+}}
+{
+  \setcounter{framenumber}{\value{finalframe}}
+}
+
+
+% Fix up some of the dreadful colours
+\definecolor{lancasterGrey}{RGB}{83,83,83}
+\definecolor{lancasterBodyGrey}{RGB}{83,83,83}
+%\setbeamercolor{normal text}{fg=lancasterActualGrey,bg=lancasterWhite}
+

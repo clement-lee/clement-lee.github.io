@@ -1,0 +1,496 @@
+---
+title: "Insights North East Workshop Practical 1"
+author: "Clement Lee (Newcastle University)"
+date: "2025-02-04 (Tue)"
+output:
+  bookdown::pdf_document2:
+    toc: false
+  bookdown::html_document2:
+    toc: false
+classoption: a4paper
+---
+
+# Instructions
+
+- Work through the practical sheet and if you need any help then just ask.
+- Section \@ref(sect-intro) is an introduction to R if you have never used it before, or if you want a refresher. Feel free to skip it if you would want to go straight to some real data analysis.
+- Section \@ref(sect-business) contains some exploratory analyses of a business rates data from Newcastle City Council. You can copy, paste and run the commands in RStudio to understand what they do. Alternatively, adapt these commands for your own data and make some useful and interesting plots.
+- Note that a `typewriter` font refers to `R` commands. Ellipses "..." refer to missing arguments or variables passed to a function.
+
+# Quick Introduction to R {#sect-intro}
+
+## Accessing `R`
+
+`R` is a programming language for data analysis, statistics statistics and graphics. It is open source, free, and very widely used by professional statisticians. It is also very popular in many application areas and increasingly in industry. It has many built-in functions and libraries, and is extensible, allowing users to define their own functions.
+
+RStudio is a free, open source integrated development environment (IDE) for `R`. It has a user-friendly interface and provides powerful tools for writing code. We will use RStudio to work with `R`. If you are using a university computer, RStudio should already be installed.
+
+Since `R` and RStudio are free, you can also freely install them on your own comptuer. They run on Windows, Mac and Linux operating systems. You will need to install `R` first before installing RStudio.
+
+* Install `R` on https://cran.r-project.org/
+* Install RStudio on https://posit.co/download/rstudio-desktop/
+
+## RStudio sessions
+
+Typing diretly into the `R` console window works just like a calculator. Try it now by entering the following at the > prompt and pressing return:
+
+```{r preamble, echo = FALSE}
+knitr::opts_chunk$set(eval = FALSE)
+```
+
+```{r a}
+2 + 3
+```
+This should return the following output:
+```{r b, echo = FALSE, eval = TRUE}
+2 + 3
+```
+
+indicating that the answer is `r 2+3`.
+
+However, to make it easy to reproduce your work it's convenient to type all your commands into an `R` script. To open a new `R` script:
+
+**File > New File > R Script**
+
+Now try typing `2+3` in the `R` script. To send the command to the console, press `Ctrl`+`Enter` with the cursor anywhere on the line you have just entered. Alternatively, highlighting one (or more) lines and pressing `Ctrl`+`Enter` sends all the highlighted commands to the console.
+
+To save your `R` script, go to
+
+**File > Save**
+
+and note that RStudio correctly adds the `.R` file extension.
+
+Comments are included using the # symbol: everything on a line following the symbol is ignored.
+
+## Objects
+
+Everything in `R` (data and functions alike) is an *object*. Objects are created using the assignment operator `=` or `<-`. Try to consistently use one assignment operator or the other.
+
+For example, to create an object called `x` which takes the value `100`, type:
+```{r c, eval = TRUE}
+x <- 100
+```
+and send the commands to the console.
+
+To see what an object contains, type its name. For example, to see the contents of the object `x`, simple type
+```{r d}
+x
+```
+This should give the output
+```{r e, echo = FALSE, eval = TRUE}
+x
+```
+when sent to console.
+
+To list all the objects currently available in the workspace type `ls()`. Try it now to see what it gives you.
+
+Standard arithmetic operations $+,-,\times,/$ can be applied to certain simple objects. For example, to calculate the value of $4\times(x+2)/5$ and store the value in the object $y$ simply enter the following:
+```{r f, eval = TRUE}
+y <- 4 * (x + 2) / 5
+```
+and then, to check what the answer is, type `y`. Is the answer what you expect?
+
+In summary:
+
+|`R` command | Behaviour |
+|:-----------|:----------|
+| `=` or `<-`|Assignment operator; assign data or a function to a name|
+|`ls()` | List all the objects currently stored |
+|`rm(objectName)` | Delete the object called `objectName`|
+
+## Data
+You will come across three main types of data: numeric (double), logical, and character. A set of characters e.g. "CCGT" will usually be referred to as a *string*. The following are examples of the three types.
+
+|      |         |
+|:-----|:--------|
+|`0.5`, `-4`, `3.0E12` | Numeric data |
+|`"A"`, `"CCGT"` | Character data |
+|`TRUE`, `FALSE` | Logical data |
+
+Type `mode(...)` to return the typ eof data in an object (e.g. numeric etc). For example, enter
+```{r g}
+mode(x)
+```
+to determine the type of data stored in the object `x`.
+
+## Vectors
+
+Vectors are ordered lists that contain a single type of data. Vectors are a fundamental concept in `R`, as many functions operate on and return vectors, so it is best to master these as soon as possible.
+
+You can create an empty vector (which you can add elements to later) using the vector() command, e.g.
+```{r h}
+x <- vector()
+```
+creates a blank vector `x` which elements can be added to.
+
+Alternatively you can use the concatenate function `c(...)` to combine data into a vector. Try the following examples:
+```{r i}
+x <- c(0, 2, 3, 0)
+x
+y <- c("AAA", "AAT", "AAC", "AAG")
+y
+z <- c(TRUE, TRUE, FALSE, FALSE)
+z
+```
+Each of the objects `x`, `y` and `z` above is a vector of length 4. To determine the length (i.e. the number of elements in a vector) use the length(...) function, e.g. type
+```{r j}
+length(x)
+```
+to find the number of elements in the vector `x`.
+
+The concatenate function `c(...)` can be used to combine vectors (of the same data type). Try the following example:
+```{r k}
+x1 <- c(1, 2, 3)
+x2 <- c(4, 5, 6)
+y <- c(x1, x2)
+y
+```
+
+`R` has many in-built functions for producing vectors. For instance, the function `rep(x, n)` will make a vector of length `n` by repeating the value `x` `n` times. Try it for yourself by entering the following:
+```{r l}
+rep(1, 10)
+```
+
+You can get help documentation for any in-built function by entering its name preceded by a question mark (?); for example, entering
+```{r m}
+?rep
+```
+will bring up the help documentation for the rep function.
+
+Two other useful functions for producing structured vectors are listed below:
+
+|     |     |
+|:----|:----|
+|`a:b`| Generate the sequence from `a` up to `b`|
+|`seq(x, y, s)` |Generate a sequence from `x` to `y` in steps of `s` |
+
+As with objects, standard arithmetic operations $+$, $-$, $\times$, $/$ can be applied to numeric vectors. Try entering the following:
+```{r n, eval = TRUE}
+x <- 1:10
+y <- seq(10, 100, 10)
+x + y
+c(x, y)
+x + 2 * y
+y / x
+```
+Note that arithmetic operations act element-wise on vectors.
+
+Many `R` functions operate on vectors e.g. `sum(...)`. Try entering the following:
+```{r o}
+sum(x)
+```
+This should return the sum of the elements of `x` (in this case 1 + 2 + 3 + · · · + 10).
+
+Square brackets are used to access the elements in a vector. For example `x[2]` returns the second element of a vector `x`. The square brackets can contain a vector, in which case several elements of `x` are returned. Before entering the following commands into `R`, see if you can predict what the results will be:
+```{r p}
+d <- c(3, 5, 3, 6, 8, 5, 4, 6, 7)
+d
+d[4]
+d[2:4]
+d[-1]
+d < 7
+d[d < 7]
+```
+
+In summary:
+
+|           |              |
+|:----------|:-------------|
+|`x[c(TRUE, TRUE, FALSE, FALSE)]` |Return 1st & 2nd elements |
+|`x[c(3, 1)]` | Return 3rd & 1st elements |
+|`x[x > 1]`| Return elements that are greater than 1 |
+
+Vectors can be sorted and randomly sampled. The following command generates some lottery numbers and sorts them into increasing order:
+```{r q}
+sort(sample(1:49, 6))
+```
+Get help on `sort` and `sample` to see how they work.
+
+Sometimes you need to create an empty vector and assign its entries later.
+```{r r}
+x <- vector("numeric", n)
+```
+creates an empty numeric vector with `n` entries
+
+## Plotting
+`R` has lots of great functions for producing publication quality plots. Some basic commands are given below; try them in turn and see what they do.
+```{r s}
+x <- 1:50
+y <- (x + 2) * (x + 5)
+plot(x, y)
+plot(
+  x, y, type = "l", main = "A title",
+  xlab = "x label", ylab = "y label", col = "red"
+)
+lines(x, y + 100, col = "blue")
+```
+
+The `plot` function in `R` allows plots to be customised. When you have time (perhaps not during the practical session) take a look at the help documentation for `plot` to see what can be done.
+
+Also running `demo(graphics)` will give an idea of some of the possibilities.
+
+To copy a plot into a word processing document (for example Word), click on `Export` in the plotting window, choose `Copy to Clipboard` and then paste into the document. Alternatively, you can save the plot by clicking on `Export` and choosing one of the `Save ...` options.
+
+## Data frames
+
+Data frames are a means of grouping several columns (vectors) of data together. Enter the following into R:
+```{r t}
+name <- c("Fred", "Jim", "Bill", "Jane", "Jill", "Janet")
+shoeSize <- c(9, 10, 9, 7, 6, 8)
+height <- c(170, 180, 185, 175, 170, 180)
+myData <- data.frame(name, shoeSize, height)
+myData
+```
+So, myData is a data frame made up of three vectors of different data types.
+
+Elements in a data frame are accessed in a similar way to those in a vector via square brackets. Remember that square brackets can contain vectors instead of single values in order to access multiple elements of a data frame simultaneously. In addition, columns can be referenced using the `$` (dollar) sign.
+
+|     |     |
+|:----|:----|
+|`myData[i, j]`|Return the element in row `i`, column `j`|
+|`myData[, j]`|Return all of column `j`|
+|`myData$colName`| Return the column with name `colName`|
+
+With the above in mind, try entering the following commands into `R` to see what they do:
+```{r u}
+myData[4, 1]
+myData[, 3]
+plot(myData[, 2], myData[, 3])
+myData[2, ]
+myData$shoeSize
+myData[myData$name == "Janet", ]
+myData$height[myData$shoeSize > 8]
+```
+
+Many data sets in the course will be provided in a data frame. To download a data frame from a file, simply enter
+```{r v}
+myData <- read.table("filename", header = TRUE)
+```
+where `filename` is the name of the file containing the data. Often data on this course will be available from a URL. To read in data from a URL simply enter
+```{r w}
+myData <- read.table(url, header = TRUE)
+```
+where url is a character string representing the URL. Note that the argument `header = TRUE` tells `R` to expect column names in the data file. The default is `header = FALSE`.
+
+The commands `nrow` and `ncol` return the number of rows and columns in a data frame, respectively.
+
+In summary:
+
+|     |      |
+|:----|:----|
+|`myData <- data.frame(x, y, z)` | Stick vectors x,y,z together into a data frame |
+|`myData <- read.table(url)` | Read in a data frame from a URL
+|`colnames(myData)` | Return the column names for the data frame |
+
+
+## Functions
+`R` provides many in-built functions for data analysis, statistical inference, graphics etc. However, before long you are likely to want to add your own functions. For example, suppose you need to run a set of `R` commands several times, each time on different data (or equivalently, with different inputs), but re-typing all the commands is very long-winded. The solution is to write your own function which is simply a short set of `R` commands that you can run on different data or with different input arguments. Functions are declared in the following way:
+```{r x}
+myFunctionName <- function(myArgument) {
+  # Put the R code here
+  ...
+  # The final line should be return(...) where
+  # ... evaluates to the object that the function returns
+  return(theReturnedValue)
+}
+```
+
+This function is called `myFunctionName`; it has a single argument called myArgument; and it returns the contents of the variable `theReturnedValue`. The list of commands that make up the function are enclosed by braces `{ }`. The returned value might be a single number, but it can in general be any kind of object – including a list of objects with different structures. Functions can be passed more than one argument; they can also be written with "default values" for the arguments specified, so that calls to the function do not need to specify every argument every time.
+
+Suppose you want to write a function that will compute the pth power of the sum of the elements in a vector. To write the function in `R` enter the following:
+```{r y}
+sumPow <- function(x, p = 2){
+  y <- sum(x)
+  z <- y ^ p
+  return(z)
+}
+```
+
+The first line declares the object `sumPow` to be a function with two arguments, `x` and `p`, the second of which will default to a value of 2 if not specified. Then everything between `{ }` is the function body, which can use the variables `x` and `p` as well as any globally defined objects (although this is often a bad idea). The second line declares a local variable called `y` to be the sum of the elements of the vector `x` (recall that the function `sum()` is one of R's in-built functions). The third line declares the local variable `z` to be the pth power of `y` (i.e. `y` multiplied by itself `p` times). The fourth line tells `R` to return the value of `z` as the output of the function.
+
+The function `sumPow` is just another `R` object, and hence can be viewed by entering `sumPow` on a line by itself. The function can be called like any other. For example, see how it works by entering the following:
+```{r z}
+sumPow(c(1, 2, 3, 4, 5), 3)
+sumPow(rep(2, 4))
+d <- rep(2, 4)
+sumPow(d, 2)
+```
+
+## Loops
+
+Repeated operations can be performed using *for loops*. These repeat a piece of code for a specified number of steps. For example, suppose we have two vectors `x` and `y` both of length `n`, and we want to multiply the elements of the vectors together (one component at a time) and take the sum. This could be done as follows:
+```{r aa}
+x <- c(2, 4, 6)
+y <- c(10, 11, 12)
+mySum <- 0
+for (i in 1:3) {
+  mySum <- mySum + x[i] * y[i]
+}
+mySum
+```
+This example demonstrates the basic structure of a for loop. Note that any vector can be used in place of `1:3`. However, `R` is a vectorized language: this means that operations with vectors can be performed with simpler statements many times faster than loops. Indeed, loops are generally best avoided as they slow programs down substantially. The program above could be replaced with:
+```{r ab}
+mySum <- sum(x * y)
+```
+Here the product of the vectors is computed much faster than looping through each component of the vectors.
+
+## Conditional statements
+The `if` statement is used to execute different commands depending on a logical quantity:
+```{r ac}
+if (logicalQuantity) {
+  # Put R code here for the case that logicalQuantity == TRUE
+  ...
+} else {
+  # Put R code here for the case that logicalQuantity == FALSE
+  ...
+}
+```
+The `else` part of the statement is optional – you do not always have to include it.
+
+Logical quantities can be defined by comparing objects e.g. `x > 0`. The usual comparators are:
+
+|        |            |
+|:-------|:-----------|
+|`<, >, <=, >=` | Less than, greater than, etc. |
+| `==` |Equal. NB: not `=` |
+| `!=` | Not equal |
+
+Logical quantities can be combined using `&` (AND) and `|` (OR):
+
+|         |             |
+|:--------|:------------|
+|`((x > 1) & (x < 5))` | `x` is greater than 1 and less than 5 |
+|`((x == "A") | (x == "T"))`| `x` equals A or T |
+|`(!(x > 5))` | `x` is not greater than 5 |
+
+
+## Closing `R`
+At the end of an `R` session, save your `R` script and then enter `q()` or click on the close icon. You will then be asked whether you want to save your workspace image (that is all objects, e.g. data and functions from your current session). If you have saved all your commands in the `R` script and can easily run them again to create any useful or important objects, then you need not save your session. However, it is possible to save your workspace so that you can use its contents in future. Warning: this can create a very large file!
+
+## Exercises
+Once you've worked through the practical sheet have a go at these exercises to help understand the material presented. You may need to try these exercises in your own time. If you have any questions about them then just ask.
+
+1. Use `R` to work out the sum of the series:
+   $$ 1 + 4 + 7 + 10 + \cdots + 2998 + 3001 $$
+
+   ```{r q1, echo = FALSE}
+   sum(seq(1, 3001, 3))
+   ```
+   
+2. The New York air quality data set from the notes can be loaded into `R` as follows
+   ```{r ad}
+   data(airquality)
+   ```
+   after which the data frame can be accessed by typing `airquality`.
+   (a) Use `R` to find the number of days in June where the wind speed exceeded 13 miles per hour.
+   ```{r q2a, echo = FALSE}
+   nrow(airquality[(airquality$Month == 6 & airquality$Wind > 13), ])
+   ```
+
+   (b) Use `R` to find the sum of all the solar radiation measurements in September on days when the temperature was at most 76 degrees Fahrenheit.
+   ```{r q2b, echo = FALSE}
+   sum(airquality[(airquality$Month == 9 & airquality$Temp <= 76), 2])
+   ```
+
+# Business rates data analysis {#sect-business}
+
+In this section, we look at a set of data from Newcastle City Council's website: https://new.newcastle.gov.uk/budget-policies-performance-data/open-data/business-economy/business-rates-data/all-current-business-rates-properties. Download the xlsx file for November 2024 to your computer.
+
+Before we read the file into R, we need to load a **package**, which is an important component in coding. Type the following command:
+
+```{r try-readxl}
+#| eval: true
+library(readxl)
+```
+
+If an error is returned, you need to first install this package by typing
+
+```{r install-readxl}
+#| eval: false
+install.packages("readxl")
+```
+
+and following the subsequent instructions. After installation is complete, type `library(readxl)` again. Once there are no more errors, type the following:
+
+```{r read-business}
+#| eval: true
+table1 <- read_xlsx("assets/Business Rates properties - November 2024.xlsx")
+table1
+```
+
+You should see something similar to the above output. We can make some quick summaries:
+
+```{r business-summary}
+#| eval: true
+mean(table1$`rateable value`) # the average of rateable value
+sd(table1$`LIA`) # standard deviation of variable LIA
+summary(table1$`net charges`) # a range of summaries
+```
+
+If the summary above is not informative enough, we can turn to plots:
+
+```{r business-hist}
+#| eval: true
+hist(table1$`net charges`) # histogram of net charges
+```
+
+As the title and the bars are not highly informative, here are some quick adjustments:
+
+```{r business-hist-again}
+#| eval: true
+hist(table1$`net charges`,
+     breaks = 100, # approximately 100 bars
+     main = NA, xlab = NA) # don't print the title and the x-axis label yet
+title(main = "Histogram of net charges for November 2024",
+      xlab = "Net charges (£)")
+```
+
+A plot with dates / times might also be useful.
+
+```{r business-time}
+#| eval: true
+plot(table1$start, table1$`net charges`)
+```
+
+However, the highly skewed `net charges` makes it difficult to see any pattern. Again, some adjustments quickly improve the plot:
+
+```{r business-time-again}
+#| eval: true
+#| warning: false
+plot(table1$start, table1$`net charges`, log = "y", # on log scale
+     main = NA, xlab = NA, ylab = NA, # don't print title & axis labels yet
+     cex = 0.1) # size of the points
+title(main = "Net charges over the starting date of businesses",
+      xlab = "Starting date", ylab = "Net charges (£)")
+```
+
+## Some remarks
+
+1. What if we have an xls or csv file instead? For the former, you can use the function `read_xls` from the same package `readxl`. For the latter, there is a function `read.csv` that already comes with R when you install and open it.
+
+2. What if we want to create new columns (by manipulating some existing columns) and plot them? It's a bit tedious if we need to create them first in the spreadsheet, re-save the spreadsheet, and then rerun the analysis. In fact, it is usually the best **not** to modify the raw / original data. 
+
+3. The plots are still not quite perfect. For example, the histogram is not showing much because of the huge skewness of `net charges`; perhaps plotting them on a log scale will help. However, we will not dwell on modifying them here; instead, we will look at the package `ggplot2`, which is the biggest development in `R` over the last 15 years or so.
+
+4. In fact, we can build a data pipeline within R to read the data, manipulate them, and then make very nice plots. This is what the tidyverse (https://www.tidyverse.org/) does, which we will look at next.
+
+# Good Coding Practice
+
+There are certain good habits which you should try to get in to when you first begin coding as these can make life much easier when presenting, interacting with, and debugging code.
+
+1. **Naming**: Giving useful and informative names to functions and variables can be very useful, not just if you were to revisit the code after a long time, but even whilst you are writing it can help to keep track of exactly what each object should be doing. Whilst in short exercises like those in this practical, having variables called `x` and `y` is fine, if you are writing longer functions with lots of variables, having to remember what `x`, `y`, `z`, `x2`, `y2`, ... are all for can be tricky.
+
+2. **Indentation**: You may have noticed in the example code provided in this practical, how each line within a function, if statement or for loop was indented slightly. This is a very useful practice (which RStudio does by default) and can be invaluable if you are trying to locate an error in a large function with lots of different things happening at once. Indenting should be done incrementally, and so each new loop/statement opened should lead to a further indent, which is then undone when the loop closes.
+
+3. **Consistency**: Similar to naming and indentation, you should be consistent with other aspects of writing your code, for example
+
+   * using either `=` or `<-` **but not both** as the assignment operator throughout, and
+   * using white space before and after the `=` (or `<-`) and other arithmetic operators and after commas.
+
+   For the latter, you can choose not to, but again you have to stick to that for the whole piece of code.
+
+4. **Plot labelling**: While this is not a coding practice particularly, it is important to get into the habit of providing informative headers and exis labels when producing plots. `R`s default is to provide no plot header and label each axis with the variables used in the `plot` command, which often do not describe what has actually been plotted. Make sure to use the main, `xlab` and `ylab` arguments in the `plot` command and give informative labels to each.
+
+<!-- 5. **Annotation**. Using the # symbol in a line of code tells `R` that everything to the right shouldn't be compiled as code - and so `R` ignores it. This can therefore be used to write short descriptions of what the particular bit of code is doing, which is incredibly useful for anyone checking your code, or if you come to revisit a script from a long time ago and can't remember exactly what each part does. -->
+
+If you spot anything above that doesn't adhere to the good coding practice I preach, please point it out to me - I can take that! Lastly, if you want a comprehensive guide of coding style, see https://style.tidyverse.org/.

@@ -1,0 +1,745 @@
+---
+title: "STOR601 - Research Topics"
+subtitle: "Structured Data - Networks"
+author: "Clement Lee"
+date: "2022-01-21 (Fri)"
+output:
+    beamer_presentation
+header-includes:
+    \setlength{\leftmargini}{\labelwidth}
+    \usetheme[mathstats]{lancasterbeamer}
+classoption: "aspectratio=169"
+---
+
+```{r prelim, include = FALSE, message = FALSE}
+library(tidyverse)
+library(crandep)
+library(igraph)
+knitr::opts_chunk$set(out.width = "45%", fig.align = "center", message = FALSE, fig.asp = 0.7, echo = FALSE)
+ggplot2::theme_set(ggplot2::theme_bw(40))
+```
+
+## Welcome
+* Outline of this hour
+
+  - Introduction to statistical network modelling
+  - Stochastic block models
+  - Modelling degree distribution
+
+
+
+
+
+
+
+
+
+
+# Introduction to statistical network modelling
+
+## From traditional data
+* We know quite a lot about:
+
+  - data that are independent & identically distributed (IID)
+  - temporal and/or spatial data
+
+* Network data doesn't belong to either
+
+  - Of interest is the relationship **between** nodes in the network
+  - The structure **is** the data
+
+  <!-- What can be said about a node depends on its relationship with other nodes -->
+
+## Examples
+* Social networks
+
+  - Facebook friends, Twitter followers, ...
+
+* [Enron emails](https://www.cs.cmu.edu/~enron/)
+
+  - Over 0.6 million emails by 158 employees before collapse in 2001
+
+* [Co-authorship & citation networks](https://www.stat.cmu.edu/~jiashun/StatNetwork/PhaseOne/) (Ji and Jin, 2016)
+
+  - Academics write papers with other academics
+  - Papers cite other papers
+
+* Brain networks
+
+  - [Connectome project](http://www.humanconnectomeproject.org/)
+
+## The Karate Club [(Zachary, 1977)](https://www.journals.uchicago.edu/doi/abs/10.1086/jar.33.4.3629752) DOI: 10.1086/jar.33.4.3629752
+```{r karate}
+df1 <- tibble(
+    from = c(1,1,2,1,2,3,1,1,1,5,6,1,2,3,4,1,3,3,1,5,6,1,1,4,1,2,3,4,6,7,1,2,1,2,1,2,24,25,3,24,25,3,24,27,2,9,1,25,26,29,3,9,15,16,19,21,23,24,30,31,32,9,10,14,15,16,19,20,21,23,24,27,28,29,30,31,32,33),
+    to = c(2,3,3,4,4,4,5,6,7,7,7,8,8,8,8,9,9,10,11,11,11,12,13,13,14,14,14,14,17,17,18,18,20,20,22,22,26,26,28,28,28,29,30,30,31,31,32,32,32,32,33,33,33,33,33,33,33,33,33,33,33,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34)
+)
+g1 <- df1 %>% graph_from_data_frame(directed = FALSE, c(df1$from, df1$to) %>% unique() %>% seq())
+```
+
+```{r karate_plot, fig.pos = "h!", fig.height = 1.5, fig.asp = 1.0, out.width = "45%", fig.lp = "fig.", fig.path = "", fig.align = "center"}
+#plot(g1, layout = layout_in_circle)
+set.seed(28L); plot(g1)
+```
+
+## Terminology
+* Nodes & edges
+
+* Undirected network
+
+  - Degree of a node: total number of edges
+
+* Directed network
+
+  - In-degree: number of edges pointing towards the node
+  - Out-degree: number of edges pointing from the node 
+
+## Why bother?
+* **Describe** the network in a concise way
+
+  - $\sim$ probability distributions describing IID data
+  
+* **Examine** how networks grow
+
+  - Come up with simple rules of how nodes join & connect with others
+  - Allow simulation of networks easily
+
+* **Discover** / **understand** underlying structure
+
+  - Cluster the nodes in a meaningful way
+  - Project them to a 2-D or 3-D space
+
+## How?
+1. Assume a probabilistic / statistical model
+
+    - Rules or equations describe how the network comes into being
+    - Parameters characterise the model
+
+2. Fit the model to the data
+
+    - The usual steps of modelling & inference
+	- Estimate the parameters
+	- Determine if the model fits well
+
+3. Interpret and/or predict
+
+    - Less well-defined
+    - How it will continue to grow?
+
+## Erdos-Renyi Model
+* Some call it Bernoulli random graph
+
+* Special case of most network models
+
+* Simple rules:
+
+  - There are $n$ nodes
+  - Every pair of nodes has the same probability $p$ of connecting / having an edge
+  - And the occurrence of all these edges are independent of each other
+
+* The degree (number of edges) of a node is a random variable
+
+  - Follows Binomial$(n-1,p)$ distribution
+  - Same for all nodes
+
+## What other models?
+* **Describe** the network in a concise way
+
+  - Exponential random graph models (ERGMs)
+  
+* **Examine** how networks grow
+
+  - *Mechanistic or generative models*
+  - Preferential attachment model
+  - Small-world model
+
+* **Discover** / **understand** underlying structure
+
+  - Stochastic block models
+  - Latent space models
+  - Latent feature models
+  - Hypergraph models
+  - Graphons
+
+## Networks or (random) graphs?
+* Network is the actual data / what we visualise
+
+* Graph is the mathematical object
+
+  - How to write it down? One way is the **adjacency matrix**
+  - Let's use the [Karate Club](https://www.journals.uchicago.edu/doi/pdf/10.1086/jar.33.4.3629752) as an example
+
+## Challenges
+* Sampling & design
+
+  - When to stop sampling? How to *cut* the network?
+
+* Description & visualisation
+
+  - Lack of predefined geometry
+
+* Modelling & inference
+
+  - Same data, different models - which one is the best?
+
+* Computational cost for big data
+
+  - Not very scalable
+
+## Networks as models?
+* So far the networks are the **data**
+
+  - ... and are modelled by statistical models
+
+* Different to probabilistic models being represented as a network / graph
+
+  - [Graphical model](https://en.wikipedia.org/wiki/Graphical_model)
+  - [Bayesian network](https://en.wikipedia.org/wiki/Bayesian_network)
+
+* Alex Gibberd will talk about graphical models
+
+
+
+
+
+
+
+
+
+
+# Stochastic block models
+
+```{r sbm_example}
+s <- c(25, 30, 35)
+K <- length(s)
+n <- sum(s)
+Y <- matrix(0.0, n, n)
+set.seed(1000L)
+p1 <- 0.8
+p2 <- 0.05
+for (i in seq(s[1])) {
+    for (j in seq(s[1])) {
+        if (i < j) Y[i, j] <- rbernoulli(1, p1)
+    }
+    for (j in (seq(s[2]) + s[1])) {
+        if (i < j) Y[i, j] <- rbernoulli(1, p2)
+    }
+    for (j in (seq(s[3]) + s[2] + s[1])) {
+        if (i < j) Y[i, j] <- rbernoulli(1, p2)
+    }
+}
+for (i in (seq(s[2]) + s[1])) {
+    for (j in (seq(s[2]) + s[1])) {
+        if (i < j) Y[i, j] <- rbernoulli(1, p1)
+    }
+    for (j in (seq(s[3]) + s[2] + s[1])) {
+        if (i < j) Y[i, j] <- rbernoulli(1, p2)
+    }
+}
+for (i in (seq(s[3]) + s[2] + s[1])) {
+    for (j in (seq(s[3]) + s[2] + s[1])) {
+        if (i < j) Y[i, j] <- rbernoulli(1, p1)
+    }
+}
+Y1 <- Y + t(Y) # make it sym. then undir.
+Y0 <- Y1
+diag(Y0) <- NA
+g0 <- graph_from_adjacency_matrix(Y1, "undirected")
+m <- length(E(g0))
+Z <- c(rep(1L, s[1]), rep(2L, s[2]), rep(3L, s[3]))
+c0 <- list(membership = Z)
+class(c0) <- "communities"
+### calculating densities
+f <- function(i, j) {round(mean(Y0[Z==i,Z==j], na.rm = T), 3)}
+mat0 <- matrix(
+    c(f(1,1), f(1,2), f(1,3),
+      f(2,1), f(2,2), f(2,3),
+      f(3,1), f(3,2), f(3,3)),
+    nrow = 3, ncol = 3
+)
+m1 <- mean(seq(n)[Z == 1])
+m2 <- mean(seq(n)[Z == 2])
+m3 <- mean(seq(n)[Z == 3])
+df0.block <- tribble(~x, ~y, ~z,
+    m1, m1, f(1, 1),
+	m1, m2, f(1, 2),
+	m1, m3, f(1, 3),
+	m2, m1, f(2, 1),
+	m2, m2, f(2, 2),
+	m2, m3, f(2, 3),
+	m3, m1, f(3, 1),
+	m3, m2, f(3, 2),
+	m3, m3, f(3, 3)
+)
+```
+
+## Example: `r n` nodes, `r m` edges
+```{r plot_eg_circle}
+plot(g0, vertex.size = 7, vertex.label.cex = 0.8, layout = layout_in_circle)
+```
+
+## Visually better
+```{r plot_eg_better}
+set.seed(1001)
+plot(g0, vertex.size = 11, layout = layout_with_fr)
+```
+
+## Colouring the groups
+```{r plot_eg_colour}
+set.seed(1001)
+plot(c0, g0, vertex.size = 11, edge.color = "grey50", layout = layout_with_fr)
+```
+
+## Observations
+* Nodes are tightly connected to each other **within** each group
+  - Less connected **between** groups
+* More importantly, the connection pattern is **similar** for all nodes within the same group
+
+  - Approx. same number of edges with nodes in the same group
+  - Approx. same number of edges with nodes in another group
+
+* I simulated the data & made the communities visible
+  - Less clear-cut for real-life data
+
+## Motivation
+* Given: a network
+  - Undirected or directed
+  - There could be node/edge attributes
+  - **Not** considered as classified labels though
+* To discover:
+
+  - Groups in which nodes are tightly connected (community detection); **and/or**
+  - Groups in which the connectivity pattern is similar
+
+* Node clustering / unsupervised learning
+
+## Community detection **algorithms**
+* Related to stochastic block models
+
+* Heuristic algorithms
+* Quick, based on simple rules
+* Comprehensive review by [Fortunato (2010, Physics Reports)](https://www.sciencedirect.com/science/article/abs/pii/S0370157309002841)
+* Let's look at an example
+
+## Label propagation algorithm
+* [Raghavan, Albert and Kumara (2007, *Physical Review E*)](https://journals.aps.org/pre/abstract/10.1103/PhysRevE.76.036106)
+
+* Initially each node is randomly assigned to one of the $K$ groups
+* Each node takes turn to join the group to which the maximum number of neighbours belong
+* The iterative process continues until no node changes its group membership anymore
+* Cross reference: $k$-nearest neighbours algorithm
+
+## Issues of community detection algorithms
+* Different initial configurations may lead to different results
+
+* Different algorithms give different results
+  - Which one is better / best?
+* Pre-specifying the number of groups beforehand
+
+## Stochastic block models (SBMs)
+* Proper statistical models
+
+  - Theoretically one set of results, once the model is specified 
+
+* Idea: To put nodes that have **similar** properties together
+  - The concept of **stochastic equivalence**
+
+## Stochastic equivalence
+* Given nodes $p$ and $q$ in the same group
+
+* $\Pr(\text{edge from}~p~\text{to}~r) =
+   \Pr(\text{edge from}~q~\text{to}~r)$
+    - No matter $r$ is in the same group with $p$ & $q$ or not
+	- The two probabilities are independent, **given the group memberships**
+* This is the one I used for the example
+
+|       | Group 1  | Group 2  | Group 3  |
+|:-----:|:--------:|:--------:|:--------:|
+|Group 1|  `r p1`  |  `r p2`  |  `r p2`  |
+|Group 2|  `r p2`  |  `r p1`  |  `r p2`  |
+|Group 3|  `r p2`  |  `r p2`  |  `r p1`  |
+
+## SBMs do not necessarily achieve community detection
+* The model equation says nothing about the probabilities' magnitude
+
+* High number of connections between groups but not within groups
+
+|       | Group 1 | Group 2 | Group 3 |
+|:-----:|:-------:|:-------:|:-------:|
+|Group 1|   0.03  |   0.06  | **0.80**|
+|Group 2| **0.90**|   0.05  |   0.01  |
+|Group 3|   0.02  | **0.70**|   0.04  |
+
+## Fitting to real networks
+* SBMs *usually* achieve community detection
+
+  - Able to cluster tightly connected nodes
+
+* This means the following are assumed:
+  - Stochastic equivalence for tightly connected nodes
+  - Degrees of nodes within each group follow the same distribution
+  - Quite strong assumptions
+
+* Not quite realistic for actual data
+  - Degree heterogeneity
+  - Lack of fit
+
+## Illustration
+```{r two_stars, fig.width = 8, fig.asp = 0.8, out.width = "40%"}
+df0.stars <- bind_rows(
+    tibble(from = LETTERS[2:13], to = "A"),
+	tibble(from = LETTERS[15:26], to = "N"),
+	tibble(from = "A", to = "N")
+)
+df0.letters <- tibble(name = LETTERS)
+g0.stars <- graph_from_data_frame(df0.stars, vertices = df0.letters)
+c0.stars <- list(membership = c(rep(1L, 13L), rep(2L, 13L)))
+class(c0.stars) <- "communities"
+set.seed(22L)
+plot(c0.stars, g0.stars)
+```
+* Community detection achieved but poor fit
+
+## Illustration (cont'd)
+```{r two_stars_contd, fig.width = 8, fig.asp = 0.8, out.width = "40%"}
+c1.stars <- list(membership = c(1L, rep(2L, 12L), 1L, rep(2L, 12L)))
+class(c1.stars) <- "communities"
+set.seed(22L)
+plot(c1.stars, g0.stars)
+```
+* Nodes stochastic equivalent but not tightly connected
+
+## Degree-corrected SBM
+* [Karrer and Newman (2011, *Physical Review E*)](https://journals.aps.org/pre/abstract/10.1103/PhysRevE.83.016107)
+
+* An extra parameter / latent variable for each node
+
+  - To correct for the heterogeneity in their degrees
+  - Nodes within the same group "stochastically equivalent" after correcting
+
+* Community detection + improved fit
+
+## Not the universal fix though
+* In some cases, selecting between the original and degree-corrected versions is not clear cut
+
+* Each version reveals a different underlying structure about the same network
+* Instead of choosing between the two versions, they could be combined in a weighted / mixture model
+
+## Inference
+* What data do we have?
+  - The network, represented by e.g. the adjacency matrix
+
+* What quantities do we have to infer?
+
+  - The group memberships of the nodes
+  - The block matrix
+
+|       | Group 1  | Group 2  | Group 3  |
+|:-----:|:--------:|:--------:|:--------:|
+|Group 1|    ??    |    ??    |    ??    |
+|Group 2|    ??    |    ??    |    ??    |
+|Group 3|    ??    |    ??    |    ??    |
+
+## Using the first example
+```{r plot_eg_again}
+plot(g0, vertex.size = 7, vertex.label.cex = 0.8, layout = layout_in_circle)
+```
+
+## Rearranging the adjacency matrix
+* From ... 
+```{r plot_adj_reordered, fig.asp = 0.85}
+df0 <- tibble(old = seq(n), new = sample(seq(n), n))
+df1 <- bind_rows(
+  g0 %>% as_data_frame(),
+  g0 %>% as_data_frame() %>% rename(from = to, to = from)
+) %>%
+  left_join(df0, c("from" = "old")) %>%
+  rename(from_new = new) %>%
+  left_join(df0, c("to" = "old")) %>%
+  rename(to_new = new)
+df1 %>% ggplot() + geom_point(aes(to_new, from_new)) + scale_y_reverse() + theme_void()
+```
+
+## Inference achieved
+* ... to ...
+```{r plot_adj, fig.asp = 0.85}
+df1 %>% ggplot() + geom_point(aes(to, from)) + scale_y_reverse() + theme_void()
+```
+
+## Adjacency matrix $\rightarrow$ block matrix
+* Densities in each block $=$ point estimates of the parameters
+```{r plot_adj_labelled, fig.asp = 0.85}
+df1 %>% ggplot() + geom_point(aes(to, from), alpha = 0.5) + scale_y_reverse() + geom_text(aes(x, y, label = z), df0.block, color = "red", size = 20) + theme_void()
+```
+
+## Inference issues
+* Computational cost of naive inference algorithm usually $O(n^2)$
+
+  - $n=$ number of nodes
+
+* Number of groups $K$
+
+  - Infer it as a parameter?
+  - Select it using criteria?
+
+* Label switching issue
+
+  - Common in clustering
+
+* Bayesian approach by [Peixoto (2020, *ArXiv:1705.10225*)](https://arxiv.org/pdf/1705.10225.pdf)
+
+  - Biggest development since the degree-corrected SBM
+  - Seems to solve most modelling & inference issues
+
+## Transition: my work
+* [Lee and Wilkinson (2019, *Applied Network Science*)](https://doi.org/10.1007/s41109-019-0232-2)
+
+  - Review of stochastic block models
+  - All references before (& more)
+
+* Networks that are **directed acyclic graphs** (DAGs)
+
+  - Citation network of all the papers in a conference
+  - [Dependency network of R packages](https://cran.r-project.org/package=crandep)
+
+## Modifying SBM for DAGs
+```{r dag_topo, cache = TRUE}
+df0.topo <- cran_dependencies %>%
+    filter(type == "imports" & !reverse) %>%
+	df_to_graph() %>%
+	topo_sort_kahn()
+```
+
+* Adjacency matrix can be upper triangular upon rearranging
+```{r plot_dag_topo}
+df0.depends <- cran_dependencies %>%
+    filter(type == "imports" & !reverse) %>%
+	inner_join(df0.topo, c("from" = "id")) %>%
+	rename(from_num = id_num) %>%
+	inner_join(df0.topo, c("to" = "id")) %>%
+	rename(to_num = id_num)
+df0.depends %>% ggplot() +
+    geom_point(aes(to_num, from_num, alpha = 1/to_num), size = 0.1) +
+	scale_y_reverse(limits = c(NA, 0)) +
+	theme_void() +
+	theme(legend.position = "none")
+```
+
+## Investigating the degree heterogeneity
+* Instead of considering it in the context of SBMs
+
+* How about we look at the degree distribution directly?
+
+
+
+
+
+
+
+
+
+
+# Modelling degree distribution
+
+## What does degree heterogeneity mean?
+* Nodes not following the same degree distribution
+
+* There may be underlying reasons for such heterogeneity
+
+  - (Unknown) node covariates
+  - But they are not the focus here
+
+* Simply fit a univariate distribution to each kind of degrees:
+
+  - In-degree
+  - Out-degree
+  - Total degree
+
+## Degrees of R packages
+* In-degree seems to follow the **power law**
+```{r plot_degrees, fig.show = "hold", fig.asp = c(0.76, 0.64)}
+g0.cran <- cran_dependencies %>%
+    filter(type == "imports" & !reverse) %>%
+	df_to_graph(nodelist = rename(cran_dependencies, name = from))
+x0.cran <- degree(g0.cran, mode = "in")
+gg0.cran <- tibble(x = x0.cran[x0.cran > 0]) %>%
+    count(x) %>%
+	ggplot() +
+	geom_point(aes(x, n)) +
+	scale_x_log10() + scale_y_log10() +
+	labs(x = "In-degree", y = "Frequency")
+gg0.cran
+x1.cran <- degree(g0.cran, mode = "out")
+gg1.cran <- tibble(x = x1.cran[x1.cran > 0]) %>%
+    count(x) %>%
+	ggplot() +
+	geom_point(aes(x, n)) +
+	scale_x_log10() + scale_y_log10() +
+	labs(x = "Out-degree", y = NULL)
+gg1.cran
+```
+
+## The power law
+* In probability terms:
+
+$$ \begin{aligned}
+  p(x) &\propto x^{-\alpha}, \qquad x>u\\
+  \log p(x) &= -\alpha \log x + c
+\end{aligned} $$
+
+* Straight line on the log-log scale
+
+  - $\alpha=-1\times$ slope 
+
+* Related concepts:
+
+  - "The rich gets richer"
+  - Preferential attachment
+  - 80-20 rule / Pareto principle
+  - Scale-free networks
+
+## Preferential attachment model
+* [Barabasi and Albert (1999, *Science*)](https://science.sciencemag.org/content/286/5439/509)
+
+* Growing the network by simple rules
+
+  - A new node comes in and connect to existing nodes
+  - Probability of connecting to the new node $\propto$ current (in-)degree
+
+* Degree distribution follows the power law with $2<\alpha<3$
+
+  - [Clauset et al. (2009, *SIAM Review*)](https://epubs.siam.org/doi/10.1137/070710111)
+
+* These two papers are themselves embodiment of preferential attachment
+
+## Criticisms of the power law
+* Not adequate to describe the degree distribution
+
+  - Usually poorer fit in the right tail, where it is more of interest
+
+* Alternative distributions e.g. log-normal better / sufficient
+
+  - [Stumpf and Porter (2012, *Science*)](https://science.sciencemag.org/content/335/6069/665)
+  - [Broido and Clauset (2019, *Nature Communications*)](https://www.nature.com/articles/s41467-019-08746-5)
+
+## Connecting to extremes
+* Continuous power law $=$ Pareto distribution
+
+* Pareto distribution $\rightarrow$ Generalised Pareto distribution (GPD)
+
+  - Popular in extreme value theory
+  - Can model the tail better / flexibly
+
+* GPD $\rightarrow$ Integer-GPD
+
+  - Discretised
+  - [Rohrbeck et al. (2018, *AoAS*)](https://doi.org/10.1214/17-AOAS1081)
+
+* Why don't we use this then?
+
+## Sidetrack: extreme value theory
+::: columns
+:::: column
+* Mixture distribution
+
+* Power law for the left "tail"
+
+  - data $\leq u$
+
+* GPD for the right tail
+
+  - data $> u$
+  - More flexible
+
+* $u$ is also inferred
+  
+::::
+:::: column
+```{r plot_mix, out.width = "100%"}
+u <- 12L
+df2.cont <- tibble(x = 1:20, y = dmix(x, u, 2.0, 0.5, 1.0, TRUE, 0.2))
+df2.cont %>% ggplot() +
+    geom_point(aes(x, y)) +
+	geom_segment(aes(x, y, xend = x, yend = 0), alpha = 0.5, lwd = 0.5) +
+	geom_vline(xintercept = u, col = 2, lty = 2, lwd = 2) +
+	labs(y = "PMF p(x)") +
+	annotate("text", 16.5, 0.15, label = "Integer-GPD", size = 10) +
+	annotate("text", 7, 0.15, label = "Power law", size = 10)
+```
+::::
+:::
+
+## Good fit
+```{r mcmc}
+## Data, non-MCMC
+raw_data_to_dist <- function(x) {
+    ## x is vector of frequencies, degrees, etc.
+    table0 <- table(x)
+    tibble::tibble(x = as.integer(names(table0)),
+                   n = as.integer(table0),
+                   S = rev(cumsum(rev(n)) / sum(n)))
+}
+## Credible intervals from MCMC
+lower <- 0.005; upper <- 0.995 ####
+mcmc2ci <- function(x, tbl, con, geo, length = 1000L) {
+    ## get credible intervals from MCMC output
+    ## x is data; tbl is data frame of MCMC values
+    tbl <- tbl %>% dplyr::filter(cont == con)
+    n <- length(x)
+    lxs <- seq(log(min(x)), log(max(x)), length = length)
+    xs <- unique(as.integer(round(exp(lxs)))) # need unique values
+    N <- nrow(tbl)
+    mf <- mS <- matrix(NA, N, length(xs))
+    for (i in seq(N)) {
+        mf[i,] <- crandep::dmix(xs, tbl$u[i], tbl$xi1[i], tbl$xi2[i], tbl$sig[i], geo, tbl$phi[i])
+        mS[i,] <- crandep::Smix(xs, tbl$u[i], tbl$xi1[i], tbl$xi2[i], tbl$sig[i], geo, tbl$phi[i])
+    }
+    tibble::tibble(x = xs) %>%
+        dplyr::mutate(f_cil = apply(mf, 2, quantile, p = lower) * n,
+                      f_ciu = apply(mf, 2, quantile, p = upper) * n,
+                      S_cil = apply(mS, 2, quantile, p = lower),
+                      S_ciu = apply(mS, 2, quantile, p = upper))
+}
+mcmc.cran <- read_csv(
+    "mcmc_cran.csv",
+	col_types = cols(cont = col_logical(), .default = col_double())
+)
+ci.cran <- mcmc2ci(x0.cran[x0.cran > 0], mcmc.cran, TRUE, FALSE)
+```
+
+```{r plot_fit, warning = FALSE}
+raw_data_to_dist(x0.cran[x0.cran > 0]) %>%
+    ggplot() +
+	scale_x_log10() +
+	scale_y_log10(limits = c(1, NA)) +
+	geom_point(aes(x, n)) +
+	labs(y = "Frequency", x = "In-degree") +
+	geom_line(aes(x, f_cil), ci.cran, col = 2, lty = 5) +
+	geom_line(aes(x, f_ciu), ci.cran, col = 2, lty = 5)
+```
+
+## Next steps
+* Can we modify the preferential attachment model to lead to such in-degree distribution?
+
+* How about modifying an SBM? Or a combination of both?
+
+* Work in progress: [Lee and Eastoe (2020, *ArXiv:2008.03073*)](https://arxiv.org/abs/2008.03073)
+
+## Interested and want to explore?
+* Literature in the slides
+
+* R packages
+
+  - `igraph`: https://igraph.org/r/
+  - `visNetwork`: https://cran.r-project.org/package=visNetwork
+  - `ggraph`: https://exts.ggplot2.tidyverse.org/ggraph.html
+
+* Other languages
+
+  - `igraph` with Python / C: https://igraph.org/
+  - `vis.js` with JavaScript: https://visjs.org/
+  - `D3.js` with JavaScript: https://observablehq.com/@d3/gallery
+  
+
+## Thank you
+* Questions?

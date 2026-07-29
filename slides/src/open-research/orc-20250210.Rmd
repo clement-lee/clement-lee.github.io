@@ -1,0 +1,79 @@
+---
+title: "UKRN Local Network Overview"
+author: "Clement Lee and Nicola Howe"
+date: "2025-02-10 (Mon)"
+output:
+  beamer_presentation: default
+classoption: aspectratio=169
+---
+
+## Local Network Leads
+
+```{r setup}
+#| echo: false
+knitr::opts_chunk$set(out.width = "60%", message = FALSE, fig.align = "center", echo = FALSE)
+f <- knitr::include_graphics
+```
+
+:::::: {.columns}
+::: {.column width="49%" data-latex="{\textwidth}"}
+
+```{r clement}
+f("images/18400316.png")
+```
+
+:::
+::: {.column width="2%" data-latex="{\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+::: {.column width="49%" data-latex="{\textwidth}"}
+
+```{r nicola}
+f("images/nicola.jpeg")
+```
+
+:::
+::::::
+
+## ReproducibiliTea journal club
+
+* 3rd Thu of each month at 12pm @ Robinson Library
+
+* https://bit.ly/ncl-repro
+
+```{r repro_logo}
+#| fig.align: "right"
+#| out.width: "35%"
+f("images/reproducibiliTea_logo.png")
+```
+
+
+## Working with others
+
+* Institutional lead
+
+* Research Culture team
+
+* Other local network leads
+
+## Talk to us!
+
+* Ideas on activities, getting involved ...
+
+
+* Email: ukrn@newcastle.ac.uk
+
+* **UKRN Newcastle** on Teams
+
+  - Join code: r90f2wo
+
+  - https://bit.ly/ukrn-newcastle-teams
+
+```{r teams}
+#| fig.align: "right"
+#| out.width: "30%"
+f("images/bit.ly_ukrn-newcastle-teams.png")
+```
+

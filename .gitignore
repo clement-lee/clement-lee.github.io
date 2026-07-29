@@ -1,0 +1,14 @@
+# R / renv (slides/src/)
+slides/src/renv/library/
+slides/src/renv/local/
+slides/src/renv/cellar/
+slides/src/renv/lock/
+slides/src/renv/python/
+slides/src/renv/sandbox/
+slides/src/renv/staging/
+slides/src/render-report.md
+slides/src/**/*.log
+slides/src/**/*_cache/
+slides/src/**/*_files/
+.Rhistory
+.Rproj.user/

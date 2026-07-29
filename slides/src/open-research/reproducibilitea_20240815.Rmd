@@ -1,0 +1,51 @@
+---
+title: "Thoughts on ReproducibiliTea & Open Research @ Newcastle"
+author: "Clement Lee"
+date: "2024-08-15"
+output: pdf_document
+classoption: a4paper
+---
+
+# Observations / feedback
+
+* Lack of awareness
+* Training on GitHub / Version control / Linux / Software carpentry would be useful
+* Learning about data management plan via data.ncl.ac.uk would be useful
+* Information collation needed
+* Resources page quite hidden: https://www.ncl.ac.uk/library/academics-and-researchers/research/open-research/comic/resources/
+
+# Ideas
+
+* Newsletter
+  - Items forwarded from UKRN
+  - Train-the-Trainer courses: https://www.ncl.ac.uk/library/academics-and-researchers/research/open-research/workshops/
+  - Workshops: https://workshops.ncl.ac.uk/
+  - ReproducibiliTea journal club
+  - Blog: https://blogs.ncl.ac.uk/opening-research/
+  - Other events
+    * Research culture cafe?
+    * Researchers Empowering Newcastle University?
+
+* Open research one-stop guide
+  - To give to starters (academics & PhD students)
+  - To give away at internal conferences and events
+  - To accompany the comic
+  - Resources
+    * Open Science Framework: https://osf.io/
+    * those in https://www.ncl.ac.uk/library/academics-and-researchers/research/open-research/comic/resources/
+    * those in https://www.ukrn.org/resources/
+    * UK Data Service (https://ukdataservice.ac.uk/) & their YouTube channel
+  - Specific to Newcastle University
+    * Open access (univesity's agreement with publishers)
+    * Open data (data.ncl.ac.uk)
+    * Workflow, for different levels & schools
+  - Creating the guide in an open & collaborative way
+    * On OSF
+    * Get others in the network involved
+
+* Drop-in sessions?
+  - Alternate with journal club?
+
+* Not stepping on others' toes
+
+* Through Research Culture Fund?

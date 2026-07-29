@@ -1,0 +1,235 @@
+% Copyright 2025 by Clement Lee
+%
+% This file may be distributed and/or modified
+% under the GNU Public License (>= 3).
+
+\mode<presentation>
+
+% --- 1. PACKAGES ---
+\RequirePackage{tikz}
+\RequirePackage{graphicx}
+\RequirePackage{ifxetex}
+
+% ENABLE BLOCKS
+% This gives the blocks rounded corners and a drop shadow,
+% making them look like "cards" on the dark background.
+\useinnertheme[shadow=true]{rounded}
+% has to include the above here to not overwrite the title page later
+
+% --- 2. FONTS (XeLaTeX) ---
+\ifxetex
+\RequirePackage{fontspec}
+\setsansfont{Derailed}[
+UprightFont = *-Regular, 
+BoldFont    = *-Bold,
+ItalicFont  = *-Italic
+]
+\setmainfont{Derailed}
+\else
+\PackageWarning{InstitutionTheme}{Use xelatex to load Derailed font.}
+\fi
+
+% --- 3. COLORS ---
+\definecolor{InstBlue}{RGB}{0, 58, 101}
+\definecolor{InstCyan}{RGB}{41, 183, 234}
+\definecolor{InstRed}{RGB}{198, 12, 48}
+\definecolor{InstWhite}{RGB}{255, 255, 255}
+
+% --- 4. GLOBAL SETTINGS ---
+% Both Title and Content pages share these base colors
+\setbeamercolor{background canvas}{bg=InstBlue} 
+\setbeamercolor{normal text}{fg=InstWhite}      
+\setbeamercolor{frametitle}{fg=InstWhite}
+\setbeamercolor{title}{fg=InstWhite}
+\setbeamercolor{structure}{fg=InstWhite}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamersize{text margin left=1cm, text margin right=1cm}
+
+% --- 5. THE UNIFIED BACKGROUND TEMPLATE ---
+\setbeamertemplate{background}{
+
+  % --- LOGIC SWITCH ---
+  \ifnum\thepage=1\relax
+  % ============================
+  % PAGE 1: TITLE PAGE ELEMENTS
+  % ============================
+  \begin{tikzpicture}[remember picture, overlay]
+    \node[opacity=1, inner sep=0pt] at (current page.center) {
+      \includegraphics[width=\paperwidth, height=\paperheight]{images/background_main.png}
+    };
+  \end{tikzpicture}
+
+  \else
+  % ============================
+  % PAGE >1: CONTENT SLIDE ELEMENTS
+  % ============================
+  \begin{tikzpicture}[remember picture, overlay]
+    
+    % --- COMMON ELEMENT: LOGO ---
+    % Appears on ALL slides (Title AND Content) in the top right
+    \node[anchor=north east, inner sep=0] 
+    at ([xshift=-0.8cm, yshift=-0.2cm]current page.north east) {
+      \includegraphics[width=2.5cm]{images/logo_reversed.png} 
+    };
+    
+    % 1. Short Title (Top Left - Above the line)
+    \node[anchor=north west, inner sep=0, text width=12cm, color=InstCyan] 
+    at ([xshift=1cm, yshift=-0.5cm]current page.north west) {
+      \fontsize{10}{12}\selectfont
+      \ifnum\value{section}=0
+      \insertshorttitle
+      \else
+      \insertsectionhead
+      \fi
+    };
+
+    % 2. Cyan Line (The divider)
+    % Position: 1.0cm from top
+    \draw[color=InstCyan, line width=0.5pt] 
+    (current page.north west) ++(0.8cm, -1.0cm) -- ++(\paperwidth-1.6cm, 0);
+
+    % 3. Red Footer Line
+    \draw[color=InstRed, line width=3pt] 
+    (current page.south east) ++(-\paperwidth+0.8cm, 0.6cm) -- ++(\paperwidth-1.6cm, 0);
+
+    % 4. Footer Slogan
+    \node[anchor=south east, inner sep=0.3cm] at ([xshift=-0.6cm, yshift=-0.1cm]current page.south east) {
+      \footnotesize \bfseries From Newcastle. For the world.
+    };
+  \end{tikzpicture}
+  \fi
+}
+
+% --- 6. DEFINE SPECIAL SECTION BACKGROUND ---
+% This template is used ONLY for Section Title slides.
+% It keeps the Logo and Footer, but removes the Header line/text.
+\defbeamertemplate{background}{section_bg}{
+  \begin{tikzpicture}[remember picture, overlay]
+    \node[opacity=1, inner sep=0pt] at (current page.center) {
+      \includegraphics[width=\paperwidth, height=\paperheight]{images/background_city.jpg}
+    };
+  \end{tikzpicture}
+}
+
+% --- 7. AUTOMATIC SECTION SLIDES ---
+\AtBeginSection[]{
+  { % Open scope to keep changes local to this frame
+    % Switch to the clean "Section Background" defined above
+    \setbeamertemplate{background}[section_bg]
+    % Turn off the standard frame title for this slide
+    \setbeamertemplate{frametitle}{} 
+
+    \setbeamercolor{section title box}{fg=InstWhite, bg=InstBlue}
+
+    \begin{frame}
+      \begin{tikzpicture}[remember picture, overlay]
+
+        % Logo
+        \node[anchor=north east, inner sep=0] 
+        at ([xshift=-0.8cm, yshift=-0.2cm]current page.north east) {
+          \includegraphics[width=2.5cm]{images/logo_reversed.png} 
+        };
+        
+        % 1. DEFINE THE BOX & TEXT
+        % anchor=west:      The anchor point is the left side of the box
+        % at:               Place that anchor exactly at the left edge of screen (current page.west)
+        % text width:       Forces the box to be 12cm wide regardless of text length
+        % minimum height:   Forces the box to be 4cm tall
+        % fill:             InstBlue (as requested)
+        \node[
+        anchor=west,
+        fill=InstBlue,
+        text width=11cm,      % Width of the box
+        minimum width=11cm,
+        minimum height=2.5cm,   % Height of the box
+        inner sep=0.5cm,        % Internal padding
+        align=flush left      % Text alignment inside
+        ] (SectionBox) at (current page.west) {
+          \hspace{1.2cm} \fontsize{18}{21}\selectfont \bfseries \color{InstWhite} \insertsectionhead
+        };
+        
+        % 2. THE VERTICAL RED LINE
+        % We draw this using the coordinates of the box we just created (SectionBox).
+        % (SectionBox.north west) is the top-left corner.
+        % (SectionBox.south west) is the bottom-left corner.
+        % xshift: Pushes the line slightly inward (right) so it sits "inside" the box
+        \draw[color=InstRed, line width=5pt] 
+        ([xshift=1cm]current page.north west) -- ([xshift=1cm, yshift=0.8cm]SectionBox.south west);
+
+        % 3. Footer strip
+        \draw[color=InstBlue, line width=0.6cm]
+        ([yshift=0.3cm]current page.south west) ++(0cm, 0cm) -- ++(\paperwidth, 0);
+
+        % 4. Footer Slogan
+        \node[anchor=south east, inner sep=0.3cm] at ([xshift=-0.6cm, yshift=-0.1cm]current page.south east) {
+          \footnotesize \bfseries From Newcastle. For the world.
+        };
+      \end{tikzpicture}
+    \end{frame}
+  } % Close scope
+}
+
+% --- 6. FRAMETITLE CONFIGURATION ---
+% Only affects content pages. Pushes title below the Cyan line.
+\setbeamertemplate{frametitle}{
+  \vspace*{1.2cm} 
+  \bfseries\Large\insertframetitle
+  \vspace*{-0.5cm}
+}
+
+% --- 7. TITLE PAGE CONTENT CONFIGURATION ---
+% Controls the text placement on the title page
+\setbeamertemplate{title page}{
+  \vspace*{1cm}
+  \begin{beamercolorbox}[wd=\paperwidth,dp=1ex,leftskip=2cm]{title page}
+    % Title (Bold, Large)
+    %\hspace*{1cm}
+    {\fontsize{24}{30}\selectfont \bfseries \inserttitle \par}
+    % \vspace{0.1cm}
+    
+    % Subtitle
+    %\hspace*{1cm}
+    {\fontsize{14}{17}\selectfont \mdseries \insertsubtitle \par}
+    % \vspace{1.5cm}
+    
+    % Author
+    %\hspace*{1cm}
+    {\fontsize{11}{13}\selectfont \mdseries \insertauthor \par}
+    % \vspace{0.2cm}
+    
+    % Date
+    %\hspace*{1cm}
+    {\fontsize{11}{13}\selectfont \mdseries \insertdate \par}
+  \end{beamercolorbox}
+}
+
+% --- 9. BLOCK STYLING (Theorems, Proofs, Examples) ---
+
+% DEFINE BLOCK COLORS
+% We want "White Background" (bg) and "InstBlue Text" (fg).
+
+% Standard Blocks (Theorems, Definitions, Generic Blocks)
+\setbeamercolor{block title}{bg=InstWhite, fg=InstBlue}
+\setbeamercolor{block body}{bg=InstWhite, fg=InstBlue}
+
+% Example Blocks
+\setbeamercolor{block title example}{bg=InstWhite, fg=InstBlue}
+\setbeamercolor{block body example}{bg=InstWhite, fg=InstBlue}
+
+% Alert Blocks (e.g., \begin{alertblock})
+% We use InstRed for the title to make it pop, but keep body white/blue.
+\setbeamercolor{block title alert}{bg=InstWhite, fg=InstRed}
+\setbeamercolor{block body alert}{bg=InstWhite, fg=InstBlue}
+
+% PROOF QED SYMBOL
+% Ensure the little square at the end of proofs is Blue (visible on white)
+\setbeamercolor{qed symbol}{fg=InstBlue}
+
+% OPTIONAL: FONT ADJUSTMENTS
+% Make block titles Bold to distinguish them from the body text
+% (since both have the same white background color)
+\setbeamerfont{block title}{series=\bfseries}
+
+\mode
+<all>

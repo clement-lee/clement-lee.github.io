@@ -1,0 +1,809 @@
+---
+title: "Good coding practices"
+subtitle: "Insights North East Workshop"
+author: "Clement Lee (Newcastle University)"
+date: "2025-02-04 (Tue)"
+output: slidy_presentation
+---
+
+## Today's outline
+
+:::::: {.columns}
+::: {.column width="49%" data-latex="{\textwidth}"}
+
+1. Introduction
+
+   - The case for coding
+   - Quick introduction to R
+   - Basic plots 
+
+2. Practical 1
+
+3. Data pipeline via the **tidyverse**
+
+4. Practical 2
+
+5. Write documents & presentations
+
+6. Practical 3
+
+7. Q&A, summary
+
+:::
+::: {.column width="2%" data-latex="{\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+::: {.column width="49%" data-latex="{\textwidth}"}
+
+* Today's slides: https://bit.ly/insights-north-east
+
+  - I shall put this in the chat
+
+* Toolkits on https://insightsnortheast.co.uk/data/
+
+:::
+::::::
+
+<!-- Running this for the first time, feel free to interrupt and ask questions -->
+
+# 1. Introduction
+
+## About me
+
+:::::: {.columns}
+::: {.column width="59%" data-latex="{\textwidth}"}
+
+```{r setup}
+#| echo: false
+knitr::opts_chunk$set(out.width = "50%", message = FALSE, fig.align = "center")
+f <- knitr::include_graphics
+```
+
+- Lecturer in Statistics at Newcastle University since August 2022
+
+- Teach statistical analysis using R
+
+- Research on statistical models for (social) networks
+
+:::
+::: {.column width="2%" data-latex="{\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+::: {.column width="39%" data-latex="{\textwidth}"}
+
+```{r sophia}
+#| echo: false
+#| fig.align: "left"
+#| out.width: "60%"
+f("images/sophia.jpg")
+```
+
+:::
+::::::
+
+## Experience with outside academia
+
+:::::: {.columns}
+::: {.column width="34%" data-latex="{\textwidth}"}
+
+```{r freegle}
+#| echo: false
+#| out.width: "40%"
+f("images/freegle-logo.png")
+```
+
+* Case study: https://bit.ly/s4s-freegle
+
+:::
+::: {.column width="2%" data-latex="{\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+::: {.column width="64%" data-latex="{\textwidth}"}
+
+```{r freegle-network}
+#| out.width: "45%"
+#| fig.align: "left"
+#| echo: false
+f("images/network.png")
+```
+
+:::
+::::::
+
+## About you?
+
+* Write in the chat
+
+* Experience in working with data, and what are your usual tools?
+
+* Have you coded in R (or other programming languages) before?
+
+## Why coding in the first place?
+
+- Future-proof your analysis
+
+  * for others to replicate / reproduce
+
+  * including your future self
+
+- ChatGPT & others making it easier to start
+
+- Also the stepping stone for machine learning and AI
+
+  * but don't start with something completely unfamiliar
+
+  * garbage in, garbage out
+
+- Version control, CI/CD, and beyond
+
+## Other kinds of output
+
+- "*But I need to make presentations, reports, visualisations, etc.*"
+
+- Most can be done nicely via R
+
+- We will see how this can be done
+
+## Why not Python?
+
+- Python great for big data pipelines
+
+  * Interfacing with the Internet
+  * Machine learning at scale
+
+- R is better in some other aspects
+
+  * Standalone analysis
+  * The whole data pipeline with `tidyverse`
+  * The notebook / literate programming approach
+
+- Understand which one is better / more suited for your tasks
+
+## R
+
+- Free & open source
+
+- Download from https://cran.r-project.org/
+
+- Anyone can contribute:
+
+  * https://cran.r-project.org/web/packages/available_packages_by_name.html
+
+  * Some packages about "business", "politics", etc.
+
+## RStudio
+
+- The best interface for using R
+
+- Download from https://posit.co/download/rstudio-desktop/
+
+- Let's have a look
+
+<!-- give a quick tour of R -->
+
+## Data
+
+```{r read-data}
+#| echo: true
+library(readxl)
+table1 <- read_xlsx("assets/Business Rates properties - November 2024.xlsx")
+table1
+```
+
+- Source: https://new.newcastle.gov.uk/budget-policies-performance-data/open-data/business-economy/business-rates-data/all-current-business-rates-properties
+
+- A table / spreadsheet in Excel (.xls, .xlsx, .csv, ...) $\approx$ a **data frame** / **tibble** in R
+
+## Some summary statistics
+
+```{r business-summary}
+#| eval: true
+mean(table1$`rateable value`) # the average of rateable value
+sd(table1$`LIA`) # standard deviation of variable LIA
+summary(table1$`net charges`) # a range of summaries
+```
+
+## A histogram
+
+```{r business-hist}
+#| eval: true
+hist(table1$`net charges`) # histogram of net charges
+```
+
+## Better
+
+```{r business-hist-again}
+#| eval: true
+hist(table1$`net charges`,
+     breaks = 100, # approximately 100 bars
+     main = NA, xlab = NA) # don't print the title and the x-axis label yet
+title(main = "Histogram of net charges for November 2024",
+      xlab = "Net charges (£)")
+```
+
+## Dates / times
+
+```{r business-time}
+#| eval: true
+plot(table1$start, table1$`net charges`)
+```
+
+## Better
+
+```{r business-time-again}
+#| eval: true
+#| warning: false
+plot(table1$start, table1$`net charges`, log = "y", # on log scale
+     main = NA, xlab = NA, ylab = NA, # don't print title & axis labels yet
+     cex = 0.1) # size of the points
+title(main = "Net charges over the starting date of businesses",
+      xlab = "Starting date", ylab = "Net charges (£)")
+```
+
+## Preempting the questions
+
+* What if we have an xls or csv file instead?
+
+* `read_xls()` from the same package `readxl`
+
+* `read.csv()` that comes with R
+
+## Preempting the questions
+
+* What if we want to create new columns (by manipulating some existing columns) and plot them?
+
+* Tedious if we need to
+
+  - create them first,
+
+  - re-save the spreadsheet,
+
+  - and then rerun the analysis
+
+* It is usually the best **not** to modify the raw / original data
+
+## Preempting the questions
+
+* Plots still not perfect
+
+* Huge skew of net charges $\rightarrow$ uninformative histogram; perhaps log scale help?
+
+* Faffy modifications; instead, we will use the package `ggplot2`
+
+## Preparing for the next section
+
+* We can build a data pipeline within R to
+
+  - read the data,
+
+  - manipulate them, and
+
+  - make very nice plots
+
+* Tidyverse (https://www.tidyverse.org/), arguably the biggest development in R **ever**
+
+  - `ggplot2` is part of it
+
+## Questions so far?
+
+* Also, too fast or too slow?
+
+## 2. Practical 1
+
+* Go to https://bit.ly/insights-practical1
+
+* Go through the practical in groups
+
+* Make summaries and plots using your own data or the business rates data
+
+  - Think about what you want to highlight
+
+* Note any challenges / difficulties, or anything you find useful
+
+* Report your findings
+
+# 3. Data pipeline
+
+## The pipe operator
+
+* Continue with the previous data frame `table1`
+
+* Let's say we want to calculate the mean of **the square root of** the net charges
+
+```{r pipe0}
+mean(sqrt(table1$`net charges`))
+```
+
+* The way the functions are typed is not that the way we think about applying them
+
+* The code below is more **linear**
+
+```{r pipe}
+table1$`net charges` |> sqrt() |> mean()
+```
+
+## The tidyverse
+
+* Collection of R packages designed for data science
+
+* All packages share an underlying design philosophy, grammar, and data structures
+
+* Installation: only need to do it once (theoretically)
+
+```{r tidyverse-install}
+#| eval: false
+install.packages("tidyverse")
+```
+
+* The above might require a lot more packages to be installed
+
+* After all, it's just a **collection** of packages
+
+## Alternatively
+
+```{r tidyverse-indiv}
+#| eval: false
+install.packages("dplyr")
+install.packages("ggplot2")
+install.packages("tidyr")
+install.packages("readr")
+install.packages("stringr")
+install.packages("tibble")
+install.packages("purrr")
+install.packages("forcats")
+```
+
+* Type above commands once and first
+
+* Type below commands every time you need them
+
+  - Only downside: can't type `library(tidyverse)`
+
+```{r tidyverse-indiv-load}
+#| eval: true
+library(dplyr) # manipulates columns
+library(ggplot2) # for plots
+library(tidyr) # pivot tables & more
+library(readr) # reads tables nicely
+library(stringr) # works with text data
+library(tibble) # nice tables
+library(purrr) # for functional programming
+library(forcats) # for "factors"
+```
+
+## `dplyr`
+
+* Create / manipulate columns
+
+```{r dplyr}
+table2 <- table1 |>
+  mutate(date = as.Date(start), ratio = `net charges` / LIA) |>
+  select(date, ratio, `rateable value`:`net charges`, "address") # select / reorder columns
+table2
+```
+
+## `dplyr`
+
+* Filter rows where `DRR1` is not empty (`NA` in R)
+
+* Other uses (not shown):
+
+  - Join other tables
+
+  - Summarise columns
+
+```{r dplyr-filter}
+table2 |> filter(!is.na(DRR1))
+```
+
+## `tidyr` (+ `dplyr`)
+
+* Pivot tables
+
+  - Combine columns between "rateable value" & "net charges"
+
+  - New columns "name" and "value"
+
+```{r tidyr-pivot}
+table3 <- table2 |>
+  pivot_longer(`rateable value`:`net charges`) |>
+  select(date, ratio, name, value, everything()) |> # a dplyr function
+  filter(!is.na(value)) # another dplyr function
+table3
+```
+
+## `stringr` (+ `dplyr`)
+
+* Extract postcode
+
+* Useful if we want to combine with coordinates for plotting on a map
+
+```{r stringr}
+table3 |>
+  mutate(postcode = str_extract(address, "NE\\d+ \\d\\w{2}")) |> # within a dplyr function
+  select(-address) # postcode suffices for finding the coordinates
+```
+
+## `ggplot2`
+
+```{r ggplot2-setup}
+#| echo: false
+knitr::opts_chunk$set(warning = FALSE)
+```
+
+* Histogram of new column `ratio` we have created
+
+* Always the same syntax, as we will see
+
+```{r ggplot2-ratio}
+table2 |> ggplot() +
+  geom_histogram(aes(ratio))
+```
+
+## `ggplot2`
+
+* **Density** of new column `ratio` we have created
+
+* Change the background colour and label size
+
+```{r ggplot2-density}
+table2 |> ggplot() +
+  geom_density(aes(ratio)) +
+  theme_bw(18)
+```
+
+## Chaining every together
+
+```{r ggplot2-chain}
+table1 |>
+  mutate(date = as.Date(start), ratio = `net charges` / LIA) |>
+  select(date, ratio, `rateable value`:`net charges`, "address") |>
+  ggplot() +
+  geom_density(aes(ratio)) +
+  theme_bw(18)
+```
+
+## Chaining every together
+
+```{r ggplot2-chain-again}
+table1 |>
+  mutate(date = as.Date(start), ratio = `net charges` / LIA) |>
+  select(date, ratio, `rateable value`:`net charges`, "address") |>
+  ggplot() +
+  geom_point(aes(date, ratio)) +
+  theme_bw(18)
+```
+
+## What about the problematic net charges?
+
+```{r ggplot2-net-charges}
+table1 |>
+  ggplot() +
+  geom_histogram(aes(`net charges`))
+```
+
+## Log scale on the $y$-axis
+
+```{r ggplot2-net-charges2}
+table1 |>
+  ggplot() +
+  geom_histogram(aes(`net charges`)) +
+  scale_y_log10()
+```
+
+## Polishing the plot
+
+```{r ggplot2-net-charges3}
+table1 |>
+  ggplot() +
+  geom_histogram(aes(`net charges`)) +
+  scale_y_log10() +
+  scale_x_continuous(labels = scales::comma) +
+  theme_bw(18) +
+  labs(title = "Histogram of net charges for November 2024", x = "Net charges (£)")
+```
+
+## Taking it all the way
+
+```{r ggplot2-net-charges4}
+table1 <- read_xlsx("assets/Business Rates properties - November 2024.xlsx")
+table1 |>
+  ggplot() +
+  geom_histogram(aes(`net charges`)) +
+  scale_y_log10() +
+  scale_x_continuous(labels = scales::comma) +
+  theme_bw(18) +
+  labs(title = "Histogram of net charges for November 2024", x = "Net charges (£)")
+```
+
+## Semi-automation
+
+```{r ggplot2-net-charges5}
+month_year <- "November 2024"
+table1 <- read_xlsx(paste0("assets/Business Rates properties - ", month_year, ".xlsx"))
+table1 |>
+  ggplot() +
+  geom_histogram(aes(`net charges`)) +
+  scale_y_log10() +
+  scale_x_continuous(labels = scales::comma) +
+  theme_bw(18) +
+  labs(title = paste0("Histogram of net charges for ", month_year), x = "Net charges (£)")
+```
+
+## Changes in content & title
+
+```{r ggplot2-net-charges6}
+month_year <- "August 2024"
+table1 <- read_xlsx(paste0("assets/Business Rates properties - ", month_year, ".xlsx"))
+table1 |>
+  ggplot() +
+  geom_histogram(aes(`net charges`)) +
+  scale_y_log10() +
+  scale_x_continuous(labels = scales::comma) +
+  theme_bw(18) +
+  labs(title = paste0("Histogram of net charges for ", month_year), x = "Net charges (£)")
+```
+
+## As long as format of file name stays the same
+
+```{r ggplot2-net-charges7}
+month_year <- "May 2024"
+table1 <- read_xlsx(paste0("assets/Business Rates properties - ", month_year, ".xlsx"))
+table1 |>
+  ggplot() +
+  geom_histogram(aes(`net charges`)) +
+  scale_y_log10() +
+  scale_x_continuous(labels = scales::comma) +
+  theme_bw(18) +
+  labs(title = paste0("Histogram of net charges for ", month_year), x = "Net charges (£)")
+```
+
+## Questions?
+
+## 4. Practical 2
+
+- Install the packages first if you haven't already
+
+- Look at the examples in the slides, and try to do the same for your data
+
+- Look at the package manuals for inspiration: https://www.tidyverse.org/packages/
+
+- If you know what plots you want but not the code, ask
+
+- Note anything useful / challenging, and report your findings
+
+# 5. Write documents & presentations
+
+## What good is it for me?
+
+* Write reports or make presentation slides from time to time
+
+* An imagined typical workflow
+
+  - Do the analysis, create and save the plots
+
+  - Copy the numbers and plots to the word / powerpoint document
+
+  - Discover errors / necessary changes, go back and forth
+
+  - Eventually, some results don't add up
+
+## R Markdown to the rescue
+
+* A script that contains text and code interweave
+
+* Upon a button click:
+
+  - R goes through the code and generates results **on the fly**, then
+
+  - creates the document / slides automatically, and
+
+  - in a format of your choice: pdf / word / HTML / powerpoint
+
+* HTML highly useful
+
+  - Hosting on website
+
+  - Checking the accessibility box
+
+* Testament: I create these materials in this approach
+
+## Workflow part 1
+
+* In RStudio, below **File** in the top left corner, click the small black triangle, then click **R Markdown**
+
+* Enter the title, author, date, and choose the output format (which can always be changed later)
+
+* Click **OK** to open a new file
+
+* Edit between the two lines of triple dashes if necessary
+
+* Grey code **chunks** ringfenced by the two lines of triple backticks
+
+  - Write your R code within
+
+  - Create new one by clicking green square (near top right of the file) and then **R**
+
+* White space is for text that describes your analysis
+
+  - Any blue text will be formatted nicely e.g. section headings, URLs, bold/italics
+
+  - Leave the template text for reference
+
+## Workflow part 2
+
+* Remove the template text when you feel confident
+
+* When ready:
+
+  - Click **Knit** (and save the script file for the first time) and wait;
+
+  - The **Render** panel (bottom left) will show the progress;
+
+  - Once finished, the file may be opened automatically; if not, in the **Files** panel (bottom right), click the file.
+
+* If you want to change the format:
+
+  - Click the small black triangle next to **Knit** and choose the format
+
+  - Same content, different formats at (almost) no cost
+
+  - Complete list here: https://rmarkdown.rstudio.com/lesson-9.html
+
+  - **Caution**: pdf formats (`pdf_document`, `beamer_presentation`) might encounter more issues
+
+## Chunk options
+
+* Towards the top of the file
+
+* The global options
+
+````{verbatim, lang = "markdown"}
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, # print the code or not?
+                      message = FALSE, # print messages or not?
+                      warning = FALSE, # print warnings or not?
+                      include = FALSE) # print results or not?
+```
+````
+
+* Individual chunk options override the global ones
+
+* The second chunk (with `#|`) looks neater & easier to read
+
+````{verbatim, lang = "markdown"}
+```{r setup2, echo = FALSE, message = FALSE, warning = FALSE, include = FALSE}
+table1 |> ggplot() + geom_histogram(aes(`net charges`))
+```  
+
+
+```{r setup3}
+#| echo: FALSE
+#| message: FALSE
+#| warning: FALSE
+#| include: FALSE
+table1 |> ggplot() + geom_histogram(aes(`net charges`))
+```  
+````
+
+* Other options: `fig.cap` for captions of plots
+
+* Full list here: https://yihui.org/knitr/options/
+
+## Self-contained
+
+* Whatever objects you have created or packages loaded in **console** is independent of the R Markdown file
+
+* The code in the Rmd file has to load all necessary packages & create objects within
+
+* Reproducibility
+
+  - Can your colleagues replicate the results?
+
+  - Can you generate the document if the data changes? Related to semi-automation
+
+* Some commands that should not be in an R Markdown file
+
+  - `install.packages(<package name>)` -- `library(<package name>)` suffices
+
+  - `setwd("C:~/home/clement/paths/that/only/exist/on/my/laptop/")`
+
+## Questions?
+
+## 6. Practical 3
+
+- Refer to previous slides (Workflow part 1, Workflow part 2, Chunk options, Self-contained) if needed
+
+- Put the code you have written in Practical 2 in an R Markdown file
+
+- Knit to different formats and see the results
+
+- If in doubt, knit a new file without removing the template, before making changes
+
+# 7. Summary
+
+## Taking stock
+
+* Introduction to R & basic plots
+
+* Data pipeline via the tidyverse (& pipe operator)
+
+  - read the data into R,
+
+  - create / manipulate columns,
+
+  - make plots
+
+* Make documents / presentations using R Markdown
+
+  - Code & text together in one script file
+
+  - Document created upon a button click
+
+## Is this way of making documents useful for me?
+
+:::::: {.columns}
+::: {.column width="49%" data-latex="{\textwidth}"}
+
+Cons
+
+- Needs more effort to refine layout
+
+- Needs to set things up & install packages
+
+- Needs all code working before getting the finished product
+
+- Up-front cost of learning the coding before achieving efficiency
+
+:::
+::: {.column width="2%" data-latex="{\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+::: {.column width="49%" data-latex="{\textwidth}"}
+
+Pros
+
+- Focus on content, which is separate from format 
+
+- Semi-automation
+
+- Reproducible
+
+- Easy to go on to version control, CI/CD etc. in your workflow
+
+:::
+::::::
+
+## "Learning all this is very costly"
+
+* Aggregation of marginal gains (Kaizen)
+
+* Start from the templates, make sure they work, then slowly add your analysis
+
+* Make one plot or calculate one summary at a time
+
+* The manuals (https://www.tidyverse.org/packages/)
+
+* ChatGPT also useful to generate the initial code
+
+## Thank you for listening
+
+* Email: clement.lee@newcastle.ac.uk
+
+* Blog: https://clement-lee.github.io/
+
+* University pages:
+
+  - Me: https://www.ncl.ac.uk/maths-physics/people/profile/clementlee.html
+
+  - NU Solve: https://www.ncl.ac.uk/maths-physics/engagement/nusolve/
+
+* Questions?

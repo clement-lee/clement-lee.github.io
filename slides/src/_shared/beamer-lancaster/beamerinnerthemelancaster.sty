@@ -1,0 +1,231 @@
+\ProvidesPackage{beamerinnerthemelancaster}[2013/08/21]
+
+% Beamer font theme by Robin Long <robin[dot]long[at]lancaster[dot]ac[dot]uk>
+% Version 0.2
+%
+% Copyright 2007 by Till Tantau
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+%
+% See the file doc/licenses/LICENSE for more details.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Inner Theme
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%poster options
+\newif\if@doPOSTER
+\@doPOSTERfalse
+\DeclareOption{poster}{\@doPOSTERtrue}
+\ProcessOptions
+
+\useinnertheme{circles}
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[default]
+\setbeamertemplate{blocks}[default]
+\setbeamertemplate{navigation symbols}{}
+\usepackage{changepage}
+
+% logo command
+\newif\if@doLogoLeft
+\@doLogoLeftfalse
+\newcommand\logoleft[1]{\def\insertlogoleft{#1} \@doLogoLefttrue}
+%\logoleft{}
+
+\newif\if@doLogoRight
+\@doLogoRightfalse
+\newcommand\logoright[1]{\def\insertlogoright{#1} \@doLogoRighttrue}
+%\logoright{}
+
+\newif\if@doFooterLeft
+\@doFooterLeftfalse
+\newcommand\footerleft[1]{\def\insertfooterleft{#1} \@doFooterLefttrue}
+%\footerleft{}
+
+\newif\if@doFooterRight
+\@doFooterRightfalse
+\newcommand\footerright[1]{\def\insertfooterright{#1} \@doFooterRighttrue}
+%\footerright{}
+
+% Background graphic
+\newif\if@doMyBkg
+\@doMyBkgfalse
+\newcommand\backgroundgraphic[1]{\def\insertbackgroundgraphic{#1} \@doMyBkgtrue}
+%\mybkg{}
+
+\usebackgroundtemplate{
+  \if@doMyBkg
+  \includegraphics[width=\paperwidth]{\insertbackgroundgraphic}
+  \fi
+}
+
+%stops title page being slide one.
+\addtocounter{framenumber}{-1}
+
+%item indent
+\addtolength{\leftmargini}{2.5em}
+
+%% for fbox
+\setlength{\fboxsep}{0em}%
+\setlength{\fboxrule}{0.01em}%
+
+
+% Poster specific options
+\if@doPOSTER
+%Set beamer block layout and shape
+\setbeamertemplate{block begin}{
+  \vskip.75ex
+  \begin{beamercolorbox}[leftskip=1cm,sep=.75ex]{block title}%
+    \usebeamerfont*{block title}\insertblocktitle
+  \end{beamercolorbox}%
+  {\ifbeamercolorempty[bg]{block body}{}{\nointerlineskip\vskip-0.5pt}}%
+  \usebeamerfont{block body}%
+  \begin{beamercolorbox}[sep=.75ex,vmode]{block body}%
+    \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
+    \vskip1ex
+    \noindent\begin{minipage}{\dimexpr\textwidth-1.5ex}
+      \setlength{\parskip}{1em plus0.5em minus0.5em}
+    }
+    \setbeamertemplate{block end}{
+      \end{minipage}
+  \end{beamercolorbox}
+  \vspace{1em}
+}
+
+% Footline
+\setbeamertemplate{footline}{
+  \begin{center}
+    \color{lancasterGrey}
+    \noindent\makebox[\linewidth]{\rule{0.98\paperwidth}{5pt}}
+  \end{center}
+
+  \begin{beamercolorbox}[wd=\paperwidth]{upper separation line foot}
+    \rule{0pt}{2pt}
+  \end{beamercolorbox}
+  \leavevmode%
+  \begin{beamercolorbox}[ht=4ex,leftskip=1cm,rightskip=1cm]{lancasterWhite}%
+    \usebeamercolor{website in footline}{\color{fg} 
+      \if@doFooterLeft
+      \insertfooterleft
+      \fi    
+      }
+    \hfill
+    \usebeamercolor{email in footline}{\color{fg}
+      \if@doFooterRight
+      \insertfooterright
+      \fi 
+    }
+    \vskip1ex
+  \end{beamercolorbox}
+  \vskip0pt%
+  \begin{beamercolorbox}[wd=\paperwidth]{lower separation line foot}
+    \rule{0pt}{2pt}
+  \end{beamercolorbox}
+}
+
+
+
+% Headline
+\setbeamertemplate{headline}{
+  \leavevmode
+  \begin{beamercolorbox}[wd=\paperwidth]{headline}
+    \begin{columns}[T]
+      \begin{column}{.26\paperwidth}
+        \centering
+        \vskip4ex
+        \if@doLogoLeft
+        \includegraphics[height=0.07\paperwidth]{\insertlogoleft}%
+        \fi    
+        \vspace{1pt}
+      \end{column}
+
+    \begin{column}{.48\paperwidth}
+        \centering
+        \vspace{1cm}
+        \usebeamercolor{title in headline}{\color{lancasterRed}\textbf{\LARGE{\inserttitle}}\\[1.8ex]}
+        \ifx\@author\@empty
+        \else
+        \usebeamercolor{author in headline}{\color{lancasterRed}\Large{\insertauthor}\\[0.5ex]}
+        \fi
+        \ifx\insertinstitute\@empty
+        \else
+        \usebeamercolor{institute in headline}{\color{lancasterRed}\large{\insertinstitute}\\[0.2ex]}
+        \fi
+    \end{column}
+      
+  \begin{column}{.26\paperwidth}
+        \centering
+        \vskip4ex
+        \if@doLogoRight
+        \includegraphics[height=0.07\paperwidth]{\insertlogoright}%
+        \fi
+        \vspace{1pt}
+      \end{column}
+    \end{columns}
+  \end{beamercolorbox}
+  
+  \begin{beamercolorbox}[wd=\paperwidth]{lower separation line head}
+    \rule{0pt}{2pt}
+  \end{beamercolorbox}
+  \begin{center}
+    \color{lancasterGrey}
+    \noindent\makebox[\linewidth]{\rule{0.98\paperwidth}{5pt}}
+    \vspace{-1em}
+  \end{center}
+}
+\else
+%Presentation specific option
+% Add logo to title page
+ \logo{%
+  \makebox[\paperwidth]{%
+    \hspace{1cm}
+    \if@doLogoLeft
+    \includegraphics[height=2cm]{\insertlogoleft}%
+    \fi
+    \hfill
+    \if@doLogoRight
+    \includegraphics[height=2cm]{\insertlogoright}%
+    \fi
+    \hspace{1cm}
+  }%
+ }
+
+%Title page and logos
+\renewcommand{\maketitle}{
+  {
+    \setbeamertemplate{footline}{} 
+    \begin{frame}
+      \setbeamercolor{author}{fg=lancasterGrey}
+      \setbeamercolor{date}{fg=lancasterGrey}
+      \ifx\insertinstitue\empty
+      \else
+      \setbeamercolor{institute}{fg=lancasterGrey}
+      \fi
+
+      \titlepage
+    \end{frame}
+  }
+  \logo{}
+}
+
+%backup slides
+\newenvironment{backupslides}
+{
+  \begin{frame}
+    \newcounter{finalframe}
+    \setcounter{finalframe}{\value{framenumber}}
+\vspace{1cm}
+    \setbeamercolor{block body}{fg=lancasterWhite,bg=lancasterWhite}
+    \begin{block}{\begin{center} \Huge Backup Slides \end{center} \vskip 0.35cm}
+    \end{block}
+  \end{frame}
+}
+{
+  \setcounter{framenumber}{\value{finalframe}}
+}
+
+\setbeamertemplate{footline}{}
+\fi

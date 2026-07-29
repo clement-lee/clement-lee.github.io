@@ -1,0 +1,1726 @@
+---
+title: "Creating accessible & reproducible teaching materials with minimum scaffolding"
+author: "Clement Lee (Newcastle University)"
+date: "2024-06-14"
+output:
+  slidy_presentation: default
+  beamer_presentation: default
+fontsize: 8pt
+classoption: aspectratio=169
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.align = "center")
+underline <- function(x) {
+  if (knitr::is_latex_output()) {
+    sprintf("\\text{\\underline{%s}}", x)
+  } else if (knitr::is_html_output()) {
+    sprintf("<span style='text-decoration:underline'>%s</span>", x)
+  } else x
+}
+```
+
+## Outline
+:::::: {.columns}
+::: {.column width="38%" data-latex="{\textwidth}"}
+* From old-fashioned teaching materials
+  - verbatim R code & output in .tex
+  - auxiliary files: .pdf, .png, ...
+  - R scripts for generating the auxiliary files
+  - by products: .out, .log, .aux, ...
+* To accessible & reproducible materials
+  - ~~separate R scripts~~
+  - {html, pdf} $\times$ {solutions, questions/gaps}
+* Aggregation of marginal gains (Kaizen)
+* Manual but efficient workflow
+  - Focus on future savings
+  - Script-based, good for version control
+  - As little scaffolding as possible
+* What works and what doesn't
+* ~~R Markdown tutorial~~
+:::
+::: {.column width="28%" data-latex="{\textwidth}"}
+* Slides: https://bit.ly/ukcots2024
+
+```{r}
+#| echo: false
+#| out.width: "80%"
+knitr::include_graphics("images/bit.ly_ukcots2024.png")
+```
+:::
+::: {.column width="34%" data-latex="{\textwidth}"}
+* Github repo: https://bit.ly/template-repo
+
+```{r}
+#| echo: false
+#| out.width: "65%"
+knitr::include_graphics("images/bit.ly_template-repo.png")
+```
+:::
+::::::
+
+
+
+## Starting point
+:::::: {.columns}
+::: {.column width="48%" data-latex="{\textwidth}"}
+**The source file (.tex)**
+````{verbatim, lang = "latex"}
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\title{MATH9999 Practical 1 Questions}
+\date{2024-06-14}
+
+\begin{document}
+\maketitle
+\noindent
+\begin{enumerate}
+  \item Plot the \texttt{cars} dataset in \verb^R^. 
+
+
+
+
+
+
+
+  \item Find the numerical value of $2\pi$, to $4$ decimal places.
+
+
+
+
+
+  \item Show that $e^{i\pi}+1=0$.
+
+
+
+
+
+
+
+
+\end{enumerate}
+
+
+% A comment that won't appear in the output.
+
+\end{document}
+````
+:::
+::: {.column width="4%" data-latex="{\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+::: {.column width="48%" data-latex="{\textwidth}"}
+**The output (.pdf)**  
+  
+MATH9999 Practical 1 Questions  
+2024-06-14
+
+1. Plot the `cars` dataset in `R`.
+2. Find the numerical value of $2\pi$, to $4$ decimal places.
+3. Show that $e^{i\pi}+1=0$.
+:::
+::::::
+
+
+
+## A separate solution file
+:::::: {.columns}
+::: {.column width="48%" data-latex="{\textwidth}"}
+**The source file (.tex)**
+````{verbatim, lang = "latex"}
+\documentclass[a4paper]{article}
+\usepackage{amsmath,graphicx,enumitem}
+\title{MATH9999 Practical 1 Solutions}
+\date{2024-06-14}
+
+\begin{document}
+\maketitle
+\noindent
+\begin{enumerate}
+  \item Plot the \texttt{cars} dataset in \verb^R^. 
+  \begin{verbatim}
+  plot(cars)
+  \end{verbatim}
+  \begin{center}  
+  \includegraphics[width=\textwidth]{cars.pdf} 
+  \end{center}
+
+  \item Find the numerical value of $2\pi$, to $4$ decimal places.
+  \begin{verbatim}
+    
+  round(2 * pi, 4)
+  ## [1] 6.2832
+  \end{verbatim}
+  \item Show that $e^{i\pi}+1=0$.
+
+
+
+
+  \begin{align*}
+  e^{i\pi}+1&=\cos\pi+i\sin\pi+1\\
+  &=-1+i\times0+1=0
+  \end{align*}  
+\end{enumerate}
+
+
+% A comment that won't appear in the output.
+
+\end{document}
+````
+:::
+::: {.column width="4%" data-latex="{\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+::: {.column width="48%" data-latex="{\textwidth}"}
+**The output (.pdf)**
+
+MATH9999 Practical 1 Solutions  
+2024-06-14
+
+1. Plot the `cars` dataset in `R`.
+   ```{r}
+   #| out.width: "50%"
+   #| fig.width: 5
+   #| fig.height: 4
+   plot(cars)
+   ```
+2. Find the numerical value of $2\pi$, to $4$ decimal places.
+   ```{r}
+   round(2 * pi, 4)
+   ```
+3. $~~~$Show that $e^{i\pi}+1=0$.
+   \begin{align*}
+     e^{i\pi}+1&=\cos\pi+i\sin\pi+1\qquad\qquad\qquad\qquad\\
+     &=-1+i\times0+1=0
+   \end{align*}
+:::
+::::::
+
+
+
+## 1. Reproducibility / dynamic generation
+:::::: {.columns}
+::: {.column width="48%" data-latex="{\textwidth}"}
+**The source file (.Rnw)**
+````{verbatim, lang = "latex"}
+\documentclass[a4paper]{article}
+\usepackage{amsmath,graphicx,enumitem}
+\title{MATH9999 Practical 1 Solutions}
+\date{2024-06-14}
+
+\begin{document}
+\maketitle
+\noindent
+\begin{enumerate}
+  \item Plot the \texttt{cars} dataset in \verb^R^. 
+  <<cars>>=
+
+  plot(cars)
+  @
+
+
+
+  \item Find the numerical value of $2\pi$, to $4$ decimal places.
+  <<two-pi>>=
+
+  round(2 * pi, 4)
+  @
+
+  \item Show that $e^{i\pi}+1=0$.
+
+
+
+
+  \begin{align*}
+  e^{i\pi}+1&=\cos\pi+i\sin\pi+1\\
+  &=-1+i\times0+1=0
+  \end{align*}
+\end{enumerate}
+
+
+% A comment that won't appear in the output.
+
+\end{document}
+````
+:::
+::: {.column width="4%" data-latex="{\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+::: {.column width="48%" data-latex="{\textwidth}"}
+**The output (.pdf)**
+
+MATH9999 Practical 1 Solutions  
+2024-06-14
+
+1. Plot the `cars` dataset in `R`.
+   ```{r}
+   #| out.width: "50%"
+   #| fig.width: 5
+   #| fig.height: 4
+   plot(cars)
+   ```
+2. Find the numerical value of $2\pi$, to $4$ decimal places.
+   ```{r}
+   round(2 * pi, 4)
+   ```
+3. $~~~$Show that $e^{i\pi}+1=0$.
+   \begin{align*}
+     e^{i\pi}+1&=\cos\pi+i\sin\pi+1\qquad\qquad\qquad\qquad\\
+     &=-1+i\times0+1=0
+   \end{align*}
+:::
+::::::
+
+
+
+## 2. R Sweave to R Markdown
+:::::: {.columns}
+::: {.column width="48%" data-latex="{\textwidth}"}
+**The source file (.Rmd)**
+````{verbatim, lang = "markdown"}
+---
+classoption: a4paper
+title: "MATH9999 Practical 1 Solutions"
+date: "2024-06-14"
+output: pdf_document
+
+
+---
+
+1. Plot the `cars` dataset in `R`. 
+```{r cars}
+
+plot(cars)
+```
+
+
+
+2. Find the numerical value of $2\pi$, to $4$ decimal places.
+```{r two-pi}
+
+round(2 * pi, 4)
+```
+
+3. Show that $e^{i\pi}+1=0$.
+
+
+
+
+\begin{align*}
+e^{i\pi}+1&=\cos\pi+i\sin\pi+1\\
+&=-1+i\times0+1=0
+\end{align*}
+
+
+
+<!-- A comment that won't appear in the output. -->
+
+````
+:::
+::: {.column width="4%" data-latex="{\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+::: {.column width="48%" data-latex="{\textwidth}"}
+**The output (.pdf)**
+
+MATH9999 Practical 1 Solutions  
+2024-06-14
+
+1. Plot the `cars` dataset in `R`.
+   ```{r}
+   #| out.width: "50%"
+   #| fig.width: 5
+   #| fig.height: 4
+   plot(cars)
+   ```
+2. Find the numerical value of $2\pi$, to $4$ decimal places.
+   ```{r}
+   round(2 * pi, 4)
+   ```
+3. $~~~$Show that $e^{i\pi}+1=0$.
+   \begin{align*}
+     e^{i\pi}+1&=\cos\pi+i\sin\pi+1\qquad\qquad\qquad\qquad\\
+     &=-1+i\times0+1=0
+   \end{align*}
+:::
+::::::
+
+
+
+## 2. (cont'd)
+:::::: {.columns}
+::: {.column width="48%" data-latex="{\textwidth}"}
+**The source file (.Rmd)**
+````{verbatim, lang = "markdown"}
+---
+classoption: a4paper
+title: "MATH9999 Practical 1 Solutions"
+date: "2024-06-14"
+output: html_document
+
+
+---
+
+1. Plot the `cars` dataset in `R`. 
+```{r cars}
+
+plot(cars)
+```
+
+
+
+2. Find the numerical value of $2\pi$, to $4$ decimal places.
+```{r two-pi}
+
+round(2 * pi, 4)
+```
+
+3. Show that $e^{i\pi}+1=0$.
+
+
+
+
+\begin{align*}
+e^{i\pi}+1&=\cos\pi+i\sin\pi+1\\
+&=-1+i\times0+1=0
+\end{align*}
+
+
+
+<!-- A comment that won't appear in the output. -->
+
+````
+:::
+::: {.column width="4%" data-latex="{\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+::: {.column width="48%" data-latex="{\textwidth}"}
+**The output (.html)**
+
+MATH9999 Practical 1 Solutions  
+2024-06-14
+
+1. Plot the `cars` dataset in `R`.
+   ```{r}
+   #| out.width: "50%"
+   #| fig.width: 5
+   #| fig.height: 4
+   plot(cars)
+   ```
+2. Find the numerical value of $2\pi$, to $4$ decimal places.
+   ```{r}
+   round(2 * pi, 4)
+   ```
+3. $~~~$Show that $e^{i\pi}+1=0$.
+   \begin{align*}
+     e^{i\pi}+1&=\cos\pi+i\sin\pi+1\qquad\qquad\qquad\qquad\\
+     &=-1+i\times0+1=0
+   \end{align*}
+:::
+::::::
+
+
+
+## 3. Toggle for questions & solutions
+:::::: {.columns}
+::: {.column width="48%" data-latex="{\textwidth}"}
+**The source file (.Rmd)**
+````{verbatim, lang = "markdown"}
+---
+classoption: a4paper
+title: "MATH9999 Practical 1 Solutions"
+date: "2024-06-14"
+output: html_document
+
+
+---
+
+1. Plot the `cars` dataset in `R`. 
+```{r cars}
+#| include: true
+plot(cars)
+```
+
+
+
+2. Find the numerical value of $2\pi$, to $4$ decimal places.
+```{r two-pi}
+#| include: true
+round(2 * pi, 4)
+```
+
+3. Show that $e^{i\pi}+1=0$.
+
+
+
+
+\begin{align*}
+e^{i\pi}+1&=\cos\pi+i\sin\pi+1\\
+&=-1+i\times0+1=0
+\end{align*}
+
+
+
+<!-- A comment that won't appear in the output. -->
+
+````
+:::
+::: {.column width="4%" data-latex="{\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+::: {.column width="48%" data-latex="{\textwidth}"}
+**The output (.html)**
+
+MATH9999 Practical 1 Solutions  
+2024-06-14
+
+1. Plot the `cars` dataset in `R`.
+   ```{r}
+   #| out.width: "50%"
+   #| fig.width: 5
+   #| fig.height: 4
+   plot(cars)
+   ```
+2. Find the numerical value of $2\pi$, to $4$ decimal places.
+   ```{r}
+   round(2 * pi, 4)
+   ```
+3. $~~~$Show that $e^{i\pi}+1=0$.
+   \begin{align*}
+     e^{i\pi}+1&=\cos\pi+i\sin\pi+1\qquad\qquad\qquad\qquad\\
+     &=-1+i\times0+1=0
+   \end{align*}
+:::
+::::::
+
+
+
+## 3. (cont'd)
+:::::: {.columns}
+::: {.column width="48%" data-latex="{\textwidth}"}
+**The source file (.Rmd)**
+````{verbatim, lang = "markdown"}
+---
+classoption: a4paper
+title: "MATH9999 Practical 1 Solutions"
+date: "2024-06-14"
+output: html_document
+
+
+---
+
+1. Plot the `cars` dataset in `R`. 
+```{r cars}
+#| include: false
+plot(cars)
+```
+
+
+
+2. Find the numerical value of $2\pi$, to $4$ decimal places.
+```{r two-pi}
+#| include: false
+round(2 * pi, 4)
+```
+
+3. Show that $e^{i\pi}+1=0$.
+
+
+
+
+\begin{align*}
+e^{i\pi}+1&=\cos\pi+i\sin\pi+1\\
+&=-1+i\times0+1=0
+\end{align*}
+
+
+
+<!-- A comment that won't appear in the output. -->
+
+````
+:::
+::: {.column width="4%" data-latex="{\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+::: {.column width="48%" data-latex="{\textwidth}"}
+**The output (.html)**
+
+MATH9999 Practical 1 Solutions  
+2024-06-14
+
+1. Plot the `cars` dataset in `R`.
+   ```{r}
+   #| out.width: "50%"
+   #| fig.width: 5
+   #| fig.height: 4
+   #| include: false
+   plot(cars)
+   ```
+2. Find the numerical value of $2\pi$, to $4$ decimal places.
+   ```{r}
+   #| include: false
+   round(2 * pi, 4)
+   ```
+3. $~~~$Show that $e^{i\pi}+1=0$.
+   \begin{align*}
+     e^{i\pi}+1&=\cos\pi+i\sin\pi+1\qquad\qquad\qquad\qquad\\
+     &=-1+i\times0+1=0
+   \end{align*}
+:::
+::::::
+
+
+
+## 4. Parametrise the toggle
+:::::: {.columns}
+::: {.column width="48%" data-latex="{\textwidth}"}
+**The source file (.Rmd)**
+````{verbatim, lang = "markdown"}
+---
+classoption: a4paper
+title: "MATH9999 Practical 1 `r if (params$solution) 'Solutions' else 'Questions'`"
+date: "2024-06-14"
+output: html_document
+params:
+  solution: false
+---
+
+1. Plot the `cars` dataset in `R`. 
+```{r cars}
+#| include: !expr params$solution
+plot(cars)
+```
+
+
+
+2. Find the numerical value of $2\pi$, to $4$ decimal places.
+```{r two-pi}
+#| include: !expr params$solution
+round(2 * pi, 4)
+```
+
+3. Show that $e^{i\pi}+1=0$.
+
+
+
+
+\begin{align*}
+e^{i\pi}+1&=\cos\pi+i\sin\pi+1\\
+&=-1+i\times0+1=0
+\end{align*}
+
+
+
+<!-- A comment that won't appear in the output. -->
+
+````
+:::
+::: {.column width="4%" data-latex="{\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+::: {.column width="48%" data-latex="{\textwidth}"}
+**The output (.html)**
+
+MATH9999 Practical 1 Questions  
+2024-06-14
+
+1. Plot the `cars` dataset in `R`.
+   ```{r}
+   #| out.width: "50%"
+   #| fig.width: 5
+   #| fig.height: 4
+   #| include: false
+   plot(cars)
+   ```
+2. Find the numerical value of $2\pi$, to $4$ decimal places.
+   ```{r}
+   #| include: false
+   round(2 * pi, 4)
+   ```
+3. $~~~$Show that $e^{i\pi}+1=0$.
+   \begin{align*}
+     e^{i\pi}+1&=\cos\pi+i\sin\pi+1\qquad\qquad\qquad\qquad\\
+     &=-1+i\times0+1=0
+   \end{align*}
+:::
+::::::
+
+
+
+## 4. (cont'd)
+:::::: {.columns}
+::: {.column width="48%" data-latex="{\textwidth}"}
+**The source file (.Rmd)**
+````{verbatim, lang = "markdown"}
+---
+classoption: a4paper
+title: "MATH9999 Practical 1 `r if (params$solution) 'Solutions' else 'Questions'`"
+date: "2024-06-14"
+output: html_document
+params:
+  solution: true
+---
+
+1. Plot the `cars` dataset in `R`. 
+```{r cars}
+#| include: !expr params$solution
+plot(cars)
+```
+
+
+
+2. Find the numerical value of $2\pi$, to $4$ decimal places.
+```{r two-pi}
+#| include: !expr params$solution
+round(2 * pi, 4)
+```
+
+3. Show that $e^{i\pi}+1=0$.
+
+
+
+
+\begin{align*}
+e^{i\pi}+1&=\cos\pi+i\sin\pi+1\\
+&=-1+i\times0+1=0
+\end{align*}
+
+
+
+<!-- A comment that won't appear in the output. -->
+
+````
+:::
+::: {.column width="4%" data-latex="{\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+::: {.column width="48%" data-latex="{\textwidth}"}
+**The output (.html)**
+
+MATH9999 Practical 1 Solutions  
+2024-06-14
+
+1. Plot the `cars` dataset in `R`.
+   ```{r}
+   #| out.width: "50%"
+   #| fig.width: 5
+   #| fig.height: 4
+   #| include: true
+   plot(cars)
+   ```
+2. Find the numerical value of $2\pi$, to $4$ decimal places.
+   ```{r}
+   #| include: true
+   round(2 * pi, 4)
+   ```
+3. $~~~$Show that $e^{i\pi}+1=0$.
+   \begin{align*}
+     e^{i\pi}+1&=\cos\pi+i\sin\pi+1\qquad\qquad\qquad\qquad\\
+     &=-1+i\times0+1=0
+   \end{align*}
+:::
+::::::
+
+
+
+## 5. Hack the non-coding questions
+:::::: {.columns}
+::: {.column width="48%" data-latex="{\textwidth}"}
+**The source file (.Rmd)**
+````{verbatim, lang = "markdown"}
+---
+classoption: a4paper
+title: "MATH9999 Practical 1 `r if (params$solution) 'Solutions' else 'Questions'`"
+date: "2024-06-14"
+output: html_document
+params:
+  solution: true
+---
+
+1. Plot the `cars` dataset in `R`. 
+```{r cars}
+#| include: !expr params$solution
+plot(cars)
+```
+
+
+
+2. Find the numerical value of $2\pi$, to $4$ decimal places.
+```{r two-pi}
+#| include: !expr params$solution
+round(2 * pi, 4)
+```
+
+3. Show that $e^{i\pi}+1=0$.
+```{r euler}
+#| include: !expr params$solution
+#| results: "asis"
+#| echo: false
+string0 <- "\\begin{align*}
+e^{i\\pi}+1&=\\cos\\pi+i\\sin\\pi+1\\\\
+&=-1+i\\times0+1=0
+\\end{align*}"
+cat(string0, "\n")
+```
+
+<!-- A comment that won't appear in the output. -->
+
+````
+:::
+::: {.column width="4%" data-latex="{\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+::: {.column width="48%" data-latex="{\textwidth}"}
+**The output (.html)**
+
+MATH9999 Practical 1 Solutions  
+2024-06-14
+
+1. Plot the `cars` dataset in `R`.
+   ```{r}
+   #| out.width: "50%"
+   #| fig.width: 5
+   #| fig.height: 4
+   #| include: true
+   plot(cars)
+   ```
+2. Find the numerical value of $2\pi$, to $4$ decimal places.
+   ```{r}
+   #| include: true
+   round(2 * pi, 4)
+   ```
+3. $~~~$Show that $e^{i\pi}+1=0$.
+   \begin{align*}
+     e^{i\pi}+1&=\cos\pi+i\sin\pi+1\qquad\qquad\qquad\qquad\\
+     &=-1+i\times0+1=0
+   \end{align*}
+:::
+::::::
+
+
+
+## 5. (cont'd)
+:::::: {.columns}
+::: {.column width="48%" data-latex="{\textwidth}"}
+**The source file (.Rmd)**
+````{verbatim, lang = "markdown"}
+---
+classoption: a4paper
+title: "MATH9999 Practical 1 `r if (params$solution) 'Solutions' else 'Questions'`"
+date: "2024-06-14"
+output: html_document
+params:
+  solution: false
+---
+
+1. Plot the `cars` dataset in `R`. 
+```{r cars}
+#| include: !expr params$solution
+plot(cars)
+```
+
+
+
+2. Find the numerical value of $2\pi$, to $4$ decimal places.
+```{r two-pi}
+#| include: !expr params$solution
+round(2 * pi, 4)
+```
+
+3. Show that $e^{i\pi}+1=0$.
+```{r euler}
+#| include: !expr params$solution
+#| results: "asis"
+#| echo: false
+string0 <- "\\begin{align*}
+e^{i\\pi}+1&=\\cos\\pi+i\\sin\\pi+1\\\\
+&=-1+i\\times0+1=0
+\\end{align*}"
+cat(string0, "\n")
+```
+
+<!-- A comment that won't appear in the output. -->
+
+````
+:::
+::: {.column width="4%" data-latex="{\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+::: {.column width="48%" data-latex="{\textwidth}"}
+**The output (.html)**
+
+MATH9999 Practical 1 Questions  
+2024-06-14
+
+1. Plot the `cars` dataset in `R`.
+   ```{r}
+   #| out.width: "50%"
+   #| fig.width: 5
+   #| fig.height: 4
+   #| include: false
+   plot(cars)
+   ```
+2. Find the numerical value of $2\pi$, to $4$ decimal places.
+   ```{r}
+   #| include: false
+   round(2 * pi, 4)
+   ```
+3. Show that $e^{i\pi}+1=0$.
+
+$$~$$
+$$~$$
+$$~$$
+
+```{r, echo = FALSE, out.width = "80%"}
+#| fig.cap: "https://xkcd.com/1638/"
+knitr::include_graphics("images/backslashes.png")
+```
+
+:::
+::::::
+
+
+
+## 6. Externalise the parameters
+:::::: {.columns}
+::: {.column width="48%" data-latex="{\textwidth}"}
+**The source file (Practical1.Rmd)**
+````{verbatim, lang = "markdown"}
+---
+classoption: a4paper
+title: "MATH9999 Practical 1 `r if (params$solution) 'Solutions' else 'Questions'`"
+date: "2024-06-14"
+output: ""
+params:
+  solution: ""
+---
+
+1. Plot the `cars` dataset in `R`. 
+```{r cars}
+#| include: !expr params$solution
+plot(cars)
+```
+
+
+
+2. Find the numerical value of $2\pi$, to $4$ decimal places.
+```{r two-pi}
+#| include: !expr params$solution
+round(2 * pi, 4)
+```
+
+3. Show that $e^{i\pi}+1=0$.
+```{r euler}
+#| include: !expr params$solution
+#| results: "asis"
+#| echo: false
+string0 <- "\\begin{align*}
+e^{i\\pi}+1&=\\cos\\pi+i\\sin\\pi+1\\\\
+&=-1+i\\times0+1=0
+\\end{align*}"
+cat(string0, "\n")
+```
+
+<!-- A comment that won't appear in the output. -->
+
+````
+:::
+::: {.column width="4%" data-latex="{\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+::: {.column width="48%" data-latex="{\textwidth}"}
+**The R command**
+
+````{verbatim lang = "R"}
+rmarkdown::render(
+  "Practical1.Rmd", params = list(solution = FALSE),
+  output_format = "html_document",
+  output_file = "Practical1_questions.html"
+)
+````
+
+$$~$$
+$$~$$
+$$\Downarrow\Downarrow\Downarrow$$
+$$~$$
+$$~$$
+
+**The output (Practical1_questions.html)**
+
+MATH9999 Practical 1 Questions  
+2024-06-14
+
+1. Plot the `cars` dataset in `R`.
+   ```{r}
+   #| out.width: "50%"
+   #| fig.width: 5
+   #| fig.height: 4
+   #| include: false
+   plot(cars)
+   ```
+2. Find the numerical value of $2\pi$, to $4$ decimal places.
+   ```{r}
+   #| include: false
+   round(2 * pi, 4)
+   ```
+3. $~~~$Show that $e^{i\pi}+1=0$.  
+:::
+::::::
+
+
+
+## 6. (cont'd)
+:::::: {.columns}
+::: {.column width="48%" data-latex="{\textwidth}"}
+**The source file (Practical1.Rmd)**
+````{verbatim, lang = "markdown"}
+---
+classoption: a4paper
+title: "MATH9999 Practical 1 `r if (params$solution) 'Solutions' else 'Questions'`"
+date: "2024-06-14"
+output: ""
+params:
+  solution: ""
+---
+
+1. Plot the `cars` dataset in `R`. 
+```{r cars}
+#| include: !expr params$solution
+plot(cars)
+```
+
+
+
+2. Find the numerical value of $2\pi$, to $4$ decimal places.
+```{r two-pi}
+#| include: !expr params$solution
+round(2 * pi, 4)
+```
+
+3. Show that $e^{i\pi}+1=0$.
+```{r euler}
+#| include: !expr params$solution
+#| results: "asis"
+#| echo: false
+string0 <- "\\begin{align*}
+e^{i\\pi}+1&=\\cos\\pi+i\\sin\\pi+1\\\\
+&=-1+i\\times0+1=0
+\\end{align*}"
+cat(string0, "\n")
+```
+
+<!-- A comment that won't appear in the output. -->
+
+````
+:::
+::: {.column width="4%" data-latex="{\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+::: {.column width="48%" data-latex="{\textwidth}"}
+**The R command**
+
+````{verbatim lang = "R"}
+rmarkdown::render(
+  "Practical1.Rmd", params = list(solution = FALSE),
+  output_format = "pdf_document",
+  output_file = "Practical1_questions.pdf"
+)
+````
+
+$$~$$
+$$~$$
+$$\Downarrow\Downarrow\Downarrow$$
+$$~$$
+$$~$$
+
+**The output (Practical1_questions.pdf)**
+
+MATH9999 Practical 1 Questions  
+2024-06-14
+
+1. Plot the `cars` dataset in `R`.
+   ```{r}
+   #| out.width: "50%"
+   #| fig.width: 5
+   #| fig.height: 4
+   #| include: false
+   plot(cars)
+   ```
+2. Find the numerical value of $2\pi$, to $4$ decimal places.
+   ```{r}
+   #| include: false
+   round(2 * pi, 4)
+   ```
+3. $~~~$Show that $e^{i\pi}+1=0$.  
+:::
+::::::
+
+
+
+## 7. Bringing it all together
+:::::: {.columns}
+::: {.column width="48%" data-latex="{\textwidth}"}
+**Practical1.Rmd**
+````{verbatim, lang = "markdown"}
+---
+classoption: a4paper
+title: "MATH9999 Practical 1 `r if (params$solution) 'Solutions' else 'Questions'`"
+date: "2024-06-14"
+output: ""
+params:
+  solution: ""
+---
+
+1. Plot the `cars` dataset in `R`. 
+```{r cars}
+#| include: !expr params$solution
+plot(cars)
+```
+
+
+
+2. Find the numerical value of $2\pi$, to $4$ decimal places.
+```{r two-pi}
+#| include: !expr params$solution
+round(2 * pi, 4)
+```
+
+3. Show that $e^{i\pi}+1=0$.
+```{r euler}
+#| include: !expr params$solution
+#| results: "asis"
+#| echo: false
+string0 <- "\\begin{align*}
+e^{i\\pi}+1&=\\cos\\pi+i\\sin\\pi+1\\\\
+&=-1+i\\times0+1=0
+\\end{align*}"
+cat(string0, "\n")
+```
+
+<!-- A comment that won't appear in the output. -->
+
+````
+:::
+::: {.column width="4%" data-latex="{\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+::: {.column width="48%" data-latex="{\textwidth}"}
+**The R script**
+
+````{verbatim lang = "R"}
+library(rmarkdown)
+render(
+  "Practical1.Rmd", params = list(solution = FALSE),
+  output_format = "pdf_document",
+  output_file = "Practical1_questions.pdf"
+)
+render(
+  "Practical1.Rmd", params = list(solution = FALSE),
+  output_format = "html_document",
+  output_file = "Practical1_questions.html"
+)
+render(
+  "Practical1.Rmd", params = list(solution = TRUE),
+  output_format = "pdf_document",
+  output_file = "Practical1_solutions.pdf"
+)
+render(
+  "Practical1.Rmd", params = list(solution = TRUE),
+  output_format = "html_document",
+  output_file = "Practical1_solutions.html"
+)
+````
+
+**The outputs**
+
+* **Practical1_questions.pdf**
+* **Practical1_questions.html**
+* **Practical1_solutions.pdf**
+* **Practical1_solutions.html**
+:::
+::::::
+
+
+
+## Variant A: Language agnostic(-ish)
+:::::: {.columns}
+::: {.column width="48%" data-latex="{\textwidth}"}
+**Practical1.Rmd**
+````{verbatim, lang = "markdown"}
+---
+classoption: a4paper
+title: "MATH9999 Practical 1 `r if (params$solution) 'Solutions' else 'Questions'`"
+date: "2024-06-14"
+output: ""
+params:
+  solution: ""
+---
+
+1. Plot the `cars` dataset in `R`. 
+```{r cars}
+#| include: !expr params$solution
+plot(cars)
+```
+
+
+
+2. Find the numerical value of $2\pi$, to $4$ decimal places.
+```{python two-pi}
+#| include: !expr params$solution
+import math
+round(2 * math.pi, 4)
+```
+
+3. Show that $e^{i\pi}+1=0$.
+```{r euler}
+#| include: !expr params$solution
+#| results: "asis"
+#| echo: false
+string0 <- "\\begin{align*}
+e^{i\\pi}+1&=\\cos\\pi+i\\sin\\pi+1\\\\
+&=-1+i\\times0+1=0
+\\end{align*}"
+cat(string0, "\n")
+```
+
+<!-- A comment that won't appear in the output. -->
+
+````
+:::
+::: {.column width="4%" data-latex="{\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+::: {.column width="48%" data-latex="{\textwidth}"}
+**The output (.html)**
+
+MATH9999 Practical 1 Solutions  
+2024-06-14
+
+1. Plot the `cars` dataset in `R`.
+   ```{r}
+   #| out.width: "50%"
+   #| fig.width: 5
+   #| fig.height: 4
+   #| include: true
+   plot(cars)
+   ```
+2. Find the numerical value of $2\pi$, to $4$ decimal places.
+   ```{python}
+   #| include: true
+   import math
+   round(2 * math.pi, 4)
+   ```
+3. $~~~$Show that $e^{i\pi}+1=0$.
+   \begin{align*}
+     e^{i\pi}+1&=\cos\pi+i\sin\pi+1\qquad\qquad\qquad\qquad\\
+     &=-1+i\times0+1=0
+   \end{align*}
+:::
+::::::
+
+
+
+## Variant B: Slides
+:::::: {.columns}
+::: {.column width="48%" data-latex="{\textwidth}"}
+**Lecture1.Rmd**
+````{verbatim, lang = "markdown"}
+---
+classoption: a4paper
+title: "MATH9999 Lecture 1 `r if (params$solution) 'Complete' else 'Gaps'` version"
+date: "2024-06-14"
+output: ""
+params:
+  solution: ""
+---
+
+## Plot the `cars` dataset in `R`. 
+```{r cars}
+#| include: !expr params$solution
+plot(cars)
+```
+
+
+
+## Find the numerical value of $2\pi$, to $4$ decimal places.
+```{r two-pi}
+#| include: !expr params$solution
+round(2 * pi, 4)
+```
+
+## Show that $e^{i\pi}+1=0$.
+```{r euler}
+#| include: !expr params$solution
+#| results: "asis"
+#| echo: false
+string0 <- "\\begin{align*}
+e^{i\\pi}+1&=\\cos\\pi+i\\sin\\pi+1\\\\
+&=-1+i\\times0+1=0
+\\end{align*}"
+cat(string0, "\n")
+```
+
+<!-- A comment that won't appear in the output. -->
+
+````
+:::
+::: {.column width="4%" data-latex="{\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+::: {.column width="48%" data-latex="{\textwidth}"}
+**The R script**
+
+````{verbatim lang = "R"}
+library(rmarkdown)
+render(
+  "Lecture1.Rmd", params = list(solution = FALSE),
+  output_format = "pdf_document",
+  output_file = "Lecture1_gaps.pdf"
+)
+render(
+  "Lecture1.Rmd", params = list(solution = FALSE),
+  output_format = "html_document",
+  output_file = "Lecture1_gaps.html"
+)
+render(
+  "Lecture1.Rmd", params = list(solution = TRUE),
+  output_format = "pdf_document",
+  output_file = "Lecture1_complete.pdf"
+)
+render(
+  "Lecture1.Rmd", params = list(solution = TRUE),
+  output_format = "html_document",
+  output_file = "Lecture1_complete.html"
+)
+````
+
+
+**The outputs**
+
+* **Lecture1_gaps.pdf**
+* **Lecture1_gaps.html**
+* **Lecture1_complete.pdf**
+* **Lecture1_complete.html**
+:::
+::::::
+
+
+
+## Upgrade: whole set of notes
+:::::: {.columns}
+::: {.column width="48%" data-latex="{\textwidth}"}
+**01-preliminaries.Rmd**
+````{verbatim, lang = "markdown"}
+# Preliminaries
+
+
+
+
+
+
+
+
+## Plot the `cars` dataset in `R`. 
+```{r cars}
+#| include: !expr params$solution
+plot(cars)
+```
+
+
+
+## Find the numerical value of $2\pi$, to $4$ decimal places.
+```{r two-pi}
+#| include: !expr params$solution
+round(2 * pi, 4)
+```
+
+## Show that $e^{i\pi}+1=0$.
+```{r euler}
+#| include: !expr params$solution
+#| results: "asis"
+#| echo: false
+string0 <- "\\begin{align*}
+e^{i\\pi}+1&=\\cos\\pi+i\\sin\\pi+1\\\\
+&=-1+i\\times0+1=0
+\\end{align*}"
+cat(string0, "\n")
+```
+
+<!-- A comment that won't appear in the output. -->
+
+````
+**02-intermediate.Rmd**, **03-advanced.Rmd**, ...
+:::
+::: {.column width="4%" data-latex="{\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+::: {.column width="48%" data-latex="{\textwidth}"}
+**index.Rmd**
+````{verbatim, lang = "markdown"}
+---
+title: "MATH9999"
+date: Semester 2, 2023/2024  
+output: ""
+documentclass: book
+papersize: a4
+geometry:
+- margin=1in
+fontsize: 12pt
+bibliography: [references.bib]
+biblio-style: apalike
+link-citations: yes
+params:
+  solution: ""
+---
+````
+
+
+**The R script**
+
+````{verbatim lang = "R"}
+library(bookdown)
+render_book(
+  "index.Rmd", param = list(solution = FALSE), # TRUE for complete version
+  output_format = c("bookdown::gitbook", "bookdown::pdf_book")
+)
+````
+**The outputs**
+
+* A single pdf
+* A set of webpages
+:::
+::::::
+
+
+
+## What about LaTeX environments & commands?
+:::::: {.columns}
+::: {.column width="20%" data-latex="{\textwidth}"}
+`r underline("Some work")`
+
+* `equation`
+* `align`
+* `aligned`
+* `eqnarray`
+* `array`
+* (and their * versions)
+* `$$ $$`
+* `\[ \]`
+
+:::
+::: {.column width="5%" data-latex="{\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+::: {.column width="20%" data-latex="{\textwidth}"}
+`r underline("Some don't (for HTML)")`
+
+* `center`
+* `tabular`
+* `displaymath`
+* `\intertext`
+* `\textcolor`
+* `\medskip`
+* `\bigskip`
+* `\hfill`
+* `\newpage`
+
+:::
+::: {.column width="5%" data-latex="{\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+::: {.column width="50%" data-latex="{\textwidth}"}
+
+`r underline("Some have been taken care of")`
+
+* `enumerate`: (R) Markdown can do lists
+* `itemize`: (R) Markdown can do lists
+* `quote`: (R) Markdown can do quotes
+* `solution`: The hack using strings in R
+* `verbatim`: Backticks ``
+* `example`: Environment extended by bookdown
+* `exercise`: Environment extended by bookdown
+* `figure`: Function `knitr::include_graphics()`
+
+:::
+::::::
+
+
+
+## We've come a long way
+:::::: {.columns}
+::: {.column width="48%" data-latex="{\textwidth}"}
+**Practical1_solutions.tex**
+````{verbatim, lang = "latex"}
+\documentclass[a4paper]{article}
+\usepackage{amsmath,graphicx,enumitem}
+\title{MATH9999 Practical 1 Solutions}
+\date{2024-06-14}
+
+\begin{document}
+\maketitle
+\noindent
+\begin{enumerate}
+  \item Plot the \texttt{cars} dataset in \verb^R^. 
+  \begin{verbatim}
+  plot(cars)
+  \end{verbatim}
+  \begin{center}  
+  \includegraphics[width=\textwidth]{cars.pdf} 
+  \end{center}
+
+  \item Find the numerical value of $2\pi$, to $4$ decimal places.
+  \begin{verbatim}
+    
+  round(2 * pi, 4)
+  ## [1] 6.2832
+  \end{verbatim}
+  \item Show that $e^{i\pi}+1=0$.
+
+
+
+
+  \begin{align*}
+  e^{i\pi}+1&=\cos\pi+i\sin\pi+1\\
+  &=-1+i\times0+1=0
+  \end{align*}  
+\end{enumerate}
+
+
+% A comment that won't appear in the output.
+\end{document}
+````
+And **Practical1_questions.tex** and some auxiliary files
+:::
+::: {.column width="4%" data-latex="{\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+::: {.column width="48%" data-latex="{\textwidth}"}
+**Practical1.Rmd**
+````{verbatim, lang = "markdown"}
+---
+classoption: a4paper
+title: "MATH9999 Practical 1 `r if (params$solution) 'Solutions' else 'Questions'`"
+date: "2024-06-14"
+output: ""
+params:
+  solution: ""
+---
+
+1. Plot the `cars` dataset in `R`. 
+```{r cars}
+#| include: !expr params$solution
+plot(cars)
+```
+
+
+
+2. Find the numerical value of $2\pi$, to $4$ decimal places.
+```{r two-pi}
+#| include: !expr params$solution
+round(2 * pi, 4)
+```
+
+3. Show that $e^{i\pi}+1=0$.
+```{r euler}
+#| include: !expr params$solution
+#| results: "asis"
+#| echo: false
+string0 <- "\\begin{align*}
+e^{i\\pi}+1&=\\cos\\pi+i\\sin\\pi+1\\\\
+&=-1+i\\times0+1=0
+\\end{align*}"
+cat(string0, "\n")
+```
+
+<!-- A comment that won't appear in the output. -->
+
+````
+And the R script / makefile
+:::
+::::::
+
+
+
+## Tasks when converting
+
+1. Edit the preamble
+2. Move `\label{}` outside (sub)(sub)section headings
+3. **Replacements with regular expressions (regex)**
+4. **Replacements with strings**
+5. Remove some LaTeX commands: `\textcolor`, `\medskip`, `\bigskip`, `\hfill`, `\newpage`, `\intertext`
+6. Edit section & equation labels & `\eqref{}`
+7. Edit "other" environments in conjunction with their labels
+8. Edit `itemize` & `enumerate` environments
+9. Convert environments to R code chunks:
+   * solution: the string hack
+   * figure: `knitr::include_graphics()` (& convert .pdf to .png)
+   * verbatim: actual R code without hardcoded results
+   * tabular: `knitr::kable()` (or markdown syntax for tables)
+10. Fix code chunk labels ("_" $\rightarrow$ "-") & options: `dev`, `out.width`
+11. Add space in solution code chunks for PDF version, in conjunction with figure positions
+
+
+
+## Replacements (in this order)
+
+|Before | After|Remarks|
+|:---------|:-------|:-----------|
+|`\label{([^}]+)_([^}]+)_([^}]+)}`|`{#\1-\2-\3}`|Similar for those with fewer "_"|
+|`\ref{([^}]+)_([^}]+)_([^}]+)}`|`\@ref(\1-\2-\3)`|Ditto|
+|`\section{([^}]+)}`|`## \1 `| One # fewer for single document|
+| `\section*{([^}]+)}`|`## \1 {-}` | Ditto; similar for (sub)(sub)sections|
+|`\textit{([^}]+)}`|`*\1*`|Same for `\emph{([^}]+)}`|
+|`\textbf{([^}]+)}`|`**\1**`| |
+|`\texttt{([^}]+)}`|`` `\1` ``|Same for `\verb` |
+|`\Sexpr{([^}]+)}`|`` `r knitr::inline_expr("\\1")` ``| |
+|`\footnote{([^}]+)}`|`^[\1]`| |
+|`` ` `(.*)'' `` |`"\1"`|Before below replacments with `` ` ``| 
+|`^<<>>=$`|`` ```{r} ``| |
+|`^<<(.*)>>=`|`` ```{r, \1} ``| |
+|`^@[\s]?`|`` ``` ``| |
+|`^%(.*)`| `<!-- \1 -->` | After fixing environments commented out|
+|(self-defined LaTeX commands)|(Markdown replacements) |(or just original LaTeX commands) |
+| | |
+|Figure~|Figure`` ``|**Not regex**; with space at the end;|
+| | |same for Chapter, Section, etc.|
+|`\_` | `_`|**Not regex**; same for `\$`, `\%` and `\&`|
+
+
+
+## Scaffolding
+
+:::::: {.columns}
+::: {.column width="48%" data-latex="{\textwidth}"}
+1. R(Studio)
+2. Package `rmarkdown` (all lowercase)
+   - For standalone documents & whole set of notes
+3. Package `bookdown`
+   - Only required for whole set of notes
+4. Packages specific for your module
+   - Most likely in the R script
+5. Package `tinytex` (recommended)
+   - For below
+6. LaTeX distribution & TeX packages
+   - installed within R via `tinytex::install_tinytex()`
+   - `tinytex::tlmgr_install()` useful
+7. Package `reticulate` & Python (3)
+   - For Python content
+
+* **YMMV**: Even though they are meant for reproducibility
+* E.g. Labelling & referencing that works in bookdown doesn't automatically work in R Markdown
+
+:::
+::: {.column width="4%" data-latex="{\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+::: {.column width="48%" data-latex="{\textwidth}"}
+:::
+::::::
+
+
+
+## Summary
+
+* .tex $\rightarrow$ .Rmd
+  - Results generated dynamically via code chunks
+  - Non-coding questions: hack using strings
+  - Parametrised toggle in preamble
+* Additional R script / makefile
+  - {.pdf, .html} $\times$ {question, solutions}
+  - Parametrised toggle in the script
+* Variants & upgrade
+  - Python content
+  - Slides
+  - Whole set of notes (bookdown)
+* Conversion considerations
+  - A standard set of tasks, but manual work required
+  - Time saved by regex & string replacements
+
+
+
+## Benefits?
+
+* Check the accessibility box
+  - Even if not perfect the first time
+  - html embedded in the VLE
+* Less to change next time
+  - Instead of updating 2 .tex files, which might not match over time
+* No need to do everything in one go
+  - Steps (almost) orthogonal
+* Script-based approach
+  - Version control straightforward
+* Preach what you practise
+  - Ask students to write assignments using R Markdown
+  - Also write the assignments questions / solutions in the same way
+
+
+
+## Thank you!
+
+:::::: {.columns}
+::: {.column width="48%" data-latex="{\textwidth}"}
+* Slides: https://bit.ly/ukcots2024
+
+```{r}
+#| echo: false
+#| out.width: "65%"
+knitr::include_graphics("images/bit.ly_ukcots2024.png")
+```
+:::
+::: {.column width="4%" data-latex="{\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+::: {.column width="48%" data-latex="{\textwidth}"}
+* Github repo: https://bit.ly/template-repo
+
+```{r}
+#| echo: false
+#| out.width: "65%"
+knitr::include_graphics("images/bit.ly_template-repo.png")
+```
+:::
+::::::

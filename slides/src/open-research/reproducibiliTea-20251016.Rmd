@@ -1,0 +1,447 @@
+---
+title: "ReproducibiliTea"
+subtitle: "The Garden of Forking Paths (Gelman and Loken, 2013)"
+author: "Clement Lee"
+date: "2025-10-16 (Thu)"
+output:
+  beamer_presentation: default
+classoption: aspectratio=169
+bibliography: bib/ref-repro.bib
+biblio-style: apalike
+---
+
+```{r setup}
+#| echo: false
+#| message: false
+#| warning: false
+library(dplyr)
+library(tibble)
+library(ggplot2)
+library(igraph)
+library(ggraph)
+theme_set(theme_bw(12))
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, out.width = "80%")
+f <- knitr::include_graphics
+```
+
+## Welcome
+
+:::::: {.columns}
+::: {.column width="59%" data-latex="{\textwidth}"}
+
+$~$
+
+* A blend of:
+
+  - Open Research
+  - https://reproducibilitea.org
+  - UK Reproducibility Network (UKRN)
+
+* Monthly informal discussion
+
+* Practices sharing
+
+* Precursor of training
+
+:::
+::: {.column width="2%" data-latex="{\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+::: {.column width="39%" data-latex="{\textwidth}"}
+
+```{r logo}
+f("images/reproducibiliTea_logo.png")
+```
+
+:::
+::::::
+
+## Training
+
+:::::: {.columns}
+::: {.column width="49%" data-latex="{\textwidth}"}
+
+$$~$$
+
+* Research Software Engineering:
+
+  - https://rse.ncldata.dev/events
+
+* Open Research workshops:
+
+  1. Go to https://elements.ncl.ac.uk
+  2. "Find Learning" $\rightarrow$ "Courses"
+  3. Search "Open Research"
+
+* Email openresearch@ncl.ac.uk
+
+:::
+::: {.column width="2%" data-latex="{\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+::: {.column width="49%" data-latex="{\textwidth}"}
+
+```{r elements}
+f("images/elements.png")
+```
+
+:::
+::::::
+
+## Other events
+
+```{r ora25}
+#| out.width: "70%"
+f("images/ora25.png")
+```
+
+* Open Research Awards (Deadine Nov 7th):
+
+  - https://www.ncl.ac.uk/open-research/awards/
+
+* Statistics & Data Science Clinic:
+
+  - https://www.ncl.ac.uk/maths-physics/engagement/nusolve/
+
+* (External) Replication Games
+
+  - We plan to form a Newcastle team if there's enough interest
+
+## ~~The Garden of Forking Paths~~
+
+:::::: {.columns}
+::: {.column width="49%" data-latex="{\textwidth}"}
+
+\begin{align*}
+~&~
+\end{align*}
+
+* ~~1941 short story by Argentine writer and poet Jorge Luis Borges~~
+
+* ~~On the surface: story of a spy in World War I~~
+
+* ~~Foreshadows the many-worlds interpretation of quantum mechanics~~
+
+* ~~An inspiration of hypertext fiction~~
+
+:::
+::: {.column width="2%" data-latex="{\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+::: {.column width="49%" data-latex="{\textwidth}"}
+
+```{r jlb}
+f("images/jorge-luis-borges.jpg")
+```
+
+:::
+::::::
+
+## @gl13 on @bt13
+
+```{r fertility-illustration}
+#| fig.asp: 0.5
+#| fig.width: 4
+df0 <-
+  tibble(
+    x = seq(-4.0, 4.0, length = 1001),
+    y = dnorm(x)
+  )
+df0 |> ggplot() +
+  geom_line(aes(x, y)) +
+  scale_x_continuous(breaks = NULL, minor_breaks = NULL) +
+  scale_y_continuous(breaks = NULL, minor_breaks = NULL) +
+  labs(x = "Day in menstrual cycle", y = "Pr(wear shades\n of red)") +
+  theme(
+    panel.border = element_blank(),
+    axis.title.y = element_text(angle = 0, vjust = 0.5)
+  )
+```
+
+
+
+## Good practice
+
+* Specify the model & criteria before you collect & analyse the data
+
+* Inclusion: Women younger than 40
+
+* Peak: Days 10--17
+
+* Colors: Red $+$ pink
+
+## Illustration
+
+```{r function}
+foo <- function(df.edges, dashed = TRUE, black = TRUE) {
+  g <- graph_from_data_frame(df.edges, directed = TRUE)
+  E(g)$highlight <- df.edges$highlight
+  V(g)$label <- V(g)$name
+  ggraph(g, layout = "dendrogram") +
+    geom_edge_diagonal(
+      aes(
+        color = highlight,
+        linetype = highlight,
+        width = highlight
+      )
+    ) +
+    scale_edge_color_manual(values = c(`FALSE` = if (black) "black" else "white", `TRUE` = "red")) +
+    scale_edge_linetype_manual(values = c(`FALSE` = if (dashed) "dashed" else "solid", `TRUE` = "solid")) +
+    scale_edge_width_manual(values = c(`FALSE` = 0.5, `TRUE` = 2.0)) +
+    geom_node_point(size = 4) +
+    geom_node_text(aes(label = label), hjust = 0.5, vjust = -1.2, size = 5) +
+    coord_flip() +
+    scale_y_reverse() +
+    theme_void() +
+    theme(legend.position = "none")
+}
+```
+
+```{r no-forking-paths}
+#| fig.align: "center"
+# Base data frame of edges
+edges0 <- tribble(
+  ~from, ~to,
+  "Start", "Younger than 50",
+  "Start", "Younger than 40",
+  "Younger than 50", "Days 10-17",
+  "Younger than 50", "Days 17-25",
+  "Younger than 50", "Days 6-14",
+  "Days 10-17", "Red",
+  "Days 10-17", "Red + Pink",
+  "Days 17-25", "Red ",
+  "Days 17-25", "Red + Pink ",
+  "Days 6-14", "Red  ",
+  "Days 6-14", "Red + Pink  ",
+  "Younger than 40", "Days 10-17 ",
+  "Younger than 40", "Days 17-25 ",
+  "Younger than 40", "Days 6-14 ",
+  "Days 10-17 ", "Red   ",
+  "Days 10-17 ", "Red + Pink   ",
+  "Days 17-25 ", "Red     ",
+  "Days 17-25 ", "Red + Pink     ",
+  "Days 6-14 ", "Red       ",
+  "Days 6-14 ", "Red + Pink       ",
+)
+
+# highlight edges
+edges1 <- edges0 %>%
+  mutate(highlight = case_when(
+    (from == "Start" & to == "Younger than 40") |
+    (from == "Younger than 40" & to == "Days 10-17 ") |
+    (from == "Days 10-17 " & to == "Red + Pink   ") ~ TRUE,
+    TRUE ~ FALSE
+  ))
+foo(edges1, black = FALSE) # dashed doesn't matter
+```
+
+## Fishing / $p$-hacking
+
+```{r forking-paths}
+#| fig.align: "center"
+foo(edges1, dashed = FALSE, black = TRUE)
+```
+
+## Rebuttal
+
+Tracy and Beall (2013)
+
+* In a blog post that doesn't exist anymore
+
+* Claimed they were not fishing
+
+* Only one single analysis on one single data set
+
+@gl13
+
+* Even if they were not fishing, they didn't follow the good practice either
+
+* Pointed to **researcher** degrees of freedom
+
+## ~~Researcher~~ degrees of freedom
+
+```{r degrees-of-freedom}
+#| fig.align: "center"
+#| out.width: "70%"
+f("images/degrees-of-freedom.png")
+```
+Source: https://www.scribbr.co.uk/stats/degrees-of-freedom-df/
+
+## **Researcher** degrees of freedom
+
+```{r forking-paths-highlight}
+#| fig.align: "center"
+foo(edges1)
+```
+
+## Had the data been different
+
+```{r different-data}
+#| fig.align: "center"
+edges2 <- edges0 %>%
+  mutate(highlight = case_when(
+    (from == "Start" & to == "Younger than 50") |
+    (from == "Younger than 50" & to == "Days 17-25") |
+    (from == "Days 17-25" & to == "Red ") ~ TRUE,
+    TRUE ~ FALSE
+  ))
+foo(edges2)
+```
+
+## Or this
+
+```{r different-data-again}
+#| fig.align: "center"
+edges3 <- edges0 %>%
+  mutate(highlight = case_when(
+    (from == "Start" & to == "Younger than 40") |
+    (from == "Younger than 40" & to == "Days 6-14 ") |
+    (from == "Days 6-14 " & to == "Red + Pink       ") ~ TRUE,
+    TRUE ~ FALSE
+  ))
+foo(edges3)
+```
+
+## **Potential** multiple comparison
+
+* Had the data been different, you would end up with a different model
+
+* Analysis contingent on data $\rightarrow$ $p$-value argument disappears
+
+$~$
+
+  *"One can no longer argue that, if nothing were going on, that something as extreme as what was observed would occur less than 5% of the time."*
+
+## Q: How to resolve this?
+
+```{r preregistration}
+#| out.width: "60%"
+f("images/preregistration.png")
+```
+
+* Open Science Framework (OSF):
+
+  - https://help.osf.io/article/145-preregistration
+
+* As Predicted:
+
+  - https://aspredicted.org/
+
+## Q: What about null results?
+
+```{r registered-reports}
+#| out.width: "70%"
+f("images/registered-reports.png")
+```
+
+* Training!
+
+  - Experts on preregistration & registered reports within University
+
+## Q: But many hypotheses were not well formed before
+
+:::::: {.columns}
+::: {.column width="54%" data-latex="{\textwidth}"}
+
+$$~$$
+
+* Don't treat the finding as definitive truth
+
+* More like exploratory analysis
+
+* Reproduce/replicate it!
+
+  - Experiment, collect data & analyse again
+
+:::
+::: {.column width="2%" data-latex="{\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+::: {.column width="44%" data-latex="{\textwidth}"}
+
+```{r xkcd}
+#| out.width: "70%"
+f("images/replication_crisis.png")
+```
+
+Source: https://xkcd.com/3117/
+
+:::
+::::::
+
+## Quotes from discussion
+
+* *"... evidence in these research papers is not as strong as stated."*
+
+* *"... watch out for a system that allows any hunch to be ratched up to a level of statistical significance that is then taken as scientific proof."*
+
+* *"... it is ironic that, by way of data-dependent analyses, $p$-values are often used to lend credence to noisy claims based on small samples."*
+
+## Why psychology?
+
+* Small & noisy data
+
+  - Small effect sizes & sample sizes
+  - Large measurement errors & high variation
+
+* More common in social sciences
+
+* Much higher threshold in other fields
+
+  - In physics: $p$-values $<3\times10^{-7}$ required
+
+## Some more context
+
+:::::: {.columns}
+::: {.column width="49%" data-latex="{\textwidth}"}
+
+\begin{align*}
+~&~
+\end{align*}
+
+* Original article unpublished
+
+  - Citation count $>1000$
+
+* A similar version in @gl14
+
+:::
+::: {.column width="2%" data-latex="{\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+::: {.column width="49%" data-latex="{\textwidth}"}
+
+```{r p-value}
+f("images/p-value.jpg")
+```
+
+Source: https://www.americanscientist.org/article/the-statistical-crisis-in-science
+
+:::
+::::::
+
+## Some more context
+
+```{r gelman}
+#| out.width: "50%"
+f("images/gelman.jpg")
+```
+
+* Fighting bad papers on his blog: https://statmodeling.stat.columbia.edu
+
+```{r himmicane}
+#| out.width: "60%"
+f("images/himmicane.png")
+```
+
+## References

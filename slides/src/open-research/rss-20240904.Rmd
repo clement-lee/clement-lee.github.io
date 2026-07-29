@@ -1,0 +1,296 @@
+---
+author: "Clement Lee (Newcastle University)"
+title: "Lessons from My (S)crappy Reproducibility Journey"
+date: "2024-09-04 (Wed)"
+output:
+  slidy_presentation: default
+classoption: aspectratio=169
+---
+
+## Me
+
+<!-- -Thank you for inviting me, and allowing me to present remotely. I am based in Newcastle, so had the conference been in Harrogate, I would have come in person, so I am unfortunately a year too late. Anyway, I teach statistics and programming in R at the university, in addition to doing research. Recently, I have also taken up the role of local network lead of the UK Reproducibility Network, and I will talk about this role towards the end. -->
+
+:::::: {.columns}
+::: {.column width="49%" data-latex="{\textwidth}"}
+
+* Lecturer at Newcastle University
+* Teach how to:
+  - use R
+  - do statistics (using R)
+
+<center>
+<img src="images/logo.png" width="400">
+</center>
+
+:::
+::: {.column width="2%" data-latex="{\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+
+:::
+::: {.column width="49%" data-latex="{\textwidth}"}
+
+* Local network co-lead of UK Reproducibility Network (UKRN)
+* Organise activities on reproducibility & open research
+
+```{r ukrn-logo}
+#| echo: FALSE
+url <- "https://bpb-eu-w2.wpmucdn.com/blogs.bristol.ac.uk/dist/b/631/files/2020/09/UKRN-Logo-150-extra2.png"
+```
+
+<center>
+<img src="`r url`" width="400">
+</center>
+
+:::
+::::::
+
+## Teaching statistics
+
+<!-- -First I would like to talk about how I embed reproducibility in my teaching. I teach a module in the MSc Data Science programme here, and it covers the essentials of doing statistics, such as visualising data in R, probability distributions, maximum likelihood estimation, and hypothesis testing. At the end they have to carry out a simple analysis of a data set, then report the results in a written form. As an advocate of reproducibility, I ask them to do everything using R Markdown, which is I believe getting more common now. I always ask them to answer the three questions. If one of the answers is no, it's likely reproducibility is not guaranteed. I can tell you, the mistake on the right is very common. -->
+
+:::::: {.columns}
+::: {.column width="49%" data-latex="{\textwidth}"}
+
+* First module for MSc Data Science 
+* Exploratory analysis of a simple data set in R
+* Write report using R Markdown
+* Use the Rmd to reproduce their report:
+  - *Can it be generated with another machine?*
+  - *Can it be generated with new data?*
+  - *Are the results still valid with new data?*
+
+:::
+::: {.column width="2%" data-latex="{\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+
+:::
+::: {.column width="49%" data-latex="{\textwidth}"}
+
+```{r fire1}
+#| echo: FALSE
+url <- "https://pbs.twimg.com/media/DQugFIWUEAErq0D?format=jpg"
+```
+
+<center>
+<img src="`r url`" width="600">
+<figcaption>
+https://bit.ly/setwd
+</figcaption>
+</center>
+
+<!-- ![](`r url`) -->
+
+:::
+::::::
+
+## Lesson
+
+<!-- -What I have learned from teaching the module is that there's quite a lot that needs to be taught about reproducibility, alongside the core statistics materials. This is made even more difficult by the fact that some students are using R for the first time, so even concepts like absolute vs relative paths, as you have seen in the previous picture, need to be taught before we can move on to advanced stuff. Some of these materials can only be taught in a later module, because there's only so many modules and materials one can learn at one time. I have also learned new things when trying to reproduce their work, such as binder, which is built upon Docker, and makes it very easy to create clean environments for me or the students to try reproducing their reports. I would definitely recommend that. -->
+
+* Lots need to be taught
+  - ... alongside the "core" materials
+  - even absolute vs relative paths
+  - let alone packages e.g. ProjectTemplate, reprex
+
+* It takes effort to reproduce
+  - binder (https://mybinder.org) very useful
+
+## First contact
+
+<!-- -When writing the slides, I asked myself when did I start taking a real interest in reproducibility, and it came back to this paper a few years ago I wrote with my postdoc supervisor. JASA started the reproducibility requirement a further few years back, and in order to get the paper accepted, you have to go through the review by the AE for reproducibility, who will actually check if your code works. So back then I had to provide the data, the scripts and an R Markdown file, as well as a README on how to generate a pdf that contains the same results as in the paper. -->
+
+:::::: {.columns}
+::: {.column width="49%" data-latex="{\textwidth}"}
+
+* Lee and Wilkinson (2019)
+  - https://doi.org/10.1080/01621459.2019.1585358
+* An AE actually checked if the code runs and gives the reported results
+* https://jasa-acs.github.io/repro-guide/
+
+:::
+::: {.column width="2%" data-latex="{\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+
+:::
+::: {.column width="49%" data-latex="{\textwidth}"}
+
+<img src="images/jasa-repro-guide.png" width="450">
+
+<!-- ![](`r url`) -->
+
+:::
+::::::
+
+## Revisiting
+
+<!-- -Yesterday, I thought, as a testament, why don't I try to reproduce everything again? I went back to my scripts and attempted to reproduce the same pdf I submitted years ago, and it worked! Well, sort of. I didn't take care of the package versions, so I ended up finding out that I have included this dplyr function that doesn't work anymore in newer versions. But even though I reproduced the pdf after changing this, I found a bigger problem. -->
+
+* Can the results still be reproduced?
+* Yes! Not perfect though
+  - didn't use packrat or renv
+  - `dplyr::summarise_all()` is deprecated
+* More importantly ...
+
+## Rookie mistake
+
+<!-- -And that's to do with this rookie mistake of remove list = ls. On the left is the actual code, I have only changed broken the long line. On the right is the second slide I am borrowing from Jenny Bryan. So, back then, even though I thought reproducibility was guaranteed, I wasn't following the best practices. -->
+
+:::::: {.columns}
+::: {.column width="49%" data-latex="{\textwidth}"}
+
+* My actual code
+
+```{r repro-gots7}
+#| eval: false
+## prelim
+print(Sys.time())
+remove(list = ls())
+library(hybridProcess)
+source("gots7_prelim.R")
+source("initial_values_20170716_single.R")
+
+## run
+run_mcmc("20170716", 2468L, me_etas, N.gots7, 
+         t.gots7, b.gots7, f.gots7, a0.gots7,
+         b0.gots7, p0.gots7, p01.gots7,
+         p10.gots7, write = FALSE, l0.gots7,
+         beta.gots7, kappa.gots7, lambda.gots7,
+         phi.gots7, psi.gots7, tau.gots7,
+         theta.gots7, s_beta.gots7, s_kappa.gots7,
+         s_lambda.gots7, s_psi.gots7, s_theta.gots7,
+         s_e_init.gots7, rebuild = TRUE)
+
+## exit
+remove(list = ls())
+print(Sys.time())
+```
+
+:::
+::: {.column width="2%" data-latex="{\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+
+:::
+::: {.column width="49%" data-latex="{\textwidth}"}
+
+
+```{r fire2}
+#| echo: FALSE
+url <- "https://pbs.twimg.com/media/DQugFMjV4AAZtB-?format=jpg"
+```
+
+<center>
+<img src="`r url`" width="600">
+<figcaption>
+https://bit.ly/rm-list-ls
+</figcaption>
+</center>
+
+<!-- ![](`r url`) -->
+
+:::
+::::::
+
+## Lesson
+
+<!-- -The quick revisit to my work yesterday taught me this: 1, nothing lasts forever, and we should keep up-to-date what's new, but also let package management take care of the versions; 2) future-proof your work, because your future self very likely needs to reproduce it. And writing README is always a good starting point for this; 3) adopt early. I have been asking my PhD students to do it when they started, because I firmly believe it will save their time and hassle in the future. -->
+
+* Nothing lasts forever
+  - Keep up-to-date what's new
+  - Let package management tools take care of the past
+
+* Future-proof your work
+  - It helps others to reproduce your work ...
+  - ... including **your future self**
+  - README helps
+
+* Adopt early
+  - (Ask your PhD student / postdoc to) do it now
+  - Doesn't need to be perfect the first time
+  - It will save you time in the future
+
+## So far
+
+<!-- -There's too much about reproducibility to cover in 15 minutes, like version control, documentation, package development and testing, but this is only computational reproducibility. Without the word computational, it can mean slightly different things in other disciplines, or it could be interchangeable with replicability. In social sciences or medical statistics, they care more about if the new data or experiments lead to the same conclusion. And even if the same conclusion is reached, it doesn't mean that method actually make sense or is useful. This is somewhat related to the last question here, which is if the method has been changed, often multiple times, to fit the data. -->
+
+* A lot skipped
+  - Version control, documentation, package development, testing
+  - Container briefly mentioned: binder, docker, etc.
+
+* **Computational** reproducibility is only the beginning
+  - Social sciences / medical statistics care about related issues
+  - Reproducibility? Replicability?
+  
+* Do new data / experiments lead to the same conclusion?
+  - Not identical $p$-values to what you've got (unlikely)
+  - Same hypothesis supported / not-supported
+
+* Does the methodology make sense?
+  - Verified results aren't necessarily good or useful
+
+* Has the method been changed to fit the data?
+  - Garden of the forking paths
+
+## Open Research & UKRN
+
+<!-- -All these questions can be put under the bigger umbrella of open research, which is what UKRN advocates, even though it's got reproducibility in its name. If you have not heard about it, UKRN is a national network that connects all the institutions, and representations of different institutions meet to discuss reproducibility and the wider agenda, but a lot activites happen within each institution. As the local network lead, my role is to organise and advertise these activites, one of which is the ReproducibiliTea journal club. Instead of just reading a paper from psychology that might be of no interest to someone from economics, this year we are inviting our colleagues to share their work related to open research that ended up as a paper or some other formats, which made it more accessible to others. We are also planning to hold drop-in sessions so that colleagues can be supported if they want to practise different bits of open research but don't know where to start. There's a lot more than computational reproducibility in open research, and my role is complemented by the other co-lead, Nicola Howe, whose field is clinical research and so she is focused on other facets of open research, such as open data, open access, and preregistration. If you are interested, find out if your institution has a local network and join them. You can even create one if it has not already existed. -->
+
+:::::: {.columns}
+::: {.column width="49%" data-latex="{\textwidth}"}
+
+* A national consortium promoting best practice in Open Research
+  - https://www.ukrn.org
+
+* Institutions form their own local network
+  - Colleagues & research students within Newcastle University
+
+* ReproducibiliTea journal club
+  - Sharing good practices from papers or their own work
+
+* Drop-in sessions
+  - Support colleagues with open research practices
+
+* Join/create your local network if you have not already
+
+:::
+::: {.column width="2%" data-latex="{\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+
+:::
+::: {.column width="49%" data-latex="{\textwidth}"}
+
+```{r ukrn-logo-again}
+#| echo: FALSE
+url <- "https://bpb-eu-w2.wpmucdn.com/blogs.bristol.ac.uk/dist/b/631/files/2020/09/UKRN-Logo-150-extra2.png"
+```
+
+<center>
+<img src="`r url`" width="400">
+</center>
+
+:::
+::::::
+
+## Thank you!
+
+<!-- -I think I have run out of time and slides, so thank you for listening. My slides can be accessed through the URL or the QR code, although they don't work very well on a smartphone. -->
+
+- Website: https://clement-lee.github.io
+- Slides: https://bit.ly/rss-2024
+
+```{r qrcode}
+#| echo: false
+#| out.width: "30%"
+#| fig.align: "left"
+knitr::include_graphics("images/bit.ly_rss-2024.png")
+```

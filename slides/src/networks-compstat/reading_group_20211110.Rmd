@@ -1,0 +1,305 @@
+---
+title: "Networks $\\times$ Extremes Reading Group"
+author: "Clement Lee"
+date: "2021-11-11 (Thu)"
+output:
+  slidy_presentation:
+    toc: true
+    duration: 30
+---
+
+```{r prelim, echo = FALSE, message = FALSE}
+library(tidyverse)
+library(igraph)
+knitr::opts_chunk$set(fig.align = "center", echo = FALSE, out.width = "70%", warning = FALSE)
+ggplot2::theme_set(ggplot2::theme_classic(25))
+```
+
+
+
+
+
+## Background
+* Directed networks here
+* Preferential attachment model:
+  - Nodes join the network one by one, bringing in new edges
+  - $\Pr($existing node $i$ gets an edge$)~\propto~$ current degree of $i$
+  - In-/total degree captures the rich-gets-richer effect
+
+
+
+
+
+## Simulated network
+* Size according to in-degree
+
+```{r layout}
+knitr::opts_chunk$set(out.width = "60%")
+layout_coord <- function(x) {
+  z <- sqrt(x)
+  y <- floor(z)
+  w <- ifelse(y == z,
+    ifelse(y %% 2L == 1L, 1L, 2L),
+	ifelse(y %% 2L == 1L,
+	  ifelse(x - y ^ 2L <= y, 3L, 4L),
+	  ifelse(x - y ^ 2L <= y, 5L, 6L)
+	)
+  )
+  xcoord <- recode(w,
+    (y - 1L) / 2L, # case 1
+	1L - y / 2L, # case 2
+	(y - 1L) / 2L + 1, # case 3
+	(y ^ 2L + 3L * (y + 1L) / 2L - x), # case 4
+	- y / 2L, # case 5,
+	y / 2L - (y + 1) ^ 2L + x # case 6
+  )
+  ycoord <- recode(w,
+    (y - 1L) / 2L, # case 1
+	- y / 2L, # case 2
+	(y - 1L) / 2L - x + y ^ 2L + 1L, # case 3
+	- (y + 1L) / 2L, # case 4
+	- y / 2L + x - y ^ 2L - 1L, # case 5
+	y / 2L # case 6
+  )
+  cbind(xcoord, ycoord)
+}
+```
+
+```{r PA_model, out.width = "60%"}
+## BRG model
+n0 <- 5 #### beginning number of nodes
+g0 <- make_empty_graph(n0, directed = TRUE) %>%
+    add_edges(c(1, 2, 2, 3, 2, 4, 3, 4, 4, 5))
+V(g0)$label <- labels <- head(LETTERS, n0)
+degs <- degree(g0)
+edges0 <- igraph::as_data_frame(g0) %>% as.matrix() %>% t() %>% as.integer()
+## Now PA model
+mu <- 5.0 #### mean number of edges
+c2 <- 0.01 #### additive constant
+n2 <- 121 #### total number of nodes
+g2 <- make_empty_graph(n = n2, directed = TRUE) %>%
+    add_edges(edges0)
+l2 <- layout_coord(seq(n2))
+set.seed(21L)
+for (i in (n0 + 1):n2) {
+  E2 <- min(rgeom(1, 1.0 / mu) + 1, i - 1) # number of new edges; the plus 1 makes mu meaningful
+  p2 <- head(degree(g2, mode = "all"), i - 1) + c2 # "all" leads nicely to power law, "in" doesn't
+  nodes2 <- sample(seq(i - 1), E2, prob = p2 / sum(p2))
+  edges2 <- as.integer(t(matrix(c(rep(i, E2), nodes2), ncol = 2)))
+  g2 <- g2 %>% add_edges(edges2)
+  d2 <- degree(g2, mode = "in") + 1 # artificial
+  V(g2)$frame.color <- "white"
+  V(g2)$color <- "red"
+  V(g2)$color[d2 == 0] <- NA
+  V(g2)$size <- d2 ^ 0.5 * 3 # for aesthetics, trial-and-error
+}
+par(mar = rep(0.0, 4))
+plot(g2, layout = l2, vertex.label = NA, edge.arrow.size = 0.2, margin = c(0.5, 0.1, 0.1, 0.1), edge.width = 0.2)
+```
+
+## Marginal distribution
+
+```{r in_marginal}
+n3 <- 1000
+g2 <- g2 %>% add_vertices(n3 - n2)
+for (i in (n2 + 1):n3) {
+  E2 <- min(rgeom(1, 1.0 / mu) + 1, i - 1) # number of new edges; the plus 1 makes mu meaningful
+  p2 <- head(degree(g2, mode = "all"), i - 1) + c2 # "all" leads nicely to power law, "in" doesn't
+  nodes2 <- sample(seq(i - 1), E2, prob = p2 / sum(p2))
+  edges2 <- as.integer(t(matrix(c(rep(i, E2), nodes2), ncol = 2)))
+  g2 <- g2 %>% add_edges(edges2)
+  d2 <- degree(g2, mode = "in") + 1 # artificial
+  V(g2)$frame.color <- "white"
+  V(g2)$color <- "red"
+  V(g2)$color[d2 == 0] <- NA
+  V(g2)$size <- d2 ^ 0.5 * 3 # for aesthetics, trial-and-error
+}
+df2 <- tibble("in" = degree(g2, mode = "in"), out = degree(g2, mode = "out"))
+df2 %>% count(`in`) %>% ggplot() + geom_point(aes(`in`, n)) + scale_x_log10() + scale_y_log10() + labs(x = "in-degree", y = "count")
+```
+
+
+
+
+
+## Why?
+* Easy to simulate from and fit to data
+* In-degrees of empirical networks seem to follow the "power law"
+  - Essentially the (non-generalised) Pareto distribution
+  - Some argue otherwise (e.g. Broido and Clauset, 2018)
+  
+* Power law adequate? Not today's scope
+
+
+
+
+
+## Making the model more realistic
+* $\Pr($existing node $i$ gets an edge$)~\propto~$ current degree of $i$ + $\boldsymbol{\delta}$
+  - A positive probability of getting connected even if the node has no in-degre to start with
+  - Level the playing field
+
+* Reciprocity parameter $\boldsymbol{\rho}$
+  - So far only either $A\rightarrow B$ or $B\rightarrow A$, but not both $\quad\Rightarrow\quad$ reciprocity $=0$
+  - Empirical networks usually show high reciprocity
+  - E.g. Instagram: if $A$ follows $B$, $B$ is more likely to follow $A$ back
+  - $\rho$ affects how the in-degrees & out-degrees are correlated
+
+
+
+
+
+## Joint distribution
+* Same simulated network with 0 reciprocity
+
+```{r in_out_joint}
+df2 %>% ggplot() + geom_jitter(aes(`in`, out)) + labs(x = "in-degree", y = "out-degree")
+```
+
+
+
+
+
+## Wang & Resnick (2021)
+How does incorporating reciprocity in the preferential attachment model affect the in- & out-degrees?
+
+1. What is their limiting (marginal) distribution?
+2. What is their limiting joint distribution?
+3. Are they asymptotically independent / dependent?
+
+
+
+
+
+## Summary
+* A relatively restrictive preferential attachment model even with reciprocity
+  - Possibly for the theoretical derivations
+* Turning the process of preferential attachment into a **multitype branching process with immigration**
+* Using results developed for branching process to arrive at the limiting distributions of in- & out-degrees
+  - Thus answering the questions they set out
+
+
+
+
+
+## Model set up
+1. Start with node 1 with a self-loop
+2. Node $n+1$ joins when there are $n$ nodes in the network
+3. With probability $\alpha$, there is an edge from node $n+1$ to an existing node  
+    - The node is chosen with probability $~\propto~$ their current in-degree $+~\delta$  
+    - With probability $\rho$, reciprocity happens i.e. an edge from the chosen node to $n+1$ is created  
+    - With probability $1-\rho$, reciprocity doesn't happen
+4. With probability $\gamma(=1-\alpha?)$, there is an edge from an existing node to node $n+1$
+    - The node is chosen with probability $~\propto~$ their current out-degree $+~\delta$  
+	- With probability $\rho$, reciprocity happens i.e. an edge from $n+1$ to chosen node is created  
+	- With probability $1-\rho$, reciprocity doesn't happen
+
+
+
+
+
+## Converting to branching processes
+* An in-degree $~\Leftrightarrow~$ a type 1 particle
+* An out-degree $~\Leftrightarrow~$ a type 2 particle
+* A node joins $~\Leftrightarrow~$ immigration event
+  - Node $n+1$ joins at time $T_{n}$
+* Creation of new edge $~\Leftrightarrow~$ death of existing particle & birth of new particle(s)
+* While a type 1 particle can give birth to a type 2 particle, births of new type 1 particles must come with it $~\Leftrightarrow~$  
+  While an in-degree can lead to a new out-degree, there must be a new in-degree first
+
+
+
+
+
+## Converting to branching processes (cont'd)
+* The existing node that connects with node $n+1$ $~\Leftrightarrow~$ $J_{n+1}$
+* Reciprocity occurs when node $n+1$ joins $~\Leftrightarrow~$ $R_{n+1}$
+* The evolution of the in- & out-degree of node $k$ $~\Leftrightarrow~$ $\boldsymbol{\xi}_{1,\delta}(\cdot)$
+* The allocation of new edge(s) from node $n+1$ depends only on current in- & out-degrees $~\Leftrightarrow~$  
+  The branching process is Markovian
+
+
+
+
+
+## Connecting the two formally
+* The collection of the branching processes 
+  $\left\{\boldsymbol{\xi}^{*}_\delta(T_n):n\geq0\right\}$
+  - Before node $n+1$ arrives, $\boldsymbol{\xi}_{n+1},\delta(\cdot)$ is set to $(0,0)$
+* The collection of in- & out-degree sequences $\boldsymbol{D}(n):=\left((D_1^{in}(1), D_1^{out}(1)), \ldots, (D_1^{in}(n), D_1^{out}(n)), (0,0), \ldots\right)$
+* Theorem 2: The two have the same distributions
+  - Any result for $\left\{\boldsymbol{\xi}^{*}_\delta(T_n):n\geq0\right\}$ can be used for the in- & out-degree sequences
+
+
+
+
+
+## Result 1 / Theorem 4
+* When there are $n$ nodes in the network, the in-degree of node $\omega$, rescaled by $n$ raised to a certain power, converges to a finite random variable $L_\omega$, as $n\rightarrow\infty$.
+* Similar for the out-degree
+* $n$ raised to a certain power -- power law?
+  - This power is a function of the parameters $(\alpha,\gamma,\rho,\delta)$
+  - We will come back to this
+* Special case: when $\alpha=1$
+  - Nodes selected only according to in-degrees
+  - Reciprocity only from existing node to new node
+  - The rescaled out-degree converges to $\rho~L_\omega$
+
+
+
+
+
+## Result 2 / Theorem 5
+* Joint degree counts
+  - Joint distribution of in- & out-degree in a different way
+* $N_{m,l}(n)$: the number of nodes with $m$ in-degree & $l$ out-degree when there are $n+1$ nodes in the network
+  - $N_{m,l}(n)/n$: Joint empirical pmf of $(m, l)$
+* The first line of (3.10) not explicitly simplified, but leads to next result
+
+
+
+
+
+## Result 3 / Theorem 6
+* The in- & out-degrees are jointly regularly varying
+* Index $(1+\rho+\delta)/\lambda_1$
+  - Echoing theorem 4?
+* Special case: when $\alpha=1$, $\lambda_1=1$
+  - MRV with index $1+\rho+\delta$
+* Asymptotic dependence
+  - Question: Even when $\rho=0$?
+
+
+
+
+
+## Full asymptotic dependence
+* The large $(I,O)$ pairs concentrate on the straight line $y=ax$
+* Echoed by middle plot of Figure 4.1
+* Calculate $O-aI$ and investigate if there's hidden regular variation
+
+
+
+
+
+## Simulation & Application
+* Without modification i.e. fixed reciprocity: middle plot of Figure 4.1
+  - Behaviour as expected
+* Attempted to randomise $\rho$ to make the model more realistic i.e. closer to Facebook data
+  - Left & right plot of Figure 4.1
+  - Different user pairs have different degrees of reciprocity
+
+
+
+
+
+## Some thoughts
+* Model quite restrictive & not very realistic
+* Asymptotic dependence even if there's no reciprocity
+* Only one edge is added at each immigration
+  - Presumably derivations are far more challenging when bringing in multiple edges & sampling without replacement
+* No connecting between existing nodes
+  - They did mention this in extensions
+
+
+
