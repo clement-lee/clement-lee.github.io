@@ -31,6 +31,19 @@ jobs:
 
       - uses: r-lib/actions/setup-tinytex@v2
 
+      # A handful of decks have real {python} chunks (knitr routes these
+      # through the reticulate package). Point reticulate at this pinned
+      # interpreter explicitly — left unset, reticulate 1.41+ will instead
+      # silently download and manage its own private Python via uv on first
+      # use, which is slower, needs network access at *render* time rather
+      # than restore time, and isn't reproducible run to run.
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Point reticulate at the pinned Python
+        run: echo "RETICULATE_PYTHON=$(which python3)" >> "$GITHUB_ENV"
+
       # Several lockfile packages (igraph, gsl, magick, ragg/textshaping/
       # systemfonts, clipr, ...) wrap C libraries that renv::restore's binary
       # install doesn't bring with it — it fails at *load* time, not install
