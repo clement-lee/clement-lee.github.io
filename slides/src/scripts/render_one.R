@@ -19,6 +19,17 @@ slides_dir <- normalizePath(".")
 rmd_abs <- normalizePath(rmd)
 rmd_dir <- dirname(rmd_abs)
 
+# Activate the renv project (src/) so rmarkdown/knitr/etc. resolve to the
+# restored library. R only auto-sources .Rprofile when the working
+# directory exactly matches where it lives (src/), but this script runs
+# with cwd == slides/ so that output paths resolve correctly above — so
+# renv's usual auto-activation never fires here. renv's activate.R itself
+# determines the project root from getwd() at the moment it's sourced, so
+# this has to briefly cd into src/ rather than just sourcing it in place.
+old_wd <- setwd(file.path(slides_dir, "src"))
+source("renv/activate.R")
+setwd(old_wd)
+
 # LaTeX themes live outside each deck's own directory (the lancasterbeamer
 # theme is shared across categories; NewcastleUniversity's theme sits in
 # open-research/sty/), so \usetheme{} needs them on TEXINPUTS rather than
