@@ -22,6 +22,7 @@ report=src/render-report.md
 
 pass=0
 fail=0
+skip=0
 any_fail=0
 
 # A missing LaTeX package can drop pdflatex into an interactive
@@ -30,10 +31,20 @@ any_fail=0
 # broken deck can never block the whole batch.
 timeout_secs=180
 
+skiplist=src/skip-render.txt
+
 while IFS= read -r -d '' rmd; do
   name="${rmd#src/}"
   stem=$(basename "$rmd" .Rmd)
   srcdir=$(dirname "$rmd")
+
+  # skip-render.txt entries are relative to src/ (e.g. "open-research/foo.Rmd")
+  if [[ -f "$skiplist" ]] && grep -qxF "${rmd#src/}" "$skiplist"; then
+    echo "| $name | skip | listed in skip-render.txt |" >> "$report"
+    skip=$((skip + 1))
+    continue
+  fi
+
   log=$(mktemp)
   if timeout "${timeout_secs}s" Rscript src/scripts/render_one.R "$rmd" > "$log" 2>&1; then
     echo "| $name | pass | |" >> "$report"
@@ -61,7 +72,7 @@ done < <(find src -name '*.Rmd' -not -path 'src/_shared/*' -not -path 'src/renv/
 
 {
   echo
-  echo "**${pass} passed, ${fail} failed**"
+  echo "**${pass} passed, ${fail} failed, ${skip} skipped**"
 } >> "$report"
 
 cat "$report"

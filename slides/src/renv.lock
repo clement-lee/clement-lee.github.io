@@ -9,13 +9,6 @@
     ]
   },
   "Packages": {
-    "BH": {
-      "Package": "BH",
-      "Version": "1.90.0-1",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "87905902999e70199a81869ef4ccaf82"
-    },
     "DBI": {
       "Package": "DBI",
       "Version": "1.3.0",
@@ -115,18 +108,6 @@
         "utils"
       ],
       "Hash": "6a72e94a8c9be4ef719af3aa3628f2dc"
-    },
-    "anytime": {
-      "Package": "anytime",
-      "Version": "0.3.13",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "BH",
-        "R",
-        "Rcpp"
-      ],
-      "Hash": "cee0a91a29cff9a314d76c53c67d787b"
     },
     "askpass": {
       "Package": "askpass",
@@ -858,35 +839,6 @@
       ],
       "Hash": "10bcae7793493db63a6872096132e10c"
     },
-    "hybridProcess": {
-      "Package": "hybridProcess",
-      "Version": "0.0.2",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteRepo": "hybridProcess",
-      "RemoteUsername": "clement-lee",
-      "RemoteRef": "HEAD",
-      "RemoteSha": "ec848f60f5a2dc73b1643781d21f48f805db4768",
-      "Requirements": [
-        "R",
-        "Rcpp",
-        "RcppArmadillo",
-        "anytime",
-        "dplyr",
-        "ggplot2",
-        "glue",
-        "lazyeval",
-        "lubridate",
-        "magrittr",
-        "purrr",
-        "readr",
-        "rjson",
-        "tibble",
-        "tidyr"
-      ],
-      "Hash": "689b1b77210ddeaaa842b6b9a44619a4"
-    },
     "ids": {
       "Package": "ids",
       "Version": "1.0.1",
@@ -1006,17 +958,6 @@
         "utils"
       ],
       "Hash": "91febc38a877968922d0d37d5db0f674"
-    },
-    "lazyeval": {
-      "Package": "lazyeval",
-      "Version": "0.2.3",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "rlang"
-      ],
-      "Hash": "2757e46c2633dd5854f62615df70d0d7"
     },
     "lifecycle": {
       "Package": "lifecycle",
@@ -1347,16 +1288,6 @@
         "withr"
       ],
       "Hash": "97b1d5361a24d9fb588db7afe3e5bcbf"
-    },
-    "rjson": {
-      "Package": "rjson",
-      "Version": "0.2.23",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R"
-      ],
-      "Hash": "7a04e9eff95857dbf557b4e5f0b3d1a8"
     },
     "rlang": {
       "Package": "rlang",

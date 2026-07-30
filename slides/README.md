@@ -39,6 +39,8 @@ make render-strict
 
 Every run (local or CI) writes `src/render-report.md`, listing pass/fail per deck.
 
+If a deck has a dependency that genuinely can't be installed (e.g. an external package that no longer builds, unlike the usual "just needs a newer pinned version" case), list it in `src/skip-render.txt` (one path per line, relative to `src/`) rather than leaving it to fail every run. Skipped decks show as `skip` in the report. This only affects the batch runners (`make render`/`render-strict`); `make render-one FILE=...` still renders a skipped deck directly if you want to check on it.
+
 **Older decks are expected to fail to re-render.** Only the two `open-research` UKRN talks were ever given a locked package environment; everything else predates that and has no version pinning going back to 2020. Package API drift (`ggplot2`, `dplyr`, `knitr`, etc. have all changed since) means some pre-2025 decks will error out — this is a known, accepted gap, not a bug to chase down preemptively. Fix a deck's dependencies opportunistically if you're revisiting it for another reason; there's no value in a blanket one-time triage pass.
 
 CI (`.github/workflows/render-slides.yml`) runs the same best-effort render on every push touching `src/**`, purely as a signal — it renders into a scratch copy and never modifies the committed `slides/*.html|*.pdf`.

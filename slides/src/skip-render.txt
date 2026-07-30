@@ -1,0 +1,3 @@
+# Decks to skip in `make render`/`make render-strict` (batch runs only —
+# `make render-one FILE=...` still works on these). One path per line,
+# relative to slides/src/. See slides/README.md for how to use this.
