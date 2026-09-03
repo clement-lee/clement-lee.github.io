@@ -6,7 +6,7 @@ permalink: /research/
 
 ## Publications
 
-1. **[A Spliced Preferential Attachment Model for Degree Distributions in Networks](https://arxiv.org/abs/2506.18726)** (2025)  
+1. **[A Spliced Preferential Attachment Model for Degree Distributions in Networks](https://arxiv.org/abs/2506.18726)** (2026)  
    T. Boughen, **C. Lee** and V. Palacios Ramirez. arXiv preprint arXiv:2506.18726.
 
 2. **[Reproduction of "(Re)Emerging Disease and Conflict Risk in Africa, 1997–2019"](https://osf.io/cqxpy/)** (2026)  
