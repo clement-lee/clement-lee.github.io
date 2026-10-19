@@ -11,3 +11,4 @@ Two more useful resources:
 1. [Engsoccerdata GitHub repository](https://github.com/jalapic/engsoccerdata)
 
 2. [Experimental 361](https://experimental361.com/)
+3. [Football Charts](https://www.football-charts.com/): Daily Dixon–Coles match probabilities, attack/defence club ratings, and 10,000-simulation league projections across 93 leagues (with an open CC-BY-4.0 dataset and keyless JSON API).
