@@ -27,7 +27,7 @@ ggplot2::theme_set(ggplot2::theme_bw(40))
 
 # Stochastic block models
 
-```{r sbm_example}
+```{r sbm_example, warning = FALSE}
 s <- c(25, 30, 35)
 K <- length(s)
 n <- sum(s)
@@ -554,7 +554,7 @@ $$ \begin{aligned}
 :::: column
 ```{r plot_mix, out.width = "100%"}
 u <- 12L
-df2.cont <- tibble(x = 1:20, y = dmix(x, 2.0, 0.5, 1.0, u, 0.2, TRUE))
+df2.cont <- tibble(x = 1:20, y = dmix2(x, u = u, alpha = 0.0, theta = exp(-1.0/2.0), shape = 0.5, sigma = 1.0, phiu = 0.2))
 df2.cont %>% ggplot() +
     geom_point(aes(x, y)) +
 	geom_segment(aes(x, y, xend = x, yend = 0), alpha = 0.5, lwd = 0.5) +
@@ -588,8 +588,8 @@ mcmc2ci <- function(x, tbl, con, geo, length = 1000L) {
     N <- nrow(tbl)
     mf <- mS <- matrix(NA, N, length(xs))
     for (i in seq(N)) {
-        mf[i,] <- crandep::dmix(xs, tbl$xi1[i], tbl$xi2[i], tbl$sig[i], tbl$u[i], tbl$phi[i], geo = geo)
-        mS[i,] <- crandep::Smix(xs, tbl$xi1[i], tbl$xi2[i], tbl$sig[i], tbl$u[i], tbl$phi[i], geo = geo)
+        mf[i,] <- crandep::dmix2(xs, u = tbl$u[i], alpha = 0.0, theta = exp(-1.0/tbl$xi1[i]), shape = tbl$xi2[i], sigma = tbl$sig[i], phiu = tbl$phi[i])
+        mS[i,] <- crandep::Smix2(xs, u = tbl$u[i], alpha = 0.0, theta = exp(-1.0/tbl$xi1[i]), shape = tbl$xi2[i], sigma = tbl$sig[i], phiu = tbl$phi[i])
     }
     tibble::tibble(x = xs) %>%
         dplyr::mutate(f_cil = apply(mf, 2, quantile, p = lower) * n,

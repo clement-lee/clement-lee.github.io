@@ -330,7 +330,7 @@
     },
     "crandep": {
       "Package": "crandep",
-      "Version": "0.3.13",
+      "Version": "0.3.14",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -346,7 +346,7 @@
         "tools",
         "utils"
       ],
-      "Hash": "11a9423f95856374ff4ed1e7cf655a1c"
+      "Hash": "c88a7b3b7c5e3c931f394c225a20be4e"
     },
     "crayon": {
       "Package": "crayon",
