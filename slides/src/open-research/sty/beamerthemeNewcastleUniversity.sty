@@ -19,12 +19,18 @@
 % --- 2. FONTS (XeLaTeX) ---
 \ifxetex
 \RequirePackage{fontspec}
+% Derailed is the university's licensed brand font, installed locally but
+% not on CI runners; fall back to the default font there instead of failing.
+\IfFontExistsTF{Derailed}{%
 \setsansfont{Derailed}[
-UprightFont = *-Regular, 
+UprightFont = *-Regular,
 BoldFont    = *-Bold,
 ItalicFont  = *-Italic
 ]
 \setmainfont{Derailed}
+}{%
+\PackageWarning{InstitutionTheme}{Derailed font not found; using the default font.}
+}
 \else
 \PackageWarning{InstitutionTheme}{Use xelatex to load Derailed font.}
 \fi
