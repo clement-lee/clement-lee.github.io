@@ -1,0 +1,3 @@
+[submodule "slides/src/_shared/beamertheme"]
+	path = slides/src/_shared/beamertheme
+	url = https://github.com/clement-lee/beamertheme.git

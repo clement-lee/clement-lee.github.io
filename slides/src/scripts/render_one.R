@@ -30,19 +30,21 @@ old_wd <- setwd(file.path(slides_dir, "src"))
 source("renv/activate.R")
 setwd(old_wd)
 
-# LaTeX themes live outside each deck's own directory (the lancasterbeamer
-# theme is shared across categories; NewcastleUniversity's theme sits in
-# open-research/sty/), so \usetheme{} needs them on TEXINPUTS rather than
-# relying on the knit working directory.
+# LaTeX themes live outside each deck's own directory (lancasterbeamer and
+# NewcastleUniversity are shared across categories under _shared/; an older
+# copy of NewcastleUniversity also sits in open-research/sty/), so \usetheme{}
+# needs them on TEXINPUTS rather than relying on the knit working directory.
 shared_tex <- normalizePath(
-  file.path(slides_dir, "src", "_shared", "beamer-lancaster"),
+  file.path(slides_dir, "src", "_shared", c("beamer-lancaster", "beamertheme")),
   mustWork = FALSE
 )
 category_sty <- file.path(rmd_dir, "sty")
+# A category's own sty/ goes before _shared/ so a local copy of a theme
+# overrides the shared one.
 tex_parts <- c(
   rmd_dir,
-  shared_tex,
   if (dir.exists(category_sty)) category_sty,
+  shared_tex,
   Sys.getenv("TEXINPUTS")
 )
 Sys.setenv(TEXINPUTS = paste0(paste(tex_parts, collapse = ":"), ":"))

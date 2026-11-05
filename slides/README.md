@@ -11,11 +11,13 @@
 | `sports` | Sports analytics talks (chess, football/538) |
 | `networks-compstat` | Networks & computational statistics (reading groups, STOR601/603, CSML MCMC talk) |
 | `teaching-engagement` | Teaching and public engagement talks (MAS8384, STEM Taster, UKCoTS, Insights workshops, FST public lecture) |
-| `_shared` | Assets used across more than one category — currently the `lancasterbeamer` LaTeX theme, shared by talks in both `networks-compstat` and `teaching-engagement` |
+| `_shared` | Assets used across more than one category — the `lancasterbeamer` LaTeX theme (`beamer-lancaster/`), shared by talks in both `networks-compstat` and `teaching-engagement`, and the `NewcastleUniversity` theme (`beamertheme/`, a git submodule of [clement-lee/beamertheme](https://github.com/clement-lee/beamertheme)) |
 
 Each category folder holds its own `.Rmd` sources plus an `images/` subfolder (and `bib/`, `sty/`, `assets/`, `reference/` where relevant) for assets used only within that category.
 
 ## Prerequisites
+
+- The `NewcastleUniversity` theme is a git submodule: clone with `git clone --recurse-submodules`, or run `git submodule update --init` in an existing clone. Theme changes are committed and pushed inside `src/_shared/beamertheme/` (to its own repo) first; then commit the updated submodule pointer here.
 
 - R (see `src/renv.lock` for the exact version this was last snapshotted against)
 - [pandoc](https://pandoc.org/) (bundled with RStudio, or install separately)
