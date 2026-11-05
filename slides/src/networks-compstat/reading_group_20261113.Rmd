@@ -1,0 +1,14 @@
+---
+title: "An overview of MCMC with R, and template model builder (TMB)"
+author: "Clement Lee"
+date: "2026-11-13"
+output:
+  bookdown::beamer_presentation2:
+    theme: "NewcastleUniversity"
+    latex_engine: xelatex
+    slide_level: 2
+    toc: false
+classoption: "aspectratio=169"
+---
+
+## Testing
