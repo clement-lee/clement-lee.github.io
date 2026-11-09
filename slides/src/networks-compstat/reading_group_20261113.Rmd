@@ -1,5 +1,5 @@
 ---
-title: "An overview of MCMC with R, and template model builder (TMB)"
+title: "Applied Bayesian computation with R: languages, front-ends and Laplace"
 author: "Clement Lee"
 date: "2026-11-13"
 output:
@@ -9,6 +9,1263 @@ output:
     slide_level: 2
     toc: false
 classoption: "aspectratio=169"
+header-includes:
+  # the theme sets normal text to white, which is invisible in the light code boxes
+  - \renewenvironment{Shaded}{\begin{snugshade}\color{black}}{\end{snugshade}}
 ---
 
-## Testing
+```{r setup, include = FALSE}
+## Nothing is run when knitting: every chunk is self-contained and meant to be
+## run interactively (see the "Getting set up" slide for what to install).
+knitr::opts_chunk$set(eval = FALSE, size = "tiny")
+knitr::knit_hooks$set(size = function(before, options, envir) {
+  if (before) paste0("\\", options$size) else "\\normalsize"
+})
+```
+
+## Outline
+
+1. Two running examples
+2. Getting set up
+3. A map of the approaches
+4. Part A: ten routes, one at a time
+    * GLMM code, mixture code, pros & cons
+5. Part B: Laplace approximations
+    * Stan, TMB, INLA on the GLMM
+6. Comparison & recommendations
+
+## Running example 1: random-intercept-and-slope model
+
+* `ChickWeight` (base R): 578 weights of 50 chicks over time (as in the `tmbstan` vignette)
+$$
+\begin{aligned}
+\text{weight}_{ij} &\sim N(b_i + a_i t_{ij}, \sigma_\varepsilon^2) \\
+a_i &\sim N(\mu_a, \sigma_a^2), \quad b_i \sim N(\mu_b, \sigma_b^2), \quad i = 1, \ldots, 50 \\
+\mu_a, \mu_b &\sim N(0, 100^2), \quad \sigma_a, \sigma_b, \sigma_\varepsilon \sim \text{Exp}(0.1)
+\end{aligned}
+$$
+* Strictly an LMM (Gaussian, identity link) --- quick, but has 100 latent variables
+* Same priors everywhere (as far as each route allows)
+* Quantities of interest: $\sigma_a, \sigma_b, \sigma_\varepsilon$
+
+## Running example 2: two-component Gaussian mixture
+
+* `faithful$waiting` (base R): 272 waiting times between Old Faithful eruptions
+$$
+\begin{aligned}
+y_n &\sim p\, N(\mu_1, \sigma_1^2) + (1 - p)\, N(\mu_2, \sigma_2^2), \quad \mu_1 < \mu_2 \\
+\mu_k &\sim N(70, 20^2), \quad \sigma_k \sim \text{Exp}(0.1), \quad p \sim \text{Beta}(1, 1)
+\end{aligned}
+$$
+* Equivalent to latent (discrete) allocations $z_n \in \{1, 2\}$
+    * sample them (JAGS, NIMBLE, custom Gibbs), or
+    * sum them out (Stan, TMB, monty)
+* $\mu_1 < \mu_2$ for identifiability (label switching)
+
+## Getting set up
+
+\tiny
+
+| Route | Install | C++ toolchain (Rtools / Xcode CLT / `g++`)? |
+|---|---|---|
+| JAGS | system JAGS 4.3.x + `rjags` (CRAN) | no |
+| NIMBLE | `nimble` (CRAN); `nimbleHMC`, `nimbleQuad` optional | yes |
+| Stan | `cmdstanr` (r-universe) + `install_cmdstan()`; CmdStan $\geq$ 2.39 for Part B | yes |
+| brms | `brms` (CRAN) + `cmdstanr` (or `rstan`) | yes |
+| rstanarm | `rstanarm` (CRAN, precompiled) | no |
+| TMB | `TMB` (CRAN); `RTMB` (CRAN) avoids writing C++ | TMB: yes, RTMB: no |
+| tmbstan | `tmbstan` (CRAN) + `RTMB` | no (with RTMB) |
+| glmmTMB | `glmmTMB` (CRAN) | no |
+| monty | `monty` (r-universe, not on CRAN) | for odin2/dust2 |
+| Custom | `Rcpp` (CRAN) | yes |
+| INLA | `INLA` (own repository) | no |
+| All | `posterior` for summaries | |
+
+## Getting set up: commands
+
+```{r install}
+install.packages(c("rjags", "nimble", "nimbleHMC", "nimbleQuad", "brms",
+                   "rstanarm", "TMB", "RTMB", "tmbstan", "glmmTMB", "Rcpp",
+                   "posterior"))
+## JAGS itself: https://sourceforge.net/projects/mcmc-jags/ or e.g. `apt install jags`
+install.packages("cmdstanr",
+                 repos = c("https://stan-dev.r-universe.dev", getOption("repos")))
+cmdstanr::check_cmdstan_toolchain(fix = TRUE)
+cmdstanr::install_cmdstan()                 # CmdStan >= 2.39 for laplace_marginal()
+install.packages("monty",
+                 repos = c("https://mrc-ide.r-universe.dev", getOption("repos")))
+install.packages("INLA", dependencies = TRUE,
+                 repos = c(getOption("repos"),
+                           INLA = "https://inla.r-inla-download.org/R/stable"))
+## glmmTMB warns if TMB was updated after glmmTMB was built; then reinstall it:
+## install.packages("glmmTMB", type = "source")
+```
+
+## A map of the approaches
+
+\tiny
+
+| Route | What you write | Engine | How far it goes |
+|---|---|---|---|
+| JAGS | BUGS model | Gibbs / slice / MH | anything BUGS can express |
+| NIMBLE | BUGS model (+ custom samplers) | configurable MCMC, HMC, Laplace | as BUGS, plus your own algorithms |
+| Stan (native) | log density, model-like syntax | NUTS, optimisation, Laplace | general continuous models |
+| Stan via brms | formula | NUTS | very wide; `stancode()` to go further |
+| Stan via rstanarm | formula | NUTS (precompiled) | fixed menu of GLMs/GLMMs |
+| TMB (native) | negative log-likelihood (C++) | Laplace + optimiser | any differentiable likelihood |
+| TMB via tmbstan | (same objective) | NUTS, with/without Laplace | as TMB |
+| TMB via glmmTMB | formula | Laplace + optimiser | GLMMs |
+| monty | R log density + DSL priors (+ odin2) | RW/adaptive MH, HMC, pMCMC | anything you can evaluate |
+| Custom C++ | the sampler itself | whatever you code | anything; costs your time |
+
+## Reading the map
+
+* Three separate questions
+    * What do you write? A formula, a generative model, or a log density
+    * Which engine? Gibbs/MH, HMC/NUTS, Laplace, particle MCMC
+    * Do you get gradients? (automatic differentiation or not)
+* "Write-the-model" vs "write-the-likelihood" blurs: Stan's `y ~ normal()` is `target += normal_lpdf()`
+* Formula front-ends: less to write, but a ceiling
+    * `rstanarm` $\to$ `brms` $\to$ Stan: `stancode()` is the exit route
+    * `glmmTMB` $\to$ TMB/RTMB: no code export, start from scratch
+* `tmbstan` is not a front-end but an engine swap: same objective, NUTS instead of optimisation
+
+# Part A: ten routes
+
+## JAGS: GLMM
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r jags-glmm-model}
+model_string <- "
+model {
+  for (n in 1:N) {
+    weight[n] ~ dnorm(b[chick[n]] + a[chick[n]] * time[n],
+                      1 / sigma_e^2)     # precision!
+  }
+  for (j in 1:J) {
+    a[j] ~ dnorm(mu_a, 1 / sigma_a^2)
+    b[j] ~ dnorm(mu_b, 1 / sigma_b^2)
+  }
+  mu_a ~ dnorm(0, 1 / 100^2)
+  mu_b ~ dnorm(0, 1 / 100^2)
+  sigma_a ~ dexp(0.1)
+  sigma_b ~ dexp(0.1)
+  sigma_e ~ dexp(0.1)
+}"
+```
+:::
+::: {.column width="50%"}
+```{r jags-glmm-fit}
+library(rjags)
+data(ChickWeight)
+dat <- list(N = nrow(ChickWeight), J = nlevels(ChickWeight$Chick),
+            weight = ChickWeight$weight, time = ChickWeight$Time,
+            chick = as.integer(ChickWeight$Chick))
+system.time({
+  m <- jags.model(textConnection(model_string), data = dat,
+                  n.chains = 4, quiet = TRUE)
+  update(m, 2000)                        # burn-in
+  draws <- coda.samples(m, c("mu_a", "mu_b", "sigma_a",
+                             "sigma_b", "sigma_e"), 5000)
+})
+summary(draws)$statistics
+coda::effectiveSize(draws)
+```
+:::
+::::
+
+## JAGS: mixture
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r jags-mix-model}
+model_string <- "
+model {
+  for (n in 1:N) {
+    z[n] ~ dcat(w[1:2])                  # latent allocation
+    y[n] ~ dnorm(mu[z[n]], 1 / sigma[z[n]]^2)
+  }
+  w[1] <- p
+  w[2] <- 1 - p
+  p ~ dbeta(1, 1)
+  for (k in 1:2) {
+    mu0[k] ~ dnorm(70, 1 / 20^2)
+    sigma[k] ~ dexp(0.1)
+  }
+  mu[1:2] <- sort(mu0[1:2])              # identifiability
+}"
+```
+:::
+::: {.column width="50%"}
+```{r jags-mix-fit}
+library(rjags)
+dat <- list(N = nrow(faithful), y = faithful$waiting)
+system.time({
+  m <- jags.model(textConnection(model_string), data = dat,
+                  n.chains = 4, quiet = TRUE)
+  update(m, 2000)
+  draws <- coda.samples(m, c("mu", "sigma", "p"), 5000)
+})
+summary(draws)$statistics
+coda::effectiveSize(draws)
+```
+:::
+::::
+
+## JAGS: pros, cons & requirements
+
+* Pros
+    * Write the generative model; discrete latent variables are sampled natively
+    * No compilation; exploits conjugacy automatically
+    * Huge legacy of BUGS code and textbooks
+* Cons
+    * No gradients: struggles with correlated / high-dimensional posteriors
+    * Can be slow: the mixture took ~1 min here (vs seconds elsewhere)
+    * No Laplace approximation; little active development
+    * Precision parametrisation of `dnorm` (a classic trap)
+* Requirements
+    * JAGS 4.3.x installed system-wide + `rjags` (or `R2jags`, `jagsUI`); no compiler
+
+## NIMBLE: GLMM
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r nimble-glmm-model}
+library(nimble)
+code <- nimbleCode({
+  for (n in 1:N) {
+    weight[n] ~ dnorm(b[chick[n]] + a[chick[n]] * time[n],
+                      sd = sigma_e)
+  }
+  for (j in 1:J) {
+    a[j] ~ dnorm(mu_a, sd = sigma_a)
+    b[j] ~ dnorm(mu_b, sd = sigma_b)
+  }
+  mu_a ~ dnorm(0, sd = 100)
+  mu_b ~ dnorm(0, sd = 100)
+  sigma_a ~ dexp(0.1)
+  sigma_b ~ dexp(0.1)
+  sigma_e ~ dexp(0.1)
+})
+```
+:::
+::: {.column width="50%"}
+```{r nimble-glmm-fit}
+data(ChickWeight)
+J <- nlevels(ChickWeight$Chick)
+consts <- list(N = nrow(ChickWeight), J = J,
+               time = ChickWeight$Time,
+               chick = as.integer(ChickWeight$Chick))
+inits <- function() list(mu_a = 8, mu_b = 30, sigma_a = 3,
+                         sigma_b = 10, sigma_e = 13,
+                         a = rep(8, J), b = rep(30, J))
+system.time(                             # includes compilation
+  draws <- nimbleMCMC(code, constants = consts,
+                      data = list(weight = ChickWeight$weight),
+                      inits = inits, nchains = 4,
+                      niter = 7000, nburnin = 2000,
+                      monitors = c("mu_a", "mu_b", "sigma_a",
+                                   "sigma_b", "sigma_e"),
+                      samplesAsCodaMCMC = TRUE)
+)
+summary(draws)$statistics
+coda::effectiveSize(draws)
+```
+:::
+::::
+
+## NIMBLE: mixture
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r nimble-mix-model}
+library(nimble)
+code <- nimbleCode({
+  for (n in 1:N) {
+    z[n] ~ dcat(w[1:2])
+    y[n] ~ dnorm(mu[z[n]], sd = sigma[z[n]])
+  }
+  w[1] <- p
+  w[2] <- 1 - p
+  p ~ dbeta(1, 1)
+  for (k in 1:2) {
+    mu[k] ~ dnorm(70, sd = 20)
+    sigma[k] ~ dexp(0.1)
+  }
+  ord ~ dconstraint(mu[1] < mu[2])       # identifiability
+})
+```
+:::
+::: {.column width="50%"}
+```{r nimble-mix-fit}
+y <- faithful$waiting
+inits <- function() list(mu = c(55, 80), sigma = c(5, 5), p = 0.5,
+                         z = ifelse(y < 67, 1, 2))
+system.time(
+  draws <- nimbleMCMC(code, constants = list(N = length(y)),
+                      data = list(y = y, ord = 1),
+                      inits = inits, nchains = 4,
+                      niter = 7000, nburnin = 2000,
+                      monitors = c("mu", "sigma", "p"),
+                      samplesAsCodaMCMC = TRUE)
+)
+summary(draws)$statistics
+coda::effectiveSize(draws)
+```
+:::
+::::
+
+## NIMBLE: pros, cons & requirements
+
+* Pros
+    * BUGS language (JAGS models port almost unchanged), but compiled to C++
+    * Samplers are configurable per node, and you can write your own (`nimbleFunction`)
+    * HMC (`nimbleHMC`), SMC (`nimbleSMC`), Laplace / AGHQ (`nimbleQuad`) on the *same* model
+* Cons
+    * Compilation overhead on every new model
+    * More knobs: default samplers are not always the best choice
+    * Laplace needs `buildDerivs = TRUE` and continuous latent nodes
+* Requirements
+    * `nimble` (CRAN) + C++ toolchain; optional `nimbleHMC`, `nimbleQuad`
+
+## Stan (native): GLMM
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r stan-glmm-model}
+code <- "
+data {
+  int<lower=1> N;
+  int<lower=1> J;
+  vector[N] weight;
+  vector[N] time;
+  array[N] int<lower=1, upper=J> chick;
+}
+parameters {
+  real mu_a;
+  real mu_b;
+  real<lower=0> sigma_a;
+  real<lower=0> sigma_b;
+  real<lower=0> sigma_e;
+  vector[J] a;
+  vector[J] b;
+}
+model {
+  mu_a ~ normal(0, 100);
+  mu_b ~ normal(0, 100);
+  sigma_a ~ exponential(0.1);
+  sigma_b ~ exponential(0.1);
+  sigma_e ~ exponential(0.1);
+  a ~ normal(mu_a, sigma_a);
+  b ~ normal(mu_b, sigma_b);
+  weight ~ normal(b[chick] + a[chick] .* time, sigma_e);
+}"
+```
+:::
+::: {.column width="50%"}
+```{r stan-glmm-fit}
+library(cmdstanr)
+data(ChickWeight)
+dat <- list(N = nrow(ChickWeight), J = nlevels(ChickWeight$Chick),
+            weight = ChickWeight$weight, time = ChickWeight$Time,
+            chick = as.integer(ChickWeight$Chick))
+system.time(mod <- cmdstan_model(write_stan_file(code)))  # compile
+system.time(
+  fit <- mod$sample(data = dat, chains = 4, parallel_chains = 4,
+                    seed = 1, refresh = 0)
+)
+fit$summary(c("mu_a", "mu_b", "sigma_a", "sigma_b", "sigma_e"))
+```
+:::
+::::
+
+## Stan (native): mixture
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r stan-mix-model}
+code <- "
+data {
+  int<lower=1> N;
+  vector[N] y;
+}
+parameters {
+  ordered[2] mu;                     // identifiability
+  vector<lower=0>[2] sigma;
+  real<lower=0, upper=1> p;
+}
+model {
+  mu ~ normal(70, 20);
+  sigma ~ exponential(0.1);
+  p ~ beta(1, 1);
+  for (n in 1:N)                     // z summed out
+    target += log_mix(p, normal_lpdf(y[n] | mu[1], sigma[1]),
+                         normal_lpdf(y[n] | mu[2], sigma[2]));
+}"
+```
+:::
+::: {.column width="50%"}
+```{r stan-mix-fit}
+library(cmdstanr)
+dat <- list(N = nrow(faithful), y = faithful$waiting)
+mod <- cmdstan_model(write_stan_file(code))
+system.time(
+  fit <- mod$sample(data = dat, chains = 4, parallel_chains = 4,
+                    seed = 1, refresh = 0)
+)
+fit$summary()
+```
+:::
+::::
+
+## Stan (native): pros, cons & requirements
+
+* Pros
+    * NUTS + excellent diagnostics (divergences, $\hat{R}$, ESS); large ecosystem
+    * General continuous models, ODE solvers, user functions
+    * Same program: `$sample()`, `$optimize()`, `$laplace()`, `$pathfinder()`, `$variational()`
+    * Embedded Laplace `laplace_marginal()` since 2.39 (Part B)
+* Cons
+    * Compilation (~10--60 s) for every model change
+    * Discrete latent variables must be summed out by hand
+    * Hierarchical models may need reparametrising (funnels)
+* Requirements
+    * `cmdstanr` (r-universe) + CmdStan + C++ toolchain
+    * `rstan` (CRAN) lags behind: no `laplace_marginal()`
+
+## Stan via brms: GLMM
+
+```{r brms-glmm}
+library(brms)
+data(ChickWeight)
+priors <- c(prior(normal(0, 100), class = b),            # includes the intercept
+            prior(exponential(0.1), class = sd),
+            prior(exponential(0.1), class = sigma))
+system.time(                                             # includes compilation
+  fit <- brm(weight ~ 0 + Intercept + Time + (1 + Time || Chick),  # ||: uncorrelated
+             data = ChickWeight, prior = priors, backend = "cmdstanr",
+             chains = 4, cores = 4, seed = 1, refresh = 0)
+)
+summary(fit)
+stancode(fit)                                            # the generated Stan program
+```
+
+* `0 + Intercept`: otherwise the intercept prior applies to the *centred* predictors
+* `(1 + Time || Chick)` matches our model; `|` would add a correlation
+
+## Stan via brms: mixture
+
+```{r brms-mix}
+library(brms)
+mix <- mixture(gaussian, gaussian, order = "mu")          # ordered means
+priors <- c(prior(normal(70, 20), class = Intercept, dpar = mu1),
+            prior(normal(70, 20), class = Intercept, dpar = mu2),
+            prior(exponential(0.1), class = sigma1),
+            prior(exponential(0.1), class = sigma2))     # theta: Dirichlet(1, 1) default
+system.time(
+  fit <- brm(bf(waiting ~ 1), family = mix, data = faithful, prior = priors,
+             backend = "cmdstanr", chains = 4, cores = 4, seed = 1, refresh = 0)
+)
+summary(fit)
+```
+
+* Each component can have its own regression: `bf(waiting ~ 1, mu2 ~ eruptions)`
+
+## Stan via brms: pros, cons & requirements
+
+* Pros
+    * `lme4`-style formulae; very wide model class (distributional, non-linear, multivariate, GPs, mixtures, missing data, custom families)
+    * Full control of priors; `stancode()` / `standata()` give an exit route to native Stan
+    * Post-processing: `loo`, `pp_check()`, `marginaleffects`
+* Cons
+    * Compiles every model; generated code is general, not tuned
+        * e.g. non-centred random effects: ESS for `Time` ~400 here (vs ~5000 natively)
+    * Defaults to know: centred-predictor intercept, `|` vs `||`
+    * Laplace only at the mode (`algorithm = "laplace"`, cmdstanr backend), not embedded
+* Requirements
+    * `brms` (CRAN) + `cmdstanr`/CmdStan (or `rstan`) + C++ toolchain
+
+## Stan via rstanarm: GLMM
+
+```{r rstanarm-glmm}
+library(rstanarm)
+data(ChickWeight)
+system.time(                                             # no compilation
+  fit <- stan_lmer(weight ~ Time + (1 | Chick) + (0 + Time | Chick),
+                   data = ChickWeight,
+                   prior_intercept = normal(0, 100, autoscale = FALSE),
+                   prior = normal(0, 100, autoscale = FALSE),
+                   prior_aux = exponential(0.1, autoscale = FALSE),
+                   prior_covariance = decov(),           # not Exp(0.1) on the SDs
+                   chains = 4, cores = 4, seed = 1, refresh = 0)
+)
+summary(fit, pars = c("(Intercept)", "Time", "sigma"),
+        regex_pars = "^Sigma")
+```
+
+* `(1 | Chick) + (0 + Time | Chick)`: two uncorrelated terms
+* `prior_intercept` is again for *centred* predictors
+* SDs of random effects: only via the `decov()` covariance prior
+
+## Stan via rstanarm: mixture
+
+* Not possible: no mixture families in `rstanarm`
+* This is the ceiling of a precompiled front-end:
+    * a fixed menu of models (`stan_glm`, `stan_glmer`, `stan_lmer`, `stan_gamm4`, `stan_jm`, ...)
+    * no user-written likelihoods
+* Next step up: `brms` (generates code) or native Stan
+
+## Stan via rstanarm: pros, cons & requirements
+
+* Pros
+    * Precompiled: no C++ toolchain, no compile wait; CRAN binaries
+    * Drop-in for `glm()` / `lmer()` users; sensible default priors
+    * Well-tested, efficient Stan code underneath
+* Cons
+    * Fixed menu of models: no mixtures, no custom likelihoods
+    * Limited prior control (`decov()` for covariances); autoscaling by default
+    * Slower development than `brms`
+* Requirements
+    * `rstanarm` (CRAN) only
+
+## TMB (native): GLMM
+
+:::: {.columns}
+::: {.column width="55%"}
+```{r tmb-glmm-model}
+cpp <- '
+#include <TMB.hpp>
+template<class Type>
+Type objective_function<Type>::operator() () {
+  DATA_VECTOR(weight); DATA_VECTOR(time);
+  DATA_IVECTOR(chick);                   // 0-based index
+  PARAMETER(mu_a); PARAMETER(mu_b);
+  PARAMETER(log_sigma_a); PARAMETER(log_sigma_b);
+  PARAMETER(log_sigma_e);
+  PARAMETER_VECTOR(a);                   // random slopes
+  PARAMETER_VECTOR(b);                   // random intercepts
+  Type sigma_a = exp(log_sigma_a), sigma_b = exp(log_sigma_b),
+       sigma_e = exp(log_sigma_e);
+  // priors; "+ log_sigma" = Jacobian of sigma = exp(log_sigma)
+  Type nll = -dnorm(mu_a, Type(0), Type(100), true) -
+              dnorm(mu_b, Type(0), Type(100), true);
+  nll -= log(Type(0.1)) - Type(0.1) * sigma_a + log_sigma_a;
+  nll -= log(Type(0.1)) - Type(0.1) * sigma_b + log_sigma_b;
+  nll -= log(Type(0.1)) - Type(0.1) * sigma_e + log_sigma_e;
+  nll -= sum(dnorm(a, mu_a, sigma_a, true));
+  nll -= sum(dnorm(b, mu_b, sigma_b, true));
+  for (int n = 0; n < weight.size(); n++)
+    nll -= dnorm(weight(n), b(chick(n)) + a(chick(n)) * time(n),
+                 sigma_e, true);
+  ADREPORT(sigma_a); ADREPORT(sigma_b); ADREPORT(sigma_e);
+  return nll;
+}'
+```
+:::
+::: {.column width="45%"}
+```{r tmb-glmm-fit}
+library(TMB)
+f <- file.path(tempdir(), "chick_glmm.cpp")
+writeLines(cpp, f)
+system.time(compile(f))                  # C++ compilation
+dyn.load(dynlib(sub("\\.cpp$", "", f)))
+data(ChickWeight)
+J <- nlevels(ChickWeight$Chick)
+obj <- MakeADFun(
+  data = list(weight = ChickWeight$weight,
+              time = ChickWeight$Time,
+              chick = as.integer(ChickWeight$Chick) - 1L),
+  parameters = list(mu_a = 0, mu_b = 0, log_sigma_a = 0,
+                    log_sigma_b = 0, log_sigma_e = 0,
+                    a = rep(0, J), b = rep(0, J)),
+  random = c("a", "b"),                  # Laplace
+  DLL = "chick_glmm", silent = TRUE)
+system.time(opt <- nlminb(obj$par, obj$fn, obj$gr))
+summary(sdreport(obj), "report")
+## drop the prior lines in the C++
+## for maximum likelihood instead
+```
+:::
+::::
+
+## TMB (native): mixture
+
+:::: {.columns}
+::: {.column width="55%"}
+```{r tmb-mix-model}
+cpp <- '
+#include <TMB.hpp>
+template<class Type>
+Type objective_function<Type>::operator() () {
+  DATA_VECTOR(y);
+  PARAMETER(mu1);
+  PARAMETER(log_delta);              // mu2 = mu1 + exp(log_delta)
+  PARAMETER_VECTOR(log_sigma);
+  PARAMETER(logit_p);
+  Type mu2 = mu1 + exp(log_delta);
+  vector<Type> sigma = exp(log_sigma);
+  Type p = invlogit(logit_p);
+  Type nll = 0;
+  // priors + Jacobians of the transformations
+  nll -= dnorm(mu1, Type(70), Type(20), true) +
+         dnorm(mu2, Type(70), Type(20), true) + log_delta;
+  for (int k = 0; k < 2; k++)
+    nll -= log(Type(0.1)) - Type(0.1) * sigma(k) + log_sigma(k);
+  nll -= log(p) + log(1 - p);        // Beta(1, 1) + Jacobian
+  for (int n = 0; n < y.size(); n++) // z summed out
+    nll -= logspace_add(log(p) + dnorm(y(n), mu1, sigma(0), true),
+                        log(1 - p) + dnorm(y(n), mu2, sigma(1), true));
+  ADREPORT(mu2); ADREPORT(sigma); ADREPORT(p);
+  return nll;
+}'
+```
+:::
+::: {.column width="45%"}
+```{r tmb-mix-fit}
+library(TMB)
+f <- file.path(tempdir(), "faithful_mix.cpp")
+writeLines(cpp, f)
+compile(f)
+dyn.load(dynlib(sub("\\.cpp$", "", f)))
+obj <- MakeADFun(
+  data = list(y = faithful$waiting),
+  parameters = list(mu1 = 55, log_delta = log(25),
+                    log_sigma = log(c(5, 5)),
+                    logit_p = 0),
+  DLL = "faithful_mix", silent = TRUE)
+## no random effects: posterior mode
+## + Gaussian approximation (L1)
+opt <- nlminb(obj$par, obj$fn, obj$gr)
+summary(sdreport(obj))
+```
+:::
+::::
+
+## TMB (native): pros, cons & requirements
+
+* Pros
+    * Any likelihood you can write in C++; automatic differentiation
+    * Laplace approximation for random effects is the core feature (`random = `)
+    * Fast and scales to many (sparse) random effects; `sdreport()` for delta-method SEs
+* Cons
+    * Frequentist by default: priors and Jacobians are your job
+    * Gives a mode + Gaussian approximation, not a posterior sample (but see `tmbstan`)
+    * C++ templates, compilation (~1 min here); discrete latent variables summed out by hand
+* Requirements
+    * `TMB` (CRAN) + C++ toolchain
+    * `RTMB` (CRAN): same engine, objective written in R, no compiler
+
+## TMB via tmbstan: GLMM
+
+```{r tmbstan-glmm}
+library(RTMB)
+library(tmbstan)
+data(ChickWeight)
+dat <- list(weight = ChickWeight$weight, time = ChickWeight$Time,
+            chick = as.integer(ChickWeight$Chick))
+J <- nlevels(ChickWeight$Chick)
+f <- function(pars) {                                    # negative log posterior, in R
+  getAll(dat, pars)
+  sigma_a <- exp(log_sigma_a); sigma_b <- exp(log_sigma_b); sigma_e <- exp(log_sigma_e)
+  lp <- dnorm(mu_a, 0, 100, log = TRUE) + dnorm(mu_b, 0, 100, log = TRUE) +
+    3 * log(0.1) - 0.1 * (sigma_a + sigma_b + sigma_e) +           # Exp(0.1) priors
+    log_sigma_a + log_sigma_b + log_sigma_e                          # Jacobians
+  lp <- lp + sum(dnorm(a, mu_a, sigma_a, log = TRUE)) + sum(dnorm(b, mu_b, sigma_b, log = TRUE))
+  -(lp + sum(dnorm(weight, b[chick] + a[chick] * time, sigma_e, log = TRUE)))
+}
+pars <- list(mu_a = 0, mu_b = 0, log_sigma_a = 0, log_sigma_b = 0, log_sigma_e = 0,
+             a = rep(0, J), b = rep(0, J))
+obj <- MakeADFun(f, pars, random = c("a", "b"), silent = TRUE)
+system.time(fit <- tmbstan(obj, chains = 4, cores = 4, seed = 1))  # laplace = FALSE
+draws <- as.matrix(fit)
+summary(exp(draws[, c("log_sigma_a", "log_sigma_b", "log_sigma_e")]))
+```
+
+## TMB via tmbstan: mixture
+
+```{r tmbstan-mix}
+library(RTMB)
+library(tmbstan)
+y <- faithful$waiting
+f <- function(pars) {
+  getAll(pars)
+  mu2 <- mu1 + exp(log_delta)                            # mu1 < mu2
+  sigma <- exp(log_sigma)
+  p <- 1 / (1 + exp(-logit_p))
+  lp <- dnorm(mu1, 70, 20, log = TRUE) + dnorm(mu2, 70, 20, log = TRUE) + log_delta +
+    sum(log(0.1) - 0.1 * sigma + log_sigma) + log(p) + log(1 - p)  # priors + Jacobians
+  -(lp + sum(log(p * dnorm(y, mu1, sigma[1]) + (1 - p) * dnorm(y, mu2, sigma[2]))))
+}
+pars <- list(mu1 = 55, log_delta = log(25), log_sigma = log(c(5, 5)), logit_p = 0)
+obj <- MakeADFun(f, pars, silent = TRUE)
+system.time(fit <- tmbstan(obj, chains = 4, cores = 4, seed = 1))
+fit
+```
+
+* Same TMB object can go to `nlminb()` (mode) or `tmbstan()` (NUTS)
+
+## TMB via tmbstan: pros, cons & requirements
+
+* Pros
+    * NUTS on any TMB / RTMB / glmmTMB objective: no rewrite in Stan
+    * `laplace = TRUE`: Laplace for random effects, NUTS for the rest (Part B)
+    * Built-in check of the Laplace approximation: compare with `laplace = FALSE`
+* Cons
+    * Priors must be in the objective, otherwise flat (possibly improper) on the TMB scale
+    * Output is an `rstan` `stanfit`; depends on `rstan`
+    * With `laplace = TRUE`, each gradient needs an inner optimisation: often slower overall
+* Requirements
+    * `tmbstan` (CRAN, pulls in `rstan`) + `TMB` or `RTMB`
+
+## TMB via glmmTMB: GLMM
+
+```{r glmmtmb-glmm}
+library(glmmTMB)
+data(ChickWeight)
+system.time(
+  fit <- glmmTMB(weight ~ Time + diag(1 + Time | Chick),  # diag(): uncorrelated
+                 data = ChickWeight, REML = FALSE)
+)
+summary(fit)                                              # maximum likelihood
+## priors give a posterior mode (MAP) ...
+pr <- data.frame(prior = "normal(0, 100)", class = "fixef",
+                 coef = c("(Intercept)", "Time"))
+fit_map <- update(fit, priors = pr)
+## ... and its TMB object can be passed on to tmbstan for MCMC
+# library(tmbstan); mcmc <- tmbstan(fit_map$obj, chains = 4, cores = 4)
+```
+
+* One formula, three kinds of inference: ML, MAP, MCMC
+* SDs of random effects get flat priors on the log scale unless specified (`class = "ranef"`)
+
+## TMB via glmmTMB: mixture
+
+* Not possible: no finite mixtures of Gaussians
+* Closest feature: zero-inflation (`ziformula = `), a mixture with a point mass at zero
+* Next step up: native TMB / RTMB (previous slides)
+    * no code export, unlike `brms::stancode()`: you start from scratch
+
+## TMB via glmmTMB: pros, cons & requirements
+
+* Pros
+    * `lme4` syntax; very fast maximum likelihood with the Laplace approximation
+    * Many families: negative binomial, beta, Tweedie, zero-inflation, dispersion models
+    * Some covariance structures (AR1, spatial); `priors` for MAP; `$obj` for `tmbstan`
+* Cons
+    * Frequentist first; Bayesian only via MAP or `tmbstan`
+    * Fixed model class: no mixtures, no custom likelihoods
+    * Binary tied to the `TMB` version: reinstall from source after updating `TMB`
+* Requirements
+    * `glmmTMB` (CRAN)
+
+## monty: GLMM
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r monty-glmm-model}
+library(monty)
+data(ChickWeight)
+J <- nlevels(ChickWeight$Chick)
+packer <- monty_packer(
+  c("mu_a", "mu_b", "sigma_a", "sigma_b", "sigma_e"),
+  array = list(a = J, b = J),
+  fixed = list(y = ChickWeight$weight, t = ChickWeight$Time,
+               g = as.integer(ChickWeight$Chick)))
+loglik <- function(mu_a, mu_b, sigma_a, sigma_b, sigma_e,
+                   a, b, y, t, g) {
+  sum(dnorm(a, mu_a, sigma_a, log = TRUE)) +
+    sum(dnorm(b, mu_b, sigma_b, log = TRUE)) +
+    sum(dnorm(y, b[g] + a[g] * t, sigma_e, log = TRUE))
+}
+prior <- monty_dsl({
+  mu_a ~ Normal(0, 100)
+  mu_b ~ Normal(0, 100)
+  sigma_a ~ Exponential(rate = 0.1)
+  sigma_b ~ Exponential(rate = 0.1)
+  sigma_e ~ Exponential(rate = 0.1)
+})
+## + : union of parameters, sum of log densities
+posterior <- monty_model_function(loglik, packer = packer) +
+  prior
+```
+:::
+::: {.column width="50%"}
+```{r monty-glmm-fit}
+init <- packer$pack(list(mu_a = 8, mu_b = 30, sigma_a = 3,
+                         sigma_b = 10, sigma_e = 13,
+                         a = rep(8, J), b = rep(30, J)))
+sampler <- monty_sampler_adaptive(
+  initial_vcv = diag(length(init)) * 0.01)
+system.time(
+  samples <- monty_sample(
+    posterior, sampler, n_steps = 50000, n_chains = 4,
+    initial = matrix(init, length(init), 4),
+    burnin = 10000, thinning_factor = 10)
+)
+draws <- posterior::as_draws_df(samples)
+posterior::summarise_draws(
+  draws[, c("mu_a", "mu_b", "sigma_a", "sigma_b", "sigma_e")])
+```
+
+* 105 parameters, no gradients: adaptive random-walk Metropolis
+* Expect low ESS: check before trusting
+:::
+::::
+
+## monty: mixture
+
+```{r monty-mix}
+library(monty)
+loglik <- function(mu1, mu2, sigma1, sigma2, p, y) {
+  if (mu1 >= mu2) return(-Inf)                           # identifiability
+  sum(log(p * dnorm(y, mu1, sigma1) + (1 - p) * dnorm(y, mu2, sigma2)))
+}
+likelihood <- monty_model_function(loglik, fixed = list(y = faithful$waiting))
+prior <- monty_dsl({
+  mu1 ~ Normal(70, 20)
+  mu2 ~ Normal(70, 20)
+  sigma1 ~ Exponential(rate = 0.1)
+  sigma2 ~ Exponential(rate = 0.1)
+  p ~ Beta(1, 1)
+})
+posterior <- likelihood + prior
+init <- c(mu1 = 55, mu2 = 80, sigma1 = 5, sigma2 = 5, p = 0.5)
+sampler <- monty_sampler_adaptive(initial_vcv = diag(c(1, 1, 0.1, 0.1, 0.001)))
+system.time(
+  samples <- monty_sample(posterior, sampler, n_steps = 20000, n_chains = 4,
+                          initial = matrix(init, 5, 4), burnin = 5000)
+)
+posterior::summarise_draws(posterior::as_draws_df(samples))
+## the R likelihood has no gradient, so HMC (monty_sampler_hmc()) is not available here
+```
+
+## monty: pros, cons & requirements
+
+* Pros
+    * Combine any log density with a DSL prior (`+`); DSL priors come with gradients
+    * Built for `odin2` (ODE / stochastic compartmental models) and `dust2` (particle filters):
+        * likelihoods from a particle filter $\Rightarrow$ particle MCMC
+    * Samplers: random walk, adaptive, HMC, nested Gibbs, parallel tempering
+* Cons
+    * Plain R likelihoods: no gradients $\Rightarrow$ random-walk type samplers, poor in 105 dimensions
+    * Not designed for GLMMs or mixtures (we use it outside its comfort zone)
+    * Early development: interfaces may change; not on CRAN
+* Requirements
+    * `monty` (r-universe: mrc-ide.r-universe.dev); `odin2`, `dust2` + C++ toolchain for ODE models
+
+## Custom C++: GLMM (sampler, 1/2)
+
+```{r cpp-glmm-part1}
+cpp1 <- r"(
+#include <Rcpp.h>
+using namespace Rcpp;
+// log full conditional of log(sigma): N(x | mu, sigma) terms + Exp(0.1) prior + Jacobian
+double lp_ls(double ls, NumericVector x, double mu) {
+  double s = exp(ls);
+  return sum(dnorm(x, mu, s, true)) + log(0.1) - 0.1 * s + ls;
+}
+// random-walk Metropolis step for log(sigma)
+double mh_ls(double ls, NumericVector x, double mu, double step) {
+  double prop = ls + step * R::norm_rand();
+  return log(R::unif_rand()) < lp_ls(prop, x, mu) - lp_ls(ls, x, mu) ? prop : ls;
+}
+// [[Rcpp::export]]
+NumericMatrix gibbs_glmm(NumericVector y, NumericVector t, IntegerVector g, int J, int n_iter) {
+  int N = y.size();
+  NumericVector a(J), b(J), r(N), n(J), st(J), stt(J), sy(J), sty(J);
+  for (int i = 0; i < N; i++) {             // per-chick sufficient statistics
+    n[g[i]] += 1; st[g[i]] += t[i]; stt[g[i]] += t[i] * t[i];
+    sy[g[i]] += y[i]; sty[g[i]] += t[i] * y[i];
+  }
+  double mu_a = 0, mu_b = 0, ls_a = 0, ls_b = log(10), ls_e = log(10);
+  NumericMatrix out(n_iter, 5);
+)"   # C++ held in R strings so it can span two slides; compiled in the next chunk
+```
+
+## Custom C++: GLMM (sampler, 2/2)
+
+```{r cpp-glmm-part2}
+cpp2 <- r"(
+  for (int it = 0; it < n_iter; it++) {
+    double va = exp(2 * ls_a), vb = exp(2 * ls_b), ve = exp(2 * ls_e);
+    for (int j = 0; j < J; j++) {           // (b_j, a_j) | rest: bivariate normal
+      double p00 = n[j] / ve + 1 / vb, p01 = st[j] / ve, p11 = stt[j] / ve + 1 / va;  // precision
+      double q0 = sy[j] / ve + mu_b / vb, q1 = sty[j] / ve + mu_a / va;
+      double det = p00 * p11 - p01 * p01, c00 = p11 / det, c01 = -p01 / det, c11 = p00 / det;
+      double l10 = c01 / sqrt(c00), l11 = sqrt(c11 - l10 * l10);   // Cholesky of the covariance
+      double z0 = R::norm_rand(), z1 = R::norm_rand();
+      b[j] = c00 * q0 + c01 * q1 + sqrt(c00) * z0;
+      a[j] = c01 * q0 + c11 * q1 + l10 * z0 + l11 * z1;
+    }
+    double pa = J / va + 1e-4, pb = J / vb + 1e-4;   // mu | rest: normal
+    mu_a = R::rnorm(sum(a) / va / pa, 1 / sqrt(pa));
+    mu_b = R::rnorm(sum(b) / vb / pb, 1 / sqrt(pb));
+    for (int i = 0; i < N; i++) r[i] = y[i] - b[g[i]] - a[g[i]] * t[i];
+    ls_a = mh_ls(ls_a, a, mu_a, 0.2);       // log sigma | rest: Metropolis
+    ls_b = mh_ls(ls_b, b, mu_b, 0.2);
+    ls_e = mh_ls(ls_e, r, 0.0, 0.05);
+    out(it, _) = NumericVector::create(mu_a, mu_b, exp(ls_a), exp(ls_b), exp(ls_e));
+  }
+  colnames(out) = CharacterVector::create("mu_a", "mu_b", "sigma_a", "sigma_b", "sigma_e");
+  return out;
+}
+)"
+Rcpp::sourceCpp(code = paste0(cpp1, cpp2))         # compile; defines gibbs_glmm() in R
+```
+
+## Custom C++: GLMM (running it)
+
+```{r cpp-glmm-fit}
+## run the two chunks on the previous slides first
+data(ChickWeight)
+set.seed(1)
+system.time(
+  draws <- gibbs_glmm(ChickWeight$weight, ChickWeight$Time,
+                      as.integer(ChickWeight$Chick) - 1L,   # 0-based for C++
+                      J = nlevels(ChickWeight$Chick), n_iter = 20000)
+)
+draws <- draws[-(1:5000), ]                                 # burn-in
+posterior::summarise_draws(posterior::as_draws_matrix(draws))
+```
+
+* Blocked Gibbs for $(a_i, b_i)$ and $(\mu_a, \mu_b)$, Metropolis for $\log\sigma$'s
+* Uses the structure of the model: 20,000 iterations in under a second
+* Your job: derivations, tuning (step sizes), checking against a trusted sampler
+
+## Custom C++: mixture
+
+:::: {.columns}
+::: {.column width="62%"}
+```{Rcpp cpp-mix-sampler}
+#include <Rcpp.h>
+using namespace Rcpp;
+double lp_ls(double ls, NumericVector x, double mu) {
+  double s = exp(ls);
+  return sum(dnorm(x, mu, s, true)) + log(0.1) - 0.1 * s + ls;
+}
+// [[Rcpp::export]]
+NumericMatrix gibbs_mix(NumericVector y, int n_iter) {
+  int N = y.size();
+  IntegerVector z(N);
+  NumericVector mu = NumericVector::create(55, 80), ls(2, log(5.0));
+  double p = 0.5;
+  NumericMatrix out(n_iter, 5);
+  for (int it = 0; it < n_iter; it++) {
+    for (int i = 0; i < N; i++) {        // 1. z_i | rest
+      double w1 = p * R::dnorm(y[i], mu[0], exp(ls[0]), false);
+      double w2 = (1 - p) * R::dnorm(y[i], mu[1], exp(ls[1]), false);
+      z[i] = R::unif_rand() < w1 / (w1 + w2) ? 0 : 1;
+    }
+    for (int k = 0; k < 2; k++) {
+      NumericVector yk = y[z == k];      // 2. mu_k | rest: normal
+      double v = exp(2 * ls[k]), prec = yk.size() / v + 1 / 400.0;
+      mu[k] = R::rnorm((sum(yk) / v + 70 / 400.0) / prec, 1 / sqrt(prec));
+      double prop = ls[k] + 0.1 * R::norm_rand();  // 3. log sigma_k: MH
+      if (log(R::unif_rand()) < lp_ls(prop, yk, mu[k]) - lp_ls(ls[k], yk, mu[k]))
+        ls[k] = prop;
+    }
+    int n1 = sum(z == 0);
+    p = R::rbeta(1 + n1, 1 + N - n1);    // 4. p | z: beta
+    if (mu[0] > mu[1]) {                 // relabel: mu_1 < mu_2
+      std::swap(mu[0], mu[1]); std::swap(ls[0], ls[1]); p = 1 - p;
+    }
+    out(it, _) = NumericVector::create(mu[0], mu[1], exp(ls[0]), exp(ls[1]), p);
+  }
+  colnames(out) = CharacterVector::create("mu1", "mu2", "sigma1", "sigma2", "p");
+  return out;
+}
+```
+:::
+::: {.column width="38%"}
+```{r cpp-mix-fit}
+## run the Rcpp chunk first
+set.seed(1)
+system.time(
+  draws <- gibbs_mix(faithful$waiting,
+                     n_iter = 20000)
+)
+draws <- draws[-(1:5000), ]
+posterior::summarise_draws(
+  posterior::as_draws_matrix(draws))
+```
+
+* Data augmentation: $z$ sampled, conjugate updates
+* Relabelling after each sweep = ordered prior (priors are exchangeable)
+:::
+::::
+
+## Custom C++: pros, cons & requirements
+
+* Pros
+    * Full control: blocking, conjugacy, data augmentation, problem-specific moves
+    * Fastest per effective sample *when* the structure is exploited (here)
+    * No modelling-language limitations (e.g. non-standard likelihoods, trans-dimensional moves)
+* Cons
+    * Developer time: derivations, code, debugging, tuning
+    * No automatic differentiation (unless you bring your own, e.g. Stan Math, `RcppEigen` + AD library)
+    * Correctness is on you: validate against Stan / JAGS on a small case
+* Requirements
+    * `Rcpp` (CRAN) + C++ toolchain; optionally `RcppArmadillo` / `RcppEigen`
+
+# Part B: Laplace approximations
+
+## Three meanings of "Laplace"
+
+* Unknowns: latent variables $\mathbf{x}$ (here $a_i, b_i$) and hyperparameters $\boldsymbol\theta$ ($\mu$'s, $\sigma$'s)
+* **L1**: Gaussian approximation of the *joint* posterior $\pi(\mathbf{x}, \boldsymbol\theta \mid \mathbf{y})$ at its mode
+    * Stan `$laplace()`; TMB without `random`
+* **L2**: for each $\boldsymbol\theta$, Gaussian approximation of $\pi(\mathbf{x} \mid \boldsymbol\theta, \mathbf{y})$ $\Rightarrow$ approximate $\pi(\boldsymbol\theta \mid \mathbf{y})$
+    * an *inner* optimisation at every $\boldsymbol\theta$, then an *outer* step for $\boldsymbol\theta$
+    * TMB `random = `; Stan `laplace_marginal()`; `tmbstan(laplace = TRUE)`; NIMBLE `nimbleQuad`
+* **Nested** (INLA): L2 + numerical integration over $\boldsymbol\theta$ + Laplace again for marginals of $x_i$
+* L1 is L2 with nothing left outside; but L1 on hierarchical models is often ill-posed (next slides)
+* Only for continuous, roughly Gaussian latent variables: mixtures are out
+
+## A 2 $\times$ 2 grid
+
+\scriptsize
+
+| | $\boldsymbol\theta$ sampled (MCMC) | $\boldsymbol\theta$ deterministic |
+|---|---|---|
+| $\mathbf{x}$ **sampled** | Stan NUTS; `tmbstan(laplace = FALSE)` | (not considered) |
+| $\mathbf{x}$ **Laplace** | Stan `laplace_marginal()` + NUTS; `tmbstan(laplace = TRUE)` | INLA; TMB + `nlminb()`; Stan `laplace_marginal()` + `$laplace()` |
+
+* Top left = reference. Bottom right splits further:
+    * Gaussian at the mode of $\boldsymbol\theta$ (TMB, Stan) vs numerical integration over $\boldsymbol\theta$ (INLA, NIMBLE AGHQ)
+* Here the likelihood is Gaussian, so the inner Laplace step is **exact**
+    * differences come from the outer step only (or Monte Carlo error)
+    * for a Poisson/binomial GLMM with few observations per group, the inner step matters too
+
+## Stan: reference (NUTS) and L1 on the joint posterior
+
+```{r partB-stan-joint}
+library(cmdstanr)
+data(ChickWeight)
+dat <- list(N = nrow(ChickWeight), J = nlevels(ChickWeight$Chick), weight = ChickWeight$weight,
+            time = ChickWeight$Time, chick = as.integer(ChickWeight$Chick))
+code <- "
+data { int<lower=1> N; int<lower=1> J; vector[N] weight; vector[N] time;
+       array[N] int<lower=1, upper=J> chick; }
+parameters { real mu_a; real mu_b; real<lower=0> sigma_a; real<lower=0> sigma_b;
+             real<lower=0> sigma_e; vector[J] a; vector[J] b; }
+model {
+  mu_a ~ normal(0, 100);  mu_b ~ normal(0, 100);
+  sigma_a ~ exponential(0.1);  sigma_b ~ exponential(0.1);  sigma_e ~ exponential(0.1);
+  a ~ normal(mu_a, sigma_a);  b ~ normal(mu_b, sigma_b);
+  weight ~ normal(b[chick] + a[chick] .* time, sigma_e);
+}"
+mod <- cmdstan_model(write_stan_file(code))
+t_nuts <- system.time(fit <- mod$sample(data = dat, chains = 4, parallel_chains = 4,
+                                        seed = 1, refresh = 0))
+s <- fit$summary(c("sigma_a", "sigma_b", "sigma_e"), mean, sd)
+saveRDS(data.frame(method = "Stan NUTS (joint)", s, seconds = t_nuts[["elapsed"]]),
+        "partB_stan_nuts.rds")
+## L1 on the joint posterior: fails here; the joint density is unbounded
+## as sigma_b -> 0 with all b_j = mu_b (the funnel), so there is no mode
+fit_l1 <- try(mod$laplace(data = dat, jacobian = TRUE, draws = 4000, seed = 1))
+```
+
+## Stan: embedded Laplace (L2), the model
+
+```{r partB-stan-l2-model}
+code <- "
+functions {
+  // theta = (u_1, v_1, ..., u_J, v_J): slope & intercept deviations, interleaved => 2 x 2 Hessian blocks
+  real ll(vector theta, vector weight, vector time, array[] int ia, array[] int ib,
+          real mu_a, real mu_b, real sigma_e) {
+    return normal_lpdf(weight | mu_b + theta[ib] + (mu_a + theta[ia]) .* time, sigma_e);
+  }
+  matrix K(real sigma_a, real sigma_b, int J) {            // prior covariance of theta (mean zero)
+    vector[2 * J] d;
+    for (j in 1:J) { d[2 * j - 1] = square(sigma_a); d[2 * j] = square(sigma_b); }
+    return diag_matrix(d);
+  }
+}
+data { int<lower=1> N; int<lower=1> J; vector[N] weight; vector[N] time; array[N] int<lower=1, upper=J> chick; }
+transformed data {
+  array[N] int ia;  array[N] int ib;                       // positions of u_chick, v_chick in theta
+  for (n in 1:N) { ia[n] = 2 * chick[n] - 1; ib[n] = 2 * chick[n]; }
+}
+parameters { real mu_a; real mu_b; real<lower=0> sigma_a; real<lower=0> sigma_b; real<lower=0> sigma_e; }
+model {
+  mu_a ~ normal(0, 100);  mu_b ~ normal(0, 100);
+  sigma_a ~ exponential(0.1);  sigma_b ~ exponential(0.1);  sigma_e ~ exponential(0.1);
+  target += laplace_marginal(ll, (weight, time, ia, ib, mu_a, mu_b, sigma_e), 2, K, (sigma_a, sigma_b, J));
+}"  # 2 = Hessian block size; draw a, b with laplace_latent_rng() in generated quantities
+```
+
+## Stan: embedded Laplace, sampled or optimised
+
+```{r partB-stan-l2-fit}
+library(cmdstanr)                                          # CmdStan >= 2.39
+data(ChickWeight)
+dat <- list(N = nrow(ChickWeight), J = nlevels(ChickWeight$Chick), weight = ChickWeight$weight,
+            time = ChickWeight$Time, chick = as.integer(ChickWeight$Chick))
+mod <- cmdstan_model(write_stan_file(code))
+pars <- c("sigma_a", "sigma_b", "sigma_e")
+## L2 + NUTS on the 5 hyperparameters
+t1 <- system.time(fit <- mod$sample(data = dat, chains = 4, parallel_chains = 4, seed = 1, refresh = 0))
+## L2 + Gaussian approximation at the mode of the hyperparameters (deterministic)
+t2 <- system.time({
+  opt <- mod$optimize(data = dat, jacobian = TRUE)
+  lap <- mod$laplace(data = dat, mode = opt, draws = 4000, seed = 1)
+})
+res <- rbind(
+  data.frame(method = "Stan L2 + NUTS", fit$summary(pars, mean, sd), seconds = t1[["elapsed"]]),
+  data.frame(method = "Stan L2 + mode", lap$summary(pars, mean, sd), seconds = t2[["elapsed"]]))
+saveRDS(res, "partB_stan_l2.rds")
+```
+
+## TMB: the objective (RTMB)
+
+```{r partB-tmb-model}
+library(RTMB); library(tmbstan)
+data(ChickWeight)
+dat <- list(weight = ChickWeight$weight, time = ChickWeight$Time, chick = as.integer(ChickWeight$Chick))
+J <- nlevels(ChickWeight$Chick)
+f <- function(pars) {                    # same objective as the tmbstan slide in Part A
+  getAll(dat, pars)
+  sigma_a <- exp(log_sigma_a); sigma_b <- exp(log_sigma_b); sigma_e <- exp(log_sigma_e)
+  lp <- dnorm(mu_a, 0, 100, log = TRUE) + dnorm(mu_b, 0, 100, log = TRUE) +
+    3 * log(0.1) - 0.1 * (sigma_a + sigma_b + sigma_e) + log_sigma_a + log_sigma_b + log_sigma_e
+  lp <- lp + sum(dnorm(a, mu_a, sigma_a, log = TRUE)) + sum(dnorm(b, mu_b, sigma_b, log = TRUE))
+  ADREPORT(sigma_a); ADREPORT(sigma_b); ADREPORT(sigma_e)
+  -(lp + sum(dnorm(weight, b[chick] + a[chick] * time, sigma_e, log = TRUE)))
+}
+pars <- list(mu_a = 0, mu_b = 0, log_sigma_a = 0, log_sigma_b = 0, log_sigma_e = 0, a = rep(0, J), b = rep(0, J))
+obj <- MakeADFun(f, pars, random = c("a", "b"), silent = TRUE)   # a, b: random effects
+```
+
+* `random = c("a", "b")`: the Laplace approximation integrates these out whenever `obj$fn()` is called
+
+## TMB: Laplace at the mode, and tmbstan with / without Laplace
+
+```{r partB-tmb-fit}
+## run the previous chunk first (defines obj)
+library(tmbstan)
+t1 <- system.time({ opt <- nlminb(obj$par, obj$fn, obj$gr); rep <- summary(sdreport(obj), "report") })
+t2 <- system.time(fit_l2 <- tmbstan(obj, laplace = TRUE, chains = 4, cores = 4, seed = 1))
+t3 <- system.time(fit_full <- tmbstan(obj, laplace = FALSE, chains = 4, cores = 4, seed = 1))
+smry <- function(fit, method, t) {       # posterior mean and sd of the sigmas
+  s <- exp(as.matrix(fit)[, c("log_sigma_a", "log_sigma_b", "log_sigma_e")])
+  data.frame(method, variable = c("sigma_a", "sigma_b", "sigma_e"), mean = colMeans(s), sd = apply(s, 2, sd),
+             seconds = t[["elapsed"]])
+}
+res <- rbind(data.frame(method = "TMB L2 + mode", variable = rownames(rep), mean = rep[, 1], sd = rep[, 2],
+                        seconds = t1[["elapsed"]]),
+             smry(fit_l2, "tmbstan L2 + NUTS", t2), smry(fit_full, "tmbstan NUTS (joint)", t3))
+saveRDS(res, "partB_tmb.rds")
+```
+
+## INLA: nested Laplace
+
+```{r partB-inla}
+library(INLA)
+data(ChickWeight)
+d <- data.frame(weight = ChickWeight$weight, Time = ChickWeight$Time,
+                id_b = as.integer(ChickWeight$Chick),   # random intercept index
+                id_a = as.integer(ChickWeight$Chick))   # random slope index
+## (Intercept), Time = mu_b, mu_a; the f() terms are the deviations b_i - mu_b, a_i - mu_a
+## PC prior with P(sigma > 10) = exp(-1) is exactly sigma ~ Exp(0.1);
+## initial values (log precisions) matter: see the results slide
+pc <- function(init) list(prec = list(prior = "pc.prec", param = c(10, exp(-1)), initial = init))
+t_inla <- system.time(
+  fit <- inla(weight ~ 1 + Time + f(id_b, model = "iid", hyper = pc(log(1 / 100))) +
+                                  f(id_a, Time, model = "iid", hyper = pc(log(1 / 10))),
+              data = d, family = "gaussian",
+              control.family = list(hyper = pc(log(1 / 150))),
+              control.inla = list(int.strategy = "grid"),   # finer integration over theta
+              num.threads = "1:1",                          # reproducible results
+              control.fixed = list(mean.intercept = 0, prec.intercept = 1e-4,
+                                   mean = 0, prec = 1e-4))
+)
+s <- sapply(fit$marginals.hyperpar, function(m)          # sigma = 1 / sqrt(precision)
+  unlist(inla.zmarginal(inla.tmarginal(function(x) 1 / sqrt(x), m), silent = TRUE)[1:2]))
+saveRDS(data.frame(method = "INLA", variable = c("sigma_e", "sigma_b", "sigma_a"),
+                   mean = s["mean", ], sd = s["sd", ], seconds = t_inla[["elapsed"]]),
+        "partB_inla.rds")
+```
+
+## Comparison
+
+```{r partB-compare}
+res <- do.call(rbind, lapply(list.files(pattern = "^partB_.*\\.rds$"), readRDS))
+rownames(res) <- NULL
+res$cell <- sprintf("%.2f (%.2f)", res$mean, res$sd)
+tab <- reshape(res[, c("method", "variable", "cell", "seconds")],
+               idvar = c("method", "seconds"), timevar = "variable", direction = "wide")
+tab[, c("method", "cell.sigma_a", "cell.sigma_b", "cell.sigma_e", "seconds")]
+```
+
+## Indicative results
+
+\tiny
+
+| Method | $\sigma_a$ | $\sigma_b$ | $\sigma_\varepsilon$ | Time (s) |
+|---|---|---|---|---|
+| Stan NUTS (joint), reference | 3.58 (0.40) | 10.7 (1.62) | 12.9 (0.43) | 4 (+ 11 compile) |
+| Stan L1 on the joint | fails | (no mode) | --- | --- |
+| Stan L2 + NUTS | 3.58 (0.39) | 10.7 (1.62) | 12.9 (0.43) | 102 (+ compile) |
+| Stan L2 + mode | 3.51 (0.37) | 10.7 (1.57) | 12.9 (0.42) | 20 (+ compile) |
+| TMB L2 + mode (C++ version) | 3.49 (0.37) | 10.5 (1.54) | 12.9 (0.42) | < 1 (+ 60 compile) |
+| tmbstan L2 + NUTS / NUTS (joint) | TBC | TBC | TBC | TBC |
+| INLA, default initial values | 2.93 | 0.12 | 14.4 | 2 |
+| INLA, sensible initial values, grid | 3.58 (0.35) | 10.8 (1.27) | 12.9 (0.42) | 1 |
+
+\scriptsize
+
+* Posterior mean (sd); TMB row: mode (delta-method SE). 4 chains, 8-core Linux, CmdStan 2.40. TBC: from `partB-compare`
+* INLA, default initial values: local mode (log marginal likelihood $-2488.6$ vs $-2465.9$)
+* INLA's sd of $\sigma_b$ too small (1.27 vs 1.62): outer-step error, as the inner step is exact here
+* Embedded Laplace is *slower* here (inner Newton solve per gradient); it pays off for non-Gaussian likelihoods
+
+# Wrap-up
+
+## Comparison table
+
+\tiny
+
+| Route | What you write | GLMM | Mixture | Laplace on same model | Exact MCMC | Compiler | Ceiling |
+|---|---|---|---|---|---|---|---|
+| JAGS | BUGS model | yes | yes, samples $z$ | no | yes | no | BUGS |
+| NIMBLE | BUGS model | yes | yes, samples $z$ | yes (`nimbleQuad`) | yes | yes | BUGS + own samplers |
+| Stan | log density | yes | sum out $z$ | L1 & L2 ($\geq$ 2.39) | yes | yes | continuous models |
+| brms | formula | yes | yes (`mixture()`) | L1 only | yes | yes | very wide |
+| rstanarm | formula | yes | no | no | yes | no | fixed menu |
+| TMB | NLL (C++) | yes | sum out $z$ | L2 (core) | via tmbstan | yes | differentiable |
+| tmbstan | (TMB objective) | yes | sum out $z$ | `laplace = TRUE` | yes | no (RTMB) | as TMB |
+| glmmTMB | formula | yes | no | L2 (core) | via tmbstan | no | GLMMs |
+| monty | R function + DSL | yes (slow) | yes | no | yes | no (yes for odin2) | anything; ODEs |
+| Custom C++ | the sampler | yes | yes | DIY | yes | yes | anything |
+| INLA | formula | yes | no | nested (only) | no | no | latent Gaussian models |
+
+## Recommendations
+
+* Costs differ in kind: compile time (Stan, TMB, NIMBLE, brms), per-iteration time (JAGS, monty), your time (custom)
+
+* Standard GLMM, frequentist answer is fine: `glmmTMB`
+* Standard GLMM, Bayesian: `brms` (or `rstanarm` if no compiler); check `stancode()`
+* Latent Gaussian / spatial, need speed: INLA (check initial values / starting modes!)
+* Non-standard continuous model: native Stan; if it also has many random effects: TMB/RTMB (+ `tmbstan`)
+* Discrete latent variables you want to sample, or BUGS code to reuse: NIMBLE (or JAGS)
+* Epidemic ODE / stochastic models with particle filters: `odin2` + `dust2` + `monty`
+* Exploitable structure or non-standard moves: custom C++, validated against one of the above
+* Always: when using Laplace, compare with a full MCMC run on a representative case
+
+## References
+
+\tiny
+
+* Štrumbelj, Bouchard-Côté, Corander, Gelman, Rue, Murray, Pesonen, Plummer, Vehtari (2024). Past, present and future of software for Bayesian inference. *Statistical Science* 39(1), 46--61.
+* Beraha, Falco, Guglielmi (2021). JAGS, NIMBLE, Stan: a detailed comparison among Bayesian MCMC software. arXiv:2107.09357. (See also the NIMBLE team's responses on r-nimble.org.)
+* Monnahan, Kristensen (2018). No-U-turn sampling for fast Bayesian inference in ADMB and TMB: introducing the adnuts and tmbstan R packages. *PLoS ONE* 13(5), e0197954.
+* Monnahan, Thorson, Branch (2017). Faster estimation of Bayesian models in ecology using Hamiltonian Monte Carlo. *Methods in Ecology and Evolution* 8(3), 339--348.
+* Osgood-Zimmerman, Wakefield (2023). A statistical review of Template Model Builder: a flexible tool for spatial modelling. *International Statistical Review* 91(2), 318--342.
+* Kristensen, Nielsen, Berg, Skaug, Bell (2016). TMB: automatic differentiation and Laplace approximation. *Journal of Statistical Software* 70(5).
+* Rue, Martino, Chopin (2009). Approximate Bayesian inference for latent Gaussian models by using integrated nested Laplace approximations. *JRSS B* 71(2), 319--392.
+* Margossian, Vehtari, Simpson, Agrawal (2020). Hamiltonian Monte Carlo using an adjoint-differentiated Laplace approximation. *NeurIPS*.
+* Taylor, Diggle (2014). INLA or MCMC? A tutorial and comparative evaluation for spatial prediction in log-Gaussian Cox processes. *JSCS* 84(10), 2266--2284.
+* Stan Functions Reference: Embedded Laplace approximation (CmdStan 2.39+); odin--monty book: mrc-ide.github.io/odin-monty
+
+## Thank you!
