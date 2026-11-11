@@ -392,8 +392,6 @@ res <- readRDS("reading_group_20261113_results.rds")
 
 ##
 
-$$~$$
-
 :::: {.columns}
 ::: {.column width="45%"}
 
@@ -403,9 +401,10 @@ $$~$$
 #| echo: false
 #| eval: true
 #| include: true
-#| fig.cap: "DOI: 10.1214/23-STS907"
 knitr::include_graphics("images/software.png")
 ```
+
+\begin{center}\small DOI: 10.1214/23-STS907\end{center}
 
 :::
 ::: {.column width="55%"}
@@ -416,9 +415,10 @@ knitr::include_graphics("images/software.png")
 #| echo: false
 #| eval: true
 #| include: true
-#| fig.cap: "https://darrenjw.wordpress.com/2011/07/16/\ngibbs-sampler-in-various-languages-revisited/"
 knitr::include_graphics("images/various-languages.png")
 ```
+
+\begin{center}\small \url{https://darrenjw.wordpress.com/2011/07/16/gibbs-sampler-in-various-languages-revisited/}\end{center}
 
 :::
 ::::
@@ -551,7 +551,7 @@ coda::effectiveSize(draws)
 
 :::: {.columns}
 ::: {.column width="40%"}
-* https://sourceforge.net/projects/mcmc-jags/
+* \url{https://sourceforge.net/projects/mcmc-jags/}
 
 * R packages
 
@@ -901,10 +901,11 @@ $$~$$
 #| echo: false
 #| out.width: "70%"
 #| fig.align: "center"
-#| fig.cap: "https://mc-stan.org/docs/stan-users-guide/img/stan-ecosystem.png"
 knitr::include_graphics("images/stan-ecosystem.png")
 # knitr::include_graphics("https://mc-stan.org/docs/stan-users-guide/img/stan-ecosystem.png")
 ```
+
+\begin{center}\small \url{https://mc-stan.org/docs/stan-users-guide/img/stan-ecosystem.png}\end{center}
 
 
 ## 6. TMB (template model builder)
@@ -1420,9 +1421,11 @@ fit_joint <- try(mod$laplace(data = dat, jacobian = TRUE,
 #| echo: false
 #| eval: true
 #| include: true
-#| fig.cap: "https://mc-stan.org/docs/2\_18/\nstan-users-guide/img/funnel.png"
+#| fig.align: "center"
 knitr::include_graphics("images/funnel.png")
 ```
+
+\begin{center}\small \url{https://mc-stan.org/docs/2_18/stan-users-guide/img/funnel.png}\end{center}
 :::
 ::::
 
@@ -1461,7 +1464,7 @@ t_exact <- system.time(fit_exact <- tmbstan(obj, laplace = FALSE, chains = 4, co
 * Same object throughout; can check against full MCMC
 <!-- * This run: `r secs("laplace-tmbstan", "t_fit")` s with Laplace vs `r secs("laplace-tmbstan-exact", "t_fit")` s without -->
 
-## B. Implementation: native Stan (outline)
+## B. Implementation: native Stan
 
 ```{r laplace-stan-outline}
 ## changes to the Stan program of 3. Stan (full code in the Rmd source)
@@ -1632,28 +1635,25 @@ install.packages(c("fmesher", "inlabru"))
 :::
 ::::
 
-## Implementation comparison 
+## "Laplace" means different things
 
 \scriptsize
 \renewcommand{\arraystretch}{1.4}
-\begin{tabular}{l >{\raggedright\arraybackslash}p{0.33\textwidth} >{\raggedright\arraybackslash}p{0.45\textwidth}}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.17\textwidth} >{\raggedright\arraybackslash}p{0.33\textwidth} >{\raggedright\arraybackslash}p{0.42\textwidth}}
  & $\boldsymbol\theta$ \textbf{sampled (MCMC)} & $\boldsymbol\theta$ \textbf{deterministic} \\
 \hline
-$\mathbf{x}$ \textbf{sampled} & Stan NUTS; \texttt{tmbstan(laplace = FALSE)} (the reference) & (not considered) \\
-$\mathbf{x}$ \textbf{Laplace} & Stan \texttt{laplace\_marginal()} + NUTS; \texttt{tmbstan(laplace = TRUE)} &
-  Gaussian at the mode of $\boldsymbol\theta$: TMB / glmmTMB + \texttt{nlminb()}; Stan \texttt{laplace\_marginal()} + \texttt{\$laplace()} \newline
-  Numerical integration over $\boldsymbol\theta$: INLA; NIMBLE AGHQ \\
+$\mathbf{x}$ \textbf{sampled} & Stan NUTS; \texttt{tmbstan(laplace = FALSE)} (the reference) & -- \\
+$\mathbf{x}$ \textbf{Laplace, given} $\boldsymbol\theta$ & Stan \texttt{laplace\_marginal()} + \texttt{\$sample()}; \texttt{tmbstan(laplace = TRUE)} &
+  At the mode of $\boldsymbol\theta$: TMB / glmmTMB (\texttt{random = }) + \texttt{nlminb()}; \texttt{laplace\_marginal()} + \texttt{\$laplace()} \newline
+  Integrated over $\boldsymbol\theta$: INLA; NIMBLE AGHQ \\
+($\mathbf{x}, \boldsymbol\theta$) \textbf{Gaussian at joint mode} & -- &
+  Stan \texttt{\$laplace()}; brms \texttt{algorithm = "laplace"}; TMB / RTMB without \texttt{random = } \\
 \end{tabular}
 \renewcommand{\arraystretch}{1}
 
-\normalsize
-
-* Gaussian approximation of joint posterior
-  - outside the grid (both $\mathbf{x}$ & $\boldsymbol\theta$ at the joint mode)
-  - Stan: `$laplace()`
-  - brms: `algorithm = "laplace"`
-  - TMB / RTMB: without `random = `
-<!-- * Here the likelihood is Gaussian, so the inner Laplace step is **exact**
+<!--  - joint mode (row 3): Stan `$laplace()`, brms `algorithm = "laplace"`
+  - latent variables only (row 2): `laplace_marginal()`, `tmbstan(laplace = TRUE)`, TMB's `random = `
+ * Here the likelihood is Gaussian, so the inner Laplace step is **exact**
     * differences come from the outer step only (or Monte Carlo error)
     * for a Poisson/binomial GLMM with few observations per group, the inner step matters too -->
 
@@ -1821,13 +1821,32 @@ density_plot("glmm", c("sigma_a", "sigma_b", "sigma_e"))
 
 ## What should I use?
 
+\tiny
+
+| Approach | What you write | Laplace on the same model | Exact MCMC | Compiler | On CRAN | Best for |
+|-------|------|---------|------|-----|------|--------------------|
+| JAGS | BUGS model | $\times$ | $\checkmark$ | $\times$ | $\checkmark$ (+ JAGS itself) | reusing BUGS code; sampling discrete latent variables; teaching |
+| NIMBLE | BUGS model | $\checkmark$ (`nimbleQuad`) | $\checkmark$ | $\checkmark$ | $\checkmark$ | BUGS models needing better samplers or other algorithms (HMC, SMC, Laplace) |
+| Stan | objective | joint mode; embedded ($\geq$ 2.39) | $\checkmark$ | $\checkmark$ | $\times$ (`cmdstanr`) | non-standard continuous models; reliable diagnostics |
+| brms | formula | joint mode only | $\checkmark$ | $\checkmark$ | $\checkmark$ (`rstan` backend) | regression beyond the standard: distributional, non-linear, mixtures, GPs |
+| rstanarm | formula | $\times$ | $\checkmark$ | $\times$ | $\checkmark$ | standard GLMs / GLMMs, Bayesian, without a compiler |
+| TMB | objective | core (`random = `) | via tmbstan | $\checkmark$ | $\checkmark$ | custom likelihoods with many random effects; fast mode |
+| glmmTMB | formula | core | via tmbstan | $\times$ | $\checkmark$ | fast (frequentist) GLMMs: zero-inflation, dispersion, many families |
+| tmbstan + RTMB | objective | `laplace = TRUE` | $\checkmark$ | $\times$ | $\checkmark$ | MCMC for existing TMB models; checking their Laplace approximation |
+| monty | objective + DSL | $\times$ | $\checkmark$ | $\times$ ($\checkmark$ for odin2) | $\times$ | ODE / stochastic epidemic models with `odin2` + `dust2` (particle MCMC) |
+| Custom C++ | the sampler | DIY | $\checkmark$ | $\checkmark$ | $\checkmark$ | exploitable structure, non-standard moves; validate against the above |
+| INLA | formula | nested (only) | $\times$ | $\times$ | $\times$ | latent Gaussian models (temporal, spatial), fast; check initial values |
+
+## What should I use?
+
 \def\Y{$\checkmark$}\def\N{$\times$}\def\S{$\star$}
 \tiny
 \setlength{\tabcolsep}{1.8pt}
 \begin{tabular}{l*{12}{c}l}
+\hline
 Model & JAGS & NIMBLE & Stan & brms & rstanarm & TMB & glmmTMB & tmbstan & monty & C++ & INLA & Laplace? & Data \\
 \hline
-Gaussian LMM & \Y & \Y & \Y & \Y & \Y & \Y & \Y & \Y & \Y & \Y & \Y & exact & \texttt{ChickWeight} \\
+Gaussian GLMM & \Y & \Y & \Y & \Y & \Y & \Y & \Y & \Y & \Y & \Y & \Y & exact & \texttt{ChickWeight} \\
 Gaussian mixture & \Y & \Y & \Y & \Y & \N & \Y & \N & \Y & \Y & \Y & \N & \N & \texttt{faithful} \\
 Binomial GLMM & \Y & \Y & \Y & \Y & \Y & \Y & \Y & \Y & \Y & \Y & \Y & \Y & \texttt{lme4::cbpp} \\
 Zero-inflated Poisson & \Y & \Y & \Y & \Y & \N & \Y & \S & \Y & \Y & \Y & \Y & \Y & \texttt{glmmTMB::Salamanders} \\
@@ -1860,7 +1879,7 @@ $\sim$ workaround or custom code; $\times$ not possible; $\star$ showcase (Lapla
 <!-- * monty and C++: you write the log density, so everything is possible; the effort grows with the model -->
 
 :::: {.columns}
-::: {.column width="57%"}
+::: {.column width="58%"}
 * $^{1}$ rstanarm, Weibull: `stan_surv` only in the development version
 * $^{2}$ glmmTMB, AR(2): AR(1) only
 * $^{3}$ INLA, AR(2): latent AR($p$) + small observation noise
@@ -1877,7 +1896,7 @@ $\sim$ workaround or custom code; $\times$ not possible; $\star$ showcase (Lapla
 * $^{14}$ glmmTMB, IRT: Rasch as a GLMM; 2PL via reduced-rank `rr()`
 * $^{15}$ INLA, IRT: Rasch; 2PL via `copy` with a free scaling
 :::
-::: {.column width="43%"}
+::: {.column width="42%"}
 * Zero-inflated Poisson: glmmTMB's `Salamanders` example [@brooks2017glmmtmb]
 * Stochastic volatility, latent AR(1): TMB's `sdv_multi`, `ar1_4D` [@kristensen2026tmbexamples; @skaug2014flexible]
 * Latent AR(1), spatial ICAR / BYM: INLA's `ar1`, `besag`, `bym2` [@inla2026ar1; @inla2026bym2; @riebler2016intuitive]
@@ -1886,29 +1905,11 @@ $\sim$ workaround or custom code; $\times$ not possible; $\star$ showcase (Lapla
 * Other example models: @stan2026examples; @stan2026users
 :::
 ::::
-
-## What should I use? (cont'd)
-
-\tiny
-
-| Approach | What you write | Laplace on the same model | Exact MCMC | Compiler | On CRAN | Best for |
-|-------|------|---------|------|-----|------|--------------------|
-| JAGS | BUGS model | $\times$ | $\checkmark$ | $\times$ | $\checkmark$ (+ JAGS itself) | reusing BUGS code; sampling discrete latent variables; teaching |
-| NIMBLE | BUGS model | $\checkmark$ (`nimbleQuad`) | $\checkmark$ | $\checkmark$ | $\checkmark$ | BUGS models needing better samplers or other algorithms (HMC, SMC, Laplace) |
-| Stan | objective | joint mode; embedded ($\geq$ 2.39) | $\checkmark$ | $\checkmark$ | $\times$ (`cmdstanr`) | non-standard continuous models; reliable diagnostics |
-| brms | formula | joint mode only | $\checkmark$ | $\checkmark$ | $\checkmark$ (`rstan` backend) | regression beyond the standard: distributional, non-linear, mixtures, GPs |
-| rstanarm | formula | $\times$ | $\checkmark$ | $\times$ | $\checkmark$ | standard GLMs / GLMMs, Bayesian, without a compiler |
-| TMB | objective | core (`random = `) | via tmbstan | $\checkmark$ | $\checkmark$ | custom likelihoods with many random effects; fast mode |
-| glmmTMB | formula | core | via tmbstan | $\times$ | $\checkmark$ | fast (frequentist) GLMMs: zero-inflation, dispersion, many families |
-| tmbstan + RTMB | objective | `laplace = TRUE` | $\checkmark$ | $\times$ | $\checkmark$ | MCMC for existing TMB models; checking their Laplace approximation |
-| monty | objective + DSL | $\times$ | $\checkmark$ | $\times$ ($\checkmark$ for odin2) | $\times$ | ODE / stochastic epidemic models with `odin2` + `dust2` (particle MCMC) |
-| Custom C++ | the sampler | DIY | $\checkmark$ | $\checkmark$ | $\checkmark$ | exploitable structure, non-standard moves; validate against the above |
-| INLA | formula | nested (only) | $\times$ | $\times$ | $\times$ | latent Gaussian models (temporal, spatial), fast; check initial values |
     
 
-## References 0
+## Reading list
 
-\scriptsize
+\small
 
 :::: {.columns}
 ::: {.column width="50%"}
